@@ -1,0 +1,50 @@
+{
+  "name": "vue-doxen",
+  "version": "0.0.1",
+  "description": "The world's best Vue.js component documentation tool!",
+  "type": "module",
+  "main": "src/vue-doxen.js",
+  "scripts": {
+    "start": "vite dev",
+    "build": "vite build",
+    "lint": "eslint --ext .js,.vue --config=.eslintrc.cjs src vite.config.js .eslintrc.cjs",
+    "fix": "eslint --fix --ext .js,.vue --config=.eslintrc.cjs src vite.config.js .eslintrc.cjs"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.24.1",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.57.0",
+    "eslint-config-tjw-base": "^2.0.0",
+    "eslint-config-tjw-import": "^1.0.0",
+    "eslint-config-tjw-vue": "^3.0.0",
+    "eslint-import-resolver-webpack": "^0.13.8",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-vue": "^9.24.1",
+    "eslint-plugin-vuejs-accessibility": "^2.2.1",
+    "vite": "^5.2.8",
+    "vue": "^3.4.21"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheJaredWilcurt/vue-doxen.git"
+  },
+  "keywords": [
+    "vue",
+    "documentation",
+    "doxen",
+    "vue.js",
+    "component",
+    "library",
+    "docs"
+  ],
+  "author": "The Jared Wilcurt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TheJaredWilcurt/vue-doxen/issues"
+  },
+  "homepage": "https://github.com/TheJaredWilcurt/vue-doxen#readme",
+  "volta": {
+    "node": "21.7.2"
+  }
+}
