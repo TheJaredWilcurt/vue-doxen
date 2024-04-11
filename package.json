@@ -7,6 +7,7 @@
   "scripts": {
     "start": "vite dev",
     "build": "vite build",
+    "sasslint": "sass-lint -c .sass-lint.yml -v -f table",
     "lint": "eslint --ext .js,.vue --config=.eslintrc.cjs src vite.config.js .eslintrc.cjs",
     "fix": "eslint --fix --ext .js,.vue --config=.eslintrc.cjs src vite.config.js .eslintrc.cjs"
   },
@@ -22,6 +23,9 @@
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-vue": "^9.24.1",
     "eslint-plugin-vuejs-accessibility": "^2.2.1",
+    "sass": "^1.74.1",
+    "sass-lint": "^1.13.1",
+    "tjw-sasslint-rules": "^2.1.0",
     "vite": "^5.2.8",
     "vue": "^3.4.21"
   },
@@ -46,5 +50,8 @@
   "homepage": "https://github.com/TheJaredWilcurt/vue-doxen#readme",
   "volta": {
     "node": "21.7.2"
+  },
+  "dependencies": {
+    "lodash.clonedeep": "^4.5.0"
   }
 }

@@ -2,5 +2,7 @@ import { createApp } from 'vue';
 
 import App from './App.vue';
 
+import '@/sass/styles.sass';
+
 const app = createApp(App);
 app.mount('#app');

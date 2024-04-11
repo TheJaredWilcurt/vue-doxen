@@ -21,4 +21,5 @@ jobs:
     - run: npm -v
     - run: npm ci
     - run: npm run build
+    - run: npm run sasslint
     - run: npm run lint
