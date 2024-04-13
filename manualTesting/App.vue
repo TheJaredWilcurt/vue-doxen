@@ -1,6 +1,7 @@
 <template>
   <div>
     APP
+    {{ selectedDemo }}
     <DoxenCheckbox
       v-model="bool"
       label="Label"
@@ -9,13 +10,22 @@
       errorMessage="errorMessage"
       message="Message"
       :disabled="false"
-      :styleTokens="styleTokens"
+      :styleTokens="styleTokensBuiltIn"
     />
-    <DoxenRadioDials :styleTokens="styleTokens" />
-    <DoxenSideBar :styleTokens="styleTokens" />
-    <DoxenTextarea :styleTokens="styleTokens" />
-    <DoxenTextField :styleTokens="styleTokens" />
-    <VueDoxen :styleTokens="styleTokens" />
+    <DoxenRadioDials :styleTokens="styleTokensBuiltIn" />
+    <DoxenTextarea :styleTokens="styleTokensBuiltIn" />
+    <DoxenTextField :styleTokens="styleTokensBuiltIn" />
+
+    <DoxenSideBar
+      v-model="selectedDemo"
+      :demos="demos"
+      :styleTokens="styleTokensBuiltIn"
+    />
+    <VueDoxen
+      v-model="selectedDemo"
+      :demos="demos"
+      :styleTokens="styleTokensBuiltIn"
+    />
   </div>
 </template>
 
@@ -26,7 +36,7 @@ import {
   DoxenSideBar,
   DoxenTextarea,
   DoxenTextField,
-  styleTokens,
+  styleTokensBuiltIn,
   VueDoxen
 } from '@/vue-doxen.js';
 
@@ -40,15 +50,22 @@ export default {
     DoxenTextField,
     VueDoxen
   },
+  constants: {
+    styleTokensBuiltIn
+  },
   data: function () {
     return {
-      bool: true
+      bool: true,
+      selectedDemo: '',
+      demos: {
+        doxenCheckboxDemo: {
+          component: DoxenCheckbox
+        },
+        doxenRadioDialsDemo: {
+          component: DoxenRadioDials
+        }
+      }
     };
-  },
-  computed: {
-    styleTokens: function () {
-      return styleTokens;
-    }
   }
 };
 </script>

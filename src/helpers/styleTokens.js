@@ -13,7 +13,12 @@
  * Can use existing CSS component classes (Vuetify)
  */
 
-export const styleTokens = {
+/**
+ * The basic built in styles. Meant to have very little aesthetic impact and mostly give simple layout improvements.
+ *
+ * @type {Object}
+ */
+export const styleTokensBuiltIn = {
   formFieldCheckbox: 'doxen-form-field-checkbox',
   formFieldCheckboxContainer: 'doxen-form-field-checkbox-container',
   formFieldCheckboxError: 'doxen-form-field-checkbox-error',
@@ -25,5 +30,18 @@ export const styleTokens = {
   formFieldLegendDisabled: 'doxen-form-field-legend-disabled',
   formFieldLegendError: 'doxen-form-field-legend-error',
   formFieldMessage: 'doxen-form-field-message',
-  formFieldRequired: 'doxen-form-field-required'
+  formFieldRequired: 'doxen-form-field-required',
+  sidebarButton: 'doxen-sidebar-button',
+  sidebarButtonActive: 'doxen-sidebar-button-active',
+  sidebarContainer: 'doxen-sidebar-container'
 };
+
+/**
+ * All the style token keys without any class names applied to them.
+ *
+ * @type {Object}
+ */
+export const styleTokensEmpty = {};
+for (const key in styleTokensBuiltIn) {
+  styleTokensEmpty[key] = '';
+}

@@ -1,6 +1,9 @@
 import '@/sass/styles.sass';
 
-export { styleTokens } from '@/helpers/styleTokens.js';
+export {
+  styleTokensBuiltIn,
+  styleTokensEmpty
+} from '@/helpers/styleTokens.js';
 
 export { default as VueDoxen } from '@/components/VueDoxen.vue';
 export { default as DoxenSideBar } from '@/components/DoxenSideBar.vue';

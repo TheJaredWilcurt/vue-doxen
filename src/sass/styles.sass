@@ -1,5 +1,7 @@
 $red: #F00
 $disabledGray: #4E4F5F
+$transparent: transparent
+$gray50: rgba(68, 69, 85, 0.5)
 
 /* All elements have class names and are docuemnted here if they do not have more specific styling below */
 .doxen-form-field-checkbox,
@@ -9,7 +11,8 @@ $disabledGray: #4E4F5F
 .doxen-form-field-error,
 .doxen-form-field-fieldset,
 .doxen-form-field-legend,
-.doxen-form-field-message
+.doxen-form-field-message,
+.doxen-sidebar-container
     display: inherit
 
 .doxen-form-field-checkbox-error,
@@ -19,3 +22,10 @@ $disabledGray: #4E4F5F
 
 .doxen-form-field-legend-disabled
     color: $disabledGray
+
+.doxen-sidebar-button
+    background: $transparent
+    border: 0px
+
+.doxen-sidebar-button-active
+    background: $gray50

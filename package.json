@@ -11,6 +11,10 @@
     "lint": "eslint --ext .js,.vue --config=.eslintrc.cjs src vite.config.js .eslintrc.cjs",
     "fix": "eslint --fix --ext .js,.vue --config=.eslintrc.cjs src vite.config.js .eslintrc.cjs"
   },
+  "dependencies": {
+    "lodash.clonedeep": "^4.5.0",
+    "vue-options-api-constants-plugin": "^1.0.1"
+  },
   "devDependencies": {
     "@babel/eslint-parser": "^7.24.1",
     "@vitejs/plugin-vue": "^5.0.4",
@@ -50,8 +54,5 @@
   "homepage": "https://github.com/TheJaredWilcurt/vue-doxen#readme",
   "volta": {
     "node": "21.7.2"
-  },
-  "dependencies": {
-    "lodash.clonedeep": "^4.5.0"
   }
 }

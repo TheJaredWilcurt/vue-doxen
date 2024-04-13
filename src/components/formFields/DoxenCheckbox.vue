@@ -80,6 +80,9 @@ import {
   createIdFor,
   USE_VMODEL_WARNING
 } from '@/helpers/componentHelpers.js';
+import {
+  styleTokens
+} from '@/helpers/props.js';
 import { dataValue } from '@/helpers/snapshotHelpers.js';
 
 const COMPONENT_NAME = 'DoxenCheckbox';
@@ -89,12 +92,7 @@ export default {
   inheritAttrs: false,
   emits: ['update:modelValue'],
   props: {
-    styleTokens: {
-      type: Object,
-      default: function () {
-        return {};
-      }
-    },
+    styleTokens,
     label: {
       type: String,
       default: undefined,
