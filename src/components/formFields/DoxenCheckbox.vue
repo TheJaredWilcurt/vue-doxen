@@ -5,6 +5,8 @@
     :data-value="dataValue(modelValue)"
   >
     <FormFieldLabel
+      :disabled="disabled"
+      :errorMessage="errorMessage"
       :label="label"
       :required="required"
       :styleTokens="styleTokens"
@@ -63,6 +65,7 @@ import {
   USE_VMODEL_WARNING
 } from '@/helpers/componentHelpers.js';
 import {
+  createDisabledProp,
   createErrorMessageProp,
   createMessageProp,
   label,
@@ -75,6 +78,7 @@ import FormFieldFooter from '@/components/formFields/FormFieldFooter.vue';
 import FormFieldLabel from '@/components/formFields/FormFieldLabel.vue';
 
 const COMPONENT_NAME = 'DoxenCheckbox';
+const disabled = createDisabledProp('checkbox');
 const message = createMessageProp('checkbox');
 const errorMessage = createErrorMessageProp('checkbox');
 
@@ -87,16 +91,12 @@ export default {
   inheritAttrs: false,
   emits: ['update:modelValue'],
   props: {
+    disabled,
     errorMessage,
     label,
     message,
     required,
     styleTokens,
-    disabled: {
-      type: Boolean,
-      default: false,
-      description: 'Prevents interacting with the checkbox and visually indicates the field is disabled.'
-    },
     modelValue: {
       type: Boolean,
       default: null,

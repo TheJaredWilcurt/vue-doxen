@@ -5,6 +5,8 @@
     :data-value="dataValue(modelValue)"
   >
     <FormFieldLabel
+      :disabled="disabled"
+      :errorMessage="errorMessage"
       :label="label"
       :required="required"
       :styleTokens="styleTokens"
@@ -25,7 +27,11 @@
           :name="radioName"
           :disabled="disabled"
           :required="required"
-          :class="{ error: errorMessage }"
+          data-style-tokens="formFieldRadioDial formFieldRadioDialError"
+          :class="{
+            [styleTokens.formFieldRadioDial]: true,
+            [styleTokens.formFieldRadioDialError]: errorMessage
+          }"
           :data-test="'radio-button-' + option.value"
           :data-value="dataValue(modelValue == option.value)"
           type="radio"
@@ -64,6 +70,7 @@ import {
   wrappedHumanList
 } from '@/helpers/componentHelpers.js';
 import {
+  createDisabledProp,
   createErrorMessageProp,
   createMessageProp,
   label,
@@ -77,6 +84,7 @@ import FormFieldLabel from '@/components/formFields/FormFieldLabel.vue';
 
 const COMPONENT_NAME = 'DoxenRadioDials';
 const allowedOptionValueTypes = ['string', 'number', 'boolean'];
+const disabled = createDisabledProp('radio buttons');
 const errorMessage = createErrorMessageProp('radio buttons');
 const message = createMessageProp('radio buttons');
 
@@ -89,16 +97,12 @@ export default {
   inheritAttrs: false,
   emits: ['update:modelValue'],
   props: {
+    disabled,
     errorMessage,
     label,
     message,
     required,
     styleTokens,
-    disabled: {
-      type: Boolean,
-      default: false,
-      description: 'Prevents interacting with the radio buttons and visually indicates the field is disabled.'
-    },
     modelValue: {
       type: [String, Number, Boolean],
       default: null,

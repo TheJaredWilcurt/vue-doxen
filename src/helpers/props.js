@@ -1,5 +1,12 @@
 import { USE_VMODEL_WARNING } from '@/helpers/componentHelpers.js';
 
+export const createDisabledProp = function (type) {
+  return {
+    type: Boolean,
+    default: false,
+    description: 'Prevents interacting with the ' + type + ' and visually indicates the field is disabled.'
+  };
+};
 export const createErrorMessageProp = function (type) {
   return {
     type: String,

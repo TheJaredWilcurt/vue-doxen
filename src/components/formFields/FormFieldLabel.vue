@@ -20,14 +20,21 @@
 
 <script>
 import {
+  createDisabledProp,
+  createErrorMessageProp,
   label,
   required,
   styleTokens
 } from '@/helpers/props.js';
 
+const disabled = createDisabledProp('form field');
+const errorMessage = createErrorMessageProp('form field');
+
 export default {
   name: 'FormFieldLabel',
   props: {
+    disabled,
+    errorMessage,
     label,
     required,
     styleTokens
