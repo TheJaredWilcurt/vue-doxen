@@ -1,11 +1,193 @@
 <template>
-  <div>
-    DoxenRadioDials
-  </div>
+  <fieldset
+    data-style-tokens="formFieldFieldset"
+    :class="styleTokens.formFieldFieldset"
+    :data-value="dataValue(modelValue)"
+  >
+    <FormFieldLabel
+      :label="label"
+      :required="required"
+      :styleTokens="styleTokens"
+    />
+    <div
+      v-if="uniqueOptions"
+      data-style-tokens="formFieldRadioDialsContainer"
+      :class="styleTokens.formFieldRadioDialsContainer"
+    >
+      <template
+        v-for="option in uniqueOptions"
+        :key="'option' + option.uniqueId"
+      >
+        <input
+          :id="createRadioIdFor(option, label)"
+          :checked="modelValue == option.value"
+          :value="option.value"
+          :name="radioName"
+          :disabled="disabled"
+          :required="required"
+          :class="{ error: errorMessage }"
+          :data-test="'radio-button-' + option.value"
+          :data-value="dataValue(modelValue == option.value)"
+          type="radio"
+          v-bind="{ ...$attrs, innerHTML: undefined }"
+          @input="updateValue(option.value)"
+        />
+        <label
+          v-text="option.name"
+          data-style-tokens="formFieldRadioDialNameDisabled formFieldRadioDialNameError"
+          :class="{
+            [styleTokens.formFieldRadioDialNameDisabled]: disabled,
+            [styleTokens.formFieldRadioDialNameError]: errorMessage
+          }"
+          :for="createRadioIdFor(option, label)"
+        ></label>
+      </template>
+    </div>
+    <FormFieldFooter
+      :errorMessage="errorMessage"
+      :innerHTML="$attrs.innerHTML"
+      :message="message"
+      :styleTokens="styleTokens"
+    />
+    <slot></slot>
+  </fieldset>
 </template>
 
 <script>
+import _cloneDeep from 'lodash.clonedeep';
+
+import {
+  createRadioIdFor,
+  humanList,
+  replaceWeirdCharacters,
+  USE_VMODEL_WARNING,
+  wrappedHumanList
+} from '@/helpers/componentHelpers.js';
+import {
+  createErrorMessageProp,
+  createMessageProp,
+  label,
+  required,
+  styleTokens
+} from '@/helpers/props.js';
+import { dataValue } from '@/helpers/snapshotHelpers.js';
+
+import FormFieldFooter from '@/components/formFields/FormFieldFooter.vue';
+import FormFieldLabel from '@/components/formFields/FormFieldLabel.vue';
+
+const COMPONENT_NAME = 'DoxenRadioDials';
+const allowedOptionValueTypes = ['string', 'number', 'boolean'];
+const errorMessage = createErrorMessageProp('radio buttons');
+const message = createMessageProp('radio buttons');
+
 export default {
-  name: 'DoxenRadioDials'
+  name: COMPONENT_NAME,
+  components: {
+    FormFieldFooter,
+    FormFieldLabel
+  },
+  inheritAttrs: false,
+  emits: ['update:modelValue'],
+  props: {
+    errorMessage,
+    label,
+    message,
+    required,
+    styleTokens,
+    disabled: {
+      type: Boolean,
+      default: false,
+      description: 'Prevents interacting with the radio buttons and visually indicates the field is disabled.'
+    },
+    modelValue: {
+      type: [String, Number, Boolean],
+      default: null,
+      description: USE_VMODEL_WARNING
+    },
+    options: {
+      type: Array,
+      required: false,
+      default: function () {
+        return [];
+      },
+      description: 'Array of objects. Each object represents a radio button and contains a <code>name</code> (string) and a <code>value</code> (' + humanList(allowedOptionValueTypes) + ').',
+      example: [
+        '[',
+        '  {',
+        '    name: \'Kiva.org\',',
+        '    value: \'kiva\'',
+        '  },',
+        '  {',
+        '    name: \'Good.store\',',
+        '    value: \'goodstore\'',
+        '  }',
+        ']'
+      ].join('\n'),
+      validator: function (options) {
+        let valid = true;
+        if (Array.isArray(options)) {
+          options.forEach(function (option) {
+            if (
+              typeof(option) !== 'object' ||
+              Array.isArray(option) ||
+              !option.name ||
+              (
+                !allowedOptionValueTypes.includes(typeof(option.value)) &&
+                option.value !== null
+              )
+            ) {
+              console.warn('The ' + COMPONENT_NAME + ' options prop must be an array of objects with a name and a value that is a type of ' + wrappedHumanList(allowedOptionValueTypes));
+              console.warn('Example:\n<' + COMPONENT_NAME + ' :options="[{ name: \'Foo\', value: 2 }]" />');
+              valid = false;
+            }
+          });
+        } else {
+          valid = false;
+        }
+        return valid;
+      }
+    }
+  },
+  methods: {
+    createRadioIdFor,
+    dataValue,
+    updateValue: function (value) {
+      this.$emit('update:modelValue', value);
+    }
+  },
+  computed: {
+    uniqueOptions: function () {
+      if (!this.options || !Array.isArray(this.options)) {
+        return [];
+      }
+      return _cloneDeep(this.options)
+        .map((option) => {
+          return {
+            ...option,
+            uniqueId: crypto.randomUUID()
+          };
+        });
+    },
+    radioName: function () {
+      const label = this.label;
+      const uniqueIds = this.uniqueOptions
+        .map((option) => {
+          return option.uniqueId;
+        })
+        .filter(Boolean);
+      const names = this.uniqueOptions
+        .map((option) => {
+          return option.name;
+        })
+        .filter(Boolean);
+      const name = [
+        'VueDoxen',
+        label,
+        uniqueIds.join(' '),
+        names.join(' ')
+      ].filter(Boolean).join('_');
+      return replaceWeirdCharacters(name);
+    }
+  }
 };
 </script>

@@ -112,7 +112,7 @@ export const fooBarDemo = {
 };
 ```
 
-In the below component example, we are using built-in features of Vue's prop defintions such as `type`, `default`, `required`, and `validator`. We've also added in `allowed` and `description` which are not part of Vue's API, but also don't negatively impact components either (other than a negligible size increase for the descriptions). This approach keeps the documentation right next to the code, making it easier to update both at the same time.
+In the below component example, we are using built-in features of Vue's prop defintions such as `type`, `default`, `required`, and `validator`. We've also added in `allowed`, `example`, and `description` which are not part of Vue's API, but also don't negatively impact components either (other than a negligible file size increase). This approach keeps the documentation right next to the code, making it easier to update both at the same time.
 
 ```html
 <template>
@@ -148,6 +148,7 @@ export default {
       allowed: ALLOWED_SIZES,
       description: 'Adjust the visual size of the button.',
       default: 'normal',
+      example: ':size="small"',
       validator: function (value) {
         return ALLOWED_SIZES.includes(value);
       }

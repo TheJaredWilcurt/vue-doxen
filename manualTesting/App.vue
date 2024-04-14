@@ -9,10 +9,25 @@
       required
       errorMessage="errorMessage"
       message="Message"
-      :disabled="false"
       :styleTokens="styleTokensBuiltIn"
     />
-    <DoxenRadioDials :styleTokens="styleTokensBuiltIn" />
+    <DoxenRadioDials
+      label="Radio Dials"
+      :options="[
+        {
+          name: 'Item 1',
+          value: 1
+        },
+        {
+          name: 'Item 2',
+          value: 2
+        }
+      ]"
+      required
+      :styleTokens="styleTokensBuiltIn"
+      errorMessage="errorMessage"
+      message="Message"
+    />
     <DoxenTextarea :styleTokens="styleTokensBuiltIn" />
     <DoxenTextField :styleTokens="styleTokensBuiltIn" />
 
@@ -59,10 +74,10 @@ export default {
       selectedDemo: '',
       demos: {
         doxenCheckboxDemo: {
-          component: DoxenCheckbox
+          // component: DoxenCheckbox
         },
         doxenRadioDialsDemo: {
-          component: DoxenRadioDials
+          // component: DoxenRadioDials
         }
       }
     };

@@ -39,6 +39,7 @@ module.exports = {
       'error',
       ...baseRestrictedSyntax
     ],
+    'vue/no-v-for-template-key': 'off',
     'vue/no-multiple-template-root': [
       'off'
     ],

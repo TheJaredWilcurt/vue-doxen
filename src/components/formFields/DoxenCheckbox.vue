@@ -2,24 +2,13 @@
   <fieldset
     data-style-tokens="formFieldFieldset"
     :class="styleTokens.formFieldFieldset"
+    :data-value="dataValue(modelValue)"
   >
-    <legend
-      v-if="label"
-      data-style-tokens="formFieldLegend formFieldLegendDisabled formFieldLegendError"
-      :class="{
-        [styleTokens.formFieldLegend]: true,
-        [styleTokens.formFieldLegendDisabled]: disabled,
-        [styleTokens.formFieldLegendError]: errorMessage
-      }"
-    >
-      {{ label }}:
-      <span
-        v-if="required"
-        v-text="'*'"
-        data-style-tokens="formFieldRequired"
-        :class="styleTokens.formFieldRequired"
-      ></span>
-    </legend>
+    <FormFieldLabel
+      :label="label"
+      :required="required"
+      :styleTokens="styleTokens"
+    />
     <div
       data-style-tokens="formFieldCheckboxContainer"
       :class="styleTokens.formFieldCheckboxContainer"
@@ -58,19 +47,12 @@
         ></span>
       </label>
     </div>
-    <p
-      v-if="message"
-      v-text="message"
-      data-style-tokens="formFieldMessage"
-      :class="styleTokens.formFieldMessage"
-    ></p>
-    <p
-      v-if="errorMessage"
-      v-text="errorMessage"
-      data-style-tokens="formFieldError formFieldMessage"
-      :class="[styleTokens.formFieldError, styleTokens.formFieldMessage]"
-    ></p>
-    <p v-if="$attrs.innerHTML" v-html="$attrs.innerHTML"></p>
+    <FormFieldFooter
+      :errorMessage="errorMessage"
+      :innerHTML="$attrs.innerHTML"
+      :message="message"
+      :styleTokens="styleTokens"
+    />
     <slot></slot>
   </fieldset>
 </template>
@@ -81,22 +63,39 @@ import {
   USE_VMODEL_WARNING
 } from '@/helpers/componentHelpers.js';
 import {
+  createErrorMessageProp,
+  createMessageProp,
+  label,
+  required,
   styleTokens
 } from '@/helpers/props.js';
 import { dataValue } from '@/helpers/snapshotHelpers.js';
 
+import FormFieldFooter from '@/components/formFields/FormFieldFooter.vue';
+import FormFieldLabel from '@/components/formFields/FormFieldLabel.vue';
+
 const COMPONENT_NAME = 'DoxenCheckbox';
+const message = createMessageProp('checkbox');
+const errorMessage = createErrorMessageProp('checkbox');
 
 export default {
   name: COMPONENT_NAME,
+  components: {
+    FormFieldFooter,
+    FormFieldLabel
+  },
   inheritAttrs: false,
   emits: ['update:modelValue'],
   props: {
+    errorMessage,
+    label,
+    message,
+    required,
     styleTokens,
-    label: {
-      type: String,
-      default: undefined,
-      description: 'A legend placed above the form field.'
+    disabled: {
+      type: Boolean,
+      default: false,
+      description: 'Prevents interacting with the checkbox and visually indicates the field is disabled.'
     },
     modelValue: {
       type: Boolean,
@@ -107,26 +106,6 @@ export default {
       type: String,
       default: undefined,
       description: 'A clickable label placed next to the checkbox.'
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-      description: 'Prevents interacting with the checkbox and visually indicates the field is disabled.'
-    },
-    required: {
-      type: Boolean,
-      default: false,
-      description: 'Indicates a field is required and prevents form submission.'
-    },
-    message: {
-      type: String,
-      default: undefined,
-      description: 'Additional helpful information below the checkbox.'
-    },
-    errorMessage: {
-      type: String,
-      default: undefined,
-      description: 'Error message that appears below the checkbox.'
     }
   },
   methods: {

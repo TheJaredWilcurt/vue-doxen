@@ -13,7 +13,7 @@
       @click="updateValue(key)"
       :key="key"
     >
-      {{ value.component.name }}
+      {{ value?.component?.name }}
     </button>
   </div>
 </template>
