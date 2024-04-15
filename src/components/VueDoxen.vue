@@ -6,10 +6,12 @@
 
 <script>
 import {
+  createModelValueProp,
   demos,
-  modelValue,
   styleTokens
 } from '@/helpers/props.js';
+
+const modelValue = createModelValueProp(String);
 
 export default {
   name: 'VueDoxen',

@@ -34,6 +34,12 @@ export const styleTokensBuiltIn = {
   formFieldRadioDialNameError: 'doxen-form-field-radio-dial-name-error',
   formFieldRadioDialsContainer: 'doxen-form-field-radio-dials-container',
   formFieldRequired: 'doxen-form-field-required',
+  formFieldTextarea: 'doxen-form-field-textarea',
+  formFieldTextareaContainer: 'doxen-form-field-textarea-container',
+  formFieldTextareaError: 'doxen-form-field-textarea-error',
+  formFieldTextField: 'doxen-form-field-text-field',
+  formFieldTextFieldContainer: 'doxen-form-field-text-field-container',
+  formFieldTextFieldError: 'doxen-form-field-text-field-error',
   sidebarButton: 'doxen-sidebar-button',
   sidebarButtonActive: 'doxen-sidebar-button-active',
   sidebarContainer: 'doxen-sidebar-container'

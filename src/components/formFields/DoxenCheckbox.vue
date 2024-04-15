@@ -1,8 +1,7 @@
 <template>
-  <fieldset
-    data-style-tokens="formFieldFieldset"
-    :class="styleTokens.formFieldFieldset"
-    :data-value="dataValue(modelValue)"
+  <FormFieldsetWrapper
+    :modelValue="modelValue"
+    :styleTokens="styleTokens"
   >
     <FormFieldLabel
       :disabled="disabled"
@@ -56,18 +55,16 @@
       :styleTokens="styleTokens"
     />
     <slot></slot>
-  </fieldset>
+  </FormFieldsetWrapper>
 </template>
 
 <script>
-import {
-  createIdFor,
-  USE_VMODEL_WARNING
-} from '@/helpers/componentHelpers.js';
+import { createIdFor } from '@/helpers/componentHelpers.js';
 import {
   createDisabledProp,
   createErrorMessageProp,
   createMessageProp,
+  createModelValueProp,
   label,
   required,
   styleTokens
@@ -76,17 +73,20 @@ import { dataValue } from '@/helpers/snapshotHelpers.js';
 
 import FormFieldFooter from '@/components/formFields/FormFieldFooter.vue';
 import FormFieldLabel from '@/components/formFields/FormFieldLabel.vue';
+import FormFieldsetWrapper from '@/components/formFields/FormFieldsetWrapper.vue';
 
 const COMPONENT_NAME = 'DoxenCheckbox';
 const disabled = createDisabledProp('checkbox');
-const message = createMessageProp('checkbox');
 const errorMessage = createErrorMessageProp('checkbox');
+const message = createMessageProp('checkbox');
+const modelValue = createModelValueProp(Boolean);
 
 export default {
   name: COMPONENT_NAME,
   components: {
     FormFieldFooter,
-    FormFieldLabel
+    FormFieldLabel,
+    FormFieldsetWrapper
   },
   inheritAttrs: false,
   emits: ['update:modelValue'],
@@ -95,13 +95,9 @@ export default {
     errorMessage,
     label,
     message,
+    modelValue,
     required,
     styleTokens,
-    modelValue: {
-      type: Boolean,
-      default: null,
-      description: USE_VMODEL_WARNING
-    },
     name: {
       type: String,
       default: undefined,
@@ -110,8 +106,8 @@ export default {
   },
   methods: {
     dataValue,
-    updateValue: function (evt) {
-      this.$emit('update:modelValue', evt.target.checked);
+    updateValue: function ($event) {
+      this.$emit('update:modelValue', $event.target.checked);
     }
   },
   computed: {

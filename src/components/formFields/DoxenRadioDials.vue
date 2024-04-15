@@ -1,8 +1,7 @@
 <template>
-  <fieldset
-    data-style-tokens="formFieldFieldset"
-    :class="styleTokens.formFieldFieldset"
-    :data-value="dataValue(modelValue)"
+  <FormFieldsetWrapper
+    :modelValue="modelValue"
+    :styleTokens="styleTokens"
   >
     <FormFieldLabel
       :disabled="disabled"
@@ -56,7 +55,7 @@
       :styleTokens="styleTokens"
     />
     <slot></slot>
-  </fieldset>
+  </FormFieldsetWrapper>
 </template>
 
 <script>
@@ -66,13 +65,13 @@ import {
   createRadioIdFor,
   humanList,
   replaceWeirdCharacters,
-  USE_VMODEL_WARNING,
   wrappedHumanList
 } from '@/helpers/componentHelpers.js';
 import {
   createDisabledProp,
   createErrorMessageProp,
   createMessageProp,
+  createModelValueProp,
   label,
   required,
   styleTokens
@@ -81,18 +80,21 @@ import { dataValue } from '@/helpers/snapshotHelpers.js';
 
 import FormFieldFooter from '@/components/formFields/FormFieldFooter.vue';
 import FormFieldLabel from '@/components/formFields/FormFieldLabel.vue';
+import FormFieldsetWrapper from '@/components/formFields/FormFieldsetWrapper.vue';
 
 const COMPONENT_NAME = 'DoxenRadioDials';
 const allowedOptionValueTypes = ['string', 'number', 'boolean'];
 const disabled = createDisabledProp('radio buttons');
 const errorMessage = createErrorMessageProp('radio buttons');
 const message = createMessageProp('radio buttons');
+const modelValue = createModelValueProp([String, Number, Boolean]);
 
 export default {
   name: COMPONENT_NAME,
   components: {
     FormFieldFooter,
-    FormFieldLabel
+    FormFieldLabel,
+    FormFieldsetWrapper
   },
   inheritAttrs: false,
   emits: ['update:modelValue'],
@@ -101,13 +103,9 @@ export default {
     errorMessage,
     label,
     message,
+    modelValue,
     required,
     styleTokens,
-    modelValue: {
-      type: [String, Number, Boolean],
-      default: null,
-      description: USE_VMODEL_WARNING
-    },
     options: {
       type: Array,
       required: false,

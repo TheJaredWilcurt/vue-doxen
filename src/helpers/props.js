@@ -1,24 +1,31 @@
 import { USE_VMODEL_WARNING } from '@/helpers/componentHelpers.js';
 
-export const createDisabledProp = function (type) {
+export const createDisabledProp = function (name) {
   return {
     type: Boolean,
     default: false,
-    description: 'Prevents interacting with the ' + type + ' and visually indicates the field is disabled.'
+    description: 'Prevents interacting with the ' + name + ' and visually indicates the field is disabled.'
   };
 };
-export const createErrorMessageProp = function (type) {
+export const createErrorMessageProp = function (name) {
   return {
     type: String,
     default: undefined,
-    description: 'Error message that appears below the ' + type + '.'
+    description: 'Error message that appears below the ' + name + '.'
   };
 };
-export const createMessageProp = function (type) {
+export const createMessageProp = function (name) {
   return {
     type: String,
     default: undefined,
-    description: 'Additional helpful information below the ' + type + '.'
+    description: 'Additional helpful information below the ' + name + '.'
+  };
+};
+export const createModelValueProp = function (type) {
+  return {
+    type,
+    default: undefined,
+    description: USE_VMODEL_WARNING
   };
 };
 export const demos = {
@@ -32,11 +39,6 @@ export const label = {
   type: String,
   default: undefined,
   description: 'A legend placed above the form field.'
-};
-export const modelValue = {
-  type: String,
-  default: undefined,
-  description: USE_VMODEL_WARNING
 };
 export const required = {
   type: Boolean,

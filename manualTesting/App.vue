@@ -2,17 +2,16 @@
   <div>
     APP
     {{ selectedDemo }}
+    {{ { bool, radios, message, errorMessage } }}
     <DoxenCheckbox
       v-model="bool"
-      label="Label"
-      name="name"
-      required
-      errorMessage="errorMessage"
-      message="Message"
-      :styleTokens="styleTokensBuiltIn"
+      v-bind="commonProps"
+      name="Is Required"
     />
     <DoxenRadioDials
-      label="Radio Dials"
+      v-model="radios"
+      v-bind="commonProps"
+      label="DoxenRadioDials"
       :options="[
         {
           name: 'Item 1',
@@ -23,13 +22,17 @@
           value: 2
         }
       ]"
-      required
-      :styleTokens="styleTokensBuiltIn"
-      errorMessage="errorMessage"
-      message="Message"
     />
-    <DoxenTextarea :styleTokens="styleTokensBuiltIn" />
-    <DoxenTextField :styleTokens="styleTokensBuiltIn" />
+    <DoxenTextarea
+      v-model="message"
+      v-bind="commonProps"
+      label="Message"
+    />
+    <DoxenTextField
+      v-model="errorMessage"
+      v-bind="commonProps"
+      label="Error Message"
+    />
 
     <DoxenSideBar
       v-model="selectedDemo"
@@ -55,6 +58,11 @@ import {
   VueDoxen
 } from '@/vue-doxen.js';
 
+import { doxenCheckboxDemo } from '@@@/demos/doxenCheckboxDemo.js';
+import { doxenRadioDialsDemo } from '@@@/demos/doxenRadioDialsDemo.js';
+import { doxenTextFieldDemo } from '@@@/demos/doxenTextFieldDemo.js';
+import { doxenTextareaDemo } from '@@@/demos/doxenTextareaDemo.js';
+
 export default {
   name: 'App',
   components: {
@@ -70,17 +78,29 @@ export default {
   },
   data: function () {
     return {
+      radios: null,
       bool: true,
+      message: '',
+      errorMessage: '',
       selectedDemo: '',
       demos: {
-        doxenCheckboxDemo: {
-          // component: DoxenCheckbox
-        },
-        doxenRadioDialsDemo: {
-          // component: DoxenRadioDials
-        }
+        doxenCheckboxDemo,
+        doxenRadioDialsDemo,
+        doxenTextareaDemo,
+        doxenTextFieldDemo
       }
     };
+  },
+  computed: {
+    commonProps: function () {
+      return {
+        label: 'Label',
+        required: this.bool,
+        errorMessage: this.errorMessage,
+        message: this.message,
+        styleTokens: this.styleTokensBuiltIn
+      };
+    }
   }
 };
 </script>

@@ -35,6 +35,53 @@ module.exports = {
     'import/no-namespace': 'off',
     'import/no-unresolved': 'off',
     'import/no-unused-modules': 'off',
+    'import/order': [
+      'error',
+      {
+        alphabetize: {
+          caseInsensitive: false,
+          order: 'asc'
+        },
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          'parent',
+          'sibling',
+          'index',
+          'object',
+          'type'
+        ],
+        'newlines-between': 'always',
+        pathGroups: [
+          {
+            pattern: '@/helpers/**',
+            group: 'object',
+            position: 'before'
+          },
+          {
+            pattern: '@/mixins/**',
+            group: 'object',
+            position: 'before'
+          },
+          {
+            pattern: '**/*.vue',
+            group: 'object',
+            position: 'before'
+          },
+          {
+            pattern: '@@@/**',
+            group: 'object',
+            position: 'before'
+          },
+          {
+            pattern: '@@/**',
+            group: 'object',
+            position: 'before'
+          }
+        ]
+      }
+    ],
     'no-restricted-syntax': [
       'error',
       ...baseRestrictedSyntax
@@ -60,7 +107,9 @@ module.exports = {
         config: {
           resolve: {
             alias: {
-              '@': path.resolve('src')
+              '@': path.resolve('src'),
+              '@@': path.resolve('tests'),
+              '@@@': path.resolve('manualTesting')
             }
           }
         }

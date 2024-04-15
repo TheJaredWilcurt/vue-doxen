@@ -8,8 +8,8 @@
     "start": "vite dev",
     "build": "vite build",
     "sasslint": "sass-lint -c .sass-lint.yml -v -f table",
-    "lint": "eslint --ext .js,.vue --config=.eslintrc.cjs src vite.config.js .eslintrc.cjs",
-    "fix": "eslint --fix --ext .js,.vue --config=.eslintrc.cjs src vite.config.js .eslintrc.cjs"
+    "lint": "eslint --ext .js,.vue --config=.eslintrc.cjs src manualTesting vite.config.js .eslintrc.cjs",
+    "fix": "eslint --fix --ext .js,.vue --config=.eslintrc.cjs src manualTesting vite.config.js .eslintrc.cjs"
   },
   "dependencies": {
     "lodash.clonedeep": "^4.5.0",
