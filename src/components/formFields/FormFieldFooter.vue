@@ -2,21 +2,21 @@
   <p
     v-if="message"
     v-text="message"
-    v-bind="pAttributes"
+    v-bind="$attrs"
     data-style-tokens="formFieldMessage"
     :class="styleTokens.formFieldMessage"
   ></p>
   <p
     v-if="errorMessage"
     v-text="errorMessage"
-    v-bind="pAttributes"
+    v-bind="$attrs"
     data-style-tokens="formFieldError formFieldMessage"
     :class="[styleTokens.formFieldError, styleTokens.formFieldMessage]"
   ></p>
   <p
     v-if="innerHTML"
     v-html="innerHTML"
-    v-bind="pAttributes"
+    v-bind="$attrs"
   ></p>
 </template>
 
@@ -42,14 +42,6 @@ export default {
       description: 'A way to pass arbitrary markup to be rendered via a prop.'
     },
     styleTokens
-  },
-  computed: {
-    pAttributes: function () {
-      return {
-        ...this.$attrs,
-        innerHTML: undefined
-      };
-    }
   }
 };
 </script>
