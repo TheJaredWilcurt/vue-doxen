@@ -12,41 +12,32 @@
     />
     <div
       v-if="uniqueOptions"
-      data-style-tokens="formFieldRadioDialsContainer"
-      :class="styleTokens.formFieldRadioDialsContainer"
+      data-style-tokens="formFieldDropdownContainer"
+      :class="styleTokens.formFieldDropdownContainer"
     >
-      <template
-        v-for="option in uniqueOptions"
-        :key="'option' + option.uniqueId"
+      <select
+        v-bind="{ ...$attrs, innerHTML: undefined }"
+        data-style-tokens="formFieldDropdown formFieldDropdownError"
+        :class="{
+          [styleTokens.formFieldDropdown]: true,
+          [styleTokens.formFieldDropdownError]: errorMessage
+        }"
+        :data-value="dataValue(modelValue)"
+        :disabled="disabled"
+        :required="required"
+        :value="modelValue"
+        @input="updateValue(option.value)"
       >
-        <input
-          :id="createRadioIdFor(option, label)"
-          :checked="modelValue == option.value"
-          :value="option.value"
-          :name="radioName"
-          :disabled="disabled"
-          :required="required"
-          data-style-tokens="formFieldRadioDial formFieldRadioDialError"
-          :class="{
-            [styleTokens.formFieldRadioDial]: true,
-            [styleTokens.formFieldRadioDialError]: errorMessage
-          }"
-          :data-test="'radio-button-' + option.value"
-          :data-value="dataValue(modelValue == option.value)"
-          type="radio"
-          v-bind="{ ...$attrs, innerHTML: undefined }"
-          @input="updateValue(option.value)"
-        />
-        <label
+        <option
+          v-for="option in uniqueOptions"
           v-text="option.name"
-          v-bind="applyStyleTokens({
-            formFieldRadioDialNameLabel: true,
-            formFieldRadioDialNameDisabled: disabled,
-            formFieldRadioDialNameError: errorMessage
-          })"
-          :for="createRadioIdFor(option, label)"
-        ></label>
-      </template>
+          :id="createRadioIdFor(option, label)"
+          :name="radioName"
+          :data-test="'option-' + option.value"
+          :value="option.value"
+          :key="'option' + option.uniqueId"
+        ></option>
+      </select>
     </div>
     <FormFieldFooter
       :errorMessage="errorMessage"
@@ -82,7 +73,7 @@ import FormFieldFooter from '@/components/formFields/FormFieldFooter.vue';
 import FormFieldLabel from '@/components/formFields/FormFieldLabel.vue';
 import FormFieldsetWrapper from '@/components/formFields/FormFieldsetWrapper.vue';
 
-const COMPONENT_NAME = 'DoxenRadioDials';
+const COMPONENT_NAME = 'DoxenDropdown';
 const allowedOptionValueTypes = ['string', 'number', 'boolean'];
 const disabled = createDisabledProp('radio buttons');
 const errorMessage = createErrorMessageProp('radio buttons');
@@ -155,21 +146,6 @@ export default {
     dataValue,
     updateValue: function (value) {
       this.$emit('update:modelValue', value);
-    },
-    applyStyleTokens: function (tokenMap) {
-      const tokensToApply = [];
-      const classesToApply = [];
-      for (const token in tokenMap) {
-        if (tokenMap[token]) {
-          tokensToApply.push(token);
-          classesToApply.push(this.styleTokens[token]);
-        }
-      }
-      return {
-        'data-style-tokens': Object.keys(tokenMap).join(' '),
-        'data-applied-style-tokens': tokensToApply.filter(Boolean).join(' '),
-        'class': classesToApply.filter(Boolean).join(' ')
-      };
     }
   },
   computed: {

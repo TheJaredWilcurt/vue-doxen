@@ -32,8 +32,9 @@
         @input="updateValue"
       />
       <label
-        data-style-tokens="formFieldCheckboxNameDisabled formFieldCheckboxNameError"
+        data-style-tokens="formFieldCheckboxNameLabel formFieldCheckboxNameDisabled formFieldCheckboxNameError"
         :class="{
+          [styleTokens.formFieldCheckboxNameLabel]: true,
           [styleTokens.formFieldCheckboxNameDisabled]: disabled,
           [styleTokens.formFieldCheckboxNameError]: errorMessage
         }"
