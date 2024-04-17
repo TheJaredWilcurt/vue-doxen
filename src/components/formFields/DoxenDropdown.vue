@@ -18,6 +18,9 @@
       <select
         v-bind="{ ...$attrs, innerHTML: undefined }"
         :id="idFor"
+        :name="idFor"
+        :aria-required="required"
+        :aria-invalid="errorMessage"
         data-style-tokens="formFieldDropdown formFieldDropdownError"
         :class="{
           [styleTokens.formFieldDropdown]: true,
@@ -27,7 +30,7 @@
         :disabled="disabled"
         :required="required"
         :value="modelValue"
-        @input="updateValue(option.value)"
+        @change="updateValue($event)"
       >
         <option
           v-for="option in uniqueOptions"

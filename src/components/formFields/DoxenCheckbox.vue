@@ -18,6 +18,8 @@
         :id="idFor"
         :checked="modelValue"
         :name="idFor"
+        :aria-required="required"
+        :aria-invalid="errorMessage"
         :disabled="disabled"
         :required="required"
         data-style-tokens="formFieldCheckbox formFieldCheckboxError"

@@ -24,6 +24,8 @@
           :checked="modelValue == option.value"
           :value="option.value"
           :name="radioName"
+          :aria-required="required"
+          :aria-invalid="errorMessage"
           :disabled="disabled"
           :required="required"
           data-style-tokens="formFieldRadioDial formFieldRadioDialError"
