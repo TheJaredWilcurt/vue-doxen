@@ -168,7 +168,7 @@ export default {
       return {
         'data-style-tokens': Object.keys(tokenMap).join(' '),
         'data-applied-style-tokens': tokensToApply.filter(Boolean).join(' '),
-        'class': classesToApply.filter(Boolean).join(' ')
+        class: classesToApply.filter(Boolean).join(' ')
       };
     }
   },

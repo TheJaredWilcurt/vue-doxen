@@ -10,20 +10,17 @@
         v-bind="commonProps"
         name="Is Required"
       />
+      <DoxenDropdown
+        v-model="radios"
+        v-bind="commonProps"
+        label="DoxenDropdown"
+        :options="dummyOptions"
+      />
       <DoxenRadioDials
         v-model="radios"
         v-bind="commonProps"
         label="DoxenRadioDials"
-        :options="[
-          {
-            name: 'Item 1',
-            value: 1
-          },
-          {
-            name: 'Item 2',
-            value: 2
-          }
-        ]"
+        :options="dummyOptions"
       />
       <DoxenTextarea
         v-model="message"
@@ -53,6 +50,7 @@
 <script>
 import {
   DoxenCheckbox,
+  DoxenDropdown,
   DoxenRadioDials,
   DoxenSideBar,
   DoxenTextarea,
@@ -61,17 +59,18 @@ import {
   VueDoxen
 } from '@/vue-doxen.js';
 
+import StyleSwapper from '@@@/components/StyleSwapper.vue';
+
 import { doxenCheckboxDemo } from '@@@/demos/doxenCheckboxDemo.js';
 import { doxenRadioDialsDemo } from '@@@/demos/doxenRadioDialsDemo.js';
 import { doxenTextFieldDemo } from '@@@/demos/doxenTextFieldDemo.js';
 import { doxenTextareaDemo } from '@@@/demos/doxenTextareaDemo.js';
 
-import StyleSwapper from '@@@/components/StyleSwapper.vue';
-
 export default {
   name: 'App',
   components: {
     DoxenCheckbox,
+    DoxenDropdown,
     DoxenRadioDials,
     DoxenSideBar,
     DoxenTextarea,
@@ -106,6 +105,18 @@ export default {
         message: this.message,
         styleTokens: this.styleTokensBuiltIn
       };
+    },
+    dummyOptions: function () {
+      return [
+        {
+          name: 'Item 1',
+          value: 1
+        },
+        {
+          name: 'Item 2',
+          value: 2
+        }
+      ];
     }
   }
 };

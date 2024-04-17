@@ -17,6 +17,7 @@
     >
       <select
         v-bind="{ ...$attrs, innerHTML: undefined }"
+        :id="idFor"
         data-style-tokens="formFieldDropdown formFieldDropdownError"
         :class="{
           [styleTokens.formFieldDropdown]: true,
@@ -53,6 +54,7 @@
 import _cloneDeep from 'lodash.clonedeep';
 
 import {
+  createIdFor,
   createRadioIdFor,
   humanList,
   replaceWeirdCharacters,
@@ -180,6 +182,14 @@ export default {
         names.join(' ')
       ].filter(Boolean).join('_');
       return replaceWeirdCharacters(name);
+    },
+    idFor: function () {
+      return createIdFor({
+        label: this.label,
+        value: 'boolean',
+        name: this.name,
+        uniqueId: this.uniqueId
+      });
     }
   }
 };
