@@ -71,6 +71,15 @@ for (const key in styleTokensBuiltIn) {
  */
 export const styleTokensBootstrap5 = {
   ...styleTokensEmpty,
+  // Errors
+  formFieldCheckboxError: 'text-danger',
+  formFieldCheckboxNameError: 'text-danger',
+  formFieldDropdownError: 'text-danger',
+  formFieldError: 'text-danger',
+  formFieldLegendError: 'text-danger',
+  formFieldRadioDialNameError: 'text-danger',
+  formFieldTextareaError: 'text-danger',
+  formFieldTextFieldError: 'text-danger',
   // Labels
   formFieldLegend: 'form-label form-control-sm',
   // Inputs
@@ -79,13 +88,10 @@ export const styleTokensBootstrap5 = {
   // Checkbox
   formFieldCheckbox: 'form-check-input',
   formFieldCheckboxContainer: 'form-check',
-  formFieldCheckboxError: '',
   formFieldCheckboxNameDisabled: '',
-  formFieldCheckboxNameError: '',
   formFieldCheckboxNameLabel: 'form-check-label',
   // Radio Dials
   formFieldRadioDial: 'form-check-input',
-  formFieldRadioDialNameError: '',
   formFieldRadioDialNameLabel: 'form-check-label form-label form-control-sm',
   formFieldRadioDialContainer: 'form-check',
   // Select
@@ -97,3 +103,4 @@ export const styleTokensBootstrap5 = {
   sidebarButtonNotSelected: 'btn btn-outline-primary',
   sidebarButtonSelected: 'btn btn-primary'
 };
+
