@@ -2,16 +2,21 @@
   <p
     v-if="message"
     v-text="message"
-    v-bind="$attrs"
-    data-style-tokens="formFieldMessage"
-    :class="styleTokens.formFieldMessage"
+    v-bind="{
+      ...$attrs,
+      ...applyStyleTokens({ formFieldMessage: true })
+    }"
   ></p>
   <p
     v-if="errorMessage"
     v-text="errorMessage"
-    v-bind="$attrs"
-    data-style-tokens="formFieldError formFieldMessage"
-    :class="[styleTokens.formFieldError, styleTokens.formFieldMessage]"
+    v-bind="{
+      ...$attrs,
+      ...applyStyleTokens({
+        formFieldError: true,
+        formFieldMessage: true
+      })
+    }"
   ></p>
   <p
     v-if="innerHTML"
@@ -27,11 +32,16 @@ import {
   styleTokens
 } from '@/helpers/props.js';
 
+import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
+
 const message = createMessageProp('form field');
 const errorMessage = createErrorMessageProp('form field');
 
 export default {
   name: 'FormFieldFooter',
+  mixins: [
+    applyStyleTokens
+  ],
   inheritAttrs: false,
   props: {
     errorMessage,

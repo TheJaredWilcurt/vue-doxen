@@ -1,16 +1,12 @@
 <template>
-  <div
-    data-style-tokens="sidebarContainer"
-    :class="styleTokens.sidebarContainer"
-  >
+  <div v-bind="applyStyleTokens({ sidebarContainer: true })">
     <button
       v-for="(value, key) in demos"
-      data-style-tokens="sidebarButton sidebarButtonActive"
-      :class="{
-        [styleTokens.sidebarButton]: true,
-        [styleTokens.sidebarButtonActive]: modelValue === key
-      }"
       @click="updateValue(key)"
+      v-bind="applyStyleTokens({
+        sidebarButton: true,
+        sidebarButtonActive: modelValue === key
+      })"
       :key="key"
     >
       {{ value?.component?.name }}
@@ -25,11 +21,16 @@ import {
   styleTokens
 } from '@/helpers/props.js';
 
+import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
+
 const modelValue = createModelValueProp(String);
 
 export default {
   name: 'DoxenSideBar',
-  emits: ['update:modelValue'],
+  mixins: [
+    applyStyleTokens
+  ],
+  emits: ['update:model-value'],
   props: {
     demos,
     modelValue,

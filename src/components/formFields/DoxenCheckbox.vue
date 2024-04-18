@@ -10,41 +10,40 @@
       :required="required"
       :styleTokens="styleTokens"
     />
-    <div
-      data-style-tokens="formFieldCheckboxContainer"
-      :class="styleTokens.formFieldCheckboxContainer"
-    >
+    <div v-bind="applyStyleTokens({ formFieldCheckboxContainer: true })">
       <input
-        :id="idFor"
-        :checked="modelValue"
-        :name="idFor"
-        :disabled="disabled"
-        :required="required"
-        data-style-tokens="formFieldCheckbox formFieldCheckboxError"
-        :class="{
-          [styleTokens.formFieldCheckbox]: true,
-          [styleTokens.formFieldCheckboxError]: errorMessage
+        v-bind="{
+          ...$attrs,
+          ...applyStyleTokens({
+            formFieldCheckbox: true,
+            formFieldCheckboxError: errorMessage
+          })
         }"
+        :id="idFor"
+        :aria-invalid="errorMessage"
+        :aria-required="required"
+        :checked="modelValue"
         :data-test="idFor"
         :data-value="dataValue(modelValue)"
+        :disabled="disabled"
+        :name="idFor"
+        :required="required"
         type="checkbox"
-        v-bind="{ ...$attrs, innerHTML: undefined }"
         @input="updateValue"
       />
       <label
-        data-style-tokens="formFieldCheckboxNameDisabled formFieldCheckboxNameError"
-        :class="{
-          [styleTokens.formFieldCheckboxNameDisabled]: disabled,
-          [styleTokens.formFieldCheckboxNameError]: errorMessage
-        }"
+        v-bind="applyStyleTokens({
+          formFieldCheckboxNameLabel: true,
+          formFieldCheckboxNameDisabled: disabled,
+          formFieldCheckboxNameError: errorMessage
+        })"
         :for="idFor"
       >
         {{ name }}
         <span
           v-if="!label && required"
           v-text="'*'"
-          data-style-tokens="formFieldRequired"
-          :class="styleTokens.formFieldRequired"
+          v-bind="applyStyleTokens({ formFieldRequired: true })"
         ></span>
       </label>
     </div>
@@ -71,6 +70,8 @@ import {
 } from '@/helpers/props.js';
 import { dataValue } from '@/helpers/snapshotHelpers.js';
 
+import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
+
 import FormFieldFooter from '@/components/formFields/FormFieldFooter.vue';
 import FormFieldLabel from '@/components/formFields/FormFieldLabel.vue';
 import FormFieldsetWrapper from '@/components/formFields/FormFieldsetWrapper.vue';
@@ -88,8 +89,11 @@ export default {
     FormFieldLabel,
     FormFieldsetWrapper
   },
+  mixins: [
+    applyStyleTokens
+  ],
   inheritAttrs: false,
-  emits: ['update:modelValue'],
+  emits: ['update:model-value'],
   props: {
     disabled,
     errorMessage,

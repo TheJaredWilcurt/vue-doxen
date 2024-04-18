@@ -3,36 +3,36 @@
     APP
     {{ selectedDemo }}
     {{ { bool, radios, message, errorMessage } }}
-    <DoxenCheckbox
-      v-model="bool"
-      v-bind="commonProps"
-      name="Is Required"
-    />
-    <DoxenRadioDials
-      v-model="radios"
-      v-bind="commonProps"
-      label="DoxenRadioDials"
-      :options="[
-        {
-          name: 'Item 1',
-          value: 1
-        },
-        {
-          name: 'Item 2',
-          value: 2
-        }
-      ]"
-    />
-    <DoxenTextarea
-      v-model="message"
-      v-bind="commonProps"
-      label="Message"
-    />
-    <DoxenTextField
-      v-model="errorMessage"
-      v-bind="commonProps"
-      label="Error Message"
-    />
+    <StyleSwapper />
+    <div style="display: flex; flex-wrap: wrap;">
+      <DoxenCheckbox
+        v-model="bool"
+        v-bind="commonProps"
+        name="Is Required"
+      />
+      <DoxenDropdown
+        v-model="radios"
+        v-bind="commonProps"
+        label="DoxenDropdown"
+        :options="dummyOptions"
+      />
+      <DoxenRadioDials
+        v-model="radios"
+        v-bind="commonProps"
+        label="DoxenRadioDials"
+        :options="dummyOptions"
+      />
+      <DoxenTextarea
+        v-model="message"
+        v-bind="commonProps"
+        label="Message"
+      />
+      <DoxenTextField
+        v-model="errorMessage"
+        v-bind="commonProps"
+        label="Error Message"
+      />
+    </div>
 
     <DoxenSideBar
       v-model="selectedDemo"
@@ -50,6 +50,7 @@
 <script>
 import {
   DoxenCheckbox,
+  DoxenDropdown,
   DoxenRadioDials,
   DoxenSideBar,
   DoxenTextarea,
@@ -57,6 +58,8 @@ import {
   styleTokensBuiltIn,
   VueDoxen
 } from '@/vue-doxen.js';
+
+import StyleSwapper from '@@@/components/StyleSwapper.vue';
 
 import { doxenCheckboxDemo } from '@@@/demos/doxenCheckboxDemo.js';
 import { doxenRadioDialsDemo } from '@@@/demos/doxenRadioDialsDemo.js';
@@ -67,10 +70,12 @@ export default {
   name: 'App',
   components: {
     DoxenCheckbox,
+    DoxenDropdown,
     DoxenRadioDials,
     DoxenSideBar,
     DoxenTextarea,
     DoxenTextField,
+    StyleSwapper,
     VueDoxen
   },
   constants: {
@@ -100,6 +105,18 @@ export default {
         message: this.message,
         styleTokens: this.styleTokensBuiltIn
       };
+    },
+    dummyOptions: function () {
+      return [
+        {
+          name: 'Item 1',
+          value: 1
+        },
+        {
+          name: 'Item 2',
+          value: 2
+        }
+      ];
     }
   }
 };

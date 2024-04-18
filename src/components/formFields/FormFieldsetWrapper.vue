@@ -1,7 +1,6 @@
 <template>
   <fieldset
-    data-style-tokens="formFieldFieldset"
-    :class="styleTokens.formFieldFieldset"
+    v-bind="applyStyleTokens({ formFieldFieldset: true })"
     :data-value="dataValue(modelValue)"
   >
     <slot></slot>
@@ -15,11 +14,16 @@ import {
 } from '@/helpers/props.js';
 import { dataValue } from '@/helpers/snapshotHelpers.js';
 
+import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
+
 const Any = null;
 const modelValue = createModelValueProp(Any);
 
 export default {
   name: 'FormFieldsetWrapper',
+  mixins: [
+    applyStyleTokens
+  ],
   props: {
     modelValue,
     styleTokens

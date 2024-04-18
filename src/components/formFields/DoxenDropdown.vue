@@ -10,26 +10,37 @@
       :required="required"
       :styleTokens="styleTokens"
     />
-    <div v-bind="applyStyleTokens({ formFieldTextFieldContainer: true })">
-      <input
+    <div
+      v-if="uniqueOptions"
+      v-bind="applyStyleTokens({ formFieldDropdownContainer: true })"
+    >
+      <select
         v-bind="{
           ...$attrs,
           ...applyStyleTokens({
-            formFieldTextField: true,
-            formFieldTextFieldError: errorMessage
+            formFieldDropdown: true,
+            formFieldDropdownError: errorMessage
           })
         }"
         :id="idFor"
-        :aria-invalid="errorMessage"
         :aria-required="required"
-        :data-test="idFor"
+        :aria-invalid="errorMessage"
         :data-value="dataValue(modelValue)"
         :disabled="disabled"
         :name="idFor"
         :required="required"
         :value="modelValue"
-        @input="updateValue"
-      />
+        @change="updateValue($event.target.value)"
+      >
+        <option
+          v-for="option in uniqueOptions"
+          v-text="option.name"
+          :id="createIdFor({ label, uniqueId })"
+          :data-test="'option-' + option.value"
+          :value="option.value"
+          :key="'option' + option.uniqueId"
+        ></option>
+      </select>
     </div>
     <FormFieldFooter
       :errorMessage="errorMessage"
@@ -42,12 +53,15 @@
 </template>
 
 <script>
+import _cloneDeep from 'lodash.clonedeep';
+
 import { createIdFor } from '@/helpers/componentHelpers.js';
 import {
   createDisabledProp,
   createErrorMessageProp,
   createMessageProp,
   createModelValueProp,
+  createOptionsProp,
   label,
   required,
   styleTokens
@@ -60,11 +74,12 @@ import FormFieldFooter from '@/components/formFields/FormFieldFooter.vue';
 import FormFieldLabel from '@/components/formFields/FormFieldLabel.vue';
 import FormFieldsetWrapper from '@/components/formFields/FormFieldsetWrapper.vue';
 
-const COMPONENT_NAME = 'DoxenTextField';
-const disabled = createDisabledProp('text input');
-const errorMessage = createErrorMessageProp('text input');
-const message = createMessageProp('text input');
-const modelValue = createModelValueProp(String);
+const COMPONENT_NAME = 'DoxenDropdown';
+const disabled = createDisabledProp('radio buttons');
+const errorMessage = createErrorMessageProp('radio buttons');
+const message = createMessageProp('radio buttons');
+const modelValue = createModelValueProp([String, Number, Boolean]);
+const options = createOptionsProp(COMPONENT_NAME);
 
 export default {
   name: COMPONENT_NAME,
@@ -83,19 +98,33 @@ export default {
     errorMessage,
     label,
     message,
-    required,
     modelValue,
+    options,
+    required,
     styleTokens
   },
   methods: {
+    createIdFor,
     dataValue,
-    updateValue: function ($event) {
-      this.$emit('update:modelValue', $event.target.value);
+    updateValue: function (value) {
+      this.$emit('update:modelValue', value);
     }
   },
   computed: {
     uniqueId: function () {
       return crypto.randomUUID();
+    },
+    uniqueOptions: function () {
+      if (!this.options || !Array.isArray(this.options)) {
+        return [];
+      }
+      return _cloneDeep(this.options)
+        .map((option) => {
+          return {
+            ...option,
+            uniqueId: crypto.randomUUID()
+          };
+        });
     },
     idFor: function () {
       return createIdFor({

@@ -1,4 +1,7 @@
-import { USE_VMODEL_WARNING } from '@/helpers/componentHelpers.js';
+import {
+  humanList,
+  wrappedHumanList
+} from '@/helpers/componentHelpers.js';
 
 export const createDisabledProp = function (name) {
   return {
@@ -25,7 +28,64 @@ export const createModelValueProp = function (type) {
   return {
     type,
     default: undefined,
-    description: USE_VMODEL_WARNING
+    description: 'You shouldn\'t actually use this prop directly, instead use v-model to recieve two way data-binding with this form field.'
+  };
+};
+export const createOptionsProp = function (COMPONENT_NAME) {
+  const allowedOptionValueTypes = ['string', 'number', 'boolean'];
+  const isRadio = COMPONENT_NAME.toLowerCase().includes('radio');
+
+  let description = [
+    'Array of objects. Each object represents',
+    isRadio ? 'a radio button' : 'an item in the dropdown',
+    'and contains a',
+    '<code>name</code> (string)',
+    'and a',
+    '<code>value</code> (' + humanList(allowedOptionValueTypes) + ').'
+  ].join(' ');
+
+  return {
+    type: Array,
+    required: false,
+    default: function () {
+      return [];
+    },
+    description,
+    example: [
+      '[',
+      '  {',
+      '    name: \'Kiva.org\',',
+      '    value: \'kiva\'',
+      '  },',
+      '  {',
+      '    name: \'Good.store\',',
+      '    value: \'goodstore\'',
+      '  }',
+      ']'
+    ].join('\n'),
+    validator: function (options) {
+      let valid = true;
+      if (Array.isArray(options)) {
+        options.forEach(function (option) {
+          if (
+            typeof(option) !== 'object' ||
+            Array.isArray(option) ||
+            !option.name ||
+            (
+              !allowedOptionValueTypes.includes(typeof(option.value)) &&
+              option.value !== null
+            )
+          ) {
+            console.warn('The ' + COMPONENT_NAME + ' options prop must be an array of objects with a name and a value that is a type of ' + wrappedHumanList(allowedOptionValueTypes));
+            console.warn('Example:\n<' + COMPONENT_NAME + ' :options="[{ name: \'Foo\', value: 2 }]" />');
+            valid = false;
+          }
+        });
+      } else {
+        valid = false;
+      }
+      return valid;
+    }
   };
 };
 export const demos = {

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-bind="applyStyleTokens({ vueDoxen: true })">
     VueDoxen - {{ modelValue }}
   </div>
 </template>
@@ -11,11 +11,16 @@ import {
   styleTokens
 } from '@/helpers/props.js';
 
+import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
+
 const modelValue = createModelValueProp(String);
 
 export default {
   name: 'VueDoxen',
-  emits: ['update:modelValue'],
+  mixins: [
+    applyStyleTokens
+  ],
+  emits: ['update:model-value'],
   props: {
     demos,
     modelValue,
