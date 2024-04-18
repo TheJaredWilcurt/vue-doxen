@@ -60,15 +60,14 @@ import _cloneDeep from 'lodash.clonedeep';
 import {
   createIdFor,
   createRadioIdFor,
-  humanList,
-  replaceWeirdCharacters,
-  wrappedHumanList
+  replaceWeirdCharacters
 } from '@/helpers/componentHelpers.js';
 import {
   createDisabledProp,
   createErrorMessageProp,
   createMessageProp,
   createModelValueProp,
+  createOptionsProp,
   label,
   required,
   styleTokens
@@ -82,11 +81,11 @@ import FormFieldLabel from '@/components/formFields/FormFieldLabel.vue';
 import FormFieldsetWrapper from '@/components/formFields/FormFieldsetWrapper.vue';
 
 const COMPONENT_NAME = 'DoxenDropdown';
-const allowedOptionValueTypes = ['string', 'number', 'boolean'];
 const disabled = createDisabledProp('radio buttons');
 const errorMessage = createErrorMessageProp('radio buttons');
 const message = createMessageProp('radio buttons');
 const modelValue = createModelValueProp([String, Number, Boolean]);
+const options = createOptionsProp(COMPONENT_NAME);
 
 export default {
   name: COMPONENT_NAME,
@@ -106,51 +105,9 @@ export default {
     label,
     message,
     modelValue,
+    options,
     required,
-    styleTokens,
-    options: {
-      type: Array,
-      required: false,
-      default: function () {
-        return [];
-      },
-      description: 'Array of objects. Each object represents a radio button and contains a <code>name</code> (string) and a <code>value</code> (' + humanList(allowedOptionValueTypes) + ').',
-      example: [
-        '[',
-        '  {',
-        '    name: \'Kiva.org\',',
-        '    value: \'kiva\'',
-        '  },',
-        '  {',
-        '    name: \'Good.store\',',
-        '    value: \'goodstore\'',
-        '  }',
-        ']'
-      ].join('\n'),
-      validator: function (options) {
-        let valid = true;
-        if (Array.isArray(options)) {
-          options.forEach(function (option) {
-            if (
-              typeof(option) !== 'object' ||
-              Array.isArray(option) ||
-              !option.name ||
-              (
-                !allowedOptionValueTypes.includes(typeof(option.value)) &&
-                option.value !== null
-              )
-            ) {
-              console.warn('The ' + COMPONENT_NAME + ' options prop must be an array of objects with a name and a value that is a type of ' + wrappedHumanList(allowedOptionValueTypes));
-              console.warn('Example:\n<' + COMPONENT_NAME + ' :options="[{ name: \'Foo\', value: 2 }]" />');
-              valid = false;
-            }
-          });
-        } else {
-          valid = false;
-        }
-        return valid;
-      }
-    }
+    styleTokens
   },
   methods: {
     createRadioIdFor,
