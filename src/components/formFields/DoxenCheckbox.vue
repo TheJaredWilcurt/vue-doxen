@@ -17,8 +17,7 @@
           ...applyStyleTokens({
             formFieldCheckbox: true,
             formFieldCheckboxError: errorMessage
-          }),
-          innerHTML: undefined
+          })
         }"
         :id="idFor"
         :aria-invalid="errorMessage"

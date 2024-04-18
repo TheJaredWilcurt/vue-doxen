@@ -17,8 +17,7 @@
           ...applyStyleTokens({
             formFieldTextarea: true,
             formFieldTextareaError: errorMessage
-          }),
-          innerHTML: undefined
+          })
         }"
         :id="idFor"
         :name="idFor"

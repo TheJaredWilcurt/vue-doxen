@@ -17,8 +17,7 @@
           ...applyStyleTokens({
             formFieldTextField: true,
             formFieldTextFieldError: errorMessage
-          }),
-          innerHTML: undefined
+          })
         }"
         :id="idFor"
         :aria-invalid="errorMessage"

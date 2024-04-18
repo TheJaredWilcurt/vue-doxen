@@ -26,8 +26,7 @@
             ...applyStyleTokens({
               formFieldRadioDial: true,
               formFieldRadioDialError: errorMessage
-            }),
-            innerHTML: undefined
+            })
           }"
           :id="createRadioIdFor(option, label)"
           :aria-invalid="errorMessage"
