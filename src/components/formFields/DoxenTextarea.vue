@@ -10,26 +10,25 @@
       :required="required"
       :styleTokens="styleTokens"
     />
-    <div
-      data-style-tokens="formFieldTextareaContainer"
-      :class="styleTokens.formFieldTextareaContainer"
-    >
+    <div v-bind="applyStyleTokens({ formFieldTextareaContainer: true })">
       <textarea
+        v-bind="{
+          ...$attrs,
+          ...applyStyleTokens({
+            formFieldTextarea: true,
+            formFieldTextareaError: errorMessage
+          }),
+          innerHTML: undefined
+        }"
         :id="idFor"
-        :value="modelValue"
         :name="idFor"
         :aria-required="required"
         :aria-invalid="errorMessage"
-        :disabled="disabled"
-        :required="required"
-        data-style-tokens="formFieldTextarea formFieldTextareaError"
-        :class="{
-          [styleTokens.formFieldTextarea]: true,
-          [styleTokens.formFieldTextareaError]: errorMessage
-        }"
         :data-test="idFor"
         :data-value="dataValue(modelValue)"
-        v-bind="{ ...$attrs, innerHTML: undefined }"
+        :disabled="disabled"
+        :required="required"
+        :value="modelValue"
         @input="updateValue"
       ></textarea>
     </div>
@@ -56,6 +55,8 @@ import {
 } from '@/helpers/props.js';
 import { dataValue } from '@/helpers/snapshotHelpers.js';
 
+import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
+
 import FormFieldFooter from '@/components/formFields/FormFieldFooter.vue';
 import FormFieldLabel from '@/components/formFields/FormFieldLabel.vue';
 import FormFieldsetWrapper from '@/components/formFields/FormFieldsetWrapper.vue';
@@ -73,6 +74,9 @@ export default {
     FormFieldLabel,
     FormFieldsetWrapper
   },
+  mixins: [
+    applyStyleTokens
+  ],
   inheritAttrs: false,
   emits: ['update:modelValue'],
   props: {

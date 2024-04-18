@@ -47,7 +47,8 @@ export const styleTokensBuiltIn = {
   formFieldTextFieldError: 'doxen-form-field-text-field-error',
   sidebarButton: 'doxen-sidebar-button',
   sidebarButtonActive: 'doxen-sidebar-button-active',
-  sidebarContainer: 'doxen-sidebar-container'
+  sidebarContainer: 'doxen-sidebar-container',
+  vueDoxen: 'doxen-vue-doxen'
 };
 
 /**

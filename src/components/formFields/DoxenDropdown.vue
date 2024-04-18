@@ -12,22 +12,23 @@
     />
     <div
       v-if="uniqueOptions"
-      data-style-tokens="formFieldDropdownContainer"
-      :class="styleTokens.formFieldDropdownContainer"
+      v-bind="applyStyleTokens({ formFieldDropdownContainer: true })"
     >
       <select
-        v-bind="{ ...$attrs, innerHTML: undefined }"
+        v-bind="{
+          ...$attrs,
+          ...applyStyleTokens({
+            formFieldDropdown: true,
+            formFieldDropdownError: errorMessage
+          }),
+          innerHTML: undefined
+        }"
         :id="idFor"
-        :name="idFor"
         :aria-required="required"
         :aria-invalid="errorMessage"
-        data-style-tokens="formFieldDropdown formFieldDropdownError"
-        :class="{
-          [styleTokens.formFieldDropdown]: true,
-          [styleTokens.formFieldDropdownError]: errorMessage
-        }"
         :data-value="dataValue(modelValue)"
         :disabled="disabled"
+        :name="idFor"
         :required="required"
         :value="modelValue"
         @change="updateValue($event)"
@@ -74,6 +75,8 @@ import {
 } from '@/helpers/props.js';
 import { dataValue } from '@/helpers/snapshotHelpers.js';
 
+import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
+
 import FormFieldFooter from '@/components/formFields/FormFieldFooter.vue';
 import FormFieldLabel from '@/components/formFields/FormFieldLabel.vue';
 import FormFieldsetWrapper from '@/components/formFields/FormFieldsetWrapper.vue';
@@ -92,6 +95,9 @@ export default {
     FormFieldLabel,
     FormFieldsetWrapper
   },
+  mixins: [
+    applyStyleTokens
+  ],
   inheritAttrs: false,
   emits: ['update:modelValue'],
   props: {

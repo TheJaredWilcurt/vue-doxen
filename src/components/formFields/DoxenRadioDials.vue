@@ -12,31 +12,34 @@
     />
     <div
       v-if="uniqueOptions"
-      data-style-tokens="formFieldRadioDialsContainer"
-      :class="styleTokens.formFieldRadioDialsContainer"
+      v-bind="applyStyleTokens({
+        formFieldRadioDialsContainer: true
+      })"
     >
       <template
         v-for="option in uniqueOptions"
         :key="'option' + option.uniqueId"
       >
         <input
-          :id="createRadioIdFor(option, label)"
-          :checked="modelValue == option.value"
-          :value="option.value"
-          :name="radioName"
-          :aria-required="required"
-          :aria-invalid="errorMessage"
-          :disabled="disabled"
-          :required="required"
-          data-style-tokens="formFieldRadioDial formFieldRadioDialError"
-          :class="{
-            [styleTokens.formFieldRadioDial]: true,
-            [styleTokens.formFieldRadioDialError]: errorMessage
+          v-bind="{
+            ...$attrs,
+            ...applyStyleTokens({
+              formFieldRadioDial: true,
+              formFieldRadioDialError: errorMessage
+            }),
+            innerHTML: undefined
           }"
+          :id="createRadioIdFor(option, label)"
+          :aria-invalid="errorMessage"
+          :aria-required="required"
+          :checked="modelValue == option.value"
           :data-test="'radio-button-' + option.value"
           :data-value="dataValue(modelValue == option.value)"
+          :disabled="disabled"
+          :name="radioName"
+          :required="required"
           type="radio"
-          v-bind="{ ...$attrs, innerHTML: undefined }"
+          :value="option.value"
           @input="updateValue(option.value)"
         />
         <label
@@ -80,6 +83,8 @@ import {
 } from '@/helpers/props.js';
 import { dataValue } from '@/helpers/snapshotHelpers.js';
 
+import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
+
 import FormFieldFooter from '@/components/formFields/FormFieldFooter.vue';
 import FormFieldLabel from '@/components/formFields/FormFieldLabel.vue';
 import FormFieldsetWrapper from '@/components/formFields/FormFieldsetWrapper.vue';
@@ -98,6 +103,9 @@ export default {
     FormFieldLabel,
     FormFieldsetWrapper
   },
+  mixins: [
+    applyStyleTokens
+  ],
   inheritAttrs: false,
   emits: ['update:modelValue'],
   props: {
@@ -157,21 +165,6 @@ export default {
     dataValue,
     updateValue: function (value) {
       this.$emit('update:modelValue', value);
-    },
-    applyStyleTokens: function (tokenMap) {
-      const tokensToApply = [];
-      const classesToApply = [];
-      for (const token in tokenMap) {
-        if (tokenMap[token]) {
-          tokensToApply.push(token);
-          classesToApply.push(this.styleTokens[token]);
-        }
-      }
-      return {
-        'data-style-tokens': Object.keys(tokenMap).join(' '),
-        'data-applied-style-tokens': tokensToApply.filter(Boolean).join(' '),
-        class: classesToApply.filter(Boolean).join(' ')
-      };
     }
   },
   computed: {
