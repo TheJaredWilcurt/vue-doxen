@@ -121,7 +121,7 @@ export default {
         label: 'Label',
         message: this.message,
         required: this.isRequired,
-        styleTokens: this.styletokens
+        styleTokens: this.styleTokens
       };
     }
   }
