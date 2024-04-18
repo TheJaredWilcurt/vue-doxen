@@ -28,7 +28,7 @@
     "eslint-plugin-vuejs-accessibility": "^2.2.1",
     "sass": "^1.74.1",
     "vite": "^5.2.8",
-    "vue": "^3.4.21"
+    "vue": "^3.4.23"
   },
   "repository": {
     "type": "git",
