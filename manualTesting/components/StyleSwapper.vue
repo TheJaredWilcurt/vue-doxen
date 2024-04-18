@@ -1,26 +1,14 @@
 <template>
   <div>
-    <div>
-      <input
-        v-model="includeNormalize"
-        id="include-normalize"
-        type="checkbox"
-      />
-      <label for="include-normalize">
-        Include Normalize
-      </label>
-    </div>
-    <label for="style-picker">
-      Swap styles:
-    </label>
-    <select
+    <DoxenCheckbox
+      v-model="includeNormalize"
+      name="Include Normalize"
+    />
+    <DoxenDropdown
       v-model="styleToDemo"
-      id="style-picker"
-    >
-      <option value="none">None</option>
-      <option value="water">Water.css</option>
-    </select>
-
+      label="Swap styles"
+      :options="options"
+    />
     <link
       v-if="includeNormalize"
       rel="stylesheet"
@@ -31,27 +19,56 @@
       v-if="styleToDemo !== 'none'"
       rel="stylesheet"
       type="text/css"
-      :href="styles[styleToDemo].url"
+      :href="styles[styleToDemo]"
     />
   </div>
 </template>
+
 <script>
+import {
+  DoxenCheckbox,
+  DoxenDropdown
+} from '@/vue-doxen.js';
+
 export default {
   name: 'StyleSwapper',
+  components: {
+    DoxenCheckbox,
+    DoxenDropdown
+  },
   data: function () {
     return {
       includeNormalize: true,
-      styleToDemo: 'water',
-      styles: {
-        none: {
-          name: 'None'
+      styleToDemo: 'water'
+    };
+  },
+  computed: {
+    options: function () {
+      return [
+        {
+          name: 'None',
+          value: 'none',
+          url: ''
         },
-        water: {
+        {
+          name: 'Bootstrap 5',
+          value: 'bootstrap',
+          url: 'https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css'
+        },
+        {
           name: 'Water.css',
+          value: 'water',
           url: 'https://unpkg.com/water.css@2.1.1/out/dark.min.css'
         }
+      ];
+    },
+    styles: function () {
+      const stylesMap = {};
+      for (let option of this.options) {
+        stylesMap[option.value] = option.url;
       }
-    };
+      return stylesMap;
+    }
   }
 };
 </script>

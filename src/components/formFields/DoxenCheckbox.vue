@@ -94,7 +94,7 @@ export default {
     applyStyleTokens
   ],
   inheritAttrs: false,
-  emits: ['update:modelValue'],
+  emits: ['update:model-value'],
   props: {
     disabled,
     errorMessage,

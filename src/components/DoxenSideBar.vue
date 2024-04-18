@@ -30,7 +30,7 @@ export default {
   mixins: [
     applyStyleTokens
   ],
-  emits: ['update:modelValue'],
+  emits: ['update:model-value'],
   props: {
     demos,
     modelValue,
