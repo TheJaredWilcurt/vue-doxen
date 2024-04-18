@@ -68,7 +68,7 @@ import _cloneDeep from 'lodash.clonedeep';
 
 import {
   createRadioIdFor,
-  replaceWeirdCharacters,
+  replaceWeirdCharacters
 } from '@/helpers/componentHelpers.js';
 import {
   createDisabledProp,
@@ -89,7 +89,6 @@ import FormFieldLabel from '@/components/formFields/FormFieldLabel.vue';
 import FormFieldsetWrapper from '@/components/formFields/FormFieldsetWrapper.vue';
 
 const COMPONENT_NAME = 'DoxenRadioDials';
-const allowedOptionValueTypes = ['string', 'number', 'boolean'];
 const disabled = createDisabledProp('radio buttons');
 const errorMessage = createErrorMessageProp('radio buttons');
 const message = createMessageProp('radio buttons');
