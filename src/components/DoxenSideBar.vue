@@ -5,7 +5,8 @@
       @click="updateValue(key)"
       v-bind="applyStyleTokens({
         sidebarButton: true,
-        sidebarButtonActive: modelValue === key
+        sidebarButtonNotSelected: modelValue !== key,
+        sidebarButtonSelected: modelValue === key
       })"
       :key="key"
     >

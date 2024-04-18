@@ -12,12 +12,11 @@
     />
     <div
       v-if="uniqueOptions"
-      v-bind="applyStyleTokens({
-        formFieldRadioDialsContainer: true
-      })"
+      v-bind="applyStyleTokens({ formFieldRadioDialsContainer: true })"
     >
-      <template
+      <div
         v-for="option in uniqueOptions"
+        v-bind="applyStyleTokens({ formFieldRadioDialContainer: true })"
         :key="'option' + option.uniqueId"
       >
         <input
@@ -50,7 +49,7 @@
           })"
           :for="createRadioIdFor(option, label)"
         ></label>
-      </template>
+      </div>
     </div>
     <FormFieldFooter
       :errorMessage="errorMessage"

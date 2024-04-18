@@ -64,6 +64,7 @@ export default {
         this.includeNormalize = data.includeNormalize;
         this.styleToDemo = data.styleToDemo;
       }
+      this.styleChanged(this.styleToDemo);
     },
     normalizeChanged: function (bool) {
       this.includeNormalize = bool;

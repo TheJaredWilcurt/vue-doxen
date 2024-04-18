@@ -36,6 +36,7 @@ export const styleTokensBuiltIn = {
   formFieldLegendError: 'doxen-form-field-legend-error',
   formFieldMessage: 'doxen-form-field-message',
   formFieldRadioDial: 'doxen-form-field-radio-dial',
+  formFieldRadioDialContainer: 'doxen-form-field-radio-dial-container',
   formFieldRadioDialNameDisabled: 'doxen-form-field-radio-dial-name-disabled',
   formFieldRadioDialNameError: 'doxen-form-field-radio-dial-name-error',
   formFieldRadioDialNameLabel: 'doxen-form-field-radio-dial-name-label',
@@ -48,7 +49,8 @@ export const styleTokensBuiltIn = {
   formFieldTextFieldContainer: 'doxen-form-field-text-field-container',
   formFieldTextFieldError: 'doxen-form-field-text-field-error',
   sidebarButton: 'doxen-sidebar-button',
-  sidebarButtonActive: 'doxen-sidebar-button-active',
+  sidebarButtonNotSelected: 'doxen-sidebar-button-not-selected',
+  sidebarButtonSelected: 'doxen-sidebar-button-selected',
   sidebarContainer: 'doxen-sidebar-container',
   vueDoxen: 'doxen-vue-doxen'
 };
@@ -69,16 +71,29 @@ for (const key in styleTokensBuiltIn) {
  */
 export const styleTokensBootstrap5 = {
   ...styleTokensEmpty,
-  // labels
-  formFieldCheckboxNameLabel: 'form-label form-control-sm',
+  // Labels
   formFieldLegend: 'form-label form-control-sm',
-  formFieldRadioDialNameLabel: 'form-label form-control-sm',
-  // inputs
-  formFieldCheckbox: 'form-control',
-  formFieldDropdown: 'form-control',
-  formFieldRadioDial: 'form-control',
+  // Inputs
   formFieldTextarea: 'form-control',
   formFieldTextField: 'form-control',
-  // message
-  formFieldMessage: 'form-text'
+  // Checkbox
+  formFieldCheckbox: 'form-check-input',
+  formFieldCheckboxContainer: 'form-check',
+  formFieldCheckboxError: '',
+  formFieldCheckboxNameDisabled: '',
+  formFieldCheckboxNameError: '',
+  formFieldCheckboxNameLabel: 'form-check-label',
+  // Radio Dials
+  formFieldRadioDial: 'form-check-input',
+  formFieldRadioDialNameError: '',
+  formFieldRadioDialNameLabel: 'form-check-label form-label form-control-sm',
+  formFieldRadioDialContainer: 'form-check',
+  // Select
+  formFieldDropdown: 'form-select form-select-sm',
+  // Message
+  formFieldMessage: 'form-text',
+  // Sidebar
+  sidebarContainer: 'btn-group-vertical',
+  sidebarButtonNotSelected: 'btn btn-outline-primary',
+  sidebarButtonSelected: 'btn btn-primary'
 };

@@ -60,8 +60,6 @@ import {
   DoxenSideBar,
   DoxenTextarea,
   DoxenTextField,
-  styleTokensBootstrap5,
-  styleTokensBuiltIn,
   VueDoxen
 } from '@/vue-doxen.js';
 
@@ -112,7 +110,7 @@ export default {
       message: '',
       radios: null,
       selectedDemo: '',
-      styleTokens: styleTokensBuiltIn
+      styleTokens: {}
     };
   },
   computed: {
@@ -123,8 +121,7 @@ export default {
         label: 'Label',
         message: this.message,
         required: this.isRequired,
-        // styleTokens: this.styletokens,
-        styleTokens: styleTokensBootstrap5
+        styleTokens: this.styletokens
       };
     }
   }
