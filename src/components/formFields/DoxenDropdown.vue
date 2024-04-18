@@ -20,8 +20,7 @@
           ...applyStyleTokens({
             formFieldDropdown: true,
             formFieldDropdownError: errorMessage
-          }),
-          innerHTML: undefined
+          })
         }"
         :id="idFor"
         :aria-required="required"
@@ -31,13 +30,12 @@
         :name="idFor"
         :required="required"
         :value="modelValue"
-        @change="updateValue($event)"
+        @change="updateValue($event.target.value)"
       >
         <option
           v-for="option in uniqueOptions"
           v-text="option.name"
-          :id="createRadioIdFor(option, label)"
-          :name="radioName"
+          :id="createIdFor({ label, uniqueId })"
           :data-test="'option-' + option.value"
           :value="option.value"
           :key="'option' + option.uniqueId"
@@ -57,11 +55,7 @@
 <script>
 import _cloneDeep from 'lodash.clonedeep';
 
-import {
-  createIdFor,
-  createRadioIdFor,
-  replaceWeirdCharacters
-} from '@/helpers/componentHelpers.js';
+import { createIdFor } from '@/helpers/componentHelpers.js';
 import {
   createDisabledProp,
   createErrorMessageProp,
@@ -110,13 +104,16 @@ export default {
     styleTokens
   },
   methods: {
-    createRadioIdFor,
+    createIdFor,
     dataValue,
     updateValue: function (value) {
       this.$emit('update:modelValue', value);
     }
   },
   computed: {
+    uniqueId: function () {
+      return crypto.randomUUID();
+    },
     uniqueOptions: function () {
       if (!this.options || !Array.isArray(this.options)) {
         return [];
@@ -129,31 +126,9 @@ export default {
           };
         });
     },
-    radioName: function () {
-      const label = this.label;
-      const uniqueIds = this.uniqueOptions
-        .map((option) => {
-          return option.uniqueId;
-        })
-        .filter(Boolean);
-      const names = this.uniqueOptions
-        .map((option) => {
-          return option.name;
-        })
-        .filter(Boolean);
-      const name = [
-        'VueDoxen',
-        label,
-        uniqueIds.join(' '),
-        names.join(' ')
-      ].filter(Boolean).join('_');
-      return replaceWeirdCharacters(name);
-    },
     idFor: function () {
       return createIdFor({
         label: this.label,
-        value: 'boolean',
-        name: this.name,
         uniqueId: this.uniqueId
       });
     }
