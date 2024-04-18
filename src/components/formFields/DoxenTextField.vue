@@ -90,7 +90,7 @@ export default {
   methods: {
     dataValue,
     updateValue: function ($event) {
-      this.$emit('update:modelValue', $event.target.value);
+      this.$emit('update:model-value', $event.target.value);
     }
   },
   computed: {

@@ -35,6 +35,7 @@
         <option
           v-for="option in uniqueOptions"
           v-text="option.name"
+          v-bind="applyStyleTokens({ formFieldDropdownOption: true })"
           :id="createIdFor({ label, uniqueId })"
           :data-test="'option-' + option.value"
           :value="option.value"
@@ -107,7 +108,7 @@ export default {
     createIdFor,
     dataValue,
     updateValue: function (value) {
-      this.$emit('update:modelValue', value);
+      this.$emit('update:model-value', value);
     }
   },
   computed: {

@@ -120,7 +120,7 @@ export default {
     createRadioIdFor,
     dataValue,
     updateValue: function (value) {
-      this.$emit('update:modelValue', value);
+      this.$emit('update:model-value', value);
     }
   },
   computed: {

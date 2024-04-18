@@ -28,12 +28,14 @@ export const styleTokensBuiltIn = {
   formFieldDropdown: 'doxen-form-field-dropdown',
   formFieldDropdownContainer: 'doxen-form-field-dropdown-container',
   formFieldDropdownError: 'doxen-form-field-dropdown-error',
+  formFieldDropdownOption: 'doxen-form-field-dropdown-option',
   formFieldError: 'doxen-form-field-error',
   formFieldFieldset: 'doxen-form-field-fieldset',
   formFieldLegend: 'doxen-form-field-legend',
   formFieldLegendDisabled: 'doxen-form-field-legend-disabled',
   formFieldLegendError: 'doxen-form-field-legend-error',
   formFieldMessage: 'doxen-form-field-message',
+  formFieldRadioDial: 'doxen-form-field-radio-dial',
   formFieldRadioDialNameDisabled: 'doxen-form-field-radio-dial-name-disabled',
   formFieldRadioDialNameError: 'doxen-form-field-radio-dial-name-error',
   formFieldRadioDialNameLabel: 'doxen-form-field-radio-dial-name-label',
@@ -66,8 +68,17 @@ for (const key in styleTokensBuiltIn) {
  * @type {Object}
  */
 export const styleTokensBootstrap5 = {
-  ...styleTokensBuiltIn,
-  formFieldCheckboxNameLabel: 'form-label',
-  formFieldLegend: 'form-label',
-  formFieldRadioDialNameLabel: 'form-label'
+  ...styleTokensEmpty,
+  // labels
+  formFieldCheckboxNameLabel: 'form-label form-control-sm',
+  formFieldLegend: 'form-label form-control-sm',
+  formFieldRadioDialNameLabel: 'form-label form-control-sm',
+  // inputs
+  formFieldCheckbox: 'form-control',
+  formFieldDropdown: 'form-control',
+  formFieldRadioDial: 'form-control',
+  formFieldTextarea: 'form-control',
+  formFieldTextField: 'form-control',
+  // message
+  formFieldMessage: 'form-text'
 };

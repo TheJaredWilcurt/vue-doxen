@@ -1,14 +1,15 @@
 <template>
   <div>
     <DoxenCheckbox
-      v-model="includeNormalize"
+      :modelValue="includeNormalize"
       name="Include Normalize"
+      @update:modelValue="normalizeChanged"
     />
     <DoxenDropdown
-      v-model="styleToDemo"
+      :modelValue="styleToDemo"
       label="Swap styles"
       :options="options"
-      @update:modelValue="$emit('update:modelValue', styleTokensMap[$event])"
+      @update:modelValue="styleChanged"
     />
     <link
       v-if="includeNormalize"
@@ -46,13 +47,47 @@ export default {
       required: true
     }
   },
+  constants: {
+    localStorageId: 'vueDoxenStyleSwapper'
+  },
   data: function () {
     return {
       includeNormalize: true,
       styleToDemo: 'water'
     };
   },
+  methods: {
+    load: function () {
+      let data = window.localStorage.getItem(this.localStorageId);
+      data = JSON.parse(data);
+      if (data) {
+        this.includeNormalize = data.includeNormalize;
+        this.styleToDemo = data.styleToDemo;
+      }
+    },
+    normalizeChanged: function (bool) {
+      this.includeNormalize = bool;
+      this.save();
+    },
+    save: function () {
+      const id = this.localStorageId;
+      const data = this.dataToSave;
+      window.localStorage.setItem(id, data);
+    },
+    styleChanged: function (styleToDemo) {
+      this.styleToDemo = styleToDemo;
+      // Emit style tokens
+      this.$emit('update:model-value', this.styleTokensMap[styleToDemo]);
+      this.save();
+    }
+  },
   computed: {
+    dataToSave: function () {
+      return JSON.stringify({
+        includeNormalize: this.includeNormalize,
+        styleToDemo: this.styleToDemo
+      });
+    },
     options: function () {
       return [
         {
@@ -89,6 +124,9 @@ export default {
       }
       return styleTokensMap;
     }
+  },
+  created: function () {
+    this.load();
   }
 };
 </script>

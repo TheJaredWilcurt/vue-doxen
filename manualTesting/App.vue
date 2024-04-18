@@ -9,6 +9,12 @@
         v-bind="commonProps"
         name="Is Required"
       />
+      <DoxenCheckbox
+        v-model="isDisabled"
+        v-bind="commonProps"
+        :disabled="false"
+        name="Is Disabled"
+      />
       <DoxenDropdown
         v-model="radios"
         v-bind="commonProps"
@@ -54,6 +60,7 @@ import {
   DoxenSideBar,
   DoxenTextarea,
   DoxenTextField,
+  styleTokensBootstrap5,
   styleTokensBuiltIn,
   VueDoxen
 } from '@/vue-doxen.js';
@@ -61,7 +68,7 @@ import {
 import StyleSwapper from '@@@/components/StyleSwapper.vue';
 
 import { doxenCheckboxDemo } from '@@@/demos/doxenCheckboxDemo.js';
-import { doxenDropdownDemo } from '@@@/demos/doxenDropdownDemo.js'
+import { doxenDropdownDemo } from '@@@/demos/doxenDropdownDemo.js';
 import { doxenRadioDialsDemo } from '@@@/demos/doxenRadioDialsDemo.js';
 import { doxenTextFieldDemo } from '@@@/demos/doxenTextFieldDemo.js';
 import { doxenTextareaDemo } from '@@@/demos/doxenTextareaDemo.js';
@@ -100,6 +107,7 @@ export default {
         doxenTextFieldDemo
       },
       errorMessage: '',
+      isDisabled: false,
       isRequired: true,
       message: '',
       radios: null,
@@ -110,13 +118,15 @@ export default {
   computed: {
     commonProps: function () {
       return {
+        disabled: this.isDisabled,
         errorMessage: this.errorMessage,
         label: 'Label',
         message: this.message,
         required: this.isRequired,
-        styleTokens: this.styleTokens
+        // styleTokens: this.styletokens,
+        styleTokens: styleTokensBootstrap5
       };
-    },
+    }
   }
 };
 </script>

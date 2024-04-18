@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     updateValue: function (key) {
-      this.$emit('update:modelValue', key);
+      this.$emit('update:model-value', key);
     }
   }
 };
