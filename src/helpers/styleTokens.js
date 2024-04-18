@@ -60,3 +60,14 @@ export const styleTokensEmpty = {};
 for (const key in styleTokensBuiltIn) {
   styleTokensEmpty[key] = '';
 }
+
+/**
+ * Style tokens using the class names provided by Bootstrap5
+ * @type {Object}
+ */
+export const styleTokensBootstrap5 = {
+  ...styleTokensBuiltIn,
+  formFieldCheckboxNameLabel: 'form-label',
+  formFieldLegend: 'form-label',
+  formFieldRadioDialNameLabel: 'form-label'
+};

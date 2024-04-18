@@ -1,6 +1,7 @@
 import '@/sass/styles.sass';
 
 export {
+  styleTokensBootstrap5,
   styleTokensBuiltIn,
   styleTokensEmpty
 } from '@/helpers/styleTokens.js';

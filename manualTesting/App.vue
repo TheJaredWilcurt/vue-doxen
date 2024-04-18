@@ -2,11 +2,10 @@
   <div>
     APP
     {{ selectedDemo }}
-    {{ { bool, radios, message, errorMessage } }}
-    <StyleSwapper />
+    <StyleSwapper v-model="styleTokens" />
     <div style="display: flex; flex-wrap: wrap;">
       <DoxenCheckbox
-        v-model="bool"
+        v-model="isRequired"
         v-bind="commonProps"
         name="Is Required"
       />
@@ -37,12 +36,12 @@
     <DoxenSideBar
       v-model="selectedDemo"
       :demos="demos"
-      :styleTokens="styleTokensBuiltIn"
+      :styleTokens="styleTokens"
     />
     <VueDoxen
       v-model="selectedDemo"
       :demos="demos"
-      :styleTokens="styleTokensBuiltIn"
+      :styleTokens="styleTokens"
     />
   </div>
 </template>
@@ -62,6 +61,7 @@ import {
 import StyleSwapper from '@@@/components/StyleSwapper.vue';
 
 import { doxenCheckboxDemo } from '@@@/demos/doxenCheckboxDemo.js';
+import { doxenDropdownDemo } from '@@@/demos/doxenDropdownDemo.js'
 import { doxenRadioDialsDemo } from '@@@/demos/doxenRadioDialsDemo.js';
 import { doxenTextFieldDemo } from '@@@/demos/doxenTextFieldDemo.js';
 import { doxenTextareaDemo } from '@@@/demos/doxenTextareaDemo.js';
@@ -79,45 +79,44 @@ export default {
     VueDoxen
   },
   constants: {
-    styleTokensBuiltIn
+    dummyOptions: [
+      {
+        name: 'Item 1',
+        value: 1
+      },
+      {
+        name: 'Item 2',
+        value: 2
+      }
+    ]
   },
   data: function () {
     return {
-      radios: null,
-      bool: true,
-      message: '',
-      errorMessage: '',
-      selectedDemo: '',
       demos: {
         doxenCheckboxDemo,
+        doxenDropdownDemo,
         doxenRadioDialsDemo,
         doxenTextareaDemo,
         doxenTextFieldDemo
-      }
+      },
+      errorMessage: '',
+      isRequired: true,
+      message: '',
+      radios: null,
+      selectedDemo: '',
+      styleTokens: styleTokensBuiltIn
     };
   },
   computed: {
     commonProps: function () {
       return {
-        label: 'Label',
-        required: this.bool,
         errorMessage: this.errorMessage,
+        label: 'Label',
         message: this.message,
-        styleTokens: this.styleTokensBuiltIn
+        required: this.isRequired,
+        styleTokens: this.styleTokens
       };
     },
-    dummyOptions: function () {
-      return [
-        {
-          name: 'Item 1',
-          value: 1
-        },
-        {
-          name: 'Item 2',
-          value: 2
-        }
-      ];
-    }
   }
 };
 </script>
