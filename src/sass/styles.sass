@@ -35,7 +35,8 @@ $black10: rgba(0, 1, 16, 0.10)
 .doxen-form-field-textarea-error,
 .doxen-form-field-textarea-container,
 .doxen-sidebar-button-active,
-.doxen-sidebar-container
+.doxen-sidebar-container,
+.doxen-vue-doxen
     display: inherit
 
 /**
@@ -44,7 +45,7 @@ $black10: rgba(0, 1, 16, 0.10)
  */
 
 /* Basic styling on field sets */
-:where([data-style-tokens~="formFieldFieldset"])
+:where([data-applied-style-tokens~="formFieldFieldset"])
     display: inline-flex
     flex-direction: column
     background: $black10
@@ -54,46 +55,46 @@ $black10: rgba(0, 1, 16, 0.10)
     min-inline-size: min-content
 
 /* Basic legend styling */
-:where([data-style-tokens~="formFieldLegend"])
+:where([data-applied-style-tokens~="formFieldLegend"])
     float: left
     font-weight: bold
 
 /* Whitespace on Radio dial names */
-:where([data-style-tokens~="formFieldRadioDialNameLabel"])
+:where([data-applied-style-tokens~="formFieldRadioDialNameLabel"])
     margin-right: 10px
 
 /* Required and Error states */
-:where([data-style-tokens~="formFieldCheckboxError"]),
-:where([data-style-tokens~="formFieldCheckboxNameError"]),
-:where([data-style-tokens~="formFieldDropdownError"]),
-:where([data-style-tokens~="formFieldError"]),
-:where([data-style-tokens~="formFieldLegendError"]),
-:where([data-style-tokens~="formFieldRadioDialNameError"]),
-:where([data-style-tokens~="formFieldRequired"]),
-:where([data-style-tokens~="formFieldTextFieldError"]),
-:where([data-style-tokens~="formFieldTextareaError"])
+:where([data-applied-style-tokens~="formFieldCheckboxError"]),
+:where([data-applied-style-tokens~="formFieldCheckboxNameError"]),
+:where([data-applied-style-tokens~="formFieldDropdownError"]),
+:where([data-applied-style-tokens~="formFieldError"]),
+:where([data-applied-style-tokens~="formFieldLegendError"]),
+:where([data-applied-style-tokens~="formFieldRadioDialNameError"]),
+:where([data-applied-style-tokens~="formFieldRequired"]),
+:where([data-applied-style-tokens~="formFieldTextFieldError"]),
+:where([data-applied-style-tokens~="formFieldTextareaError"])
     color: $red
 
 /* Disabled styling */
-:where([data-style-tokens~="formFieldLegendDisabled"])
+:where([data-applied-style-tokens~="formFieldLegendDisabled"])
     color: $disabledGray
 
 /* Remove styling on sidebar buttons unless active */
-:where([data-style-tokens~="sidebarButton"])
+:where([data-applied-style-tokens~="sidebarButton"])
     background: $transparent
     border: 0px
 
 /* Give some affordance to currently selected sidebar component */
-:where([data-style-tokens~="sidebarButtonActive"])
+:where([data-applied-style-tokens~="sidebarButtonActive"])
     background: $gray50
 
 /* Remove white-space around paragraph */
-:where([data-style-tokens~="formFieldMessage"])
+:where([data-applied-style-tokens~="formFieldMessage"])
     margin-top: 0px
     margin-bottom: 0px
 
 /* The required asterisk */
-:where([data-style-tokens~="formFieldRequired"])
+:where([data-applied-style-tokens~="formFieldRequired"])
     padding-left: 3px
 
 
