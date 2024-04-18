@@ -1,5 +1,3 @@
-import { USE_VMODEL_WARNING } from '@/helpers/componentHelpers.js';
-
 export const createDisabledProp = function (name) {
   return {
     type: Boolean,
@@ -25,7 +23,7 @@ export const createModelValueProp = function (type) {
   return {
     type,
     default: undefined,
-    description: USE_VMODEL_WARNING
+    description: 'You shouldn\'t actually use this prop directly, instead use v-model to recieve two way data-binding with this form field.'
   };
 };
 export const demos = {

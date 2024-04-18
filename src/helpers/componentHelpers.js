@@ -1,7 +1,5 @@
 /* eslint-disable import/no-unused-modules */
 
-export const USE_VMODEL_WARNING = 'You shouldn\'t actually use this prop directly, instead use v-model to recieve two way data-binding with this form field.';
-
 /**
  * Takes in a list and joins it like you would in English class.
  * Courtesy of your friends at StackOverflow.
