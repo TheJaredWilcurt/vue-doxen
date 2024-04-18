@@ -103,4 +103,3 @@ export const styleTokensBootstrap5 = {
   sidebarButtonNotSelected: 'btn btn-outline-primary',
   sidebarButtonSelected: 'btn btn-primary'
 };
-
