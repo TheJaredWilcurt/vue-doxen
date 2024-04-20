@@ -7,10 +7,43 @@
     />
     <DoxenDropdown
       :modelValue="styleToDemo"
-      label="Swap styles"
-      :options="options"
+      label="Styles"
+      :options="[
+        {
+          name: 'None',
+          value: 'none'
+        },
+        {
+          name: 'Bootstrap 5',
+          value: 'bootstrap'
+        },
+        {
+          name: 'Water.css',
+          value: 'water'
+        }
+      ]"
       @update:modelValue="styleChanged"
     />
+    <DoxenDropdown
+      :modelValue="tokensToDemo"
+      label="Style Tokens"
+      :options="[
+        {
+          name: 'Built in classes',
+          value: 'builtIn'
+        },
+        {
+          name: 'Bootstrap 5 classes',
+          value: 'bootstrap'
+        },
+        {
+          name: 'No classes',
+          value: 'empty'
+        }
+      ]"
+      @update:modelValue="styleTokensChanged"
+    />
+
     <link
       v-if="includeNormalize"
       rel="stylesheet"
@@ -31,7 +64,8 @@ import {
   DoxenCheckbox,
   DoxenDropdown,
   styleTokensBootstrap5,
-  styleTokensBuiltIn
+  styleTokensBuiltIn,
+  styleTokensEmpty
 } from '@/vue-doxen.js';
 
 export default {
@@ -48,12 +82,23 @@ export default {
     }
   },
   constants: {
-    localStorageId: 'vueDoxenStyleSwapper'
+    localStorageId: 'vueDoxenStyleSwapper',
+    stylesMap: {
+      none: '',
+      bootstrap: 'https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css',
+      water: 'https://unpkg.com/water.css@2.1.1/out/dark.min.css'
+    },
+    styleTokensMap: {
+      bootstrap: styleTokensBootstrap5,
+      builtIn: styleTokensBuiltIn,
+      empty: styleTokensEmpty
+    }
   },
   data: function () {
     return {
       includeNormalize: true,
-      styleToDemo: 'water'
+      styleToDemo: 'water',
+      tokensToDemo: 'builtIn'
     };
   },
   methods: {
@@ -63,8 +108,10 @@ export default {
       if (data) {
         this.includeNormalize = data.includeNormalize;
         this.styleToDemo = data.styleToDemo;
+        this.tokensToDemo = data.tokensToDemo;
       }
       this.styleChanged(this.styleToDemo);
+      this.styleTokensChanged(this.tokensToDemo);
     },
     normalizeChanged: function (bool) {
       this.includeNormalize = bool;
@@ -77,8 +124,11 @@ export default {
     },
     styleChanged: function (styleToDemo) {
       this.styleToDemo = styleToDemo;
-      // Emit style tokens
-      this.$emit('update:model-value', this.styleTokensMap[styleToDemo]);
+      this.save();
+    },
+    styleTokensChanged: function (tokensToDemo) {
+      this.tokensToDemo = tokensToDemo;
+      this.$emit('update:model-value', this.styleTokensMap[tokensToDemo]);
       this.save();
     }
   },
@@ -86,44 +136,9 @@ export default {
     dataToSave: function () {
       return JSON.stringify({
         includeNormalize: this.includeNormalize,
-        styleToDemo: this.styleToDemo
+        styleToDemo: this.styleToDemo,
+        tokensToDemo: this.tokensToDemo
       });
-    },
-    options: function () {
-      return [
-        {
-          name: 'None',
-          styleTokens: styleTokensBuiltIn,
-          url: '',
-          value: 'none'
-        },
-        {
-          name: 'Bootstrap 5',
-          styleTokens: styleTokensBootstrap5,
-          url: 'https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css',
-          value: 'bootstrap'
-        },
-        {
-          name: 'Water.css',
-          styleTokens: styleTokensBuiltIn,
-          url: 'https://unpkg.com/water.css@2.1.1/out/dark.min.css',
-          value: 'water'
-        }
-      ];
-    },
-    stylesMap: function () {
-      const stylesMap = {};
-      for (let option of this.options) {
-        stylesMap[option.value] = option.url;
-      }
-      return stylesMap;
-    },
-    styleTokensMap: function () {
-      const styleTokensMap = {};
-      for (let option of this.options) {
-        styleTokensMap[option.value] = option.styleTokens;
-      }
-      return styleTokensMap;
     }
   },
   created: function () {
@@ -131,3 +146,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+fieldset {
+  border: 0px;
+}
+</style>
