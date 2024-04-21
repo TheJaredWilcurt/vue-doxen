@@ -1,19 +1,27 @@
 <template>
   <div>
     <header>
-      <h1>Vue Doxen</h1>
-      <StyleSwapper v-model="styleTokens" />
+      <div class="container">
+        <h1>Vue Doxen</h1>
+        <StyleSwapper v-model="styleTokens" />
+      </div>
     </header>
-    <DoxenSideBar
-      v-model="selectedDemo"
-      :demos="demos"
-      :styleTokens="styleTokens"
-    />
-    <VueDoxen
-      v-model="selectedDemo"
-      :demos="demos"
-      :styleTokens="styleTokens"
-    />
+    <div class="container">
+      <DoxenSideBar
+        v-model="selectedDemo"
+        :demos="demos"
+        :styleTokens="styleTokens"
+      >
+        <template #default>
+          <h4>Components:</h4>
+        </template>
+      </DoxenSideBar>
+      <VueDoxen
+        v-model="selectedDemo"
+        :demos="demos"
+        :styleTokens="styleTokens"
+      />
+    </div>
   </div>
 </template>
 
@@ -40,23 +48,41 @@ export default {
     VueDoxen
   },
   constants: {
+    demos: {
+      doxenCheckboxDemo,
+      doxenDropdownDemo,
+      doxenRadioDialsDemo,
+      doxenTextareaDemo,
+      doxenTextFieldDemo
+    }
   },
   data: function () {
     return {
-      demos: {
-        doxenCheckboxDemo,
-        doxenDropdownDemo,
-        doxenRadioDialsDemo,
-        doxenTextareaDemo,
-        doxenTextFieldDemo
-      },
-      selectedDemo: '',
-      styleTokens: {}
+      selectedDemo: 'doxenCheckboxDemo',
+      styleTokens: styleTokensBuiltIn
     };
-  },
-  methods: {
-  },
-  computed: {
   }
 };
 </script>
+
+<style scoped>
+.container {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0px auto;
+}
+header {
+  display: flex;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+h1 {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  width: auto;
+  margin-right: auto;
+  margin-bottom: 0px;
+}
+</style>

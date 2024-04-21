@@ -71,6 +71,8 @@ for (const key in styleTokensBuiltIn) {
  */
 export const styleTokensBootstrap5 = {
   ...styleTokensEmpty,
+  // Container
+  formFieldFieldset: 'px-2 pb-1',
   // Errors
   formFieldCheckboxError: 'text-danger',
   formFieldCheckboxNameError: 'text-danger',
@@ -81,7 +83,7 @@ export const styleTokensBootstrap5 = {
   formFieldTextareaError: 'text-danger',
   formFieldTextFieldError: 'text-danger',
   // Labels
-  formFieldLegend: 'form-label form-control-sm',
+  formFieldLegend: 'form-label form-control-sm mb-0',
   // Inputs
   formFieldTextarea: 'form-control',
   formFieldTextField: 'form-control',
@@ -99,7 +101,8 @@ export const styleTokensBootstrap5 = {
   // Message
   formFieldMessage: 'form-text',
   // Sidebar
-  sidebarContainer: 'btn-group-vertical',
-  sidebarButtonNotSelected: 'btn btn-outline-primary',
-  sidebarButtonSelected: 'btn btn-primary'
+  sidebarContainer: 'btn-group-vertical mx-3 justify-content-start',
+  sidebarButton: 'btn flex-grow-0',
+  sidebarButtonNotSelected: 'btn-outline-primary',
+  sidebarButtonSelected: 'btn-primary flex-shrink-1'
 };

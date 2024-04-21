@@ -1,5 +1,6 @@
 <template>
   <div v-bind="applyStyleTokens({ sidebarContainer: true })">
+    <slot name="default"></slot>
     <button
       v-for="(value, key) in demos"
       @click="updateValue(key)"
@@ -12,6 +13,7 @@
     >
       {{ value?.component?.name }}
     </button>
+    <slot name="footer"></slot>
   </div>
 </template>
 

@@ -48,6 +48,10 @@ $black10: rgba(0, 1, 16, 0.10)
  * selectors so they do not override any provided css.
  */
 
+:where([data-applied-style-tokens~="sidebarContainer"])
+    display: flex
+    flex-direction: column
+
 /* Basic styling on field sets */
 :where([data-applied-style-tokens~="formFieldFieldset"])
     display: inline-flex

@@ -1,13 +1,15 @@
 <template>
-  <div>
+  <div class="style-swapper">
     <DoxenCheckbox
+      label="CSS Reset"
       :modelValue="includeNormalize"
       name="Include Normalize"
+      :styleTokens="modelValue"
       @update:modelValue="normalizeChanged"
     />
     <DoxenDropdown
-      :modelValue="styleToDemo"
       label="Styles"
+      :modelValue="styleToDemo"
       :options="[
         {
           name: 'None',
@@ -22,11 +24,12 @@
           value: 'water'
         }
       ]"
+      :styleTokens="modelValue"
       @update:modelValue="styleChanged"
     />
     <DoxenDropdown
-      :modelValue="tokensToDemo"
       label="Style Tokens"
+      :modelValue="tokensToDemo"
       :options="[
         {
           name: 'Built in classes',
@@ -41,20 +44,21 @@
           value: 'empty'
         }
       ]"
+      :styleTokens="modelValue"
       @update:modelValue="styleTokensChanged"
     />
 
     <link
       v-if="includeNormalize"
+      href="https://unpkg.com/normalize.css@8.0.1/normalize.css"
       rel="stylesheet"
       type="text/css"
-      href="https://unpkg.com/normalize.css@8.0.1/normalize.css"
     />
     <link
       v-if="styleToDemo !== 'none'"
+      :href="stylesMap[styleToDemo]"
       rel="stylesheet"
       type="text/css"
-      :href="stylesMap[styleToDemo]"
     />
   </div>
 </template>
@@ -147,8 +151,16 @@ export default {
 };
 </script>
 
-<style scoped>
-fieldset {
+<style>
+.style-swapper {
+  display: flex;
+  align-items: stretch;
+}
+.style-swapper fieldset {
   border: 0px;
+}
+.style-swapper .center-the-checkbox {
+  display: flex;
+  justify-content: center;
 }
 </style>
