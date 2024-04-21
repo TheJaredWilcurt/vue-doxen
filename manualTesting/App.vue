@@ -26,19 +26,23 @@
 </template>
 
 <script>
+import _cloneDeep from 'lodash.clonedeep';
+
 import {
+  DoxenCheckbox,
+  DoxenDropdown,
+  DoxenJsonTextarea,
+  DoxenRadioDials,
   DoxenSideBar,
+  DoxenTextarea,
+  DoxenTextField,
   styleTokensBuiltIn,
   VueDoxen
 } from '@/vue-doxen.js';
 
 import StyleSwapper from '@@@/components/StyleSwapper.vue';
 
-import { doxenCheckboxDemo } from '@@@/demos/doxenCheckboxDemo.js';
-import { doxenDropdownDemo } from '@@@/demos/doxenDropdownDemo.js';
-import { doxenRadioDialsDemo } from '@@@/demos/doxenRadioDialsDemo.js';
-import { doxenTextFieldDemo } from '@@@/demos/doxenTextFieldDemo.js';
-import { doxenTextareaDemo } from '@@@/demos/doxenTextareaDemo.js';
+import { createDemos } from '@@@/demos.js';
 
 export default {
   name: 'App',
@@ -47,20 +51,27 @@ export default {
     StyleSwapper,
     VueDoxen
   },
-  constants: {
-    demos: {
-      doxenCheckboxDemo,
-      doxenDropdownDemo,
-      doxenRadioDialsDemo,
-      doxenTextareaDemo,
-      doxenTextFieldDemo
-    }
-  },
   data: function () {
     return {
-      selectedDemo: 'doxenCheckboxDemo',
+      selectedDemo: 'DoxenCheckbox',
       styleTokens: styleTokensBuiltIn
     };
+  },
+  computed: {
+    demos: function () {
+      const tokens = _cloneDeep(this.styleTokens);
+      const components = {
+        DoxenCheckbox,
+        DoxenDropdown,
+        DoxenJsonTextarea,
+        DoxenRadioDials,
+        DoxenTextarea,
+        DoxenTextField,
+        DoxenSideBar,
+        VueDoxen
+      };
+      return createDemos(components, tokens);
+    }
   }
 };
 </script>

@@ -11,7 +11,9 @@
     "fix": "eslint --fix --ext .js,.vue --config=.eslintrc.cjs src manualTesting vite.config.js .eslintrc.cjs"
   },
   "dependencies": {
+    "json5": "^2.2.3",
     "lodash.clonedeep": "^4.5.0",
+    "lodash.isequal": "^4.5.0",
     "lodash.lowerfirst": "^4.3.1",
     "lodash.startcase": "^4.4.0",
     "vue-options-api-constants-plugin": "^1.0.1"

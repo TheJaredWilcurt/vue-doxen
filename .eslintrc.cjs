@@ -82,6 +82,12 @@ module.exports = {
         ]
       }
     ],
+    'no-empty': [
+      'error',
+      {
+        allowEmptyCatch: true
+      }
+    ],
     'no-restricted-syntax': [
       'error',
       ...baseRestrictedSyntax

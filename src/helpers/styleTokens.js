@@ -43,11 +43,13 @@ export const styleTokensBuiltIn = {
   formFieldRadioDialsContainer: 'doxen-form-field-radio-dials-container',
   formFieldRequired: 'doxen-form-field-required',
   formFieldTextarea: 'doxen-form-field-textarea',
+  formFieldTextareaCode: 'doxen-form-field-textarea-code',
   formFieldTextareaContainer: 'doxen-form-field-textarea-container',
   formFieldTextareaError: 'doxen-form-field-textarea-error',
   formFieldTextField: 'doxen-form-field-text-field',
   formFieldTextFieldContainer: 'doxen-form-field-text-field-container',
   formFieldTextFieldError: 'doxen-form-field-text-field-error',
+  propsPlaygroundForm: 'doxen-props-playground-form',
   sidebarButton: 'doxen-sidebar-button',
   sidebarButtonNotSelected: 'doxen-sidebar-button-not-selected',
   sidebarButtonSelected: 'doxen-sidebar-button-selected',
@@ -73,7 +75,7 @@ for (const key in styleTokensBuiltIn) {
 export const styleTokensBootstrap5 = {
   ...styleTokensEmpty,
   // Container
-  formFieldFieldset: 'px-2 pb-1',
+  formFieldFieldset: 'px-2 pb-2 m-1 flex-grow-1',
   // Errors
   formFieldCheckboxError: 'text-danger',
   formFieldCheckboxNameError: 'text-danger',
@@ -84,7 +86,7 @@ export const styleTokensBootstrap5 = {
   formFieldTextareaError: 'text-danger',
   formFieldTextFieldError: 'text-danger',
   // Labels
-  formFieldLegend: 'form-label form-control-sm mb-0',
+  formFieldLegend: 'form-label form-control-sm mb-0 px-0',
   // Inputs
   formFieldTextarea: 'form-control',
   formFieldTextField: 'form-control',
@@ -101,6 +103,10 @@ export const styleTokensBootstrap5 = {
   formFieldDropdown: 'form-select form-select-sm',
   // Message
   formFieldMessage: 'form-text',
+  // Code
+  formFieldTextareaCode: 'font-monospace',
+  // Demo
+  propsPlaygroundForm: 'd-flex flex-wrap',
   // Sidebar
   sidebarContainer: 'btn-group-vertical mx-3 justify-content-start',
   sidebarButton: 'btn flex-grow-0',

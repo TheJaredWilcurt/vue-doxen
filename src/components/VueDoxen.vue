@@ -3,6 +3,8 @@
     <DoxenComponentDemo
       v-if="demos[modelValue]"
       :demo="demos[modelValue]"
+      :styleTokens="styleTokens"
+      :key="modelValue"
     />
   </div>
 </template>

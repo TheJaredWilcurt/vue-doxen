@@ -35,27 +35,32 @@ $black10: rgba(0, 1, 16, 0.10)
 .doxen-form-field-text-field-container,
 .doxen-form-field-text-field-error,
 .doxen-form-field-textarea,
-.doxen-form-field-textarea-error,
+.doxen-form-field-textarea-code,
 .doxen-form-field-textarea-container,
+.doxen-form-field-textarea-error,
+.doxen-props-playground-form,
 .doxen-sidebar-button-not-selected,
 .doxen-sidebar-button-selected,
 .doxen-sidebar-container,
 .doxen-vue-doxen
-    display: inherit
+    --doxen-placeholder: ''
 
 /**
  * :where([data-*]) is used to produce the lowest specificity
  * selectors so they do not override any provided css.
  */
 
-:where([data-applied-style-tokens~="sidebarContainer"])
+
+/* Props Playground */
+:where([data-applied-style-tokens~="propsPlaygroundForm"])
     display: flex
-    flex-direction: column
+    flex-wrap: wrap
 
 /* Basic styling on field sets */
 :where([data-applied-style-tokens~="formFieldFieldset"])
     display: inline-flex
     flex-direction: column
+    flex-grow: 1
     background: $black10
     border: 0px
     margin: 10px
@@ -87,6 +92,11 @@ $black10: rgba(0, 1, 16, 0.10)
 :where([data-applied-style-tokens~="formFieldLegendDisabled"])
     color: $disabledGray
 
+/* Sidebar */
+:where([data-applied-style-tokens~="sidebarContainer"])
+    display: flex
+    flex-direction: column
+
 /* Remove styling on sidebar buttons unless active */
 :where([data-applied-style-tokens~="sidebarButton"])
     background: $transparent
@@ -104,3 +114,7 @@ $black10: rgba(0, 1, 16, 0.10)
 /* The required asterisk */
 :where([data-applied-style-tokens~="formFieldRequired"])
     padding-left: 3px
+
+/* Monospace font for textareas with code in them */
+:where([data-applied-style-tokens~="formFieldTextareaCode"])
+    font-family: monospace
