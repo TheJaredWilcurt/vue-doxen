@@ -1,5 +1,5 @@
 /**
- * @file Style tokens allow a lot of flexibility in how the components can be styled.
+ * @file Style tokens allow a lot of flexibility in how the Vue Doxen components can be styled.
  *
  * Style tokens solve the following scenarios:
  *
@@ -66,7 +66,8 @@ for (const key in styleTokensBuiltIn) {
 }
 
 /**
- * Style tokens using the class names provided by Bootstrap5
+ * Style tokens using the class names provided by Bootstrap 5.
+ *
  * @type {Object}
  */
 export const styleTokensBootstrap5 = {
