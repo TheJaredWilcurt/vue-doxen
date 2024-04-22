@@ -8,6 +8,7 @@ import { defineConfig } from 'vite';
 const __dirname = import.meta.dirname;
 
 export default defineConfig({
+  base: 'vue-doxen',
   build: {
     outDir: resolve(__dirname, 'docs'),
     rollupOptions: {
