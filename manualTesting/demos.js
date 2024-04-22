@@ -1,4 +1,4 @@
-import { DoxenJsonTextarea } from '@/vue-doxen.js';
+import { DoxenJsonTextarea } from '@/library.js';
 
 export const createDemos = function (components, styleTokens) {
   const demos = {};

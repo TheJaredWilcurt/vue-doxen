@@ -82,13 +82,13 @@
 </template>
 
 <script>
-import styles from '@/sass/vue-doxen.sass?inline';
 import {
   DoxenCheckbox,
   DoxenDropdown,
   styleTokensBootstrap5,
   styleTokensBuiltIn
-} from '@/vue-doxen.js';
+} from '@/library.js';
+import styles from '@/sass/vue-doxen.sass?inline';
 
 export default {
   name: 'StyleSwapper',

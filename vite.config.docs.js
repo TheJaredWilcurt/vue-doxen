@@ -7,12 +7,11 @@ import { defineConfig } from 'vite';
 
 const __dirname = import.meta.dirname;
 
-// https://vitejs.dev/config/
 export default defineConfig({
   build: {
-    lib: {
-      entry: resolve(__dirname, 'src/vue-doxen.js'),
-      name: 'vue-doxen'
+    outDir: resolve(__dirname, 'docs'),
+    rollupOptions: {
+      input: resolve(__dirname, 'index.html')
     }
   },
   plugins: [vue()],
@@ -24,6 +23,6 @@ export default defineConfig({
     }
   },
   server: {
-    open: '/manualTesting/index.html'
+    open: '/index.html'
   }
 });

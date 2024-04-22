@@ -2,7 +2,13 @@
   <div>
     <header>
       <div class="container">
-        <h1>Vue Doxen</h1>
+        <div class="logo-container">
+          <h1>Vue<br />Doxen</h1>
+          <img
+            src="@@@/assets/vue-doxen-logo-small.png"
+            alt="A doxen dog with a green chest in the shape of the Vue logo"
+          />
+        </div>
         <StyleSwapper v-model="styleTokens" />
       </div>
     </header>
@@ -38,7 +44,7 @@ import {
   DoxenTextField,
   styleTokensBuiltIn,
   VueDoxen
-} from '@/vue-doxen.js';
+} from '@/library.js';
 
 import StyleSwapper from '@@@/components/StyleSwapper.vue';
 
@@ -79,9 +85,13 @@ export default {
 <style scoped>
 .container {
   display: flex;
+  justify-content: space-between;
   width: 100%;
   max-width: 1200px;
   margin: 0px auto;
+}
+.logo-container {
+  position: relative;
 }
 header {
   display: flex;
@@ -100,6 +110,8 @@ h6 {
   font-weight: 750;
 }
 h1 {
+  position: relative;
+  top: 30px;
   display: flex;
   align-items: center;
   flex: 0 0 auto;
@@ -107,6 +119,7 @@ h1 {
   margin-right: auto;
   margin-bottom: 0px;
   color: #41B883;
+  font-size: 40px;
   font-weight: 900;
   text-shadow: 7px -2px 0px #34495E,
                7px  2px 0px #34495E,
@@ -114,5 +127,13 @@ h1 {
               -2px -2px 0px #34495E,
                2px -2px 0px #34495E,
               -2px  2px 0px #34495E;
+  z-index: 2;
+}
+img {
+  position: absolute;
+  top: -3px;
+  left: 98px;
+  height: 106px;
+  z-index: 1;
 }
 </style>
