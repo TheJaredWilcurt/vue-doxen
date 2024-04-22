@@ -1,10 +1,10 @@
 <template>
   <div v-bind="applyStyleTokens({ vueDoxen: true })">
     <DoxenComponentDemo
-      v-if="demos[modelValue]"
-      :demo="demos[modelValue]"
+      v-if="processedDemos[selectedDemo]"
+      :demo="processedDemos[selectedDemo]"
       :styleTokens="styleTokens"
-      :key="modelValue"
+      :key="selectedDemo"
     />
   </div>
 </template>
@@ -39,6 +39,26 @@ export default {
   methods: {
     updateValue: function (key) {
       this.$emit('update:model-value', key);
+    }
+  },
+  computed: {
+    selectedDemo: function () {
+      return this.modelValue;
+    },
+    processedDemos: function () {
+      const processed = {};
+      for (const demoName in this.demos) {
+        const demo = this.demos[demoName];
+        const demoType = typeof(demo) === 'object';
+        if (demoType) {
+          if (demo.component) {
+            processed[demoName] = demo;
+          } else {
+            processed[demoName] = { component: demo };
+          }
+        }
+      }
+      return processed;
     }
   }
 };

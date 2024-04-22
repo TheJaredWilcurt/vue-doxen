@@ -5,51 +5,9 @@ $gray50: rgba(68, 69, 85, 0.5)
 $black10: rgba(0, 1, 16, 0.10)
 
 /**
- * All elements have class names and are docuemnted here.
+ * We use :where([data-*]) to produce the lowest specificity
+ * selectors so they do not override any user provided css.
  */
-.doxen-sidebar-button,
-.doxen-form-field-checkbox,
-.doxen-form-field-checkbox-container,
-.doxen-form-field-checkbox-error,
-.doxen-form-field-checkbox-name-disabled,
-.doxen-form-field-checkbox-name-error,
-.doxen-form-field-checkbox-name-label,
-.doxen-form-field-dropdown,
-.doxen-form-field-dropdown-container,
-.doxen-form-field-dropdown-error,
-.doxen-form-field-dropdown-option,
-.doxen-form-field-fieldset,
-.doxen-form-field-error,
-.doxen-form-field-legend,
-.doxen-form-field-legend-disabled,
-.doxen-form-field-legend-error,
-.doxen-form-field-message,
-.doxen-form-field-radio-dial,
-.doxen-form-field-radio-dial-container,
-.doxen-form-field-radio-dial-name-disabled,
-.doxen-form-field-radio-dial-name-error,
-.doxen-form-field-radio-dial-name-label,
-.doxen-form-field-radio-dials-container,
-.doxen-form-field-required,
-.doxen-form-field-text-field,
-.doxen-form-field-text-field-container,
-.doxen-form-field-text-field-error,
-.doxen-form-field-textarea,
-.doxen-form-field-textarea-code,
-.doxen-form-field-textarea-container,
-.doxen-form-field-textarea-error,
-.doxen-props-playground-form,
-.doxen-sidebar-button-not-selected,
-.doxen-sidebar-button-selected,
-.doxen-sidebar-container,
-.doxen-vue-doxen
-    --doxen-placeholder: ''
-
-/**
- * :where([data-*]) is used to produce the lowest specificity
- * selectors so they do not override any provided css.
- */
-
 
 /* Props Playground */
 :where([data-applied-style-tokens~="propsPlaygroundForm"])
@@ -75,6 +33,11 @@ $black10: rgba(0, 1, 16, 0.10)
 /* Whitespace on Radio dial names */
 :where([data-applied-style-tokens~="formFieldRadioDialNameLabel"])
     margin-right: 10px
+
+/* Keep checkbox and name on same line vertically centered */
+:where([data-applied-style-tokens~="formFieldCheckboxContainer"])
+    display: flex
+    align-items: end
 
 /* Required and Error states */
 :where([data-applied-style-tokens~="formFieldCheckboxError"]),

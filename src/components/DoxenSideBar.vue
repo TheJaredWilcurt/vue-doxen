@@ -3,6 +3,7 @@
     <slot name="default"></slot>
     <button
       v-for="(value, key) in demos"
+      :aria-pressed="modelValue === key"
       @click="updateValue(key)"
       v-bind="applyStyleTokens({
         sidebarButton: true,

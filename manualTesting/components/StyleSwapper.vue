@@ -1,11 +1,18 @@
 <template>
   <div class="style-swapper">
     <DoxenCheckbox
-      label="CSS Reset"
+      label="CSS&nbsp;Reset"
       :modelValue="includeNormalize"
-      name="Include Normalize"
+      name="Normalize"
       :styleTokens="modelValue"
       @update:modelValue="normalizeChanged"
+    />
+    <DoxenCheckbox
+      label="Doxen&nbsp;Stylesheet"
+      :modelValue="includeVueDoxenStylesheet"
+      name="Include"
+      :styleTokens="modelValue"
+      @update:modelValue="builtInStyleSheetToggled"
     />
     <DoxenDropdown
       label="Styles"
@@ -28,7 +35,7 @@
       @update:modelValue="styleChanged"
     />
     <DoxenDropdown
-      label="Style Tokens"
+      label="Style&nbsp;Tokens"
       :modelValue="tokensToDemo"
       :options="[
         {
@@ -54,6 +61,17 @@
       rel="stylesheet"
       type="text/css"
     />
+    <component
+      v-if="includeVueDoxenStylesheet"
+      :is="'style'"
+    >
+      {{ styles }}
+    </component>
+    <link
+      href="https://unpkg.com/highlightjs@9.16.2/styles/monokai_sublime.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <link
       v-if="styleToDemo !== 'none'"
       :href="stylesMap[styleToDemo]"
@@ -64,12 +82,12 @@
 </template>
 
 <script>
+import styles from '@/sass/vue-doxen.sass?inline';
 import {
   DoxenCheckbox,
   DoxenDropdown,
   styleTokensBootstrap5,
-  styleTokensBuiltIn,
-  styleTokensEmpty
+  styleTokensBuiltIn
 } from '@/vue-doxen.js';
 
 export default {
@@ -87,6 +105,7 @@ export default {
   },
   constants: {
     localStorageId: 'vueDoxenStyleSwapper',
+    styles,
     stylesMap: {
       none: '',
       bootstrap: 'https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css',
@@ -95,12 +114,13 @@ export default {
     styleTokensMap: {
       bootstrap: styleTokensBootstrap5,
       builtIn: styleTokensBuiltIn,
-      empty: styleTokensEmpty
+      empty: {}
     }
   },
   data: function () {
     return {
       includeNormalize: true,
+      includeVueDoxenStylesheet: true,
       styleToDemo: 'water',
       tokensToDemo: 'builtIn'
     };
@@ -111,11 +131,16 @@ export default {
       data = JSON.parse(data);
       if (data) {
         this.includeNormalize = data.includeNormalize;
+        this.includeVueDoxenStylesheet = data.includeVueDoxenStylesheet;
         this.styleToDemo = data.styleToDemo;
         this.tokensToDemo = data.tokensToDemo;
       }
       this.styleChanged(this.styleToDemo);
       this.styleTokensChanged(this.tokensToDemo);
+    },
+    builtInStyleSheetToggled: function (bool) {
+      this.includeVueDoxenStylesheet = bool;
+      this.save();
     },
     normalizeChanged: function (bool) {
       this.includeNormalize = bool;
@@ -140,6 +165,7 @@ export default {
     dataToSave: function () {
       return JSON.stringify({
         includeNormalize: this.includeNormalize,
+        includeVueDoxenStylesheet: this.includeVueDoxenStylesheet,
         styleToDemo: this.styleToDemo,
         tokensToDemo: this.tokensToDemo
       });
@@ -157,7 +183,10 @@ export default {
   align-items: stretch;
 }
 .style-swapper fieldset {
+  background: transparent;
   border: 0px;
+  border-radius: 0px;
+  margin: 0px 0px 0px 5px;
 }
 .style-swapper .center-the-checkbox {
   display: flex;

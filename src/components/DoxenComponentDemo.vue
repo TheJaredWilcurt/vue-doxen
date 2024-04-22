@@ -45,9 +45,11 @@
       />
     </form>
 
-    CodeSwapper
-    :vue="markup"
-    :javascript="js"
+    <CodeSwapper
+      :javascript="js"
+      :styleTokens="styleTokens"
+      :vue="markup"
+    />
 
     <h3>Props Documentation</h3>
 
@@ -76,9 +78,10 @@ import { styleTokens } from '@/helpers/props.js';
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
+import CodeSwapper from '@/components/CodeSwapper.vue';
+
 /*
 import CodeBox from '@/components/CodeBox.vue';
-import CodeSwapper from '@/components/CodeSwapper.vue';
 import DemoHeader from '@/components/DemoHeader.vue';
 import EmitsDocumentation from '@/components/EmitsDocumentation.vue';
 import PropsDocumentation from '@/components/PropsDocumentation.vue';
@@ -86,15 +89,9 @@ import PropsDocumentation from '@/components/PropsDocumentation.vue';
 
 export default {
   name: 'DoxenComponentDemo',
-  /*
   components: {
-    CodeBox,
-    CodeSwapper,
-    DemoHeader,
-    EmitsDocumentation,
-    PropsDocumentation
+    CodeSwapper
   },
-  */
   mixins: [applyStyleTokens],
   props: {
     demo: {
@@ -150,26 +147,24 @@ export default {
     markup: function () {
       const tag = this.demo?.component?.name || '';
       const emits = this.demo?.component?.emits || [];
-      const demoPlayground = this.demo?.propsPlayground || [];
-      const attributes = demoPlayground
-        .map((prop) => {
+      const attributes = Object.keys(this.propsToDemo)
+        .map((propName) => {
           return {
-            name: prop.propName,
-            value: this.propsPlayground[prop.propName],
-            required: !!prop.props?.required
+            name: propName,
+            value: this.demoProps[propName],
+            required: !!this.demo?.component?.props?.[propName]?.required
           };
         });
-      const slot = this.propsPlayground?.slot;
+      const slot = undefined; // this.propsPlayground?.slot;
       return createMarkupExample(tag, attributes, slot, emits);
     },
     js: function () {
       const propsOutput = {};
       const tag = _lowerFirst(this.demo?.component?.name || '');
-      const demoPlayground = this.demo?.propsPlayground || [];
-      demoPlayground
-        .forEach((prop) => {
-          const propName = prop.propName;
-          const value = this.propsPlayground[prop.propName];
+      // Process Props
+      Object.keys(this.propsToDemo)
+        .forEach((propName) => {
+          const value = this.demoProps[propName];
           const defaultValue = this.demo?.component?.props?.[propName]?.default;
           if (
             typeof(value) === 'boolean' &&
@@ -181,9 +176,12 @@ export default {
             propsOutput[propName] = value;
           }
         });
-      propsOutput.innerHTML = this.propsPlayground?.slot;
+
+      // propsOutput.innerHTML = this.propsPlayground?.slot;
       const propsJs = 'const ' + tag + 'Props = ' + deJSONify(propsOutput, '\n') + ';';
 
+      return propsJs;
+      /*
       const indent = '\n  ';
       const emits = this.demo?.emitsDocumentation || [];
       const emitStrings = emits
@@ -202,6 +200,7 @@ export default {
         return propsJs;
       }
       return [propsJs, eventsJs].join('\n');
+      */
     }
   },
   created: function () {

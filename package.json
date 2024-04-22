@@ -11,6 +11,7 @@
     "fix": "eslint --fix --ext .js,.vue --config=.eslintrc.cjs src manualTesting vite.config.js .eslintrc.cjs"
   },
   "dependencies": {
+    "@highlightjs/vue-plugin": "^2.1.0",
     "json5": "^2.2.3",
     "lodash.clonedeep": "^4.5.0",
     "lodash.isequal": "^4.5.0",

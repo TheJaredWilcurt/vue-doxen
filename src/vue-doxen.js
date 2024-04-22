@@ -1,4 +1,4 @@
-import '@/sass/styles.sass';
+import '@/sass/vue-doxen.sass';
 
 export {
   styleTokensBootstrap5,

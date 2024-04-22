@@ -69,16 +69,16 @@ export const fooBarDemo = {
   importStatement: 'import { FooBar } from \'your-cool-component-libary\'',
   propsToDemo: {
     label: {
-      initialValue: 'Name',
       component: DoxenTextField,
       componentProps: {
+        modelValue: 'Name',
         label: 'Label'
       }
     },
     size: {
-      initialValue: 'small',
       component: DoxenRadioDials,
       componentProps: {
+        modelValue: 'small',
         label: 'Size',
         options: [
           { name: 'Large', value: 'large' },
@@ -87,18 +87,18 @@ export const fooBarDemo = {
       }
     },
     disabled: {
-      initialValue: false,
       component: DoxenCheckbox,
       props: {
+        modelValue: false,
         label: 'Disabled'
       }
     }
   },
   slotsToDemo: {
     default: {
-      initialValue: '<strong>Text</strong>',
       component: DoxenTextarea,
       props: {
+        modelValue: '<strong>Text</strong>',
         label: 'Slot'
       }
     }

@@ -88,6 +88,17 @@ header {
   margin-top: 0.5rem;
   margin-bottom: 1.5rem;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Hepta Slab', serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 750;
+}
 h1 {
   display: flex;
   align-items: center;
@@ -95,5 +106,13 @@ h1 {
   width: auto;
   margin-right: auto;
   margin-bottom: 0px;
+  color: #41B883;
+  font-weight: 900;
+  text-shadow: 7px -2px 0px #34495E,
+               7px  2px 0px #34495E,
+               2px  2px 0px #34495E,
+              -2px -2px 0px #34495E,
+               2px -2px 0px #34495E,
+              -2px  2px 0px #34495E;
 }
 </style>

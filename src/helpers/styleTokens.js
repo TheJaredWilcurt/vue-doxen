@@ -19,6 +19,12 @@
  * @type {Object}
  */
 export const styleTokensBuiltIn = {
+  codeBox: 'doxen-code-box',
+  codeSwapper: 'doxen-code-swapper',
+  codeSwapperButton: 'doxen-code-swapper-button',
+  codeSwapperButtonContainer: 'doxen-code-swapper-button-container',
+  codeSwapperButtonNotSelected: 'doxen-code-swapper-button-not-selected',
+  codeSwapperButtonSelected: 'doxen-code-swapper-button-selected',
   formFieldCheckbox: 'doxen-form-field-checkbox',
   formFieldCheckboxContainer: 'doxen-form-field-checkbox-container',
   formFieldCheckboxError: 'doxen-form-field-checkbox-error',
@@ -73,7 +79,6 @@ for (const key in styleTokensBuiltIn) {
  * @type {Object}
  */
 export const styleTokensBootstrap5 = {
-  ...styleTokensEmpty,
   // Container
   formFieldFieldset: 'px-2 pb-2 m-1 flex-grow-1',
   // Errors
@@ -105,6 +110,10 @@ export const styleTokensBootstrap5 = {
   formFieldMessage: 'form-text',
   // Code
   formFieldTextareaCode: 'font-monospace',
+  codeSwapperButton: 'nav-link me-1',
+  codeSwapperButtonContainer: 'nav nav-tabs nav-item mt-3 mb-0',
+  codeSwapperButtonNotSelected: '',
+  codeSwapperButtonSelected: 'active bg-primary text-light border-bottom-0',
   // Demo
   propsPlaygroundForm: 'd-flex flex-wrap',
   // Sidebar
