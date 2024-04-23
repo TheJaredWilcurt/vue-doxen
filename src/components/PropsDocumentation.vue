@@ -28,27 +28,30 @@
           v-if="'type' in value"
           v-bind="applyStyleTokens({ propsDocumentationLi: true })"
         >
-          <strong v-bind="applyStyleTokens({ propsDocumentationStrong: true })">
-            Type:
-          </strong>&nbsp;
+          <strong
+            v-text="'Type:'"
+            v-bind="applyStyleTokens({ propsDocumentationStrong: true })"
+          ></strong>&nbsp;
           <em>{{ typeToString(value.type) }}</em>
         </li>
         <li
           v-if="value.allowed"
           v-bind="applyStyleTokens({ propsDocumentationLi: true })"
         >
-          <strong v-bind="applyStyleTokens({ propsDocumentationStrong: true })">
-            Allowed:
-          </strong>&nbsp;
+          <strong
+            v-text="'Allowed:'"
+            v-bind="applyStyleTokens({ propsDocumentationStrong: true })"
+          ></strong>&nbsp;
           <span v-html="formatAllowed(value.allowed)"></span>
         </li>
         <li
           v-if="'default' in value"
           v-bind="applyStyleTokens({ propsDocumentationLi: true })"
         >
-          <strong v-bind="applyStyleTokens({ propsDocumentationStrong: true })">
-            Default:
-          </strong>&nbsp;
+          <strong
+            v-text="'Default:'"
+            v-bind="applyStyleTokens({ propsDocumentationStrong: true })"
+          ></strong>&nbsp;
           <code v-bind="applyStyleTokens({ propsDocumentationCode: true })">{{ formatDefault(value.default) }}</code>
         </li>
         <li
