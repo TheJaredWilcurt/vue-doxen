@@ -9,10 +9,17 @@ const __dirname = import.meta.dirname;
 
 export default defineConfig({
   build: {
+    copyPublicDir: false,
     lib: {
       cssCodeSplit: false,
       entry: resolve(__dirname, 'src/vue-doxen.js'),
-      name: 'vue-doxen'
+      name: 'vueDoxen',
+      formats: [
+        'cjs',
+        'es',
+        'iife',
+        'umd'
+      ]
     },
     rollupOptions: {
       external: ['vue'],

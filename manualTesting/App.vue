@@ -111,7 +111,8 @@ h6 {
 }
 h1 {
   position: relative;
-  top: 30px;
+  top: 6px;
+  left: 10px;
   display: flex;
   align-items: center;
   flex: 0 0 auto;
@@ -119,8 +120,9 @@ h1 {
   margin-right: auto;
   margin-bottom: 0px;
   color: #41B883;
-  font-size: 40px;
+  font-size: 46px;
   font-weight: 900;
+  letter-spacing: -2px;
   text-shadow: 7px -2px 0px #34495E,
                7px  2px 0px #34495E,
                2px  2px 0px #34495E,
@@ -132,7 +134,7 @@ h1 {
 img {
   position: absolute;
   top: -3px;
-  left: 98px;
+  left: 121px;
   height: 106px;
   z-index: 1;
 }

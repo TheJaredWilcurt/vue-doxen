@@ -1,13 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/manualTesting/favicon.ico" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hepta+Slab:wght@1..900&display=swap" rel="stylesheet">
-    <title>Testing Vue-Doxen</title>
+    <!-- Global                                                                                                 -->
+    <meta charset="utf-8"                                                                                        />
+    <meta http-equiv="X-UA-Compatible"           content="IE=edge"                                               />
+    <meta name="viewport"                        content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Vue-Doxen: Vue.js Component Documentation Tool</title>
+    <meta name="description"                     content="The world's best Vue component documentation tool!"    />
+    <meta name="keywords"                        content="Vue.js, documentation, tooling, components, library, javascript, webdev" />
+    <meta http-equiv="Expires"                   content="0"                                                     />
+    <meta name="subject"                         content="WebDev documentation tooling"                          />
+    <meta name="language"                        content="EN"                                                    />
+    <meta name="robots"                          content="index,follow"                                          />
+    <meta name="owner"                           content="The Jared Wilcurt"                                     />
+    <meta name="rating"                          content="General"                                               />
+    <meta name="HandheldFriendly"                content="True"                                                  />
+    <link rel="icon"                             href="/vue-doxen/favicon.ico"    type="image/x-icon"            />
+    <link rel="shortcut icon"                    href="/vue-doxen/favicon.ico"    type="image/ico"               />
+    <link rel="fluid-icon"                       href="/vue-doxen/meta/fluid.png" type="image/png"               />
+    <!-- Google/Schema.org                                                                                      -->
+    <meta itemprop="name"                        content="Vue-Doxen: Vue.js Component Documentation Tool"        />
+    <meta itemprop="description"                 content="The world's best Vue component documentation tool!"    />
+    <meta itemprop="image"                       content="https://thejaredwilcurt.com/vue-do/vue-doxen.jpg"      />
+    <!-- Twitter                                                                                                -->
+    <meta name="twitter:dnt"                     content="on"                                                    />
+    <meta name="twitter:card"                    content="summary"                                               />
+    <meta name="twitter:creator"                 content="@TheJaredwilcurt"                                      />
+    <!-- Facebook/Reddit                                                                                        -->
+    <meta property="og:type"                     content="website"                                               />
+    <meta property="og:url"                      content="https://thejaredwilcurt.com/vue-doxen"                 />
+    <meta property="og:title"                    content="Vue-Doxen: Vue.js Component Documentation Tool"        />
+    <meta property="og:site_name"                content="Vue-Doxen: Vue.js Component Documentation Tool"        />
+    <meta property="og:image"                    content="https://thejaredwilcurt.com/vue-do/vue-doxen.jpg"      />
+    <meta property="og:locale"                   content="en_US"                                                 />
+    <meta property="og:description"              content="The world's best Vue component documentation tool!"    />
+    <!-- Android                                                                                                -->
+    <meta name="theme-color"                     content="#34495E"                                               />
+    <meta name="mobile-web-app-capable"          content="yes"                                                   />
+    <!-- Microsoft                                                                                              -->
+    <meta name="application-name"                content="Vue-Doxen"                                             />
+    <meta http-equiv="cleartype"                 content="on"                                                    />
+    <meta name="msapplication-navbutton-color"   content="#FFFFFF"                                               />
+    <meta name="msapplication-TileColor"         content="#FFFFFF"                                               />
+    <meta name="msapplication-square70x70logo"   content="/vue-doxen/meta/mstile01sm.png"                        />
+    <meta name="msapplication-square150x150logo" content="/vue-doxen/meta/mstile02md.png"                        />
+    <meta name="msapplication-wide310x150logo"   content="/vue-doxen/meta/mstile03wd.png"                        />
+    <meta name="msapplication-square310x310logo" content="/vue-doxen/meta/mstile04lg.png"                        />
+    <meta name="skype_toolbar"                   content="skype_toolbar_parser_compatible"                       />
+    <!-- Apple                                                                                                  -->
+    <meta name="apple-mobile-web-app-title"      content="Vue-Doxen"                                             />
+    <meta name="apple-mobile-web-app-capable"    content="no"                                                    />
+    <meta name="apple-touch-fullscreen"          content="no"                                                    />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"                                           />
+    <meta name="format-detection"                content="telephone=no"                                          />
+    <link rel="apple-touch-icon"             href="/vue-doxen/meta/apl-57.png"  type="image/png" sizes="57x57"   />
+    <link rel="apple-touch-icon-precomposed" href="/vue-doxen/meta/apl-57.png"  type="image/png" sizes="57x57"   />
+    <link rel="apple-touch-icon"             href="/vue-doxen/meta/apl-72.png"  type="image/png" sizes="72x72"   />
+    <link rel="apple-touch-icon-precomposed" href="/vue-doxen/meta/apl-72.png"  type="image/png" sizes="72x72"   />
+    <link rel="apple-touch-icon"             href="/vue-doxen/meta/apl-114.png" type="image/png" sizes="114x114" />
+    <link rel="apple-touch-icon-precomposed" href="/vue-doxen/meta/apl-114.png" type="image/png" sizes="114x114" />
+    <link rel="apple-touch-icon"             href="/vue-doxen/meta/apl-144.png" type="image/png" sizes="144x144" />
+    <link rel="apple-touch-icon-precomposed" href="/vue-doxen/meta/apl-144.png" type="image/png" sizes="144x144" />
+    <link rel="apple-touch-startup-image"    href="/vue-doxen/meta/apl-str.png" type="image/png"                 />
+    <!-- Styles/Scripts                                                                                         -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"                                                   />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin                                          />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hepta+Slab:wght@1..900&display=swap"   />
   </head>
   <body>
     <div id="app"></div>
