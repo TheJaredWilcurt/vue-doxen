@@ -54,10 +54,10 @@
     />
 
     <h3>Props Documentation</h3>
-
-    PropsDocumentation
-    :component="demo.component"
-
+    <PropsDocumentation
+      :component="demo.component"
+      :styleTokens="styleTokens"
+    />
 
     <h3>Emits Documentation</h3>
 
@@ -83,10 +83,10 @@ import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 import CodeBox from '@/components/CodeBox.vue';
 import CodeSwapper from '@/components/CodeSwapper.vue';
 import DemoHeader from '@/components/DemoHeader.vue';
+import PropsDocumentation from '@/components/PropsDocumentation.vue';
 
 /*
 import EmitsDocumentation from '@/components/EmitsDocumentation.vue';
-import PropsDocumentation from '@/components/PropsDocumentation.vue';
 */
 
 export default {
@@ -94,7 +94,8 @@ export default {
   components: {
     CodeBox,
     CodeSwapper,
-    DemoHeader
+    DemoHeader,
+    PropsDocumentation
   },
   mixins: [applyStyleTokens],
   props: {
