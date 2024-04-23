@@ -3,7 +3,7 @@
     <header>
       <div class="container">
         <div class="logo-container">
-          <h1>Vue<br />Doxen</h1>
+          <h1 class="docs-title">Vue<br />Doxen</h1>
           <img
             src="@@@/assets/vue-doxen-logo-small.png"
             alt="A doxen dog with a green chest in the shape of the Vue logo"
@@ -13,18 +13,30 @@
       </div>
     </header>
     <div class="container">
-      <DoxenSideBar
-        v-model="selectedDemo"
-        :demos="demos"
-        :styleTokens="styleTokens"
-      >
-        <template #default>
-          <h4>Components:</h4>
-        </template>
-      </DoxenSideBar>
-      <VueDoxen
-        v-model="selectedDemo"
-        :demos="demos"
+      <div class="sidebar">
+        <RouterLink
+          v-for="(linkText, linkName) in links"
+          :to="{ name: linkName }"
+          :key="'link' + linkName"
+        >
+          {{ linkText }}
+        </RouterLink>
+
+        <h2 class="docs-sub-title">Components</h2>
+
+        <RouterLink
+          v-for="(demo, demoName) in componentsToDemo"
+          :to="{
+            name: 'components',
+            params: { component: demoName }
+          }"
+          :key="'demo-link-' + demoName"
+        >
+          {{ demoName }}
+        </RouterLink>
+      </div>
+      <RouterView
+        class="router-view"
         :styleTokens="styleTokens"
       />
     </div>
@@ -32,52 +44,31 @@
 </template>
 
 <script>
-import _cloneDeep from 'lodash.clonedeep';
-
-import {
-  DoxenCheckbox,
-  DoxenDropdown,
-  DoxenJsonTextarea,
-  DoxenRadioDials,
-  DoxenSideBar,
-  DoxenTextarea,
-  DoxenTextField,
-  styleTokensBuiltIn,
-  VueDoxen
-} from '@/library.js';
+import { styleTokensBuiltIn } from '@/library.js';
 
 import StyleSwapper from '@@@/components/StyleSwapper.vue';
 
-import { createDemos } from '@@@/demos.js';
+import { componentsToDemo } from '@@@/helpers/index.js';
 
 export default {
   name: 'App',
   components: {
-    DoxenSideBar,
-    StyleSwapper,
-    VueDoxen
+    StyleSwapper
+  },
+  constants: {
+    componentsToDemo,
+    links: {
+      home: 'Home',
+      gettingStarted: 'Getting Started',
+      demoFiles: 'Demo Files',
+      documenting: 'Documenting',
+      styles: 'Styling'
+    }
   },
   data: function () {
     return {
-      selectedDemo: 'DoxenCheckbox',
       styleTokens: styleTokensBuiltIn
     };
-  },
-  computed: {
-    demos: function () {
-      const tokens = _cloneDeep(this.styleTokens);
-      const components = {
-        DoxenCheckbox,
-        DoxenDropdown,
-        DoxenJsonTextarea,
-        DoxenRadioDials,
-        DoxenTextarea,
-        DoxenTextField,
-        DoxenSideBar,
-        VueDoxen
-      };
-      return createDemos(components, tokens);
-    }
   }
 };
 </script>
@@ -90,6 +81,18 @@ export default {
   max-width: 1200px;
   margin: 0px auto;
 }
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+}
+.sidebar .docs-sub-title {
+  margin-top: 30px;
+}
+.router-view {
+  align-items: flex-start;
+  width: 100%;
+}
 .logo-container {
   position: relative;
 }
@@ -97,17 +100,6 @@ header {
   display: flex;
   margin-top: 0.5rem;
   margin-bottom: 1.5rem;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Hepta Slab', serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-  font-weight: 750;
 }
 h1 {
   position: relative;
@@ -119,16 +111,6 @@ h1 {
   width: auto;
   margin-right: auto;
   margin-bottom: 0px;
-  color: #41B883;
-  font-size: 46px;
-  font-weight: 900;
-  letter-spacing: -2px;
-  text-shadow: 7px -2px 0px #34495E,
-               7px  2px 0px #34495E,
-               2px  2px 0px #34495E,
-              -2px -2px 0px #34495E,
-               2px -2px 0px #34495E,
-              -2px  2px 0px #34495E;
   z-index: 2;
 }
 img {

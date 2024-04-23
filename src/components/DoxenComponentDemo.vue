@@ -1,12 +1,10 @@
 <template>
-  <div>
-    {{ title }}
-
-    <div>
-      DoxenDemoHeader
+  <div v-bind="applyStyleTokens({ componentDemo: true })">
+    <DemoHeader
+      :description="description"
+      :styleTokens="styleTokens"
       :title="title"
-      :description="demo.description"
-    </div>
+    />
 
     <div>
       Usage
@@ -79,10 +77,10 @@ import { styleTokens } from '@/helpers/props.js';
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
 import CodeSwapper from '@/components/CodeSwapper.vue';
+import DemoHeader from '@/components/DemoHeader.vue';
 
 /*
 import CodeBox from '@/components/CodeBox.vue';
-import DemoHeader from '@/components/DemoHeader.vue';
 import EmitsDocumentation from '@/components/EmitsDocumentation.vue';
 import PropsDocumentation from '@/components/PropsDocumentation.vue';
 */
@@ -90,7 +88,8 @@ import PropsDocumentation from '@/components/PropsDocumentation.vue';
 export default {
   name: 'DoxenComponentDemo',
   components: {
-    CodeSwapper
+    CodeSwapper,
+    DemoHeader
   },
   mixins: [applyStyleTokens],
   props: {
@@ -115,6 +114,12 @@ export default {
   computed: {
     title: function () {
       return _startCase(this.demo?.component?.name);
+    },
+    description: function () {
+      return (
+        this.demo?.description ||
+        this.demo?.component?.description
+      );
     },
     propsToDemo: function () {
       const actualProps = this.demo?.component?.props;

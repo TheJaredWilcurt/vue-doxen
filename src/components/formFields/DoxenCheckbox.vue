@@ -84,6 +84,7 @@ const modelValue = createModelValueProp(Boolean);
 
 export default {
   name: COMPONENT_NAME,
+  description: 'A checkbox form field component.',
   components: {
     FormFieldFooter,
     FormFieldLabel,
