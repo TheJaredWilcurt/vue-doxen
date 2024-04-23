@@ -6,10 +6,14 @@
       :title="title"
     />
 
-    <div>
-      Usage
-      import whatever from whatever
-    </div>
+    <template v-if="importStatement">
+      <h3>Usage</h3>
+      <CodeBox
+        :code="importStatement"
+        language="javascript"
+        :styleTokens="styleTokens"
+      />
+    </template>
 
     <div>
       <hr />
@@ -76,11 +80,11 @@ import { styleTokens } from '@/helpers/props.js';
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
+import CodeBox from '@/components/CodeBox.vue';
 import CodeSwapper from '@/components/CodeSwapper.vue';
 import DemoHeader from '@/components/DemoHeader.vue';
 
 /*
-import CodeBox from '@/components/CodeBox.vue';
 import EmitsDocumentation from '@/components/EmitsDocumentation.vue';
 import PropsDocumentation from '@/components/PropsDocumentation.vue';
 */
@@ -88,6 +92,7 @@ import PropsDocumentation from '@/components/PropsDocumentation.vue';
 export default {
   name: 'DoxenComponentDemo',
   components: {
+    CodeBox,
     CodeSwapper,
     DemoHeader
   },
@@ -119,6 +124,12 @@ export default {
       return (
         this.demo?.description ||
         this.demo?.component?.description
+      );
+    },
+    importStatement: function () {
+      return (
+        this.demo?.importStatement ||
+        this.demo?.component?.importStatement
       );
     },
     propsToDemo: function () {

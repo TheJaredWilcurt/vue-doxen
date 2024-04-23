@@ -85,6 +85,7 @@ const modelValue = createModelValueProp(Boolean);
 export default {
   name: COMPONENT_NAME,
   description: 'A checkbox form field component.',
+  importStatement: 'import { ' + COMPONENT_NAME + ' } from \'vue-doxen\';',
   components: {
     FormFieldFooter,
     FormFieldLabel,
