@@ -92,7 +92,7 @@ const demos = computed(() => {
 export const SLOTS_DEMO_ARRAY_EXAMPLE = `
 import MyComponent from '../components/MyComponent.vue';
 
-export const MyComponentDemo = {
+export const myComponentDemo = {
   component: MyComponent,
   slotsToDemo: ['default', 'footer']
 }
@@ -101,7 +101,7 @@ export const MyComponentDemo = {
 export const SLOTS_DEMO_OBJECT_EXAMPLE = `
 import MyComponent from '../components/MyComponent.vue';
 
-export const MyComponentDemo = {
+export const myComponentDemo = {
   component: MyComponent,
   slotsToDemo: {
     default: 'This appears <strong>above</strong> the component.',
