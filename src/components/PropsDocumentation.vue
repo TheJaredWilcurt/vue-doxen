@@ -32,7 +32,10 @@
             v-text="'Type:'"
             v-bind="applyStyleTokens({ propsDocumentationStrong: true })"
           ></strong>&nbsp;
-          <em>{{ typeToString(value.type) }}</em>
+          <em
+            v-text="typeToString(value.type)"
+            v-bind="applyStyleTokens({ propsDocumentationEm: true })"
+          ></em>
         </li>
         <li
           v-if="value.allowed"
@@ -42,7 +45,10 @@
             v-text="'Allowed:'"
             v-bind="applyStyleTokens({ propsDocumentationStrong: true })"
           ></strong>&nbsp;
-          <span v-html="formatAllowed(value.allowed)"></span>
+          <span
+            v-html="formatAllowed(value.allowed)"
+            v-bind="applyStyleTokens({ propsDocumentationSpan: true })"
+          ></span>
         </li>
         <li
           v-if="'default' in value"
@@ -52,15 +58,19 @@
             v-text="'Default:'"
             v-bind="applyStyleTokens({ propsDocumentationStrong: true })"
           ></strong>&nbsp;
-          <code v-bind="applyStyleTokens({ propsDocumentationCode: true })">{{ formatDefault(value.default) }}</code>
+          <code
+            v-text="formatDefault(value.default)"
+            v-bind="applyStyleTokens({ propsDocumentationCode: true })"
+          ></code>
         </li>
         <li
           v-if="value.example"
           v-bind="applyStyleTokens({ propsDocumentationLi: true })"
         >
-          <strong v-bind="applyStyleTokens({ propsDocumentationStrong: true })">
-            Example:
-          </strong>
+          <strong
+            v-text="'Example:'"
+            v-bind="applyStyleTokens({ propsDocumentationStrong: true })"
+          ></strong>
           <CodeBox
             :code="value.example"
             language="javascript"

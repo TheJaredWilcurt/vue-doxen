@@ -2,7 +2,7 @@
   <div v-bind="applyStyleTokens({ sidebarContainer: true })">
     <slot name="default"></slot>
     <button
-      v-for="(value, key) in demos"
+      v-for="(value, key) in processedDemos"
       :aria-pressed="modelValue === key"
       @click="updateValue(key)"
       v-bind="applyStyleTokens({
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { processDemos } from '@/helpers/componentHelpers.js';
 import {
   createModelValueProp,
   demos,
@@ -34,6 +35,7 @@ export default {
   mixins: [
     applyStyleTokens
   ],
+  slots: ['default', 'footer'],
   emits: ['update:model-value'],
   props: {
     demos,
@@ -43,6 +45,11 @@ export default {
   methods: {
     updateValue: function (key) {
       this.$emit('update:model-value', key);
+    }
+  },
+  computed: {
+    processedDemos: function () {
+      return processDemos(this.demos);
     }
   }
 };

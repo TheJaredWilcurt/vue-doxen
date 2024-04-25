@@ -156,3 +156,22 @@ export const createRadioIdFor = function (option, label) {
   ].filter(Boolean).join('_');
   return replaceWeirdCharacters(id);
 };
+
+export const processDemos = function (demos) {
+  const processed = {};
+  if (!demos || typeof(demos) !== 'object' || Array.isArray(demos)) {
+    return processed;
+  }
+  for (const demoName in demos) {
+    const demo = demos[demoName];
+    const demoType = typeof(demo) === 'object';
+    if (demoType) {
+      if (demo.component && typeof(demo.component) === 'object') {
+        processed[demoName] = demo;
+      } else {
+        processed[demoName] = { component: demo };
+      }
+    }
+  }
+  return processed;
+};

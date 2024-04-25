@@ -7,7 +7,7 @@
     />
 
     <template v-if="importStatement">
-      <h3>Usage</h3>
+      <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Usage</h3>
       <CodeBox
         :code="importStatement"
         language="javascript"
@@ -15,8 +15,8 @@
       />
     </template>
 
-    <div>
-      <hr />
+    <div v-bind="applyStyleTokens({ componentDemoContainer: true })">
+      <hr v-bind="applyStyleTokens({ componentDemoHr: true })" />
       <component
         v-if="'modelValue' in propsToDemo"
         v-model="demoProps.modelValue"
@@ -32,10 +32,10 @@
         v-on="demoEvents"
         :key="demo.component.name + '-no-v-model'"
       />
-      <hr />
+      <hr v-bind="applyStyleTokens({ componentDemoHr: true })" />
     </div>
 
-    <h3>Props Playground:</h3>
+    <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Props Playground:</h3>
 
     <form v-bind="applyStyleTokens({ propsPlaygroundForm: true })">
       <component
@@ -53,17 +53,25 @@
       :vue="markup"
     />
 
-    <h3>Props Documentation</h3>
+    <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Props Documentation</h3>
     <PropsDocumentation
       :component="demo.component"
       :styleTokens="styleTokens"
     />
 
-    <h3>Emits Documentation</h3>
-
-    EmitsDocumentation
-    :component="demo.component"
-    :emitsDocumentation="demo.emitsDocumentation"
+    <template
+      v-if="(
+        (emitsDocumentation && emitsDocumentation.length) ||
+        (demo.component.emits && demo.component.emits.length)
+      )"
+    >
+      <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Emits Documentation</h3>
+      <EmitsDocumentation
+        :component="demo.component"
+        :emitsDocumentation="emitsDocumentation"
+        :styleTokens="styleTokens"
+      />
+    </template>
   </div>
 </template>
 
@@ -83,11 +91,8 @@ import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 import CodeBox from '@/components/CodeBox.vue';
 import CodeSwapper from '@/components/CodeSwapper.vue';
 import DemoHeader from '@/components/DemoHeader.vue';
-import PropsDocumentation from '@/components/PropsDocumentation.vue';
-
-/*
 import EmitsDocumentation from '@/components/EmitsDocumentation.vue';
-*/
+import PropsDocumentation from '@/components/PropsDocumentation.vue';
 
 export default {
   name: 'DoxenComponentDemo',
@@ -95,6 +100,7 @@ export default {
     CodeBox,
     CodeSwapper,
     DemoHeader,
+    EmitsDocumentation,
     PropsDocumentation
   },
   mixins: [applyStyleTokens],
@@ -125,6 +131,12 @@ export default {
       return (
         this.demo?.description ||
         this.demo?.component?.description
+      );
+    },
+    emitsDocumentation: function () {
+      return (
+        this.demo?.emitsDocumentation ||
+        this.demo?.component?.emitsDocumentation
       );
     },
     importStatement: function () {

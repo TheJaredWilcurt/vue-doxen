@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { processDemos } from '@/helpers/componentHelpers.js';
 import {
   createModelValueProp,
   demos,
@@ -46,19 +47,7 @@ export default {
       return this.modelValue;
     },
     processedDemos: function () {
-      const processed = {};
-      for (const demoName in this.demos) {
-        const demo = this.demos[demoName];
-        const demoType = typeof(demo) === 'object';
-        if (demoType) {
-          if (demo.component) {
-            processed[demoName] = demo;
-          } else {
-            processed[demoName] = { component: demo };
-          }
-        }
-      }
-      return processed;
+      return processDemos(this.demos);
     }
   }
 };
