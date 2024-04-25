@@ -185,6 +185,10 @@ export default {
       const demoSlots = this.demo?.slotsToDemo || this.demo?.component?.slots;
       let slotsToDemo = {};
 
+      if (!demoSlots) {
+        return slotsToDemo;
+      }
+
       if (Array.isArray(demoSlots)) {
         for (const slot of demoSlots) {
           if (typeof(slot) === 'string') {
@@ -192,7 +196,7 @@ export default {
           }
         }
       } else if (typeof(demoSlots) === 'object') {
-        for (const slotName of demoSlots) {
+        for (const slotName in demoSlots) {
           if (typeof(demoSlots[slotName]) === 'string') {
             slotsToDemo[slotName] = demoSlots[slotName];
           } else {
