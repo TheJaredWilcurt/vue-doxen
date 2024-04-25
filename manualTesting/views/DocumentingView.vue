@@ -55,7 +55,6 @@
 <script>
 import { styleTokens } from '@/helpers/props.js';
 
-import CodeBox from '@/components/CodeBox.vue';
 import DocumentationApproach from '@@@/components/DocumentationApproach.vue';
 
 import {
@@ -68,7 +67,6 @@ import {
 export default {
   name: 'DocumentingView',
   components: {
-    CodeBox,
     DocumentationApproach
   },
   props: {
