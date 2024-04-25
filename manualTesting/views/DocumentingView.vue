@@ -2,7 +2,13 @@
   <div class="docs-paragraph">
     <h1 class="docs-title">Documenting your components</h1>
 
-    <h2>Documenting Component Slots</h2>
+    <nav>
+      <ul>
+        <li><a href="#slots">Documenting Component Slots</a></li>
+      </ul>
+    </nav>
+
+    <h2 id="slots">Documenting Component Slots</h2>
 
     <p>There are <strong>4 approaches</strong> you can pick from:</p>
 
