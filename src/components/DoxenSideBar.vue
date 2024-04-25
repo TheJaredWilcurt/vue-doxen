@@ -35,7 +35,10 @@ export default {
   mixins: [
     applyStyleTokens
   ],
-  slots: ['default', 'footer'],
+  slots: {
+    default: 'This goes <strong>Above</strong> the sidebar.',
+    footer: 'This goes <strong>Below</strong> the sidebar.'
+  },
   emits: ['update:model-value'],
   props: {
     demos,

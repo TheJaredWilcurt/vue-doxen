@@ -17,5 +17,18 @@ export const createDemos = function (components, styleTokens) {
       }
     };
   }
+
+  // DoxenSideBar
+  demos.DoxenSideBar.propsToDemo.demos = {
+    component: DoxenJsonTextarea,
+    props: {
+      label: 'Demos',
+      modelValue: {
+        DummyComponent: { name: 'DummyComponent' },
+        OtherComponent: { name: 'OtherComponent' }
+      },
+      styleTokens: styleTokens
+    }
+  };
   return demos;
 };

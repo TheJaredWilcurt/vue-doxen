@@ -49,15 +49,12 @@ export const deJSONify = function (value, indent) {
  *
  * @param  {string}   tag         The component name, like 'MyCoolCheckbox'
  * @param  {object[]} attributes  Array of objects representing Vue props with a name, value, and maybe required
- * @param  {string}   slot        The hand-typed markup passed in by the user in a textarea
+ * @param  {object}   slots       Keys are the slot names, values are the hand-typed markup passed in by the user in a textarea
  * @param  {String[]} emits       Array of strings for each emit name
  * @return {string}               The indented/formatted HTML generated from the props playground, ready for syntax highlighting
  */
-export const createMarkupExample = function (tag, attributes, slot, emits) {
+export const createMarkupExample = function (tag, attributes, slots, emits) {
   const indent = '\n  ';
-  if (slot) {
-    slot = '  ' + slot.split('\n').join(indent);
-  }
 
   attributes = [
     ...attributes,
@@ -107,12 +104,30 @@ export const createMarkupExample = function (tag, attributes, slot, emits) {
     closer = '/>';
   }
 
-  if (slot) {
-    return [
-      '<' + tag + '' + props.join('') + newLine + '>',
-      slot,
-      '</' + tag + '>'
-    ].filter(Boolean).join('\n');
+  if (slots) {
+    const slotKeys = Object.keys(slots);
+    const firstSlotKey = slotKeys[0];
+    const slotMarkup = [];
+    if (slotKeys.length) {
+      const thereIsOnlyOneSlotAndItIsDefault = (
+        slotKeys.length === 1 &&
+        firstSlotKey === 'default'
+      );
+      if (thereIsOnlyOneSlotAndItIsDefault) {
+        slotMarkup.push('  ' + slots[firstSlotKey].split('\n').join(indent));
+      } else {
+        for (const slotKey in slots) {
+          slotMarkup.push('  <template #' + slotKey + '>');
+          slotMarkup.push('    ' + slots[slotKey].split('\n').join(indent + '  '));
+          slotMarkup.push('  </template>');
+        }
+      }
+      return [
+        '<' + tag + '' + props.join('') + newLine + '>',
+        ...slotMarkup,
+        '</' + tag + '>'
+      ].filter(Boolean).join('\n');
+    }
   }
   return '<' + tag + '' + props.join('') + newLine + closer;
 };

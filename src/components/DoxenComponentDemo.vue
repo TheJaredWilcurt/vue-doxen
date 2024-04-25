@@ -24,14 +24,34 @@
         v-bind="demoProps"
         v-on="demoEvents"
         :key="demo.component.name + '-v-model'"
-      />
+      >
+        <template
+          v-for="(slotValue, slotName) in slotsToDemo"
+          #[slotName]
+        >
+          <span
+            v-html="demoSlots[slotName]"
+            :key="'slot-' + slotName"
+          ></span>
+        </template>
+      </component>
       <component
         v-else
         :is="demo.component"
         v-bind="demoProps"
         v-on="demoEvents"
         :key="demo.component.name + '-no-v-model'"
-      />
+      >
+        <template
+          v-for="(slotValue, slotName) in slotsToDemo"
+          #[slotName]
+        >
+          <span
+            v-html="demoSlots[slotName]"
+            :key="'slot-' + slotName"
+          ></span>
+        </template>
+      </component>
       <hr v-bind="applyStyleTokens({ componentDemoHr: true })" />
     </div>
 
@@ -44,6 +64,13 @@
         :is="prop.component"
         v-bind="prop.props"
         :key="propName"
+      />
+      <DoxenTextarea
+        v-for="(slotValue, slotName) in slotsToDemo"
+        v-model="demoSlots[slotName]"
+        :label="_startCase(slotName) + ' Slot'"
+        :styleTokens="styleTokens"
+        :key="'slot-playground-' + slotName"
       />
     </form>
 
@@ -93,6 +120,7 @@ import CodeSwapper from '@/components/CodeSwapper.vue';
 import DemoHeader from '@/components/DemoHeader.vue';
 import EmitsDocumentation from '@/components/EmitsDocumentation.vue';
 import PropsDocumentation from '@/components/PropsDocumentation.vue';
+import DoxenTextarea from '@/components/formFields/DoxenTextarea.vue';
 
 export default {
   name: 'DoxenComponentDemo',
@@ -100,6 +128,7 @@ export default {
     CodeBox,
     CodeSwapper,
     DemoHeader,
+    DoxenTextarea,
     EmitsDocumentation,
     PropsDocumentation
   },
@@ -113,13 +142,20 @@ export default {
   },
   data: function () {
     return {
-      demoProps: {}
+      demoProps: {},
+      demoSlots: {}
     };
   },
   methods: {
-    initializePlayground: function () {
+    _startCase,
+    initialize: function () {
+      this.demoProps = {};
+      this.demoSlots = {};
       for (const propName in this.propsToDemo) {
         this.demoProps[propName] = this.propsToDemo?.[propName]?.props?.modelValue;
+      }
+      for (const slotName in this.slotsToDemo) {
+        this.demoSlots[slotName] = this.slotsToDemo?.[slotName];
       }
     }
   },
@@ -144,6 +180,28 @@ export default {
         this.demo?.importStatement ||
         this.demo?.component?.importStatement
       );
+    },
+    slotsToDemo: function () {
+      const demoSlots = this.demo?.slotsToDemo || this.demo?.component?.slots;
+      let slotsToDemo = {};
+
+      if (Array.isArray(demoSlots)) {
+        for (const slot of demoSlots) {
+          if (typeof(slot) === 'string') {
+            slotsToDemo[slot] = '';
+          }
+        }
+      } else if (typeof(demoSlots) === 'object') {
+        for (const slotName of demoSlots) {
+          if (typeof(demoSlots[slotName]) === 'string') {
+            slotsToDemo[slotName] = demoSlots[slotName];
+          } else {
+            slotsToDemo[slotName] = deJSONify(demoSlots[slotName]);
+          }
+        }
+      }
+
+      return slotsToDemo;
     },
     propsToDemo: function () {
       const actualProps = this.demo?.component?.props;
@@ -184,12 +242,21 @@ export default {
             required: !!this.demo?.component?.props?.[propName]?.required
           };
         });
-      const slot = undefined; // this.propsPlayground?.slot;
-      return createMarkupExample(tag, attributes, slot, emits);
+      const slots = {};
+      for (const demoSlotName in this.demoSlots) {
+        const demoSlotValue = this.demoSlots[demoSlotName];
+        if (demoSlotValue && typeof(demoSlotValue) === 'string') {
+          slots[demoSlotName] = demoSlotValue;
+        }
+      }
+      return createMarkupExample(tag, attributes, slots, emits);
     },
     js: function () {
+      const jsOutput = [];
       const propsOutput = {};
+      const slotsOutput = {};
       const tag = _lowerFirst(this.demo?.component?.name || '');
+
       // Process Props
       Object.keys(this.propsToDemo)
         .forEach((propName) => {
@@ -206,10 +273,22 @@ export default {
           }
         });
 
-      // propsOutput.innerHTML = this.propsPlayground?.slot;
-      const propsJs = 'const ' + tag + 'Props = ' + deJSONify(propsOutput, '\n') + ';';
+      // Process Slots
+      Object.keys(this.demoSlots)
+        .sort()
+        .forEach((slotName) => {
+          const value = this.demoSlots[slotName];
+          if (value) {
+            slotsOutput[slotName] = value;
+          }
+        });
 
-      return propsJs;
+      jsOutput.push('const ' + tag + 'Props = ' + deJSONify(propsOutput, '\n') + ';');
+      if (Object.keys(slotsOutput).length) {
+        jsOutput.push('const ' + tag + 'Slots = ' + deJSONify(slotsOutput, '\n') + ';');
+      }
+
+      return jsOutput.join('\n');
       /*
       const indent = '\n  ';
       const emits = this.demo?.emitsDocumentation || [];
@@ -233,7 +312,7 @@ export default {
     }
   },
   created: function () {
-    this.initializePlayground();
+    this.initialize();
   }
 };
 </script>

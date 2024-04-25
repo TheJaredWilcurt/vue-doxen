@@ -1,8 +1,9 @@
 <template>
   <HighlightJS
     v-bind="applyStyleTokens({ codeBox: true })"
-    :language="language"
+    :autodetect="false"
     :code="code"
+    :language="language"
     :key="index"
   />
 </template>
