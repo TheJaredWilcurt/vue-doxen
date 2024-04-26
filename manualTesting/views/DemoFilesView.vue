@@ -1,5 +1,5 @@
 <template>
-  <div class="docs-paragraph">
+  <div class="docs-page">
     <h1 class="docs-title">Demo Files</h1>
 
     <p>
@@ -8,20 +8,21 @@
 
     <h2>Example Demo File</h2>
 
-    <p><code>myComponentDemo.js</code></p>
-
-    <CodeBox
-      :code="DEMO_FILE_EXAMPLE"
-      language="javascript"
+    <CodeSwapper
+      fileName="myComponentDemo.js"
+      :codeTypes="{ JavaScript: DEMO_FILE_EXAMPLE }"
       :styleTokens="styleTokens"
     />
 
     <h2>Using Demo Files</h2>
 
-    <VueApiSwapper
-      :composition="DEMO_FILE_USAGE_COMPOSITION_EXAMPLE"
+    <CodeSwapper
+      :codeTypes="{
+        Options: DEMO_FILE_USAGE_EXAMPLE,
+        Composition: DEMO_FILE_USAGE_COMPOSITION_EXAMPLE,
+        'Script Setup': DEMO_FILE_USAGE_SCRIPT_SETUP_EXAMPLE
+      }"
       fileName="DocumentationPage.vue"
-      :options="DEMO_FILE_USAGE_EXAMPLE"
       :styleTokens="styleTokens"
     />
   </div>
@@ -30,20 +31,19 @@
 <script>
 import { styleTokens } from '@/helpers/props.js';
 
-import CodeBox from '@/components/CodeBox.vue';
-import VueApiSwapper from '@@@/components/VueApiSwapper.vue';
+import CodeSwapper from '@/components/CodeSwapper.vue';
 
 import {
   DEMO_FILE_EXAMPLE,
   DEMO_FILE_USAGE_EXAMPLE,
-  DEMO_FILE_USAGE_COMPOSITION_EXAMPLE
+  DEMO_FILE_USAGE_COMPOSITION_EXAMPLE,
+  DEMO_FILE_USAGE_SCRIPT_SETUP_EXAMPLE
 } from '@@@/helpers/codeSnippets.js';
 
 export default {
   name: 'DemoFilesView',
   components: {
-    CodeBox,
-    VueApiSwapper
+    CodeSwapper
   },
   props: {
     styleTokens
@@ -51,7 +51,8 @@ export default {
   constants: {
     DEMO_FILE_EXAMPLE,
     DEMO_FILE_USAGE_EXAMPLE,
-    DEMO_FILE_USAGE_COMPOSITION_EXAMPLE
+    DEMO_FILE_USAGE_COMPOSITION_EXAMPLE,
+    DEMO_FILE_USAGE_SCRIPT_SETUP_EXAMPLE
   }
 };
 </script>

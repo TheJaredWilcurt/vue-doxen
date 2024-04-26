@@ -48,7 +48,7 @@ export default {
   data: function () {
     return {
       selectedDemo: 'myComponentDemo'
-    },
+    };
   },
   computed: {
     demos: function () {
@@ -70,8 +70,48 @@ export const DEMO_FILE_USAGE_COMPOSITION_EXAMPLE = `
   />
 </template>
 
+<script>
+import { computed, ref } from 'vue';
+
+import { VueDoxen } from 'vue-doxen';
+
+import { myComponentDemo } from '../demos/myComponentDemo.js';
+import { anotherDemo } from '../demos/anotherDemo.js';
+
+export default {
+  name: 'DocumentationPage',
+  components: {
+    VueDoxen
+  },
+  setup: function () {
+    const selectedDemo = ref('myComponentDemo');
+
+    const demos = computed(() => {
+      return {
+        myComponentDemo,
+        anotherDemo
+      };
+    });
+
+    return {
+      demos,
+      selectedDemo
+    };
+  }
+};
+</script>
+`.trim();
+
+export const DEMO_FILE_USAGE_SCRIPT_SETUP_EXAMPLE = `
+<template>
+  <VueDoxen
+    v-model="selectedDemo"
+    :demos="demos"
+  />
+</template>
+
 <script setup>
-import { ref, computed } from 'vue';
+import { computed, ref } from 'vue';
 
 import { VueDoxen } from 'vue-doxen';
 
@@ -172,5 +212,87 @@ export default {
     }
   }
 };
+</script>
+`.trim();
+
+export const GETTING_STARTED_COMPOSITION_EXAMPLE = `
+<template>
+  <div>
+    <DoxenSidebar
+      v-model="selectedDemo"
+      :demos="demos"
+    />
+    <VueDoxen
+      v-model="selectedDemo"
+      :demos="demos"
+    />
+  </div>
+</template>
+
+<script>
+import { computed, ref } from 'vue';
+
+import { DoxenSidebar, VueDoxen } from 'vue-doxen';
+
+// Components you want to document
+import ComponentA from './ComponentA.vue';
+import ComponentB from './ComponentB.vue';
+
+export default {
+  name: 'DocumentationPage',
+  components: {
+    DoxenSidebar,
+    VueDoxen
+  },
+  setup: function () {
+    const selectedDemo = ref('myComponentDemo');
+
+    const demos = computed(() => {
+      return {
+        myComponentDemo,
+        anotherDemo
+      };
+    });
+
+    return {
+      demos,
+      selectedDemo
+    };
+  }
+};
+</script>
+`.trim();
+
+export const GETTING_STARTED_SCRIPT_SETUP_EXAMPLE = `
+<template>
+  <div>
+    <DoxenSidebar
+      v-model="selectedDemo"
+      :demos="demos"
+    />
+    <VueDoxen
+      v-model="selectedDemo"
+      :demos="demos"
+    />
+  </div>
+</template>
+
+<script setup>
+import { computed, ref } from 'vue';
+
+import { DoxenSidebar, VueDoxen } from 'vue-doxen';
+
+// Components you want to document
+import ComponentA from './ComponentA.vue';
+import ComponentB from './ComponentB.vue';
+
+const selectedDemo = ref('myComponentDemo');
+
+const demos = computed(() => {
+  return {
+    myComponentDemo,
+    anotherDemo
+  };
+});
 </script>
 `.trim();

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="docs-page">
     <TitleParagraph title="Is this library ready for use?">
       Not yet! But maybe in the next few weeks. Steady progress is being made daily. When it's ready this warning message will be removed.
     </TitleParagraph>

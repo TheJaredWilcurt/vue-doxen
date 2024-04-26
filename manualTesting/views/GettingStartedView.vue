@@ -1,8 +1,8 @@
 <template>
-  <div class="docs-paragraph">
+  <div class="docs-page">
     <h1 class="docs-title">Getting Started</h1>
 
-    <p>In just 2 steps!</p>
+    <h2>In just 2 steps!</h2>
 
     <ol>
       <li>
@@ -12,18 +12,21 @@
         </ul>
       </li>
       <li>
-        Create Vue component to use the library in. You can use the basic sidebar that ships with VueDoxen, or create your own.
+        Create a Vue component to use the library in.
         <ul>
-          <li>
-            <CodeBox
-              :code="GETTING_STARTED_EXAMPLE"
-              language="xml"
-              :styleTokens="styleTokens"
-            />
-          </li>
+          <li>To swap the component being demo'd you can use the basic sidebar that ships with VueDoxen, or create your own sidebar.</li>
         </ul>
       </li>
     </ol>
+    <CodeSwapper
+      :codeTypes="{
+        Options: GETTING_STARTED_EXAMPLE,
+        Composition: GETTING_STARTED_COMPOSITION_EXAMPLE,
+        'Script Setup': GETTING_STARTED_SCRIPT_SETUP_EXAMPLE
+      }"
+      fileName="DocumentationPage.vue"
+      :styleTokens="styleTokens"
+    />
 
     <p>
       <strong>That's it!</strong>
@@ -38,20 +41,26 @@
 <script>
 import { styleTokens } from '@/helpers/props.js';
 
-import CodeBox from '@/components/CodeBox.vue';
+import CodeSwapper from '@/components/CodeSwapper.vue';
 
-import { GETTING_STARTED_EXAMPLE } from '@@@/helpers/codeSnippets.js';
+import {
+  GETTING_STARTED_EXAMPLE,
+  GETTING_STARTED_COMPOSITION_EXAMPLE,
+  GETTING_STARTED_SCRIPT_SETUP_EXAMPLE
+} from '@@@/helpers/codeSnippets.js';
 
 export default {
   name: 'GettingStartedView',
   components: {
-    CodeBox
+    CodeSwapper
   },
   props: {
     styleTokens
   },
   constants: {
-    GETTING_STARTED_EXAMPLE
+    GETTING_STARTED_EXAMPLE,
+    GETTING_STARTED_COMPOSITION_EXAMPLE,
+    GETTING_STARTED_SCRIPT_SETUP_EXAMPLE
   }
 };
 </script>

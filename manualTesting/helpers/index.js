@@ -9,7 +9,10 @@ import {
   VueDoxen
 } from '@/library.js';
 
+import DummyCompositionApi from '@@@/components/DummyCompositionApi.vue';
+
 export const componentsToDemo = {
+  DummyCompositionApi,
   DoxenCheckbox,
   DoxenDropdown,
   DoxenJsonTextarea,

@@ -25,6 +25,8 @@ export const styleTokensBuiltIn = {
   codeSwapperButtonContainer: 'doxen-code-swapper-button-container',
   codeSwapperButtonNotSelected: 'doxen-code-swapper-button-not-selected',
   codeSwapperButtonSelected: 'doxen-code-swapper-button-selected',
+  codeSwapperFileName: 'doxen-code-swapper-file-name',
+  codeSwapperHeader: 'doxen-code-swapper-header',
   componentDemo: 'doxen-component-demo',
   componentDemoContainer: 'doxen-component-demo-container',
   componentDemoH3: 'doxen-component-demo-h3',
@@ -131,6 +133,7 @@ export const styleTokensBootstrap5 = {
   codeSwapperButtonContainer: 'nav nav-tabs nav-item mt-3 mb-0',
   codeSwapperButtonNotSelected: '',
   codeSwapperButtonSelected: 'active bg-primary text-light border-bottom-0',
+  codeSwapperFileName: 'float-end',
   // Demo
   propsPlaygroundForm: 'd-flex flex-wrap',
   // Sidebar

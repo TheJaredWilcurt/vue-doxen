@@ -81,3 +81,18 @@ $black10: rgba(0, 1, 16, 0.10)
 /* Monospace font for textareas with code in them */
 :where([data-applied-style-tokens~="formFieldTextareaCode"])
     font-family: monospace
+
+:where([data-applied-style-tokens~="codeSwapperFileName"])
+    float: right
+
+:where([data-applied-style-tokens~="codeSwapperButtonSelected"])
+    font-weight: bold
+
+:where([data-applied-style-tokens~="codeSwapperHeader"])
+    display: flex
+    flex-direction: row
+    align-items: baseline
+    justify-content: space-between
+
+:where([data-applied-style-tokens~="codeSwapperButtonContainer"])
+    display: flex

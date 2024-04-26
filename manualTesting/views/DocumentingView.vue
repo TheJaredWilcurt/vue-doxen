@@ -1,15 +1,26 @@
 <template>
-  <div class="docs-paragraph">
+  <div class="docs-page">
     <h1 class="docs-title">Documenting your components</h1>
 
     <nav>
       <ul>
+        <li><a href="#name">Component Name</a></li>
+        <li><a href="#description">Component Description</a></li>
+        <li><a href="#import">Import Statements</a></li>
         <li><a href="#slots">Documenting Component Slots</a></li>
       </ul>
     </nav>
 
 
-    <h2 id="">Import Statements</h2>
+    <h2 id="name">Component Name</h2>
+
+    <p></p>
+
+    <h2 id="description">Component Description</h2>
+
+    <p></p>
+
+    <h2 id="import">Import Statements</h2>
 
     <p>
       If you want to add instructions for how people can import your component into your app, you can either pass in the import statement as a string, or use a custom component with your own props.

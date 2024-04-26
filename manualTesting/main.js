@@ -5,7 +5,7 @@ import App from '@@@/App.vue';
 
 import router from '@@@/router/index.js';
 
-import '@@@/sass/global.sass';
+import '@@@/sass/docs-site.sass';
 
 const app = createApp(App);
 app.use(constantsPlugin);

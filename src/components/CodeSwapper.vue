@@ -1,32 +1,30 @@
 <template>
   <div v-bind="applyStyleTokens({ codeSwapper: true })">
-    <div v-bind="applyStyleTokens({ codeSwapperButtonContainer: true })">
-      <button
-        v-bind="applyStyleTokens({
-          codeSwapperButton: true,
-          codeSwapperButtonNotSelected: selected !== VUE,
-          codeSwapperButtonSelected: selected === VUE
-        })"
-        :aria-pressed="selected === VUE"
-        @click="setLanguage(VUE)"
-      >
-        Vue
-      </button>
-      <button
-        v-bind="applyStyleTokens({
-          codeSwapperButton: true,
-          codeSwapperButtonNotSelected: selected !== JAVASCRIPT,
-          codeSwapperButtonSelected: selected === JAVASCRIPT
-        })"
-        :aria-pressed="selected === JAVASCRIPT"
-        @click="setLanguage(JAVASCRIPT)"
-      >
-        JavaScript
-      </button>
+    <div v-bind="applyStyleTokens({ codeSwapperHeader: true })">
+      <code
+        v-if="fileName"
+        v-text="fileName"
+        v-bind="applyStyleTokens({ codeSwapperFileName: true })"
+      ></code>
+      <div v-bind="applyStyleTokens({ codeSwapperButtonContainer: true })">
+        <button
+          v-for="(typeValue, typeName) in codeTypes"
+          v-bind="applyStyleTokens({
+            codeSwapperButton: true,
+            codeSwapperButtonNotSelected: selected !== typeName,
+            codeSwapperButtonSelected: selected === typeName
+          })"
+          :aria-pressed="selected === typeName"
+          @click="setLanguage(typeName)"
+          :key="'code-swapper-' + typeName"
+        >
+          {{ typeName }}
+        </button>
+      </div>
     </div>
     <CodeBox
       :code="code"
-      :language="language"
+      :language="code.startsWith('<') ? 'xml' : 'javascript'"
       :styleTokens="styleTokens"
     />
   </div>
@@ -39,9 +37,10 @@ import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
 import CodeBox from '@/components/CodeBox.vue';
 
-const JAVASCRIPT = 'javascript';
-const VUE = 'vue';
-const XML = 'xml';
+const codeTypesExample = `{
+  HTML: '<h1>Hello World</h1>',
+  JavaScript: 'console.log("Hello World")'
+}`;
 
 export default {
   name: 'CodeSwapper',
@@ -50,60 +49,60 @@ export default {
   },
   mixins: [applyStyleTokens],
   props: {
-    javascript: {
+    codeTypes: {
+      type: Object,
+      required: true,
+      example: codeTypesExample
+    },
+    fileName: {
       type: String,
       default: undefined
     },
-    styleTokens,
-    vue: {
-      type: String,
-      default: undefined
-    }
+    styleTokens
   },
   data: function () {
     return {
       localStorageId: 'vueDoxenCodeSwapper',
-      selected: VUE
+      selectedOrderPreference: [
+        ...Object.keys(this.codeTypes)
+      ]
     };
   },
   methods: {
     save: function () {
       const id = this.localStorageId;
       const data = JSON.stringify({
-        selected: this.selected
+        selectedOrderPreference: this.selectedOrderPreference
       });
       window.localStorage.setItem(id, data);
     },
     load: function () {
       let data = window.localStorage.getItem(this.localStorageId);
       data = JSON.parse(data);
-      if (data?.selected) {
-        this.selected = data.selected;
+      if (data?.selectedOrderPreference) {
+        this.selectedOrderPreference = data.selectedOrderPreference;
       }
     },
     setLanguage: function (language) {
-      this.selected = language;
+      this.selectedOrderPreference = Array.from(new Set([
+        language,
+        ...this.selectedOrderPreference
+      ]));
       this.save();
     }
   },
   computed: {
-    JAVASCRIPT: function () {
-      return JAVASCRIPT;
-    },
-    VUE: function () {
-      return VUE;
+    selected: function () {
+      const actualTypes = Object.keys(this.codeTypes);
+      for (const type of this.selectedOrderPreference) {
+        if (actualTypes.includes(type)) {
+          return type;
+        }
+      }
+      return Object.keys(this.codeTypes)[0];
     },
     code: function () {
-      if (this.selected === VUE) {
-        return this.vue;
-      }
-      return this.javascript;
-    },
-    language: function () {
-      if (this.selected === VUE) {
-        return XML;
-      }
-      return JAVASCRIPT;
+      return this.codeTypes[this.selected];
     }
   },
   created: function () {

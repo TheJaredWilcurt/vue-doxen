@@ -1,8 +1,8 @@
 <template>
   <h2 class="docs-title">{{ title }}</h2>
-  <p class="docs-paragraph"><slot></slot></p>
+  <p><slot></slot></p>
   <ul v-if="readMore && readMoreLink">
-    <li class="docs-paragraph">
+    <li>
       <RouterLink :to="{ name: readMoreLink }">
         {{ readMore }}
       </RouterLink>

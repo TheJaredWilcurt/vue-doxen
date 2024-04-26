@@ -23,7 +23,7 @@
         :is="demo.component"
         v-bind="demoProps"
         v-on="demoEvents"
-        :key="demo.component.name + '-v-model'"
+        :key="componentName + '-v-model'"
       >
         <template
           v-for="(slotValue, slotName) in slotsToDemo"
@@ -40,7 +40,7 @@
         :is="demo.component"
         v-bind="demoProps"
         v-on="demoEvents"
-        :key="demo.component.name + '-no-v-model'"
+        :key="componentName + '-no-v-model'"
       >
         <template
           v-for="(slotValue, slotName) in slotsToDemo"
@@ -75,9 +75,11 @@
     </form>
 
     <CodeSwapper
-      :javascript="js"
+      :codeTypes="{
+        Vue: markup,
+        JavaScript: js
+      }"
       :styleTokens="styleTokens"
-      :vue="markup"
     />
 
     <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Props Documentation</h3>
@@ -160,8 +162,16 @@ export default {
     }
   },
   computed: {
+    componentName: function () {
+      return (
+        this.demo?.name ||
+        this.demo?.component?.name ||
+        this.demo?.component?.__name ||
+        ''
+      );
+    },
     title: function () {
-      return _startCase(this.demo?.component?.name);
+      return _startCase(this.componentName);
     },
     description: function () {
       return (
@@ -236,7 +246,7 @@ export default {
       return events;
     },
     markup: function () {
-      const tag = this.demo?.component?.name || '';
+      const tag = this.componentName || '';
       const emits = this.demo?.component?.emits || [];
       const attributes = Object.keys(this.propsToDemo)
         .map((propName) => {
@@ -259,7 +269,7 @@ export default {
       const jsOutput = [];
       const propsOutput = {};
       const slotsOutput = {};
-      const tag = _lowerFirst(this.demo?.component?.name || '');
+      const tag = _lowerFirst(this.componentName || '');
 
       // Process Props
       Object.keys(this.propsToDemo)
@@ -317,6 +327,7 @@ export default {
   },
   created: function () {
     this.initialize();
+    console.log(this.demo.component);
   }
 };
 </script>
