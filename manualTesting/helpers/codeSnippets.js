@@ -134,7 +134,10 @@ import MyComponent from '../components/MyComponent.vue';
 
 export const myComponentDemo = {
   component: MyComponent,
-  slotsToDemo: ['default', 'footer']
+  slotsToDemo: [
+    'default',
+    'footer'
+  ]
 }
 `.trim();
 
@@ -154,7 +157,10 @@ export const SLOTS_OPTIONS_ARRAY_EXAMPLE = `
 <script>
 export default {
   name: 'MyComponent',
-  slots: ['default', 'footer']
+  slots: [
+    'default',
+    'footer'
+  ]
 };
 </script>
 `.trim();

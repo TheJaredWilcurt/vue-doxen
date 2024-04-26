@@ -2,8 +2,8 @@
   <div v-bind="applyStyleTokens({ codeSwapper: true })">
     <div v-bind="applyStyleTokens({ codeSwapperHeader: true })">
       <code
-        v-if="fileName"
-        v-text="fileName"
+        v-if="currentFileName"
+        v-text="currentFileName"
         v-bind="applyStyleTokens({ codeSwapperFileName: true })"
       ></code>
       <div v-bind="applyStyleTokens({ codeSwapperButtonContainer: true })">
@@ -55,7 +55,7 @@ export default {
       example: codeTypesExample
     },
     fileName: {
-      type: String,
+      type: [String, Object],
       default: undefined
     },
     styleTokens
@@ -92,6 +92,12 @@ export default {
     }
   },
   computed: {
+    currentFileName: function () {
+      if (typeof(this.fileName) === 'object') {
+        return this.fileName[this.selected];
+      }
+      return this.fileName;
+    },
     selected: function () {
       const actualTypes = Object.keys(this.codeTypes);
       for (const type of this.selectedOrderPreference) {

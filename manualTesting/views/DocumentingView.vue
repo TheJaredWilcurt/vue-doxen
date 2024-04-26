@@ -30,43 +30,38 @@
 
     <h2 id="slots">Documenting Component Slots</h2>
 
-    <p>There are <strong>4 approaches</strong> you can pick from:</p>
+    <p>You can provide an array of slot names, or an object with slot names as keys and the default slot value to show in the demo as the value.</p>
 
-    <ol>
-      <DocumentationApproach
-        :code="SLOTS_OPTIONS_ARRAY_EXAMPLE"
-        language="xml"
-        :styleTokens="styleTokens"
-      >
-        Using the <strong>Options API</strong>, you can list the names of the props as an array of strings:
-      </DocumentationApproach>
-      <DocumentationApproach
-        :code="SLOTS_OPTIONS_OBJECT_EXAMPLE"
-        language="xml"
-        :styleTokens="styleTokens"
-      >
-        Using the <strong>Options API</strong>, you can pass in an object with the slot names as keys, and the value as the default text to demo:
-      </DocumentationApproach>
-      <DocumentationApproach
-        :code="SLOTS_DEMO_ARRAY_EXAMPLE"
-        :styleTokens="styleTokens"
-      >
-        In the component's <strong>demo object</strong>, you can define an array of strings for the names of the slots to demo:
-      </DocumentationApproach>
-      <DocumentationApproach
-        :code="SLOTS_DEMO_OBJECT_EXAMPLE"
-        :styleTokens="styleTokens"
-      >
-        In the component's <strong>demo object</strong>, pass in an object with the slot names as keys, and the value as the default text to demo:
-      </DocumentationApproach>
-    </ol>
+    <CodeSwapper
+      :fileName="{
+        Component: 'MyComponent.vue',
+        'Demo File': 'myComponentDemo.js'
+      }"
+      :codeTypes="{
+        Component: SLOTS_OPTIONS_ARRAY_EXAMPLE,
+        'Demo File': SLOTS_DEMO_ARRAY_EXAMPLE
+      }"
+      :styleTokens="styleTokens"
+    />
+
+    <CodeSwapper
+      :fileName="{
+        Component: 'MyComponent.vue',
+        'Demo File': 'myComponentDemo.js'
+      }"
+      :codeTypes="{
+        Component: SLOTS_OPTIONS_OBJECT_EXAMPLE,
+        'Demo File': SLOTS_DEMO_OBJECT_EXAMPLE
+      }"
+      :styleTokens="styleTokens"
+    />
   </div>
 </template>
 
 <script>
 import { styleTokens } from '@/helpers/props.js';
 
-import DocumentationApproach from '@@@/components/DocumentationApproach.vue';
+import CodeSwapper from '@/components/CodeSwapper.vue';
 
 import {
   SLOTS_DEMO_ARRAY_EXAMPLE,
@@ -78,7 +73,7 @@ import {
 export default {
   name: 'DocumentingView',
   components: {
-    DocumentationApproach
+    CodeSwapper
   },
   props: {
     styleTokens
