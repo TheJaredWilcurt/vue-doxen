@@ -5,7 +5,6 @@
     {{ colors }}
     <CodeBox
       :code="'<h1>' + greeting + '</h1>'"
-      language="xml"
       :styleTokens="{}"
     />
   </div>

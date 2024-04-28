@@ -1,49 +1,46 @@
 /* eslint-disable-next-line import/no-unresolved */
 import { createRouter, createWebHistory } from 'vue-router';
 
-import ComponentsView from '@@@/views/ComponentsView.vue';
-import DemoFilesView from '@@@/views/DemoFilesView.vue';
-import DocumentingView from '@@@/views/DocumentingView.vue';
-import GettingStartedView from '@@@/views/GettingStartedView.vue';
-import HomeView from '@@@/views/HomeView.vue';
-import NotFound from '@@@/views/NotFoundView.vue';
-import StylingView from '@@@/views/StylingView.vue';
-
 const routes = [
   {
     path: '/vue-doxen/:pathMatch(.*)*',
     name: '404',
-    component: NotFound
+    component: () => import('@@@/views/NotFoundView.vue')
   },
   {
     path: '/vue-doxen/',
     name: 'home',
-    component: HomeView
+    component: () => import('@@@/views/HomeView.vue')
   },
   {
     path: '/vue-doxen/getting-started',
     name: 'gettingStarted',
-    component: GettingStartedView
+    component: () => import('@@@/views/GettingStartedView.vue')
   },
   {
     path: '/vue-doxen/demo-files',
     name: 'demoFiles',
-    component: DemoFilesView
+    component: () => import('@@@/views/DemoFilesView.vue')
   },
   {
     path: '/vue-doxen/documenting',
     name: 'documenting',
-    component: DocumentingView
+    component: () => import('@@@/views/DocumentingView.vue')
   },
   {
     path: '/vue-doxen/styles',
     name: 'styles',
-    component: StylingView
+    component: () => import('@@@/views/StylingView.vue')
+  },
+  {
+    path: '/vue-doxen/vue-router',
+    name: 'vueRouter',
+    component: () => import('@@@/views/VueRouterView.vue')
   },
   {
     path: '/vue-doxen/components/:component',
     name: 'components',
-    component: ComponentsView,
+    component: () => import('@@@/views/ComponentsView.vue'),
     props: (route) => ({
       selectedDemo: route.params.component
     })

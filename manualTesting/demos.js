@@ -1,23 +1,58 @@
-import { DoxenJsonTextarea } from '@/library.js';
+import {
+  DoxenJsonTextarea,
+  DoxenPlainText
+} from '@/library.js';
 
 export const createDemos = function (components, styleTokens) {
   const demos = {};
-  const propsToDemo = {
-    styleTokens: {
+  const addStyleTokensPropDemo = function (propsToDemo) {
+    propsToDemo.styleTokens = {
       component: DoxenJsonTextarea,
       props: {
         label: 'Style Tokens',
         modelValue: styleTokens,
         styleTokens
       }
-    }
+    };
   };
+  const addOptionsPropDemo = function (propsToDemo) {
+    propsToDemo.modelValue = {
+      component: DoxenPlainText,
+      props: {
+        label: 'ModelValue',
+        modelValue: 'kiva',
+        styleTokens
+      }
+    };
+    propsToDemo.options = {
+      component: DoxenJsonTextarea,
+      props: {
+        label: 'Options',
+        modelValue: [
+          {
+            name: 'Kiva.org',
+            value: 'kiva'
+          },
+          {
+            name: 'Good.store',
+            value: 'goodstore'
+          }
+        ],
+        styleTokens
+      }
+    };
+  };
+
   for (const componentName in components) {
     demos[componentName] = {
-      component: components[componentName]
+      component: components[componentName],
+      propsToDemo: {}
     };
     if (components[componentName]?.props?.styleTokens) {
-      demos[componentName].propsToDemo = propsToDemo;
+      addStyleTokensPropDemo(demos[componentName].propsToDemo);
+    }
+    if (components[componentName]?.props?.options) {
+      addOptionsPropDemo(demos[componentName].propsToDemo);
     }
   }
 
@@ -33,5 +68,6 @@ export const createDemos = function (components, styleTokens) {
       styleTokens: styleTokens
     }
   };
+
   return demos;
 };

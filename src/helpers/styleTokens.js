@@ -132,7 +132,7 @@ export const styleTokensBootstrap5 = {
   codeSwapperButton: 'nav-link me-1',
   codeSwapperButtonContainer: 'nav nav-tabs nav-item mt-3 mb-0',
   codeSwapperButtonNotSelected: '',
-  codeSwapperButtonSelected: 'active bg-primary text-light border-bottom-0',
+  codeSwapperButtonSelected: 'active border-bottom-0',
   codeSwapperFileName: 'float-end',
   // Demo
   propsPlaygroundForm: 'd-flex flex-wrap',

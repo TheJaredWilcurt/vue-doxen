@@ -251,12 +251,12 @@ export default {
     VueDoxen
   },
   setup: function () {
-    const selectedDemo = ref('myComponentDemo');
+    const selectedDemo = ref('ComponentA');
 
     const demos = computed(() => {
       return {
-        myComponentDemo,
-        anotherDemo
+        ComponentA,
+        ComponentB
       };
     });
 
@@ -292,12 +292,12 @@ import { DoxenSidebar, VueDoxen } from 'vue-doxen';
 import ComponentA from './ComponentA.vue';
 import ComponentB from './ComponentB.vue';
 
-const selectedDemo = ref('myComponentDemo');
+const selectedDemo = ref('ComponentA');
 
 const demos = computed(() => {
   return {
-    myComponentDemo,
-    anotherDemo
+    ComponentA,
+    ComponentB
   };
 });
 </script>

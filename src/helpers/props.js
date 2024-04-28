@@ -93,7 +93,7 @@ export const demos = {
   default: function () {
     return {};
   },
-  description: 'The group of demo objects representing each component to demo.'
+  description: 'The group of components and/or demo objects representing each component to demo.'
 };
 export const label = {
   type: String,

@@ -60,9 +60,9 @@
     <form v-bind="applyStyleTokens({ propsPlaygroundForm: true })">
       <component
         v-for="(prop, propName) in propsToDemo"
+        v-bind="prop.props"
         v-model="demoProps[propName]"
         :is="prop.component"
-        v-bind="prop.props"
         :key="propName"
       />
       <DoxenTextarea
@@ -108,10 +108,10 @@
 import _lowerFirst from 'lodash.lowerfirst';
 import _startCase from 'lodash.startcase';
 
+import { deJSONify } from '@/helpers/componentHelpers.js';
 import {
   autoGeneratePlaygroundProps,
-  createMarkupExample,
-  deJSONify
+  createMarkupExample
 } from '@/helpers/demoHelpers.js';
 import { styleTokens } from '@/helpers/props.js';
 
@@ -325,9 +325,13 @@ export default {
       */
     }
   },
+  watch: {
+    demo: function () {
+      this.initialize();
+    }
+  },
   created: function () {
     this.initialize();
-    console.log(this.demo.component);
   }
 };
 </script>

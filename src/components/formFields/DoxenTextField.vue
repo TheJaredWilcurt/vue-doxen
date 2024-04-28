@@ -7,6 +7,7 @@
       :disabled="disabled"
       :errorMessage="errorMessage"
       :label="label"
+      :idFor="idFor"
       :required="required"
       :styleTokens="styleTokens"
     />
@@ -20,8 +21,8 @@
           })
         }"
         :id="idFor"
-        :aria-invalid="errorMessage"
-        :aria-required="required"
+        :aria-invalid="!!errorMessage"
+        :aria-required="!!required"
         :data-test="idFor"
         :data-value="dataValue(modelValue)"
         :disabled="disabled"

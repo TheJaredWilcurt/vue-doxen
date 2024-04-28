@@ -20,8 +20,8 @@
           })
         }"
         :id="idFor"
-        :aria-invalid="errorMessage"
-        :aria-required="required"
+        :aria-invalid="!!errorMessage"
+        :aria-required="!!required"
         :checked="modelValue"
         :data-test="idFor"
         :data-value="dataValue(modelValue)"

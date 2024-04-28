@@ -2,45 +2,18 @@
 
 import _startCase from 'lodash.startcase';
 
-import { humanList } from '@/helpers/componentHelpers.js';
+import {
+  deJSONify,
+  humanList
+} from '@/helpers/componentHelpers.js';
 
 import DoxenCheckbox from '@/components/formFields/DoxenCheckbox.vue';
+import DoxenDropdown from '@/components/formFields/DoxenDropdown.vue';
 import DoxenJsonTextarea from '@/components/formFields/DoxenJsonTextarea.vue';
+import DoxenPlainText from '@/components/formFields/DoxenPlainText.vue';
+import DoxenRadioDials from '@/components/formFields/DoxenRadioDials.vue';
 import DoxenTextField from '@/components/formFields/DoxenTextField.vue';
 import DoxenTextarea from '@/components/formFields/DoxenTextarea.vue';
-
-/**
- * This JSON.stringify's a given value, then we clean up the formatting,
- * swap double and single quotes, etc.
- *
- * @param  {Array|Object} value   Any Object or Array
- * @param  {string}       indent  A string to use for indentation starting with a return
- * @return {string}               The formatted object as a string
- */
-export const deJSONify = function (value, indent) {
-  if (
-    value &&
-    (
-      Array.isArray(value) ||
-      typeof(value) === 'object'
-    )
-  ) {
-    value = JSON.stringify(value, null, 2);
-    // Remove quotes from keys
-    value = value.replace(/"(\w+)"\s*:/g, '$1:');
-    // Re-indent
-    value = value.split('\n').join(indent);
-    // Save escaped double-quotes
-    value = value.split('\\"').join('SLASH_SLASH_DOUBLE_QUOTE');
-    // Escape existing single-quotes
-    value = value.split('\'').join('\\\'');
-    // Convert double-quotes to single-quotes
-    value = value.split('"').join('\'');
-    // Re-insert unescaped double quotes
-    value = value.split('SLASH_SLASH_DOUBLE_QUOTE').join('"');
-  }
-  return value;
-};
 
 /**
  * Creates a string of markup to be displayed on a component demo page
@@ -183,7 +156,38 @@ export const autoGeneratePlaygroundProps = function (props, styleTokens) {
     const type = typeToString(typeConstructor);
     const name = _startCase(propName);
 
-    if (type === 'Boolean') {
+    if (propName === 'modelValue') {
+      playgroundProps.modelValue = {
+        component: DoxenPlainText,
+        props: {
+          label: 'Model Value',
+          styleTokens
+        }
+      };
+    } else if (
+      props[propName]?.allowed &&
+      Array.isArray(props[propName].allowed) &&
+      props[propName].allowed.length
+    ) {
+      let component = DoxenDropdown;
+      if (props[propName].allowed.length < 5) {
+        component = DoxenRadioDials;
+      }
+      playgroundProps[propName] = {
+        component,
+        props: {
+          label: name,
+          modelValue: props[propName].default,
+          options: props[propName].allowed.map((value) => {
+            return {
+              name: _startCase(value),
+              value
+            };
+          }),
+          styleTokens
+        }
+      };
+    } else if (type === 'Boolean') {
       playgroundProps[propName] = {
         component: DoxenCheckbox,
         props: {

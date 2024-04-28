@@ -19,12 +19,11 @@ import { styleTokens } from '@/helpers/props.js';
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
-hljs.registerLanguage('javascript', javascript);
-hljs.registerLanguage('xml', xml);
-const allowedSyntax = [
-  'javascript',
-  'xml'
-];
+const JAVASCRIPT = 'javascript';
+const XML = 'xml';
+
+hljs.registerLanguage(JAVASCRIPT, javascript);
+hljs.registerLanguage(XML, xml);
 
 export default {
   name: 'CodeBox',
@@ -37,20 +36,21 @@ export default {
       type: String,
       default: undefined
     },
-    language: {
-      type: String,
-      default: 'xml',
-      allowed: allowedSyntax,
-      validator: function (value) {
-        return allowedSyntax.includes(value);
-      }
-    },
     styleTokens
   },
   data: function () {
     return {
       index: 0
     };
+  },
+  computed: {
+    language: function () {
+      if (this.code.trim().startsWith('<')) {
+        return XML;
+      } else {
+        return JAVASCRIPT;
+      }
+    }
   },
   created: function () {
     // Force event loop to cycle, then trigger

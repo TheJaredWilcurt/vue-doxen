@@ -32,7 +32,7 @@
 
     <p>You can provide an array of slot names, or an object with slot names as keys and the default slot value to show in the demo as the value.</p>
 
-    <h4>Documenting Slots Array example</h4>
+    <h3>Documenting Slots Array example</h3>
 
     <CodeSwapper
       :fileName="{
@@ -46,7 +46,7 @@
       :styleTokens="styleTokens"
     />
 
-    <h4>Documenting Slots Object example</h4>
+    <h3>Documenting Slots Object example</h3>
 
     <CodeSwapper
       :fileName="{

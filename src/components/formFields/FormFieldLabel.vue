@@ -7,7 +7,9 @@
       formFieldLegendError: errorMessage
     })"
   >
-    {{ label }}:
+    <label :for="idFor">
+      {{ label }}:
+    </label>
     <span
       v-if="required"
       v-text="'*'"
@@ -38,6 +40,10 @@ export default {
   props: {
     disabled,
     errorMessage,
+    idFor: {
+      type: String,
+      default: undefined
+    },
     label,
     required,
     styleTokens

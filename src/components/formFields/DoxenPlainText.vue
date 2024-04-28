@@ -12,38 +12,9 @@
       :styleTokens="styleTokens"
     />
     <div
-      v-if="uniqueOptions"
-      v-bind="applyStyleTokens({ formFieldDropdownContainer: true })"
-    >
-      <select
-        v-bind="{
-          ...$attrs,
-          ...applyStyleTokens({
-            formFieldDropdown: true,
-            formFieldDropdownError: errorMessage
-          })
-        }"
-        :id="idFor"
-        :aria-invalid="!!errorMessage"
-        :aria-required="!!required"
-        :data-value="dataValue(modelValue)"
-        :disabled="disabled"
-        :name="idFor"
-        :required="required"
-        :value="modelValue"
-        @change="updateValue($event.target.value)"
-      >
-        <option
-          v-for="option in uniqueOptions"
-          v-text="option.name"
-          v-bind="applyStyleTokens({ formFieldDropdownOption: true })"
-          :id="createIdFor({ label, uniqueId })"
-          :data-test="'option-' + option.value"
-          :value="option.value"
-          :key="'option' + option.uniqueId"
-        ></option>
-      </select>
-    </div>
+      v-text="deJSONify(modelValue)"
+      v-bind="applyStyleTokens({ doxenPlainText: true })"
+    ></div>
     <FormFieldFooter
       :errorMessage="errorMessage"
       :innerHTML="$attrs.innerHTML"
@@ -55,9 +26,10 @@
 </template>
 
 <script>
-import _cloneDeep from 'lodash.clonedeep';
-
-import { createIdFor } from '@/helpers/componentHelpers.js';
+import {
+  createIdFor,
+  deJSONify
+} from '@/helpers/componentHelpers.js';
 import {
   createDisabledProp,
   createErrorMessageProp,
@@ -68,7 +40,6 @@ import {
   required,
   styleTokens
 } from '@/helpers/props.js';
-import { dataValue } from '@/helpers/snapshotHelpers.js';
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
@@ -76,7 +47,7 @@ import FormFieldFooter from '@/components/formFields/FormFieldFooter.vue';
 import FormFieldLabel from '@/components/formFields/FormFieldLabel.vue';
 import FormFieldsetWrapper from '@/components/formFields/FormFieldsetWrapper.vue';
 
-const COMPONENT_NAME = 'DoxenDropdown';
+const COMPONENT_NAME = 'DoxenPlainText';
 const disabled = createDisabledProp('radio buttons');
 const errorMessage = createErrorMessageProp('radio buttons');
 const message = createMessageProp('radio buttons');
@@ -90,11 +61,7 @@ export default {
     FormFieldLabel,
     FormFieldsetWrapper
   },
-  mixins: [
-    applyStyleTokens
-  ],
-  inheritAttrs: false,
-  emits: ['update:model-value'],
+  mixins: [applyStyleTokens],
   props: {
     disabled,
     errorMessage,
@@ -106,27 +73,11 @@ export default {
     styleTokens
   },
   methods: {
-    createIdFor,
-    dataValue,
-    updateValue: function (value) {
-      this.$emit('update:model-value', value);
-    }
+    deJSONify
   },
   computed: {
     uniqueId: function () {
       return crypto.randomUUID();
-    },
-    uniqueOptions: function () {
-      if (!this.options || !Array.isArray(this.options)) {
-        return [];
-      }
-      return _cloneDeep(this.options)
-        .map((option) => {
-          return {
-            ...option,
-            uniqueId: crypto.randomUUID()
-          };
-        });
     },
     idFor: function () {
       return createIdFor({

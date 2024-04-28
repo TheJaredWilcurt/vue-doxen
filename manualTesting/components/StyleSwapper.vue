@@ -68,7 +68,8 @@
       {{ styles }}
     </component>
     <link
-      href="https://unpkg.com/highlightjs@9.16.2/styles/monokai_sublime.css"
+      v-if="$route.name !== 'styles'"
+      href="https://unpkg.com/highlightjs@9.16.2/styles/ir_black.css"
       rel="stylesheet"
       type="text/css"
     />

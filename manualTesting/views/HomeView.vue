@@ -31,12 +31,17 @@
 </template>
 
 <script>
+import { styleTokens } from '@/helpers/props.js';
+
 import TitleParagraph from '@@@/components/TitleParagraph.vue';
 
 export default {
   name: 'HomeView',
   components: {
     TitleParagraph
+  },
+  props: {
+    styleTokens
   }
 };
 </script>

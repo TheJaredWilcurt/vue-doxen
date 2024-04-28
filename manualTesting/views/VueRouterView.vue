@@ -1,6 +1,7 @@
 <template>
   <div class="docs-page">
-    <h1 class="docs-title">Not Found</h1>
+    <h1 class="docs-title">Working with Vue-Router</h1>
+    <p></p>
   </div>
 </template>
 
@@ -8,7 +9,7 @@
 import { styleTokens } from '@/helpers/props.js';
 
 export default {
-  name: 'NotFound',
+  name: 'VueRouterView',
   props: {
     styleTokens
   }

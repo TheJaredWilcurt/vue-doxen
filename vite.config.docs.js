@@ -12,8 +12,26 @@ export default defineConfig({
   build: {
     outDir: resolve(__dirname, 'docs'),
     rollupOptions: {
-      input: resolve(__dirname, 'index.html')
+      input: resolve(__dirname, 'index.html'),
+      output: {
+        manualChunks: {
+          '@highlightjs/vue-plugin': ['@highlightjs/vue-plugin'],
+          'axe-core': ['axe-core'],
+          json5: ['json5'],
+          'lodash.clonedeep': ['lodash.clonedeep'],
+          'lodash.isequal': ['lodash.isequal'],
+          'lodash.lowerfirst': ['lodash.lowerfirst'],
+          'lodash.startcase': ['lodash.startcase'],
+          'vue-axe': ['vue-axe'],
+          'vue-options-api-constants-plugin': ['vue-options-api-constants-plugin'],
+          'vue-router': ['vue-router'],
+          vue: ['vue']
+        }
+      }
     }
+  },
+  optimizeDeps: {
+    include: ['axe-core']
   },
   plugins: [vue()],
   resolve: {

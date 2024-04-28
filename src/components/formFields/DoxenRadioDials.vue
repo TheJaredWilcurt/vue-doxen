@@ -28,8 +28,8 @@
             })
           }"
           :id="createRadioIdFor(option, label)"
-          :aria-invalid="errorMessage"
-          :aria-required="required"
+          :aria-invalid="!!errorMessage"
+          :aria-required="!!required"
           :checked="modelValue == option.value"
           :data-test="'radio-button-' + option.value"
           :data-value="dataValue(modelValue == option.value)"

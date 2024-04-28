@@ -6,6 +6,7 @@
     <FormFieldLabel
       :disabled="disabled"
       :errorMessage="errorMessage"
+      :idFor="idFor"
       :label="label"
       :required="required"
       :styleTokens="styleTokens"
@@ -21,8 +22,8 @@
         }"
         :id="idFor"
         :name="idFor"
-        :aria-required="required"
-        :aria-invalid="errorMessage"
+        :aria-invalid="!!errorMessage"
+        :aria-required="!!required"
         :data-test="idFor"
         :data-value="dataValue(modelValue)"
         :disabled="disabled"

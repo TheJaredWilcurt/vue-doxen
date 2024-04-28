@@ -24,7 +24,6 @@
     </div>
     <CodeBox
       :code="code"
-      :language="code.startsWith('<') ? 'xml' : 'javascript'"
       :styleTokens="styleTokens"
     />
   </div>

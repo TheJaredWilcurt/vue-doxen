@@ -157,6 +157,39 @@ export const createRadioIdFor = function (option, label) {
   return replaceWeirdCharacters(id);
 };
 
+/**
+ * This JSON.stringify's a given value, then we clean up the formatting,
+ * swap double and single quotes, etc.
+ *
+ * @param  {Array|Object} value   Any Object or Array
+ * @param  {string}       indent  A string to use for indentation starting with a return
+ * @return {string}               The formatted object as a string
+ */
+export const deJSONify = function (value, indent) {
+  if (
+    value &&
+    (
+      Array.isArray(value) ||
+      typeof(value) === 'object'
+    )
+  ) {
+    value = JSON.stringify(value, null, 2);
+    // Remove quotes from keys
+    value = value.replace(/"(\w+)"\s*:/g, '$1:');
+    // Re-indent
+    value = value.split('\n').join(indent);
+    // Save escaped double-quotes
+    value = value.split('\\"').join('SLASH_SLASH_DOUBLE_QUOTE');
+    // Escape existing single-quotes
+    value = value.split('\'').join('\\\'');
+    // Convert double-quotes to single-quotes
+    value = value.split('"').join('\'');
+    // Re-insert unescaped double quotes
+    value = value.split('SLASH_SLASH_DOUBLE_QUOTE').join('"');
+  }
+  return value;
+};
+
 export const processDemos = function (demos) {
   const processed = {};
   if (!demos || typeof(demos) !== 'object' || Array.isArray(demos)) {
