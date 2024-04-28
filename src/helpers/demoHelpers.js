@@ -145,6 +145,27 @@ export const typeToString = function (type) {
   return type;
 };
 
+export const combinePropsAndPropsToDemo = function (propsToDemo, componentProps) {
+  const props = {};
+  for (const propName in propsToDemo) {
+    props[propName] = {
+      ...propsToDemo[propName]
+    };
+  }
+  if (
+    typeof(componentProps) === 'object' &&
+    !Array.isArray(componentProps)
+  ) {
+    for (const propName in componentProps) {
+      props[propName] = {
+        ...props[propName],
+        ...componentProps[propName]
+      };
+    }
+  }
+  return props;
+};
+
 export const autoGeneratePlaygroundProps = function (props, styleTokens) {
   const playgroundProps = {};
   if (Array.isArray(props) || typeof(props) !== 'object' || !props) {
@@ -156,7 +177,9 @@ export const autoGeneratePlaygroundProps = function (props, styleTokens) {
     const type = typeToString(typeConstructor);
     const name = _startCase(propName);
 
-    if (propName === 'modelValue') {
+    if (prop.component) {
+      playgroundProps[propName] = prop;
+    } else if (propName === 'modelValue') {
       playgroundProps.modelValue = {
         component: DoxenPlainText,
         props: {

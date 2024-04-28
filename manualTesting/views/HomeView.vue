@@ -27,6 +27,14 @@
     >
       HELL NO! God that is so annoying, right? I'm looking at YOU <em>Storybook</em> and <em>Vue-StyleGuidest</em>! With Vue-Doxen you can <em>optionally</em> import in a very basic stylesheet we ship with the library to handle simple layout with little emphasis on aesthetics. Or you can pass in your own classes to be applied using the <code>styleTokens</code> prop.
     </TitleParagraph>
+
+    <TitleParagraph title="Why is there a dog?">
+      This is a Documentation tool to help you write your "docs". "Docs" sounds like "Doxen", which is the shortened version of the dog breed "Dachshund". So we have a Dachshund dog in the logo.
+    </TitleParagraph>
+
+    <TitleParagraph title="Can I pet the dog?">
+      Yes, just don't overdo it.
+    </TitleParagraph>
   </div>
 </template>
 

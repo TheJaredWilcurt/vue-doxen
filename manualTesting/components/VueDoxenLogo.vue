@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     bark: async function () {
-      if (this.borkCount < this.limit + 4) {
+      if (!this.exhausted) {
         const bark = new Audio('/vue-doxen/bark.mp3');
         await bark.play();
         setTimeout(() => { this.barking = true; }, 100);

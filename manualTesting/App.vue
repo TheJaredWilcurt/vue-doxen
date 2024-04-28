@@ -19,7 +19,7 @@
         <h2 class="docs-sub-title">Components</h2>
 
         <RouterLink
-          v-for="(demo, demoName) in componentsToDemo"
+          v-for="(demo, demoName) in componentsToListInSidebar"
           :to="{
             name: 'components',
             params: { component: demoName }
@@ -36,7 +36,7 @@
         />
       </main>
     </div>
-    <footer aria-label="footer">
+    <footer class="docs-page" aria-label="footer">
       <a class="github" href="https://GitHub.com/TheJaredWilcurt/vue-doxen">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33">
           <path
@@ -56,7 +56,7 @@ import { styleTokensBuiltIn } from '@/library.js';
 import StyleSwapper from '@@@/components/StyleSwapper.vue';
 import VueDoxenLogo from '@@@/components/VueDoxenLogo.vue';
 
-import { componentsToDemo } from '@@@/helpers/index.js';
+import { componentsToListInSidebar } from '@@@/demos/index.js';
 
 export default {
   name: 'App',
@@ -65,7 +65,7 @@ export default {
     VueDoxenLogo
   },
   constants: {
-    componentsToDemo,
+    componentsToListInSidebar,
     links: {
       home: 'Home',
       gettingStarted: 'Getting Started',

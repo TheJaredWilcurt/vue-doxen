@@ -1,7 +1,7 @@
 <template>
   <ul v-bind="applyStyleTokens({ propsDocumentationUl: true })">
     <li
-      v-for="(value, prop) in component.props"
+      v-for="(value, prop) in props"
       v-bind="applyStyleTokens({ propsDocumentationLi: true })"
       :key="prop"
     >
@@ -84,7 +84,10 @@
 
 <script>
 import { humanList, wrapString } from '@/helpers/componentHelpers.js';
-import { typeToString } from '@/helpers/demoHelpers.js';
+import {
+  combinePropsAndPropsToDemo,
+  typeToString
+} from '@/helpers/demoHelpers.js';
 import { styleTokens } from '@/helpers/props.js';
 import { dataValue } from '@/helpers/snapshotHelpers.js';
 
@@ -100,6 +103,10 @@ export default {
   mixins: [applyStyleTokens],
   props: {
     component: {
+      type: Object,
+      required: true
+    },
+    propsToDemo: {
       type: Object,
       required: true
     },
@@ -120,6 +127,11 @@ export default {
         return value();
       }
       return dataValue(value);
+    }
+  },
+  computed: {
+    props: function () {
+      return combinePropsAndPropsToDemo(this.propsToDemo, this.component.props);
     }
   }
 };
