@@ -16,7 +16,7 @@ export const myComponentDemo = {
     },
     /* Any prop not defined here will be automatically
      * added to the props playground using simple Vue-Doxen
-     * provided component.
+     * provided components.
      */
   },
   slotsToDemo: {
