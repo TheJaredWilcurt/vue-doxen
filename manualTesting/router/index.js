@@ -6,42 +6,42 @@ import {
 
 const routes = [
   {
-    path: '/:pathMatch(.*)*',
+    path: '/vue-doxen/:pathMatch(.*)*',
     name: '404',
     component: () => import('@@@/views/NotFoundView.vue')
   },
   {
-    path: '/',
+    path: '/vue-doxen/',
     name: 'home',
     component: () => import('@@@/views/HomeView.vue')
   },
   {
-    path: '/getting-started',
+    path: '/vue-doxen/getting-started',
     name: 'gettingStarted',
     component: () => import('@@@/views/GettingStartedView.vue')
   },
   {
-    path: '/demo-files',
+    path: '/vue-doxen/demo-files',
     name: 'demoFiles',
     component: () => import('@@@/views/DemoFilesView.vue')
   },
   {
-    path: '/documenting',
+    path: '/vue-doxen/documenting',
     name: 'documenting',
     component: () => import('@@@/views/DocumentingView.vue')
   },
   {
-    path: '/styles',
+    path: '/vue-doxen/styles',
     name: 'styles',
     component: () => import('@@@/views/StylingView.vue')
   },
   {
-    path: '/vue-router',
+    path: '/vue-doxen/vue-router',
     name: 'vueRouter',
     component: () => import('@@@/views/VueRouterView.vue')
   },
   {
-    path: '/components/:component',
+    path: '/vue-doxen/components/:component',
     name: 'components',
     component: () => import('@@@/views/ComponentsView.vue'),
     props: (route) => ({
