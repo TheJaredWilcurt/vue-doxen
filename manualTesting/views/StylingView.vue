@@ -23,8 +23,20 @@
     <div class="doxen-form-field-dropdown">
       <DoxenDropdown
         v-model="selectedTheme"
-        label="Code Themes"
+        :label="codeThemesLabel"
         :options="codeThemesOptions"
+        :styleTokens="styleTokens"
+      />
+      <DoxenDropdown
+        v-model="lightDarkThemes"
+        label="Light/Dark"
+        :options="lightDarkOptions"
+        :styleTokens="styleTokens"
+      />
+      <DoxenCheckbox
+        v-model="onlyA11yThemes"
+        label="WCGA 2 AA"
+        name="Passes"
         :styleTokens="styleTokens"
       />
     </div>
@@ -57,6 +69,7 @@ import { styleTokens } from '@/helpers/props.js';
 
 import CodeBox from '@/components/CodeBox.vue';
 import CodeSwapper from '@/components/CodeSwapper.vue';
+import DoxenCheckbox from '@/components/formFields/DoxenCheckbox.vue';
 import DoxenDropdown from '@/components/formFields/DoxenDropdown.vue';
 
 import { codeThemesOptions } from '@@@/helpers/codeThemes.js';
@@ -95,22 +108,63 @@ export default {
   components: {
     CodeBox,
     CodeSwapper,
+    DoxenCheckbox,
     DoxenDropdown
   },
   props: {
     styleTokens
   },
   constants: {
-    codeThemesOptions,
     JAVASCRIPT_EXAMPLE,
     VUE_EXAMPLE
   },
   data: function () {
     return {
+      onlyA11yThemes: false,
+      lightDarkThemes: 'both',
       selectedTheme: ''
     };
   },
   computed: {
+    codeThemesLabel: function () {
+      return [
+        'Code Themes (',
+        this.codeThemesOptions.length,
+        '/',
+        codeThemesOptions.length,
+        ')'
+      ].join('');
+    },
+    lightDarkOptions: function () {
+      const options = [
+        'Both',
+        'Light',
+        'Dark'
+      ];
+      return options.map((name) => {
+        return {
+          name,
+          value: name.toLowerCase()
+        };
+      });
+    },
+    codeThemesOptions: function () {
+      return codeThemesOptions
+        .filter((theme) => {
+          if (this.onlyA11yThemes) {
+            return theme.a11y;
+          }
+          return true;
+        })
+        .filter((theme) => {
+          if (this.lightDarkThemes === 'light') {
+            return theme.name.endsWith('(Light)');
+          } else if (this.lightDarkThemes === 'dark') {
+            return theme.name.endsWith('(Dark)');
+          }
+          return true;
+        });
+    },
     linkThemeCode: function () {
       if (!this.selectedTheme) {
         return '';
