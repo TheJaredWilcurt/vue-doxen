@@ -12,7 +12,7 @@
       :styleTokens="styleTokens"
     />
     <div
-      v-text="deJSONify(modelValue)"
+      v-text="modelValue"
       v-bind="applyStyleTokens({ doxenPlainText: true })"
     ></div>
     <FormFieldFooter
@@ -26,10 +26,7 @@
 </template>
 
 <script>
-import {
-  createIdFor,
-  deJSONify
-} from '@/helpers/componentHelpers.js';
+import { createIdFor } from '@/helpers/componentHelpers.js';
 import {
   createDisabledProp,
   createErrorMessageProp,
@@ -51,7 +48,7 @@ const COMPONENT_NAME = 'DoxenPlainText';
 const disabled = createDisabledProp('radio buttons');
 const errorMessage = createErrorMessageProp('radio buttons');
 const message = createMessageProp('radio buttons');
-const modelValue = createModelValueProp([String, Number, Boolean]);
+const modelValue = createModelValueProp([String, Number, Boolean, Object, Array]);
 const options = createOptionsProp(COMPONENT_NAME);
 
 export default {
@@ -71,9 +68,6 @@ export default {
     options,
     required,
     styleTokens
-  },
-  methods: {
-    deJSONify
   },
   computed: {
     uniqueId: function () {

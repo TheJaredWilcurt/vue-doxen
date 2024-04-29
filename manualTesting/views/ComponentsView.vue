@@ -13,11 +13,7 @@ import { VueDoxen } from '@/library.js';
 
 import { styleTokens } from '@/helpers/props.js';
 
-import { createDemos } from '@@@/demos/createDemos.js';
-import {
-  componentsToDemoWithStyleTokens,
-  demos
-} from '@@@/demos/index.js';
+import { createDemos } from '@@@/demos/index.js';
 
 export default {
   name: 'ComponentsView',
@@ -34,11 +30,7 @@ export default {
   computed: {
     demos: function () {
       const tokens = _cloneDeep(this.styleTokens);
-      const demosWithStyleTokens = createDemos(componentsToDemoWithStyleTokens, tokens);
-      return {
-        ...demos,
-        ...demosWithStyleTokens
-      };
+      return createDemos(tokens);
     }
   }
 };

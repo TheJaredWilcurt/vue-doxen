@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import { computed, defineProps, ref } from 'vue';
+import { computed, ref } from 'vue';
 
 import CodeBox from '@/components/CodeBox.vue';
 
