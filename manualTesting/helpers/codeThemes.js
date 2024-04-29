@@ -228,10 +228,6 @@ export const codeThemesOptions = [
     value: 'dark'
   },
   {
-    name: 'Darkula',
-    value: 'darkula'
-  },
-  {
     name: 'Default',
     value: 'default'
   },
