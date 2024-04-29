@@ -37,8 +37,12 @@ export const DEMO_FILE_USAGE_EXAMPLE = `
 <script>
 import { VueDoxen } from 'vue-doxen';
 
+// Demo files
 import { myComponentDemo } from '../demos/myComponentDemo.js';
 import { anotherDemo } from '../demos/anotherDemo.js';
+
+// Components without demo files
+import ComponentA from '../components/ComponentA.vue';
 
 export default {
   name: 'DocumentationPage',
@@ -52,9 +56,11 @@ export default {
   },
   computed: {
     demos: function () {
+      // Both demos and components can be passed in
       return {
         myComponentDemo,
-        anotherDemo
+        anotherDemo,
+        ComponentA
       };
     }
   }
@@ -75,8 +81,12 @@ import { computed, ref } from 'vue';
 
 import { VueDoxen } from 'vue-doxen';
 
+// Demo files
 import { myComponentDemo } from '../demos/myComponentDemo.js';
 import { anotherDemo } from '../demos/anotherDemo.js';
+
+// Components without demo files
+import ComponentA from '../components/ComponentA.vue';
 
 export default {
   name: 'DocumentationPage',
@@ -87,9 +97,11 @@ export default {
     const selectedDemo = ref('myComponentDemo');
 
     const demos = computed(() => {
+      // Both demos and components can be passed in
       return {
         myComponentDemo,
-        anotherDemo
+        anotherDemo,
+        ComponentA
       };
     });
 
@@ -115,15 +127,21 @@ import { computed, ref } from 'vue';
 
 import { VueDoxen } from 'vue-doxen';
 
+// Demo files
 import { myComponentDemo } from '../demos/myComponentDemo.js';
 import { anotherDemo } from '../demos/anotherDemo.js';
+
+// Components without demo files
+import ComponentA from '../components/ComponentA.vue';
 
 const selectedDemo = ref('myComponentDemo');
 
 const demos = computed(() => {
+  // Both demos and components can be passed in
   return {
     myComponentDemo,
-    anotherDemo
+    anotherDemo,
+    ComponentA
   };
 });
 </script>
@@ -138,7 +156,7 @@ export const myComponentDemo = {
     'default',
     'footer'
   ]
-}
+};
 `.trim();
 
 export const SLOTS_DEMO_OBJECT_EXAMPLE = `
@@ -150,7 +168,7 @@ export const myComponentDemo = {
     default: 'This appears <strong>above</strong> the component.',
     footer: 'This appears <strong>below</strong> the component.'
   }
-}
+};
 `.trim();
 
 export const SLOTS_OPTIONS_ARRAY_EXAMPLE = `
