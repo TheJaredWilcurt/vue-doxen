@@ -6,6 +6,10 @@ import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
 
 const __dirname = import.meta.dirname;
+let publicPath = '/';
+if (process.env.NODE_ENV === 'production') {
+  publicPath = '/my-project/';
+}
 
 export default defineConfig({
   base: '/vue-doxen',
@@ -34,6 +38,7 @@ export default defineConfig({
     include: ['axe-core']
   },
   plugins: [vue()],
+  publicPath,
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

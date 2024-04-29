@@ -10,6 +10,7 @@
     "build": "npm run build:library && npm run build:docs",
     "build:docs": "vite build --config vite.config.docs.js",
     "build:library": "vite build --config vite.config.lib.js",
+    "postbuild": "node ./scripts/postbuild.js",
     "lint": "eslint --ext .js,.vue --config=.eslintrc.cjs src manualTesting vite.config.*.js .eslintrc.cjs",
     "fix": "eslint --fix --ext .js,.vue --config=.eslintrc.cjs src manualTesting vite.config.*.js .eslintrc.cjs"
   },
