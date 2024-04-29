@@ -1,7 +1,7 @@
 /* eslint-disable-next-line import/no-unresolved */
 import {
   createRouter,
-  createWebHashHistory
+  createWebHistory
 } from 'vue-router';
 
 const routes = [
@@ -72,7 +72,7 @@ function scrollBehavior (to, from, savedPosition) {
 }
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   scrollBehavior,
   routes
 });
