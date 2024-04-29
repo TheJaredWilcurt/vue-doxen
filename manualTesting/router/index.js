@@ -1,47 +1,47 @@
 /* eslint-disable-next-line import/no-unresolved */
 import {
   createRouter,
-  createWebHistory
+  createWebHashHistory
 } from 'vue-router';
 
 const routes = [
   {
-    path: '/vue-doxen/:pathMatch(.*)*',
+    path: '/:pathMatch(.*)*',
     name: '404',
     component: () => import('@@@/views/NotFoundView.vue')
   },
   {
-    path: '/vue-doxen/',
+    path: '/',
     name: 'home',
     component: () => import('@@@/views/HomeView.vue')
   },
   {
-    path: '/vue-doxen/getting-started',
+    path: '/getting-started',
     name: 'gettingStarted',
     component: () => import('@@@/views/GettingStartedView.vue')
   },
   {
-    path: '/vue-doxen/demo-files',
+    path: '/demo-files',
     name: 'demoFiles',
     component: () => import('@@@/views/DemoFilesView.vue')
   },
   {
-    path: '/vue-doxen/documenting',
+    path: '/documenting',
     name: 'documenting',
     component: () => import('@@@/views/DocumentingView.vue')
   },
   {
-    path: '/vue-doxen/styles',
+    path: '/styles',
     name: 'styles',
     component: () => import('@@@/views/StylingView.vue')
   },
   {
-    path: '/vue-doxen/vue-router',
+    path: '/vue-router',
     name: 'vueRouter',
     component: () => import('@@@/views/VueRouterView.vue')
   },
   {
-    path: '/vue-doxen/components/:component',
+    path: '/components/:component',
     name: 'components',
     component: () => import('@@@/views/ComponentsView.vue'),
     props: (route) => ({
@@ -72,7 +72,7 @@ function scrollBehavior (to, from, savedPosition) {
 }
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   scrollBehavior,
   routes
 });
