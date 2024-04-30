@@ -7,7 +7,10 @@
       formFieldLegendError: errorMessage
     })"
   >
-    <label :for="idFor">
+    <label
+      v-bind="applyStyleTokens({ formFieldLabel: true })"
+      :for="idFor"
+    >
       {{ label }}:
     </label>
     <span

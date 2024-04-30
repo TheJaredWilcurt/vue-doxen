@@ -4,9 +4,107 @@
 
     <nav>
       <ul>
+        <li><a href="#why-tokens">Why use style tokens?</a></li>
+        <li><a href="#what-tokens">What are style tokens?</a></li>
+        <li><a href="#using-tokens">Using style tokens</a></li>
+        <li><a href="#built-in-tokens">Built in token maps</a></li>
         <li><a href="#syntax">Code Syntax Highlighting</a></li>
       </ul>
     </nav>
+
+
+    <h2 id="why-tokens">Why use style tokens?</h2>
+
+    <h3>Style tokens solve the following scenarios:</h3>
+
+    <ul>
+      <li>Provide optional basic built in CSS</li>
+      <li>Allow overriding basic built-in classes</li>
+      <li>The CSS is externalized and can be skipped if not needed</li>
+      <li>You can remove all classes from all elements if not needed</li>
+      <li>Allows customizing the class names to whatever you want</li>
+      <li>Allows having many classes applied on a single element (<strong>Tailwind</strong>)</li>
+      <li>Can use existing CSS class names (<strong>Bootstrap</strong>)</li>
+      <li>Can use existing CSS component classes (<strong>Vuetify</strong>)</li>
+    </ul>
+
+
+    <h2 id="what-tokens">What are style tokens?</h2>
+
+    <p>Every single HTML element in a Vue-Doxen component has the following HTML attributes:
+    </p>
+
+    <ul>
+      <li>
+        <code>data-style-tokens=""</code>
+        <ul>
+          <li>This lists every token that can be applied to the element.</li>
+        </ul>
+      </li>
+      <li>
+        <code>data-applied-style-tokens=""</code>
+        <ul>
+          <li>This lists the currently applied tokens. For example, in a series of tabs, a tab button may have a token applied only when it is active/selected.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>
+      All Vue-Doxen components accept a <code>styleTokens</code> prop of an object to add class names to elements when the associated token is applied.
+    </p>
+
+
+
+    <h2 id="using-tokens">Using style tokens</h2>
+
+    <p>To apply your own classes to an HTML element in Vue-Doxen:</p>
+
+    <ol>
+      <li>Right-Click &gt; Inspect Element</li>
+      <li>Copy the list of <code>data-style-tokens</code> on the element</li>
+      <li>Put the tokens in an object as keys, with the values for each being the classes you want to apply.</li>
+    </ol>
+
+    <p><strong>Example:</strong></p>
+
+    <CodeBox
+      :code="STYLE_TOKEN_USAGE_EXAMPLE"
+      :styleTokens="styleTokens"
+    />
+
+    <p>
+      Notice how a token can have as many classes applied to it as you want. So if you want to use atomic CSS classes (like in Tailwind), you can!
+    </p>
+
+    <p>
+      Classes will be dynamically applied based on component state. For example, if the `:disabled="true"` prop is passed in to a form field component it will have a <code>formFieldLegend</code> token and also a <code>formFieldLegendDisabled</code>.
+    </p>
+
+
+    <h2 id="built-in-tokens">Using the built in token maps</h2>
+
+    <p>
+      Instead of passing your own classes in as tokens, you can use one of the pre-made token maps that ships with Vue-Doxen. At the top of this page there is a dropdown to switch between them so you can preview them on this website.
+    </p>
+
+    <h3>Usage:</h3>
+
+    <p>Import the pre-made tokens you want to use (and any components):</p>
+
+    <CodeBox
+      :code="BUILT_IN_TOKEN_IMPORT_EXAMPLE"
+      :styleTokens="styleTokens"
+    />
+
+    <p>Then pass them in to the component:</p>
+
+    <CodeBox
+      :code="BUILT_IN_TOKEN_USAGE_EXAMPLE"
+      :styleTokens="styleTokens"
+    />
+
+    <p>The <code>styleTokensBuiltIn</code> is a special map. Each token has a name-spaced class name with no styling applied to it. So you can use these class names to add your styles in a predictable manner. The pattern they follow is, convert the token to <code>kebab-case</code>, lowercase it, and prefix with <code>doxen-</code>. So the token <code>formFieldRadioDial</code> would have a <code>doxen-form-field-radio-dial</code> class associated to it when using this token map. You can then target that class and set it to have whatever CSS you want.</p>
+
 
     <h2 id="syntax">Code Syntax Highlighting</h2>
 
@@ -74,6 +172,30 @@ import DoxenDropdown from '@/components/formFields/DoxenDropdown.vue';
 
 import { codeThemesOptions } from '@@@/helpers/codeThemes.js';
 
+const STYLE_TOKEN_USAGE_EXAMPLE = `
+<DoxenRadioDials
+  :styleTokens="{
+    formFieldRadioDialContainer: 'form-radio',
+    formFieldRadioDial: 'form-radio-input',
+    formFieldRadioDialNameLabel: 'form-radio-label form-label'
+  }"
+/>
+`.trim();
+const BUILT_IN_TOKEN_IMPORT_EXAMPLE = `
+import {
+  styleTokensBootstrap5,
+  styleTokensBuiltIn,
+  styleTokensEmpty,
+  VueDoxen
+} from 'vue-doxen';
+`.trim();
+const BUILT_IN_TOKEN_USAGE_EXAMPLE = `
+<VueDoxen
+  v-model="selectedDemo"
+  :demos="demos"
+  :styleTokens="styleTokensBootstrap5"
+/>
+`.trim();
 const VUE_EXAMPLE = `
 <ExampleComponent
   v-model="myValue"
@@ -87,7 +209,6 @@ const VUE_EXAMPLE = `
   </footer>
 </ExampleComponent>
 `.trim();
-
 const JAVASCRIPT_EXAMPLE = `
 const exampleComponentProps = {
   label: 'Label',
@@ -115,14 +236,17 @@ export default {
     styleTokens
   },
   constants: {
+    BUILT_IN_TOKEN_IMPORT_EXAMPLE,
+    BUILT_IN_TOKEN_USAGE_EXAMPLE,
     JAVASCRIPT_EXAMPLE,
+    STYLE_TOKEN_USAGE_EXAMPLE,
     VUE_EXAMPLE
   },
   data: function () {
     return {
       onlyA11yThemes: false,
       lightDarkThemes: 'both',
-      selectedTheme: ''
+      selectedTheme: 'ir-black'
     };
   },
   computed: {

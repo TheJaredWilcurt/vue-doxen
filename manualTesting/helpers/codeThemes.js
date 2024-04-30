@@ -350,7 +350,7 @@ export const codeThemesOptions = [
     value: 'hopscotch'
   },
   {
-    a11y: true,
+    a11y: false,
     name: 'Hybrid (Dark)',
     value: 'hybrid'
   },

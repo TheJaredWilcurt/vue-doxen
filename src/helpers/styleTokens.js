@@ -50,6 +50,7 @@ export const styleTokensBuiltIn = {
   formFieldDropdownOption: 'doxen-form-field-dropdown-option',
   formFieldError: 'doxen-form-field-error',
   formFieldFieldset: 'doxen-form-field-fieldset',
+  formFieldLabel: 'doxen-form-field-label',
   formFieldLegend: 'doxen-form-field-legend',
   formFieldLegendDisabled: 'doxen-form-field-legend-disabled',
   formFieldLegendError: 'doxen-form-field-legend-error',
