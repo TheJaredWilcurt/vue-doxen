@@ -10,10 +10,15 @@
         <li><a href="#using-tokens">Using style tokens</a></li>
         <li><a href="#built-in-tokens">Built in token maps</a></li>
         <li><a href="#syntax">Code Syntax Highlighting</a></li>
+        <li><a href="#contributing">Contributing tokens</a></li>
       </ul>
     </nav>
 
-    <h2 id="supplied-css">Using the supplied CSS file</h2>
+
+    <hr />
+
+
+    <h2 id="supplied-css" class="docs-title">Using the supplied CSS file</h2>
 
     <p>
       Vue-Doxen ships with a <em>very tiny</em> (<1KB gzipped) CSS file that applies <em>very simple</em> styling to the page using the lowest specificity possible (<code>:where([data-style-token-name]){}</code>), so your styles should always win out if targeting the same thing. The styling is just gentle nudges to make Vue-Doxen look a little better in most scenarios. You can toggle it on this website by clicking the <strong>"Doxen Stylesheet: Include"</strong> checkbox at the top of the page. This file is <strong>COMPLETELY OPTIONAL</strong>, if your app looks beter without these nudges, don't apply them. You can always customize the styling of anything in Vue-Doxen using Style Tokens.
@@ -32,7 +37,10 @@
     />
 
 
-    <h2 id="why-tokens">Why use style tokens?</h2>
+    <hr />
+
+
+    <h2 id="why-tokens" class="docs-title">Why use style tokens?</h2>
 
     <h3>Style tokens solve the following scenarios:</h3>
 
@@ -48,7 +56,10 @@
     </ul>
 
 
-    <h2 id="what-tokens">What are style tokens?</h2>
+    <hr />
+
+
+    <h2 id="what-tokens" class="docs-title">What are style tokens?</h2>
 
     <p>Every single HTML element in a Vue-Doxen component has the following HTML attributes:
     </p>
@@ -73,7 +84,10 @@
     </p>
 
 
-    <h2 id="using-tokens">Using style tokens</h2>
+    <hr />
+
+
+    <h2 id="using-tokens" class="docs-title">Using style tokens</h2>
 
     <p>To apply your own classes to an HTML element in Vue-Doxen:</p>
 
@@ -95,11 +109,14 @@
     </p>
 
     <p>
-      Classes will be dynamically applied based on component state. For example, if the `:disabled="true"` prop is passed in to a form field component it will have a <code>formFieldLegend</code> token and also a <code>formFieldLegendDisabled</code>.
+      Classes will be dynamically applied based on component state. For example, if the <code>:disabled="true"</code> prop is passed in to a form field component it will have a <code>formFieldLegend</code> token and also a <code>formFieldLegendDisabled</code>. To see a list of all class names used by this built in token map, <a href="https://github.com/TheJaredWilcurt/vue-doxen/blob/main/src/helpers/styleTokens.js#L21" target="_blank">consult the source code</a>.
     </p>
 
 
-    <h2 id="built-in-tokens">Using the built in token maps</h2>
+    <hr />
+
+
+    <h2 id="built-in-tokens" class="docs-title">Using the built in token maps</h2>
 
     <p>
       Instead of passing your own classes in as tokens, you can use one of the pre-made token maps that ships with Vue-Doxen. At the top of this page there is a dropdown to switch between them so you can preview them on this website.
@@ -124,7 +141,10 @@
     <p>The <code>styleTokensBuiltIn</code> is a special map. Each token has a name-spaced class name with no styling applied to it. So you can use these class names to add your styles in a predictable manner. The pattern they follow is, convert the token to <code>kebab-case</code>, lowercase it, and prefix with <code>doxen-</code>. So the token <code>formFieldRadioDial</code> would have a <code>doxen-form-field-radio-dial</code> class associated to it when using this token map. You can then target that class and set it to have whatever CSS you want.</p>
 
 
-    <h2 id="syntax">Code Syntax Highlighting</h2>
+    <hr />
+
+
+    <h2 id="syntax" class="docs-title">Code Syntax Highlighting</h2>
 
     <p>
       Component demos include Vue and JavaScript code examples (see below) that are updated as you interact with the Props Playground.
@@ -177,6 +197,22 @@
       fileName="ExampleComponent.vue"
       :styleTokens="styleTokens"
     />
+
+
+    <hr />
+
+
+    <h2 id="contributing" class="docs-title">Contributing Style Tokens</h2>
+
+    <p>
+      As you can see at the top of this page, we have two dropdowns, one for loading different CSS libraries, and one for loading different Style Tokens. The tokens demo'd in the dropdown ship with the Vue-Doxen as a time saver for those using those CSS libraries. If you're going to use Vue-Doxen with a popular CSS or Component library not already supported, you can submit your Style Tokens map in a <a href="https://GitHub.com/TheJaredWilcurt/vue-doxen/issues" target="_blank">GitHub issue</a>, or <a href="https://GitHub.com/TheJaredWilcurt/vue-doxen" target="_blank">PR</a>, this allows others to save time when using Vue-Doxen with that library.
+    </p>
+
+    <ul>
+      <li>Style token objects live in <code>/src/helpers/styleTokens.js</code></li>
+      <li>They are exported out from <code>/src/library.js</code></li>
+      <li>They are demo'd in <code>/manualTesting/components/StyleSwapper.vue</code></li>
+    </ul>
   </div>
 </template>
 

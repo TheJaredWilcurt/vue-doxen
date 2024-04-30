@@ -14,7 +14,7 @@
  */
 
 /**
- * The basic built in styles. Meant to have very little aesthetic impact and mostly give simple layout improvements.
+ * A predictable map of tokens to class names. These classes are not used anywhere, they exist to make styling easier for those writing their own CSs.
  *
  * @type {Object}
  */
