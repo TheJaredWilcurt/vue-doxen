@@ -4,6 +4,7 @@
 
     <nav>
       <ul>
+        <li><a href="#supplied-css">Using the supplied CSS file</a></li>
         <li><a href="#why-tokens">Why use style tokens?</a></li>
         <li><a href="#what-tokens">What are style tokens?</a></li>
         <li><a href="#using-tokens">Using style tokens</a></li>
@@ -11,6 +12,24 @@
         <li><a href="#syntax">Code Syntax Highlighting</a></li>
       </ul>
     </nav>
+
+    <h2 id="supplied-css">Using the supplied CSS file</h2>
+
+    <p>
+      Vue-Doxen ships with a <em>very tiny</em> (<1KB gzipped) CSS file that applies <em>very simple</em> styling to the page using the lowest specificity possible (<code>:where([data-style-token-name]){}</code>), so your styles should always win out if targeting the same thing. The styling is just gentle nudges to make Vue-Doxen look a little better in most scenarios. You can toggle it on this website by clicking the <strong>"Doxen Stylesheet: Include"</strong> checkbox at the top of the page. This file is <strong>COMPLETELY OPTIONAL</strong>, if your app looks beter without these nudges, don't apply them. You can always customize the styling of anything in Vue-Doxen using Style Tokens.
+    </p>
+
+    <CodeSwapper
+      :codeTypes="{
+        JavaScript: SUPPLIED_CSS_EXAMPLE,
+        HTML: SUPPLIED_CSS_CDN_EXAMPLE
+      }"
+      :fileName="{
+        JavaScript: 'main.js',
+        HTML: 'index.html'
+      }"
+      :styleTokens="styleTokens"
+    />
 
 
     <h2 id="why-tokens">Why use style tokens?</h2>
@@ -171,6 +190,18 @@ import DoxenDropdown from '@/components/formFields/DoxenDropdown.vue';
 
 import { codeThemesOptions } from '@@@/helpers/codeThemes.js';
 
+const SUPPLIED_CSS_EXAMPLE = `
+// If using a bundler like Vite or Webpack
+import 'vue-doxen/dist/vue-doxen.css';
+`.trim();
+const SUPPLIED_CSS_CDN_EXAMPLE = `
+<!-- Or import via CDN in your index.html -->
+<link
+  href="https://unpkg.com/vue-doxen/dist/vue-doxen.css"
+  rel="stylesheet"
+  type="text/css"
+/>
+`.trim();
 const STYLE_TOKEN_USAGE_EXAMPLE = `
 <DoxenRadioDials
   :styleTokens="{
@@ -239,6 +270,8 @@ export default {
     BUILT_IN_TOKEN_USAGE_EXAMPLE,
     JAVASCRIPT_EXAMPLE,
     STYLE_TOKEN_USAGE_EXAMPLE,
+    SUPPLIED_CSS_EXAMPLE,
+    SUPPLIED_CSS_CDN_EXAMPLE,
     VUE_EXAMPLE
   },
   data: function () {
