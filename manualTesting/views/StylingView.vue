@@ -21,7 +21,7 @@
     <h2 id="supplied-css" class="docs-title">Using the supplied CSS file</h2>
 
     <p>
-      Vue-Doxen ships with a <em>very tiny</em> (<1KB gzipped) CSS file that applies <em>very simple</em> styling to the page using the lowest specificity possible (<code>:where([data-style-token-name]){}</code>), so your styles should always win out if targeting the same thing. The styling is just gentle nudges to make Vue-Doxen look a little better in most scenarios. You can toggle it on this website by clicking the <strong>"Doxen Stylesheet: Include"</strong> checkbox at the top of the page. This file is <strong>COMPLETELY OPTIONAL</strong>, if your app looks beter without these nudges, don't apply them. You can always customize the styling of anything in Vue-Doxen using Style Tokens.
+      Vue-Doxen ships with a <em>very tiny</em> (&lt;1KB gzipped) CSS file that applies <em>very simple</em> styling to the page using the lowest specificity possible (<code>:where([data-style-token-name]){}</code>), so your styles should always win out if targeting the same thing. The styling is just gentle nudges to make Vue-Doxen look a little better in most scenarios. You can toggle it on this website by clicking the <strong>"Doxen Stylesheet: Include"</strong> checkbox at the top of the page. This file is <strong>COMPLETELY OPTIONAL</strong>, if your app looks beter without these nudges, don't apply them. You can always customize the styling of anything in Vue-Doxen using Style Tokens.
     </p>
 
     <CodeSwapper
@@ -61,7 +61,8 @@
 
     <h2 id="what-tokens" class="docs-title">What are style tokens?</h2>
 
-    <p>Every single HTML element in a Vue-Doxen component has the following HTML attributes:
+    <p>
+      Every single HTML element in a Vue-Doxen component has the following HTML attributes:
     </p>
 
     <ul>
@@ -138,7 +139,9 @@
       :styleTokens="styleTokens"
     />
 
-    <p>The <code>styleTokensBuiltIn</code> is a special map. Each token has a name-spaced class name with no styling applied to it. So you can use these class names to add your styles in a predictable manner. The pattern they follow is, convert the token to <code>kebab-case</code>, lowercase it, and prefix with <code>doxen-</code>. So the token <code>formFieldRadioDial</code> would have a <code>doxen-form-field-radio-dial</code> class associated to it when using this token map. You can then target that class and set it to have whatever CSS you want.</p>
+    <p>
+      The <code>styleTokensBuiltIn</code> is a special map. Each token has a name-spaced class name with no styling applied to it. So you can use these class names to add your styles in a predictable manner. The pattern they follow is, convert the token to <code>kebab-case</code>, lowercase it, and prefix with <code>doxen-</code>. So the token <code>formFieldRadioDial</code> would have a <code>doxen-form-field-radio-dial</code> class associated to it when using this token map. You can then target that class and set it to have whatever CSS you want.
+    </p>
 
 
     <hr />
