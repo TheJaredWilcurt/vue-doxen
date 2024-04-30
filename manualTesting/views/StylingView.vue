@@ -54,7 +54,6 @@
     </p>
 
 
-
     <h2 id="using-tokens">Using style tokens</h2>
 
     <p>To apply your own classes to an HTML element in Vue-Doxen:</p>
