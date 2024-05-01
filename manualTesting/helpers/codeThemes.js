@@ -10,7 +10,7 @@ export const codeThemesOptions = [
     value: 'a11y-light'
   },
   {
-    a11y: true,
+    a11y: false,
     name: 'Agate (Dark)',
     value: 'agate'
   },
@@ -265,7 +265,7 @@ export const codeThemesOptions = [
     value: 'brown_paper'
   },
   {
-    a11y: true,
+    a11y: false,
     name: 'CodePen Embed (Dark)',
     value: 'codepen-embed'
   },
@@ -295,7 +295,7 @@ export const codeThemesOptions = [
     value: 'docco'
   },
   {
-    a11y: true,
+    a11y: false,
     name: 'Dracula (Dark)',
     value: 'dracula'
   },
@@ -370,12 +370,12 @@ export const codeThemesOptions = [
     value: 'ir_black'
   },
   {
-    a11y: true,
+    a11y: false,
     name: 'ISBL Editor (Dark)',
     value: 'isbl-editor-dark'
   },
   {
-    a11y: true,
+    a11y: false,
     name: 'ISBL Editor (Light)',
     value: 'isbl-editor-light'
   },
@@ -395,12 +395,12 @@ export const codeThemesOptions = [
     value: 'lightfair'
   },
   {
-    a11y: true,
+    a11y: false,
     name: 'Magula (Light)',
     value: 'magula'
   },
   {
-    a11y: true,
+    a11y: false,
     name: 'Mono Blue (Light)',
     value: 'mono-blue'
   },
@@ -420,17 +420,17 @@ export const codeThemesOptions = [
     value: 'monokai_sublime'
   },
   {
-    a11y: true,
+    a11y: false,
     name: 'Night Owl (Dark)',
     value: 'night-owl'
   },
   {
-    a11y: true,
+    a11y: false,
     name: 'Nord (Dark)',
     value: 'nord'
   },
   {
-    a11y: true,
+    a11y: false,
     name: 'Obsidian (Dark)',
     value: 'obsidian'
   },
@@ -505,7 +505,7 @@ export const codeThemesOptions = [
     value: 'school_book'
   },
   {
-    a11y: true,
+    a11y: false,
     name: 'Shades of Purple (Dark)',
     value: 'shades-of-purple'
   },
@@ -535,7 +535,7 @@ export const codeThemesOptions = [
     value: 'sunburst'
   },
   {
-    a11y: true,
+    a11y: false,
     name: 'Tomorrow Night (Blue) (Dark)',
     value: 'tomorrow-night-blue'
   },

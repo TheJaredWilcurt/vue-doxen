@@ -4,6 +4,7 @@
 
     <nav>
       <ul>
+        <li><a href="#intent">Intent</a></li>
         <li><a href="#supplied-css">Using the supplied CSS file</a></li>
         <li><a href="#why-tokens">Why use style tokens?</a></li>
         <li><a href="#what-tokens">What are style tokens?</a></li>
@@ -18,10 +19,41 @@
     <hr />
 
 
+    <h2 id="intent" class="docs-title">Intent</h2>
+
+    <p>
+      It is our intent to allow full customization of the styles on your docs site, and to not <strong>require</strong> any styling be included.
+      Below we cover many different approaches of how to style Vue-Doxen.
+    </p>
+
+    <ul>
+      <li>
+        Some may be creating their own <strong>Design System</strong> and don't want any 3rd party CSS to affect the pixels on the screen.
+        <em>A fairly reasonable request</em> in my opinion. One which is flatly ignored by <em>other</em> component documentation tools.
+      </li>
+      <li>
+        Some may want some basic styling provided by the library to help with <strong>layout and affordance</strong>. So we provide a stylesheet for this.
+      </li>
+      <li>
+        Some may want each HTML element to have a class they can target and style themselves. So we provide a built in token map for this.
+      </li>
+      <li>
+        Some may want the ability to apply their own classes to any HTML element, so we allow passing in your own token map.
+      </li>
+      <li>
+        Some may want to use a popular library, like Bootstrap, and to use a pre-made token map provided by others in the community.
+        Which we also allow, however will need help from contributors to flesh out support for more libraries.
+      </li>
+    </ul>
+
+
+    <hr />
+
+
     <h2 id="supplied-css" class="docs-title">Using the supplied CSS file</h2>
 
     <p>
-      Vue-Doxen ships with a <em>very tiny</em> (&lt;1KB gzipped) CSS file that applies <em>very simple</em> styling to the page using the lowest specificity possible (<code>:where([data-style-token-name]){}</code>), so your styles should always win out if targeting the same thing. The styling is just gentle nudges to make Vue-Doxen look a little better in most scenarios. You can toggle it on this website by clicking the <strong>"Doxen Stylesheet: Include"</strong> checkbox at the top of the page. This file is <strong>COMPLETELY OPTIONAL</strong>, if your app looks beter without these nudges, don't apply them. You can always customize the styling of anything in Vue-Doxen using Style Tokens.
+      Vue-Doxen ships with a <em>very tiny</em> (&lt;1KB gzipped) CSS file that applies <em>very simple</em> styling to the page using the lowest specificity possible (<code>:where([data-style-token-name]){}</code>), so your styles should always win out if targeting the same thing. The styling is just gentle nudges to make Vue-Doxen look a little better in most scenarios. You can toggle it on this website by clicking the <strong>"Doxen Stylesheet: Include"</strong> checkbox at the top of the page. This file is <strong>COMPLETELY OPTIONAL</strong>, if your app looks better without these nudges, don't apply them. You can always customize the styling of anything in Vue-Doxen using Style Tokens.
     </p>
 
     <CodeSwapper
@@ -54,6 +86,10 @@
       <li>Can use existing CSS class names (<strong>Bootstrap</strong>)</li>
       <li>Can use existing CSS component classes (<strong>Vuetify</strong>)</li>
     </ul>
+
+    <p>
+      Though style tokens are not the best solution to many of these problems taken individually, they are the best solution that handles <strong>ALL</strong> of these scenarios.
+    </p>
 
 
     <hr />
@@ -111,6 +147,10 @@
 
     <p>
       Classes will be dynamically applied based on component state. For example, if the <code>:disabled="true"</code> prop is passed in to a form field component it will have a <code>formFieldLegend</code> token and also a <code>formFieldLegendDisabled</code>. To see a list of all class names used by this built in token map, <a href="https://github.com/TheJaredWilcurt/vue-doxen/blob/main/src/helpers/styleTokens.js#L21" target="_blank">consult the source code</a>.
+    </p>
+
+    <p>
+      Since components only check for the existence of the tokens they care about, you can actually store all tokens in one large object and pass that same object into any Vue-Doxen provided component.
     </p>
 
 
@@ -268,6 +308,7 @@ const BUILT_IN_TOKEN_USAGE_EXAMPLE = `
 const VUE_EXAMPLE = `
 <ExampleComponent
   v-model="myValue"
+  :amount="5"
   label="Label"
   :required="true"
   :styleTokens="{}"
@@ -279,7 +320,9 @@ const VUE_EXAMPLE = `
 </ExampleComponent>
 `.trim();
 const JAVASCRIPT_EXAMPLE = `
+/* Example Comment */
 const exampleComponentProps = {
+  amount: 5,
   label: 'Label',
   modelValue: myValue,
   required: true,

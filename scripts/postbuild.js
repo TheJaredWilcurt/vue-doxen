@@ -8,6 +8,6 @@ try {
   const notFoundPath = path.join(__dirname, '..', 'docs', '404.html');
   const indexContents = String(fs.readFileSync(indexPath));
   fs.writeFileSync(notFoundPath, indexContents);
-} catch (err) {
+} catch (error) {
   console.log('ERROR: Could not copy 404', error);
 }
