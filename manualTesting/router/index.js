@@ -68,7 +68,7 @@ function scrollBehavior (to, from, savedPosition) {
 
     // otherwise always scroll to the top of the page
     return new Promise((resolve) => {
-      resolve({ left: 0, top: 0 })
+      resolve({ left: 0, top: 0 });
     });
   }
 }
