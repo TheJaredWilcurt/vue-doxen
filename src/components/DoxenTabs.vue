@@ -40,7 +40,7 @@ export default {
     tabs: {
       type: Array,
       required: true,
-      example: `['Vue', 'JavaScript']`,
+      example: '[\'Vue\', \'JavaScript\']',
       validator: function (value) {
         if (!value || !value.length) {
           return false;
