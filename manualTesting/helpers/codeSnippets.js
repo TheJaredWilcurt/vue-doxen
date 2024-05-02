@@ -78,7 +78,6 @@ export const DEMO_FILE_USAGE_COMPOSITION_EXAMPLE = `
 
 <script>
 import { computed, ref } from 'vue';
-
 import { VueDoxen } from 'vue-doxen';
 
 // Demo files
@@ -124,7 +123,6 @@ export const DEMO_FILE_USAGE_SCRIPT_SETUP_EXAMPLE = `
 
 <script setup>
 import { computed, ref } from 'vue';
-
 import { VueDoxen } from 'vue-doxen';
 
 // Demo files
@@ -255,7 +253,6 @@ export const GETTING_STARTED_COMPOSITION_EXAMPLE = `
 
 <script>
 import { computed, ref } from 'vue';
-
 import { DoxenSidebar, VueDoxen } from 'vue-doxen';
 
 // Components you want to document
@@ -303,7 +300,6 @@ export const GETTING_STARTED_SCRIPT_SETUP_EXAMPLE = `
 
 <script setup>
 import { computed, ref } from 'vue';
-
 import { DoxenSidebar, VueDoxen } from 'vue-doxen';
 
 // Components you want to document
