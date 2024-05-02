@@ -98,10 +98,12 @@ export default {
     const selectedDemo = ref('myComponentDemo');
 
     const demos = computed(() => {
-      // Both demos and components can be passed in
+      // Both demos and components can be passed in.
       return {
         myComponentDemo,
         anotherDemo,
+        // If a component is passed in directly we will wrap it, like so: { component: ComponentA }.
+        // So all components automatically become demo objects internally.
         ComponentA
       };
     });
@@ -137,10 +139,12 @@ import ComponentA from '../components/ComponentA.vue';
 const selectedDemo = ref('myComponentDemo');
 
 const demos = computed(() => {
-  // Both demos and components can be passed in
+  // Both demos and components can be passed in.
   return {
     myComponentDemo,
     anotherDemo,
+    // If a component is passed in directly we will wrap it, like so: { component: ComponentA }.
+    // So all components automatically become demo objects internally.
     ComponentA
   };
 });

@@ -134,7 +134,7 @@ export const styleTokensBootstrap5 = {
   tabsButton: 'nav-link me-1',
   tabsButtonContainer: 'nav nav-tabs nav-item mt-3 mb-0',
   tabsButtonNotSelected: '',
-  tabsButtonSelected: 'active border-bottom-0',
+  tabsButtonSelected: 'active border-bottom-0 mb-0',
   // Demo
   propsPlaygroundForm: 'd-flex flex-wrap',
   // Sidebar
