@@ -11,8 +11,8 @@
     "build:docs": "vite build --config vite.config.docs.js",
     "build:library": "vite build --config vite.config.lib.js",
     "postbuild": "node ./scripts/postbuild.js",
-    "lint": "eslint --ext .js,.vue --config=.eslintrc.cjs src manualTesting vite.config.*.js .eslintrc.cjs",
-    "fix": "eslint --fix --ext .js,.vue --config=.eslintrc.cjs src manualTesting vite.config.*.js .eslintrc.cjs"
+    "lint": "eslint --ext .js,.vue --config=.eslintrc.cjs src scripts manualTesting vite.config.*.js .eslintrc.cjs",
+    "fix": "eslint --fix --ext .js,.vue --config=.eslintrc.cjs src scripts manualTesting vite.config.*.js .eslintrc.cjs"
   },
   "dependencies": {
     "@highlightjs/vue-plugin": "^2.1.0",
