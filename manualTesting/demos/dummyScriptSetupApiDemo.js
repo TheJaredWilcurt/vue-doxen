@@ -6,7 +6,7 @@ export const createDummyScriptSetupApiDemo = function (styleTokens) {
   return {
     component: DummyScriptSetupApi,
     name: 'Dummy Script Setup API',
-    description: 'This is an arbitrary test for Script Setup API components.',
+    description: 'This is an <strong>arbitrary test</strong> for Script Setup API components.',
     propsToDemo: {
       label: {
         allowed: ['potato', 'Greeting'],

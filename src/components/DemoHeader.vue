@@ -8,11 +8,11 @@
       v-text="title"
       v-bind="applyStyleTokens({ demoHeaderTitle: true })"
     ></h2>
-    <p
+    <div
       v-if="description"
-      v-text="description"
+      v-html="description"
       v-bind="applyStyleTokens({ demoHeaderDescription: true })"
-    ></p>
+    ></div>
   </div>
 </template>
 

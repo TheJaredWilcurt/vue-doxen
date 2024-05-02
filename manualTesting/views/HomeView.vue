@@ -17,7 +17,7 @@
       readMore="Read more about documenting your component"
       readMoreLink="documenting"
     >
-      You can simply add information into the component itself, so the documentation is right next to the code it is documenting. When defining a prop on your component, you can give it a <code>type</code> for example. This is an official part of Vue's API, however we can also add in a <code>description</code> for the prop, which is not part of Vue's official API, but also doesn't hurt anything either. Vue-Doxen will display this description for users when demoing your component.
+      We accept a "demo object" you pass in and your documentation can live there, alternatively it can also live right in the component, next to the code it is documenting, or a mix of both. When defining a prop on your component, you can give it a <code>type</code> for example. This is an official part of Vue's API, however we can also add in other information, like a <code>description</code> for the prop, which is not part of Vue's official API, but also doesn't hurt anything either. Vue-Doxen will display this description for users when demoing your component.
     </TitleParagraph>
 
     <TitleParagraph

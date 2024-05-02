@@ -56,10 +56,12 @@ export default {
   },
   computed: {
     demos: function () {
-      // Both demos and components can be passed in
+      // Both demos and components can be passed in.
       return {
         myComponentDemo,
         anotherDemo,
+        // If a component is passed in directly we will wrap it, like so: { component: ComponentA }.
+        // So all components automatically become demo objects internally.
         ComponentA
       };
     }
@@ -315,4 +317,38 @@ const demos = computed(() => {
   };
 });
 </script>
+`.trim();
+
+export const COMPONENT_DESCRIPTION_OPTIONS_EXAMPLE = `
+<script>
+export default {
+  description: 'Details about what your component does, and the context as to <strong>why it exists</strong>.'
+};
+</script>
+`.trim();
+
+export const COMPONENT_DESCRIPTION_DEMO_EXAMPLE = `
+import YourComponent from '../components/YourComponent.vue';
+
+export const yourComponentDemo = {
+  component: YourComponent,
+  description: 'Details about what your component does, and the context as to <strong>why it exists</strong>.'
+};
+`.trim();
+
+export const COMPONENT_NAME_OPTIONS_EXAMPLE = `
+<script>
+export default {
+  name: 'YourComponent'
+};
+</script>
+`.trim();
+
+export const COMPONENT_NAME_DEMO_EXAMPLE = `
+import YourComponent from '../components/YourComponent.vue';
+
+export const yourComponentDemo = {
+  component: YourComponent,
+  name: 'YourComponent'
+};
 `.trim();
