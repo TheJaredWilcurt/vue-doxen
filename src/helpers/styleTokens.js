@@ -21,12 +21,7 @@
 export const styleTokensBuiltIn = {
   codeBox: 'doxen-code-box',
   codeSwapper: 'doxen-code-swapper',
-  codeSwapperButton: 'doxen-code-swapper-button',
-  codeSwapperButtonContainer: 'doxen-code-swapper-button-container',
-  codeSwapperButtonNotSelected: 'doxen-code-swapper-button-not-selected',
-  codeSwapperButtonSelected: 'doxen-code-swapper-button-selected',
   codeSwapperFileName: 'doxen-code-swapper-file-name',
-  codeSwapperHeader: 'doxen-code-swapper-header',
   componentDemo: 'doxen-component-demo',
   componentDemoContainer: 'doxen-component-demo-container',
   componentDemoH3: 'doxen-component-demo-h3',
@@ -80,6 +75,11 @@ export const styleTokensBuiltIn = {
   sidebarButtonNotSelected: 'doxen-sidebar-button-not-selected',
   sidebarButtonSelected: 'doxen-sidebar-button-selected',
   sidebarContainer: 'doxen-sidebar-container',
+  tabsButton: 'doxen-tabs-button',
+  tabsButtonContainer: 'doxen-tabs-button-container',
+  tabsButtonNotSelected: 'doxen-tabs-button-not-selected',
+  tabsButtonSelected: 'doxen-tabs-button-selected',
+  tabsHeader: 'doxen-tabs-header',
   vueDoxen: 'doxen-vue-doxen'
 };
 
@@ -129,12 +129,12 @@ export const styleTokensBootstrap5 = {
   // Message
   formFieldMessage: 'form-text',
   // Code
-  formFieldTextareaCode: 'font-monospace',
-  codeSwapperButton: 'nav-link me-1',
-  codeSwapperButtonContainer: 'nav nav-tabs nav-item mt-3 mb-0',
-  codeSwapperButtonNotSelected: '',
-  codeSwapperButtonSelected: 'active border-bottom-0',
   codeSwapperFileName: 'float-end',
+  formFieldTextareaCode: 'font-monospace',
+  tabsButton: 'nav-link me-1',
+  tabsButtonContainer: 'nav nav-tabs nav-item mt-3 mb-0',
+  tabsButtonNotSelected: '',
+  tabsButtonSelected: 'active border-bottom-0',
   // Demo
   propsPlaygroundForm: 'd-flex flex-wrap',
   // Sidebar
