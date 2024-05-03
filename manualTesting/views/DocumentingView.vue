@@ -64,10 +64,33 @@
       <h2 id="import" class="docs-title">Import Statements</h2>
 
       <p>
-        If you want to add instructions for how people can import your component into your app, you can either pass in the import statement as a string, or use a custom component with your own props.
+        If you want to add instructions for how people can import your component into their app, you can either pass in the import statement as a string, or use a custom component with your own props.
       </p>
 
-      <ol></ol>
+      <h3>Import Statement &ndash; String example</h3>
+
+      <CodeSwapper
+        :codeTypes="{
+          'Demo File': IMPORT_STATEMENT_STRING_DEMO_FILE_EXAMPLE,
+          Options: IMPORT_STATEMENT_STRING_OPTIONS_EXAMPLE,
+          Composition: IMPORT_STATEMENT_STRING_OPTIONS_EXAMPLE,
+          'Script Setup': USE_DEMO
+        }"
+        :fileName="FILE_NAME"
+        :styleTokens="styleTokens"
+      />
+
+      <h3>Import Statement &ndash; Custom component example</h3>
+
+      <p>Though you <em>can</em> import a custom component inside the component you are going to demo and pass it through, it will impact the size of your component, so we do not recommend it.</p>
+
+      <CodeSwapper
+        :codeTypes="{
+          'Demo File': IMPORT_STATEMENT_COMPONENT_DEMO_FILE_EXAMPLE
+        }"
+        :fileName="FILE_NAME"
+        :styleTokens="styleTokens"
+      />
     </section>
 
     <hr />
@@ -116,6 +139,9 @@ import {
   COMPONENT_DESCRIPTION_DEMO_EXAMPLE,
   COMPONENT_NAME_OPTIONS_EXAMPLE,
   COMPONENT_NAME_DEMO_EXAMPLE,
+  IMPORT_STATEMENT_COMPONENT_DEMO_FILE_EXAMPLE,
+  IMPORT_STATEMENT_STRING_DEMO_FILE_EXAMPLE,
+  IMPORT_STATEMENT_STRING_OPTIONS_EXAMPLE,
   SLOTS_DEMO_ARRAY_EXAMPLE,
   SLOTS_DEMO_OBJECT_EXAMPLE,
   SLOTS_OPTIONS_ARRAY_EXAMPLE,
@@ -141,6 +167,9 @@ export default {
       Composition: 'YourComponent.vue',
       'Script Setup': 'YourComponent.vue'
     },
+    IMPORT_STATEMENT_COMPONENT_DEMO_FILE_EXAMPLE,
+    IMPORT_STATEMENT_STRING_DEMO_FILE_EXAMPLE,
+    IMPORT_STATEMENT_STRING_OPTIONS_EXAMPLE,
     SLOTS_DEMO_ARRAY_EXAMPLE,
     SLOTS_DEMO_OBJECT_EXAMPLE,
     SLOTS_OPTIONS_ARRAY_EXAMPLE,

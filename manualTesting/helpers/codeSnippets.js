@@ -358,6 +358,45 @@ export const yourComponentDemo = {
 };
 `.trim();
 
+export const IMPORT_STATEMENT_STRING_DEMO_FILE_EXAMPLE = `
+import MyComponent from '../components/MyComponent.vue';
+
+export const myComponentDemo = {
+  component: MyComponent,
+  importStatement: 'import { MyComponent } from \\'my-component-library\\''
+};
+`.trim();
+
+export const IMPORT_STATEMENT_STRING_OPTIONS_EXAMPLE = `
+<script>
+export default {
+  importStatement: 'import { MyComponent } from \\'my-component-library\\''
+};
+</script>
+`.trim();
+
+export const IMPORT_STATEMENT_COMPONENT_DEMO_FILE_EXAMPLE = `
+import MyComponent from '../components/MyComponent.vue';
+import CustomImportStatementComponent from '../components/CustomImportStatementComponent.vue';
+
+export const myComponentDemo = {
+  component: MyComponent,
+  importStatement: {
+    component: CustomImportStatementComponent,
+    // Optional, if your component needs props
+    props: {
+      yourProp: 'your value'
+    },
+    // Optional: if your component has emits
+    events: {
+      click: function ($event) {
+        console.log($event);
+      }
+    }
+  }
+};
+`.trim();
+
 export const COMPOSE_ALL_DEMOS_EXAMPLE = `
 import ComponentA from '../components/ComponentA.vue';
 import ComponentB from '../components/ComponentB.vue';

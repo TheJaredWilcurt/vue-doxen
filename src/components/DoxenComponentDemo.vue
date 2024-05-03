@@ -7,12 +7,22 @@
     />
 
     <template v-if="importStatement">
-      <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Usage</h3>
-      <CodeBox
-        :code="importStatement"
-        language="javascript"
-        :styleTokens="styleTokens"
-      />
+      <template v-if="typeof(importStatement) === 'string'">
+        <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Usage</h3>
+        <CodeBox
+          :code="importStatement"
+          language="javascript"
+          :styleTokens="styleTokens"
+        />
+      </template>
+      <template v-else-if="typeof(importStatement) === 'object' && importStatement.component">
+        <component
+          :is="importStatement.component"
+          v-bind="importStatement.props"
+          v-on="importStatement.events"
+          :key="componentName + '-import-statment"
+        />
+      </template>
     </template>
 
     <div v-bind="applyStyleTokens({ componentDemoContainer: true })">
