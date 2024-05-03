@@ -10,9 +10,11 @@ import {
   VueDoxen
 } from '@/library.js';
 
+import DoxenTabs from '@/components/DoxenTabs.vue';
 import DummyCompositionApi from '@@@/components/DummyCompositionApi.vue';
 import DummyScriptSetupApi from '@@@/components/DummyScriptSetupApi.vue';
 
+import { createDoxenTabsDemo } from '@@@/demos/doxenTabsDemo.js';
 import { createDummyScriptSetupApiDemo } from '@@@/demos/dummyScriptSetupApiDemo.js';
 
 const createDoxenDemos = function (components, styleTokens) {
@@ -98,6 +100,7 @@ export const doxenComponentsToDemoWithStyleTokens = {
 export const componentsToListInSidebar = {
   DummyCompositionApi,
   DummyScriptSetupApi,
+  DoxenTabs,
   ...doxenComponentsToDemoWithStyleTokens
 };
 
@@ -105,6 +108,7 @@ export const createDemos = function (styleTokens) {
   return {
     DummyCompositionApi,
     DummyScriptSetupApi: createDummyScriptSetupApiDemo(styleTokens),
+    DoxenTabs: createDoxenTabsDemo(styleTokens),
     ...createDoxenDemos(doxenComponentsToDemoWithStyleTokens, styleTokens)
   };
 };

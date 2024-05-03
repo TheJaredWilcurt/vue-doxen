@@ -174,6 +174,8 @@ export const autoGeneratePlaygroundProps = function (props, styleTokens) {
   for (const propName in props) {
     const prop = props[propName];
     const typeConstructor = prop.type;
+    const isRequired = prop.required;
+    const hasDefault = 'default' in prop;
     const type = typeToString(typeConstructor);
     const name = _startCase(propName);
 
@@ -226,6 +228,14 @@ export const autoGeneratePlaygroundProps = function (props, styleTokens) {
           styleTokens
         }
       };
+      if (isRequired && !hasDefault) {
+        if (type === 'Array') {
+          playgroundProps[propName].props.modelValue = [];
+        }
+        if (type === 'Object') {
+          playgroundProps[propName].props.modelValue = {};
+        }
+      }
     } else if (propName.toLowerCase().includes('message')) {
       playgroundProps[propName] = {
         component: DoxenTextarea,
