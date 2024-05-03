@@ -14,10 +14,10 @@
       </ul>
     </nav>
 
-    <section>
-      <h2 id="demos" class="docs-title">Make a reusable demos object</h2>
-
-      <p>I would recommend making a <code>demos</code> folder for your demo files with an <code>index.js</code> file in it to compose and export a <code>demos</code> object. This object can then be passed in to Vue-Doxen, but also used to dynamically create sidebar links.</p>
+    <DocumentationSection id="demos" title="Make a reusable demos object">
+      <p>
+        I would recommend making a <code>demos</code> folder for your demo files with an <code>index.js</code> file in it to compose and export a <code>demos</code> object. This object can then be passed in to Vue-Doxen, but also used to dynamically create sidebar links.
+      </p>
 
       <CodeSwapper
         :codeTypes="{
@@ -26,11 +26,9 @@
         fileName="/src/demos/index.js"
         :styleTokens="styleTokens"
       />
-    </section>
+    </DocumentationSection>
 
-    <section>
-      <h2 id="adding-route" class="docs-title">Adding a route for Vue-Doxen</h2>
-
+    <DocumentationSection id="adding-route" title="Adding a route for Vue-Doxen">
       <p>
         Here is an example of a router file for Vue-Router. It creates a route pointed at the main Vue-Doxen component and uses the URL to know which component to demo.
       </p>
@@ -42,13 +40,9 @@
         fileName="/src/router/index.js"
         :styleTokens="styleTokens"
       />
-    </section>
+    </DocumentationSection>
 
-    <hr />
-
-    <section>
-      <h2 id="link-to-route" class="docs-title">Linking to the Route</h2>
-
+    <DocumentationSection id="link-to-route" title="Linking to the Route">
       <p>
         Here is an example of the main <code>App.vue</code> file for a Vue project.
         We reuse the <code>demos</code> object to generate Vue-Router links.
@@ -65,7 +59,7 @@
         fileName="/src/App.vue"
         :styleTokens="styleTokens"
       />
-    </section>
+    </DocumentationSection>
   </div>
 </template>
 
@@ -73,6 +67,7 @@
 import { styleTokens } from '@/helpers/props.js';
 
 import CodeSwapper from '@/components/CodeSwapper.vue';
+import DocumentationSection from '@@@/components/DocumentationSection.vue';
 
 import {
   COMPOSE_ALL_DEMOS_EXAMPLE,
@@ -85,7 +80,8 @@ import {
 export default {
   name: 'VueRouterView',
   components: {
-    CodeSwapper
+    CodeSwapper,
+    DocumentationSection
   },
   props: {
     styleTokens

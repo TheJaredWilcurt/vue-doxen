@@ -10,25 +10,32 @@
       Your demo object requires a <code>component</code> property with a value of an imported Vue component. Everything else in a demo object is <strong>optional</strong>.
     </p>
 
-    <h2>Example Demo File</h2>
+    <nav>
+      <ul>
+        <li><a href="#example">Example Demo File</a></li>
+        <li><a href="#using">Using Demo Files</a></li>
+      </ul>
+    </nav>
 
-    <CodeSwapper
-      fileName="myComponentDemo.js"
-      :codeTypes="{ JavaScript: DEMO_FILE_EXAMPLE }"
-      :styleTokens="styleTokens"
-    />
+    <DocumentationSection id="example" title="Example Demo File">
+      <CodeSwapper
+        fileName="myComponentDemo.js"
+        :codeTypes="{ JavaScript: DEMO_FILE_EXAMPLE }"
+        :styleTokens="styleTokens"
+      />
+    </DocumentationSection>
 
-    <h2>Using Demo Files</h2>
-
-    <CodeSwapper
-      :codeTypes="{
-        Options: DEMO_FILE_USAGE_EXAMPLE,
-        Composition: DEMO_FILE_USAGE_COMPOSITION_EXAMPLE,
-        'Script Setup': DEMO_FILE_USAGE_SCRIPT_SETUP_EXAMPLE
-      }"
-      fileName="DocumentationPage.vue"
-      :styleTokens="styleTokens"
-    />
+    <DocumentationSection id="using" title="Using Demo Files">
+      <CodeSwapper
+        :codeTypes="{
+          Options: DEMO_FILE_USAGE_EXAMPLE,
+          Composition: DEMO_FILE_USAGE_COMPOSITION_EXAMPLE,
+          'Script Setup': DEMO_FILE_USAGE_SCRIPT_SETUP_EXAMPLE
+        }"
+        fileName="DocumentationPage.vue"
+        :styleTokens="styleTokens"
+      />
+    </DocumentationSection>
   </div>
 </template>
 
@@ -36,6 +43,7 @@
 import { styleTokens } from '@/helpers/props.js';
 
 import CodeSwapper from '@/components/CodeSwapper.vue';
+import DocumentationSection from '@@@/components/DocumentationSection.vue';
 
 import {
   DEMO_FILE_EXAMPLE,
@@ -47,7 +55,8 @@ import {
 export default {
   name: 'DemoFilesView',
   components: {
-    CodeSwapper
+    CodeSwapper,
+    DocumentationSection
   },
   props: {
     styleTokens

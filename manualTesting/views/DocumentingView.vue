@@ -7,13 +7,12 @@
         <li><a href="#name">Component Name</a></li>
         <li><a href="#description">Component Description</a></li>
         <li><a href="#import">Import Statements</a></li>
+        <li><a href="#props">Documenting Props</a></li>
         <li><a href="#slots">Documenting Component Slots</a></li>
       </ul>
     </nav>
 
-    <section>
-      <h2 id="name" class="docs-title">Component Name</h2>
-
+    <DocumentationSection id="name" title="Component Name">
       <p>
         The name of the component is used at the top of a demo page, and also used for the tag and variable name in the code example below the props playground. If not provided on the demo object, we will use the name provided in the component (if available).
       </p>
@@ -31,13 +30,9 @@
         :fileName="FILE_NAME"
         :styleTokens="styleTokens"
       />
-    </section>
+    </DocumentationSection>
 
-    <hr />
-
-    <section>
-      <h2 id="description" class="docs-title">Component Description</h2>
-
+    <DocumentationSection id="description" title="Component Description">
       <p>
         The component description is displayed under the component name on a demo page. If a description is not found in the demo file we will use the one in the component.
       </p>
@@ -56,13 +51,9 @@
         :fileName="FILE_NAME"
         :styleTokens="styleTokens"
       />
-    </section>
+    </DocumentationSection>
 
-    <hr />
-
-    <section>
-      <h2 id="import" class="docs-title">Import Statements</h2>
-
+    <DocumentationSection id="import" title="Import Statements">
       <p>
         If you want to add instructions for how people can import your component into their app, you can either pass in the import statement as a string, or use a custom component with your own props.
       </p>
@@ -91,13 +82,30 @@
         :fileName="FILE_NAME"
         :styleTokens="styleTokens"
       />
-    </section>
+    </DocumentationSection>
 
-    <hr />
+    <DocumentationSection id="props" title="Documenting Props">
+      <h3>Basic Prop Definitions</h3>
 
-    <section>
-      <h2 id="slots" class="docs-title">Documenting Component Slots</h2>
+      <p>These are the official parts of Vue's component prop definitions:</p>
 
+      <ul>
+        <li><code>type</code> &ndash; JavaScript type constructor or array of type constructors.</li>
+        <li><code>required</code> &ndash; Boolean to indicate a value <strong>must</strong> be passed in to this prop.</li>
+        <li><code>default</code> &ndash; The value to use if nothing is passed in to this prop, or it recieves <code>undefined</code>.</li>
+        <li><code>validator</code> &ndash; A function to validate the input passed to the prop meets custom requirements.</li>
+      </ul>
+
+      <p></p>
+
+      <CodeSwapper
+        :codeTypes="FILE_NAME"
+        :fileName="FILE_NAME"
+        :styleTokens="styleTokens"
+      />
+    </DocumentationSection>
+
+    <DocumentationSection id="slots" title="Documenting Component Slots">
       <p>You can provide an array of slot names, or an object with slot names as keys and the default slot value to show in the demo as the value.</p>
 
       <h3>Documenting Slots &ndash; Array example</h3>
@@ -125,7 +133,7 @@
         :fileName="FILE_NAME"
         :styleTokens="styleTokens"
       />
-    </section>
+    </DocumentationSection>
   </div>
 </template>
 
@@ -133,6 +141,7 @@
 import { styleTokens } from '@/helpers/props.js';
 
 import CodeSwapper from '@/components/CodeSwapper.vue';
+import DocumentationSection from '@@@/components/DocumentationSection.vue';
 
 import {
   COMPONENT_DESCRIPTION_OPTIONS_EXAMPLE,
@@ -151,7 +160,8 @@ import {
 export default {
   name: 'DocumentingView',
   components: {
-    CodeSwapper
+    CodeSwapper,
+    DocumentationSection
   },
   props: {
     styleTokens
