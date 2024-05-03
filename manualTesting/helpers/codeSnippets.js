@@ -356,3 +356,170 @@ export const yourComponentDemo = {
   name: 'YourComponent'
 };
 `.trim();
+
+export const COMPOSE_ALL_DEMOS_EXAMPLE = `
+import ComponentA from '../components/ComponentA.vue';
+import ComponentB from '../components/ComponentB.vue';
+
+import { componentCDemo } from './componentCDemo.js';
+import { componentDDemo } from './componentDDemo.js';
+
+export const demos = {
+  ComponentA,
+  ComponentB,
+  ComponentC: componentCDemo,
+  ComponentD: componentDDemo
+};
+`.trim();
+
+export const VUE_ROUTER_EXAMPLE = `
+import { createRouter, createWebHistory } from 'vue-router';
+import { VueDoxen } from 'vue-doxen';
+
+// Import the demos object
+import { demos } from '../demos/index.js';
+
+const routes = [
+  // ...other routes,
+  {
+    // Create the path for the URL
+    path: '/components/:componentName',
+    // Give it an optional name
+    name: 'components',
+    // You could point to VueDoxen directly or a wrapper component
+    component: VueDoxen,
+    props: (route) => ({
+      // If pointing to it directly you'll need to pass in the demos prop
+      demos,
+      // Inform VueDoxen of the component to demo based on the URL param
+      modelValue: route.params.componentName,
+      // Pass in any style tokens as a prop
+      styleTokens: {}
+    })
+  }
+];
+
+// Create the router
+const router = createRouter({
+  // Use the correct history mode for your project
+  history: createWebHistory(),
+  routes
+});
+
+// Export the router
+export default router;
+`.trim();
+
+export const ROUTER_LINK_OPTIONS_EXAMPLE = `
+<template>
+  <div>
+    <aside>
+      <nav>
+        <RouterLink
+          v-for="(demoValue, componentName) in componentDemos"
+          :to="{
+            name: 'components',
+            params: { componentName }
+          }"
+          :key="'sidebar-link-' + componentName"
+        >
+          {{ componentName }}
+        </RouterLink>
+      </nav>
+    </aside>
+    <main>
+      <RouterView />
+    </main>
+  </div>
+</template>
+
+<script>
+import { demos } from './demos/index.js';
+
+export default {
+  name: 'App',
+  computed: {
+    componentDemos: function () {
+      return demos;
+    }
+  }
+};
+</script>
+`.trim();
+
+export const ROUTER_LINK_COMPOSITION_EXAMPLE = `
+<template>
+  <div>
+    <aside>
+      <nav>
+        <RouterLink
+          v-for="(demoValue, componentName) in componentDemos"
+          :to="{
+            name: 'components',
+            params: { componentName }
+          }"
+          :key="'sidebar-link-' + componentName"
+        >
+          {{ componentName }}
+        </RouterLink>
+      </nav>
+    </aside>
+    <main>
+      <RouterView />
+    </main>
+  </div>
+</template>
+
+<script>
+import { computed } from 'vue';
+
+import { demos } from './demos/index.js';
+
+export default {
+  name: 'App',
+  setup: function () {
+    const componentDemos = computed(() => {
+      return demos;
+    });
+
+    return {
+      componentDemos
+    };
+  }
+};
+</script>
+`.trim();
+
+export const ROUTER_LINK_SCRIPT_SETUP_EXAMPLE = `
+<template>
+  <div>
+    <aside>
+      <nav>
+        <RouterLink
+          v-for="(demoValue, componentName) in componentDemos"
+          :to="{
+            name: 'components',
+            params: { componentName }
+          }"
+          :key="'sidebar-link-' + componentName"
+        >
+          {{ componentName }}
+        </RouterLink>
+      </nav>
+    </aside>
+    <main>
+      <RouterView />
+    </main>
+  </div>
+</template>
+
+<script setup>
+import { computed } from 'vue';
+
+import { demos } from './demos/index.js';
+
+const componentDemos = computed(() => {
+  return demos;
+});
+</script>
+`.trim();
