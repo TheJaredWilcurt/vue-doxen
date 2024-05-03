@@ -70,9 +70,9 @@
 </template>
 
 <script>
-import CodeSwapper from '@/components/CodeSwapper.vue';
-
 import { styleTokens } from '@/helpers/props.js';
+
+import CodeSwapper from '@/components/CodeSwapper.vue';
 
 import {
   COMPOSE_ALL_DEMOS_EXAMPLE,

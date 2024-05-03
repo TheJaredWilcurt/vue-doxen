@@ -20,7 +20,7 @@
           :is="importStatement.component"
           v-bind="importStatement.props"
           v-on="importStatement.events"
-          :key="componentName + '-import-statment"
+          :key="componentName + '-import-statment'"
         />
       </template>
     </template>
