@@ -2,6 +2,10 @@
   <div class="docs-page">
     <h1 class="docs-title">Working with Vue-Router</h1>
 
+    <p>
+      This page covers how to setup Vue-Doxen with Vue-Router so it loads the correct demos based on the URL.
+    </p>
+
     <nav>
       <ul>
         <li><a href="#demos">Make a reusable demos object</a></li>

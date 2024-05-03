@@ -69,9 +69,9 @@ export default {
     links: {
       home: 'Home',
       gettingStarted: 'Getting Started',
-      demoFiles: 'Demo Files',
       documenting: 'Documenting',
       styles: 'Styling',
+      demoFiles: 'Demo Files',
       vueRouter: 'Vue-Router'
     }
   },

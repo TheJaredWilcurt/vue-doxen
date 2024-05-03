@@ -60,7 +60,8 @@ export default {
       return {
         myComponentDemo,
         anotherDemo,
-        // If a component is passed in directly we will wrap it, like so: { component: ComponentA }.
+        // If a component is passed in directly we will wrap it,
+        // like so: { component: ComponentA }.
         // So all components automatically become demo objects internally.
         ComponentA
       };
@@ -416,14 +417,14 @@ export const ROUTER_LINK_OPTIONS_EXAMPLE = `
     <aside>
       <nav>
         <RouterLink
-          v-for="(demoValue, componentName) in componentDemos"
+          v-for="(demo, componentName) in componentDemos"
           :to="{
             name: 'components',
             params: { componentName }
           }"
           :key="'sidebar-link-' + componentName"
         >
-          {{ componentName }}
+          {{ demo.name || demo.component?.name || componentName }}
         </RouterLink>
       </nav>
     </aside>
@@ -453,14 +454,14 @@ export const ROUTER_LINK_COMPOSITION_EXAMPLE = `
     <aside>
       <nav>
         <RouterLink
-          v-for="(demoValue, componentName) in componentDemos"
+          v-for="(demo, componentName) in componentDemos"
           :to="{
             name: 'components',
             params: { componentName }
           }"
           :key="'sidebar-link-' + componentName"
         >
-          {{ componentName }}
+          {{ demo.name || demo.component?.name || componentName }}
         </RouterLink>
       </nav>
     </aside>
@@ -496,14 +497,14 @@ export const ROUTER_LINK_SCRIPT_SETUP_EXAMPLE = `
     <aside>
       <nav>
         <RouterLink
-          v-for="(demoValue, componentName) in componentDemos"
+          v-for="(demo, componentName) in componentDemos"
           :to="{
             name: 'components',
             params: { componentName }
           }"
           :key="'sidebar-link-' + componentName"
         >
-          {{ componentName }}
+          {{ demo.name || demo.component?.name || componentName }}
         </RouterLink>
       </nav>
     </aside>
