@@ -7,7 +7,15 @@
         <li><a href="#name">Component Name</a></li>
         <li><a href="#description">Component Description</a></li>
         <li><a href="#import">Import Statements</a></li>
-        <li><a href="#props">Documenting Props</a></li>
+        <li>
+          <a href="#props">Documenting Props</a>
+          <ul>
+            <li><a href="#basic-prop">Basic Prop Definitions</a></li>
+            <li><a href="#documentation-props">Documentation Specific Prop Definitions</a></li>
+            <li><a href="#using-both">Using both Demo files and Components for Prop Definitions</a></li>
+
+          </ul>
+        </li>
         <li><a href="#slots">Documenting Component Slots</a></li>
       </ul>
     </nav>
@@ -85,24 +93,91 @@
     </DocumentationSection>
 
     <DocumentationSection id="props" title="Documenting Props">
-      <h3>Basic Prop Definitions</h3>
+      <h3 id="basic-prop">Basic Prop Definitions</h3>
 
-      <p>These are the official parts of Vue's component prop definitions:</p>
+      <p>
+        These are the official parts of
+        <a
+          v-text="'Vue\'s component prop definitions'"
+          href="https://vuejs.org/guide/components/props.html"
+          target="_blank"
+          title="VueJS.org Documentation - Props"
+        ></a>:
+      </p>
 
       <ul>
         <li><code>type</code> &ndash; JavaScript type constructor or array of type constructors.</li>
         <li><code>required</code> &ndash; Boolean to indicate a value <strong>must</strong> be passed in to this prop.</li>
         <li><code>default</code> &ndash; The value to use if nothing is passed in to this prop, or it recieves <code>undefined</code>.</li>
-        <li><code>validator</code> &ndash; A function to validate the input passed to the prop meets custom requirements.</li>
+        <li><code>validator</code> &ndash; A function to validate the input passed to the prop meets custom requirements. On your component's demo page, we will note if a prop <em>has</em> a validator function, but will not show it. This is because your function may be minified/uglified, and not very human-friendly.</li>
       </ul>
 
-      <p></p>
+      <p>
+        Though putting these basic prop definitions in the <strong>Demo file</strong> is supported, they offer no functional benefit
+        to your component. If you put this information inside the component's actual prop definition Vue will be able to offer helpful
+        console warnings when receiving bad/invalid inputs for your props at runtime. The <code>default</code> feature specifically
+        needs placed on the prop definition in order for undefined props to be defaulted to a desired value at runtime.
+      </p>
 
       <CodeSwapper
-        :codeTypes="FILE_NAME"
+        :codeTypes="{
+          Options: BASIC_PROPS_OPTIONS,
+          Composition: BASIC_PROPS_OPTIONS,
+          'Script Setup': BASIC_PROPS_SCRIPT_SETUP,
+          'Demo File': BASIC_PROPS_DEMO_FILE
+        }"
         :fileName="FILE_NAME"
         :styleTokens="styleTokens"
       />
+
+      <hr />
+
+      <h3 id="documentation-props">Documentation Specific Prop Definitions</h3>
+
+      <p>
+        There are many common features of props that are worth documenting but aren't officially part of Vue's API.
+        The following are prop definitions exclusive to Vue-Doxen:
+      </p>
+
+      <ol>
+        <li><code>description</code> &ndash; A human readable description of what the prop is for, or the context of why it exists.</li>
+        <li><code>allowed</code> &ndash; An array of the only values permitted by this prop.</li>
+        <li><code>example</code> &ndash; An example of what should be passed in to the prop. Useful for complex data types.</li>
+      </ol>
+
+      <CodeSwapper
+        :codeTypes="{
+          'Demo File': DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_DEMO_FILE,
+          Options: DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_OPTIONS,
+          Composition: DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_OPTIONS,
+          'Script Setup': DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_SCRIPT_SETUP
+        }"
+        :fileName="FILE_NAME"
+        :styleTokens="styleTokens"
+      />
+
+      <hr />
+
+      <h3 id="using-both">Using both Demo files and Components for Prop Definitions</h3>
+
+      <p>
+        When Vue-Doxen produces a demo page for your component it will merge the prop definitions from the component
+        and the demo file together. If the same key is used in both we let the component's version win. We do this
+        for two reasons:
+      </p>
+
+      <ul>
+        <li>
+          Basic component prop definitions have a real runtime impact, so it is important that the real values be shown in
+          the documentation of the component.
+        </li>
+        <li>
+          Though documentation-specific prop definitions are exclusively used by Vue-Doxen, for consistency and simplicity,
+          we treat them the same as the basic definitions. Also, philosophically, the closer the documentation is to the
+          code it is documenting, the more likely it is to be maintained and therefore accurate. So we assume if the two
+          versions ever differ, the one in the component is more likely to be correct and prefer it.
+        </li>
+      </ul>
     </DocumentationSection>
 
     <DocumentationSection id="slots" title="Documenting Component Slots">
@@ -144,10 +219,16 @@ import CodeSwapper from '@/components/CodeSwapper.vue';
 import DocumentationSection from '@@@/components/DocumentationSection.vue';
 
 import {
+  BASIC_PROPS_DEMO_FILE,
+  BASIC_PROPS_OPTIONS,
+  BASIC_PROPS_SCRIPT_SETUP,
   COMPONENT_DESCRIPTION_OPTIONS_EXAMPLE,
   COMPONENT_DESCRIPTION_DEMO_EXAMPLE,
   COMPONENT_NAME_OPTIONS_EXAMPLE,
   COMPONENT_NAME_DEMO_EXAMPLE,
+  DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_DEMO_FILE,
+  DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_OPTIONS,
+  DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_SCRIPT_SETUP,
   IMPORT_STATEMENT_COMPONENT_DEMO_FILE_EXAMPLE,
   IMPORT_STATEMENT_STRING_DEMO_FILE_EXAMPLE,
   IMPORT_STATEMENT_STRING_OPTIONS_EXAMPLE,
@@ -167,10 +248,16 @@ export default {
     styleTokens
   },
   constants: {
+    BASIC_PROPS_DEMO_FILE,
+    BASIC_PROPS_OPTIONS,
+    BASIC_PROPS_SCRIPT_SETUP,
     COMPONENT_DESCRIPTION_OPTIONS_EXAMPLE,
     COMPONENT_DESCRIPTION_DEMO_EXAMPLE,
     COMPONENT_NAME_OPTIONS_EXAMPLE,
     COMPONENT_NAME_DEMO_EXAMPLE,
+    DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_DEMO_FILE,
+    DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_OPTIONS,
+    DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_SCRIPT_SETUP,
     FILE_NAME: {
       'Demo File': 'yourComponentDemo.js',
       Options: 'YourComponent.vue',

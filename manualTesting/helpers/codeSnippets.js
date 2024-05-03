@@ -563,3 +563,205 @@ const componentDemos = computed(() => {
 });
 </script>
 `.trim();
+
+export const BASIC_PROPS_DEMO_FILE = `
+import YourComponent from '../components/YourComponent.vue';
+
+export const yourComponentDemo = {
+  component: YourComponent,
+  propsToDemo: {
+    amount: {
+      // Placing this information in the Demo file means they
+      // are not used by Vue for runtime validation and
+      // defaulting of inputs. You are better off placing
+      // these basic prop definitions in your component.
+      type: [Number, String],
+      required: false,
+      default: 2,
+      validator: function (value) {
+        return value < 5;
+      }
+    }
+  }
+};
+`.trim();
+
+export const BASIC_PROPS_OPTIONS = `
+<script>
+export default {
+  props: {
+    amount: {
+      type: [Number, String],
+      required: false,
+      default: 2,
+      validator: function (value) {
+        return value < 5;
+      }
+    }
+  }
+};
+</script>
+`.trim();
+
+export const BASIC_PROPS_SCRIPT_SETUP = `
+<script setup>
+defineProps({
+  amount: {
+    type: [Number, String],
+    required: false,
+    default: 2,
+    validator: function (value) {
+      return value < 5;
+    }
+  }
+});
+</script>
+`.trim();
+
+export const DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_DEMO_FILE = `
+import YourComponent from '../components/YourComponent.vue';
+
+const OPTIONS_EXAMPLE = \`
+[
+  {
+    name: 'Kiva.org',
+    value: 'kiva'
+  },
+  {
+    name: 'Good.store',
+    value: 'goodstore'
+  }
+]
+\`.trim();
+
+export const yourComponentDemo = {
+  component: YourComponent,
+  propsToDemo: {
+    color: {
+      allowed: ['gold', 'silver', 'bronze'],
+      description: 'The trophy color to convey first, second, or third place.'
+    },
+    options: {
+      // A complex validator function is defined on this prop in
+      // the component, so to better convey what type of data is
+      // expected, an example is also given.
+      example: OPTIONS_EXAMPLE
+    }
+  }
+};
+`.trim();
+
+export const DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_OPTIONS = `
+<script>
+const OPTIONS_EXAMPLE = \`
+[
+  {
+    name: 'Kiva.org',
+    value: 'kiva'
+  },
+  {
+    name: 'Good.store',
+    value: 'goodstore'
+  }
+]
+\`.trim();
+const ALLOWED_COLORS = ['gold', 'silver', 'bronze'];
+
+export default {
+  props: {
+    color: {
+      allowed: ALLOWED_COLORS,
+      description: 'The trophy color to convey first, second, or third place.',
+      vaidator: function (value) {
+        return ALLOWED_COLORS.includes(value);
+      }
+    },
+    options: {
+      // A complex validator function is defined, so to better convey what
+      // type of data is expected, an example is also given.
+      example: OPTIONS_EXAMPLE,
+      validator: function (options) {
+        let valid = true;
+        if (Array.isArray(options)) {
+          options.forEach(function (option) {
+            if (
+              typeof(option) !== 'object' ||
+              Array.isArray(option) ||
+              !option.name ||
+              (
+                typeof(option.value) !== 'string' &&
+                option.value !== null
+              )
+            ) {
+              valid = false;
+            }
+          });
+        } else {
+          valid = false;
+        }
+        return valid;
+      }
+    }
+  }
+};
+</script>
+`.trim();
+
+export const DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_SCRIPT_SETUP = `
+<script setup>
+// Because "Script Setup" components are actually just the setup function
+// in disguise, and props are defined outside of the setup function; when
+// you use the defineProps macro, the code is actually hoisted to a normal
+// <script> block, which is ran in a different context and therefor cannot
+// access variables defined in the <script setup> block. All this to say,
+// if you use <script setup> you'll need to hard-code values in your prop
+// definitions. This, among many other reasons, is why <script setup>
+// is not a great choice for documenting (or writing) your components.
+defineProps({
+  color: {
+    allowed: ['gold', 'silver', 'bronze'],
+    description: 'The trophy color to convey first, second, or third place.',
+    vaidator: function (value) {
+      return ['gold', 'silver', 'bronze'].includes(value);
+    }
+  },
+  options: {
+    // A complex validator function is defined, so to better convey what
+    // type of data is expected, an example is also given.
+    example: [
+      '[',
+      '  {',
+      '    name: \\'Kiva.org\\',',
+      '    value: \\'kiva\\'',
+      '  },',
+      '  {',
+      '    name: \\'Good.store\\',',
+      '    value: \\'goodstore\\'',
+      '  }',
+      ']'
+    ].join('\\n'),
+    validator: function (options) {
+      let valid = true;
+      if (Array.isArray(options)) {
+        options.forEach(function (option) {
+          if (
+            typeof(option) !== 'object' ||
+            Array.isArray(option) ||
+            !option.name ||
+            (
+              typeof(option.value) !== 'string' &&
+              option.value !== null
+            )
+          ) {
+            valid = false;
+          }
+        });
+      } else {
+        valid = false;
+      }
+      return valid;
+    }
+  }
+});
+</script>
+`.trim();

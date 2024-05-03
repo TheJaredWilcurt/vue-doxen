@@ -25,6 +25,12 @@
           This prop is <strong v-bind="applyStyleTokens({ propsDocumentationStrong: true })">optional</strong>.
         </li>
         <li
+          v-if="'validator' in value && typeof(value.validator) === 'function'"
+          v-bind="applyStyleTokens({ propsDocumentationLi: true })"
+        >
+          This prop uses a <strong v-bind="applyStyleTokens({ propsDocumentationStrong: true })">validator</strong> function.
+        </li>
+        <li
           v-if="'type' in value"
           v-bind="applyStyleTokens({ propsDocumentationLi: true })"
         >
@@ -62,19 +68,6 @@
             v-text="formatDefault(value.default)"
             v-bind="applyStyleTokens({ propsDocumentationCode: true })"
           ></code>
-        </li>
-        <li
-          v-if="'validator' in value && typeof(value.validator) === 'function'"
-          v-bind="applyStyleTokens({ propsDocumentationLi: true })"
-        >
-          <strong
-            v-text="'Validator:'"
-            v-bind="applyStyleTokens({ propsDocumentationStrong: true })"
-          ></strong>&nbsp;
-          <CodeBox
-            :code="unindent('' + value.validator)"
-            :styleTokens="styleTokens"
-          />
         </li>
         <li
           v-if="value.example"
@@ -126,49 +119,6 @@ export default {
   },
   methods: {
     typeToString,
-    /**
-     * Fixes indentation on strings of code. This is a naive implementation.
-     * If the code includes a open/closing character inside of a string it
-     * will just assume it is code rather than text. This function does not
-     * even work on itself.
-     *
-     * TODO: Improve this to work better.
-     *
-     * @param  {string} value  A string of code.
-     * @return {string}        A string of code with proper indentation.
-     */
-    unindent: function (value) {
-      let amount = 0;
-      return (value || '')
-        .split('\n')
-        .map((line) => {
-          const amountOfOpenBrace = line.split('[').length - 1;
-          const amountOfOpenCurly = line.split('{').length - 1;
-          const amountOfOpenParen = line.split('(').length - 1;
-
-          const amountOfCloseBrace = line.split(']').length - 1;
-          const amountOfCloseCurly = line.split('}').length - 1;
-          const amountOfCloseParen = line.split(')').length - 1;
-
-          const opens = (
-            Math.max(amountOfOpenBrace - amountOfCloseBrace, 0) +
-            Math.max(amountOfOpenCurly - amountOfCloseCurly, 0) +
-            Math.max(amountOfOpenParen - amountOfCloseParen, 0)
-          );
-          const closes = (
-            Math.max(amountOfCloseBrace - amountOfOpenBrace, 0) +
-            Math.max(amountOfCloseCurly - amountOfOpenCurly, 0) +
-            Math.max(amountOfCloseParen - amountOfOpenParen, 0)
-          );
-
-          amount = amount + (closes * -2);
-          const indentation = (new Array(amount)).fill(' ').join('');
-          amount = amount + (opens * 2);
-
-          return indentation + line.trim();
-        })
-        .join('\n');
-    },
     formatAllowed: function (arr) {
       arr = arr.map(function (value) {
         value = wrapString(value, '\'');

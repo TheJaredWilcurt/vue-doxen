@@ -1,5 +1,5 @@
 /**
- * @file Style tokens allow a lot of flexibility in how the Vue Doxen components can be styled.
+ * @file Style tokens allow a lot of flexibility in how the Vue-Doxen components can be styled.
  *
  * Style tokens solve the following scenarios:
  *
