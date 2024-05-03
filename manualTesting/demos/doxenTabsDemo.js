@@ -1,6 +1,5 @@
-import DoxenDropdown from '@/components/formFields/DoxenDropdown.vue';
-import DoxenJsonTextarea from '@/components/formFields/DoxenJsonTextarea.vue';
 import DoxenTabs from '@/components/DoxenTabs.vue';
+import DoxenJsonTextarea from '@/components/formFields/DoxenJsonTextarea.vue';
 
 export const createDoxenTabsDemo = function (styleTokens) {
   return {
