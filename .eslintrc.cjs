@@ -113,9 +113,9 @@ module.exports = {
         config: {
           resolve: {
             alias: {
-              '@': path.resolve('src'),
+              '@': path.resolve('lib'),
               '@@': path.resolve('tests'),
-              '@@@': path.resolve('manualTesting')
+              '@@@': path.resolve('app')
             }
           }
         }

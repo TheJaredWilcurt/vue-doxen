@@ -229,9 +229,9 @@
       </p>
 
       <ul>
-        <li>Style token objects live in <code>/src/helpers/styleTokens.js</code></li>
-        <li>They are exported out from <code>/src/library.js</code></li>
-        <li>They are demo'd in <code>/manualTesting/components/StyleSwapper.vue</code></li>
+        <li>Style token objects live in <code>/lib/helpers/styleTokens.js</code></li>
+        <li>They are exported out from <code>/lib/library.js</code></li>
+        <li>They are demo'd in <code>/app/components/StyleSwapper.vue</code></li>
       </ul>
     </DocumentationSection>
   </div>

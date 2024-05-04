@@ -12,7 +12,7 @@ export default defineConfig({
     copyPublicDir: false,
     lib: {
       cssCodeSplit: false,
-      entry: resolve(__dirname, 'src/vue-doxen.js'),
+      entry: resolve(__dirname, 'lib/vue-doxen.js'),
       name: 'vueDoxen',
       formats: [
         'cjs',
@@ -39,9 +39,9 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@': fileURLToPath(new URL('./lib', import.meta.url)),
       '@@': fileURLToPath(new URL('./tests', import.meta.url)),
-      '@@@': fileURLToPath(new URL('./manualTesting', import.meta.url))
+      '@@@': fileURLToPath(new URL('./app', import.meta.url))
     }
   }
 });

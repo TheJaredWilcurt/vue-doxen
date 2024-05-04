@@ -2,7 +2,7 @@
 .github/
 coverage/
 docs/
-manualTesting/
+app/
 node_modules/
 public/
 tests/

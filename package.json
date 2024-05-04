@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "The world's best Vue.js component documentation tool!",
   "type": "module",
-  "main": "src/vue-doxen.js",
+  "main": "lib/vue-doxen.js",
   "scripts": {
     "start": "vite dev --config vite.config.docs.js",
     "preview": "vite preview --config vite.config.docs.js",
@@ -11,8 +11,8 @@
     "build:docs": "vite build --config vite.config.docs.js",
     "build:library": "vite build --config vite.config.lib.js",
     "postbuild": "node ./scripts/postbuild.js",
-    "lint": "eslint --ext .js,.vue --config=.eslintrc.cjs src scripts manualTesting vite.config.*.js .eslintrc.cjs",
-    "fix": "eslint --fix --ext .js,.vue --config=.eslintrc.cjs src scripts manualTesting vite.config.*.js .eslintrc.cjs"
+    "lint": "eslint --ext .js,.vue --config=.eslintrc.cjs lib scripts app vite.config.*.js .eslintrc.cjs",
+    "fix": "eslint --fix --ext .js,.vue --config=.eslintrc.cjs lib scripts app vite.config.*.js .eslintrc.cjs"
   },
   "dependencies": {
     "@highlightjs/vue-plugin": "^2.1.0",
