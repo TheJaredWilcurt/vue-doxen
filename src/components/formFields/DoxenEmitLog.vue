@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { createIdFor } from '@/helpers/componentHelpers.js';
 import {
   createModelValueProp,
   styleTokens
@@ -58,7 +59,9 @@ const modelValue = createModelValueProp(Array);
 
 export default {
   name: 'DoxenEmitLog',
-  components: 'FormFieldsetWrapper',
+  components: [
+    FormFieldsetWrapper
+  ],
   mixins: [
     applyStyleTokens
   ],
