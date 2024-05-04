@@ -7,28 +7,7 @@
       </div>
     </header>
     <div class="container">
-      <nav aria-label="sidebar" class="sidebar">
-        <RouterLink
-          v-for="(linkText, linkName) in links"
-          :to="{ name: linkName }"
-          :key="'link' + linkName"
-        >
-          {{ linkText }}
-        </RouterLink>
-
-        <h2 class="docs-sub-title">Components</h2>
-
-        <RouterLink
-          v-for="(demo, demoName) in componentsToListInSidebar"
-          :to="{
-            name: 'components',
-            params: { component: demoName }
-          }"
-          :key="'demo-link-' + demoName"
-        >
-          {{ demoName }}
-        </RouterLink>
-      </nav>
+      <SideBar />
       <main aria-label="main">
         <RouterView
           class="router-view"
@@ -53,27 +32,16 @@
 <script>
 import { styleTokensBuiltIn } from '@/library.js';
 
+import SideBar from '@@@/components/SideBar.vue';
 import StyleSwapper from '@@@/components/StyleSwapper.vue';
 import VueDoxenLogo from '@@@/components/VueDoxenLogo.vue';
-
-import { componentsToListInSidebar } from '@@@/demos/index.js';
 
 export default {
   name: 'App',
   components: {
+    SideBar,
     StyleSwapper,
     VueDoxenLogo
-  },
-  constants: {
-    componentsToListInSidebar,
-    links: {
-      home: 'Home',
-      gettingStarted: 'Getting Started',
-      documenting: 'Documenting',
-      styles: 'Styling',
-      demoFiles: 'Demo Files',
-      vueRouter: 'Vue-Router'
-    }
   },
   data: function () {
     return {
