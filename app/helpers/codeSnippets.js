@@ -103,7 +103,8 @@ export default {
       return {
         myComponentDemo,
         anotherDemo,
-        // If a component is passed in directly we will wrap it, like so: { component: ComponentA }.
+        // If a component is passed in directly we will wrap it,
+        // like so: { component: ComponentA }.
         // So all components automatically become demo objects internally.
         ComponentA
       };
@@ -144,7 +145,8 @@ const demos = computed(() => {
   return {
     myComponentDemo,
     anotherDemo,
-    // If a component is passed in directly we will wrap it, like so: { component: ComponentA }.
+    // If a component is passed in directly we will wrap it,
+    // like so: { component: ComponentA }.
     // So all components automatically become demo objects internally.
     ComponentA
   };
