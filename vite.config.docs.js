@@ -26,7 +26,7 @@ export default defineConfig({
           'lodash.isequal': ['lodash.isequal'],
           'lodash.lowerfirst': ['lodash.lowerfirst'],
           'lodash.startcase': ['lodash.startcase'],
-          'nprogress': ['nprogress'],
+          nprogress: ['nprogress'],
           'vue-axe': ['vue-axe'],
           'vue-options-api-constants-plugin': ['vue-options-api-constants-plugin'],
           'vue-router': ['vue-router'],
