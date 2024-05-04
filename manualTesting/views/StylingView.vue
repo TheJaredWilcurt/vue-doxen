@@ -125,12 +125,22 @@
       </p>
 
       <p>
-        Classes will be dynamically applied based on component state. For example, if the <code>:disabled="true"</code> prop is passed in to a form field component it will have a <code>formFieldLegend</code> token and also a <code>formFieldLegendDisabled</code>. To see a list of all class names used by this built in token map, <a href="https://github.com/TheJaredWilcurt/vue-doxen/blob/main/src/helpers/styleTokens.js#L21" target="_blank">consult the source code</a>.
+        Classes will be dynamically applied based on component state. For example, if the <code>:disabled="true"</code> prop is passed in to a form field component it will have a <code>formFieldLegend</code> token and also a <code>formFieldLegendDisabled</code>.
       </p>
 
       <p>
         Since components only check for the existence of the tokens they care about, you can actually store all tokens in one large object and pass that same object into any Vue-Doxen provided component.
       </p>
+
+      <p>The following is a list of all style tokens:</p>
+
+      <CodeSwapper
+        :codeTypes="{
+          JavaScript: styleTokensBuiltIn
+        }"
+        fileName="styleTokensBuiltIn"
+        :styleTokens="styleTokens"
+      />
     </DocumentationSection>
 
     <DocumentationSection id="built-in-tokens" title="Using the built in token maps">
@@ -229,6 +239,8 @@
 
 <script>
 import { styleTokens } from '@/helpers/props.js';
+import { dataValue } from '@/helpers/snapshotHelpers.js';
+import { styleTokensBuiltIn } from '@/helpers/styleTokens.js';
 
 import CodeBox from '@/components/CodeBox.vue';
 import CodeSwapper from '@/components/CodeSwapper.vue';
@@ -333,7 +345,37 @@ export default {
       selectedTheme: 'ir-black'
     };
   },
+  methods: {
+    formatJsonForCodeBox: function (object) {
+      let string = JSON.stringify(object, null, 2);
+      string = dataValue(string)
+        // Remove first quote (external)
+        .slice(1)
+        // Remove last quote (external)
+        .slice(0, -1)
+        // Split on the fake new line
+        .split('\\n')
+        // 'key': 'value' => key: 'value'
+        .map((line) => {
+          if (line.includes(':')) {
+            let key = line.split(':')[0];
+            key = key.replaceAll('\'', '');
+            const value = line.split(':')[1];
+            return [key, value].join(':');
+          }
+          return line;
+        })
+        // Join on actual new line
+        .join('\n')
+        // Remove escapes before all internal quotes
+        .replaceAll('\\', '');
+      return string;
+    }
+  },
   computed: {
+    styleTokensBuiltIn: function () {
+      return 'export const styleTokensBuiltIn = ' + this.formatJsonForCodeBox(styleTokensBuiltIn) + ';';
+    },
     codeThemesLabel: function () {
       return [
         'Code Themes (',
