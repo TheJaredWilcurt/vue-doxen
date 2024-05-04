@@ -59,14 +59,6 @@ export default {
   max-width: 1200px;
   margin: 0px auto;
 }
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  margin-right: 10px;
-}
-.sidebar .docs-sub-title {
-  margin-top: 30px;
-}
 .router-view {
   align-items: flex-start;
   width: 100%;

@@ -24,6 +24,21 @@
 .docs-page code
     line-height: 1.35
 
+.docs-sidebar
+    display: flex
+    flex-direction: column
+    margin-right: 10px
+    .docs-sub-title
+        margin-top: 30px
+    .router-link-active
+        position: relative
+        &:before
+            content: '●'
+            position: absolute
+            left: -1rem
+            font-size: 0.9rem
+            font-weight: bold
+            text-decoration: none
 
 /* Axe-Vue popup */
 .va-popup *

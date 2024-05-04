@@ -1,5 +1,5 @@
 <template>
-  <nav aria-label="sidebar" class="sidebar">
+  <nav aria-label="sidebar" class="docs-sidebar">
     <RouterLink
       v-for="(linkText, linkName) in links"
       :to="{ name: linkName }"
