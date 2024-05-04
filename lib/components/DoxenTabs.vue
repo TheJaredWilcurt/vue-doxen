@@ -2,19 +2,15 @@
   <div v-bind="applyStyleTokens({ tabsHeader: true })">
     <slot></slot>
     <div v-bind="applyStyleTokens({ tabsButtonContainer: true })">
-      <button
+      <DoxenButton
         v-for="tabName in tabs"
-        v-bind="applyStyleTokens({
-          tabsButton: true,
-          tabsButtonNotSelected: modelValue !== tabName,
-          tabsButtonSelected: modelValue === tabName
-        })"
-        :aria-pressed="modelValue === tabName"
+        :selected="modelValue === tabName"
+        :styleTokens="styleTokens"
         @click="setTab(tabName)"
         :key="'tab-' + tabName"
       >
         {{ tabName }}
-      </button>
+      </DoxenButton>
     </div>
   </div>
 </template>
@@ -27,13 +23,18 @@ import {
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
+import DoxenButton from '@/components/DoxenButton.vue';
+
 const modelValue = createModelValueProp(String);
 
 export default {
   name: 'DoxenTabs',
-  mixins: [applyStyleTokens],
   slots: ['default'],
   emits: ['update:model-value'],
+  components: {
+    DoxenButton
+  },
+  mixins: [applyStyleTokens],
   props: {
     modelValue,
     styleTokens,
