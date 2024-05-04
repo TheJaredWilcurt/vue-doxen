@@ -58,7 +58,10 @@
 </template>
 
 <script>
-import { createIdFor } from '@/helpers/componentHelpers.js';
+import {
+  createIdFor,
+  createImportStatement
+} from '@/helpers/componentHelpers.js';
 import {
   createDisabledProp,
   createErrorMessageProp,
@@ -83,9 +86,9 @@ const message = createMessageProp('checkbox');
 const modelValue = createModelValueProp(Boolean);
 
 export default {
+  ...createImportStatement(COMPONENT_NAME),
   name: COMPONENT_NAME,
   description: 'A checkbox form field component.',
-  importStatement: 'import { ' + COMPONENT_NAME + ' } from \'vue-doxen\';',
   components: {
     FormFieldFooter,
     FormFieldLabel,

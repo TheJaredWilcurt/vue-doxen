@@ -65,6 +65,7 @@
 import _cloneDeep from 'lodash.clonedeep';
 
 import {
+  createImportStatement,
   createRadioIdFor,
   replaceWeirdCharacters
 } from '@/helpers/componentHelpers.js';
@@ -94,6 +95,7 @@ const modelValue = createModelValueProp([String, Number, Boolean]);
 const options = createOptionsProp(COMPONENT_NAME);
 
 export default {
+  ...createImportStatement(COMPONENT_NAME),
   name: COMPONENT_NAME,
   components: {
     FormFieldFooter,

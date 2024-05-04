@@ -26,7 +26,10 @@
 </template>
 
 <script>
-import { createIdFor } from '@/helpers/componentHelpers.js';
+import {
+  createIdFor,
+  createImportStatement
+} from '@/helpers/componentHelpers.js';
 import {
   createDisabledProp,
   createErrorMessageProp,
@@ -52,6 +55,7 @@ const modelValue = createModelValueProp([String, Number, Boolean, Object, Array]
 const options = createOptionsProp(COMPONENT_NAME);
 
 export default {
+  ...createImportStatement(COMPONENT_NAME),
   name: COMPONENT_NAME,
   components: {
     FormFieldFooter,

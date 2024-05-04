@@ -44,7 +44,10 @@
 </template>
 
 <script>
-import { createIdFor } from '@/helpers/componentHelpers.js';
+import {
+  createIdFor,
+  createImportStatement
+} from '@/helpers/componentHelpers.js';
 import {
   createModelValueProp,
   styleTokens
@@ -55,10 +58,12 @@ import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
 import FormFieldsetWrapper from '@/components/formFields/FormFieldsetWrapper.vue';
 
+const COMPONENT_NAME = 'DoxenEmitLog';
 const modelValue = createModelValueProp(Array);
 
 export default {
-  name: 'DoxenEmitLog',
+  ...createImportStatement(COMPONENT_NAME),
+  name: COMPONENT_NAME,
   components: [
     FormFieldsetWrapper
   ],

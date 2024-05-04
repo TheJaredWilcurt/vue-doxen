@@ -10,7 +10,10 @@
 </template>
 
 <script>
-import { processDemos } from '@/helpers/componentHelpers.js';
+import {
+  createImportStatement,
+  processDemos
+} from '@/helpers/componentHelpers.js';
 import {
   createModelValueProp,
   demos,
@@ -21,10 +24,12 @@ import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
 import DoxenComponentDemo from '@/components/DoxenComponentDemo.vue';
 
+const COMPONENT_NAME = 'VueDoxen';
 const modelValue = createModelValueProp(String);
 
 export default {
-  name: 'VueDoxen',
+  ...createImportStatement(COMPONENT_NAME),
+  name: COMPONENT_NAME,
   components: {
     DoxenComponentDemo
   },

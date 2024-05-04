@@ -43,7 +43,10 @@
 </template>
 
 <script>
-import { createIdFor } from '@/helpers/componentHelpers.js';
+import {
+  createIdFor,
+  createImportStatement
+} from '@/helpers/componentHelpers.js';
 import {
   createDisabledProp,
   createErrorMessageProp,
@@ -68,6 +71,7 @@ const message = createMessageProp('textarea');
 const modelValue = createModelValueProp(String);
 
 export default {
+  ...createImportStatement(COMPONENT_NAME),
   name: COMPONENT_NAME,
   components: {
     FormFieldFooter,

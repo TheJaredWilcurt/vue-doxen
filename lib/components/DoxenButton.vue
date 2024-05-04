@@ -19,7 +19,9 @@ import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
 export default {
   name: 'DoxenButton',
-  slots: ['default'],
+  slots: {
+    default: 'Button Text'
+  },
   emits: ['click'],
   mixins: [applyStyleTokens],
   props: {

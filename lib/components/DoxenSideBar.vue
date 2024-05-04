@@ -19,7 +19,10 @@
 </template>
 
 <script>
-import { processDemos } from '@/helpers/componentHelpers.js';
+import {
+  createImportStatement,
+  processDemos
+} from '@/helpers/componentHelpers.js';
 import {
   createModelValueProp,
   demos,
@@ -28,10 +31,12 @@ import {
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
+const COMPONENT_NAME = 'DoxenSideBar';
 const modelValue = createModelValueProp(String);
 
 export default {
-  name: 'DoxenSideBar',
+  ...createImportStatement(COMPONENT_NAME),
+  name: COMPONENT_NAME,
   mixins: [
     applyStyleTokens
   ],
