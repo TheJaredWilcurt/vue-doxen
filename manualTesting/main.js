@@ -6,6 +6,7 @@ import App from '@@@/App.vue';
 
 import router from '@@@/router/index.js';
 
+import 'nprogress/nprogress.css';
 import '@@@/assets/fonts/hepta-slab.css';
 import '@@@/sass/docs-site.sass';
 

@@ -1,4 +1,5 @@
 /* eslint-disable-next-line import/no-unresolved */
+import NProgress from 'nprogress';
 import {
   createRouter,
   createWebHistory
@@ -77,6 +78,14 @@ const router = createRouter({
   history: createWebHistory(),
   scrollBehavior,
   routes
+});
+
+router.beforeEach((to, from, next) => {
+  NProgress.start();
+  next();
+});
+router.afterEach(() => {
+  NProgress.done();
 });
 
 export default router;
