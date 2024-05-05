@@ -26,6 +26,10 @@ import { computed, ref } from 'vue';
 
 import CodeBox from '@/components/CodeBox.vue';
 
+defineEmits([
+  'test'
+]);
+
 defineProps({
   color: {
     type: String,

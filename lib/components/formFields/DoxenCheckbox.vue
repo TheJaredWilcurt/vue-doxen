@@ -99,6 +99,11 @@ export default {
   ],
   inheritAttrs: false,
   emits: ['update:model-value'],
+  emitsToDemo: {
+    'update:model-value': {
+      value: 'A boolean matching if the checkbox is currently checked.'
+    }
+  },
   props: {
     disabled,
     errorMessage,

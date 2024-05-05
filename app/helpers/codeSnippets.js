@@ -329,7 +329,7 @@ const demos = computed(() => {
 export const COMPONENT_DESCRIPTION_OPTIONS_EXAMPLE = `
 <script>
 export default {
-  description: 'Details about what your component does, and the context as to <strong>why it exists</strong>.'
+  description: 'Context of <em>why your component exists/what it does</em>.'
 };
 </script>
 `.trim();
@@ -339,7 +339,7 @@ import YourComponent from '../components/YourComponent.vue';
 
 export const yourComponentDemo = {
   component: YourComponent,
-  description: 'Details about what your component does, and the context as to <strong>why it exists</strong>.'
+  description: 'Context of <em>why your component exists/what it does</em>.'
 };
 `.trim();
 
@@ -379,12 +379,12 @@ export default {
 
 export const IMPORT_STATEMENT_COMPONENT_DEMO_FILE_EXAMPLE = `
 import MyComponent from '../components/MyComponent.vue';
-import CustomImportStatementComponent from '../components/CustomImportStatementComponent.vue';
+import MyImportStatement from '../components/MyImportStatement.vue';
 
 export const myComponentDemo = {
   component: MyComponent,
   importStatement: {
-    component: CustomImportStatementComponent,
+    component: MyImportStatement,
     // Optional, if your component needs props
     props: {
       yourProp: 'your value'
@@ -765,5 +765,85 @@ defineProps({
     }
   }
 });
+</script>
+`.trim();
+
+export const EMITS_TO_DEMO_DEMO_FILE_ARRAY_EXAMPLE = `
+import MyComponent from '../components/MyComponent.vue';
+
+export const myComponentDemo = {
+  component: MyComponent,
+  emitsToDemo: [
+    'update:modelValue',
+    'click'
+  ]
+};
+`.trim();
+export const EMITS_TO_DEMO_DEMO_FILE_OBJECT_EXAMPLE = `
+import MyComponent from '../components/MyComponent.vue';
+
+export const myComponentDemo = {
+  component: MyComponent,
+  emitsToDemo: {
+    'update:modelValue': {
+      description: 'The logs being displayed',
+      value: 'An array of logs.',
+      example: 'v-model="value"'
+    },
+    click: {
+      description: 'Fired when the user clicks the "clear" button.',
+      value: 'Boolean, <code>true</code> means hard reset.',
+      example: '@click="reset"'
+    }
+  }
+};
+`.trim();
+export const EMITS_TO_DEMO_OPTIONS_ARRAY_EXAMPLE = `
+<script>
+export default {
+  name: 'MyComponent',
+  emitsToDemo: [
+    'update:modelValue',
+    'click'
+  ]
+};
+</script>
+`.trim();
+export const EMITS_TO_DEMO_OPTIONS_OBJECT_EXAMPLE = `
+<script>
+export default {
+  name: 'MyComponent',
+  emitsToDemo: {
+    'update:modelValue': {
+      description: 'The logs being displayed',
+      value: 'An array of logs.',
+      example: 'v-model="value"'
+    },
+    click: {
+      description: 'Fired when the user clicks the "clear" button.',
+      value: 'Boolean, <code>true</code> means hard reset.',
+      example: '@click="reset"'
+    }
+  }
+};
+</script>
+`.trim();
+export const EMITS_OPTIONS_ARRAY_EXAMPLE = `
+<script>
+export default {
+  name: 'MyComponent',
+  emits: [
+    'update:modelValue',
+    'click'
+  ]
+};
+</script>
+`.trim();
+export const EMITS_SCRIPT_SETUP_EXAMPLE = `
+<script setup>
+defineEmits([
+  'update:modelValue',
+  'click'
+]);
 </script>
 `.trim();

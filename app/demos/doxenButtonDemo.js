@@ -17,8 +17,8 @@ export const createDoxenButtonDemo = function (styleTokens) {
     },
     emitsToDemo: {
       click: {
-        description: 'Emits when button is clicked',
-        value: 'The native mouse click event ($event).'
+        description: 'Emits when button is clicked.',
+        value: 'The native mouse click event (<code>$event</code>).'
       }
     }
   };

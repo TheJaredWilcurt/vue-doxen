@@ -10,7 +10,7 @@
         v-bind="applyStyleTokens({ emitsDocumentationCode: true })"
       ></code>
       <ul
-        v-if="emit.description || emit.value"
+        v-if="emit.description || emit.value || emit.example"
         v-bind="applyStyleTokens({ emitsDocumentationUl: true })"
       >
         <li
@@ -20,8 +20,11 @@
           <strong
             v-text="'Description:'"
             v-bind="applyStyleTokens({ emitsDocumentationStrong: true })"
-          ></strong>
-          {{ emit.description }}
+          ></strong>&nbsp;
+          <span
+            v-html="emit.description"
+            v-bind="applyStyleTokens({ emitsDocumentationSpan: true})"
+          ></span>
         </li>
         <li
           v-if="emit.value"
@@ -30,8 +33,24 @@
           <strong
             v-text="'Value:'"
             v-bind="applyStyleTokens({ emitsDocumentationStrong: true })"
+          ></strong>&nbsp;
+          <span
+            v-html="emit.value"
+            v-bind="applyStyleTokens({ emitsDocumentationSpan: true })"
+          ></span>
+        </li>
+        <li
+          v-if="emit.example"
+          v-bind="applyStyleTokens({ emitsDocumentationLi: true })"
+        >
+          <strong
+            v-text="'Example:'"
+            v-bind="applyStyleTokens({ emitsDocumentationStrong: true })"
           ></strong>
-          {{ emit.value }}
+          <CodeBox
+            :code="emit.example"
+            :styleTokens="styleTokens"
+          />
         </li>
       </ul>
     </li>
@@ -43,8 +62,13 @@ import { styleTokens } from '@/helpers/props.js';
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
+import CodeBox from '@/components/CodeBox.vue';
+
 export default {
   name: 'EmitsDocumentation',
+  components: {
+    CodeBox
+  },
   mixins: [
     applyStyleTokens
   ],

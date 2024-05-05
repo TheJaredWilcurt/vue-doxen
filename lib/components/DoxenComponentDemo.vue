@@ -203,31 +203,63 @@ export default {
     emitsToDemo: function () {
       let demoEmits = {};
 
-      if (
-        this.demo?.emitsToDemo &&
-        typeof(this.demo.emitsToDemo) === 'object' &&
-        !Array.isArray(this.demo.emitsToDemo)
-      ) {
-        demoEmits = {
-          ...this.demo.emitsToDemo
-        };
-      }
-      if (
-        this.demo?.component?.emits &&
-        Array.isArray(this.demo.component.emits) &&
-        this.demo.component.emits.length
-      ) {
-        for (const emit of this.demo.component.emits) {
-          demoEmits[emit] = demoEmits[emit] || {};
+      function handleObject (object) {
+        if (
+          object &&
+          typeof(object) === 'object' &&
+          !Array.isArray(object)
+        ) {
+          for (const key in object) {
+            demoEmits[key] = demoEmits[key] || {};
+            demoEmits[key] = {
+              ...demoEmits[key],
+              ...object[key]
+            };
+          }
         }
       }
 
+      function handleArray (array) {
+        if (array && Array.isArray(array) && array.length) {
+          for (const emit of array) {
+            demoEmits[emit] = demoEmits[emit] || {};
+          }
+        }
+      }
+
+      handleObject(this.demo?.emitsToDemo);
+      handleObject(this.demo?.component?.emitsToDemo);
+      handleObject(this.demo?.component?.emits);
+
+      handleArray(this.demo?.emitsToDemo);
+      handleArray(this.demo?.component?.emitsToDemo);
+      handleArray(this.demo?.component?.emits);
+
+      // Default values
       for (const emitName in demoEmits) {
-        if (
-          emitName.startsWith('update:') &&
-          !demoEmits[emitName].description
-        ) {
-          demoEmits[emitName].description = 'For use with v-model for two way data binding.';
+        // Default v-model="value" and v-model:title="value"
+        if (emitName.startsWith('update:')) {
+          const emitNameShort = emitName.replace('update:', '');
+          const vModels = ['model-value', 'modelValue']
+          if (!demoEmits[emitName].description) {
+            if (vModels.includes(emitNameShort)) {
+              demoEmits[emitName].description = 'For use with v-model for two way data binding.';
+            } else {
+              demoEmits[emitName].description = 'For use with v-model:' + emitNameShort + ' for two way data binding.';
+            }
+          }
+          if (!demoEmits[emitName].example) {
+            if (vModels.includes(emitNameShort)) {
+              demoEmits[emitName].example = 'v-model="yourValue"';
+            } else {
+              demoEmits[emitName].example = 'v-model:' + emitNameShort + '="yourValue"';
+            }
+          }
+        // Default @click="yourMethod"
+        } else {
+          if (!demoEmits[emitName].example) {
+            demoEmits[emitName].example = '@' + emitName + '="yourMethod"';
+          }
         }
       }
 

@@ -16,7 +16,8 @@
 
           </ul>
         </li>
-        <li><a href="#slots">Documenting Component Slots</a></li>
+        <li><a href="#slots">Documenting Slots</a></li>
+        <li><a href="#emits">Documenting Emits</a></li>
       </ul>
     </nav>
 
@@ -209,6 +210,60 @@
         :styleTokens="styleTokens"
       />
     </DocumentationSection>
+
+    <DocumentationSection id="emits" title="Documenting Component Emits">
+      <p>
+        You can provide an array of emit names, or an object with emit names as keys and an object as the value.
+      </p>
+
+      <h3>Documenting Emits &ndash; Vue's API</h3>
+
+      <CodeSwapper
+        :codeTypes="{
+          Options: EMITS_OPTIONS_ARRAY_EXAMPLE,
+          Composition: EMITS_OPTIONS_ARRAY_EXAMPLE,
+          'Script Setup': EMITS_SCRIPT_SETUP_EXAMPLE
+        }"
+        :fileName="FILE_NAME"
+        :styleTokens="styleTokens"
+      />
+
+      <h3>Documenting Emits &ndash; Array example</h3>
+
+      <CodeSwapper
+        :codeTypes="{
+          'Demo File': EMITS_TO_DEMO_DEMO_FILE_ARRAY_EXAMPLE,
+          Options: EMITS_TO_DEMO_OPTIONS_ARRAY_EXAMPLE,
+          Composition: EMITS_TO_DEMO_OPTIONS_ARRAY_EXAMPLE,
+          'Script Setup': USE_DEMO
+        }"
+        :fileName="FILE_NAME"
+        :styleTokens="styleTokens"
+      />
+
+      <h3>Documenting Emits &ndash; Object example</h3>
+
+      <p>
+        If using the object syntax you can add these keys, all take a <code>string</code> value to be displayed on the page:
+      </p>
+
+      <ul>
+        <li><code>description</code> &ndash; The intent of how this emit should be used.</li>
+        <li><code>value</code> &ndash; A description of what value is emitted.</li>
+        <li><code>example</code> &ndash; Any example code you want to add for how to use this emit.</li>
+      </ul>
+
+      <CodeSwapper
+        :codeTypes="{
+          'Demo File': EMITS_TO_DEMO_DEMO_FILE_OBJECT_EXAMPLE,
+          Options: EMITS_TO_DEMO_OPTIONS_OBJECT_EXAMPLE,
+          Composition: EMITS_TO_DEMO_OPTIONS_OBJECT_EXAMPLE,
+          'Script Setup': USE_DEMO
+        }"
+        :fileName="FILE_NAME"
+        :styleTokens="styleTokens"
+      />
+    </DocumentationSection>
   </div>
 </template>
 
@@ -229,6 +284,12 @@ import {
   DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_DEMO_FILE,
   DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_OPTIONS,
   DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_SCRIPT_SETUP,
+  EMITS_OPTIONS_ARRAY_EXAMPLE,
+  EMITS_SCRIPT_SETUP_EXAMPLE,
+  EMITS_TO_DEMO_DEMO_FILE_ARRAY_EXAMPLE,
+  EMITS_TO_DEMO_DEMO_FILE_OBJECT_EXAMPLE,
+  EMITS_TO_DEMO_OPTIONS_ARRAY_EXAMPLE,
+  EMITS_TO_DEMO_OPTIONS_OBJECT_EXAMPLE,
   IMPORT_STATEMENT_COMPONENT_DEMO_FILE_EXAMPLE,
   IMPORT_STATEMENT_STRING_DEMO_FILE_EXAMPLE,
   IMPORT_STATEMENT_STRING_OPTIONS_EXAMPLE,
@@ -258,6 +319,12 @@ export default {
     DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_DEMO_FILE,
     DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_OPTIONS,
     DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_SCRIPT_SETUP,
+    EMITS_OPTIONS_ARRAY_EXAMPLE,
+    EMITS_SCRIPT_SETUP_EXAMPLE,
+    EMITS_TO_DEMO_DEMO_FILE_ARRAY_EXAMPLE,
+    EMITS_TO_DEMO_DEMO_FILE_OBJECT_EXAMPLE,
+    EMITS_TO_DEMO_OPTIONS_ARRAY_EXAMPLE,
+    EMITS_TO_DEMO_OPTIONS_OBJECT_EXAMPLE,
     FILE_NAME: {
       'Demo File': 'yourComponentDemo.js',
       Options: 'YourComponent.vue',
