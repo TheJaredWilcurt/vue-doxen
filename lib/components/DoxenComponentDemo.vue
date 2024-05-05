@@ -240,7 +240,7 @@ export default {
         // Default v-model="value" and v-model:title="value"
         if (emitName.startsWith('update:')) {
           const emitNameShort = emitName.replace('update:', '');
-          const vModels = ['model-value', 'modelValue']
+          const vModels = ['model-value', 'modelValue'];
           if (!demoEmits[emitName].description) {
             if (vModels.includes(emitNameShort)) {
               demoEmits[emitName].description = 'For use with v-model for two way data binding.';
