@@ -257,7 +257,7 @@ export default {
     },
     markup: function () {
       const tag = (this.componentName || '').replaceAll(' ', '');
-      const emits = this.demo?.component?.emits || [];
+      const emits = Object.keys(this.emitsToDemo);
       const attributes = Object.keys(this.propsToDemo)
         .map((propName) => {
           return {
@@ -283,6 +283,7 @@ export default {
 
       // Process Props
       Object.keys(this.propsToDemo)
+        .sort()
         .forEach((propName) => {
           const value = this.demoProps[propName];
           const defaultValue = this.demo?.component?.props?.[propName]?.default;
@@ -310,6 +311,7 @@ export default {
       const indent = '\n  ';
       const emitStrings = Object.keys(this.emitsToDemo)
         .filter(Boolean)
+        .sort()
         .map(function (emitName) {
           const indent = '  ';
           return [
