@@ -42,6 +42,11 @@ const routes = [
     component: () => import('@@@/views/VueRouterView.vue')
   },
   {
+    path: '/vue-doxen/branding',
+    name: 'branding',
+    component: () => import('@@@/views/PressKit.vue')
+  },
+  {
     path: '/vue-doxen/components/:component',
     name: 'components',
     component: () => import('@@@/views/ComponentsView.vue'),

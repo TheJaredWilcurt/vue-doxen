@@ -36,7 +36,8 @@ export default {
       documenting: 'Documenting',
       styles: 'Styling',
       demoFiles: 'Demo Files',
-      vueRouter: 'Vue-Router'
+      vueRouter: 'Vue-Router',
+      branding: 'Press Kit/Branding'
     }
   }
 };
