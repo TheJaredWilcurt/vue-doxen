@@ -9,22 +9,22 @@
 
     <div class="image-container">
       <figure>
-        <a href="/vue-doxen/branding/vue-doxen-logo-large.png" target="_blank">
-          <img src="/vue-doxen/branding/vue-doxen-logo-large.png" alt="Vue-Doxen logo" />
+        <a href="/vue-doxen/branding/#open-image" @click.prevent="openImage">
+          <img src="../assets/branding/vue-doxen-logo-large.png" alt="Vue-Doxen logo" />
         </a>
         <figcaption>Vue-Doxen logo (large)</figcaption>
       </figure>
 
       <figure>
-        <a href="/vue-doxen/branding/vue-doxen-text.png" target="_blank">
-          <img src="/vue-doxen/branding/vue-doxen-text.png" alt="Vue-Doxen text" />
+        <a href="/vue-doxen/branding/#open-image" @click.prevent="openImage">
+          <img src="../assets/branding/vue-doxen-text.png" alt="Vue-Doxen text" />
         </a>
         <figcaption>Vue-Doxen text</figcaption>
       </figure>
 
       <figure>
-        <a href="/vue-doxen/branding/vue-doxen-dog.png" target="_blank">
-          <img src="/vue-doxen/branding/vue-doxen-dog.png" alt="Vue-Doxen dog" />
+        <a href="/vue-doxen/branding/#open-image" @click.prevent="openImage">
+          <img src="../assets/branding/vue-doxen-dog.png" alt="Vue-Doxen dog" />
         </a>
         <figcaption>Vue-Doxen dog graphic</figcaption>
       </figure>
@@ -51,7 +51,13 @@
 
 <script>
 export default {
-  name: 'PressKit'
+  name: 'PressKit',
+  methods: {
+    openImage: function ($event) {
+      const src = $event?.currentTarget?.childNodes?.[0]?.src;
+      window.open(src, '_blank');
+    }
+  }
 };
 </script>
 
