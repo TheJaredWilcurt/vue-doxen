@@ -23,8 +23,7 @@
     <table v-bind="applyStyleTokens({ emitLogTable: true })">
       <thead v-bind="applyStyleTokens({ emitLogThead: true })">
         <tr v-bind="applyStyleTokens({ emitLogTr: true })">
-          <th v-bind="applyStyleTokens({ emitLogTh: true })">Name</th>
-          <th v-bind="applyStyleTokens({ emitLogTh: true })">Event</th>
+          <th v-bind="applyStyleTokens({ emitLogTh: true })">Emit Name</th>
           <th v-bind="applyStyleTokens({ emitLogTh: true })">Value</th>
         </tr>
       </thead>
@@ -34,8 +33,7 @@
           v-bind="applyStyleTokens({ emitLogTr: true })"
           :key="'log' + logIndex"
         >
-          <td v-bind="applyStyleTokens({ emitLogTd: true })">{{ log.emit }}</td>
-          <td v-bind="applyStyleTokens({ emitLogTd: true })">{{ log.$event }}</td>
+          <td v-bind="applyStyleTokens({ emitLogTd: true })">{{ log.emitName }}</td>
           <td v-bind="applyStyleTokens({ emitLogTd: true })">{{ dataValue(log.value) }}</td>
         </tr>
       </tbody>

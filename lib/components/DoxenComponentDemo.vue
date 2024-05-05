@@ -171,6 +171,31 @@ export default {
       for (const slotName in this.slotsToDemo) {
         this.demoSlots[slotName] = this.slotsToDemo?.[slotName];
       }
+    },
+    handleArrayOrObjectInputForSlotsAndEmits: function (demoItems) {
+      let itemsToDemo = {};
+
+      if (!demoItems) {
+        return itemsToDemo;
+      }
+
+      if (Array.isArray(demoItems)) {
+        for (const item of demoItems) {
+          if (typeof(item) === 'string') {
+            itemsToDemo[item] = '';
+          }
+        }
+      } else if (typeof(demoItems) === 'object') {
+        for (const itemName in demoItems) {
+          if (typeof(demoItems[itemName]) === 'string') {
+            itemsToDemo[itemName] = demoItems[itemName];
+          } else {
+            itemsToDemo[itemName] = deJSONify(demoItems[itemName]);
+          }
+        }
+      }
+
+      return itemsToDemo;
     }
   },
   computed: {
@@ -203,31 +228,13 @@ export default {
         this.demo?.component?.importStatement
       );
     },
+    emitsToDemo: function () {
+      const demoEmits = this.demo?.emitsToDemo || this.demo?.component?.emits;
+      return this.handleArrayOrObjectInputForSlotsAndEmits(demoEmits);
+    },
     slotsToDemo: function () {
       const demoSlots = this.demo?.slotsToDemo || this.demo?.component?.slots;
-      let slotsToDemo = {};
-
-      if (!demoSlots) {
-        return slotsToDemo;
-      }
-
-      if (Array.isArray(demoSlots)) {
-        for (const slot of demoSlots) {
-          if (typeof(slot) === 'string') {
-            slotsToDemo[slot] = '';
-          }
-        }
-      } else if (typeof(demoSlots) === 'object') {
-        for (const slotName in demoSlots) {
-          if (typeof(demoSlots[slotName]) === 'string') {
-            slotsToDemo[slotName] = demoSlots[slotName];
-          } else {
-            slotsToDemo[slotName] = deJSONify(demoSlots[slotName]);
-          }
-        }
-      }
-
-      return slotsToDemo;
+      return this.handleArrayOrObjectInputForSlotsAndEmits(demoSlots);
     },
     propsToDemo: function () {
       const propsToDemo = this.demo?.propsToDemo || {};
@@ -300,32 +307,28 @@ export default {
           }
         });
 
-      jsOutput.push('const ' + tag + 'Props = ' + deJSONify(propsOutput, '\n') + ';');
-      if (Object.keys(slotsOutput).length) {
-        jsOutput.push('const ' + tag + 'Slots = ' + deJSONify(slotsOutput, '\n') + ';');
-      }
-
-      return jsOutput.join('\n');
-      /*
       const indent = '\n  ';
-      const emits = this.demo?.emitsDocumentation || [];
-      const emitStrings = emits
+      const emitStrings = Object.keys(this.emitsToDemo)
         .filter(Boolean)
-        .map(function (emit) {
+        .map(function (emitName) {
           const indent = '  ';
           return [
-            emit.name + ': function ($event, value) {',
-            indent + indent + 'console.log($event, value);',
+            '\'' + emitName + '\': function (value) {',
+            indent + indent + 'console.log(value);',
             indent + '}'
           ].join('\n');
         });
       const eventsOutput = '{' + indent + emitStrings.join(',' + indent) + '\n}';
-      const eventsJs = 'const ' + tag + 'Events = ' + eventsOutput + ';';
-      if (!emits.length) {
-        return propsJs;
+
+      jsOutput.push('const ' + tag + 'Props = ' + deJSONify(propsOutput, '\n') + ';');
+      if (Object.keys(slotsOutput).length) {
+        jsOutput.push('const ' + tag + 'Slots = ' + deJSONify(slotsOutput, '\n') + ';');
       }
-      return [propsJs, eventsJs].join('\n');
-      */
+      if (emitStrings.filter(Boolean).length) {
+        jsOutput.push('const ' + tag + 'Events = ' + eventsOutput + ';');
+      }
+
+      return jsOutput.join('\n');
     }
   },
   watch: {

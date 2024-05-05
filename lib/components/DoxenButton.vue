@@ -6,7 +6,7 @@
       buttonSelected: selected
     })"
     :aria-pressed="selected"
-    @click="$emit('click')"
+    @click="$emit('click', $event)"
   >
     <slot></slot>
   </button>
