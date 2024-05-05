@@ -1,38 +1,35 @@
 <template>
   <ul v-bind="applyStyleTokens({ emitsDocumentationUl: true })">
-    <template v-if="!emitsDocumentation || !emitsDocumentation.length">
-      <li
-        v-for="emit in component.emits"
-        v-bind="applyStyleTokens({ emitsDocumentationLi: true })"
-        :key="component.name + '-emit-' + emit"
-      >
-        <code
-          v-text="emit"
-          v-bind="applyStyleTokens({ emitsDocumentationCode: true })"
-        ></code>
-      </li>
-    </template>
     <li
-      v-for="(emit, emitIndex) in emitsDocumentation"
+      v-for="(emit, emitName) in emitsToDemo"
       v-bind="applyStyleTokens({ emitsDocumentationLi: true })"
-      :key="component.name + '-emit-' + emitIndex"
+      :key="componentName + '-emit-' + emitName"
     >
       <code
-        v-text="emit.name"
+        v-text="'@' + emitName"
         v-bind="applyStyleTokens({ emitsDocumentationCode: true })"
       ></code>
-      <ul v-bind="applyStyleTokens({ emitsDocumentationUl: true })">
-        <li v-bind="applyStyleTokens({ emitsDocumentationLi: true })">
+      <ul
+        v-if="emit.description || emit.value"
+        v-bind="applyStyleTokens({ emitsDocumentationUl: true })"
+      >
+        <li
+          v-if="emit.description"
+          v-bind="applyStyleTokens({ emitsDocumentationLi: true })"
+        >
           <strong
-            v-text="'Event:'"
+            v-text="'Description:'"
             v-bind="applyStyleTokens({ emitsDocumentationStrong: true })"
           ></strong>
-          {{ emit.event }}
+          {{ emit.description }}
         </li>
-        <li v-bind="applyStyleTokens({ emitsDocumentationLi: true })">
+        <li
+          v-if="emit.value"
+          v-bind="applyStyleTokens({ emitsDocumentationLi: true })"
+        >
           <strong
             v-text="'Value:'"
-            v-bind="applyStyleTokens({ emitsDocumentationStrong })"
+            v-bind="applyStyleTokens({ emitsDocumentationStrong: true })"
           ></strong>
           {{ emit.value }}
         </li>
@@ -52,12 +49,12 @@ export default {
     applyStyleTokens
   ],
   props: {
-    component: {
-      type: Object,
+    componentName: {
+      type: String,
       default: undefined
     },
-    emitsDocumentation: {
-      type: Array,
+    emitsToDemo: {
+      type: Object,
       default: undefined
     },
     styleTokens

@@ -15,29 +15,31 @@
       </legend>
       <button
         v-bind="applyStyleTokens({ emitLogClearButton: true })"
-        @click.prevent="$emit('update:modelValue', [])"
+        @click.prevent="$emit('update:model-value', [])"
       >
         clear&nbsp;log
       </button>
     </div>
-    <table v-bind="applyStyleTokens({ emitLogTable: true })">
-      <thead v-bind="applyStyleTokens({ emitLogThead: true })">
-        <tr v-bind="applyStyleTokens({ emitLogTr: true })">
-          <th v-bind="applyStyleTokens({ emitLogTh: true })">Emit Name</th>
-          <th v-bind="applyStyleTokens({ emitLogTh: true })">Value</th>
-        </tr>
-      </thead>
-      <tbody v-bind="applyStyleTokens({ emitLogTbody: true })">
-        <tr
-          v-for="(log, logIndex) in modelValue"
-          v-bind="applyStyleTokens({ emitLogTr: true })"
-          :key="'log' + logIndex"
-        >
-          <td v-bind="applyStyleTokens({ emitLogTd: true })">{{ log.emitName }}</td>
-          <td v-bind="applyStyleTokens({ emitLogTd: true })">{{ dataValue(log.value) }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div v-bind="applyStyleTokens({ emitLogTableContainer: true })">
+      <table v-bind="applyStyleTokens({ emitLogTable: true })">
+        <thead v-bind="applyStyleTokens({ emitLogThead: true })">
+          <tr v-bind="applyStyleTokens({ emitLogTr: true })">
+            <th v-bind="applyStyleTokens({ emitLogTh: true })">Emit Name</th>
+            <th v-bind="applyStyleTokens({ emitLogTh: true })">Value</th>
+          </tr>
+        </thead>
+        <tbody v-bind="applyStyleTokens({ emitLogTbody: true })">
+          <tr
+            v-for="(log, logIndex) in modelValue"
+            v-bind="applyStyleTokens({ emitLogTr: true })"
+            :key="'log' + logIndex"
+          >
+            <td v-bind="applyStyleTokens({ emitLogTd: true })">{{ log.emitName }}</td>
+            <td v-bind="applyStyleTokens({ emitLogTd: true })">{{ dataValue(log.value) }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </FormFieldsetWrapper>
 </template>
 
@@ -62,9 +64,9 @@ const modelValue = createModelValueProp(Array);
 export default {
   ...createImportStatement(COMPONENT_NAME),
   name: COMPONENT_NAME,
-  components: [
+  components: {
     FormFieldsetWrapper
-  ],
+  },
   mixins: [
     applyStyleTokens
   ],

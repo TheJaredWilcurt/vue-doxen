@@ -82,18 +82,28 @@ $black10: rgba(0, 1, 16, 0.10)
 :where([data-applied-style-tokens~="formFieldTextareaCode"])
     font-family: monospace
 
+/* pull items to the right for layout clarity */
 :where([data-applied-style-tokens~="codeSwapperFileName"])
     float: right
 
+/* Make the selected button bold for affordance */
 :where([data-applied-style-tokens~="buttonSelected"]),
 :where([data-applied-style-tokens~="tabButtonSelected"])
     font-weight: bold
 
+/* Tabs layout for clarity */
 :where([data-applied-style-tokens~="tabsHeader"])
     display: flex
     flex-direction: row
     align-items: baseline
     justify-content: space-between
 
+/* Make tab buttons flex */
 :where([data-applied-style-tokens~="tabsButtonContainer"])
     display: flex
+
+/* Use flexbox on emit log header for layout */
+:where([data-applied-style-tokens~="emitLogHeader"])
+    display: flex
+    align-items: center
+    justify-content: space-between
