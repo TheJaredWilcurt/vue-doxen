@@ -40,7 +40,7 @@
     </ul>
 
     <p>
-      The font used is <a href="https://fonts.google.com/specimen/Hepta+Slab" target="_blank" style="font-weight: 900;">Hepta Slab</a> (900 weight).
+      The font used is <a href="https://github.com/mjlagattuta/hepta-slab" target="_blank" style="font-weight: 900;">Hepta Slab</a> (900 weight).
     </p>
 
     <p>
