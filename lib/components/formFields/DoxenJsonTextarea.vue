@@ -36,10 +36,7 @@
     </div>
     <p
       v-if="invalid"
-      v-bind="applyStyleTokens({
-        formFieldError: true,
-        formFieldMessage: true
-      })"
+      v-bind="applyStyleTokens({ formFieldError: true })"
     >
       Value must be valid JSON
     </p>

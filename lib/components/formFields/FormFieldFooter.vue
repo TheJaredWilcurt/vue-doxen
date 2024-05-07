@@ -12,10 +12,7 @@
     v-text="errorMessage"
     v-bind="{
       ...$attrs,
-      ...applyStyleTokens({
-        formFieldError: true,
-        formFieldMessage: true
-      })
+      ...applyStyleTokens({ formFieldError: true })
     }"
   ></p>
   <p
