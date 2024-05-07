@@ -1,6 +1,6 @@
 {
   "name": "vue-doxen",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "The world's best Vue.js component documentation tool!",
   "scripts": {
     "start": "vite dev --config vite.config.docs.js",
@@ -42,13 +42,15 @@
   "private": false,
   "type": "module",
   "files": ["dist"],
-  "main": "./dist/vue-doxen.umd.js",
+  "main": "./dist/vue-doxen.umd.cjs",
   "module": "./dist/vue-doxen.js",
   "sideEffects": false,
+  "unpkg": "./dist/vue-doxen.iife.js",
+  "jsdelivr": "./dist/vue-doxen.iife.js",
   "exports": {
     ".": {
       "import": "./dist/vue-doxen.js",
-      "require": "./dist/vue-doxen.umd.js"
+      "require": "./dist/vue-doxen.umd.cjs"
     },
     "./dist/vue-doxen.js": {
       "import": "./dist/vue-doxen.js"
@@ -59,8 +61,8 @@
     "./dist/vue-doxen.iife.js": {
       "import": "./dist/vue-doxen.iife.js"
     },
-    "./dist/vue-doxen.umd.js": {
-      "import": "./dist/vue-doxen.umd.js"
+    "./dist/vue-doxen.umd.cjs": {
+      "import": "./dist/vue-doxen.umd.cjs"
     },
     "./dist/vue-doxen.css": {
       "import": "./dist/vue-doxen.css"
@@ -77,8 +79,8 @@
     "./vue-doxen.iife.js": {
       "import": "./dist/vue-doxen.iife.js"
     },
-    "./vue-doxen.umd.js": {
-      "import": "./dist/vue-doxen.umd.js"
+    "./vue-doxen.umd.cjs": {
+      "import": "./dist/vue-doxen.umd.cjs"
     },
     "./vue-doxen.css": {
       "import": "./dist/vue-doxen.css"

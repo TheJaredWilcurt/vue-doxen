@@ -28,6 +28,9 @@ export default defineConfig({
           if (assetInfo.name === 'style.css') {
             return 'vue-doxen.css';
           }
+          if (assetInfo.name === 'vue-doxen.umd.cjs') {
+            return 'vue-doxen.umd.js';
+          }
           return assetInfo.name;
         },
         exports: 'named',
