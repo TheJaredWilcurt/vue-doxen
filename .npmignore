@@ -1,11 +1,14 @@
 .git/
 .github/
 coverage/
-docs/
 app/
+
+docs/
+
 node_modules/
 public/
 tests/
+scripts/
 .editorconfig
 .eslintrc.cjs
 .eslintrc.js
