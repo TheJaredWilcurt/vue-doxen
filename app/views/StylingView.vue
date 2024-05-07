@@ -134,11 +134,15 @@
 
       <p>The following is a list of all style tokens:</p>
 
-      <CodeSwapper
-        :codeTypes="{
-          JavaScript: styleTokensBuiltIn
-        }"
-        fileName="styleTokensBuiltIn"
+      <CodeBox
+        :code="styleTokensBuiltIn"
+        :styleTokens="styleTokens"
+      />
+
+      <p>You can access this export with:</p>
+
+      <CodeBox
+        code="import { styleTokensBuiltIn } from 'vue-doxen';"
         :styleTokens="styleTokens"
       />
     </DocumentationSection>
