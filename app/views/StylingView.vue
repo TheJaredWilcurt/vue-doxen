@@ -256,7 +256,7 @@ import { codeThemesOptions } from '@@@/helpers/codeThemes.js';
 
 const SUPPLIED_CSS_EXAMPLE = `
 // If using a bundler like Vite or Webpack
-import 'vue-doxen/dist/vue-doxen.css';
+import 'vue-doxen/vue-doxen.css';
 `.trim();
 const SUPPLIED_CSS_CDN_EXAMPLE = `
 <!-- Or import via CDN in your index.html -->
