@@ -1,9 +1,7 @@
 {
   "name": "vue-doxen",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The world's best Vue.js component documentation tool!",
-  "type": "module",
-  "main": "lib/vue-doxen.js",
   "scripts": {
     "start": "vite dev --config vite.config.docs.js",
     "preview": "vite preview --config vite.config.docs.js",
@@ -14,22 +12,11 @@
     "lint": "eslint --ext .js,.vue --config=.eslintrc.cjs lib scripts app vite.config.*.js .eslintrc.cjs",
     "fix": "eslint --fix --ext .js,.vue --config=.eslintrc.cjs lib scripts app vite.config.*.js .eslintrc.cjs"
   },
-  "dependencies": {
-    "@highlightjs/vue-plugin": "^2.1.0",
-    "axe-core": "^4.9.0",
-    "json5": "^2.2.3",
-    "lodash.clonedeep": "^4.5.0",
-    "lodash.isequal": "^4.5.0",
-    "lodash.lowerfirst": "^4.3.1",
-    "lodash.startcase": "^4.4.0",
-    "nprogress": "^0.2.0",
-    "vue-axe": "^3.1.2",
-    "vue-options-api-constants-plugin": "^1.0.1",
-    "vue-router": "^4.3.2"
-  },
   "devDependencies": {
     "@babel/eslint-parser": "^7.24.5",
+    "@highlightjs/vue-plugin": "^2.1.0",
     "@vitejs/plugin-vue": "^5.0.4",
+    "axe-core": "^4.9.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^8.57.0",
     "eslint-config-tjw-base": "^2.0.0",
@@ -39,9 +26,63 @@
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-vue": "^9.25.0",
     "eslint-plugin-vuejs-accessibility": "^2.3.0",
+    "json5": "^2.2.3",
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.isequal": "^4.5.0",
+    "lodash.lowerfirst": "^4.3.1",
+    "lodash.startcase": "^4.4.0",
+    "nprogress": "^0.2.0",
     "sass": "^1.76.0",
     "vite": "^5.2.11",
-    "vue": "^3.4.26"
+    "vue": "^3.4.26",
+    "vue-axe": "^3.1.2",
+    "vue-options-api-constants-plugin": "^1.0.1",
+    "vue-router": "^4.3.2"
+  },
+  "private": false,
+  "type": "module",
+  "files": ["dist"],
+  "main": "./dist/vue-doxen.umd.js",
+  "module": "./dist/vue-doxen.js",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./dist/vue-doxen.js",
+      "require": "./dist/vue-doxen.umd.js"
+    },
+    "./dist/vue-doxen.js": {
+      "import": "./dist/vue-doxen.js"
+    },
+    "./dist/vue-doxen.cjs": {
+      "import": "./dist/vue-doxen.cjs"
+    },
+    "./dist/vue-doxen.iife.js": {
+      "import": "./dist/vue-doxen.iife.js"
+    },
+    "./dist/vue-doxen.umd.js": {
+      "import": "./dist/vue-doxen.umd.js"
+    },
+    "./dist/vue-doxen.css": {
+      "import": "./dist/vue-doxen.css"
+    },
+    "./vue-doxen.js": {
+      "import": "./dist/vue-doxen.js"
+    },
+    "./vue-doxen.mjs": {
+      "import": "./dist/vue-doxen.js"
+    },
+    "./vue-doxen.cjs": {
+      "import": "./dist/vue-doxen.cjs"
+    },
+    "./vue-doxen.iife.js": {
+      "import": "./dist/vue-doxen.iife.js"
+    },
+    "./vue-doxen.umd.js": {
+      "import": "./dist/vue-doxen.umd.js"
+    },
+    "./vue-doxen.css": {
+      "import": "./dist/vue-doxen.css"
+    }
   },
   "repository": {
     "type": "git",
