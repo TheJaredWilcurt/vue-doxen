@@ -32,6 +32,7 @@ module.exports = {
   ],
   rules: {
     'import/no-anonymous-default-export': 'off',
+    'import/no-extraneous-dependencies': 'off',
     'import/no-namespace': 'off',
     'import/no-unresolved': 'off',
     'import/no-unused-modules': 'off',
