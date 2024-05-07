@@ -37,7 +37,8 @@ export default {
       styles: 'Styling',
       demoFiles: 'Demo Files',
       vueRouter: 'Vue-Router',
-      branding: 'Press Kit/Branding'
+      branding: 'Press Kit/Branding',
+      a11y: 'Accessibility'
     }
   }
 };

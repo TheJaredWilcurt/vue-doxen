@@ -47,6 +47,11 @@ const routes = [
     component: () => import('@@@/views/PressKit.vue')
   },
   {
+    path: '/vue-doxen/a11y',
+    name: 'a11y',
+    component: () => import('@@@/views/AccessibilityTooling.vue')
+  },
+  {
     path: '/vue-doxen/components/:component',
     name: 'components',
     component: () => import('@@@/views/ComponentsView.vue'),

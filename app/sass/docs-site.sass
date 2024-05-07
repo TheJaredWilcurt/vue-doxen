@@ -30,15 +30,21 @@
     margin-right: 10px
     .docs-sub-title
         margin-top: 30px
-    .router-link-active
+    a
         position: relative
-        &:before
-            content: '●'
-            position: absolute
-            left: -1rem
-            font-size: 0.9rem
-            font-weight: bold
-            text-decoration: none
+    a:before
+        content: '●'
+        position: absolute
+        left: -1rem
+        font-size: 0.9rem
+        font-weight: bold
+        opacity: 0.0
+        text-decoration: none
+    a:hover:before
+        opacity: 0.5
+    .router-link-active:before,
+    .router-link-active:hover:before
+        opacity: 1.0
 
 /* Axe-Vue popup */
 .va-popup *
