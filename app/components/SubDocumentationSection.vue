@@ -29,7 +29,7 @@ export default {
     fullTitle: function () {
       let title = this.title;
       if (this.subTitle) {
-        title = title + ' &ndash; <strong style="font-weight: 800">' + this.subTitle + '</strong>'
+        title = title + ' &ndash; <strong style="font-weight: 800">' + this.subTitle + '</strong>';
       }
       return title;
     }
