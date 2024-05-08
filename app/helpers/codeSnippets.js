@@ -847,3 +847,63 @@ defineEmits([
 ]);
 </script>
 `.trim();
+
+export const CUSTOM_COMPONENTS_DEMO_EXAMPLE = `
+import MyComponent from '../components/MyComponent.vue';
+import MyCustomColorPicker from '../components/MyCustomColorPicker.vue';
+
+export const myComponentDemo = {
+  component: MyComponent,
+  propsToDemo: {
+    color: {
+      component: MyCustomColorPicker,
+      props: {
+        // Default value to demo
+        modelValue: 'red'
+        // any other props your custom component takes
+      }
+    }
+  }
+};
+`.trim();
+export const CUSTOM_COMPONENTS_OPTIONS_EXAMPLE = `
+<script>
+// DO NOT ACTUALLY DO THIS! USE A DEMO FILE INSTEAD.
+// Though this is technically supported, importing custom components
+// into your component just for Vue-Doxen will bloat your component's
+// file size for no real benefit. If you want to use your own
+// components in the props playground, just use a demo file.
+import MyCustomColorPicker from '../components/MyCustomColorPicker.vue';
+
+export default {
+  name: 'MyComponent',
+  props: {
+    color: {
+      component: MyCustomColorPicker,
+      props: {
+        modelValue: 'red'
+      }
+    }
+  }
+};
+</script>
+`.trim();
+export const CUSTOM_COMPONENTS_SCRIPT_SETUP_EXAMPLE = `
+<script setup>
+// DO NOT ACTUALLY DO THIS! USE A DEMO FILE INSTEAD.
+// Though this is technically supported, importing custom components
+// into your component just for Vue-Doxen will bloat your component's
+// file size for no real benefit. If you want to use your own
+// components in the props playground, just use a demo file.
+import MyCustomColorPicker from '../components/MyCustomColorPicker.vue';
+
+defineProps({
+  color: {
+    component: MyCustomColorPicker,
+    props: {
+      modelValue: 'red'
+    }
+  }
+});
+</script>
+`.trim();

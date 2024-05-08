@@ -65,7 +65,7 @@
     <DocumentationSection id="axe" title="Vue-Axe">
       <p>
         Axe is a commonly used open source rule set for automated accessibility validation.
-        It use generally ran against the actual rendered DOM of a page and can catch things
+        It is generally ran against the actual rendered DOM of a page and can catch things
         that a linter cannot, like color contrast issues.
       </p>
 
@@ -144,44 +144,42 @@
         />
       </template>
 
-      <hr />
-
-      <h3 id="install-vue-axe">Installing Vue-Axe</h3>
-
-      <ol>
-        <li>
-          <code>npm install --save-dev axe-core@4 vue-axe@3</code>
-          <ul>
-            <li>
-              <strong>The version numbers are important.</strong> By default it will install the
-              Vue 2 version of <code>vue-axe</code> if you don't include <code>@3</code>. If you think
-              the Vue 3 version should be the default, go thumbs up this
-              <a href="https://github.com/vue-a11y/vue-axe/issues/62" target="_blank">GitHub issue</a>.
-            </li>
-          </ul>
-        </li>
-        <li>
-          In your app's <code>main.js</code> file:
-          <CodeBox
-            :code="VUE_AXE_MAIN_JS"
-            :styleTokens="styleTokens"
-          />
-        </li>
-        <li>
-          In your <code>vite.config.js</code>:
-          <CodeBox
-            :code="VUE_AXE_VITE_CONFIG"
-            :styleTokens="styleTokens"
-          />
-        </li>
-        <li>
-          <a
-            v-text="'Additional Documentation'"
-            href="https://github.com/vue-a11y/vue-axe/tree/next"
-            target="_blank"
-          ></a>
-        </li>
-      </ol>
+      <SubDocumentationSection id="install-vue-axe" title="Installing Vue-Axe">
+        <ol>
+          <li>
+            <code>npm install --save-dev axe-core@4 vue-axe@3</code>
+            <ul>
+              <li>
+                <strong>The version numbers are important.</strong> By default it will install the
+                Vue 2 version of <code>vue-axe</code> if you don't include <code>@3</code>. If you think
+                the Vue 3 version should be the default, go thumbs up this
+                <a href="https://github.com/vue-a11y/vue-axe/issues/62" target="_blank">GitHub issue</a>.
+              </li>
+            </ul>
+          </li>
+          <li>
+            In your app's <code>main.js</code> file:
+            <CodeBox
+              :code="VUE_AXE_MAIN_JS"
+              :styleTokens="styleTokens"
+            />
+          </li>
+          <li>
+            In your <code>vite.config.js</code>:
+            <CodeBox
+              :code="VUE_AXE_VITE_CONFIG"
+              :styleTokens="styleTokens"
+            />
+          </li>
+          <li>
+            <a
+              v-text="'Additional Documentation'"
+              href="https://github.com/vue-a11y/vue-axe/tree/next"
+              target="_blank"
+            ></a>
+          </li>
+        </ol>
+      </SubDocumentationSection>
     </DocumentationSection>
   </div>
 </template>
@@ -193,6 +191,7 @@ import CodeBox from '@/components/CodeBox.vue';
 import CodeSwapper from '@/components/CodeSwapper.vue';
 import DoxenButton from '@/components/DoxenButton.vue';
 import DocumentationSection from '@@@/components/DocumentationSection.vue';
+import SubDocumentationSection from '@@@/components/SubDocumentationSection.vue';
 
 const ESLINT_EXAMPLE = `
 module.exports = {
@@ -302,7 +301,8 @@ export default {
     CodeBox,
     CodeSwapper,
     DocumentationSection,
-    DoxenButton
+    DoxenButton,
+    SubDocumentationSection
   },
   props: {
     styleTokens

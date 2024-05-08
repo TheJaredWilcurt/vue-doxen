@@ -50,11 +50,15 @@
       <CodeSwapper
         :codeTypes="{
           JavaScript: SUPPLIED_CSS_EXAMPLE,
-          HTML: SUPPLIED_CSS_CDN_EXAMPLE
+          HTML: SUPPLIED_CSS_CDN_EXAMPLE,
+          Sass: SUPPLIED_CSS_SASS_EXAMPLE,
+          SCSS: SUPPLIED_CSS_SCSS_EXAMPLE
         }"
         :fileName="{
           JavaScript: 'main.js',
-          HTML: 'index.html'
+          HTML: 'index.html',
+          Sass: 'styles.sass',
+          SCSS: 'styles.scss'
         }"
         :styleTokens="styleTokens"
       />
@@ -266,6 +270,18 @@ const SUPPLIED_CSS_CDN_EXAMPLE = `
   type="text/css"
 />
 `.trim();
+const SUPPLIED_CSS_SASS_EXAMPLE = `
+/* Classic Sass */
+@import '../node_modules/vue-doxen/dist/vue-doxen'
+/* Modern Sass */
+@use '../node_modules/vue-doxen/dist/vue-doxen'
+`.trim();
+const SUPPLIED_CSS_SCSS_EXAMPLE = `
+/* Classic SCSS */
+@import '../node_modules/vue-doxen/dist/vue-doxen';
+/* Modern SCSS */
+@use '../node_modules/vue-doxen/dist/vue-doxen';
+`.trim();
 const STYLE_TOKEN_USAGE_EXAMPLE = `
 <DoxenRadioDials
   :styleTokens="{
@@ -340,6 +356,8 @@ export default {
     STYLE_TOKEN_USAGE_EXAMPLE,
     SUPPLIED_CSS_EXAMPLE,
     SUPPLIED_CSS_CDN_EXAMPLE,
+    SUPPLIED_CSS_SASS_EXAMPLE,
+    SUPPLIED_CSS_SCSS_EXAMPLE,
     VUE_EXAMPLE
   },
   data: function () {
