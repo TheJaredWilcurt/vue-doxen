@@ -21,7 +21,7 @@ export default {
     const demo = computed(() => {
       return {
         component: MyComponent,
-        importStatement: 'import { MyComponent } from \'my-component-library\'',
+        importStatement: 'import { MyComponent } from \\'my-component-library\\'',
         slotsToDemo: {
           default: 'This is the text for the demo of the default slot.'
         }
@@ -56,7 +56,7 @@ export default {
     demo: function () {
       return {
         component: MyComponent,
-        importStatement: 'import { MyComponent } from \'my-component-library\'',
+        importStatement: 'import { MyComponent } from \\'my-component-library\\'',
         slotsToDemo: {
           default: 'This is the text for the demo of the default slot.'
         }
@@ -86,7 +86,7 @@ S({
 const demo = computed(() => {
   return {
     component: MyComponent,
-    importStatement: 'import { MyComponent } from \'my-component-library\'',
+    importStatement: 'import { MyComponent } from \\'my-component-library\\'',
     slotsToDemo: {
       default: 'This is the text for the demo of the default slot.'
     }
