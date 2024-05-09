@@ -1,3 +1,124 @@
+export const ALTERNATE_COMPOSITION_DEMO_EXAMPLE = `
+<template>
+  <VueDoxen
+    modelValue="MyComponent"
+    :demos="{ MyComponent: demo }"
+  />
+</template>
+
+<script>
+import { computed } from 'vue';
+import { VueDoxen } from 'vue-doxen';
+
+import MyComponent from '../components/MyComponent.vue';
+
+export default {
+  name: 'MyComponentDemo',
+  components: {
+    VueDoxen
+  },
+  setup: function () {
+    const demo = computed(() => {
+      return {
+        component: MyComponent,
+        importStatement: 'import { MyComponent } from \'my-component-library\'',
+        slotsToDemo: {
+          default: 'This is the text for the demo of the default slot.'
+        }
+      };
+    };
+    return {
+      demo
+    };
+  }
+};
+</script>
+`.trim();
+export const ALTERNATE_OPTIONS_DEMO_EXAMPLE = `
+<template>
+  <VueDoxen
+    modelValue="MyComponent"
+    :demos="{ MyComponent: demo }"
+  />
+</template>
+
+<script>
+import { VueDoxen } from 'vue-doxen';
+
+import MyComponent from '../components/MyComponent.vue';
+
+export default {
+  name: 'MyComponentDemo',
+  components: {
+    VueDoxen
+  },
+  computed: {
+    demo: function () {
+      return {
+        component: MyComponent,
+        importStatement: 'import { MyComponent } from \'my-component-library\'',
+        slotsToDemo: {
+          default: 'This is the text for the demo of the default slot.'
+        }
+      };
+    }
+  }
+};
+`.trim();
+export const ALTERNATE_SCRIPT_SETUP_DEMO_EXAMPLE = `
+<template>
+  <VueDoxen
+    modelValue="MyComponent"
+    :demos="{ MyComponent: demo }"
+  />
+</template>
+
+<script setup>
+import { computed } from 'vue';
+import { VueDoxen } from 'vue-doxen';
+
+import MyComponent from '../components/MyComponent.vue';
+
+S({
+  name: 'MyComponentDemo'
+});
+
+const demo = computed(() => {
+  return {
+    component: MyComponent,
+    importStatement: 'import { MyComponent } from \'my-component-library\'',
+    slotsToDemo: {
+      default: 'This is the text for the demo of the default slot.'
+    }
+  };
+};
+`.trim();
+export const ALTERNATE_VUE_ROUTER_EXAMPLE = `
+import { createRouter, createWebHistory } from 'vue-router';
+
+const routes = [
+  // ...other routes,
+  {
+    // Create the path for the URL
+    path: '/components/my-component',
+    // Give it an optional name
+    name: 'MyComponentDemo',
+    // Asynchronously import the demo component
+    component: () => import('../demos/MyComponentDemo.vue')
+  }
+];
+
+// Create the router
+const router = createRouter({
+  // Use the correct history mode for your project
+  history: createWebHistory(),
+  routes
+});
+
+// Export the router
+export default router;
+`.trim();
+
 export const BASIC_PROPS_DEMO_FILE = `
 import YourComponent from '../components/YourComponent.vue';
 
