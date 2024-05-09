@@ -14,7 +14,7 @@ The world's best Vue.js component documentation tool!
 ## Running this repo locally
 
 1. Uninstall Node/npm/nvm/nvm-windows/n/nodist
-1. Install [Volta](https://volta.sh)
+1. Install [Volta](https://volta.sh) (replaces all of the above and is much better)
 1. Clone the repo
 1. `npm install`
 1. `npm run build` builds both the docs site and library
