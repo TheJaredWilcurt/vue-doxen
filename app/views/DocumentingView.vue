@@ -26,7 +26,7 @@
         The name of the component is used at the top of a demo page, and also used for the tag and variable name in the code example below the props playground. If not provided on the demo object, we will use the name provided in the component (if available).
       </p>
       <p>
-        Components written in <code>.vue</code> files, and processed by a bundler, may include the filename in the component. We will check for for this if the name is not explicitly defined in the demo object or component definition.
+        Components written in <code>.vue</code> files, and processed by a bundler, may include the filename in the component. We will check for this if the name is not explicitly defined in the demo object or component definition.
       </p>
 
       <CodeSwapper
@@ -34,7 +34,7 @@
           'Demo File': COMPONENT_NAME_DEMO_EXAMPLE,
           Options: COMPONENT_NAME_OPTIONS_EXAMPLE,
           Composition: COMPONENT_NAME_OPTIONS_EXAMPLE,
-          'Script Setup': USE_DEMO
+          'Script Setup': COMPONENT_NAME_SCRIPT_SETUP_EXAMPLE
         }"
         :fileName="FILE_NAME_YOUR"
         :styleTokens="styleTokens"
@@ -55,7 +55,7 @@
           'Demo File': COMPONENT_DESCRIPTION_DEMO_EXAMPLE,
           Options: COMPONENT_DESCRIPTION_OPTIONS_EXAMPLE,
           Composition: COMPONENT_DESCRIPTION_OPTIONS_EXAMPLE,
-          'Script Setup': USE_DEMO
+          'Script Setup': COMPONENT_DESCRIPTION_SCRIPT_SETUP_EXAMPLE
         }"
         :fileName="FILE_NAME_YOUR"
         :styleTokens="styleTokens"
@@ -330,10 +330,12 @@ import {
   BASIC_PROPS_DEMO_FILE,
   BASIC_PROPS_OPTIONS,
   BASIC_PROPS_SCRIPT_SETUP,
-  COMPONENT_DESCRIPTION_OPTIONS_EXAMPLE,
   COMPONENT_DESCRIPTION_DEMO_EXAMPLE,
-  COMPONENT_NAME_OPTIONS_EXAMPLE,
+  COMPONENT_DESCRIPTION_OPTIONS_EXAMPLE,
+  COMPONENT_DESCRIPTION_SCRIPT_SETUP_EXAMPLE,
   COMPONENT_NAME_DEMO_EXAMPLE,
+  COMPONENT_NAME_OPTIONS_EXAMPLE,
+  COMPONENT_NAME_SCRIPT_SETUP_EXAMPLE,
   CUSTOM_COMPONENTS_DEMO_EXAMPLE,
   CUSTOM_COMPONENTS_OPTIONS_EXAMPLE,
   CUSTOM_COMPONENTS_SCRIPT_SETUP_EXAMPLE,
@@ -369,10 +371,12 @@ export default {
     BASIC_PROPS_DEMO_FILE,
     BASIC_PROPS_OPTIONS,
     BASIC_PROPS_SCRIPT_SETUP,
-    COMPONENT_DESCRIPTION_OPTIONS_EXAMPLE,
     COMPONENT_DESCRIPTION_DEMO_EXAMPLE,
-    COMPONENT_NAME_OPTIONS_EXAMPLE,
+    COMPONENT_DESCRIPTION_OPTIONS_EXAMPLE,
+    COMPONENT_DESCRIPTION_SCRIPT_SETUP_EXAMPLE,
     COMPONENT_NAME_DEMO_EXAMPLE,
+    COMPONENT_NAME_OPTIONS_EXAMPLE,
+    COMPONENT_NAME_SCRIPT_SETUP_EXAMPLE,
     CUSTOM_COMPONENTS_DEMO_EXAMPLE,
     CUSTOM_COMPONENTS_OPTIONS_EXAMPLE,
     CUSTOM_COMPONENTS_SCRIPT_SETUP_EXAMPLE,
