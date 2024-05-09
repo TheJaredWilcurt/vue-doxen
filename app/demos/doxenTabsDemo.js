@@ -1,5 +1,6 @@
 import DoxenTabs from '@/components/DoxenTabs.vue';
 import DoxenJsonTextarea from '@/components/formFields/DoxenJsonTextarea.vue';
+import DoxenTextarea from '@/components/formFields/DoxenTextarea.vue';
 
 export const createDoxenTabsDemo = function (styleTokens) {
   return {
@@ -7,10 +8,9 @@ export const createDoxenTabsDemo = function (styleTokens) {
     description: 'These tabs are primarily used by the <code>CodeSwapper</code> component internally in Vue-Doxen.',
     propsToDemo: {
       modelValue: {
-        component: DoxenJsonTextarea,
+        component: DoxenTextarea,
         props: {
           label: 'Model Value',
-          modelValue: 'Vue',
           styleTokens
         }
       },
@@ -25,7 +25,7 @@ export const createDoxenTabsDemo = function (styleTokens) {
       tabs: {
         component: DoxenJsonTextarea,
         props: {
-          label: 'Model Value',
+          label: 'tabs',
           modelValue: ['Vue', 'JavaScript'],
           styleTokens
         }

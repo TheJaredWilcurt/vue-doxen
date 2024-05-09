@@ -179,9 +179,9 @@ export default {
   computed: {
     componentName: function () {
       return (
-        this.demo?.name ||
         this.demo?.component?.name ||
         this.demo?.component?.__name ||
+        this.demo?.name ||
         ''
       );
     },
@@ -190,50 +190,49 @@ export default {
     },
     description: function () {
       return (
-        this.demo?.description ||
-        this.demo?.component?.description
+        this.demo?.component?.description ||
+        this.demo?.description
       );
     },
     importStatement: function () {
       return (
-        this.demo?.importStatement ||
-        this.demo?.component?.importStatement
+        this.demo?.component?.importStatement ||
+        this.demo?.importStatement
       );
     },
     emitsToDemo: function () {
       let demoEmits = {};
 
-      function handleObject (object) {
+      function handleEmitArrays (emits) {
+        if (emits && Array.isArray(emits) && emits.length) {
+          for (const emitName of emits) {
+            demoEmits[emitName] = demoEmits[emitName] || {};
+          }
+        }
+      }
+      function handleEmitObjects (emits) {
         if (
-          object &&
-          typeof(object) === 'object' &&
-          !Array.isArray(object)
+          emits &&
+          typeof(emits) === 'object' &&
+          !Array.isArray(emits)
         ) {
-          for (const key in object) {
-            demoEmits[key] = demoEmits[key] || {};
-            demoEmits[key] = {
-              ...demoEmits[key],
-              ...object[key]
+          for (const emitName in emits) {
+            demoEmits[emitName] = demoEmits[emitName] || {};
+            demoEmits[emitName] = {
+              ...demoEmits[emitName],
+              ...emits[emitName]
             };
           }
         }
       }
 
-      function handleArray (array) {
-        if (array && Array.isArray(array) && array.length) {
-          for (const emit of array) {
-            demoEmits[emit] = demoEmits[emit] || {};
-          }
-        }
-      }
+      handleEmitArrays(this.demo?.component?.emits);
+      handleEmitArrays(this.demo?.component?.emitsToDemo);
+      handleEmitArrays(this.demo?.emitsToDemo);
 
-      handleObject(this.demo?.emitsToDemo);
-      handleObject(this.demo?.component?.emitsToDemo);
-      handleObject(this.demo?.component?.emits);
-
-      handleArray(this.demo?.emitsToDemo);
-      handleArray(this.demo?.component?.emitsToDemo);
-      handleArray(this.demo?.component?.emits);
+      handleEmitObjects(this.demo?.emitsToDemo);
+      handleEmitObjects(this.demo?.component?.emitsToDemo);
+      handleEmitObjects(this.demo?.component?.emits);
 
       // Default values
       for (const emitName in demoEmits) {
@@ -266,28 +265,42 @@ export default {
       return demoEmits;
     },
     slotsToDemo: function () {
-      const demoSlots = this.demo?.slotsToDemo || this.demo?.component?.slots;
       let slotsToDemo = {};
 
-      if (!demoSlots) {
-        return slotsToDemo;
+      function handleSlotArrays (slots) {
+        if (slots && Array.isArray(slots) && slots.length) {
+          for (const slotName of slots) {
+            slotsToDemo[slotName] = slotsToDemo[slotName] || '';
+          }
+        }
+      }
+      function handleSlotObjects (slots) {
+        if (
+          slots &&
+          typeof(slots) === 'object' &&
+          !Array.isArray(slots)
+        ) {
+          for (const slotName in slots) {
+            slotsToDemo[slotName] = slots[slotName] || '';
+          }
+        }
       }
 
-      if (Array.isArray(demoSlots)) {
-        for (const slot of demoSlots) {
-          if (typeof(slot) === 'string') {
-            slotsToDemo[slot] = '';
-          }
-        }
-      } else if (typeof(demoSlots) === 'object') {
-        for (const slotName in demoSlots) {
-          if (typeof(demoSlots[slotName]) === 'string') {
-            slotsToDemo[slotName] = demoSlots[slotName];
-          } else {
-            slotsToDemo[slotName] = deJSONify(demoSlots[slotName]);
-          }
+      handleSlotArrays(this.demo?.component?.slots);
+      handleSlotArrays(this.demo?.component?.slotsToDemo);
+      handleSlotArrays(this.demo?.slotsToDemo);
+
+      handleSlotObjects(this.demo?.component?.slots);
+      handleSlotObjects(this.demo?.component?.slotsToDemo);
+      handleSlotObjects(this.demo?.slotsToDemo);
+
+      // Defaults
+      for (const slotName in slotsToDemo) {
+        if (typeof(slotsToDemo[slotName]) !== 'string') {
+          slotsToDemo[slotName] = deJSONify(slotsToDemo[slotName]);
         }
       }
+
       return slotsToDemo;
     },
     propsToDemo: function () {
