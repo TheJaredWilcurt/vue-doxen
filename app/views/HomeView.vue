@@ -1,7 +1,20 @@
 <template>
   <div class="docs-page">
     <TitleParagraph title="Is this library ready for use?">
-      Not yet! But maybe in the next few weeks. Steady progress is being made daily. When it's ready this warning message will be removed.
+      <em>Kinda!</em> It's in <strong>beta</strong> right now.
+      The documentation and API are both almost to 100%.
+      You can <code>npm install</code> it and try it out now to give early feedback.
+      <ul>
+        <li>
+          See
+          <a
+            v-text="'Github Project Board'"
+            href="https://github.com/users/TheJaredWilcurt/projects/1/views/2"
+            target="_blank"
+          ></a>
+          for remaining priority tasks.
+        </li>
+      </ul>
     </TitleParagraph>
 
     <TitleParagraph
