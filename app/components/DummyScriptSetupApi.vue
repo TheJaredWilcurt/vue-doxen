@@ -25,6 +25,21 @@
 import { computed, ref } from 'vue';
 
 import CodeBox from '@/components/CodeBox.vue';
+import MyImportStatement from '@@@/components/MyImportStatement.vue';
+
+defineOptions({
+  importStatement: {
+    component: MyImportStatement,
+    props: {
+      yourProp: 'your value'
+    },
+    events: {
+      click: function ($event) {
+        console.log($event);
+      }
+    }
+  }
+});
 
 defineEmits([
   'test'

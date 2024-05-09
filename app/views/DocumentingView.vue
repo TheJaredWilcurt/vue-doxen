@@ -6,7 +6,13 @@
       <ul>
         <li><a href="#name">Component Name</a></li>
         <li><a href="#description">Component Description</a></li>
-        <li><a href="#import">Import Statements</a></li>
+        <li>
+          <a href="#import">Import Statements</a>
+          <ul>
+            <li><a href="#import-string">String example</a></li>
+            <li><a href="#import-component">Custom component example</a></li>
+          </ul>
+        </li>
         <li>
           <a href="#props">Documenting Props</a>
           <ul>
@@ -16,8 +22,21 @@
             <li><a href="#custom-components">Use your own components in the props playground</a></li>
           </ul>
         </li>
-        <li><a href="#slots">Documenting Slots</a></li>
-        <li><a href="#emits">Documenting Emits</a></li>
+        <li>
+          <a href="#slots">Documenting Slots</a>
+          <ul>
+            <li><a href="#slots-array">Array example</a></li>
+            <li><a href="#slots-objects">Object example</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#emits">Documenting Emits</a>
+          <ul>
+            <li><a href="#emits-vue">Vue's API</a></li>
+            <li><a href="#emits-array">Array example</a></li>
+            <li><a href="#emits-object">Object example</a></li>
+          </ul>
+        </li>
       </ul>
     </nav>
 
@@ -77,7 +96,7 @@
             'Demo File': IMPORT_STATEMENT_STRING_DEMO_FILE_EXAMPLE,
             Options: IMPORT_STATEMENT_STRING_OPTIONS_EXAMPLE,
             Composition: IMPORT_STATEMENT_STRING_OPTIONS_EXAMPLE,
-            'Script Setup': USE_DEMO
+            'Script Setup': IMPORT_STATEMENT_STRING_SCRIPT_SETUP_EXAMPLE
           }"
           :fileName="FILE_NAME_MY"
           :styleTokens="styleTokens"
@@ -90,12 +109,17 @@
         subTitle="Custom component example"
       >
         <p>
-          Though you <em>can</em> import a custom component inside the component you are going to demo and pass it through, it will impact the size of your component, so we do not recommend it.
+          If you want to customize the part of the demo page that says "Usage" and shows the import statement, we allow passing
+          in a custom component to render whatever you want in this part of the page (below the description, above the live
+          component rendering).
         </p>
 
         <CodeSwapper
           :codeTypes="{
-            'Demo File': IMPORT_STATEMENT_COMPONENT_DEMO_FILE_EXAMPLE
+            'Demo File': IMPORT_STATEMENT_COMPONENT_DEMO_FILE_EXAMPLE,
+            Options: IMPORT_STATEMENT_COMPONENT_OPTIONS_EXAMPLE,
+            Composition: IMPORT_STATEMENT_COMPONENT_OPTIONS_EXAMPLE,
+            'Script Setup': IMPORT_STATEMENT_COMPONENT_SCRIPT_SETUP_EXAMPLE
           }"
           :fileName="FILE_NAME_MY"
           :styleTokens="styleTokens"
@@ -226,7 +250,7 @@
             'Demo File': SLOTS_DEMO_ARRAY_EXAMPLE,
             Options: SLOTS_OPTIONS_ARRAY_EXAMPLE,
             Composition: SLOTS_OPTIONS_ARRAY_EXAMPLE,
-            'Script Setup': USE_DEMO
+            'Script Setup': SLOTS_SCRIPT_SETUP_ARRAY_EXAMPLE
           }"
           :fileName="FILE_NAME_MY"
           :styleTokens="styleTokens"
@@ -243,7 +267,7 @@
             'Demo File': SLOTS_DEMO_OBJECT_EXAMPLE,
             Options: SLOTS_OPTIONS_OBJECT_EXAMPLE,
             Composition: SLOTS_OPTIONS_OBJECT_EXAMPLE,
-            'Script Setup': USE_DEMO
+            'Script Setup': SLOTS_SCRIPT_SETUP_OBJECT_EXAMPLE
           }"
           :fileName="FILE_NAME_MY"
           :styleTokens="styleTokens"
@@ -261,10 +285,15 @@
         title="Documenting Emits"
         subTitle="Vue's API"
       >
+        <p>
+          Vue's offical API supports passing in an array of strings to define all emits in a component.
+          Vue-Doxen will check this part of the component and attempt to automatically document your emits.
+        </p>
+
         <CodeSwapper
           :codeTypes="{
-            Options: EMITS_OPTIONS_ARRAY_EXAMPLE,
-            Composition: EMITS_OPTIONS_ARRAY_EXAMPLE,
+            Options: EMITS_OPTIONS_EXAMPLE,
+            Composition: EMITS_OPTIONS_EXAMPLE,
             'Script Setup': EMITS_SCRIPT_SETUP_EXAMPLE
           }"
           :fileName="FILE_NAME_MY"
@@ -279,10 +308,10 @@
       >
         <CodeSwapper
           :codeTypes="{
-            'Demo File': EMITS_TO_DEMO_DEMO_FILE_ARRAY_EXAMPLE,
-            Options: EMITS_TO_DEMO_OPTIONS_ARRAY_EXAMPLE,
-            Composition: EMITS_TO_DEMO_OPTIONS_ARRAY_EXAMPLE,
-            'Script Setup': USE_DEMO
+            'Demo File': EMITS_TO_DEMO_ARRAY_DEMO_FILE_EXAMPLE,
+            Options: EMITS_TO_DEMO_ARRAY_OPTIONS_EXAMPLE,
+            Composition: EMITS_TO_DEMO_ARRAY_OPTIONS_EXAMPLE,
+            'Script Setup': EMITS_TO_DEMO_ARRAY_SCRIPT_SETUP_EXAMPLE
           }"
           :fileName="FILE_NAME_MY"
           :styleTokens="styleTokens"
@@ -306,10 +335,10 @@
 
         <CodeSwapper
           :codeTypes="{
-            'Demo File': EMITS_TO_DEMO_DEMO_FILE_OBJECT_EXAMPLE,
-            Options: EMITS_TO_DEMO_OPTIONS_OBJECT_EXAMPLE,
-            Composition: EMITS_TO_DEMO_OPTIONS_OBJECT_EXAMPLE,
-            'Script Setup': USE_DEMO
+            'Demo File': EMITS_TO_DEMO_OBJECT_DEMO_FILE_EXAMPLE,
+            Options: EMITS_TO_DEMO_OBJECT_OPTIONS_EXAMPLE,
+            Composition: EMITS_TO_DEMO_OBJECT_OPTIONS_EXAMPLE,
+            'Script Setup': EMITS_TO_DEMO_OBJECT_SCRIPT_SETUP_EXAMPLE
           }"
           :fileName="FILE_NAME_MY"
           :styleTokens="styleTokens"
@@ -342,19 +371,26 @@ import {
   DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_DEMO_FILE,
   DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_OPTIONS,
   DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_SCRIPT_SETUP,
-  EMITS_OPTIONS_ARRAY_EXAMPLE,
+  EMITS_OPTIONS_EXAMPLE,
   EMITS_SCRIPT_SETUP_EXAMPLE,
-  EMITS_TO_DEMO_DEMO_FILE_ARRAY_EXAMPLE,
-  EMITS_TO_DEMO_DEMO_FILE_OBJECT_EXAMPLE,
-  EMITS_TO_DEMO_OPTIONS_ARRAY_EXAMPLE,
-  EMITS_TO_DEMO_OPTIONS_OBJECT_EXAMPLE,
+  EMITS_TO_DEMO_ARRAY_DEMO_FILE_EXAMPLE,
+  EMITS_TO_DEMO_ARRAY_OPTIONS_EXAMPLE,
+  EMITS_TO_DEMO_ARRAY_SCRIPT_SETUP_EXAMPLE,
+  EMITS_TO_DEMO_OBJECT_DEMO_FILE_EXAMPLE,
+  EMITS_TO_DEMO_OBJECT_OPTIONS_EXAMPLE,
+  EMITS_TO_DEMO_OBJECT_SCRIPT_SETUP_EXAMPLE,
   IMPORT_STATEMENT_COMPONENT_DEMO_FILE_EXAMPLE,
+  IMPORT_STATEMENT_COMPONENT_OPTIONS_EXAMPLE,
+  IMPORT_STATEMENT_COMPONENT_SCRIPT_SETUP_EXAMPLE,
   IMPORT_STATEMENT_STRING_DEMO_FILE_EXAMPLE,
   IMPORT_STATEMENT_STRING_OPTIONS_EXAMPLE,
+  IMPORT_STATEMENT_STRING_SCRIPT_SETUP_EXAMPLE,
   SLOTS_DEMO_ARRAY_EXAMPLE,
   SLOTS_DEMO_OBJECT_EXAMPLE,
   SLOTS_OPTIONS_ARRAY_EXAMPLE,
-  SLOTS_OPTIONS_OBJECT_EXAMPLE
+  SLOTS_OPTIONS_OBJECT_EXAMPLE,
+  SLOTS_SCRIPT_SETUP_ARRAY_EXAMPLE,
+  SLOTS_SCRIPT_SETUP_OBJECT_EXAMPLE
 } from '@@@/helpers/codeSnippets.js';
 
 export default {
@@ -383,12 +419,14 @@ export default {
     DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_DEMO_FILE,
     DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_OPTIONS,
     DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_SCRIPT_SETUP,
-    EMITS_OPTIONS_ARRAY_EXAMPLE,
+    EMITS_OPTIONS_EXAMPLE,
     EMITS_SCRIPT_SETUP_EXAMPLE,
-    EMITS_TO_DEMO_DEMO_FILE_ARRAY_EXAMPLE,
-    EMITS_TO_DEMO_DEMO_FILE_OBJECT_EXAMPLE,
-    EMITS_TO_DEMO_OPTIONS_ARRAY_EXAMPLE,
-    EMITS_TO_DEMO_OPTIONS_OBJECT_EXAMPLE,
+    EMITS_TO_DEMO_ARRAY_DEMO_FILE_EXAMPLE,
+    EMITS_TO_DEMO_ARRAY_OPTIONS_EXAMPLE,
+    EMITS_TO_DEMO_ARRAY_SCRIPT_SETUP_EXAMPLE,
+    EMITS_TO_DEMO_OBJECT_DEMO_FILE_EXAMPLE,
+    EMITS_TO_DEMO_OBJECT_OPTIONS_EXAMPLE,
+    EMITS_TO_DEMO_OBJECT_SCRIPT_SETUP_EXAMPLE,
     FILE_NAME_YOUR: {
       'Demo File': 'yourComponentDemo.js',
       Options: 'YourComponent.vue',
@@ -402,13 +440,17 @@ export default {
       'Script Setup': 'MyComponent.vue'
     },
     IMPORT_STATEMENT_COMPONENT_DEMO_FILE_EXAMPLE,
+    IMPORT_STATEMENT_COMPONENT_OPTIONS_EXAMPLE,
+    IMPORT_STATEMENT_COMPONENT_SCRIPT_SETUP_EXAMPLE,
     IMPORT_STATEMENT_STRING_DEMO_FILE_EXAMPLE,
     IMPORT_STATEMENT_STRING_OPTIONS_EXAMPLE,
+    IMPORT_STATEMENT_STRING_SCRIPT_SETUP_EXAMPLE,
     SLOTS_DEMO_ARRAY_EXAMPLE,
     SLOTS_DEMO_OBJECT_EXAMPLE,
     SLOTS_OPTIONS_ARRAY_EXAMPLE,
     SLOTS_OPTIONS_OBJECT_EXAMPLE,
-    USE_DEMO: '// Use a demo file'
+    SLOTS_SCRIPT_SETUP_ARRAY_EXAMPLE,
+    SLOTS_SCRIPT_SETUP_OBJECT_EXAMPLE
   }
 };
 </script>

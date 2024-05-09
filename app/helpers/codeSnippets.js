@@ -79,7 +79,7 @@ import { VueDoxen } from 'vue-doxen';
 
 import MyComponent from '../components/MyComponent.vue';
 
-S({
+defineOptions({
   name: 'MyComponentDemo'
 });
 
@@ -257,7 +257,7 @@ export const CUSTOM_COMPONENTS_OPTIONS_EXAMPLE = `
 // into your component just for Vue-Doxen will bloat your component's
 // file size for no real benefit. If you want to use your own
 // components in the props playground, just use a demo file.
-import MyCustomColorPicker from '../components/MyCustomColorPicker.vue';
+import MyCustomColorPicker from '../MyCustomColorPicker.vue';
 
 export default {
   name: 'MyComponent',
@@ -265,7 +265,9 @@ export default {
     color: {
       component: MyCustomColorPicker,
       props: {
+        // Default value to demo
         modelValue: 'red'
+        // any other props your custom component takes
       }
     }
   }
@@ -279,13 +281,19 @@ export const CUSTOM_COMPONENTS_SCRIPT_SETUP_EXAMPLE = `
 // into your component just for Vue-Doxen will bloat your component's
 // file size for no real benefit. If you want to use your own
 // components in the props playground, just use a demo file.
-import MyCustomColorPicker from '../components/MyCustomColorPicker.vue';
+import MyCustomColorPicker from '../MyCustomColorPicker.vue';
+
+defineOptions({
+  name: 'MyComponent'
+});
 
 defineProps({
   color: {
     component: MyCustomColorPicker,
     props: {
+      // Default value to demo
       modelValue: 'red'
+      // any other props your custom component takes
     }
   }
 });
@@ -591,67 +599,7 @@ defineProps({
 </script>
 `.trim();
 
-export const EMITS_TO_DEMO_DEMO_FILE_ARRAY_EXAMPLE = `
-import MyComponent from '../components/MyComponent.vue';
-
-export const myComponentDemo = {
-  component: MyComponent,
-  emitsToDemo: [
-    'update:modelValue',
-    'click'
-  ]
-};
-`.trim();
-export const EMITS_TO_DEMO_DEMO_FILE_OBJECT_EXAMPLE = `
-import MyComponent from '../components/MyComponent.vue';
-
-export const myComponentDemo = {
-  component: MyComponent,
-  emitsToDemo: {
-    'update:modelValue': {
-      description: 'The logs being displayed',
-      value: 'An array of logs.',
-      example: 'v-model="value"'
-    },
-    click: {
-      description: 'Fired when the user clicks the "clear" button.',
-      value: 'Boolean, <code>true</code> means hard reset.',
-      example: '@click="reset"'
-    }
-  }
-};
-`.trim();
-export const EMITS_TO_DEMO_OPTIONS_ARRAY_EXAMPLE = `
-<script>
-export default {
-  name: 'MyComponent',
-  emitsToDemo: [
-    'update:modelValue',
-    'click'
-  ]
-};
-</script>
-`.trim();
-export const EMITS_TO_DEMO_OPTIONS_OBJECT_EXAMPLE = `
-<script>
-export default {
-  name: 'MyComponent',
-  emitsToDemo: {
-    'update:modelValue': {
-      description: 'The logs being displayed',
-      value: 'An array of logs.',
-      example: 'v-model="value"'
-    },
-    click: {
-      description: 'Fired when the user clicks the "clear" button.',
-      value: 'Boolean, <code>true</code> means hard reset.',
-      example: '@click="reset"'
-    }
-  }
-};
-</script>
-`.trim();
-export const EMITS_OPTIONS_ARRAY_EXAMPLE = `
+export const EMITS_OPTIONS_EXAMPLE = `
 <script>
 export default {
   name: 'MyComponent',
@@ -664,10 +612,107 @@ export default {
 `.trim();
 export const EMITS_SCRIPT_SETUP_EXAMPLE = `
 <script setup>
+defineOptions({
+  name: 'MyComponent'
+});
 defineEmits([
   'update:modelValue',
   'click'
 ]);
+</script>
+`.trim();
+export const EMITS_TO_DEMO_ARRAY_DEMO_FILE_EXAMPLE = `
+import MyComponent from '../components/MyComponent.vue';
+
+export const myComponentDemo = {
+  component: MyComponent,
+  emitsToDemo: [
+    'update:modelValue',
+    'click'
+  ]
+};
+`.trim();
+export const EMITS_TO_DEMO_ARRAY_OPTIONS_EXAMPLE = `
+<script>
+// Though \`emitsToDemo\` in components supports arrays, you
+// might as well just use \`emit\`, Vue's official API.
+export default {
+  name: 'MyComponent',
+  emitsToDemo: [
+    'update:modelValue',
+    'click'
+  ]
+};
+</script>
+`.trim();
+export const EMITS_TO_DEMO_ARRAY_SCRIPT_SETUP_EXAMPLE = `
+<script setup>
+// Though \`emitsToDemo\` in components supports arrays, you
+// might as well just use \`emit\`, Vue's official API.
+defineOptions({
+  name: 'MyComponent',
+  emitsToDemo: [
+    'update:modelValue',
+    'click'
+  ]
+});
+</script>
+`.trim();
+export const EMITS_TO_DEMO_OBJECT_DEMO_FILE_EXAMPLE = `
+import MyComponent from '../components/MyComponent.vue';
+
+export const myComponentDemo = {
+  component: MyComponent,
+  emitsToDemo: {
+    'update:modelValue': {
+      description: 'The logs being displayed',
+      value: 'An array of logs.',
+      example: 'v-model="logs"'
+    },
+    click: {
+      description: 'Fired when the user clicks the "clear" button.',
+      value: 'Boolean, <code>true</code> means hard reset.',
+      example: '@click="reset"'
+    }
+  }
+};
+`.trim();
+export const EMITS_TO_DEMO_OBJECT_OPTIONS_EXAMPLE = `
+<script>
+export default {
+  name: 'MyComponent',
+  emitsToDemo: {
+    'update:modelValue': {
+      description: 'The logs being displayed',
+      value: 'An array of logs.',
+      example: 'v-model="logs"'
+    },
+    click: {
+      description: 'Fired when the user clicks the "clear" button.',
+      value: 'Boolean, <code>true</code> means hard reset.',
+      example: '@click="reset"'
+    }
+  }
+};
+</script>
+`.trim();
+export const EMITS_TO_DEMO_OBJECT_SCRIPT_SETUP_EXAMPLE = `
+<script setup>
+defineOptions({
+  name: 'MyComponent',
+  emitsToDemo: {
+    'update:modelValue': {
+      description: 'The logs being displayed',
+      value: 'An array of logs.',
+      example: 'v-model="logs"'
+    },
+    click: {
+      description: 'Fired when the user clicks the "clear" button.',
+      value: 'Boolean, <code>true</code> means hard reset.',
+      example: '@click="reset"'
+    }
+  }
+});
 </script>
 `.trim();
 
@@ -793,21 +838,6 @@ const demos = computed(() => {
 </script>
 `.trim();
 
-export const IMPORT_STATEMENT_STRING_DEMO_FILE_EXAMPLE = `
-import MyComponent from '../components/MyComponent.vue';
-
-export const myComponentDemo = {
-  component: MyComponent,
-  importStatement: 'import { MyComponent } from \\'my-component-library\\''
-};
-`.trim();
-export const IMPORT_STATEMENT_STRING_OPTIONS_EXAMPLE = `
-<script>
-export default {
-  importStatement: 'import { MyComponent } from \\'my-component-library\\''
-};
-</script>
-`.trim();
 export const IMPORT_STATEMENT_COMPONENT_DEMO_FILE_EXAMPLE = `
 import MyComponent from '../components/MyComponent.vue';
 import MyImportStatement from '../components/MyImportStatement.vue';
@@ -828,6 +858,80 @@ export const myComponentDemo = {
     }
   }
 };
+`.trim();
+export const IMPORT_STATEMENT_COMPONENT_OPTIONS_EXAMPLE = `
+<script>
+// DO NOT ACTUALLY DO THIS! USE A DEMO FILE INSTEAD.
+// Though this is technically supported, importing custom components
+// into your component just for Vue-Doxen will bloat your component's
+// file size for no real benefit. If you want to use your own
+// components in the props playground, just use a demo file.
+import MyImportStatement from './MyImportStatement.vue';
+
+export default {
+  importStatement: {
+    component: MyImportStatement,
+    // Optional, if your component needs props
+    props: {
+      yourProp: 'your value'
+    },
+    // Optional: if your component has emits
+    events: {
+      click: function ($event) {
+        console.log($event);
+      }
+    }
+  }
+};
+</script>
+`.trim();
+export const IMPORT_STATEMENT_COMPONENT_SCRIPT_SETUP_EXAMPLE = `
+<script setup>
+// DO NOT ACTUALLY DO THIS! USE A DEMO FILE INSTEAD.
+// Though this is technically supported, importing custom components
+// into your component just for Vue-Doxen will bloat your component's
+// file size for no real benefit. If you want to use your own
+// components in the props playground, just use a demo file.
+import MyImportStatement from './MyImportStatement.vue';
+
+defineOptions({
+  importStatement: {
+    component: MyImportStatement,
+    // Optional, if your component needs props
+    props: {
+      yourProp: 'your value'
+    },
+    // Optional: if your component has emits
+    events: {
+      click: function ($event) {
+        console.log($event);
+      }
+    }
+  }
+});
+</script>
+`.trim();
+
+export const IMPORT_STATEMENT_STRING_DEMO_FILE_EXAMPLE = `
+import MyComponent from '../components/MyComponent.vue';
+
+export const myComponentDemo = {
+  component: MyComponent,
+  importStatement: 'import { MyComponent } from \\'my-component-library\\''
+};
+`.trim();
+export const IMPORT_STATEMENT_STRING_OPTIONS_EXAMPLE = `
+<script>
+export default {
+  importStatement: 'import { MyComponent } from \\'my-component-library\\''
+};
+</script>
+`.trim();
+export const IMPORT_STATEMENT_STRING_SCRIPT_SETUP_EXAMPLE = `
+<script setup>
+defineOptions({
+  importStatement: 'import { MyComponent } from \\'my-component-library\\''
+});
 `.trim();
 
 export const ROUTER_LINK_OPTIONS_EXAMPLE = `
@@ -984,6 +1088,28 @@ export default {
     footer: 'This appears <strong>below</strong> the component.'
   }
 };
+</script>
+`.trim();
+export const SLOTS_SCRIPT_SETUP_ARRAY_EXAMPLE = `
+<script setup>
+defineOptions({
+  name: 'MyComponent',
+  slots: [
+    'default',
+    'footer'
+  ]
+});
+</script>
+`.trim();
+export const SLOTS_SCRIPT_SETUP_OBJECT_EXAMPLE = `
+<script setup>
+defineOptions({
+  name: 'MyComponent',
+  slots: {
+    default: 'This appears <strong>above</strong> the component.',
+    footer: 'This appears <strong>below</strong> the component.'
+  }
+});
 </script>
 `.trim();
 
