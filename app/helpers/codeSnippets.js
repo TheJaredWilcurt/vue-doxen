@@ -865,7 +865,7 @@ export const IMPORT_STATEMENT_COMPONENT_OPTIONS_EXAMPLE = `
 // Though this is technically supported, importing custom components
 // into your component just for Vue-Doxen will bloat your component's
 // file size for no real benefit. If you want to use your own
-// components in the props playground, just use a demo file.
+// component for the import statement, just use a demo file.
 import MyImportStatement from './MyImportStatement.vue';
 
 export default {
@@ -891,7 +891,7 @@ export const IMPORT_STATEMENT_COMPONENT_SCRIPT_SETUP_EXAMPLE = `
 // Though this is technically supported, importing custom components
 // into your component just for Vue-Doxen will bloat your component's
 // file size for no real benefit. If you want to use your own
-// components in the props playground, just use a demo file.
+// component for the import statement, just use a demo file.
 import MyImportStatement from './MyImportStatement.vue';
 
 defineOptions({

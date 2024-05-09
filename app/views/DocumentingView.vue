@@ -176,11 +176,11 @@
           The following are prop definitions exclusive to Vue-Doxen:
         </p>
 
-        <ol>
+        <ul>
           <li><code>description</code> &ndash; A human readable description of what the prop is for, or the context of why it exists.</li>
           <li><code>allowed</code> &ndash; An array of the only values permitted by this prop.</li>
           <li><code>example</code> &ndash; An example of what should be passed in to the prop. Useful for complex data types.</li>
-        </ol>
+        </ul>
 
         <CodeSwapper
           :codeTypes="{
