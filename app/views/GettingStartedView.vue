@@ -1,6 +1,11 @@
 <template>
   <div class="docs-page">
-    <h1 class="docs-title">Getting Started</h1>
+    <h1
+      id="getting-started"
+      class="docs-title"
+    >
+      Getting Started
+    </h1>
 
     <h2>In just 2 steps!</h2>
 
@@ -14,7 +19,10 @@
       <li>
         Create a Vue component to use the library in.
         <ul>
-          <li>To swap the component being demo'd you can use the basic sidebar that ships with VueDoxen, or create your own sidebar.</li>
+          <li>
+            To swap the component being demo'd you can use the basic sidebar that ships with VueDoxen,
+            or create your own sidebar.
+          </li>
         </ul>
       </li>
     </ol>
@@ -30,10 +38,10 @@
 
     <p>
       <strong>That's it!</strong>
-      If you want to customize the <RouterLink :to="{ name: 'styles' }">styles</RouterLink>,
-      use your own <RouterLink :to="{ name: 'demoFiles' }">custom components</RouterLink> in the Props Playground,
-      or <RouterLink :to="{ name: 'documenting' }">add additional information</RouterLink> about your component,
-      check out the other pages in the sidebar.
+      If you want to customize the <RouterLink :to="{ name: 'styles', hash: '#styles' }">styles</RouterLink>,
+      use your own <RouterLink :to="{ name: 'demoFiles', hash: '#demo-files' }">custom components</RouterLink>
+      in the Props Playground, or <RouterLink :to="{ name: 'documenting', hash: '#documenting' }">add additional
+      information</RouterLink> about your component, check out the other pages in the sidebar.
     </p>
   </div>
 </template>

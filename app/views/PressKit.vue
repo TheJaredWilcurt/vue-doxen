@@ -1,6 +1,11 @@
 <template>
   <div class="docs-page">
-    <h1 class="docs-title">Press Kit/Branding</h1>
+    <h1
+      id="branding"
+      class="docs-title"
+    >
+      Press Kit/Branding
+    </h1>
 
     <p>
       Below are some assets you can use when graphics for <strong>blog posts</strong>

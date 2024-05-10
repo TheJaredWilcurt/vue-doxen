@@ -3,7 +3,7 @@
   <p><slot></slot></p>
   <ul v-if="readMore && readMoreLink">
     <li>
-      <RouterLink :to="{ name: readMoreLink }">
+      <RouterLink :to="{ name: readMoreLink, hash: readMoreHash }">
         {{ readMore }}
       </RouterLink>
     </li>
@@ -23,6 +23,10 @@ export default {
       default: undefined
     },
     readMoreLink: {
+      type: String,
+      default: undefined
+    },
+    readMoreHash: {
       type: String,
       default: undefined
     }

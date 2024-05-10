@@ -1,5 +1,6 @@
 <template>
   <VueDoxen
+    id="components"
     :modelValue="selectedDemo"
     :demos="demos"
     :styleTokens="styleTokens"

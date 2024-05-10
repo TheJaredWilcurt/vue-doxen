@@ -8,7 +8,7 @@ import {
 const routes = [
   {
     path: '/vue-doxen/:pathMatch(.*)*',
-    name: '404',
+    name: 'notFound',
     component: () => import('@@@/views/NotFoundView.vue')
   },
   {
@@ -62,6 +62,8 @@ const routes = [
 ];
 
 function scrollBehavior (to, from, savedPosition) {
+  const isSmall = window.innerWidth < 831;
+
   // check that path is different, so this doesn't scroll to top every time
   // a query parameter is changed
   if (to.path !== from.path) {
@@ -75,6 +77,14 @@ function scrollBehavior (to, from, savedPosition) {
       )
     ) {
       return savedPosition;
+    }
+
+    if (to.hash) {
+      return { el: to.hash, top: 0 };
+    }
+
+    if (isSmall) {
+      return;
     }
 
     // otherwise always scroll to the top of the page

@@ -1,6 +1,11 @@
 <template>
   <div class="docs-page">
-    <h1 class="docs-title">Documenting your components</h1>
+    <h1
+      id="documenting"
+      class="docs-title"
+    >
+      Documenting your components
+    </h1>
 
     <nav>
       <ul>

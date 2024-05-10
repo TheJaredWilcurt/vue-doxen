@@ -1,6 +1,11 @@
 <template>
   <div class="docs-page">
-    <h1 class="docs-title">Demo Files</h1>
+    <h1
+      id="demo-files"
+      class="docs-title"
+    >
+      Demo Files
+    </h1>
 
     <p>
       Though you can simply pass a component in directly to Vue-Doxen and it will be demo'd, you may want greater control over the documentation page that is generated. Demo objects let you do that, and it is common to have one file per demo object.

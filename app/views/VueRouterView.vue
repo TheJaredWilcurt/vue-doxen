@@ -1,6 +1,11 @@
 <template>
   <div class="docs-page">
-    <h1 class="docs-title">Working with Vue-Router</h1>
+    <h1
+      id="vue-router"
+      class="docs-title"
+    >
+      Working with Vue-Router
+    </h1>
 
     <p>
       This page covers how to setup Vue-Doxen with Vue-Router so it loads the correct demos based on the URL.

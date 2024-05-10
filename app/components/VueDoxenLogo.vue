@@ -158,4 +158,9 @@ img {
 .show {
   opacity: 1.0;
 }
+@media (width < 831px) {
+  .logo-container {
+    margin: 0px auto;
+  }
+}
 </style>

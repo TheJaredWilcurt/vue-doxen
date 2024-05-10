@@ -1,12 +1,12 @@
 <template>
   <div>
     <header aria-label="header">
-      <div class="container">
+      <div class="docs-container">
         <VueDoxenLogo />
         <StyleSwapper v-model="styleTokens" />
       </div>
     </header>
-    <div class="container">
+    <div class="docs-container">
       <SideBar />
       <main aria-label="main">
         <RouterView
@@ -52,13 +52,6 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0px auto;
-}
 .router-view {
   align-items: flex-start;
   width: 100%;

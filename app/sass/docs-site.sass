@@ -1,3 +1,10 @@
+.docs-container
+    display: flex
+    justify-content: space-between
+    width: 100%
+    max-width: 1200px
+    margin: 0px auto
+
 .docs-page,
 .docs-sub-title,
 .docs-title
@@ -56,3 +63,13 @@
 /* Slim Loading indicator at top of screen during navigation */
 #nprogress .bar
     background: #41B883
+
+@media (width < 831px)
+    .docs-container
+        flex-direction: column
+    .docs-sidebar
+        display: block
+        a
+            display: inline-block
+            margin: 0rem 1rem 0.5rem 1.5rem
+            line-height: 1.6

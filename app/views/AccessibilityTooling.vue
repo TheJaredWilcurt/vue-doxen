@@ -1,6 +1,11 @@
 <template>
   <div class="docs-page">
-    <h1 class="docs-title">Accessibility Tooling</h1>
+    <h1
+      id="a11y"
+      class="docs-title"
+    >
+      Accessibility Tooling
+    </h1>
 
     <p>
       Rather than build a custom plugin for Vue-Doxen, we belive the best options for accessibility

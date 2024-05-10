@@ -193,4 +193,9 @@ export default {
   display: flex;
   justify-content: center;
 }
+@media (width < 831px) {
+  .style-swapper {
+    flex-wrap: wrap;
+  }
+}
 </style>
