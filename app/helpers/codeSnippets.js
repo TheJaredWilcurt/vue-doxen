@@ -64,6 +64,7 @@ export default {
     }
   }
 };
+</script>
 `.trim();
 export const ALTERNATE_SCRIPT_SETUP_DEMO_EXAMPLE = `
 <template>
@@ -92,6 +93,7 @@ const demo = computed(() => {
     }
   };
 };
+</script>
 `.trim();
 export const ALTERNATE_VUE_ROUTER_EXAMPLE = `
 import { createRouter, createWebHistory } from 'vue-router';
