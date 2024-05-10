@@ -40,8 +40,9 @@
       <strong>That's it!</strong>
       If you want to customize the <RouterLink :to="{ name: 'styles', hash: '#styles' }">styles</RouterLink>,
       use your own <RouterLink :to="{ name: 'demoFiles', hash: '#demo-files' }">custom components</RouterLink>
-      in the Props Playground, or <RouterLink :to="{ name: 'documenting', hash: '#documenting' }">add additional
-      information</RouterLink> about your component, check out the other pages in the sidebar.
+      in the Props Playground, or
+      <RouterLink :to="{ name: 'documenting', hash: '#documenting' }">add additional information</RouterLink>
+      about your component, check out the other pages in the sidebar.
     </p>
   </div>
 </template>
