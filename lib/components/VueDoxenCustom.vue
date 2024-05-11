@@ -3,6 +3,7 @@
     <DoxenComponentDemo
       v-if="processedDemos[selectedDemo]"
       :demo="processedDemos[selectedDemo]"
+      :options="validateOptions"
       :styleTokens="styleTokens"
       :key="selectedDemo"
     />
@@ -10,6 +11,10 @@
 </template>
 
 <script>
+/**
+ * @file This component acts as a wrapper and public interface for DoxenComponentDemo.
+ * It handles the user inputs, defaulting values, and passing down just the selected demo.
+*/
 import {
   createImportStatement,
   processDemos
@@ -20,6 +25,7 @@ import {
   options,
   styleTokens
 } from '@/helpers/props.js';
+import { validateOptions } from '@/helpers/validateOptions.js';
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
@@ -62,6 +68,9 @@ export default {
     },
     processedDemos: function () {
       return processDemos(this.demos);
+    },
+    validateOptions: function () {
+      return validateOptions(this.options);
     }
   }
 };

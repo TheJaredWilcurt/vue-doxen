@@ -9,6 +9,12 @@
 </template>
 
 <script>
+/**
+ * @file This file is the "easy mode" version of Vue-Doxen, providing the fewest steps to get it
+ * up and running. All it really does though is just wrap VueDoxenCustom and pass in all the
+ * internal Vue-Doxen built-in components so the user doesn't need to always import the default
+ * options and pass them in.
+ */
 import { createImportStatement } from '@/helpers/componentHelpers.js';
 import defaultOptions from '@/helpers/defaultOptions.js';
 import {
