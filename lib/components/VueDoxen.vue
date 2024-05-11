@@ -1,28 +1,24 @@
 <template>
-  <div v-bind="applyStyleTokens({ vueDoxen: true })">
-    <DoxenComponentDemo
-      v-if="processedDemos[selectedDemo]"
-      :demo="processedDemos[selectedDemo]"
-      :styleTokens="styleTokens"
-      :key="selectedDemo"
-    />
-  </div>
+  <VueDoxenCustom
+    :demos="demos"
+    :options="defaultOptions"
+    :modelValue="modelValue"
+    :styleTokens="styleTokens"
+    @update:model-value="$emit('update:model-value', $event)"
+  />
 </template>
 
 <script>
-import {
-  createImportStatement,
-  processDemos
-} from '@/helpers/componentHelpers.js';
+import { createImportStatement } from '@/helpers/componentHelpers.js';
+import defaultOptions from '@/helpers/defaultOptions.js';
 import {
   createModelValueProp,
   demos,
+  options,
   styleTokens
 } from '@/helpers/props.js';
 
-import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
-
-import DoxenComponentDemo from '@/components/DoxenComponentDemo.vue';
+import VueDoxenCustom from '@/components/VueDoxenCustom.vue';
 
 const COMPONENT_NAME = 'VueDoxen';
 const modelValue = createModelValueProp(String);
@@ -36,28 +32,18 @@ export default {
     'demoing itself. Pretty meta.'
   ].join(' '),
   components: {
-    DoxenComponentDemo
+    VueDoxenCustom
   },
-  mixins: [
-    applyStyleTokens
-  ],
   emits: ['update:model-value'],
   props: {
     demos,
     modelValue,
+    options,
     styleTokens
   },
-  methods: {
-    updateValue: function (key) {
-      this.$emit('update:model-value', key);
-    }
-  },
   computed: {
-    selectedDemo: function () {
-      return this.modelValue;
-    },
-    processedDemos: function () {
-      return processDemos(this.demos);
+    defaultOptions: function () {
+      return defaultOptions;
     }
   }
 };

@@ -7,7 +7,8 @@ import {
   DoxenSideBar,
   DoxenTextarea,
   DoxenTextField,
-  VueDoxen
+  VueDoxen,
+  VueDoxenCustom
 } from '@/library.js';
 
 import DoxenButton from '@/components/DoxenButton.vue';
@@ -96,7 +97,8 @@ export const doxenComponentsToDemoWithStyleTokens = {
   DoxenTextarea,
   DoxenTextField,
   DoxenSideBar,
-  VueDoxen
+  VueDoxen,
+  VueDoxenCustom
 };
 
 export const componentsToListInSidebar = {

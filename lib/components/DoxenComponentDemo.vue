@@ -75,9 +75,11 @@
         :is="prop.component"
         :key="propName"
       />
-      <DoxenTextarea
+      <!-- DoxenTextarea -->
+      <component
         v-for="(slotValue, slotName) in slotsToDemo"
         v-model="demoSlots[slotName]"
+        :is="options.components.textarea"
         :label="_startCase(slotName) + ' Slot'"
         :styleTokens="styleTokens"
         :key="'slot-playground-' + slotName"
@@ -125,7 +127,10 @@ import {
   combinePropsAndPropsToDemo,
   createMarkupExample
 } from '@/helpers/demoHelpers.js';
-import { styleTokens } from '@/helpers/props.js';
+import {
+  options,
+  styleTokens
+} from '@/helpers/props.js';
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
@@ -135,7 +140,6 @@ import DemoHeader from '@/components/DemoHeader.vue';
 import EmitsDocumentation from '@/components/EmitsDocumentation.vue';
 import PropsDocumentation from '@/components/PropsDocumentation.vue';
 import DoxenEmitLog from '@/components/formFields/DoxenEmitLog.vue';
-import DoxenTextarea from '@/components/formFields/DoxenTextarea.vue';
 
 export default {
   name: 'DoxenComponentDemo',
@@ -144,7 +148,6 @@ export default {
     CodeSwapper,
     DemoHeader,
     DoxenEmitLog,
-    DoxenTextarea,
     EmitsDocumentation,
     PropsDocumentation
   },
@@ -154,6 +157,7 @@ export default {
       type: Object,
       required: true
     },
+    options,
     styleTokens
   },
   data: function () {

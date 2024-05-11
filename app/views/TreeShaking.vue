@@ -22,6 +22,7 @@
 <script>
 import { styleTokens } from '@/helpers/props.js';
 
+import CodeBox from '@/components/CodeBox.vue';
 import DocumentationSection from '@@@/components/DocumentationSection.vue';
 
 const API = `
@@ -37,6 +38,7 @@ const API = `
 export default {
   name: 'TreeShaking',
   components: {
+    CodeBox,
     DocumentationSection
   },
   props: {
