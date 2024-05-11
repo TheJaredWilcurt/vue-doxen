@@ -12,8 +12,8 @@ export default {
   created: function () {
     const message = [
       'This fallback component is only used when a custom component',
-      'is not supplied in the VueDoxenCustom component\'s options'
-      'prop. The following props/attributes were passed in to this'
+      'is not supplied in the VueDoxenCustom component\'s options',
+      'prop. The following props/attributes were passed in to this',
       'fallback component:'
     ].join(' ');
     const data = {
