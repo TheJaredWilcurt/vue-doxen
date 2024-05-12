@@ -87,7 +87,7 @@
 
     <DocumentationSection id="alternate" title="Alternate approach">
       <p>
-        In this approch could we optimize for lazy loading demos per-route.
+        In this approch we optimize for lazy loading demos per-route.
       </p>
 
       <SubDocumentationSection id="alternate-demos" title="Demo Components">
@@ -131,6 +131,15 @@
           the code required for that route should be bundled in a way that it can load just the code needed
           for that route, and not to load it until you try to access that URL. This lazy loading/code-splitting
           approach may be needed in some projects.
+        </p>
+
+        <p>
+          The upside to this approach is faster page loads. The downside is that you must update the routes file
+          and the sidebar component file to link to the route by hand every time you create a new demo component.
+          In the recommended approach, though the initial page load is slower, once loaded, switching between
+          demos happens instantly. With the lazy loading approach, the page loads faster initially, but there may
+          be slight delays when switching between components as additional files must be downloaded, parsed, and
+          executed.
         </p>
       </SubDocumentationSection>
     </DocumentationSection>
