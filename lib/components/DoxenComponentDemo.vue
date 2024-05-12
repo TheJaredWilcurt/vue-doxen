@@ -84,9 +84,11 @@
         :styleTokens="styleTokens"
         :key="'slot-playground-' + slotName"
       />
-      <DoxenEmitLog
+      <!-- DoxenEmitLog -->
+      <component
         v-if="Object.keys(emitsToDemo).length"
         v-model="emitLog"
+        :is="options.components.emitLog"
         :styleTokens="styleTokens"
       />
     </form>
@@ -99,7 +101,6 @@
       :styleTokens="styleTokens"
     />
 
-    <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Props Documentation</h3>
     <PropsDocumentation
       :component="demo.component"
       :propsToDemo="propsToDemo"
@@ -107,7 +108,6 @@
     />
 
     <template v-if="Object.keys(emitsToDemo).length">
-      <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Emits Documentation</h3>
       <EmitsDocumentation
         :componentName="componentName"
         :emitsToDemo="emitsToDemo"
@@ -139,7 +139,6 @@ import CodeSwapper from '@/components/CodeSwapper.vue';
 import DemoHeader from '@/components/DemoHeader.vue';
 import EmitsDocumentation from '@/components/EmitsDocumentation.vue';
 import PropsDocumentation from '@/components/PropsDocumentation.vue';
-import DoxenEmitLog from '@/components/formFields/DoxenEmitLog.vue';
 
 export default {
   name: 'DoxenComponentDemo',
@@ -147,7 +146,6 @@ export default {
     CodeBox,
     CodeSwapper,
     DemoHeader,
-    DoxenEmitLog,
     EmitsDocumentation,
     PropsDocumentation
   },

@@ -20,7 +20,6 @@ import defaultOptions from '@/helpers/defaultOptions.js';
 import {
   createModelValueProp,
   demos,
-  options,
   styleTokens
 } from '@/helpers/props.js';
 
@@ -44,7 +43,6 @@ export default {
   props: {
     demos,
     modelValue,
-    options,
     styleTokens
   },
   computed: {

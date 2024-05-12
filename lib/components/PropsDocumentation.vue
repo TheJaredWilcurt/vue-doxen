@@ -1,4 +1,5 @@
 <template>
+  <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Props Documentation</h3>
   <ul v-bind="applyStyleTokens({ propsDocumentationUl: true })">
     <li
       v-for="(value, prop) in props"

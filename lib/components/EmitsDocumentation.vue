@@ -1,4 +1,5 @@
 <template>
+  <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Emits Documentation</h3>
   <ul v-bind="applyStyleTokens({ emitsDocumentationUl: true })">
     <li
       v-for="(emit, emitName) in emitsToDemo"
