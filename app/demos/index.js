@@ -70,7 +70,10 @@ const createDoxenDemos = function (components, styleTokens) {
     if (components[componentName]?.props?.styleTokens) {
       addStyleTokensPropDemo(demos[componentName].propsToDemo);
     }
-    if (components[componentName]?.props?.options) {
+    if (
+      componentName.toLowerCase().includes('dropdown') ||
+      componentName.toLowerCase().includes('radio')
+    ) {
       addOptionsPropDemo(demos[componentName].propsToDemo);
     }
   }
