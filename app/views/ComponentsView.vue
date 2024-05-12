@@ -10,9 +10,9 @@
 <script>
 import _cloneDeep from 'lodash.clonedeep';
 
-import VueDoxen from '@/components/VueDoxen.vue';
-
 import { styleTokens } from '@/helpers/props.js';
+
+import VueDoxen from '@/components/VueDoxen.vue';
 
 import { createDemos } from '@@@/demos/index.js';
 
