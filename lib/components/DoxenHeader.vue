@@ -22,7 +22,7 @@ import { styleTokens } from '@/helpers/props.js';
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
 export default {
-  name: 'DemoHeader',
+  name: 'DoxenHeader',
   mixins: [applyStyleTokens],
   props: {
     description: {

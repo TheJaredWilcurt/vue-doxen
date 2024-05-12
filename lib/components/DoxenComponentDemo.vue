@@ -1,6 +1,8 @@
 <template>
   <div v-bind="applyStyleTokens({ componentDemo: true })">
-    <DemoHeader
+    <!-- DoxenHeader -->
+    <component
+      :is="options.components.header"
       :description="description"
       :styleTokens="styleTokens"
       :title="title"
@@ -136,7 +138,6 @@ import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
 import CodeBox from '@/components/CodeBox.vue';
 import CodeSwapper from '@/components/CodeSwapper.vue';
-import DemoHeader from '@/components/DemoHeader.vue';
 import EmitsDocumentation from '@/components/EmitsDocumentation.vue';
 import PropsDocumentation from '@/components/PropsDocumentation.vue';
 
@@ -145,7 +146,6 @@ export default {
   components: {
     CodeBox,
     CodeSwapper,
-    DemoHeader,
     EmitsDocumentation,
     PropsDocumentation
   },

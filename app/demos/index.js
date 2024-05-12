@@ -1,6 +1,8 @@
 import {
   DoxenCheckbox,
   DoxenDropdown,
+  DoxenEmitLog,
+  DoxenHeader,
   DoxenJsonTextarea,
   DoxenPlainText,
   DoxenRadioDials,
@@ -92,6 +94,8 @@ const createDoxenDemos = function (components, styleTokens) {
 export const doxenComponentsToDemoWithStyleTokens = {
   DoxenCheckbox,
   DoxenDropdown,
+  DoxenEmitLog,
+  DoxenHeader,
   DoxenJsonTextarea,
   DoxenRadioDials,
   DoxenTextarea,
