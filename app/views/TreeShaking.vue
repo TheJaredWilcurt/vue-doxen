@@ -27,7 +27,7 @@ import DocumentationSection from '@@@/components/DocumentationSection.vue';
 
 const API = `
 <VueDoxenCustom
-   v-model="selected"
+  v-model="selected"
   :demos="demos"
   :options="{
   }"

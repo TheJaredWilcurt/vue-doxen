@@ -455,6 +455,80 @@ const demos = computed(() => {
 </script>
 `.trim();
 
+export const DESCRIPTION_COMPONENT_DEMO_FILE_EXAMPLE = `
+import MyComponent from '../components/MyComponent.vue';
+import MyDescription from '../components/MyDescription.vue';
+
+export const myComponentDemo = {
+  component: MyComponent,
+  description: {
+    component: MyDescription,
+    // Optional, if your component needs props
+    props: {
+      yourProp: 'your value'
+    },
+    // Optional: if your component has emits
+    events: {
+      click: function ($event) {
+        console.log($event);
+      }
+    }
+  }
+};
+`.trim();
+export const DESCRIPTION_COMPONENT_OPTIONS_EXAMPLE = `
+<script>
+// DO NOT ACTUALLY DO THIS! USE A DEMO FILE INSTEAD.
+// Though this is technically supported, importing custom components
+// into your component just for Vue-Doxen will bloat your component's
+// file size for no real benefit. If you want to use your own
+// component for the description, just use a demo file.
+import MyDescription from './MyDescription.vue';
+
+export default {
+  importStatement: {
+    component: MyDescription,
+    // Optional, if your component needs props
+    props: {
+      yourProp: 'your value'
+    },
+    // Optional: if your component has emits
+    events: {
+      click: function ($event) {
+        console.log($event);
+      }
+    }
+  }
+};
+</script>
+`.trim();
+export const DESCRIPTION_COMPONENT_SCRIPT_SETUP_EXAMPLE = `
+<script setup>
+// DO NOT ACTUALLY DO THIS! USE A DEMO FILE INSTEAD.
+// Though this is technically supported, importing custom components
+// into your component just for Vue-Doxen will bloat your component's
+// file size for no real benefit. If you want to use your own
+// component for the description, just use a demo file.
+import MyDescription from './MyDescription.vue';
+
+defineOptions({
+  importStatement: {
+    component: MyDescription,
+    // Optional, if your component needs props
+    props: {
+      yourProp: 'your value'
+    },
+    // Optional: if your component has emits
+    events: {
+      click: function ($event) {
+        console.log($event);
+      }
+    }
+  }
+});
+</script>
+`.trim();
+
 export const DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_DEMO_FILE = `
 import YourComponent from '../components/YourComponent.vue';
 

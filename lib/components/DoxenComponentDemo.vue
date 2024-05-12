@@ -3,10 +3,24 @@
     <!-- DoxenHeader -->
     <component
       :is="options.components.header"
-      :description="description"
       :styleTokens="styleTokens"
       :title="title"
     />
+
+    <template v-if="description">
+      <div
+        v-if="typeof(description) === 'string'"
+        v-html="description"
+        v-bind="applyStyleTokens({ demoDescription: true })"
+      ></div>
+      <component
+        v-else-if="typeof(description) === 'object' && description.component"
+        :is="description.component"
+        v-bind="description.props || {}"
+        v-on="description.events || {}"
+        :key="componentName + '-description'"
+      />
+    </template>
 
     <template v-if="importStatement">
       <template v-if="typeof(importStatement) === 'string'">
@@ -129,7 +143,7 @@ import {
   createMarkupExample
 } from '@/helpers/demoHelpers.js';
 import {
-  options,
+  createVueDoxenOptions,
   styleTokens
 } from '@/helpers/props.js';
 
@@ -139,6 +153,8 @@ import CodeBox from '@/components/CodeBox.vue';
 import CodeSwapper from '@/components/CodeSwapper.vue';
 import EmitsDocumentation from '@/components/EmitsDocumentation.vue';
 import PropsDocumentation from '@/components/PropsDocumentation.vue';
+
+const options = createVueDoxenOptions(true);
 
 export default {
   name: 'DoxenComponentDemo',

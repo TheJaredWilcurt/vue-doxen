@@ -10,7 +10,13 @@
     <nav>
       <ul>
         <li><a href="#name">Component Name</a></li>
-        <li><a href="#description">Component Description</a></li>
+        <li>
+          <a href="#description">Component Description</a>
+          <ul>
+            <li><a href="#description-string">String example</a></li>
+            <li><a href="#description-component">Custom component example</a></li>
+          </ul>
+        </li>
         <li>
           <a href="#import">Import Statements</a>
           <ul>
@@ -67,23 +73,47 @@
 
     <DocumentationSection id="description" title="Component Description">
       <p>
-        The component description is displayed under the component name on a demo page. If a description is not found in the demo file we will use the one in the component.
+        The component description is displayed under the component name on a demo page. It can be provided in a demo file or the component as a string or custom component. If defined in multiple locations we will use the version provided in the component (for consistency).
       </p>
 
-      <p>
-        For <code>&lt;script setup&gt;</code> components, you must define the description in the demo object.
-      </p>
+      <SubDocumentationSection
+        id="description-string"
+        title="Description"
+        subTitle="String Example"
+      >
+        <CodeSwapper
+          :codeTypes="{
+            'Demo File': COMPONENT_DESCRIPTION_DEMO_EXAMPLE,
+            Options: COMPONENT_DESCRIPTION_OPTIONS_EXAMPLE,
+            Composition: COMPONENT_DESCRIPTION_OPTIONS_EXAMPLE,
+            'Script Setup': COMPONENT_DESCRIPTION_SCRIPT_SETUP_EXAMPLE
+          }"
+          :fileName="FILE_NAME_YOUR"
+          :styleTokens="styleTokens"
+        />
+      </SubDocumentationSection>
 
-      <CodeSwapper
-        :codeTypes="{
-          'Demo File': COMPONENT_DESCRIPTION_DEMO_EXAMPLE,
-          Options: COMPONENT_DESCRIPTION_OPTIONS_EXAMPLE,
-          Composition: COMPONENT_DESCRIPTION_OPTIONS_EXAMPLE,
-          'Script Setup': COMPONENT_DESCRIPTION_SCRIPT_SETUP_EXAMPLE
-        }"
-        :fileName="FILE_NAME_YOUR"
-        :styleTokens="styleTokens"
-      />
+      <SubDocumentationSection
+        id="description-component"
+        title="Description"
+        subTitle="Custom component example"
+      >
+        <p>
+          If you want to customize the part of the demo page just below the component title where it describes the component
+          being demo'd, we allow passing in a custom component to render whatever you want.
+        </p>
+
+        <CodeSwapper
+          :codeTypes="{
+            'Demo File': DESCRIPTION_COMPONENT_DEMO_FILE_EXAMPLE,
+            Options: DESCRIPTION_COMPONENT_OPTIONS_EXAMPLE,
+            Composition: DESCRIPTION_COMPONENT_OPTIONS_EXAMPLE,
+            'Script Setup': DESCRIPTION_COMPONENT_SCRIPT_SETUP_EXAMPLE
+          }"
+          :fileName="FILE_NAME_MY"
+          :styleTokens="styleTokens"
+        />
+      </SubDocumentationSection>
     </DocumentationSection>
 
     <DocumentationSection id="import" title="Import Statements">
@@ -373,6 +403,9 @@ import {
   CUSTOM_COMPONENTS_DEMO_EXAMPLE,
   CUSTOM_COMPONENTS_OPTIONS_EXAMPLE,
   CUSTOM_COMPONENTS_SCRIPT_SETUP_EXAMPLE,
+  DESCRIPTION_COMPONENT_DEMO_FILE_EXAMPLE,
+  DESCRIPTION_COMPONENT_OPTIONS_EXAMPLE,
+  DESCRIPTION_COMPONENT_SCRIPT_SETUP_EXAMPLE,
   DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_DEMO_FILE,
   DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_OPTIONS,
   DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_SCRIPT_SETUP,
@@ -421,6 +454,9 @@ export default {
     CUSTOM_COMPONENTS_DEMO_EXAMPLE,
     CUSTOM_COMPONENTS_OPTIONS_EXAMPLE,
     CUSTOM_COMPONENTS_SCRIPT_SETUP_EXAMPLE,
+    DESCRIPTION_COMPONENT_DEMO_FILE_EXAMPLE,
+    DESCRIPTION_COMPONENT_OPTIONS_EXAMPLE,
+    DESCRIPTION_COMPONENT_SCRIPT_SETUP_EXAMPLE,
     DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_DEMO_FILE,
     DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_OPTIONS,
     DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_SCRIPT_SETUP,

@@ -21,8 +21,8 @@ import {
 } from '@/helpers/componentHelpers.js';
 import {
   createModelValueProp,
+  createVueDoxenOptions,
   demos,
-  options,
   styleTokens
 } from '@/helpers/props.js';
 import { validateOptions } from '@/helpers/validateOptions.js';
@@ -30,20 +30,18 @@ import { validateOptions } from '@/helpers/validateOptions.js';
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
 import DoxenComponentDemo from '@/components/DoxenComponentDemo.vue';
+import VueDoxenCustomDescription from '@/components/VueDoxenCustomDescription.vue';
 
 const COMPONENT_NAME = 'VueDoxenCustom';
 const modelValue = createModelValueProp(String);
+const options = createVueDoxenOptions(false);
 
 export default {
   ...createImportStatement(COMPONENT_NAME),
   name: COMPONENT_NAME,
-  description: [
-    'This is the VueDoxen Custom component. Normally Vue-Doxen ships with many built in components',
-    'but if you want to pass in your own custom Vue components to perform the same functionality,',
-    'you can! This is a more advanced option, but can also result in smaller build sizes, as it',
-    'doesn\'t ship with any additional internal Vue-Doxen components (textarea, emitlog, checkbox,',
-    'JSON textarea, dropdown, etc.) unless you explicitly import them.'
-  ].join(' '),
+  description: {
+    component: VueDoxenCustomDescription
+  },
   components: {
     DoxenComponentDemo
   },
