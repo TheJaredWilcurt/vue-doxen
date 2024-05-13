@@ -102,7 +102,7 @@ import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 import CodeBox from '@/components/CodeBox.vue';
 
 export default {
-  name: 'PropsDocumentation',
+  name: 'DoxenPropsDocumentation',
   components: {
     CodeBox
   },

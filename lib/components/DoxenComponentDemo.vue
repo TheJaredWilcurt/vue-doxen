@@ -83,6 +83,7 @@
     <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Props Playground:</h3>
 
     <form v-bind="applyStyleTokens({ propsPlaygroundForm: true })">
+      <!-- Anything for Props -->
       <component
         v-for="(prop, propName) in propsToDemo"
         v-bind="prop.props"
@@ -90,7 +91,7 @@
         :is="prop.component"
         :key="propName"
       />
-      <!-- DoxenTextarea -->
+      <!-- DoxenTextarea for slots -->
       <component
         v-for="(slotValue, slotName) in slotsToDemo"
         v-model="demoSlots[slotName]"
@@ -99,7 +100,7 @@
         :styleTokens="styleTokens"
         :key="'slot-playground-' + slotName"
       />
-      <!-- DoxenEmitLog -->
+      <!-- DoxenEmitLog for emits -->
       <component
         v-if="Object.keys(emitsToDemo).length"
         v-model="emitLog"
@@ -116,7 +117,7 @@
       :styleTokens="styleTokens"
     />
 
-    <PropsDocumentation
+    <DoxenPropsDocumentation
       :component="demo.component"
       :propsToDemo="propsToDemo"
       :styleTokens="styleTokens"
@@ -152,7 +153,7 @@ import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 import CodeBox from '@/components/CodeBox.vue';
 import CodeSwapper from '@/components/CodeSwapper.vue';
 import EmitsDocumentation from '@/components/EmitsDocumentation.vue';
-import PropsDocumentation from '@/components/PropsDocumentation.vue';
+import DoxenPropsDocumentation from '@/components/DoxenPropsDocumentation.vue';
 
 const options = createVueDoxenOptions(true);
 
@@ -162,7 +163,7 @@ export default {
     CodeBox,
     CodeSwapper,
     EmitsDocumentation,
-    PropsDocumentation
+    DoxenPropsDocumentation
   },
   mixins: [applyStyleTokens],
   props: {
