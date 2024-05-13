@@ -1189,6 +1189,156 @@ defineOptions({
 </script>
 `.trim();
 
+export const TREE_SHAKING_IMPORT_EXAMPLE = `
+// Import all the needed components from Vue-Doxen
+import {
+  DoxenHeader,
+  DoxenPropsDocumentation,
+  DoxenEmitLog,
+  DoxenTextarea
+} from 'vue-doxen';
+
+// Everything listed below must have either the component I've listed
+// imported/passed in, or your own component passed in with a matching
+// API. Otherwise Vue-Doxen will break at runtime.
+export const options = {
+  components: {
+    emitLog: DoxenEmitLog,
+    header: DoxenHeader,
+    propsDocumentation: DoxenPropsDocumentation,
+    textarea: DoxenTextarea
+  }
+};
+`.trim();
+export const TREE_SHAKING_USING_OPTIONS_OPTIONS_API = `
+<template>
+  <div>
+    <DoxenSideBar
+      v-model="selectedDemo"
+      :demos="componentDemos"
+    />
+    <VueDoxenCustom
+      v-model="selectedDemo"
+      :demos="componentDemos"
+      :options="vueDoxenOptions"
+    />
+  </div>
+</template>
+
+<script>
+import { DoxenSideBar, VueDoxenCustom } from 'vue-doxen';
+
+import { demos } from '../demos/index.js';
+import { options } from './vue-doxen-options.js';
+
+export default {
+  name: 'ComponentsDemo',
+  components: {
+    DoxenSideBar,
+    VueDoxenCustom
+  },
+  data: function () {
+    return {
+      selectedDemo: 'MyComponentName'
+    };
+  },
+  computed: {
+    componentDemos: function () {
+      return demos;
+    },
+    vueDoxenOptions: function () {
+      return options;
+    }
+  }
+};
+</script>
+`.trim();
+export const TREE_SHAKING_USING_OPTIONS_COMPOSITION_API = `
+<template>
+  <div>
+    <DoxenSideBar
+      v-model="selectedDemo"
+      :demos="componentDemos"
+    />
+    <VueDoxenCustom
+      v-model="selectedDemo"
+      :demos="componentDemos"
+      :options="vueDoxenOptions"
+    />
+  </div>
+</template>
+
+<script>
+import { computed, ref } from 'vue';
+import { DoxenSideBar, VueDoxenCustom } from 'vue-doxen';
+
+import { demos } from '../demos/index.js';
+import { options } from './vue-doxen-options.js';
+
+export default {
+  name: 'ComponentsDemo',
+  components: {
+    DoxenSideBar,
+    VueDoxenCustom
+  },
+  setup: function () {
+    const selectedDemo = ref('MyComponentName');
+
+    const componentDemos = computed(() => {
+      return demos;
+    });
+
+    const vueDoxenOptions = computed(() => {
+      return options;
+    });
+
+    return {
+      componentDemos,
+      selectedDemo,
+      vueDoxenOptions
+    };
+  }
+};
+</script>
+`.trim();
+export const TREE_SHAKING_USING_OPTIONS_SCRIPT_SETUP = `
+<template>
+  <div>
+    <DoxenSideBar
+      v-model="selectedDemo"
+      :demos="componentDemos"
+    />
+    <VueDoxenCustom
+      v-model="selectedDemo"
+      :demos="componentDemos"
+      :options="vueDoxenOptions"
+    />
+  </div>
+</template>
+
+<script setup>
+import { computed } from 'vue';
+import { DoxenSideBar, VueDoxenCustom } from 'vue-doxen';
+
+import { demos } from '../demos/index.js';
+import { options } from './vue-doxen-options.js';
+
+defineOptions({
+  name: 'ComponentsDemo'
+});
+
+const selectedDemo = ref('MyComponentName');
+
+const componentDemos = computed(() => {
+  return demos;
+});
+
+const vueDoxenOptions = computed(() => {
+  return options;
+});
+</script>
+`.trim();
+
 export const VUE_ROUTER_EXAMPLE = `
 import { createRouter, createWebHistory } from 'vue-router';
 import { VueDoxen } from 'vue-doxen';
