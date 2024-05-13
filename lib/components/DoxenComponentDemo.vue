@@ -126,7 +126,7 @@
     />
 
     <template v-if="Object.keys(emitsToDemo).length">
-      <EmitsDocumentation
+      <DoxenEmitsDocumentation
         :componentName="componentName"
         :emitsToDemo="emitsToDemo"
         :styleTokens="styleTokens"
@@ -154,8 +154,8 @@ import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
 import CodeBox from '@/components/CodeBox.vue';
 import CodeSwapper from '@/components/CodeSwapper.vue';
+import DoxenEmitsDocumentation from '@/components/DoxenEmitsDocumentation.vue';
 import DoxenPropsDocumentation from '@/components/DoxenPropsDocumentation.vue';
-import EmitsDocumentation from '@/components/EmitsDocumentation.vue';
 
 const options = createVueDoxenOptions(true);
 
@@ -164,7 +164,7 @@ export default {
   components: {
     CodeBox,
     CodeSwapper,
-    EmitsDocumentation,
+    DoxenEmitsDocumentation,
     DoxenPropsDocumentation
   },
   mixins: [applyStyleTokens],

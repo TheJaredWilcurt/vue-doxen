@@ -66,7 +66,7 @@ import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 import CodeBox from '@/components/CodeBox.vue';
 
 export default {
-  name: 'EmitsDocumentation',
+  name: 'DoxenEmitsDocumentation',
   components: {
     CodeBox
   },
