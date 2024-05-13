@@ -14,7 +14,7 @@
 /**
  * @file This component acts as a wrapper and public interface for DoxenComponentDemo.
  * It handles the user inputs, defaulting values, and passing down just the selected demo.
-*/
+ */
 import {
   createImportStatement,
   processDemos
