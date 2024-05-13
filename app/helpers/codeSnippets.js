@@ -1192,9 +1192,10 @@ defineOptions({
 export const TREE_SHAKING_IMPORT_EXAMPLE = `
 // Import all the needed components from Vue-Doxen
 import {
+  DoxenEmitLog,
+  DoxenEmitsDocumentation,
   DoxenHeader,
   DoxenPropsDocumentation,
-  DoxenEmitLog,
   DoxenTextarea
 } from 'vue-doxen';
 
@@ -1203,10 +1204,20 @@ import {
 // API. Otherwise Vue-Doxen will break at runtime.
 export const options = {
   components: {
-    emitLog: DoxenEmitLog,
+    // Top of demo
     header: DoxenHeader,
+
+    // Props Playground
+
+    // Playground: Slots
+    textarea: DoxenTextarea,
+
+    // Playground: Emits
+    emitLog: DoxenEmitLog,
+
+    // Bottom of demo
     propsDocumentation: DoxenPropsDocumentation,
-    textarea: DoxenTextarea
+    emitsDocumentation: DoxenEmitsDocumentation
   }
 };
 `.trim();
