@@ -154,8 +154,8 @@ import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
 import CodeBox from '@/components/CodeBox.vue';
 import CodeSwapper from '@/components/CodeSwapper.vue';
-import EmitsDocumentation from '@/components/EmitsDocumentation.vue';
 import DoxenPropsDocumentation from '@/components/DoxenPropsDocumentation.vue';
+import EmitsDocumentation from '@/components/EmitsDocumentation.vue';
 
 const options = createVueDoxenOptions(true);
 

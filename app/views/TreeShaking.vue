@@ -45,17 +45,18 @@
 </template>
 
 <script>
+import { styleTokens } from '@/helpers/props.js';
+
+import CodeBox from '@/components/CodeBox.vue';
+import CodeSwapper from '@/components/CodeSwapper.vue';
+import DocumentationSection from '@@@/components/DocumentationSection.vue';
+
 import {
   TREE_SHAKING_IMPORT_EXAMPLE,
   TREE_SHAKING_USING_OPTIONS_OPTIONS_API,
   TREE_SHAKING_USING_OPTIONS_COMPOSITION_API,
   TREE_SHAKING_USING_OPTIONS_SCRIPT_SETUP
 } from '@@@/helpers/codeSnippets.js';
-import { styleTokens } from '@/helpers/props.js';
-
-import CodeBox from '@/components/CodeBox.vue';
-import CodeSwapper from '@/components/CodeSwapper.vue';
-import DocumentationSection from '@@@/components/DocumentationSection.vue';
 
 export default {
   name: 'TreeShaking',
