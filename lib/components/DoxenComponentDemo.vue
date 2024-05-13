@@ -117,7 +117,9 @@
       :styleTokens="styleTokens"
     />
 
-    <DoxenPropsDocumentation
+    <!-- DoxenPropsDocumentation -->
+    <component
+      :is="options.components.propsDocumentation"
       :component="demo.component"
       :propsToDemo="propsToDemo"
       :styleTokens="styleTokens"
