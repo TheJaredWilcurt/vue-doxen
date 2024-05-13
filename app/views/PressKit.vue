@@ -8,7 +8,7 @@
     </h1>
 
     <p>
-      Below are some assets you can use when graphics for <strong>blog posts</strong>
+      Below are some assets you can use when making graphics for <strong>blog posts</strong>
       or <strong>tutorial videos</strong> about Vue-Doxen.
     </p>
 
