@@ -1,6 +1,5 @@
 import DoxenPropsDocumentation from '@/components/DoxenPropsDocumentation.vue';
 import DoxenJsonTextarea from '@/components/formFields/DoxenJsonTextarea.vue';
-import DoxenTextarea from '@/components/formFields/DoxenTextarea.vue';
 import DoxenPlainText from '@/components/formFields/DoxenPlainText.vue';
 
 const CODE_AS_STRING = `
