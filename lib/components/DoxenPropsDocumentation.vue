@@ -2,7 +2,7 @@
   <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Props Documentation</h3>
   <ul v-bind="applyStyleTokens({ propsDocumentationUl: true })">
     <li
-      v-for="(value, prop) in props"
+      v-for="(value, prop) in propsToDemo"
       v-bind="applyStyleTokens({ propsDocumentationLi: true })"
       :key="prop"
     >
@@ -90,10 +90,7 @@
 
 <script>
 import { humanList, wrapString } from '@/helpers/componentHelpers.js';
-import {
-  combinePropsAndPropsToDemo,
-  typeToString
-} from '@/helpers/demoHelpers.js';
+import { typeToString } from '@/helpers/demoHelpers.js';
 import { styleTokens } from '@/helpers/props.js';
 import { dataValue } from '@/helpers/snapshotHelpers.js';
 
@@ -108,10 +105,6 @@ export default {
   },
   mixins: [applyStyleTokens],
   props: {
-    component: {
-      type: Object,
-      required: true
-    },
     propsToDemo: {
       type: Object,
       required: true
@@ -130,14 +123,9 @@ export default {
     },
     formatDefault: function (value) {
       if (typeof(value) === 'function') {
-        return value();
+        value = value();
       }
       return dataValue(value);
-    }
-  },
-  computed: {
-    props: function () {
-      return combinePropsAndPropsToDemo(this.propsToDemo, this.component.props);
     }
   }
 };
