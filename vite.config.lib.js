@@ -4,6 +4,7 @@ import { fileURLToPath, URL } from 'node:url';
 
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
+import { configDefaults } from 'vitest/dist/config.js';
 
 const __dirname = import.meta.dirname;
 
@@ -49,14 +50,21 @@ export default defineConfig({
     }
   },
   test: {
-    globals: true,
     coverage: {
       exclude: [
+        ...(configDefaults?.coverage?.exclude || []),
         '.eslintrc.cjs',
         '**/app/',
         '**/docs/',
         '**/scripts/'
-      ]
-    }
+      ],
+      reportsDirectory: './tests/unit/coverage'
+    },
+    environment: 'happy-dom',
+    globals: true,
+    root: '.',
+    setupFiles: [
+      './tests/unit/setup.js'
+    ]
   }
 });
