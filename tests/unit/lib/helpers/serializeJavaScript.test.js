@@ -1,6 +1,7 @@
 import { serializeJavaScript } from '@/helpers/serializeJavaScript.js';
 
 describe('Serialize JavaScript', () => {
+  let address;
   let value;
 
   beforeEach(() => {
@@ -16,7 +17,7 @@ describe('Serialize JavaScript', () => {
       return baz;
     }
 
-    let address = {
+    address = {
       street: 'Callejon de las ranas 128',
       city: 'Falfurrias',
       state: 'Texas',
