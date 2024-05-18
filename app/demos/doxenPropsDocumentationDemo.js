@@ -52,7 +52,7 @@ export const createDoxenPropsDocumentationDemo = function (styleTokens) {
               required: false,
               default: 'bronze',
               allowed: ['gold', 'silver', 'bronze'],
-              description: 'The trophy color to convey first, second, or third place.',
+              description: 'The trophy\'s color to convey first, second, or third place.',
               validator: function (value) {
                 return ['gold', 'silver', 'bronze'].includes(value);
               },

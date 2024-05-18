@@ -150,6 +150,7 @@ import {
   createVueDoxenOptions,
   styleTokens
 } from '@/helpers/props.js';
+import { serializeJavaScript } from '@/helpers/serializeJavaScript.js';
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
@@ -411,9 +412,9 @@ export default {
         });
       const eventsOutput = '{' + indent + emitStrings.join(',' + indent) + '\n}';
 
-      jsOutput.push('const ' + tag + 'Props = ' + deJSONify(propsOutput, '\n') + ';');
+      jsOutput.push('const ' + tag + 'Props = ' + serializeJavaScript(propsOutput) + ';');
       if (Object.keys(slotsOutput).length) {
-        jsOutput.push('const ' + tag + 'Slots = ' + deJSONify(slotsOutput, '\n') + ';');
+        jsOutput.push('const ' + tag + 'Slots = ' + serializeJavaScript(slotsOutput) + ';');
       }
       if (emitStrings.filter(Boolean).length) {
         jsOutput.push('const ' + tag + 'Events = ' + eventsOutput + ';');
