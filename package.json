@@ -40,7 +40,7 @@
     "lodash.lowerfirst": "^4.3.1",
     "lodash.startcase": "^4.4.0",
     "nprogress": "^0.2.0",
-    "sass": "^1.77.0",
+    "sass": "^1.77.2",
     "vite": "^5.2.11",
     "vitest": "^1.6.0",
     "vue": "^3.4.27",
