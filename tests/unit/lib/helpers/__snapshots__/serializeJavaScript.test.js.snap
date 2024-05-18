@@ -1,0 +1,125 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Serialize JavaScript > Object serialized with default arguments 1`] = `
+"{
+  name: "Damaso Infanzon Manzo",
+  type: [
+    String,
+    Number,
+    Boolean
+  ],
+  address: {
+    street: "Callejon de las ranas 128",
+    city: "Falfurrias",
+    state: "Texas",
+    zip: "88888-9999",
+    value: circular reference to [object Object]
+  },
+  longString: "one\\ntwo\\n\\"three\\"",
+  favorites: {
+    music: [
+      "Mozart",
+      "Beethoven",
+      "The Beatles"
+    ],
+    authors: [
+      "John Grisham",
+      "Isaac Asimov",
+      "P.L. Travers"
+    ],
+    books: [
+      "Pelican Brief",
+      "I, Robot",
+      "Mary Poppins"
+    ]
+  },
+  dates: [
+    "Wed Jan 31 2024 00:00:00 GMT-0500 (Eastern Standard Time)",
+    "Tue May 25 1954 00:00:00 GMT-0500 (Eastern Daylight Time)"
+  ],
+  numbers: [
+    10,
+    883,
+    521
+  ],
+  boolean: [
+    true,
+    false,
+    false,
+    false
+  ],
+  isObject: true,
+  isDuck: false,
+  onWhatever: function (foo, bar) {
+    let baz = foo + bar;
+
+    return baz;
+  },
+  onAnother: function onAnother (foo, bar) {
+    let baz = foo + bar;
+
+    return baz;
+  },
+  foo: undefined,
+  thisShouldBeNull: null,
+  error: "Error: This is an error"
+}"
+`;
+
+exports[`Serialize JavaScript > Object serialized without full function expansion 1`] = `
+"{
+  name: "Damaso Infanzon Manzo",
+  type: [
+    String,
+    Number,
+    Boolean
+  ],
+  address: {
+    street: "Callejon de las ranas 128",
+    city: "Falfurrias",
+    state: "Texas",
+    zip: "88888-9999",
+    value: circular reference to [object Object]
+  },
+  longString: "one\\ntwo\\n\\"three\\"",
+  favorites: {
+    music: [
+      "Mozart",
+      "Beethoven",
+      "The Beatles"
+    ],
+    authors: [
+      "John Grisham",
+      "Isaac Asimov",
+      "P.L. Travers"
+    ],
+    books: [
+      "Pelican Brief",
+      "I, Robot",
+      "Mary Poppins"
+    ]
+  },
+  dates: [
+    "Wed Jan 31 2024 00:00:00 GMT-0500 (Eastern Standard Time)",
+    "Tue May 25 1954 00:00:00 GMT-0500 (Eastern Daylight Time)"
+  ],
+  numbers: [
+    10,
+    883,
+    521
+  ],
+  boolean: [
+    true,
+    false,
+    false,
+    false
+  ],
+  isObject: true,
+  isDuck: false,
+  onWhatever: "function (foo, bar)",
+  onAnother: "function onAnother (foo, bar)",
+  foo: undefined,
+  thisShouldBeNull: null,
+  error: "Error: This is an error"
+}"
+`;
