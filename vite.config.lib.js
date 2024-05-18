@@ -47,5 +47,16 @@ export default defineConfig({
       '@@': fileURLToPath(new URL('./tests', import.meta.url)),
       '@@@': fileURLToPath(new URL('./app', import.meta.url))
     }
+  },
+  test: {
+    globals: true,
+    coverage: {
+      exclude: [
+        '.eslintrc.cjs',
+        '**/app/',
+        '**/docs/',
+        '**/scripts/'
+      ]
+    }
   }
 });
