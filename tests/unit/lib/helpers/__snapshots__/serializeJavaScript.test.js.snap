@@ -24,8 +24,8 @@ exports[`Serialize JavaScript > Object serialized with default arguments 1`] = `
     ]
   },
   dates: [
-    new Date(1706677200000),
-    new Date(-492465600000)
+    new Date('2024-01-31T05:00:00.000Z'),
+    new Date('1954-05-25T04:00:00.000Z')
   ],
   numbers: [
     10,
@@ -80,8 +80,8 @@ exports[`Serialize JavaScript > Object serialized without full function expansio
     ]
   },
   dates: [
-    new Date(1706677200000),
-    new Date(-492465600000)
+    new Date('2024-01-31T05:00:00.000Z'),
+    new Date('1954-05-25T04:00:00.000Z')
   ],
   numbers: [
     10,
