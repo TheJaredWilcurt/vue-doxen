@@ -2,40 +2,40 @@
 
 exports[`Serialize JavaScript > Object serialized with default arguments 1`] = `
 "{
-  name: "Damaso Infanzon Manzo",
+  name: 'Damaso Infanzon Manzo',
   type: [
     String,
     Number,
     Boolean
   ],
   address: {
-    street: "Callejon de las ranas 128",
-    city: "Falfurrias",
-    state: "Texas",
-    zip: "88888-9999",
+    street: 'Callejon de las ranas 128',
+    city: 'Falfurrias',
+    state: 'Texas',
+    zip: '88888-9999',
     value: circular reference to [object Object]
   },
-  longString: "one\\ntwo\\n\\"three\\"",
+  longString: 'one\\'s\\ntwo\\n"three"',
   favorites: {
     music: [
-      "Mozart",
-      "Beethoven",
-      "The Beatles"
+      'Mozart',
+      'Beethoven',
+      'The Beatles'
     ],
     authors: [
-      "John Grisham",
-      "Isaac Asimov",
-      "P.L. Travers"
+      'John Grisham',
+      'Isaac Asimov',
+      'P.L. Travers'
     ],
     books: [
-      "Pelican Brief",
-      "I, Robot",
-      "Mary Poppins"
+      'Pelican Brief',
+      'I, Robot',
+      'Mary Poppins'
     ]
   },
   dates: [
-    "Wed Jan 31 2024 00:00:00 GMT-0500 (Eastern Standard Time)",
-    "Tue May 25 1954 00:00:00 GMT-0500 (Eastern Daylight Time)"
+    'Wed Jan 31 2024 00:00:00 GMT-0500 (Eastern Standard Time)',
+    'Tue May 25 1954 00:00:00 GMT-0500 (Eastern Daylight Time)'
   ],
   numbers: [
     10,
@@ -62,46 +62,46 @@ exports[`Serialize JavaScript > Object serialized with default arguments 1`] = `
   },
   foo: undefined,
   thisShouldBeNull: null,
-  error: "Error: This is an error"
+  error: 'Error: This is an error'
 }"
 `;
 
 exports[`Serialize JavaScript > Object serialized without full function expansion 1`] = `
 "{
-  name: "Damaso Infanzon Manzo",
+  name: 'Damaso Infanzon Manzo',
   type: [
     String,
     Number,
     Boolean
   ],
   address: {
-    street: "Callejon de las ranas 128",
-    city: "Falfurrias",
-    state: "Texas",
-    zip: "88888-9999",
+    street: 'Callejon de las ranas 128',
+    city: 'Falfurrias',
+    state: 'Texas',
+    zip: '88888-9999',
     value: circular reference to [object Object]
   },
-  longString: "one\\ntwo\\n\\"three\\"",
+  longString: 'one\\'s\\ntwo\\n"three"',
   favorites: {
     music: [
-      "Mozart",
-      "Beethoven",
-      "The Beatles"
+      'Mozart',
+      'Beethoven',
+      'The Beatles'
     ],
     authors: [
-      "John Grisham",
-      "Isaac Asimov",
-      "P.L. Travers"
+      'John Grisham',
+      'Isaac Asimov',
+      'P.L. Travers'
     ],
     books: [
-      "Pelican Brief",
-      "I, Robot",
-      "Mary Poppins"
+      'Pelican Brief',
+      'I, Robot',
+      'Mary Poppins'
     ]
   },
   dates: [
-    "Wed Jan 31 2024 00:00:00 GMT-0500 (Eastern Standard Time)",
-    "Tue May 25 1954 00:00:00 GMT-0500 (Eastern Daylight Time)"
+    'Wed Jan 31 2024 00:00:00 GMT-0500 (Eastern Standard Time)',
+    'Tue May 25 1954 00:00:00 GMT-0500 (Eastern Daylight Time)'
   ],
   numbers: [
     10,
@@ -116,10 +116,10 @@ exports[`Serialize JavaScript > Object serialized without full function expansio
   ],
   isObject: true,
   isDuck: false,
-  onWhatever: "function (foo, bar)",
-  onAnother: "function onAnother (foo, bar)",
+  onWhatever: 'function (foo, bar)',
+  onAnother: 'function onAnother (foo, bar)',
   foo: undefined,
   thisShouldBeNull: null,
-  error: "Error: This is an error"
+  error: 'Error: This is an error'
 }"
 `;

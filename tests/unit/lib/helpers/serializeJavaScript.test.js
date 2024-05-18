@@ -31,7 +31,7 @@ describe('Serialize JavaScript', () => {
         Boolean
       ],
       address,
-      longString: 'one\ntwo\n"three"',
+      longString: 'one\'s\ntwo\n"three"',
       favorites: {
         music: [
           'Mozart',
