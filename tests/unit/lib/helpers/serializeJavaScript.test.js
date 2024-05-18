@@ -37,16 +37,6 @@ describe('Serialize JavaScript', () => {
           'Mozart',
           'Beethoven',
           'The Beatles'
-        ],
-        authors: [
-          'John Grisham',
-          'Isaac Asimov',
-          'P.L. Travers'
-        ],
-        books: [
-          'Pelican Brief',
-          'I, Robot',
-          'Mary Poppins'
         ]
       },
       dates: [

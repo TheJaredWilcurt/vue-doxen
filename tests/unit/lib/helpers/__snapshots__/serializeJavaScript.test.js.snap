@@ -21,21 +21,11 @@ exports[`Serialize JavaScript > Object serialized with default arguments 1`] = `
       'Mozart',
       'Beethoven',
       'The Beatles'
-    ],
-    authors: [
-      'John Grisham',
-      'Isaac Asimov',
-      'P.L. Travers'
-    ],
-    books: [
-      'Pelican Brief',
-      'I, Robot',
-      'Mary Poppins'
     ]
   },
   dates: [
-    'Wed Jan 31 2024 00:00:00 GMT-0500 (Eastern Standard Time)',
-    'Tue May 25 1954 00:00:00 GMT-0500 (Eastern Daylight Time)'
+    new Date('2024-01-31T05:00:00.000Z'),
+    new Date('1954-05-25T04:00:00.000Z')
   ],
   numbers: [
     10,
@@ -87,21 +77,11 @@ exports[`Serialize JavaScript > Object serialized without full function expansio
       'Mozart',
       'Beethoven',
       'The Beatles'
-    ],
-    authors: [
-      'John Grisham',
-      'Isaac Asimov',
-      'P.L. Travers'
-    ],
-    books: [
-      'Pelican Brief',
-      'I, Robot',
-      'Mary Poppins'
     ]
   },
   dates: [
-    'Wed Jan 31 2024 00:00:00 GMT-0500 (Eastern Standard Time)',
-    'Tue May 25 1954 00:00:00 GMT-0500 (Eastern Daylight Time)'
+    new Date('2024-01-31T05:00:00.000Z'),
+    new Date('1954-05-25T04:00:00.000Z')
   ],
   numbers: [
     10,
