@@ -160,7 +160,7 @@ import CodeSwapper from '@/components/CodeSwapper.vue';
 const options = createVueDoxenOptions(true);
 
 export default {
-  name: 'DoxenComponentDemo',
+  name: 'ComponentDemo',
   components: {
     CodeBox,
     CodeSwapper

@@ -1,6 +1,6 @@
 <template>
   <div v-bind="applyStyleTokens({ vueDoxen: true })">
-    <DoxenComponentDemo
+    <ComponentDemo
       v-if="processedDemos[selectedDemo]"
       :demo="processedDemos[selectedDemo]"
       :options="validateOptions"
@@ -12,7 +12,7 @@
 
 <script>
 /**
- * @file This component acts as a wrapper and public interface for DoxenComponentDemo.
+ * @file This component acts as a wrapper and public interface for ComponentDemo.
  * It handles the user inputs, defaulting values, and passing down just the selected demo.
  */
 import {
@@ -29,7 +29,7 @@ import { validateOptions } from '@/helpers/validateOptions.js';
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
-import DoxenComponentDemo from '@/components/DoxenComponentDemo.vue';
+import ComponentDemo from '@/components/ComponentDemo.vue';
 import VueDoxenCustomDescription from '@/components/VueDoxenCustomDescription.vue';
 
 const COMPONENT_NAME = 'VueDoxenCustom';
@@ -43,7 +43,7 @@ export default {
     component: VueDoxenCustomDescription
   },
   components: {
-    DoxenComponentDemo
+    ComponentDemo
   },
   mixins: [
     applyStyleTokens
