@@ -105,8 +105,8 @@ export const doxenComponentsToDemoWithStyleTokens = {
   DoxenJsonTextarea,
   DoxenPlainText,
   DoxenRadioDials,
-  DoxenTextarea,
   DoxenTextField,
+  DoxenTextarea,
   DoxenSideBar,
   VueDoxen,
   VueDoxenCustom
