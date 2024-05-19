@@ -19,6 +19,12 @@
       <ul>
         <li><a href="#example">Example Demo File</a></li>
         <li><a href="#using">Using Demo Files</a></li>
+        <li>
+          <a href="#custom-components">Using custom components on Demo pages</a>
+          <ul>
+            <li><a href="#globally">Globally replacing Vue-Doxen components</a></li>
+          </ul>
+        </li>
       </ul>
     </nav>
 
@@ -41,6 +47,24 @@
         :styleTokens="styleTokens"
       />
     </DocumentationSection>
+
+    <DocumentationSection id="custom-components" title="Using custom components on Demo pages">
+      <p>
+        In the Props Playground on a demo page, each prop will be represented with an interactive
+        form field component. Vue-Doxen tries to intelligently pick from it's own built-in form
+        field components as to what would be the best component to use. If your prop requires
+        a custom component to better handle this interaction in the playground, you can pass it
+        in as part of the demo file. This is shown in the above examples.
+      </p>
+
+      <SubDocumentationSection id="globally" title="Globally replacing Vue-Doxen components">
+        <p>
+          If you want to replace the default components (checkbox, radio dials, dropdown, text input,
+          etc.) that ship with Vue-Doxen with your own components globally, read the
+          <RouterLink :to="{ name: 'treeShaking', hash: '#tree-shaking' }">Tree Shaking</RouterLink> page.
+        </p>
+      </SubDocumentationSection>
+    </DocumentationSection>
   </div>
 </template>
 
@@ -49,6 +73,7 @@ import { styleTokens } from '@/helpers/props.js';
 
 import CodeSwapper from '@/components/CodeSwapper.vue';
 import DocumentationSection from '@@@/components/DocumentationSection.vue';
+import SubDocumentationSection from '@@@/components/SubDocumentationSection.vue';
 
 import {
   DEMO_FILE_EXAMPLE,
@@ -61,7 +86,8 @@ export default {
   name: 'DemoFilesView',
   components: {
     CodeSwapper,
-    DocumentationSection
+    DocumentationSection,
+    SubDocumentationSection
   },
   props: {
     styleTokens
