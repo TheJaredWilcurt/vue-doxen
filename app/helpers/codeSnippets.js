@@ -1193,6 +1193,7 @@ export const TREE_SHAKING_IMPORT_EXAMPLE = `
 // Import all the needed components from Vue-Doxen
 import {
   DoxenCheckbox,
+  DoxenDropdown,
   DoxenEmitLog,
   DoxenEmitsDocumentation,
   DoxenHeader,
@@ -1210,6 +1211,7 @@ export const options = {
 
     // Props Playground
     checkbox: DoxenCheckbox,
+    dropdown: DoxenDropdown,
 
     // Playground: Slots
     textarea: DoxenTextarea,
