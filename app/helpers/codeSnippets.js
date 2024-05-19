@@ -316,6 +316,17 @@ export const myComponentDemo = {
         // Default value to demo
         modelValue: 'red'
         // any other props your custom component takes
+      },
+      slots: {
+        default: 'If your custom component expects something in a slot'
+      },
+      events: {
+        'update:modelValue': function (value) {
+          console.log(
+            'If your component emits anything you can listen for it here',
+            value
+          );
+        }
       }
     },
     /* Any prop not defined here will be automatically
@@ -326,6 +337,15 @@ export const myComponentDemo = {
   slotsToDemo: {
     default: 'This is the prefilled text for the demo of the default slot.',
     footer: 'This is the prefilled text for the demo of the footer slot.'
+  },
+  events: {
+    click: function (value) {
+      console.log(
+        'If the component you are demoing emits anything,',
+        'you can listen for it in this "events" section',
+        value
+      );
+    }
   }
 };
 `.trim();

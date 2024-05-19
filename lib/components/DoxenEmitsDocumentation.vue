@@ -59,14 +59,18 @@
 </template>
 
 <script>
+import { createImportStatement } from '@/helpers/componentHelpers.js';
 import { styleTokens } from '@/helpers/props.js';
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
 import CodeBox from '@/components/CodeBox.vue';
 
+const COMPONENT_NAME = 'DoxenEmitsDocumentation';
+
 export default {
-  name: 'DoxenEmitsDocumentation',
+  ...createImportStatement(COMPONENT_NAME),
+  name: COMPONENT_NAME,
   components: {
     CodeBox
   },

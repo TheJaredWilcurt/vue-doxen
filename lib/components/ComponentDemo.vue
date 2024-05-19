@@ -82,15 +82,29 @@
 
     <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Props Playground:</h3>
 
-    <form v-bind="applyStyleTokens({ propsPlaygroundForm: true })">
+    <form
+      v-bind="applyStyleTokens({ propsPlaygroundForm: true })"
+      @submit.prevent
+    >
       <!-- Anything for Props -->
       <component
         v-for="(prop, propName) in propsToDemo"
         v-bind="prop.props"
         v-model="demoProps[propName]"
         :is="prop.component"
+        v-on="prop.events || {}"
         :key="propName"
-      />
+      >
+        <template
+          v-for="(slotValue, slotName) in prop.slots"
+          #[slotName]
+        >
+          <span
+            v-html="slotValue"
+            :key="'slot-' + slotName"
+          ></span>
+        </template>
+      </component>
       <!-- DoxenTextarea for slots -->
       <component
         v-for="(slotValue, slotName) in slotsToDemo"
@@ -137,6 +151,7 @@
 </template>
 
 <script>
+import _cloneDeep from 'lodash.clonedeep';
 import _lowerFirst from 'lodash.lowerfirst';
 import _startCase from 'lodash.startcase';
 
@@ -338,7 +353,10 @@ export default {
       const events = {};
       Object.keys(this.emitsToDemo).forEach((emitName) => {
         events[emitName] = (value) => {
-          this.emitLog.push({ emitName, value });
+          this.emitLog.push(_cloneDeep({ emitName, value }));
+          if (this.demo?.events?.[emitName]) {
+            this.demo.events[emitName](value);
+          }
           // Intentional console.info to demonstrate emits
           console.info(this.title + ' emit log:', { emitName, value });
         };

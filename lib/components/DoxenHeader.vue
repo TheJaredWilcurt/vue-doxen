@@ -12,12 +12,16 @@
 </template>
 
 <script>
+import { createImportStatement } from '@/helpers/componentHelpers.js';
 import { styleTokens } from '@/helpers/props.js';
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
+const COMPONENT_NAME = 'DoxenHeader';
+
 export default {
-  name: 'DoxenHeader',
+  ...createImportStatement(COMPONENT_NAME),
+  name: COMPONENT_NAME,
   mixins: [applyStyleTokens],
   props: {
     styleTokens,

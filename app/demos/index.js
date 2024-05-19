@@ -21,6 +21,7 @@ import DummyCompositionApi from '@@@/components/DummyCompositionApi.vue';
 import DummyScriptSetupApi from '@@@/components/DummyScriptSetupApi.vue';
 
 import { createDoxenButtonDemo } from '@@@/demos/doxenButtonDemo.js';
+import { createDoxenEmitLogDemo } from '@@@/demos/doxenEmitLogDemo.js';
 import { createDoxenPropsDocumentationDemo } from '@@@/demos/doxenPropsDocumentationDemo.js';
 import { createDoxenTabsDemo } from '@@@/demos/doxenTabsDemo.js';
 import { createDummyScriptSetupApiDemo } from '@@@/demos/dummyScriptSetupApiDemo.js';
@@ -99,7 +100,6 @@ const createDoxenDemos = function (components, styleTokens) {
 export const doxenComponentsToDemoWithStyleTokens = {
   DoxenCheckbox,
   DoxenDropdown,
-  DoxenEmitLog,
   DoxenEmitsDocumentation,
   DoxenHeader,
   DoxenJsonTextarea,
@@ -116,6 +116,7 @@ export const componentsToListInSidebar = {
   DummyCompositionApi,
   DummyScriptSetupApi,
   DoxenButton,
+  DoxenEmitLog,
   DoxenTabs,
   DoxenPropsDocumentation,
   ...doxenComponentsToDemoWithStyleTokens
@@ -126,6 +127,7 @@ export const createDemos = function (styleTokens) {
     DummyCompositionApi,
     DummyScriptSetupApi: createDummyScriptSetupApiDemo(styleTokens),
     DoxenButton: createDoxenButtonDemo(styleTokens),
+    DoxenEmitLog: createDoxenEmitLogDemo(styleTokens),
     DoxenPropsDocumentation: createDoxenPropsDocumentationDemo(styleTokens),
     DoxenTabs: createDoxenTabsDemo(styleTokens),
     ...createDoxenDemos(doxenComponentsToDemoWithStyleTokens, styleTokens)
