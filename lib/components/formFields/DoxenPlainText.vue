@@ -16,6 +16,11 @@
       :code="codeAsString"
       :styleTokens="styleTokens"
     />
+    <CodeBox
+      v-else-if="asCode"
+      :code="serializeJavaScript(modelValue)"
+      :styleTokens="styleTokens"
+    />
     <div
       v-else
       v-text="modelValue"
@@ -43,6 +48,7 @@ import {
   label,
   styleTokens
 } from '@/helpers/props.js';
+import { serializeJavaScript } from '@/helpers/serializeJavaScript.js';
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
@@ -72,11 +78,19 @@ export default {
     message,
     modelValue,
     styleTokens,
+    asCode: {
+      description: 'Presents the modelValue with syntax highlighting. Assumes the code is HTML, JavaScript, or JSON.',
+      type: Boolean,
+      default: false
+    },
     codeAsString: {
       description: 'String of a code example to display instead of the raw modelValue.',
       type: String,
       default: undefined
     }
+  },
+  methods: {
+    serializeJavaScript
   },
   computed: {
     uniqueId: function () {
