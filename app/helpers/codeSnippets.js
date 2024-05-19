@@ -1197,6 +1197,7 @@ import {
   DoxenEmitLog,
   DoxenEmitsDocumentation,
   DoxenHeader,
+  DoxenJsonTextarea,
   DoxenPlainText,
   DoxenPropsDocumentation,
   DoxenRadioDials,
@@ -1215,6 +1216,7 @@ export const options = {
     // Props Playground
     checkbox: DoxenCheckbox,
     dropdown: DoxenDropdown,
+    jsonTextarea: DoxenJsonTextarea,
     plainText: DoxenPlainText,
     radioDials: DoxenRadioDials,
     textField: DoxenTextField,
