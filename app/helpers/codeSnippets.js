@@ -1198,6 +1198,7 @@ import {
   DoxenEmitsDocumentation,
   DoxenHeader,
   DoxenPropsDocumentation,
+  DoxenRadioDials,
   DoxenTextField,
   DoxenTextarea
 } from 'vue-doxen';
@@ -1213,6 +1214,7 @@ export const options = {
     // Props Playground
     checkbox: DoxenCheckbox,
     dropdown: DoxenDropdown,
+    radioDials: DoxenRadioDials,
     textField: DoxenTextField,
 
     // Playground: Slots
