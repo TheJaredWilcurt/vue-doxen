@@ -15,21 +15,10 @@ module.exports = {
   },
   globals: {
     globalThis: true,
-    Pinia: true,
     Promise: true,
     vi: true,
     Vue: true,
-    VueRouter: true,
-
-    // Built-Ins
-    AggregateError: true,
-    BigInt: true,
-    BigInt64Array: true,
-    BigUint64Array: true,
-    FinalizationRegistry: true,
-    Iterator: true,
-    SharedArrayBuffer: true,
-    WeakRef: true
+    VueRouter: true
   },
   plugins: [
     'vue',
