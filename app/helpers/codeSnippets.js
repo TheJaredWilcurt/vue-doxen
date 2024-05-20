@@ -308,6 +308,7 @@ import MyCustomColorPicker from '../components/MyCustomColorPicker.vue';
 
 export const myComponentDemo = {
   component: MyComponent,
+  description: '<p>Some description of the component.</p>',
   importStatement: 'import { MyComponent } from \\'my-component-library\\'',
   propsToDemo: {
     color: {
