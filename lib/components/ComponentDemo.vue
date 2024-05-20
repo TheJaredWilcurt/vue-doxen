@@ -267,34 +267,6 @@ export default {
       handleEmitObjects(this.demo?.component?.emitsToDemo);
       handleEmitObjects(this.demo?.component?.emits);
 
-      // Default values
-      for (const emitName in demoEmits) {
-        // Default v-model="value" and v-model:title="value"
-        if (emitName.startsWith('update:')) {
-          const emitNameShort = emitName.replace('update:', '');
-          const vModels = ['model-value', 'modelValue'];
-          if (!demoEmits[emitName].description) {
-            if (vModels.includes(emitNameShort)) {
-              demoEmits[emitName].description = 'For use with v-model for two way data binding.';
-            } else {
-              demoEmits[emitName].description = 'For use with v-model:' + emitNameShort + ' for two way data binding.';
-            }
-          }
-          if (!demoEmits[emitName].example) {
-            if (vModels.includes(emitNameShort)) {
-              demoEmits[emitName].example = 'v-model="yourValue"';
-            } else {
-              demoEmits[emitName].example = 'v-model:' + emitNameShort + '="yourValue"';
-            }
-          }
-        // Default @click="yourMethod"
-        } else {
-          if (!demoEmits[emitName].example) {
-            demoEmits[emitName].example = '@' + emitName + '="yourMethod"';
-          }
-        }
-      }
-
       return demoEmits;
     },
     slotsToDemo: function () {
