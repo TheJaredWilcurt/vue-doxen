@@ -30,7 +30,12 @@ const CODE_AS_STRING = `
 export const createDoxenPropsDocumentationDemo = function (styleTokens) {
   return {
     component: DoxenPropsDocumentation,
-    description: 'Below we pass in some example prop definitions into the <code>DoxenPropsDocumentation</code> component.',
+    description: [
+      '<p>Below we pass in some example prop definitions into the',
+      '<code>DoxenPropsDocumentation</code> component.</p>',
+      '<p>If the component being documented has props this would',
+      'generally appear towards the botom of the demo page.</p>'
+    ].join(' '),
     propsToDemo: {
       propsToDemo: {
         component: DoxenPlainText,
