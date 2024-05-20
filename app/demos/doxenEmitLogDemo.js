@@ -2,8 +2,8 @@ import { ref } from 'vue';
 
 import DoxenButton from '@/components/DoxenButton.vue';
 import DoxenEmitLog from '@/components/formFields/DoxenEmitLog.vue';
-import DoxenPlainText from '@/components/formFields/DoxenPlainText.vue';
 import DoxenJsonTextarea from '@/components/formFields/DoxenJsonTextarea.vue';
+import DoxenPlainText from '@/components/formFields/DoxenPlainText.vue';
 
 export const createDoxenEmitLogDemo = function (styleTokens) {
   const events = ref([]);
