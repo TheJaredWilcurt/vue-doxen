@@ -52,7 +52,7 @@
       <p>
         In the Props Playground on a demo page, each prop will be represented with an interactive
         form field component. Vue-Doxen tries to intelligently pick from it's own built-in form
-        field components as to what would be the best component to use. If your prop requires
+        field components what would be the best component to use. If your prop requires
         a custom component to better handle this interaction in the playground, you can pass it
         in as part of the demo file. This is shown in the above examples.
       </p>
