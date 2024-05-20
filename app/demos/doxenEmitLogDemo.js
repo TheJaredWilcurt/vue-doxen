@@ -32,6 +32,7 @@ export const createDoxenEmitLogDemo = function (styleTokens) {
         props: {
           label: 'Model Value',
           modelValue: events,
+          styleTokens,
           asCode: true
         }
       },
