@@ -22,6 +22,7 @@ const COMPONENT_NAME = 'DoxenHeader';
 export default {
   ...createImportStatement(COMPONENT_NAME),
   name: COMPONENT_NAME,
+  description: 'A simple header component that shows the name of the component being documented. This is used at the top of a demo page.',
   mixins: [applyStyleTokens],
   props: {
     styleTokens,
