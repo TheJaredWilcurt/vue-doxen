@@ -50,6 +50,7 @@ export default {
         await bark.play();
         setTimeout(() => { this.barking = true; }, 100);
         setTimeout(() => { this.barking = false; }, 250);
+        setTimeout(() => { this.borkCount++; }, 400);
         setTimeout(() => { this.barking = true; }, 600);
         setTimeout(() => { this.barking = false; }, 800);
         setTimeout(() => { this.borkCount++; }, 1000);
@@ -60,7 +61,7 @@ export default {
         if (this.borkCount > 0) {
           this.borkCount--;
         }
-      }, 1100);
+      }, 550);
     }
   },
   computed: {
@@ -74,7 +75,7 @@ export default {
       return 'clip-path: inset(0% ' + percent + '% 0% 0%)';
     },
     limit: function () {
-      return 20;
+      return 40;
     },
     exhausted: function () {
       return this.borkCount > this.limit;

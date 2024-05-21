@@ -308,6 +308,7 @@ import MyCustomColorPicker from '../components/MyCustomColorPicker.vue';
 
 export const myComponentDemo = {
   component: MyComponent,
+  description: '<p>Some description of the component.</p>',
   importStatement: 'import { MyComponent } from \\'my-component-library\\'',
   propsToDemo: {
     color: {
@@ -316,6 +317,15 @@ export const myComponentDemo = {
         // Default value to demo
         modelValue: 'red'
         // any other props your custom component takes
+      },
+      slots: {
+        default: 'If your custom component expects something in a slot'
+      },
+      // If your component emits anything you can listen for it here
+      events: {
+        'update:modelValue': function (value) {
+          console.log({ value });
+        }
       }
     },
     /* Any prop not defined here will be automatically
@@ -326,6 +336,15 @@ export const myComponentDemo = {
   slotsToDemo: {
     default: 'This is the prefilled text for the demo of the default slot.',
     footer: 'This is the prefilled text for the demo of the footer slot.'
+  },
+  events: {
+    click: function (value) {
+      console.log(
+        'If the component you are demoing emits anything,',
+        'you can listen for it in this "events" section',
+        value
+      );
+    }
   }
 };
 `.trim();
@@ -451,6 +470,80 @@ const demos = computed(() => {
     // So all components automatically become demo objects internally.
     ComponentA
   };
+});
+</script>
+`.trim();
+
+export const DESCRIPTION_COMPONENT_DEMO_FILE_EXAMPLE = `
+import MyComponent from '../components/MyComponent.vue';
+import MyDescription from '../components/MyDescription.vue';
+
+export const myComponentDemo = {
+  component: MyComponent,
+  description: {
+    component: MyDescription,
+    // Optional, if your component needs props
+    props: {
+      yourProp: 'your value'
+    },
+    // Optional: if your component has emits
+    events: {
+      click: function ($event) {
+        console.log($event);
+      }
+    }
+  }
+};
+`.trim();
+export const DESCRIPTION_COMPONENT_OPTIONS_EXAMPLE = `
+<script>
+// DO NOT ACTUALLY DO THIS! USE A DEMO FILE INSTEAD.
+// Though this is technically supported, importing custom components
+// into your component just for Vue-Doxen will bloat your component's
+// file size for no real benefit. If you want to use your own
+// component for the description, just use a demo file.
+import MyImportStatement from './MyImportStatement.vue';
+
+export default {
+  importStatement: {
+    component: MyImportStatement,
+    // Optional, if your component needs props
+    props: {
+      yourProp: 'your value'
+    },
+    // Optional: if your component has emits
+    events: {
+      click: function ($event) {
+        console.log($event);
+      }
+    }
+  }
+};
+</script>
+`.trim();
+export const DESCRIPTION_COMPONENT_SCRIPT_SETUP_EXAMPLE = `
+<script setup>
+// DO NOT ACTUALLY DO THIS! USE A DEMO FILE INSTEAD.
+// Though this is technically supported, importing custom components
+// into your component just for Vue-Doxen will bloat your component's
+// file size for no real benefit. If you want to use your own
+// component for the description, just use a demo file.
+import MyImportStatement from './MyImportStatement.vue';
+
+defineOptions({
+  importStatement: {
+    component: MyImportStatement,
+    // Optional, if your component needs props
+    props: {
+      yourProp: 'your value'
+    },
+    // Optional: if your component has emits
+    events: {
+      click: function ($event) {
+        console.log($event);
+      }
+    }
+  }
 });
 </script>
 `.trim();
@@ -1111,6 +1204,179 @@ defineOptions({
     default: 'This appears <strong>above</strong> the component.',
     footer: 'This appears <strong>below</strong> the component.'
   }
+});
+</script>
+`.trim();
+
+export const TREE_SHAKING_IMPORT_EXAMPLE = `
+// Import all the needed components from Vue-Doxen
+import {
+  DoxenCheckbox,
+  DoxenDropdown,
+  DoxenEmitLog,
+  DoxenEmitsDocumentation,
+  DoxenHeader,
+  DoxenJsonTextarea,
+  DoxenPlainText,
+  DoxenPropsDocumentation,
+  DoxenRadioDials,
+  DoxenTextField,
+  DoxenTextarea
+} from 'vue-doxen';
+
+// Everything listed below must have either the component I've listed
+// imported/passed in, or your own component passed in with a matching
+// API. Otherwise Vue-Doxen will break at runtime.
+export const options = {
+  components: {
+    // Top of demo
+    header: DoxenHeader,
+
+    // Props Playground
+    checkbox: DoxenCheckbox,
+    dropdown: DoxenDropdown,
+    jsonTextarea: DoxenJsonTextarea,
+    plainText: DoxenPlainText,
+    radioDials: DoxenRadioDials,
+    textField: DoxenTextField,
+
+    // Playground: Slots
+    textarea: DoxenTextarea,
+
+    // Playground: Emits
+    emitLog: DoxenEmitLog,
+
+    // Bottom of demo
+    propsDocumentation: DoxenPropsDocumentation,
+    emitsDocumentation: DoxenEmitsDocumentation
+  }
+};
+`.trim();
+export const TREE_SHAKING_USING_OPTIONS_OPTIONS_API = `
+<template>
+  <div>
+    <DoxenSideBar
+      v-model="selectedDemo"
+      :demos="componentDemos"
+    />
+    <VueDoxenCustom
+      v-model="selectedDemo"
+      :demos="componentDemos"
+      :options="vueDoxenOptions"
+    />
+  </div>
+</template>
+
+<script>
+import { DoxenSideBar, VueDoxenCustom } from 'vue-doxen';
+
+import { demos } from '../demos/index.js';
+import { options } from './vue-doxen-options.js';
+
+export default {
+  name: 'ComponentsDemo',
+  components: {
+    DoxenSideBar,
+    VueDoxenCustom
+  },
+  data: function () {
+    return {
+      selectedDemo: 'MyComponentName'
+    };
+  },
+  computed: {
+    componentDemos: function () {
+      return demos;
+    },
+    vueDoxenOptions: function () {
+      return options;
+    }
+  }
+};
+</script>
+`.trim();
+export const TREE_SHAKING_USING_OPTIONS_COMPOSITION_API = `
+<template>
+  <div>
+    <DoxenSideBar
+      v-model="selectedDemo"
+      :demos="componentDemos"
+    />
+    <VueDoxenCustom
+      v-model="selectedDemo"
+      :demos="componentDemos"
+      :options="vueDoxenOptions"
+    />
+  </div>
+</template>
+
+<script>
+import { computed, ref } from 'vue';
+import { DoxenSideBar, VueDoxenCustom } from 'vue-doxen';
+
+import { demos } from '../demos/index.js';
+import { options } from './vue-doxen-options.js';
+
+export default {
+  name: 'ComponentsDemo',
+  components: {
+    DoxenSideBar,
+    VueDoxenCustom
+  },
+  setup: function () {
+    const selectedDemo = ref('MyComponentName');
+
+    const componentDemos = computed(() => {
+      return demos;
+    });
+
+    const vueDoxenOptions = computed(() => {
+      return options;
+    });
+
+    return {
+      componentDemos,
+      selectedDemo,
+      vueDoxenOptions
+    };
+  }
+};
+</script>
+`.trim();
+export const TREE_SHAKING_USING_OPTIONS_SCRIPT_SETUP = `
+<template>
+  <div>
+    <DoxenSideBar
+      v-model="selectedDemo"
+      :demos="componentDemos"
+    />
+    <VueDoxenCustom
+      v-model="selectedDemo"
+      :demos="componentDemos"
+      :options="vueDoxenOptions"
+    />
+  </div>
+</template>
+
+<script setup>
+import { computed } from 'vue';
+import { DoxenSideBar, VueDoxenCustom } from 'vue-doxen';
+
+import { demos } from '../demos/index.js';
+import { options } from './vue-doxen-options.js';
+
+defineOptions({
+  name: 'ComponentsDemo'
+});
+
+const selectedDemo = ref('MyComponentName');
+
+const componentDemos = computed(() => {
+  return demos;
+});
+
+const vueDoxenOptions = computed(() => {
+  return options;
 });
 </script>
 `.trim();

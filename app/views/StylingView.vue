@@ -387,8 +387,7 @@ export default {
           if (line.includes(':')) {
             let key = line.split(':')[0];
             key = key.replaceAll('\'', '');
-            const value = line.split(':')[1];
-            return [key, value].join(':');
+            return [key, '\'\''].join(': ');
           }
           return line;
         })
@@ -401,7 +400,7 @@ export default {
   },
   computed: {
     styleTokensBuiltIn: function () {
-      return 'export const styleTokensBuiltIn = ' + this.formatJsonForCodeBox(styleTokensBuiltIn) + ';';
+      return 'export const allStyleTokens = ' + this.formatJsonForCodeBox(styleTokensBuiltIn) + ';';
     },
     codeThemesLabel: function () {
       return [

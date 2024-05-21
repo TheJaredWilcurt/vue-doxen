@@ -3,6 +3,7 @@
 const path = require('path');
 
 const baseRestrictedSyntax = require('eslint-config-tjw-base/no-restricted-syntax.json');
+const jestRestrictedSyntax = require('eslint-config-tjw-jest/no-restricted-syntax.json');
 
 module.exports = {
   root: true,
@@ -13,9 +14,10 @@ module.exports = {
     sourceType: 'module'
   },
   globals: {
+    globalThis: true,
     Promise: true,
+    vi: true,
     Vue: true,
-    Pinia: true,
     VueRouter: true
   },
   plugins: [
@@ -28,6 +30,7 @@ module.exports = {
     'plugin:vue/recommended',
     'tjw-base',
     'tjw-import',
+    'tjw-jest',
     'tjw-vue'
   ],
   rules: {
@@ -83,6 +86,7 @@ module.exports = {
         ]
       }
     ],
+    'jest/no-deprecated-functions': 'off',
     'no-empty': [
       'error',
       {
@@ -91,7 +95,8 @@ module.exports = {
     ],
     'no-restricted-syntax': [
       'error',
-      ...baseRestrictedSyntax
+      ...baseRestrictedSyntax,
+      ...jestRestrictedSyntax
     ],
     'vue/no-v-for-template-key': 'off',
     'vue/no-multiple-template-root': [

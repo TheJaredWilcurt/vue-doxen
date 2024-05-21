@@ -1,25 +1,40 @@
 <template>
   <div v-bind="applyStyleTokens({ componentDemo: true })">
-    <DemoHeader
-      :description="description"
+    <!-- DoxenHeader -->
+    <component
+      :is="options.components.header"
       :styleTokens="styleTokens"
       :title="title"
     />
+
+    <template v-if="description">
+      <div
+        v-if="typeof(description) === 'string'"
+        v-html="description"
+        v-bind="applyStyleTokens({ demoDescription: true })"
+      ></div>
+      <component
+        v-else-if="typeof(description) === 'object' && description.component"
+        :is="description.component"
+        v-bind="description.props || {}"
+        v-on="description.events || {}"
+        :key="componentName + '-description'"
+      />
+    </template>
 
     <template v-if="importStatement">
       <template v-if="typeof(importStatement) === 'string'">
         <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Usage</h3>
         <CodeBox
           :code="importStatement"
-          language="javascript"
           :styleTokens="styleTokens"
         />
       </template>
       <template v-else-if="typeof(importStatement) === 'object' && importStatement.component">
         <component
           :is="importStatement.component"
-          v-bind="importStatement.props"
-          v-on="importStatement.events"
+          v-bind="importStatement.props || {}"
+          v-on="importStatement.events || {}"
           :key="componentName + '-import-statment'"
         />
       </template>
@@ -67,24 +82,43 @@
 
     <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Props Playground:</h3>
 
-    <form v-bind="applyStyleTokens({ propsPlaygroundForm: true })">
+    <form
+      v-bind="applyStyleTokens({ propsPlaygroundForm: true })"
+      @submit.prevent
+    >
+      <!-- Anything for Props -->
       <component
         v-for="(prop, propName) in propsToDemo"
-        v-bind="prop.props"
+        v-bind="prop.props || {}"
         v-model="demoProps[propName]"
         :is="prop.component"
+        v-on="prop.events || {}"
         :key="propName"
-      />
-      <DoxenTextarea
+      >
+        <template
+          v-for="(slotValue, slotName) in prop.slots"
+          #[slotName]
+        >
+          <span
+            v-html="slotValue"
+            :key="'slot-' + slotName"
+          ></span>
+        </template>
+      </component>
+      <!-- DoxenTextarea for slots -->
+      <component
         v-for="(slotValue, slotName) in slotsToDemo"
         v-model="demoSlots[slotName]"
+        :is="options.components.textarea"
         :label="_startCase(slotName) + ' Slot'"
         :styleTokens="styleTokens"
         :key="'slot-playground-' + slotName"
       />
-      <DoxenEmitLog
+      <!-- DoxenEmitLog for emits -->
+      <component
         v-if="Object.keys(emitsToDemo).length"
         v-model="emitLog"
+        :is="options.components.emitLog"
         :styleTokens="styleTokens"
       />
     </form>
@@ -97,16 +131,17 @@
       :styleTokens="styleTokens"
     />
 
-    <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Props Documentation</h3>
-    <PropsDocumentation
-      :component="demo.component"
-      :propsToDemo="propsToDemo"
+    <!-- DoxenPropsDocumentation -->
+    <component
+      :is="options.components.propsDocumentation"
+      :propsToDemo="playgroundProps"
       :styleTokens="styleTokens"
     />
 
     <template v-if="Object.keys(emitsToDemo).length">
-      <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Emits Documentation</h3>
-      <EmitsDocumentation
+      <!-- DoxenEmitsDocumentation -->
+      <component
+        :is="options.components.emitsDocumentation"
         :componentName="componentName"
         :emitsToDemo="emitsToDemo"
         :styleTokens="styleTokens"
@@ -116,6 +151,7 @@
 </template>
 
 <script>
+import _cloneDeep from 'lodash.clonedeep';
 import _lowerFirst from 'lodash.lowerfirst';
 import _startCase from 'lodash.startcase';
 
@@ -125,28 +161,24 @@ import {
   combinePropsAndPropsToDemo,
   createMarkupExample
 } from '@/helpers/demoHelpers.js';
-import { styleTokens } from '@/helpers/props.js';
+import {
+  createVueDoxenOptions,
+  styleTokens
+} from '@/helpers/props.js';
+import { serializeJavaScript } from '@/helpers/serializeJavaScript.js';
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
 import CodeBox from '@/components/CodeBox.vue';
 import CodeSwapper from '@/components/CodeSwapper.vue';
-import DemoHeader from '@/components/DemoHeader.vue';
-import EmitsDocumentation from '@/components/EmitsDocumentation.vue';
-import PropsDocumentation from '@/components/PropsDocumentation.vue';
-import DoxenEmitLog from '@/components/formFields/DoxenEmitLog.vue';
-import DoxenTextarea from '@/components/formFields/DoxenTextarea.vue';
+
+const options = createVueDoxenOptions(true);
 
 export default {
-  name: 'DoxenComponentDemo',
+  name: 'ComponentDemo',
   components: {
     CodeBox,
-    CodeSwapper,
-    DemoHeader,
-    DoxenEmitLog,
-    DoxenTextarea,
-    EmitsDocumentation,
-    PropsDocumentation
+    CodeSwapper
   },
   mixins: [applyStyleTokens],
   props: {
@@ -154,6 +186,7 @@ export default {
       type: Object,
       required: true
     },
+    options,
     styleTokens
   },
   data: function () {
@@ -234,34 +267,6 @@ export default {
       handleEmitObjects(this.demo?.component?.emitsToDemo);
       handleEmitObjects(this.demo?.component?.emits);
 
-      // Default values
-      for (const emitName in demoEmits) {
-        // Default v-model="value" and v-model:title="value"
-        if (emitName.startsWith('update:')) {
-          const emitNameShort = emitName.replace('update:', '');
-          const vModels = ['model-value', 'modelValue'];
-          if (!demoEmits[emitName].description) {
-            if (vModels.includes(emitNameShort)) {
-              demoEmits[emitName].description = 'For use with v-model for two way data binding.';
-            } else {
-              demoEmits[emitName].description = 'For use with v-model:' + emitNameShort + ' for two way data binding.';
-            }
-          }
-          if (!demoEmits[emitName].example) {
-            if (vModels.includes(emitNameShort)) {
-              demoEmits[emitName].example = 'v-model="yourValue"';
-            } else {
-              demoEmits[emitName].example = 'v-model:' + emitNameShort + '="yourValue"';
-            }
-          }
-        // Default @click="yourMethod"
-        } else {
-          if (!demoEmits[emitName].example) {
-            demoEmits[emitName].example = '@' + emitName + '="yourMethod"';
-          }
-        }
-      }
-
       return demoEmits;
     },
     slotsToDemo: function () {
@@ -303,18 +308,30 @@ export default {
 
       return slotsToDemo;
     },
-    propsToDemo: function () {
+    playgroundProps: function () {
       const propsToDemo = this.demo?.propsToDemo || {};
       const componentProps = this.demo?.component?.props || {};
       const playgroundProps = combinePropsAndPropsToDemo(propsToDemo, componentProps);
-      const autoGeneratedPlaygroundProps = autoGeneratePlaygroundProps(playgroundProps, this.styleTokens);
+      return playgroundProps;
+    },
+    propsToDemo: function () {
+      const playgroundProps = this.playgroundProps;
+      const components = this.options.components;
+      const tokens = this.styleTokens;
+      const autoGeneratedPlaygroundProps = autoGeneratePlaygroundProps(playgroundProps, components, tokens);
       return autoGeneratedPlaygroundProps;
     },
     demoEvents: function () {
       const events = {};
       Object.keys(this.emitsToDemo).forEach((emitName) => {
         events[emitName] = (value) => {
-          this.emitLog.push({ emitName, value });
+          this.emitLog.push(_cloneDeep({ emitName, value }));
+          if (
+            this.demo?.events?.[emitName] &&
+            typeof(this.demo.events[emitName]) === 'function'
+          ) {
+            this.demo.events[emitName](value);
+          }
           // Intentional console.info to demonstrate emits
           console.info(this.title + ' emit log:', { emitName, value });
         };
@@ -387,10 +404,22 @@ export default {
           ].join('\n');
         });
       const eventsOutput = '{' + indent + emitStrings.join(',' + indent) + '\n}';
+      let serializedProps = '';
+      try {
+        serializedProps = serializeJavaScript(propsOutput);
+      } catch (error) {
+        console.log(error);
+      }
 
-      jsOutput.push('const ' + tag + 'Props = ' + deJSONify(propsOutput, '\n') + ';');
+      jsOutput.push('const ' + tag + 'Props = ' + serializedProps + ';');
       if (Object.keys(slotsOutput).length) {
-        jsOutput.push('const ' + tag + 'Slots = ' + deJSONify(slotsOutput, '\n') + ';');
+        let serializedSlots = '';
+        try {
+          serializedSlots = serializeJavaScript(slotsOutput);
+        } catch (error) {
+          console.log(error);
+        }
+        jsOutput.push('const ' + tag + 'Slots = ' + serializedSlots + ';');
       }
       if (emitStrings.filter(Boolean).length) {
         jsOutput.push('const ' + tag + 'Events = ' + eventsOutput + ';');

@@ -1,7 +1,8 @@
 <template>
+  <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Emits Documentation</h3>
   <ul v-bind="applyStyleTokens({ emitsDocumentationUl: true })">
     <li
-      v-for="(emit, emitName) in emitsToDemo"
+      v-for="(emit, emitName) in demoEmits"
       v-bind="applyStyleTokens({ emitsDocumentationLi: true })"
       :key="componentName + '-emit-' + emitName"
     >
@@ -58,14 +59,20 @@
 </template>
 
 <script>
+import _cloneDeep from 'lodash.clonedeep';
+
+import { createImportStatement } from '@/helpers/componentHelpers.js';
 import { styleTokens } from '@/helpers/props.js';
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
 import CodeBox from '@/components/CodeBox.vue';
 
+const COMPONENT_NAME = 'DoxenEmitsDocumentation';
+
 export default {
-  name: 'EmitsDocumentation',
+  ...createImportStatement(COMPONENT_NAME),
+  name: COMPONENT_NAME,
   components: {
     CodeBox
   },
@@ -82,6 +89,39 @@ export default {
       default: undefined
     },
     styleTokens
+  },
+  computed: {
+    demoEmits: function () {
+      const demoEmits = _cloneDeep(this.emitsToDemo);
+      // Default values
+      for (const emitName in demoEmits) {
+        // Default v-model="value" and v-model:title="value"
+        if (emitName.startsWith('update:')) {
+          const emitNameShort = emitName.replace('update:', '');
+          const vModels = ['model-value', 'modelValue'];
+          if (!demoEmits[emitName].description) {
+            if (vModels.includes(emitNameShort)) {
+              demoEmits[emitName].description = 'For use with v-model for two way data binding.';
+            } else {
+              demoEmits[emitName].description = 'For use with v-model:' + emitNameShort + ' for two way data binding.';
+            }
+          }
+          if (!demoEmits[emitName].example) {
+            if (vModels.includes(emitNameShort)) {
+              demoEmits[emitName].example = 'v-model="yourValue"';
+            } else {
+              demoEmits[emitName].example = 'v-model:' + emitNameShort + '="yourValue"';
+            }
+          }
+        // Default @click="yourMethod"
+        } else {
+          if (!demoEmits[emitName].example) {
+            demoEmits[emitName].example = '@' + emitName + '="yourMethod"';
+          }
+        }
+      }
+      return demoEmits;
+    }
   }
 };
 </script>

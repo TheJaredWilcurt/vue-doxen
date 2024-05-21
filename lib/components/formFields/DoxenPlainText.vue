@@ -4,14 +4,25 @@
     :styleTokens="styleTokens"
   >
     <FormFieldLabel
-      :disabled="disabled"
+      :disabled="false"
       :errorMessage="errorMessage"
       :idFor="idFor"
       :label="label"
-      :required="required"
+      :required="false"
+      :styleTokens="styleTokens"
+    />
+    <CodeBox
+      v-if="codeAsString"
+      :code="codeAsString"
+      :styleTokens="styleTokens"
+    />
+    <CodeBox
+      v-else-if="asCode"
+      :code="serializedModelValue"
       :styleTokens="styleTokens"
     />
     <div
+      v-else
       v-text="modelValue"
       v-bind="applyStyleTokens({ doxenPlainText: true })"
     ></div>
@@ -31,49 +42,64 @@ import {
   createImportStatement
 } from '@/helpers/componentHelpers.js';
 import {
-  createDisabledProp,
   createErrorMessageProp,
   createMessageProp,
   createModelValueProp,
-  createOptionsProp,
   label,
-  required,
   styleTokens
 } from '@/helpers/props.js';
+import { serializeJavaScript } from '@/helpers/serializeJavaScript.js';
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
+import CodeBox from '@/components/CodeBox.vue';
 import FormFieldFooter from '@/components/formFields/FormFieldFooter.vue';
 import FormFieldLabel from '@/components/formFields/FormFieldLabel.vue';
 import FormFieldsetWrapper from '@/components/formFields/FormFieldsetWrapper.vue';
 
 const COMPONENT_NAME = 'DoxenPlainText';
-const disabled = createDisabledProp('radio buttons');
-const errorMessage = createErrorMessageProp('radio buttons');
-const message = createMessageProp('radio buttons');
+const errorMessage = createErrorMessageProp('plain text');
+const message = createMessageProp('plain text');
 const modelValue = createModelValueProp([String, Number, Boolean, Object, Array]);
-const options = createOptionsProp(COMPONENT_NAME);
 
 export default {
   ...createImportStatement(COMPONENT_NAME),
   name: COMPONENT_NAME,
   components: {
+    CodeBox,
     FormFieldFooter,
     FormFieldLabel,
     FormFieldsetWrapper
   },
   mixins: [applyStyleTokens],
   props: {
-    disabled,
     errorMessage,
     label,
     message,
     modelValue,
-    options,
-    required,
-    styleTokens
+    styleTokens,
+    asCode: {
+      description: 'Presents the modelValue with syntax highlighting. Assumes the code is HTML, JavaScript, or JSON.',
+      type: Boolean,
+      default: false
+    },
+    codeAsString: {
+      description: 'String of a code example to display instead of the raw modelValue.',
+      type: String,
+      default: undefined
+    }
   },
   computed: {
+    serializedModelValue: function () {
+      if (this.asCode) {
+        try {
+          return serializeJavaScript(this.modelValue);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      return undefined;
+    },
     uniqueId: function () {
       return crypto.randomUUID();
     },

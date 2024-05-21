@@ -1,13 +1,18 @@
 import {
   DoxenCheckbox,
   DoxenDropdown,
+  DoxenEmitLog,
+  DoxenEmitsDocumentation,
+  DoxenHeader,
   DoxenJsonTextarea,
   DoxenPlainText,
+  DoxenPropsDocumentation,
   DoxenRadioDials,
   DoxenSideBar,
-  DoxenTextarea,
   DoxenTextField,
-  VueDoxen
+  DoxenTextarea,
+  VueDoxen,
+  VueDoxenCustom
 } from '@/library.js';
 
 import DoxenButton from '@/components/DoxenButton.vue';
@@ -16,6 +21,9 @@ import DummyCompositionApi from '@@@/components/DummyCompositionApi.vue';
 import DummyScriptSetupApi from '@@@/components/DummyScriptSetupApi.vue';
 
 import { createDoxenButtonDemo } from '@@@/demos/doxenButtonDemo.js';
+import { createDoxenEmitLogDemo } from '@@@/demos/doxenEmitLogDemo.js';
+import { createDoxenEmitsDocumentationDemo } from '@@@/demos/doxenEmitsDocumentationDemo.js';
+import { createDoxenPropsDocumentationDemo } from '@@@/demos/doxenPropsDocumentationDemo.js';
 import { createDoxenTabsDemo } from '@@@/demos/doxenTabsDemo.js';
 import { createDummyScriptSetupApiDemo } from '@@@/demos/dummyScriptSetupApiDemo.js';
 
@@ -67,7 +75,10 @@ const createDoxenDemos = function (components, styleTokens) {
     if (components[componentName]?.props?.styleTokens) {
       addStyleTokensPropDemo(demos[componentName].propsToDemo);
     }
-    if (components[componentName]?.props?.options) {
+    if (
+      componentName.toLowerCase().includes('dropdown') ||
+      componentName.toLowerCase().includes('radio')
+    ) {
       addOptionsPropDemo(demos[componentName].propsToDemo);
     }
   }
@@ -87,23 +98,28 @@ const createDoxenDemos = function (components, styleTokens) {
 
   return demos;
 };
-
 export const doxenComponentsToDemoWithStyleTokens = {
   DoxenCheckbox,
   DoxenDropdown,
+  DoxenHeader,
   DoxenJsonTextarea,
+  DoxenPlainText,
   DoxenRadioDials,
-  DoxenTextarea,
   DoxenTextField,
+  DoxenTextarea,
   DoxenSideBar,
-  VueDoxen
+  VueDoxen,
+  VueDoxenCustom
 };
 
 export const componentsToListInSidebar = {
   DummyCompositionApi,
   DummyScriptSetupApi,
   DoxenButton,
+  DoxenEmitLog,
+  DoxenEmitsDocumentation,
   DoxenTabs,
+  DoxenPropsDocumentation,
   ...doxenComponentsToDemoWithStyleTokens
 };
 
@@ -112,6 +128,9 @@ export const createDemos = function (styleTokens) {
     DummyCompositionApi,
     DummyScriptSetupApi: createDummyScriptSetupApiDemo(styleTokens),
     DoxenButton: createDoxenButtonDemo(styleTokens),
+    DoxenEmitLog: createDoxenEmitLogDemo(styleTokens),
+    DoxenEmitsDocumentation: createDoxenEmitsDocumentationDemo(styleTokens),
+    DoxenPropsDocumentation: createDoxenPropsDocumentationDemo(styleTokens),
     DoxenTabs: createDoxenTabsDemo(styleTokens),
     ...createDoxenDemos(doxenComponentsToDemoWithStyleTokens, styleTokens)
   };

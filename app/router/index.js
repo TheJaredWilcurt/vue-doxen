@@ -42,6 +42,11 @@ const routes = [
     component: () => import('@@@/views/VueRouterView.vue')
   },
   {
+    path: '/vue-doxen/tree-shaking',
+    name: 'treeShaking',
+    component: () => import('@@@/views/TreeShaking.vue')
+  },
+  {
     path: '/vue-doxen/branding',
     name: 'branding',
     component: () => import('@@@/views/PressKit.vue')

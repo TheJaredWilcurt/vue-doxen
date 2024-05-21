@@ -1,28 +1,29 @@
 <template>
-  <div v-bind="applyStyleTokens({ vueDoxen: true })">
-    <DoxenComponentDemo
-      v-if="processedDemos[selectedDemo]"
-      :demo="processedDemos[selectedDemo]"
-      :styleTokens="styleTokens"
-      :key="selectedDemo"
-    />
-  </div>
+  <VueDoxenCustom
+    :demos="demos"
+    :options="defaultOptions"
+    :modelValue="modelValue"
+    :styleTokens="styleTokens"
+    @update:model-value="$emit('update:model-value', $event)"
+  />
 </template>
 
 <script>
-import {
-  createImportStatement,
-  processDemos
-} from '@/helpers/componentHelpers.js';
+/**
+ * @file This file is the "easy mode" version of Vue-Doxen, providing the fewest steps to get it
+ * up and running. All it really does though is just wrap VueDoxenCustom and pass in all the
+ * internal Vue-Doxen built-in components so the user doesn't need to always import the default
+ * options and pass them in.
+ */
+import { createImportStatement } from '@/helpers/componentHelpers.js';
+import defaultOptions from '@/helpers/defaultOptions.js';
 import {
   createModelValueProp,
   demos,
   styleTokens
 } from '@/helpers/props.js';
 
-import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
-
-import DoxenComponentDemo from '@/components/DoxenComponentDemo.vue';
+import VueDoxenCustom from '@/components/VueDoxenCustom.vue';
 
 const COMPONENT_NAME = 'VueDoxen';
 const modelValue = createModelValueProp(String);
@@ -36,28 +37,17 @@ export default {
     'demoing itself. Pretty meta.'
   ].join(' '),
   components: {
-    DoxenComponentDemo
+    VueDoxenCustom
   },
-  mixins: [
-    applyStyleTokens
-  ],
   emits: ['update:model-value'],
   props: {
     demos,
     modelValue,
     styleTokens
   },
-  methods: {
-    updateValue: function (key) {
-      this.$emit('update:model-value', key);
-    }
-  },
   computed: {
-    selectedDemo: function () {
-      return this.modelValue;
-    },
-    processedDemos: function () {
-      return processDemos(this.demos);
+    defaultOptions: function () {
+      return defaultOptions;
     }
   }
 };

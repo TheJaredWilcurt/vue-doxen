@@ -1,0 +1,180 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Serialize JavaScript > Object serialized with default arguments 1`] = `
+"{
+  name: 'MyComponent',
+  type: [
+    String,
+    Number,
+    Boolean
+  ],
+  externalObject: {
+    key: 'value',
+    value: circular reference to [object Object]
+  },
+  longString: 'one\\'s\\ntwo\\n"three"',
+  emptyObject: {},
+  emptyArray: [],
+  objectWithArray: {
+    arrayOfStrings: [
+      'foo',
+      'bar',
+      'baz'
+    ]
+  },
+  dates: [
+    new Date('2024-01-31T05:00:00.000Z'),
+    new Date('1954-05-25T04:00:00.000Z')
+  ],
+  numbers: [
+    10,
+    883,
+    5213023,
+    -10,
+    Infinity,
+    -Infinity,
+    NaN,
+    0
+  ],
+  booleans: [
+    true,
+    false
+  ],
+  pretendClickEvent: Native Mouse Event,
+  isTrue: true,
+  isFalse: false,
+  localMethod: function (foo, bar) {
+    let baz = foo + bar;
+
+    return baz;
+  },
+  externalMethod: function externalMethod (foo, bar) {
+    let baz = foo + bar;
+
+    return baz;
+  },
+  acceptableArrowFunction: (foo, bar) => {
+    return foo + bar;
+  },
+  uglyAF: foo => foo.toUpperCase(),
+  isUndefined: undefined,
+  isNull: null,
+  isError: 'Error: This is an error'
+}"
+`;
+
+exports[`Serialize JavaScript > Object serialized with indentation 1`] = `
+"{
+    name: 'MyComponent',
+    type: [
+        String,
+        Number,
+        Boolean
+    ],
+    externalObject: {
+        key: 'value',
+        value: circular reference to [object Object]
+    },
+    longString: 'one\\'s\\ntwo\\n"three"',
+    emptyObject: {},
+    emptyArray: [],
+    objectWithArray: {
+        arrayOfStrings: [
+            'foo',
+            'bar',
+            'baz'
+        ]
+    },
+    dates: [
+        new Date('2024-01-31T05:00:00.000Z'),
+        new Date('1954-05-25T04:00:00.000Z')
+    ],
+    numbers: [
+        10,
+        883,
+        5213023,
+        -10,
+        Infinity,
+        -Infinity,
+        NaN,
+        0
+    ],
+    booleans: [
+        true,
+        false
+    ],
+    pretendClickEvent: Native Mouse Event,
+    isTrue: true,
+    isFalse: false,
+    localMethod: function (foo, bar) {
+      let baz = foo + bar;
+
+      return baz;
+    },
+    externalMethod: function externalMethod (foo, bar) {
+      let baz = foo + bar;
+
+      return baz;
+    },
+    acceptableArrowFunction: (foo, bar) => {
+      return foo + bar;
+    },
+    uglyAF: foo => foo.toUpperCase(),
+    isUndefined: undefined,
+    isNull: null,
+    isError: 'Error: This is an error'
+}"
+`;
+
+exports[`Serialize JavaScript > Object serialized without full function expansion 1`] = `
+"{
+  name: 'MyComponent',
+  type: [
+    String,
+    Number,
+    Boolean
+  ],
+  externalObject: {
+    key: 'value',
+    value: circular reference to [object Object]
+  },
+  longString: 'one\\'s\\ntwo\\n"three"',
+  emptyObject: {},
+  emptyArray: [],
+  objectWithArray: {
+    arrayOfStrings: [
+      'foo',
+      'bar',
+      'baz'
+    ]
+  },
+  dates: [
+    new Date('2024-01-31T05:00:00.000Z'),
+    new Date('1954-05-25T04:00:00.000Z')
+  ],
+  numbers: [
+    10,
+    883,
+    5213023,
+    -10,
+    Infinity,
+    -Infinity,
+    NaN,
+    0
+  ],
+  booleans: [
+    true,
+    false
+  ],
+  pretendClickEvent: Native Mouse Event,
+  isTrue: true,
+  isFalse: false,
+  localMethod: 'function (foo, bar)',
+  externalMethod: 'function externalMethod (foo, bar)',
+  acceptableArrowFunction: '[object Function]',
+  uglyAF: '[object Function]',
+  isUndefined: undefined,
+  isNull: null,
+  isError: 'Error: This is an error'
+}"
+`;

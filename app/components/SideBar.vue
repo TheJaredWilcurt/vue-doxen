@@ -40,6 +40,7 @@ export default {
       styles: 'Styling',
       demoFiles: 'Demo Files',
       vueRouter: 'Vue-Router',
+      treeShaking: 'Tree Shaking',
       branding: 'Press Kit/Branding',
       a11y: 'Accessibility'
     }
