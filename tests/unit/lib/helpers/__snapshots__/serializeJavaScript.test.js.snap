@@ -13,6 +13,8 @@ exports[`Serialize JavaScript > Object serialized with default arguments 1`] = `
     value: circular reference to [object Object]
   },
   longString: 'one\\'s\\ntwo\\n"three"',
+  emptyObject: {},
+  emptyArray: [],
   objectWithArray: {
     arrayOfStrings: [
       'foo',
@@ -38,6 +40,7 @@ exports[`Serialize JavaScript > Object serialized with default arguments 1`] = `
     true,
     false
   ],
+  pretendClickEvent: Native Mouse Event,
   isTrue: true,
   isFalse: false,
   localMethod: function (foo, bar) {
@@ -50,6 +53,10 @@ exports[`Serialize JavaScript > Object serialized with default arguments 1`] = `
 
     return baz;
   },
+  acceptableArrowFunction: (foo, bar) => {
+    return foo + bar;
+  },
+  uglyAF: foo => foo.toUpperCase(),
   isUndefined: undefined,
   isNull: null,
   isError: 'Error: This is an error'
@@ -69,6 +76,8 @@ exports[`Serialize JavaScript > Object serialized with indentation 1`] = `
         value: circular reference to [object Object]
     },
     longString: 'one\\'s\\ntwo\\n"three"',
+    emptyObject: {},
+    emptyArray: [],
     objectWithArray: {
         arrayOfStrings: [
             'foo',
@@ -94,6 +103,7 @@ exports[`Serialize JavaScript > Object serialized with indentation 1`] = `
         true,
         false
     ],
+    pretendClickEvent: Native Mouse Event,
     isTrue: true,
     isFalse: false,
     localMethod: function (foo, bar) {
@@ -106,6 +116,10 @@ exports[`Serialize JavaScript > Object serialized with indentation 1`] = `
 
       return baz;
     },
+    acceptableArrowFunction: (foo, bar) => {
+      return foo + bar;
+    },
+    uglyAF: foo => foo.toUpperCase(),
     isUndefined: undefined,
     isNull: null,
     isError: 'Error: This is an error'
@@ -125,6 +139,8 @@ exports[`Serialize JavaScript > Object serialized without full function expansio
     value: circular reference to [object Object]
   },
   longString: 'one\\'s\\ntwo\\n"three"',
+  emptyObject: {},
+  emptyArray: [],
   objectWithArray: {
     arrayOfStrings: [
       'foo',
@@ -150,10 +166,13 @@ exports[`Serialize JavaScript > Object serialized without full function expansio
     true,
     false
   ],
+  pretendClickEvent: Native Mouse Event,
   isTrue: true,
   isFalse: false,
   localMethod: 'function (foo, bar)',
   externalMethod: 'function externalMethod (foo, bar)',
+  acceptableArrowFunction: '[object Function]',
+  uglyAF: '[object Function]',
   isUndefined: undefined,
   isNull: null,
   isError: 'Error: This is an error'

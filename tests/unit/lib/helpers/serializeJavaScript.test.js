@@ -30,6 +30,8 @@ describe('Serialize JavaScript', () => {
       ],
       externalObject,
       longString: 'one\'s\ntwo\n"three"',
+      emptyObject: {},
+      emptyArray: [],
       objectWithArray: {
         arrayOfStrings: [
           'foo',
@@ -55,6 +57,11 @@ describe('Serialize JavaScript', () => {
         true,
         false
       ],
+      pretendClickEvent: {
+        toString: function () {
+          return '[object MouseEvent]';
+        }
+      },
       isTrue: true,
       isFalse: false,
       localMethod: function (foo, bar) {
@@ -63,6 +70,10 @@ describe('Serialize JavaScript', () => {
         return baz;
       },
       externalMethod,
+      acceptableArrowFunction: (foo, bar) => {
+        return foo + bar;
+      },
+      uglyAF: foo => foo.toUpperCase(),
       isUndefined: undefinedValue,
       isNull: null,
       isError: new Error('This is an error')
