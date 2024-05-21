@@ -93,7 +93,7 @@ describe('Serialize JavaScript', () => {
       .toEqual('undefined');
 
     expect(error)
-      .toEqual('Error: no Javascript object provided');
+      .toEqual('Error: No JavaScript object provided to serialize.');
   });
 
   test('Object serialized with default arguments', () => {
@@ -105,12 +105,6 @@ describe('Serialize JavaScript', () => {
     } catch (caught) {
       error = caught;
     }
-
-    expect(serialized === null)
-      .toEqual(false);
-
-    expect(typeof(serialized))
-      .toEqual('string');
 
     expect(error)
       .toEqual(undefined);
@@ -146,11 +140,8 @@ describe('Serialize JavaScript', () => {
       error = caught;
     }
 
-    expect(serialized === null)
-      .toEqual(false);
-
-    expect(typeof(serialized))
-      .toEqual('string');
+    expect(serialized)
+      .toMatchSnapshot();
 
     expect(error)
       .toEqual(undefined);

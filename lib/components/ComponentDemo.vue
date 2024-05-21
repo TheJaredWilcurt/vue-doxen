@@ -89,7 +89,7 @@
       <!-- Anything for Props -->
       <component
         v-for="(prop, propName) in propsToDemo"
-        v-bind="prop.props"
+        v-bind="prop.props || {}"
         v-model="demoProps[propName]"
         :is="prop.component"
         v-on="prop.events || {}"
@@ -326,7 +326,10 @@ export default {
       Object.keys(this.emitsToDemo).forEach((emitName) => {
         events[emitName] = (value) => {
           this.emitLog.push(_cloneDeep({ emitName, value }));
-          if (this.demo?.events?.[emitName]) {
+          if (
+            this.demo?.events?.[emitName] &&
+            typeof(this.demo.events[emitName]) === 'function'
+          ) {
             this.demo.events[emitName](value);
           }
           // Intentional console.info to demonstrate emits

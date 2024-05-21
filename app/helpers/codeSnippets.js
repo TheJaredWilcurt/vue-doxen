@@ -321,12 +321,10 @@ export const myComponentDemo = {
       slots: {
         default: 'If your custom component expects something in a slot'
       },
+      // If your component emits anything you can listen for it here
       events: {
         'update:modelValue': function (value) {
-          console.log(
-            'If your component emits anything you can listen for it here',
-            value
-          );
+          console.log({ value });
         }
       }
     },
@@ -504,11 +502,11 @@ export const DESCRIPTION_COMPONENT_OPTIONS_EXAMPLE = `
 // into your component just for Vue-Doxen will bloat your component's
 // file size for no real benefit. If you want to use your own
 // component for the description, just use a demo file.
-import MyDescription from './MyDescription.vue';
+import MyImportStatement from './MyImportStatement.vue';
 
 export default {
   importStatement: {
-    component: MyDescription,
+    component: MyImportStatement,
     // Optional, if your component needs props
     props: {
       yourProp: 'your value'
@@ -530,11 +528,11 @@ export const DESCRIPTION_COMPONENT_SCRIPT_SETUP_EXAMPLE = `
 // into your component just for Vue-Doxen will bloat your component's
 // file size for no real benefit. If you want to use your own
 // component for the description, just use a demo file.
-import MyDescription from './MyDescription.vue';
+import MyImportStatement from './MyImportStatement.vue';
 
 defineOptions({
   importStatement: {
-    component: MyDescription,
+    component: MyImportStatement,
     // Optional, if your component needs props
     props: {
       yourProp: 'your value'

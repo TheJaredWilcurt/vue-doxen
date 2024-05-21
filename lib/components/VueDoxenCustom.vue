@@ -3,7 +3,7 @@
     <ComponentDemo
       v-if="processedDemos[selectedDemo]"
       :demo="processedDemos[selectedDemo]"
-      :options="validateOptions"
+      :options="validatedOptions"
       :styleTokens="styleTokens"
       :key="selectedDemo"
     />
@@ -56,20 +56,57 @@ export default {
     styleTokens
   },
   methods: {
+    defaultModelValue: function () {
+      if (
+        this.processedDemos &&
+        Object.keys(this.processedDemos).length &&
+        !Object.keys(this.processedDemos).includes(this.modelValue)
+      ) {
+        const firstDemo = Object.keys(this.processedDemos)[0];
+        console.info(
+          'Vue-Doxen received a v-model value of "' + this.modelValue +
+          '", however that value could not be found in the list of ' +
+          'provided demos:', Object.keys(this.processedDemos)
+        );
+        console.info(
+          'This is likely from a bug in your code, that you should ' +
+          'fix. For convenience we will display the first provided ' +
+          'demo, "' + firstDemo + '".'
+        );
+        this.updateValue(firstDemo);
+      }
+    },
     updateValue: function (key) {
       this.$emit('update:model-value', key);
     }
   },
   computed: {
     selectedDemo: function () {
-      return this.modelValue;
+      if (
+        this.processedDemos &&
+        Object.keys(this.processedDemos).length
+      ) {
+        if (Object.keys(this.processedDemos).includes(this.modelValue)) {
+          return this.modelValue;
+        }
+        return Object.keys(this.processedDemos)[0];
+      }
+      return undefined;
     },
     processedDemos: function () {
       return processDemos(this.demos);
     },
-    validateOptions: function () {
+    validatedOptions: function () {
       return validateOptions(this.options);
     }
+  },
+  watch: {
+    modelValue: function () {
+      this.defaultModelValue();
+    }
+  },
+  created: function () {
+    this.defaultModelValue();
   }
 };
 </script>
