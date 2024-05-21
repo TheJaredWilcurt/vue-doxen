@@ -11,8 +11,8 @@
     "postbuild": "node ./scripts/postbuild.js",
     "lint": "eslint --ext .js,.vue --config=.eslintrc.cjs lib scripts tests app vite.config.*.js .eslintrc.cjs",
     "fix": "eslint --fix --ext .js,.vue --config=.eslintrc.cjs lib scripts tests app vite.config.*.js .eslintrc.cjs",
-    "unit": "npm t",
-    "test": "cross-env TZ=America/New_York vitest --coverage --config vite.config.lib.js"
+    "unit": "cross-env TZ=America/New_York vitest --coverage --config vite.config.lib.js",
+    "test": "cross-env TZ=America/New_York vitest run --coverage --config vite.config.lib.js"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.24.5",
