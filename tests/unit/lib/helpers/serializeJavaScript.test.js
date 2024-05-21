@@ -73,6 +73,7 @@ describe('Serialize JavaScript', () => {
       acceptableArrowFunction: (foo, bar) => {
         return foo + bar;
       },
+      /* eslint-disable-next-line arrow-parens */
       uglyAF: foo => foo.toUpperCase(),
       isUndefined: undefinedValue,
       isNull: null,
