@@ -18,7 +18,7 @@
     />
     <CodeBox
       v-else-if="asCode"
-      :code="serializeJavaScript(modelValue)"
+      :code="serializedModelValue"
       :styleTokens="styleTokens"
     />
     <div
@@ -89,10 +89,17 @@ export default {
       default: undefined
     }
   },
-  methods: {
-    serializeJavaScript
-  },
   computed: {
+    serializedModelValue: function () {
+      if (this.asCode) {
+        try {
+          return serializeJavaScript(this.modelValue);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      return undefined;
+    },
     uniqueId: function () {
       return crypto.randomUUID();
     },

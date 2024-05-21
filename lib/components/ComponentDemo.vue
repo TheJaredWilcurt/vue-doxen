@@ -404,10 +404,22 @@ export default {
           ].join('\n');
         });
       const eventsOutput = '{' + indent + emitStrings.join(',' + indent) + '\n}';
+      let serializedProps = '';
+      try {
+        serializedProps = serializeJavaScript(propsOutput);
+      } catch (error) {
+        console.log(error);
+      }
 
-      jsOutput.push('const ' + tag + 'Props = ' + serializeJavaScript(propsOutput) + ';');
+      jsOutput.push('const ' + tag + 'Props = ' + serializedProps + ';');
       if (Object.keys(slotsOutput).length) {
-        jsOutput.push('const ' + tag + 'Slots = ' + serializeJavaScript(slotsOutput) + ';');
+        let serializedSlots = '';
+        try {
+          serializedSlots = serializeJavaScript(slotsOutput);
+        } catch (error) {
+          console.log(error);
+        }
+        jsOutput.push('const ' + tag + 'Slots = ' + serializedSlots + ';');
       }
       if (emitStrings.filter(Boolean).length) {
         jsOutput.push('const ' + tag + 'Events = ' + eventsOutput + ';');
