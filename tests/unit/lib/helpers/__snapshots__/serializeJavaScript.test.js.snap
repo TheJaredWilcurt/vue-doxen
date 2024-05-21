@@ -2,25 +2,22 @@
 
 exports[`Serialize JavaScript > Object serialized with default arguments 1`] = `
 "{
-  name: 'Damaso Infanzon Manzo',
+  name: 'MyComponent',
   type: [
     String,
     Number,
     Boolean
   ],
-  address: {
-    street: 'Callejon de las ranas 128',
-    city: 'Falfurrias',
-    state: 'Texas',
-    zip: '88888-9999',
+  externalObject: {
+    key: 'value',
     value: circular reference to [object Object]
   },
   longString: 'one\\'s\\ntwo\\n"three"',
-  favorites: {
-    music: [
-      'Mozart',
-      'Beethoven',
-      'The Beatles'
+  objectWithArray: {
+    arrayOfStrings: [
+      'foo',
+      'bar',
+      'baz'
     ]
   },
   dates: [
@@ -30,53 +27,109 @@ exports[`Serialize JavaScript > Object serialized with default arguments 1`] = `
   numbers: [
     10,
     883,
-    521
+    5213023,
+    -10,
+    Infinity,
+    -Infinity,
+    NaN,
+    0
   ],
-  boolean: [
+  booleans: [
     true,
-    false,
-    false,
     false
   ],
-  isObject: true,
-  isDuck: false,
-  onWhatever: function (foo, bar) {
+  isTrue: true,
+  isFalse: false,
+  localMethod: function (foo, bar) {
     let baz = foo + bar;
 
     return baz;
   },
-  onAnother: function onAnother (foo, bar) {
+  externalMethod: function externalMethod (foo, bar) {
     let baz = foo + bar;
 
     return baz;
   },
-  foo: undefined,
-  thisShouldBeNull: null,
-  error: 'Error: This is an error'
+  isUndefined: undefined,
+  isNull: null,
+  isError: 'Error: This is an error'
+}"
+`;
+
+exports[`Serialize JavaScript > Object serialized with indentation 1`] = `
+"{
+    name: 'MyComponent',
+    type: [
+        String,
+        Number,
+        Boolean
+    ],
+    externalObject: {
+        key: 'value',
+        value: circular reference to [object Object]
+    },
+    longString: 'one\\'s\\ntwo\\n"three"',
+    objectWithArray: {
+        arrayOfStrings: [
+            'foo',
+            'bar',
+            'baz'
+        ]
+    },
+    dates: [
+        new Date('2024-01-31T05:00:00.000Z'),
+        new Date('1954-05-25T04:00:00.000Z')
+    ],
+    numbers: [
+        10,
+        883,
+        5213023,
+        -10,
+        Infinity,
+        -Infinity,
+        NaN,
+        0
+    ],
+    booleans: [
+        true,
+        false
+    ],
+    isTrue: true,
+    isFalse: false,
+    localMethod: function (foo, bar) {
+      let baz = foo + bar;
+
+      return baz;
+    },
+    externalMethod: function externalMethod (foo, bar) {
+      let baz = foo + bar;
+
+      return baz;
+    },
+    isUndefined: undefined,
+    isNull: null,
+    isError: 'Error: This is an error'
 }"
 `;
 
 exports[`Serialize JavaScript > Object serialized without full function expansion 1`] = `
 "{
-  name: 'Damaso Infanzon Manzo',
+  name: 'MyComponent',
   type: [
     String,
     Number,
     Boolean
   ],
-  address: {
-    street: 'Callejon de las ranas 128',
-    city: 'Falfurrias',
-    state: 'Texas',
-    zip: '88888-9999',
+  externalObject: {
+    key: 'value',
     value: circular reference to [object Object]
   },
   longString: 'one\\'s\\ntwo\\n"three"',
-  favorites: {
-    music: [
-      'Mozart',
-      'Beethoven',
-      'The Beatles'
+  objectWithArray: {
+    arrayOfStrings: [
+      'foo',
+      'bar',
+      'baz'
     ]
   },
   dates: [
@@ -86,20 +139,23 @@ exports[`Serialize JavaScript > Object serialized without full function expansio
   numbers: [
     10,
     883,
-    521
+    5213023,
+    -10,
+    Infinity,
+    -Infinity,
+    NaN,
+    0
   ],
-  boolean: [
+  booleans: [
     true,
-    false,
-    false,
     false
   ],
-  isObject: true,
-  isDuck: false,
-  onWhatever: 'function (foo, bar)',
-  onAnother: 'function onAnother (foo, bar)',
-  foo: undefined,
-  thisShouldBeNull: null,
-  error: 'Error: This is an error'
+  isTrue: true,
+  isFalse: false,
+  localMethod: 'function (foo, bar)',
+  externalMethod: 'function externalMethod (foo, bar)',
+  isUndefined: undefined,
+  isNull: null,
+  isError: 'Error: This is an error'
 }"
 `;

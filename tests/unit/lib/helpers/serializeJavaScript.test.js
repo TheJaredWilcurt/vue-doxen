@@ -1,7 +1,7 @@
 import { serializeJavaScript } from '@/helpers/serializeJavaScript.js';
 
 describe('Serialize JavaScript', () => {
-  let address;
+  let externalObject;
   let value;
 
   beforeEach(() => {
@@ -11,33 +11,30 @@ describe('Serialize JavaScript', () => {
 
     let undefinedValue;
 
-    function onAnother (foo, bar) {
+    function externalMethod (foo, bar) {
       let baz = foo + bar;
 
       return baz;
     }
 
-    address = {
-      street: 'Callejon de las ranas 128',
-      city: 'Falfurrias',
-      state: 'Texas',
-      zip: '88888-9999'
+    externalObject = {
+      key: 'value'
     };
 
     value = {
-      name: 'Damaso Infanzon Manzo',
+      name: 'MyComponent',
       type: [
         String,
         Number,
         Boolean
       ],
-      address,
+      externalObject,
       longString: 'one\'s\ntwo\n"three"',
-      favorites: {
-        music: [
-          'Mozart',
-          'Beethoven',
-          'The Beatles'
+      objectWithArray: {
+        arrayOfStrings: [
+          'foo',
+          'bar',
+          'baz'
         ]
       },
       dates: [
@@ -47,29 +44,32 @@ describe('Serialize JavaScript', () => {
       numbers: [
         10,
         883,
-        521
+        5213023,
+        -10,
+        Infinity,
+        -Infinity,
+        NaN,
+        0
       ],
-      boolean: [
+      booleans: [
         true,
-        false,
-        false,
         false
       ],
-      isObject: true,
-      isDuck: false,
-      onWhatever: function (foo, bar) {
+      isTrue: true,
+      isFalse: false,
+      localMethod: function (foo, bar) {
         let baz = foo + bar;
 
         return baz;
       },
-      onAnother,
-      foo: undefinedValue,
-      thisShouldBeNull: null,
-      error: new Error('This is an error')
+      externalMethod,
+      isUndefined: undefinedValue,
+      isNull: null,
+      isError: new Error('This is an error')
     };
 
     // Circular reference
-    address.value = value;
+    externalObject.value = value;
   });
 
   afterEach(() => {
@@ -88,9 +88,6 @@ describe('Serialize JavaScript', () => {
 
     expect(serialized)
       .toEqual(undefined);
-
-    expect(typeof(serialized))
-      .toEqual('undefined');
 
     expect(error)
       .toEqual('Error: No JavaScript object provided to serialize.');
@@ -140,10 +137,10 @@ describe('Serialize JavaScript', () => {
       error = caught;
     }
 
-    expect(serialized)
-      .toMatchSnapshot();
-
     expect(error)
       .toEqual(undefined);
+
+    expect(serialized)
+      .toMatchSnapshot();
   });
 });
