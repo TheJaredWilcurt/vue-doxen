@@ -10,6 +10,7 @@ const __dirname = import.meta.dirname;
 export default defineConfig({
   base: '/vue-doxen',
   build: {
+    chunkSizeWarningLimit: 569.98,
     outDir: resolve(__dirname, 'docs'),
     rollupOptions: {
       external: [
