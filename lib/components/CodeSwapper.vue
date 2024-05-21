@@ -12,9 +12,11 @@
       ></code>
     </DoxenTabs>
     <CodeBox
-      v-if="code"
+      v-for="(code, codeName) in codeTypes"
+      v-show="selected === codeName"
       :code="code"
       :styleTokens="styleTokens"
+      :key="codeName"
     />
   </div>
 </template>
@@ -65,12 +67,6 @@ export default {
         return undefined;
       }
       return this.fileName;
-    },
-    code: function () {
-      if (this.selected) {
-        return this.codeTypes[this.selected];
-      }
-      return undefined;
     }
   }
 };
