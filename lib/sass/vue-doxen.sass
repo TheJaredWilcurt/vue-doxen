@@ -108,3 +108,9 @@ $black10: rgba(0, 1, 16, 0.10)
     display: flex
     align-items: center
     justify-content: space-between
+
+@media (width < 700px)
+    :where([data-applied-style-tokens~="tabsButtonContainer"])
+        flex-direction: column
+    :where([data-applied-style-tokens="tabsHeader"])
+        align-items: flex-end
