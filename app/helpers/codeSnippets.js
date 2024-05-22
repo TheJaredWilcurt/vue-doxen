@@ -862,7 +862,7 @@ export const GETTING_STARTED_EXAMPLE = unindent(`
   // Optional CSS file for minor layout/affordance improvements
   import 'vue-doxen/vue-doxen.css';
 
-  // Components you want to document
+  // Components you want to document/demo
   import ComponentA from './ComponentA.vue';
   import ComponentB from './ComponentB.vue';
 
@@ -880,8 +880,14 @@ export const GETTING_STARTED_EXAMPLE = unindent(`
     computed: {
       demos: function () {
         return {
+          // Pass the component in directly
           ComponentA,
-          ComponentB
+          // or wrap it in a "demo" object to add
+          // documentation specific properties
+          ComponentB: {
+            component: ComponentB,
+            description: 'Details about your component'
+          }
         };
       }
     }
@@ -921,7 +927,7 @@ export const GETTING_STARTED_COMPOSITION_EXAMPLE = unindent(`
   // Optional CSS file for minor layout/affordance improvements
   import 'vue-doxen/vue-doxen.css';
 
-  // Components you want to document
+  // Components you want to document/demo
   import ComponentA from './ComponentA.vue';
   import ComponentB from './ComponentB.vue';
 
@@ -936,8 +942,14 @@ export const GETTING_STARTED_COMPOSITION_EXAMPLE = unindent(`
 
       const demos = computed(() => {
         return {
+          // Pass the component in directly
           ComponentA,
-          ComponentB
+          // or wrap it in a "demo" object to add
+          // documentation specific properties
+          ComponentB: {
+            component: ComponentB,
+            description: 'Details about your component'
+          }
         };
       });
 
@@ -982,7 +994,7 @@ export const GETTING_STARTED_SCRIPT_SETUP_EXAMPLE = unindent(`
   // Optional CSS file for minor layout/affordance improvements
   import 'vue-doxen/vue-doxen.css';
 
-  // Components you want to document
+  // Components you want to document/demo
   import ComponentA from './ComponentA.vue';
   import ComponentB from './ComponentB.vue';
 
@@ -990,8 +1002,14 @@ export const GETTING_STARTED_SCRIPT_SETUP_EXAMPLE = unindent(`
 
   const demos = computed(() => {
     return {
+      // Pass the component in directly
       ComponentA,
-      ComponentB
+      // or wrap it in a "demo" object to add
+      // documentation specific properties
+      ComponentB: {
+        component: ComponentB,
+        description: 'Details about your component'
+      }
     };
   });
   </script>

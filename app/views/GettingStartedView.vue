@@ -34,7 +34,9 @@
       <strong>That's it!</strong>
     </p>
     <p>
-      To see examples of how Vue-Doxen documents components, click on any of the components in the sidebar.
+      To see examples of how Vue-Doxen documents components, click on any of
+      <RouterLink to="/vue-doxen/components/DoxenCheckbox#components">the components</RouterLink>
+      in the sidebar.
       Everything you see there is auto-generated from the data in the component itself.
     </p>
     <p>
