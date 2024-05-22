@@ -12,7 +12,7 @@ function unindent (value) {
         return line.replace('  ', '');
       }
       return line;
-    });
+    })
     .join('\n')
     .trim();
 }
