@@ -833,6 +833,10 @@ export const EMITS_TO_DEMO_OBJECT_SCRIPT_SETUP_EXAMPLE = unindent(`
 export const GETTING_STARTED_EXAMPLE = unindent(`
   <template>
     <div>
+      <!--
+        Simple way of switching selected component,
+        or use your own sidebar component
+      -->
       <DoxenSidebar
         v-model="selectedDemo"
         :demos="demos"
@@ -841,11 +845,22 @@ export const GETTING_STARTED_EXAMPLE = unindent(`
         v-model="selectedDemo"
         :demos="demos"
       />
+      <!--
+        Optional CSS file for syntax highlighting
+      -->
+      <link
+        href="https://unpkg.com/highlightjs/styles/ir-black.css"
+        rel="stylesheet"
+        type="text/css"
+      />
     </div>
   </template>
 
   <script>
   import { DoxenSidebar, VueDoxen } from 'vue-doxen';
+
+  // Optional CSS file for minor layout/affordance improvements
+  import 'vue-doxen/vue-doxen.css';
 
   // Components you want to document
   import ComponentA from './ComponentA.vue';
@@ -876,6 +891,10 @@ export const GETTING_STARTED_EXAMPLE = unindent(`
 export const GETTING_STARTED_COMPOSITION_EXAMPLE = unindent(`
   <template>
     <div>
+      <!--
+        Simple way of switching selected component,
+        or use your own sidebar component
+      -->
       <DoxenSidebar
         v-model="selectedDemo"
         :demos="demos"
@@ -884,12 +903,23 @@ export const GETTING_STARTED_COMPOSITION_EXAMPLE = unindent(`
         v-model="selectedDemo"
         :demos="demos"
       />
+      <!--
+        Optional CSS file for syntax highlighting
+      -->
+      <link
+        href="https://unpkg.com/highlightjs/styles/ir-black.css"
+        rel="stylesheet"
+        type="text/css"
+      />
     </div>
   </template>
 
   <script>
   import { computed, ref } from 'vue';
   import { DoxenSidebar, VueDoxen } from 'vue-doxen';
+
+  // Optional CSS file for minor layout/affordance improvements
+  import 'vue-doxen/vue-doxen.css';
 
   // Components you want to document
   import ComponentA from './ComponentA.vue';
@@ -922,6 +952,10 @@ export const GETTING_STARTED_COMPOSITION_EXAMPLE = unindent(`
 export const GETTING_STARTED_SCRIPT_SETUP_EXAMPLE = unindent(`
   <template>
     <div>
+      <!--
+        Simple way of switching selected component,
+        or use your own sidebar component
+      -->
       <DoxenSidebar
         v-model="selectedDemo"
         :demos="demos"
@@ -930,12 +964,23 @@ export const GETTING_STARTED_SCRIPT_SETUP_EXAMPLE = unindent(`
         v-model="selectedDemo"
         :demos="demos"
       />
+      <!--
+        Optional CSS file for syntax highlighting
+      -->
+      <link
+        href="https://unpkg.com/highlightjs/styles/ir-black.css"
+        rel="stylesheet"
+        type="text/css"
+      />
     </div>
   </template>
 
   <script setup>
   import { computed, ref } from 'vue';
   import { DoxenSidebar, VueDoxen } from 'vue-doxen';
+
+  // Optional CSS file for minor layout/affordance improvements
+  import 'vue-doxen/vue-doxen.css';
 
   // Components you want to document
   import ComponentA from './ComponentA.vue';
