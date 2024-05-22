@@ -833,6 +833,10 @@ export const EMITS_TO_DEMO_OBJECT_SCRIPT_SETUP_EXAMPLE = unindent(`
 export const GETTING_STARTED_EXAMPLE = unindent(`
   <template>
     <div>
+      <!--
+        Simple way of switching selected component,
+        or use your own sidebar component
+      -->
       <DoxenSidebar
         v-model="selectedDemo"
         :demos="demos"
@@ -841,13 +845,24 @@ export const GETTING_STARTED_EXAMPLE = unindent(`
         v-model="selectedDemo"
         :demos="demos"
       />
+      <!--
+        Optional CSS file for syntax highlighting
+      -->
+      <link
+        href="https://unpkg.com/highlightjs/styles/ir-black.css"
+        rel="stylesheet"
+        type="text/css"
+      />
     </div>
   </template>
 
   <script>
   import { DoxenSidebar, VueDoxen } from 'vue-doxen';
 
-  // Components you want to document
+  // Optional CSS file for minor layout/affordance improvements
+  import 'vue-doxen/vue-doxen.css';
+
+  // Components you want to document/demo
   import ComponentA from './ComponentA.vue';
   import ComponentB from './ComponentB.vue';
 
@@ -865,8 +880,14 @@ export const GETTING_STARTED_EXAMPLE = unindent(`
     computed: {
       demos: function () {
         return {
+          // Pass the component in directly
           ComponentA,
-          ComponentB
+          // or wrap it in a "demo" object to add
+          // documentation specific properties
+          ComponentB: {
+            component: ComponentB,
+            description: 'Details about your component'
+          }
         };
       }
     }
@@ -876,6 +897,10 @@ export const GETTING_STARTED_EXAMPLE = unindent(`
 export const GETTING_STARTED_COMPOSITION_EXAMPLE = unindent(`
   <template>
     <div>
+      <!--
+        Simple way of switching selected component,
+        or use your own sidebar component
+      -->
       <DoxenSidebar
         v-model="selectedDemo"
         :demos="demos"
@@ -884,6 +909,14 @@ export const GETTING_STARTED_COMPOSITION_EXAMPLE = unindent(`
         v-model="selectedDemo"
         :demos="demos"
       />
+      <!--
+        Optional CSS file for syntax highlighting
+      -->
+      <link
+        href="https://unpkg.com/highlightjs/styles/ir-black.css"
+        rel="stylesheet"
+        type="text/css"
+      />
     </div>
   </template>
 
@@ -891,7 +924,10 @@ export const GETTING_STARTED_COMPOSITION_EXAMPLE = unindent(`
   import { computed, ref } from 'vue';
   import { DoxenSidebar, VueDoxen } from 'vue-doxen';
 
-  // Components you want to document
+  // Optional CSS file for minor layout/affordance improvements
+  import 'vue-doxen/vue-doxen.css';
+
+  // Components you want to document/demo
   import ComponentA from './ComponentA.vue';
   import ComponentB from './ComponentB.vue';
 
@@ -906,8 +942,14 @@ export const GETTING_STARTED_COMPOSITION_EXAMPLE = unindent(`
 
       const demos = computed(() => {
         return {
+          // Pass the component in directly
           ComponentA,
-          ComponentB
+          // or wrap it in a "demo" object to add
+          // documentation specific properties
+          ComponentB: {
+            component: ComponentB,
+            description: 'Details about your component'
+          }
         };
       });
 
@@ -922,6 +964,10 @@ export const GETTING_STARTED_COMPOSITION_EXAMPLE = unindent(`
 export const GETTING_STARTED_SCRIPT_SETUP_EXAMPLE = unindent(`
   <template>
     <div>
+      <!--
+        Simple way of switching selected component,
+        or use your own sidebar component
+      -->
       <DoxenSidebar
         v-model="selectedDemo"
         :demos="demos"
@@ -930,6 +976,14 @@ export const GETTING_STARTED_SCRIPT_SETUP_EXAMPLE = unindent(`
         v-model="selectedDemo"
         :demos="demos"
       />
+      <!--
+        Optional CSS file for syntax highlighting
+      -->
+      <link
+        href="https://unpkg.com/highlightjs/styles/ir-black.css"
+        rel="stylesheet"
+        type="text/css"
+      />
     </div>
   </template>
 
@@ -937,7 +991,10 @@ export const GETTING_STARTED_SCRIPT_SETUP_EXAMPLE = unindent(`
   import { computed, ref } from 'vue';
   import { DoxenSidebar, VueDoxen } from 'vue-doxen';
 
-  // Components you want to document
+  // Optional CSS file for minor layout/affordance improvements
+  import 'vue-doxen/vue-doxen.css';
+
+  // Components you want to document/demo
   import ComponentA from './ComponentA.vue';
   import ComponentB from './ComponentB.vue';
 
@@ -945,8 +1002,14 @@ export const GETTING_STARTED_SCRIPT_SETUP_EXAMPLE = unindent(`
 
   const demos = computed(() => {
     return {
+      // Pass the component in directly
       ComponentA,
-      ComponentB
+      // or wrap it in a "demo" object to add
+      // documentation specific properties
+      ComponentB: {
+        component: ComponentB,
+        description: 'Details about your component'
+      }
     };
   });
   </script>

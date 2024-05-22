@@ -17,13 +17,7 @@
         </ul>
       </li>
       <li>
-        Create a Vue component to use the library in.
-        <ul>
-          <li>
-            To swap the component being demo'd you can use the basic sidebar that ships with VueDoxen,
-            or create your own sidebar.
-          </li>
-        </ul>
+        Create a Vue component similar to the one below.
       </li>
     </ol>
     <CodeSwapper
@@ -38,12 +32,42 @@
 
     <p>
       <strong>That's it!</strong>
-      If you want to customize the <RouterLink :to="{ name: 'styles', hash: '#styles' }">styles</RouterLink>,
-      use your own <RouterLink :to="{ name: 'demoFiles', hash: '#demo-files' }">custom components</RouterLink>
-      in the Props Playground, or
-      <RouterLink :to="{ name: 'documenting', hash: '#documenting' }">add additional information</RouterLink>
-      about your component, check out the other pages in the sidebar.
     </p>
+    <p>
+      To see examples of how Vue-Doxen documents components, click on any of
+      <RouterLink to="/vue-doxen/components/DoxenCheckbox#components">the components</RouterLink>
+      in the sidebar.
+      Everything you see there is auto-generated from the data in the component itself.
+    </p>
+    <p>
+      <strong>What do you want to learn next?</strong>
+    </p>
+    <ul>
+      <li>
+        How do I
+        <RouterLink :to="{ name: 'documenting', hash: '#documenting' }">add additional documentation</RouterLink>
+        about my component?
+      </li>
+      <li>
+        How do I
+        <RouterLink :to="{ name: 'styles', hash: '#styles' }">customize the styles</RouterLink>?
+      </li>
+      <li>
+        How do I use my own
+        <RouterLink :to="{ name: 'demoFiles', hash: '#demo-files' }">custom components</RouterLink>
+        in the Props Playground?
+      </li>
+      <li>
+        How do I
+        <RouterLink :to="{ name: 'treeShaking', hash: '#tree-shaking' }">globally replace the built-in components</RouterLink>
+        with my own custom components?
+      </li>
+      <li>
+        How do I
+        <RouterLink :to="{ name: 'vueRouter', hash: '#vue-router' }">dynamically create URL's</RouterLink>
+        for each component demo?
+      </li>
+    </ul>
   </div>
 </template>
 
