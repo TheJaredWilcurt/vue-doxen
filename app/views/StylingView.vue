@@ -49,7 +49,7 @@
 
     <DocumentationSection id="supplied-css" title="Using the supplied CSS file">
       <p>
-        Vue-Doxen ships with a <em>very tiny</em> (&lt;1KB gzipped) CSS file that applies <em>very simple</em> styling to the page using the lowest specificity possible (<code>:where([data-style-token-name]){}</code>), so your styles should always win out if targeting the same thing. The styling is just gentle nudges to make Vue-Doxen look a little better in most scenarios. You can toggle it on this website by clicking the <strong>"Doxen Stylesheet: Include"</strong> checkbox at the top of the page. This file is <strong>COMPLETELY OPTIONAL</strong>, if your app looks better without these nudges, don't apply them. You can always customize the styling of anything in Vue-Doxen using Style Tokens.
+        Vue-Doxen ships with a <em>very tiny</em> (&lt;1KB gzipped) CSS file that applies <em>very simple</em> styling to the page using the lowest specificity possible (<code>:where([data-applied-style-tokens~="tokenName"])</code>), so your styles should always win out if targeting the same thing. The styling is just gentle nudges to make Vue-Doxen look a little better in most scenarios. You can toggle it on this website by clicking the <strong>"Doxen Stylesheet: Include"</strong> checkbox at the top of the page. This file is <strong>COMPLETELY OPTIONAL</strong>, if your app looks better without these nudges, don't apply them. You can always customize the styling of anything in Vue-Doxen using Style Tokens.
       </p>
 
       <CodeSwapper
@@ -208,7 +208,7 @@
         />
         <DoxenCheckbox
           v-model="onlyA11yThemes"
-          label="WCGA 2 AA"
+          label="WCAG 2 AA"
           name="Passes"
           :styleTokens="styleTokens"
         />

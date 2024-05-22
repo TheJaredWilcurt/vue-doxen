@@ -11,9 +11,20 @@
 .docs-page,
 .docs-sub-title,
 .docs-title
-    font-family: 'Hepta Slab', Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', Courier Bold, Courier, Georgia, serif
+    font-family: Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', Courier Bold, Courier, Georgia, serif
     font-optical-sizing: auto
     font-style: normal
+
+/**
+ * Hepta Slab is a variable width font, which isn't supported in operating systems released before fall 2017.
+ * Some existing OS's could optionally receive an update to add support at that point though. But not all did.
+ * So we check if the OS/Browser supports it before using it to avoid pencil thin rendering of Hepta Slab.
+ */
+@supports (font-variation-settings: 'wdth' 900)
+    .docs-page,
+    .docs-sub-title,
+    .docs-title
+        font-family: 'Hepta Slab', Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', Courier Bold, Courier, Georgia, serif
 
 .docs-title
     color: #41B883
