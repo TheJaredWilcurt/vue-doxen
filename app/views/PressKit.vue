@@ -14,22 +14,34 @@
 
     <div class="image-container">
       <figure>
-        <a href="/vue-doxen/branding/#open-image" @click.prevent="openImage">
-          <img src="../assets/branding/vue-doxen-logo-large.png" alt="Vue-Doxen logo" />
+        <a :href="imageLogo" target="_blank">
+          <img
+            id="image-logo"
+            alt="Vue-Doxen logo"
+            src="../assets/branding/vue-doxen-logo-large.png"
+          />
         </a>
         <figcaption>Vue-Doxen logo (large)</figcaption>
       </figure>
 
       <figure>
-        <a href="/vue-doxen/branding/#open-image" @click.prevent="openImage">
-          <img src="../assets/branding/vue-doxen-text.png" alt="Vue-Doxen text" />
+        <a :href="imageText" target="_blank">
+          <img
+            id="image-text"
+            alt="Vue-Doxen text"
+            src="../assets/branding/vue-doxen-text.png"
+          />
         </a>
         <figcaption>Vue-Doxen text</figcaption>
       </figure>
 
       <figure>
-        <a href="/vue-doxen/branding/#open-image" @click.prevent="openImage">
-          <img src="../assets/branding/vue-doxen-dog.png" alt="Vue-Doxen dog" />
+        <a :href="imageDog" target="_blank">
+          <img
+            id="image-dog"
+            alt="Vue-Doxen dog"
+            src="../assets/branding/vue-doxen-dog.png"
+          />
         </a>
         <figcaption>Vue-Doxen dog graphic</figcaption>
       </figure>
@@ -57,11 +69,22 @@
 <script>
 export default {
   name: 'PressKit',
+  data: function () {
+    return {
+      imageDog: '',
+      imageLogo: '',
+      imageText: ''
+    };
+  },
   methods: {
-    openImage: function ($event) {
-      const src = $event?.currentTarget?.childNodes?.[0]?.src;
-      window.open(src, '_blank');
+    getImageSource: function (id) {
+      return window.document.getElementById(id).src;
     }
+  },
+  mounted: function () {
+    this.imageDog = this.getImageSource('image-dog');
+    this.imageLogo = this.getImageSource('image-logo');
+    this.imageText = this.getImageSource('image-text');
   }
 };
 </script>
