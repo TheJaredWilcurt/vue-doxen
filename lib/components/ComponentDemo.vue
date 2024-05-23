@@ -46,7 +46,7 @@
         :is="demo.component"
         v-bind="demoProps"
         v-on="demoEvents"
-        :key="componentName + '-no-v-model'"
+        :key="componentName + '-demo'"
       >
         <template
           v-for="(slotValue, slotName) in slotsToDemo"
