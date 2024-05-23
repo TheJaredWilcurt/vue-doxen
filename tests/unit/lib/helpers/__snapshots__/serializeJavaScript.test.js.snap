@@ -8,6 +8,9 @@ exports[`Serialize JavaScript > Object serialized with default arguments 1`] = `
     Number,
     Boolean
   ],
+  'hyphenated-key': 'model-value',
+  'key with spaces': 1,
+  '5startsWithNumber': 5,
   externalObject: {
     key: 'value',
     value: circular reference to [object Object]
@@ -71,6 +74,9 @@ exports[`Serialize JavaScript > Object serialized with indentation 1`] = `
         Number,
         Boolean
     ],
+    'hyphenated-key': 'model-value',
+    'key with spaces': 1,
+    '5startsWithNumber': 5,
     externalObject: {
         key: 'value',
         value: circular reference to [object Object]
@@ -134,6 +140,9 @@ exports[`Serialize JavaScript > Object serialized without full function expansio
     Number,
     Boolean
   ],
+  'hyphenated-key': 'model-value',
+  'key with spaces': 1,
+  '5startsWithNumber': 5,
   externalObject: {
     key: 'value',
     value: circular reference to [object Object]

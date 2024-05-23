@@ -28,6 +28,9 @@ describe('Serialize JavaScript', () => {
         Number,
         Boolean
       ],
+      'hyphenated-key': 'model-value',
+      'key with spaces': 1,
+      '5startsWithNumber': 5,
       externalObject,
       longString: 'one\'s\ntwo\n"three"',
       emptyObject: {},
