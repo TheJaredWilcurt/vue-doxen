@@ -136,13 +136,13 @@ describe('Serialize JavaScript', () => {
         .toEqual('22');
 
       expect(serializeJavaScript(-22))
-        .toEqual('-22')
+        .toEqual('-22');
 
       expect(serializeJavaScript(245.532))
-        .toEqual('245.532')
+        .toEqual('245.532');
 
       expect(serializeJavaScript(-3.14))
-        .toEqual('-3.14')
+        .toEqual('-3.14');
     });
   });
 
