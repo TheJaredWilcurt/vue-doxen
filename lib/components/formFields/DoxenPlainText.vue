@@ -18,7 +18,7 @@
     />
     <CodeBox
       v-else-if="asCode"
-      :code="serializedModelValue"
+      :code="serializedModelValue || ''"
       :styleTokens="styleTokens"
     />
     <div

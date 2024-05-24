@@ -325,6 +325,9 @@ export default {
           if (emitName.startsWith('update:')) {
             // Get the prop name ('model-value', or whatever)
             let modelName = emitName.replace('update:', '');
+            if (modelName === 'model-value') {
+              modelName = 'modelValue';
+            }
             // Update the value to be passed in, like v-model would
             this.demoProps[modelName] = value;
           }
