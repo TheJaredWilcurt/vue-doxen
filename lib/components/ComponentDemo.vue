@@ -43,29 +43,10 @@
     <div v-bind="applyStyleTokens({ componentDemoContainer: true })">
       <hr v-bind="applyStyleTokens({ componentDemoHr: true })" />
       <component
-        v-if="'modelValue' in propsToDemo"
-        v-model="demoProps.modelValue"
         :is="demo.component"
         v-bind="demoProps"
         v-on="demoEvents"
-        :key="componentName + '-v-model'"
-      >
-        <template
-          v-for="(slotValue, slotName) in slotsToDemo"
-          #[slotName]
-        >
-          <span
-            v-html="demoSlots[slotName]"
-            :key="'slot-' + slotName"
-          ></span>
-        </template>
-      </component>
-      <component
-        v-else
-        :is="demo.component"
-        v-bind="demoProps"
-        v-on="demoEvents"
-        :key="componentName + '-no-v-model'"
+        :key="componentName + '-demo'"
       >
         <template
           v-for="(slotValue, slotName) in slotsToDemo"
@@ -323,17 +304,33 @@ export default {
     },
     demoEvents: function () {
       const events = {};
+      // Loop over all defined emits
       Object.keys(this.emitsToDemo).forEach((emitName) => {
+        // Create a v-on event on the object
         events[emitName] = (value) => {
+          // When an emit occurs, add it to the emit log
           this.emitLog.push(_cloneDeep({ emitName, value }));
+          // If the demo file has a callback for this emit
           if (
             this.demo?.events?.[emitName] &&
             typeof(this.demo.events[emitName]) === 'function'
           ) {
+            // Run the callback in the demo file
             this.demo.events[emitName](value);
           }
           // Intentional console.info to demonstrate emits
           console.info(this.title + ' emit log:', { emitName, value });
+
+          // If the emit is part of a v-model
+          if (emitName.startsWith('update:')) {
+            // Get the prop name ('model-value', or whatever)
+            let modelName = emitName.replace('update:', '');
+            if (modelName === 'model-value') {
+              modelName = 'modelValue';
+            }
+            // Update the value to be passed in, like v-model would
+            this.demoProps[modelName] = value;
+          }
         };
       });
       return events;

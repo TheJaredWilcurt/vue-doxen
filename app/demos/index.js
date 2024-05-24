@@ -45,6 +45,7 @@ const createDoxenDemos = function (components, styleTokens) {
       props: {
         label: 'ModelValue',
         modelValue: 'kiva',
+        asCode: true,
         styleTokens
       }
     };
@@ -82,6 +83,15 @@ const createDoxenDemos = function (components, styleTokens) {
       addOptionsPropDemo(demos[componentName].propsToDemo);
     }
   }
+
+  demos.DoxenPlainText.propsToDemo.modelValue = {
+    component: DoxenTextarea,
+    props: {
+      label: 'Model Value',
+      modelValue: '',
+      styleTokens: styleTokens
+    }
+  };
 
   // DoxenSideBar
   demos.DoxenSideBar.propsToDemo.demos = {

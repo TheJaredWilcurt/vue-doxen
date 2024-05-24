@@ -3,8 +3,13 @@ import { serializeJavaScript } from '@/helpers/serializeJavaScript.js';
 describe('Serialize JavaScript', () => {
   let externalObject;
   let value;
+  let serialized;
+  let error;
 
   beforeEach(() => {
+    serialized = undefined;
+    error = undefined;
+
     const date = new Date(2023, 12, 31);
     vi.useFakeTimers();
     vi.setSystemTime(date);
@@ -28,6 +33,9 @@ describe('Serialize JavaScript', () => {
         Number,
         Boolean
       ],
+      'hyphenated-key': 'model-value',
+      'key with spaces': 1,
+      '5startsWithNumber': 5,
       externalObject,
       longString: 'one\'s\ntwo\n"three"',
       emptyObject: {},
@@ -88,71 +96,97 @@ describe('Serialize JavaScript', () => {
     vi.useRealTimers();
   });
 
-  test('Throws when nothing passed in', () => {
-    let serialized;
-    let error;
+  describe('Serialize non-objects', () => {
+    test('falsy', () => {
+      expect(serializeJavaScript(false))
+        .toEqual('false');
 
-    try {
-      serialized = serializeJavaScript();
-    } catch (caught) {
-      error = caught;
-    }
+      expect(serializeJavaScript(undefined))
+        .toEqual('undefined');
 
-    expect(serialized)
-      .toEqual(undefined);
+      expect(serializeJavaScript(0))
+        .toEqual('0');
 
-    expect(error)
-      .toEqual('Error: No JavaScript object provided to serialize.');
+      expect(serializeJavaScript(-0))
+        .toEqual('0');
+
+      expect(serializeJavaScript(0n))
+        .toEqual('0');
+
+      expect(serializeJavaScript(0x0n))
+        .toEqual('0');
+
+      expect(serializeJavaScript(''))
+        .toEqual('\'\'');
+
+      expect(serializeJavaScript(null))
+        .toEqual('null');
+
+      expect(serializeJavaScript(NaN))
+        .toEqual('NaN');
+    });
+
+    test('true', () => {
+      expect(serializeJavaScript(true))
+        .toEqual('true');
+    });
+
+    test('Numbers', () => {
+      expect(serializeJavaScript(22))
+        .toEqual('22');
+
+      expect(serializeJavaScript(-22))
+        .toEqual('-22');
+
+      expect(serializeJavaScript(245.532))
+        .toEqual('245.532');
+
+      expect(serializeJavaScript(-3.14))
+        .toEqual('-3.14');
+    });
   });
 
-  test('Object serialized with default arguments', () => {
-    let serialized;
-    let error;
+  describe('Serialize objects', () => {
+    test('Object serialized with default arguments', () => {
+      try {
+        serialized = serializeJavaScript(value);
+      } catch (caught) {
+        error = caught;
+      }
 
-    try {
-      serialized = serializeJavaScript(value);
-    } catch (caught) {
-      error = caught;
-    }
+      expect(error)
+        .toEqual(undefined);
 
-    expect(error)
-      .toEqual(undefined);
+      expect(serialized)
+        .toMatchSnapshot();
+    });
 
-    expect(serialized)
-      .toMatchSnapshot();
-  });
+    test('Object serialized without full function expansion', () => {
+      try {
+        serialized = serializeJavaScript(value, undefined, false);
+      } catch (caught) {
+        error = caught;
+      }
 
-  test('Object serialized without full function expansion', () => {
-    let serialized;
-    let error;
+      expect(error)
+        .toEqual(undefined);
 
-    try {
-      serialized = serializeJavaScript(value, undefined, false);
-    } catch (caught) {
-      error = caught;
-    }
+      expect(serialized)
+        .toMatchSnapshot();
+    });
 
-    expect(error)
-      .toEqual(undefined);
+    test('Object serialized with indentation', () => {
+      try {
+        serialized = serializeJavaScript(value, 4);
+      } catch (caught) {
+        error = caught;
+      }
 
-    expect(serialized)
-      .toMatchSnapshot();
-  });
+      expect(error)
+        .toEqual(undefined);
 
-  test('Object serialized with indentation', () => {
-    let serialized;
-    let error;
-
-    try {
-      serialized = serializeJavaScript(value, 4);
-    } catch (caught) {
-      error = caught;
-    }
-
-    expect(error)
-      .toEqual(undefined);
-
-    expect(serialized)
-      .toMatchSnapshot();
+      expect(serialized)
+        .toMatchSnapshot();
+    });
   });
 });
