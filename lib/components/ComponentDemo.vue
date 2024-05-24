@@ -267,18 +267,37 @@ export default {
           !Array.isArray(slots)
         ) {
           for (const slotName in slots) {
-            slotsToDemo[slotName] = slots[slotName] || '';
+            /**
+             * Safety check, in case Vue uses component.slots for
+             * something in the future, like a validation function
+             * or object with stuff inside.
+             */
+            if (typeof(slots[slotName]) === 'string') {
+              slotsToDemo[slotName] = slots[slotName];
+            } else {
+              slotsToDemo[slotName] = '';
+            }
           }
         }
       }
 
+      /**
+       * ORDER: Stuff in the component always wins over the demo file.
+       * However, because component.slot is not part of Vue's documented
+       * API, we are preferring component.slotsToDemo, in case Vue ever
+       * claims component.slots for something in the future. Users can
+       * store both in the component and we won't override the
+       * component.slotsToDemo documentation for the unknown
+       * component.slots. Also arrays go first because they are just
+       * slot names and don't have default string values.
+       */
+      handleSlotArrays(this.demo?.slotsToDemo);
       handleSlotArrays(this.demo?.component?.slots);
       handleSlotArrays(this.demo?.component?.slotsToDemo);
-      handleSlotArrays(this.demo?.slotsToDemo);
 
+      handleSlotObjects(this.demo?.slotsToDemo);
       handleSlotObjects(this.demo?.component?.slots);
       handleSlotObjects(this.demo?.component?.slotsToDemo);
-      handleSlotObjects(this.demo?.slotsToDemo);
 
       // Defaults
       for (const slotName in slotsToDemo) {
