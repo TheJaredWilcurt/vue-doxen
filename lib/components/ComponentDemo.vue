@@ -40,6 +40,7 @@
       </template>
     </template>
 
+    <!-- Component being demo'd -->
     <div v-bind="applyStyleTokens({ componentDemoContainer: true })">
       <hr v-bind="applyStyleTokens({ componentDemoHr: true })" />
       <component
@@ -86,15 +87,27 @@
           ></span>
         </template>
       </component>
-      <!-- DoxenTextarea for slots -->
-      <component
-        v-for="(slotValue, slotName) in slotsToDemo"
-        v-model="demoSlots[slotName]"
-        :is="options.components.textarea"
-        :label="_startCase(slotName) + ' Slot'"
-        :styleTokens="styleTokens"
-        :key="'slot-playground-' + slotName"
-      />
+      <!-- Slots Playground -->
+      <template v-for="(slotValue, slotName) in slotsToDemo">
+        <!-- Custom component for slots -->
+        <component
+          v-if="slotValue.component"
+          v-bind="slotValue.props || {}"
+          v-model="demoSlots[slotName]"
+          :is="slotValue.component"
+          v-on="slotValue.events || {}"
+          :key="'custom-slot-playground' + slotName"
+        />
+        <!-- DoxenTextarea for slots -->
+        <component
+          v-else
+          v-model="demoSlots[slotName]"
+          :is="options.components.textarea"
+          :label="_startCase(slotName) + ' Slot'"
+          :styleTokens="styleTokens"
+          :key="'slot-playground-' + slotName"
+        />
+      </template>
       <!-- DoxenEmitLog for emits -->
       <component
         v-if="Object.keys(emitsToDemo).length"
@@ -136,7 +149,6 @@ import _cloneDeep from 'lodash.clonedeep';
 import _lowerFirst from 'lodash.lowerfirst';
 import _startCase from 'lodash.startcase';
 
-import { deJSONify } from '@/helpers/componentHelpers.js';
 import {
   autoGeneratePlaygroundProps,
   combinePropsAndPropsToDemo,
@@ -186,7 +198,7 @@ export default {
         this.demoProps[propName] = this.propsToDemo?.[propName]?.props?.modelValue;
       }
       for (const slotName in this.slotsToDemo) {
-        this.demoSlots[slotName] = this.slotsToDemo?.[slotName];
+        this.demoSlots[slotName] = this.slotsToDemo?.[slotName].default;
       }
     }
   },
@@ -266,7 +278,10 @@ export default {
       function handleSlotArrays (slots) {
         if (slots && Array.isArray(slots) && slots.length) {
           for (const slotName of slots) {
-            slotsToDemo[slotName] = slotsToDemo[slotName] || '';
+            slotsToDemo[slotName] = {
+              default: '',
+              ...(slotsToDemo[slotName] || {})
+            };
           }
         }
       }
@@ -277,15 +292,21 @@ export default {
           !Array.isArray(slots)
         ) {
           for (const slotName in slots) {
-            /**
-             * Safety check, in case Vue uses component.slots for
-             * something in the future, like a validation function
-             * or object with stuff inside.
-             */
-            if (typeof(slots[slotName]) === 'string') {
-              slotsToDemo[slotName] = slots[slotName];
-            } else {
-              slotsToDemo[slotName] = '';
+            const value = slots[slotName];
+            if (typeof(value) === 'string') {
+              slotsToDemo[slotName] = {
+                ...(slotsToDemo[slotName] || {}),
+                default: value
+              };
+            } else if (
+              typeof(value) === 'object' &&
+              !Array.isArray(value)
+            ) {
+              slotsToDemo[slotName] = {
+                default: '',
+                ...(slotsToDemo[slotName] || {}),
+                ...value
+              };
             }
           }
         }
@@ -311,9 +332,10 @@ export default {
 
       // Defaults
       for (const slotName in slotsToDemo) {
-        if (typeof(slotsToDemo[slotName]) !== 'string') {
-          slotsToDemo[slotName] = deJSONify(slotsToDemo[slotName]);
-        }
+        slotsToDemo[slotName].default = (
+          slotsToDemo[slotName]?.props?.modelValue ||
+          String(slotsToDemo[slotName].default)
+        );
       }
 
       return slotsToDemo;
