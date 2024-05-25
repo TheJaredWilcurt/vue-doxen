@@ -33,9 +33,11 @@ defineOptions({
   }
 });
 
-defineEmits([
-  'test'
-]);
+defineEmits({
+  test: (value) => {
+    return !!value;
+  }
+});
 
 defineProps({
   color: {

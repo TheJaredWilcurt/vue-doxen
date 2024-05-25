@@ -11,7 +11,7 @@
         v-bind="applyStyleTokens({ emitsDocumentationCode: true })"
       ></code>
       <ul
-        v-if="emit.description || emit.value || emit.example"
+        v-if="emit.description || emit.value || emit.example || emit.validator"
         v-bind="applyStyleTokens({ emitsDocumentationUl: true })"
       >
         <li
@@ -26,6 +26,12 @@
             v-html="emit.description"
             v-bind="applyStyleTokens({ emitsDocumentationSpan: true})"
           ></span>
+        </li>
+        <li
+          v-if="emit.validator"
+          v-bind="applyStyleTokens({ emitsDocumentationLi: true })"
+        >
+          This emit uses a <strong v-bind="applyStyleTokens({ emitsDocumentationStrong: true })">validator</strong> function.
         </li>
         <li
           v-if="emit.value"

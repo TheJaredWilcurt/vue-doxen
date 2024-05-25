@@ -43,7 +43,8 @@
         <li>
           <a href="#emits">Documenting Emits</a>
           <ul>
-            <li><a href="#emits-vue">Vue's API</a></li>
+            <li><a href="#emits-vue-array">Vue's Array API</a></li>
+            <li><a href="#emits-vue-object">Vue's Object API</a></li>
             <li><a href="#emits-array">Array example</a></li>
             <li><a href="#emits-object">Object example</a></li>
           </ul>
@@ -316,9 +317,9 @@
       </p>
 
       <SubDocumentationSection
-        id="emits-vue"
+        id="emits-vue-array"
         title="Documenting Emits"
-        subTitle="Vue's API"
+        subTitle="Vue's Array API"
       >
         <p>
           Vue's offical API supports passing in an array of strings to define all emits in a component.
@@ -327,9 +328,30 @@
 
         <CodeSwapper
           :codeTypes="{
-            Options: EMITS_OPTIONS_EXAMPLE,
-            Composition: EMITS_OPTIONS_EXAMPLE,
-            'Script Setup': EMITS_SCRIPT_SETUP_EXAMPLE
+            Options: EMITS_ARRAY_OPTIONS_EXAMPLE,
+            Composition: EMITS_ARRAY_OPTIONS_EXAMPLE,
+            'Script Setup': EMITS_ARRAY_SCRIPT_SETUP_EXAMPLE
+          }"
+          :fileName="FILE_NAME_MY"
+          :styleTokens="styleTokens"
+        />
+      </SubDocumentationSection>
+
+      <SubDocumentationSection
+        id="emits-vue-object"
+        title="Documenting Emits"
+        subTitle="Vue's Object API"
+      >
+        <p>
+          Vue's offical API supports passing in an object of emit validators.
+          Vue-Doxen will check this part of the component and attempt to automatically document your emits.
+        </p>
+
+        <CodeSwapper
+          :codeTypes="{
+            Options: EMITS_OBJECT_OPTIONS_EXAMPLE,
+            Composition: EMITS_OBJECT_OPTIONS_EXAMPLE,
+            'Script Setup': EMITS_OBJECT_SCRIPT_SETUP_EXAMPLE
           }"
           :fileName="FILE_NAME_MY"
           :styleTokens="styleTokens"
@@ -409,8 +431,10 @@ import {
   DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_DEMO_FILE,
   DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_OPTIONS,
   DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_SCRIPT_SETUP,
-  EMITS_OPTIONS_EXAMPLE,
-  EMITS_SCRIPT_SETUP_EXAMPLE,
+  EMITS_ARRAY_OPTIONS_EXAMPLE,
+  EMITS_ARRAY_SCRIPT_SETUP_EXAMPLE,
+  EMITS_OBJECT_OPTIONS_EXAMPLE,
+  EMITS_OBJECT_SCRIPT_SETUP_EXAMPLE,
   EMITS_TO_DEMO_ARRAY_DEMO_FILE_EXAMPLE,
   EMITS_TO_DEMO_ARRAY_OPTIONS_EXAMPLE,
   EMITS_TO_DEMO_ARRAY_SCRIPT_SETUP_EXAMPLE,
@@ -460,8 +484,10 @@ export default {
     DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_DEMO_FILE,
     DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_OPTIONS,
     DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_SCRIPT_SETUP,
-    EMITS_OPTIONS_EXAMPLE,
-    EMITS_SCRIPT_SETUP_EXAMPLE,
+    EMITS_ARRAY_OPTIONS_EXAMPLE,
+    EMITS_ARRAY_SCRIPT_SETUP_EXAMPLE,
+    EMITS_OBJECT_OPTIONS_EXAMPLE,
+    EMITS_OBJECT_SCRIPT_SETUP_EXAMPLE,
     EMITS_TO_DEMO_ARRAY_DEMO_FILE_EXAMPLE,
     EMITS_TO_DEMO_ARRAY_OPTIONS_EXAMPLE,
     EMITS_TO_DEMO_ARRAY_SCRIPT_SETUP_EXAMPLE,
