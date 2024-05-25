@@ -1270,7 +1270,32 @@ export const SLOTS_DEMO_ARRAY_EXAMPLE = unindent(`
     ]
   };
 `);
-export const SLOTS_DEMO_OBJECT_EXAMPLE = unindent(`
+export const SLOTS_DEMO_CUSTOM_COMPONENT_EXAMPLE = unindent(`
+  import MyComponent from '../components/MyComponent.vue';
+  import CustomComponent from '../components/CustomComponent.vue';
+
+  export const myComponentDemo = {
+    component: MyComponent,
+    slotsToDemo: {
+      default: {
+        component: CustomComponent,
+        props: {
+          modelValue: 'This is passed into the slot'
+          // other props your component takes
+        },
+        events: {
+          // catch any emits from your component
+          'update:modelValue': function (value) {
+            console.log(value);
+          }
+        }
+      },
+      // You can also use plain text for other slots if you want
+      footer: 'This appears <strong>below</strong> the component.'
+    }
+  };
+`);
+export const SLOTS_DEMO_DEFAULT_TEXT_EXAMPLE = unindent(`
   import MyComponent from '../components/MyComponent.vue';
 
   export const myComponentDemo = {
@@ -1292,7 +1317,38 @@ export const SLOTS_OPTIONS_ARRAY_EXAMPLE = unindent(`
   };
   </script>
 `);
-export const SLOTS_OPTIONS_OBJECT_EXAMPLE = unindent(`
+export const SLOTS_OPTIONS_CUSTOM_COMPONENT_EXAMPLE = unindent(`
+  <script>
+  // DO NOT ACTUALLY DO THIS! USE A DEMO FILE INSTEAD.
+  // Though this is technically supported, importing custom components
+  // into your component just for Vue-Doxen will bloat your component's
+  // file size for no real benefit. If you want to use your own
+  // component for the slot, just use a demo file.
+  import CustomComponent from '../components/CustomComponent.vue';
+
+  export default {
+    name: 'MyComponent',
+    slots: {
+      default: {
+        component: CustomComponent,
+        props: {
+          modelValue: 'This is passed into the slot'
+          // other props your component takes
+        },
+        events: {
+          // catch any emits from your component
+          'update:modelValue': function (value) {
+            console.log(value);
+          }
+        }
+      },
+      // You can also use plain text for other slots if you want
+      footer: 'This appears <strong>below</strong> the component.'
+    }
+  };
+  </script>
+`);
+export const SLOTS_OPTIONS_DEFAULT_TEXT_EXAMPLE = unindent(`
   <script>
   export default {
     name: 'MyComponent',
@@ -1314,7 +1370,38 @@ export const SLOTS_SCRIPT_SETUP_ARRAY_EXAMPLE = unindent(`
   });
   </script>
 `);
-export const SLOTS_SCRIPT_SETUP_OBJECT_EXAMPLE = unindent(`
+export const SLOTS_SCRIPT_SETUP_CUSTOM_COMPONENT_EXAMPLE = unindent(`
+  <script setup>
+  // DO NOT ACTUALLY DO THIS! USE A DEMO FILE INSTEAD.
+  // Though this is technically supported, importing custom components
+  // into your component just for Vue-Doxen will bloat your component's
+  // file size for no real benefit. If you want to use your own
+  // component for the slot, just use a demo file.
+  import CustomComponent from '../components/CustomComponent.vue';
+
+  defineOptions({
+    name: 'MyComponent',
+    slots: {
+      default: {
+        component: CustomComponent,
+        props: {
+          modelValue: 'This is passed into the slot'
+          // other props your component takes
+        },
+        events: {
+          // catch any emits from your component
+          'update:modelValue': function (value) {
+            console.log(value);
+          }
+        }
+      },
+      // You can also use plain text for other slots if you want
+      footer: 'This appears <strong>below</strong> the component.'
+    }
+  });
+  </script>
+`);
+export const SLOTS_SCRIPT_SETUP_DEFAULT_TEXT_EXAMPLE = unindent(`
   <script setup>
   defineOptions({
     name: 'MyComponent',
