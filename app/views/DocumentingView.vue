@@ -37,7 +37,8 @@
           <a href="#slots">Documenting Slots</a>
           <ul>
             <li><a href="#slots-array">Array example</a></li>
-            <li><a href="#slots-objects">Object example</a></li>
+            <li><a href="#slots-default-text">Default text example</a></li>
+            <li><a href="#slots-custom-component">Custom component example</a></li>
           </ul>
         </li>
         <li>
@@ -274,7 +275,11 @@
     </DocumentationSection>
 
     <DocumentationSection id="slots" title="Documenting Component Slots">
-      <p>You can provide an array of slot names, or an object with slot names as keys and the default slot value to show in the demo as the value.</p>
+      <p>
+        You can provide an array of slot names,
+        default slot value to show in the demo as the value,
+        or even your own custom component.
+      </p>
 
       <SubDocumentationSection
         id="slots-array"
@@ -294,16 +299,42 @@
       </SubDocumentationSection>
 
       <SubDocumentationSection
-        id="slots-objects"
+        id="slots-default-text"
         title="Documenting Slots"
-        subTitle="Object example"
+        subTitle="Default text example"
       >
+        <p>
+          You can optionally provide some HTML markup as a string to be used
+          as the default text passed in to a slot on the demo page.
+        </p>
         <CodeSwapper
           :codeTypes="{
-            'Demo File': SLOTS_DEMO_OBJECT_EXAMPLE,
-            Options: SLOTS_OPTIONS_OBJECT_EXAMPLE,
-            Composition: SLOTS_OPTIONS_OBJECT_EXAMPLE,
-            'Script Setup': SLOTS_SCRIPT_SETUP_OBJECT_EXAMPLE
+            'Demo File': SLOTS_DEMO_DEFAULT_TEXT_EXAMPLE,
+            Options: SLOTS_OPTIONS_DEFAULT_TEXT_EXAMPLE,
+            Composition: SLOTS_OPTIONS_DEFAULT_TEXT_EXAMPLE,
+            'Script Setup': SLOTS_SCRIPT_SETUP_DEFAULT_TEXT_EXAMPLE
+          }"
+          :fileName="FILE_NAME_MY"
+          :styleTokens="styleTokens"
+        />
+      </SubDocumentationSection>
+
+      <SubDocumentationSection
+        id="slots-custom-component"
+        title="Documenting Slots"
+        subTitle="Custom component example"
+      >
+        <p>
+          By default, Vue-Doxen displays a text area on the demo page for users to type
+          whatever they want into it, and it will be passed along to the slot. However,
+          you can replace the textarea with your own custom component.
+        </p>
+        <CodeSwapper
+          :codeTypes="{
+            'Demo File': SLOTS_DEMO_CUSTOM_COMPONENT_EXAMPLE,
+            Options: SLOTS_OPTIONS_CUSTOM_COMPONENT_EXAMPLE,
+            Composition: SLOTS_OPTIONS_CUSTOM_COMPONENT_EXAMPLE,
+            'Script Setup': SLOTS_SCRIPT_SETUP_CUSTOM_COMPONENT_EXAMPLE
           }"
           :fileName="FILE_NAME_MY"
           :styleTokens="styleTokens"
@@ -448,11 +479,14 @@ import {
   IMPORT_STATEMENT_STRING_OPTIONS_EXAMPLE,
   IMPORT_STATEMENT_STRING_SCRIPT_SETUP_EXAMPLE,
   SLOTS_DEMO_ARRAY_EXAMPLE,
-  SLOTS_DEMO_OBJECT_EXAMPLE,
+  SLOTS_DEMO_CUSTOM_COMPONENT_EXAMPLE,
+  SLOTS_DEMO_DEFAULT_TEXT_EXAMPLE,
   SLOTS_OPTIONS_ARRAY_EXAMPLE,
-  SLOTS_OPTIONS_OBJECT_EXAMPLE,
+  SLOTS_OPTIONS_CUSTOM_COMPONENT_EXAMPLE,
+  SLOTS_OPTIONS_DEFAULT_TEXT_EXAMPLE,
   SLOTS_SCRIPT_SETUP_ARRAY_EXAMPLE,
-  SLOTS_SCRIPT_SETUP_OBJECT_EXAMPLE
+  SLOTS_SCRIPT_SETUP_CUSTOM_COMPONENT_EXAMPLE,
+  SLOTS_SCRIPT_SETUP_DEFAULT_TEXT_EXAMPLE
 } from '@@@/helpers/codeSnippets.js';
 
 export default {
@@ -513,17 +547,14 @@ export default {
     IMPORT_STATEMENT_STRING_OPTIONS_EXAMPLE,
     IMPORT_STATEMENT_STRING_SCRIPT_SETUP_EXAMPLE,
     SLOTS_DEMO_ARRAY_EXAMPLE,
-    SLOTS_DEMO_OBJECT_EXAMPLE,
+    SLOTS_DEMO_CUSTOM_COMPONENT_EXAMPLE,
+    SLOTS_DEMO_DEFAULT_TEXT_EXAMPLE,
     SLOTS_OPTIONS_ARRAY_EXAMPLE,
-    SLOTS_OPTIONS_OBJECT_EXAMPLE,
+    SLOTS_OPTIONS_CUSTOM_COMPONENT_EXAMPLE,
+    SLOTS_OPTIONS_DEFAULT_TEXT_EXAMPLE,
     SLOTS_SCRIPT_SETUP_ARRAY_EXAMPLE,
-    SLOTS_SCRIPT_SETUP_OBJECT_EXAMPLE
+    SLOTS_SCRIPT_SETUP_CUSTOM_COMPONENT_EXAMPLE,
+    SLOTS_SCRIPT_SETUP_DEFAULT_TEXT_EXAMPLE
   }
 };
 </script>
-
-<style scoped>
-.bold {
-  font-weight: 800;
-}
-</style>

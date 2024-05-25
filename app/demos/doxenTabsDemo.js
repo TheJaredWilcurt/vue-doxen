@@ -1,5 +1,6 @@
 import DoxenTabs from '@/components/DoxenTabs.vue';
 import DoxenJsonTextarea from '@/components/formFields/DoxenJsonTextarea.vue';
+import DoxenTextField from '@/components/formFields/DoxenTextField.vue';
 import DoxenTextarea from '@/components/formFields/DoxenTextarea.vue';
 
 export const createDoxenTabsDemo = function (styleTokens) {
@@ -32,7 +33,19 @@ export const createDoxenTabsDemo = function (styleTokens) {
       }
     },
     slotsToDemo: {
-      default: '<code>FileName.ext</code>'
+      default: {
+        component: DoxenTextField,
+        props: {
+          modelValue: '<code>FileName.ext</code>',
+          label: 'Default Slot',
+          styleTokens
+        },
+        events: {
+          'update:model-value': function (value) {
+            console.log({ value });
+          }
+        }
+      }
     }
   };
 };
