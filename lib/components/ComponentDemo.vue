@@ -231,11 +231,21 @@ export default {
           !Array.isArray(emits)
         ) {
           for (const emitName in emits) {
+            const value = emits[emitName];
             demoEmits[emitName] = demoEmits[emitName] || {};
-            demoEmits[emitName] = {
-              ...demoEmits[emitName],
-              ...emits[emitName]
-            };
+            // emits[emitName] may be a validator function if using Vue's objet API
+            if (
+              typeof(value) === 'object' &&
+              !Array.isArray(value)
+            ) {
+              demoEmits[emitName] = {
+                ...demoEmits[emitName],
+                ...emits[emitName]
+              };
+            }
+            if (typeof(value) === 'function') {
+              demoEmits[emitName].validator = value;
+            }
           }
         }
       }

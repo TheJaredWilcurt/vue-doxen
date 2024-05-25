@@ -713,7 +713,7 @@ export const DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_SCRIPT_SETUP = unindent(`
   </script>
 `);
 
-export const EMITS_OPTIONS_EXAMPLE = unindent(`
+export const EMITS_ARRAY_OPTIONS_EXAMPLE = unindent(`
   <script>
   export default {
     name: 'MyComponent',
@@ -724,7 +724,7 @@ export const EMITS_OPTIONS_EXAMPLE = unindent(`
   };
   </script>
 `);
-export const EMITS_SCRIPT_SETUP_EXAMPLE = unindent(`
+export const EMITS_ARRAY_SCRIPT_SETUP_EXAMPLE = unindent(`
   <script setup>
   defineOptions({
     name: 'MyComponent'
@@ -733,6 +733,42 @@ export const EMITS_SCRIPT_SETUP_EXAMPLE = unindent(`
     'update:modelValue',
     'click'
   ]);
+  </script>
+`);
+export const EMITS_OBJECT_OPTIONS_EXAMPLE = unindent(`
+  <script>
+  export default {
+    name: 'MyComponent',
+    emits: {
+      click: null,
+      submit: (payload) => {
+        if (payload.email && payload.password) {
+          return true;
+        } else {
+          console.warn('Invalid submit event payload!');
+          return false;
+        }
+      }
+    }
+  };
+  </script>
+`);
+export const EMITS_OBJECT_SCRIPT_SETUP_EXAMPLE = unindent(`
+  <script setup>
+  defineOptions({
+    name: 'MyComponent'
+  });
+  defineEmits({
+    click: null,
+    submit: (payload) => {
+      if (payload.email && payload.password) {
+        return true;
+      } else {
+        console.warn('Invalid submit event payload!');
+        return false;
+      }
+    }
+  });
   </script>
 `);
 export const EMITS_TO_DEMO_ARRAY_DEMO_FILE_EXAMPLE = unindent(`
