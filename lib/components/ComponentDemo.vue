@@ -92,10 +92,16 @@
         <!-- Custom component for slots -->
         <component
           v-if="slotValue.component"
-          v-bind="slotValue.props || {}"
-          v-model="demoSlots[slotName]"
+          v-bind="{
+            ...(slotValue.props || {}),
+            modelValue: demoSlots[slotName]
+          }"
           :is="slotValue.component"
-          v-on="slotValue.events || {}"
+          v-on="{
+            ...(slotValue.events || {}),
+            'update:model-value': ($event) => demoSlots[slotName] = $event,
+            'update:modelValue': ($event) => demoSlots[slotName] = $event
+          }"
           :key="'custom-slot-playground' + slotName"
         />
         <!-- DoxenTextarea for slots -->
