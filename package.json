@@ -1,6 +1,6 @@
 {
   "name": "vue-doxen",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The world's best Vue.js component documentation tool!",
   "scripts": {
     "start": "vite dev --config vite.config.docs.js",
@@ -15,7 +15,7 @@
     "test": "cross-env TZ=America/New_York vitest run --coverage --config vite.config.lib.js"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.24.5",
+    "@babel/eslint-parser": "^7.24.6",
     "@highlightjs/vue-plugin": "^2.1.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vitest/coverage-v8": "^1.6.0",
