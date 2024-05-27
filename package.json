@@ -5,6 +5,7 @@
   "scripts": {
     "start": "vite dev --config vite.config.docs.js",
     "preview": "vite preview --config vite.config.docs.js",
+    "prepublishOnly": "npm run build",
     "build": "npm run build:library && npm run build:docs",
     "build:docs": "vite build --config vite.config.docs.js",
     "build:library": "vite build --config vite.config.lib.js",

@@ -1,9 +1,9 @@
 <template>
   <div id="home" class="docs-page">
     <TitleParagraph title="Is this library ready for use?">
-      <em>Kinda!</em> It's in <strong>beta</strong> right now.
-      The documentation and API are both almost to 100%.
+      <em>Yes!</em> It's in <strong>beta</strong> right now.
       You can <code>npm install</code> it and try it out now to give early feedback.
+      The documentation and API are both completely finished, but may change before v1 based on <strong>your</strong> feedback.
       <ul>
         <li>
           See
@@ -23,7 +23,7 @@
       readMoreLink="demoFiles"
       readMoreHash="#demo-files"
     >
-      Vue-Doxen is a tool to <strong>auto-generate live documentation</strong> specifically built around the <strong>unique capabilites of Vue components</strong>. You can start by just passing in your components and it will automatically render them for you. Or, if you want more control, you can pass in a "demo" object that defines what custom components to use on the documentation page.
+      Vue-Doxen is a tool to <strong>auto-generate live documentation</strong> specifically built around the <strong>unique capabilites of Vue components</strong>. You can start by just passing in your components and it will automatically render them for you. Or, if you want more control, you can pass in a "demo" object that defines what custom components to use on the documentation page. Almost everything about Vue-Doxen is customizable!
     </TitleParagraph>
 
     <TitleParagraph

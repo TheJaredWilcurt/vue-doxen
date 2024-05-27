@@ -895,7 +895,7 @@ export const GETTING_STARTED_EXAMPLE = unindent(`
   <script>
   import { DoxenSidebar, VueDoxen } from 'vue-doxen';
 
-  // Optional CSS file for minor layout/affordance improvements
+  // OPTIONAL: CSS file for minor layout/affordance improvements
   import 'vue-doxen/vue-doxen.css';
 
   // Components you want to document/demo
@@ -960,7 +960,7 @@ export const GETTING_STARTED_COMPOSITION_EXAMPLE = unindent(`
   import { computed, ref } from 'vue';
   import { DoxenSidebar, VueDoxen } from 'vue-doxen';
 
-  // Optional CSS file for minor layout/affordance improvements
+  // OPTIONAL: CSS file for minor layout/affordance improvements
   import 'vue-doxen/vue-doxen.css';
 
   // Components you want to document/demo
@@ -1027,7 +1027,7 @@ export const GETTING_STARTED_SCRIPT_SETUP_EXAMPLE = unindent(`
   import { computed, ref } from 'vue';
   import { DoxenSidebar, VueDoxen } from 'vue-doxen';
 
-  // Optional CSS file for minor layout/affordance improvements
+  // OPTIONAL: CSS file for minor layout/affordance improvements
   import 'vue-doxen/vue-doxen.css';
 
   // Components you want to document/demo
