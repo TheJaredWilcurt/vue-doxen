@@ -1,9 +1,9 @@
 <template>
   <div id="home" class="docs-page">
     <TitleParagraph title="Is this library ready for use?">
-      <em>Yes!</em> It's in <strong>beta</strong> right now.
-      You can <code>npm install</code> it and try it out now to give early feedback.
-      The documentation and API are both completely finished, but may change before v1 based on <strong>your</strong> feedback.
+      <em>Yes!</em> We've reached the <strong>Release Candidate</strong> stage.
+      Which means you can <code>npm install</code> it and try it out now to give early feedback.
+      The documentation and API are both completely finished, but may get slight tweaks before v1 based on <strong>your</strong> feedback.
       <ul>
         <li>
           See
