@@ -7,6 +7,8 @@
       Documenting your components
     </h1>
 
+    <PageSkeleton />
+
     <nav>
       <ul>
         <li><a href="#name">Component Name</a></li>
@@ -441,6 +443,7 @@ import { styleTokens } from '@/helpers/props.js';
 
 import CodeSwapper from '@/components/CodeSwapper.vue';
 import DocumentationSection from '@@@/components/DocumentationSection.vue';
+import PageSkeleton from '@@@/components/PageSkeleton.vue';
 import SubDocumentationSection from '@@@/components/SubDocumentationSection.vue';
 
 import {
@@ -494,6 +497,7 @@ export default {
   components: {
     CodeSwapper,
     DocumentationSection,
+    PageSkeleton,
     SubDocumentationSection
   },
   props: {
