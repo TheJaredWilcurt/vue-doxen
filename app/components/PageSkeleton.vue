@@ -1,59 +1,59 @@
 <template>
-  <div>
+  <div class="page-skeleton">
     <div class="page">
       <a
         class="flex zone"
-        :class="{ 'zone-hover': hover === 'Component Name' }"
+        :class="{ 'zone-hover': hover === COMPONENT_NAME }"
         href="#name"
-        @mouseover="hover = 'Component Name'"
+        @mouseover="hover = COMPONENT_NAME"
         @mouseout="hoverOff"
-        @focus="hover = 'Component Name'"
+        @focus="hover = COMPONENT_NAME"
         @blur="hoverOff"
       >
         <div class="blocks header">
-          <span class="sr-only">Component Name</span>
+          <span v-text="COMPONENT_NAME" class="sr-only"></span>
         </div>
       </a>
       <a
-        :class="{ 'zone-hover': hover === 'Component Description' }"
+        :class="{ 'zone-hover': hover === COMPONENT_DESCRIPTION }"
         href="#description"
-        @mouseover="hover = 'Component Description'"
+        @mouseover="hover = COMPONENT_DESCRIPTION"
         @mouseout="hoverOff"
-        @focus="hover = 'Component Description'"
+        @focus="hover = COMPONENT_DESCRIPTION"
         @blur="hoverOff"
       >
         <div class="zone">
           <div class="blocks description">
-            <span class="sr-only">Component Description</span>
+            <span v-text="COMPONENT_DESCRIPTION" class="sr-only"></span>
           </div>
         </div>
       </a>
       <a
-        :class="{ 'zone-hover': hover === 'Import Statement' }"
+        :class="{ 'zone-hover': hover === IMPORT_STATEMENT }"
         href="#import"
-        @mouseover="hover = 'Import Statement'"
+        @mouseover="hover = IMPORT_STATEMENT"
         @mouseout="hoverOff"
-        @focus="hover = 'Import Statement'"
+        @focus="hover = IMPORT_STATEMENT"
         @blur="hoverOff"
       >
         <div class="zone">
           <div class="import-statement">
-            <span class="sr-only">Import Statement</span>
+            <span v-text="IMPORT_STATEMENT" class="sr-only"></span>
           </div>
         </div>
       </a>
       <RouterLink
-        :class="{ 'zone-hover': hover === 'Your Component' }"
+        :class="{ 'zone-hover': hover === YOUR_COMPONENT }"
         :to="{ name: 'demoFiles', hash: '#demo-files' }"
-        @mouseover="hover = 'Your Component'"
+        @mouseover="hover = YOUR_COMPONENT"
         @mouseout="hoverOff"
-        @focus="hover = 'Your Component'"
+        @focus="hover = YOUR_COMPONENT"
         @blur="hoverOff"
       >
         <div class="zone component-container">
           <div class="hr"></div>
           <div class="blocks component">
-            <span class="sr-only">Your Component</span>
+            <span v-text="YOUR_COMPONENT" class="sr-only"></span>
           </div>
           <div class="hr"></div>
         </div>
@@ -61,45 +61,45 @@
       <div class="props-playground">
         <a
           href="#props"
-          @mouseover="hover = 'Props Playground'"
+          @mouseover="hover = PROPS_PLAYGROUND"
           @mouseout="hoverOff"
-          @focus="hover = 'Props Playground'"
+          @focus="hover = PROPS_PLAYGROUND"
           @blur="hoverOff"
         >
           <div
             class="props-1 props-zone"
-            :class="{ 'props-hover': hover === 'Props Playground' }"
+            :class="{ 'props-hover': hover === PROPS_PLAYGROUND }"
           >
             <div
               v-for="prop in 4"
               class="blocks prop"
               :key="'prop' + prop"
             >
-              <span class="sr-only">Props Playground</span>
+              <span v-text="PROPS_PLAYGROUND" class="sr-only"></span>
             </div>
           </div>
         </a>
         <div class="props-2">
           <a
             class="props-zone"
-            :class="{ 'props-hover': hover === 'Props Playground' }"
+            :class="{ 'props-hover': hover === PROPS_PLAYGROUND }"
             href="#props"
-            @mouseover="hover = 'Props Playground'"
+            @mouseover="hover = PROPS_PLAYGROUND"
             @mouseout="hoverOff"
-            @focus="hover = 'Props Playground'"
+            @focus="hover = PROPS_PLAYGROUND"
             @blur="hoverOff"
           >
             <div class="blocks prop">
-              <span class="sr-only">Props Playground</span>
+              <span v-text="PROPS_PLAYGROUND" class="sr-only"></span>
             </div>
           </a>
           <a
             class="zone slots-playground"
-            :class="{ 'zone-hover': hover === 'Slots Playground' }"
+            :class="{ 'zone-hover': hover === SLOTS_PLAYGROUND }"
             href="#slots"
-            @mouseover="hover = 'Slots Playground'"
+            @mouseover="hover = SLOTS_PLAYGROUND"
             @mouseout="hoverOff"
-            @focus="hover = 'Slots Playground'"
+            @focus="hover = SLOTS_PLAYGROUND"
             @blur="hoverOff"
           >
             <div
@@ -108,36 +108,36 @@
               :class="'slot-' + slot"
               :key="'slot' + slot"
             >
-              <span class="sr-only">Slots Playground</span>
+              <span v-text="SLOTS_PLAYGROUND" class="sr-only"></span>
             </div>
           </a>
           <a
             class="zone emit-logger-container"
-            :class="{ 'zone-hover': hover === 'Emit Logger' }"
+            :class="{ 'zone-hover': hover === EMIT_LOGGER }"
             href="#emits"
-            @mouseover="hover = 'Emit Logger'"
+            @mouseover="hover = EMIT_LOGGER"
             @mouseout="hoverOff"
-            @focus="hover = 'Emit Logger'"
+            @focus="hover = EMIT_LOGGER"
             @blur="hoverOff"
           >
             <div class="blocks emit-logger">
-              <span class="sr-only">Emit Logger</span>
+              <span v-text="EMIT_LOGGER" class="sr-only"></span>
             </div>
           </a>
         </div>
       </div>
       <div
         class="zone live-code"
-        :class="{ 'live-code-hover': hover === 'Live Code' }"
+        :class="{ 'live-code-hover': hover === LIVE_CODE }"
         role="button"
         tabindex="0"
-        @focus="hover = 'Live Code'"
+        @focus="hover = LIVE_CODE"
         @blur="hoverOff"
-        @mouseover="hover = 'Live Code'"
+        @mouseover="hover = LIVE_CODE"
         @mouseout="hoverOff"
       >
         <div class="buttons-container">
-          <span class="sr-only">Live Code</span>
+          <span v-text="LIVE_CODE" class="sr-only"></span>
           <div
             v-for="button in 2"
             class="blocks button"
@@ -166,40 +166,69 @@
       </div>
       <a
         class="flex zone"
-        :class="{ 'zone-hover': hover === 'Props Documentation' }"
+        :class="{ 'zone-hover': hover === PROPS_DOCUMENTATION }"
         href="#props"
-        @mouseover="hover = 'Props Documentation'"
+        @mouseover="hover = PROPS_DOCUMENTATION"
         @mouseout="hoverOff"
-        @focus="hover = 'Props Documentation'"
+        @focus="hover = PROPS_DOCUMENTATION"
         @blur="hoverOff"
       >
         <div class="blocks props-documentation">
-          <span class="sr-only">Props Documentation</span>
+          <span v-text="PROPS_DOCUMENTATION" class="sr-only"></span>
         </div>
       </a>
       <a
         class="flex zone"
-        :class="{ 'zone-hover': hover === 'Emits Documentation' }"
+        :class="{ 'zone-hover': hover === EMITS_DOCUMENTATION }"
         href="#emits"
-        @mouseover="hover = 'Emits Documentation'"
+        @mouseover="hover = EMITS_DOCUMENTATION"
         @mouseout="hoverOff"
-        @focus="hover = 'Emits Documentation'"
+        @focus="hover = EMITS_DOCUMENTATION"
         @blur="hoverOff"
       >
         <div class="blocks emits-documentation">
-          <span class="sr-only">Emits Documentation</span>
+          <span v-text="EMITS_DOCUMENTATION" class="sr-only"></span>
         </div>
       </a>
     </div>
-    <strong>
-      {{ hover || '&nbsp;' }}
-    </strong>
+    <div>
+      <strong
+        v-show="hover"
+        class="hover-text"
+        :style="hoverTextPosition"
+      >
+        {{ hover }}
+      </strong>
+    </div>
   </div>
 </template>
 
 <script>
+const COMPONENT_NAME = 'Component Name';
+const COMPONENT_DESCRIPTION = 'Component Description';
+const IMPORT_STATEMENT = 'Import Statement';
+const YOUR_COMPONENT = 'Your Component';
+const PROPS_PLAYGROUND = 'Props Playground';
+const SLOTS_PLAYGROUND = 'Slots Playground';
+const EMIT_LOGGER = 'Emit Logger';
+const LIVE_CODE = 'Live Code';
+const PROPS_DOCUMENTATION = 'Props Documentation';
+const EMITS_DOCUMENTATION = 'Emits Documentation';
+
 export default {
   name: 'PageSkeleton',
+  constants: {
+    COMPONENT_NAME,
+    COMPONENT_DESCRIPTION,
+    IMPORT_STATEMENT,
+    YOUR_COMPONENT,
+    PROPS_PLAYGROUND,
+    SLOTS_PLAYGROUND,
+    EMIT_LOGGER,
+    LIVE_CODE,
+    PROPS_DOCUMENTATION,
+    EMITS_DOCUMENTATION
+  },
   data: function () {
     return {
       hover: '',
@@ -224,6 +253,28 @@ export default {
       return Math.round(Math.random() * 26) + 40;
     }
   },
+  computed: {
+    hoverTextPosition: function () {
+      const hoverTextTopOffsetMap = {
+        [COMPONENT_NAME]: 11,
+        [COMPONENT_DESCRIPTION]: 42,
+        [IMPORT_STATEMENT]: 59,
+        [YOUR_COMPONENT]: 99,
+        [PROPS_PLAYGROUND]: 159,
+        [SLOTS_PLAYGROUND]: 201,
+        [EMIT_LOGGER]: 201,
+        [LIVE_CODE]: 283,
+        [PROPS_DOCUMENTATION]: 372,
+        [EMITS_DOCUMENTATION]: 441
+      };
+      const top = hoverTextTopOffsetMap[this.hover];
+
+      if (top) {
+        return 'top:' + top + 'px';
+      }
+      return 'display: none;';
+    }
+  },
   created: function () {
     this.skeletonInterval = setInterval(() => {
       this.skeletonKey++;
@@ -236,7 +287,12 @@ export default {
 </script>
 
 <style scoped>
+.page-skeleton {
+  display: flex;
+}
 .page {
+  position: relative;
+  display: inline-block;
   background: #EEE;
   width: 300px;
   border-radius: 7px;
@@ -340,6 +396,11 @@ export default {
   width: 100%;
   height: 40px;
 }
+.hover-text {
+  position: relative;
+  top: 0px;
+  left: 11px;
+}
 
 .props-zone,
 .zone {
@@ -411,5 +472,11 @@ export default {
   clip: rect(0,0,0,0);
   white-space: nowrap;
   border: 0px;
+}
+
+@media (width < 430px) {
+  .hover-text {
+    display: none;
+  }
 }
 </style>
