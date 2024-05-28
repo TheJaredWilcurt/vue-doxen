@@ -9,14 +9,14 @@
           Put your docs in the components
         </h2>
         <img
-          alt="Patrick"
+          alt="Patrick taking the previous text"
           class="panel-1-image"
           src="@@@/assets/patrick1.png"
         />
       </div>
       <div class="panel-2">
         <img
-          alt="Patrick"
+          alt="Patrick putting the following text 'over there' (following an old meme format)"
           class="panel-2-image"
           src="@@@/assets/patrick2.png"
         />
