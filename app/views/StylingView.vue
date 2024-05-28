@@ -151,7 +151,7 @@
       <p>You can access this export with:</p>
 
       <CodeBox
-        code="import { styleTokensBuiltIn } from 'vue-doxen';"
+        :code="STYLE_TOKENS_IMPORTS"
         :styleTokens="styleTokens"
       />
     </DocumentationSection>
@@ -296,6 +296,9 @@ const STYLE_TOKEN_USAGE_EXAMPLE = `
   }"
 />
 `.trim();
+const STYLE_TOKENS_IMPORTS = `
+import { styleTokensEmpty } from 'vue-doxen';
+`.trim();
 const BUILT_IN_TOKEN_IMPORT_EXAMPLE = `
 import {
   styleTokensBootstrap5,
@@ -358,6 +361,7 @@ export default {
     BUILT_IN_TOKEN_IMPORT_EXAMPLE,
     BUILT_IN_TOKEN_USAGE_EXAMPLE,
     JAVASCRIPT_EXAMPLE,
+    STYLE_TOKENS_IMPORTS,
     STYLE_TOKEN_USAGE_EXAMPLE,
     SUPPLIED_CSS_EXAMPLE,
     SUPPLIED_CSS_CDN_EXAMPLE,
