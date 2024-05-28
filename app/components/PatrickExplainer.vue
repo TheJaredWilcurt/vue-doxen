@@ -9,7 +9,7 @@
           Put your docs in the components
         </h2>
         <img
-          alt="Patrick taking the previous text"
+          alt="Patrick (from SpongeBob) taking the previous text"
           class="panel-1-image"
           src="@@@/assets/patrick1.png"
         />
