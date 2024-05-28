@@ -33,3 +33,4 @@ The world's best Vue.js component documentation tool!
   * Code lives in the `lib` folder
   * Uses `vite.config.lib.js`
   * `npm run build` will produce `dist` folder
+  * `npm t` runs unit tests for the library
