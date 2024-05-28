@@ -8,13 +8,21 @@
       The documentation and API are both completely finished, but may get slight tweaks before v1 based on <strong>your</strong> feedback.
       <ul>
         <li>
-          See
+          <strong>Looking for feedback on:</strong>
+          <ul>
+            <li>Does it explain itself well? (The core concept)</li>
+            <li>Is the API easy to use?</li>
+            <li>Is there anything in the documentation that could be improved, around onboarding, or just in general</li>
+            <li>Any bugs you find when passing in your own weird components</li>
+            <li>Any features you need that are missing</li>
+          </ul>
+        </li>
+        <li>
           <a
-            v-text="'Github Project Board'"
-            href="https://github.com/users/TheJaredWilcurt/projects/1/views/2"
+            v-text="'Give Feedback on GitHub Issues'"
+            href="https://github.com/TheJaredWilcurt/vue-doxen/issues"
             target="_blank"
           ></a>
-          for remaining priority tasks.
         </li>
       </ul>
     </TitleParagraph>
