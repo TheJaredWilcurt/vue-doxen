@@ -1,18 +1,28 @@
 <template>
   <div id="home" class="docs-page">
+    <PatrickExplainer />
+
     <TitleParagraph title="Is this library ready for use?">
       <em>Yes!</em> We've reached the <strong>Release Candidate</strong> stage.
       Which means you can <code>npm install</code> it and try it out now to give early feedback.
       The documentation and API are both completely finished, but may get slight tweaks before v1 based on <strong>your</strong> feedback.
       <ul>
         <li>
-          See
+          <strong>Looking for feedback on:</strong>
+          <ul>
+            <li>Does it explain itself well? (The core concept)</li>
+            <li>Is the API easy to use?</li>
+            <li>Is there anything in the documentation that could be improved, around onboarding, or just in general</li>
+            <li>Any bugs you find when passing in your own weird components</li>
+            <li>Any features you need that are missing</li>
+          </ul>
+        </li>
+        <li>
           <a
-            v-text="'Github Project Board'"
-            href="https://github.com/users/TheJaredWilcurt/projects/1/views/2"
+            v-text="'Give Feedback on GitHub Issues'"
+            href="https://github.com/TheJaredWilcurt/vue-doxen/issues"
             target="_blank"
           ></a>
-          for remaining priority tasks.
         </li>
       </ul>
     </TitleParagraph>
@@ -44,6 +54,10 @@
       HELL NO! God that is so annoying, right? I'm looking at YOU <em>Storybook</em> and <em>Vue-StyleGuidest</em>! With Vue-Doxen you can <em>optionally</em> import in a very basic stylesheet we ship with the library to handle simple layout with little emphasis on aesthetics. Or you can pass in your own classes to be applied using the <code>styleTokens</code> prop.
     </TitleParagraph>
 
+    <TitleParagraph title="Is there a non-Vue version of Doxen?">
+      Nope! I designed Vue-Doxen exclusively around the component architecture used internally by Vue. I get that you want to use Vue-Doxen's approach elsewhere, but until a frontend framework comes out that is better than Vue, I won't be the one porting it. Similar to how, if you want Pinia, you gotta use Vue, same goes for Vue-Doxen.
+    </TitleParagraph>
+
     <TitleParagraph title="Why is there a dog?">
       This is a Documentation tool to help you write your "docs". "Docs" sounds like "Doxen", which is the shortened version of the dog breed "Dachshund". So we have a Dachshund dog in the logo.
     </TitleParagraph>
@@ -57,11 +71,13 @@
 <script>
 import { styleTokens } from '@/helpers/props.js';
 
+import PatrickExplainer from '@@@/components/PatrickExplainer.vue';
 import TitleParagraph from '@@@/components/TitleParagraph.vue';
 
 export default {
   name: 'HomeView',
   components: {
+    PatrickExplainer,
     TitleParagraph
   },
   props: {
