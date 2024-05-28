@@ -5,61 +5,65 @@ import {
   createWebHistory
 } from 'vue-router';
 
+function Catch () {
+  window.location.reload();
+}
+
 const routes = [
   {
     path: '/vue-doxen/:pathMatch(.*)*',
     name: 'notFound',
-    component: () => import('@@@/views/NotFoundView.vue')
+    component: () => import('@@@/views/NotFoundView.vue').catch(Catch)
   },
   {
     path: '/vue-doxen/',
     name: 'home',
-    component: () => import('@@@/views/HomeView.vue')
+    component: () => import('@@@/views/HomeView.vue').catch(Catch)
   },
   {
     path: '/vue-doxen/getting-started',
     name: 'gettingStarted',
-    component: () => import('@@@/views/GettingStartedView.vue')
+    component: () => import('@@@/views/GettingStartedView.vue').catch(Catch)
   },
   {
     path: '/vue-doxen/demo-files',
     name: 'demoFiles',
-    component: () => import('@@@/views/DemoFilesView.vue')
+    component: () => import('@@@/views/DemoFilesView.vue').catch(Catch)
   },
   {
     path: '/vue-doxen/documenting',
     name: 'documenting',
-    component: () => import('@@@/views/DocumentingView.vue')
+    component: () => import('@@@/views/DocumentingView.vue').catch(Catch)
   },
   {
     path: '/vue-doxen/styles',
     name: 'styles',
-    component: () => import('@@@/views/StylingView.vue')
+    component: () => import('@@@/views/StylingView.vue').catch(Catch)
   },
   {
     path: '/vue-doxen/vue-router',
     name: 'vueRouter',
-    component: () => import('@@@/views/VueRouterView.vue')
+    component: () => import('@@@/views/VueRouterView.vue').catch(Catch)
   },
   {
     path: '/vue-doxen/tree-shaking',
     name: 'treeShaking',
-    component: () => import('@@@/views/TreeShaking.vue')
+    component: () => import('@@@/views/TreeShaking.vue').catch(Catch)
   },
   {
     path: '/vue-doxen/branding',
     name: 'branding',
-    component: () => import('@@@/views/PressKit.vue')
+    component: () => import('@@@/views/PressKit.vue').catch(Catch)
   },
   {
     path: '/vue-doxen/a11y',
     name: 'a11y',
-    component: () => import('@@@/views/AccessibilityTooling.vue')
+    component: () => import('@@@/views/AccessibilityTooling.vue').catch(Catch)
   },
   {
     path: '/vue-doxen/components/:component',
     name: 'components',
-    component: () => import('@@@/views/ComponentsView.vue'),
+    component: () => import('@@@/views/ComponentsView.vue').catch(Catch),
     props: (route) => ({
       selectedDemo: route.params.component
     })
