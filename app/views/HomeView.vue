@@ -1,5 +1,7 @@
 <template>
   <div id="home" class="docs-page">
+    <PatrickExplainer />
+
     <TitleParagraph title="Is this library ready for use?">
       <em>Yes!</em> We've reached the <strong>Release Candidate</strong> stage.
       Which means you can <code>npm install</code> it and try it out now to give early feedback.
@@ -44,6 +46,10 @@
       HELL NO! God that is so annoying, right? I'm looking at YOU <em>Storybook</em> and <em>Vue-StyleGuidest</em>! With Vue-Doxen you can <em>optionally</em> import in a very basic stylesheet we ship with the library to handle simple layout with little emphasis on aesthetics. Or you can pass in your own classes to be applied using the <code>styleTokens</code> prop.
     </TitleParagraph>
 
+    <TitleParagraph title="Is there a non-Vue version of Doxen?">
+      Nope! I designed Vue-Doxen exclusively around the component architecture used internally by Vue. I get that you want to use Vue-Doxen's approach elsewhere, but until a frontend framework comes out that is better than Vue, I won't be the one porting it. Similar to how, if you want Pinia, you gotta use Vue, same goes for Vue-Doxen.
+    </TitleParagraph>
+
     <TitleParagraph title="Why is there a dog?">
       This is a Documentation tool to help you write your "docs". "Docs" sounds like "Doxen", which is the shortened version of the dog breed "Dachshund". So we have a Dachshund dog in the logo.
     </TitleParagraph>
@@ -57,11 +63,13 @@
 <script>
 import { styleTokens } from '@/helpers/props.js';
 
+import PatrickExplainer from '@@@/components/PatrickExplainer.vue';
 import TitleParagraph from '@@@/components/TitleParagraph.vue';
 
 export default {
   name: 'HomeView',
   components: {
+    PatrickExplainer,
     TitleParagraph
   },
   props: {
