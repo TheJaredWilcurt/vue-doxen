@@ -33,7 +33,7 @@
 
     <DocumentationSection id="recommended" title="Recommended Approach">
       <p>
-        In this first approach we organize the code to require the lease amount of maintenance.
+        In this first approach we organize the code to require the least amount of maintenance.
         As you add more demos files, you only need to create the demo and reference it in one file.
       </p>
 

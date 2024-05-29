@@ -212,8 +212,8 @@ export default {
     componentName: function () {
       return (
         this.demo?.component?.name ||
-        this.demo?.component?.__name ||
         this.demo?.name ||
+        this.demo?.component?.__name ||
         ''
       );
     },

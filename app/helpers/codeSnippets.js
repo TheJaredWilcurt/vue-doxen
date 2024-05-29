@@ -1160,7 +1160,7 @@ export const ROUTER_LINK_OPTIONS_EXAMPLE = unindent(`
             }"
             :key="'sidebar-link-' + componentName"
           >
-            {{ demo.name || demo.component?.name || componentName }}
+            {{ demo.component?.name || demo.name || componentName }}
           </RouterLink>
         </nav>
       </aside>
@@ -1196,7 +1196,7 @@ export const ROUTER_LINK_COMPOSITION_EXAMPLE = unindent(`
             }"
             :key="'sidebar-link-' + componentName"
           >
-            {{ demo.name || demo.component?.name || componentName }}
+            {{ demo.component?.name || demo.name || componentName }}
           </RouterLink>
         </nav>
       </aside>
@@ -1238,7 +1238,7 @@ export const ROUTER_LINK_SCRIPT_SETUP_EXAMPLE = unindent(`
             }"
             :key="'sidebar-link-' + componentName"
           >
-            {{ demo.name || demo.component?.name || componentName }}
+            {{ demo.component?.name || demo.name || componentName }}
           </RouterLink>
         </nav>
       </aside>
