@@ -57,10 +57,10 @@
 
     <DocumentationSection id="name" title="Component Name">
       <p>
-        The name of the component is used at the top of a demo page, and also used for the tag and variable name in the code example below the props playground. If not provided on the demo object, we will use the name provided in the component (if available).
+        The name of the component is used at the top of a demo page, and also used for the tag and variable name in the code example below the props playground.
       </p>
       <p>
-        Components written in <code>.vue</code> files, and processed by a bundler, may include the filename in the component. We will check for this if the name is not explicitly defined in the demo object or component definition.
+        Components written in <code>.vue</code> files, and processed by a bundler, may include the filename in the component. We will prefer the <code>name</code> field in the component first, then in the demo file, and if the name is not explicitly defined in those places, we'll check for a file name provided by the bundler.
       </p>
 
       <CodeSwapper

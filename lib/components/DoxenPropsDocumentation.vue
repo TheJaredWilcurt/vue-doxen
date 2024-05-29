@@ -89,7 +89,11 @@
 </template>
 
 <script>
-import { humanList, wrapString } from '@/helpers/componentHelpers.js';
+import {
+  createImportStatement,
+  humanList,
+  wrapString
+} from '@/helpers/componentHelpers.js';
 import { typeToString } from '@/helpers/demoHelpers.js';
 import { styleTokens } from '@/helpers/props.js';
 import { dataValue } from '@/helpers/snapshotHelpers.js';
@@ -98,8 +102,11 @@ import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
 import CodeBox from '@/components/CodeBox.vue';
 
+const COMPONENT_NAME = 'DoxenPropsDocumentation';
+
 export default {
-  name: 'DoxenPropsDocumentation',
+  ...createImportStatement(COMPONENT_NAME),
+  name: COMPONENT_NAME,
   components: {
     CodeBox
   },
