@@ -1,9 +1,19 @@
 <template>
-  <div>
+  <div
+    :class="{
+      'v-application': styles.startsWith('vuetify'),
+      'v-theme--dark': styles === 'vuetifyDark',
+      'v-theme--light': styles === 'vuetifyLight'
+    }"
+    style="flex-direction: column;"
+  >
     <header aria-label="header">
       <div class="docs-container">
         <VueDoxenLogo />
-        <StyleSwapper v-model="styleTokens" />
+        <StyleSwapper
+          v-model:tokens="styleTokens"
+          v-model:styles="styles"
+        />
       </div>
     </header>
     <div class="docs-container">
@@ -45,6 +55,7 @@ export default {
   },
   data: function () {
     return {
+      styles: 'water',
       styleTokens: styleTokensBuiltIn
     };
   }

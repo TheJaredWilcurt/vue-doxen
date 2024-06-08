@@ -99,6 +99,7 @@ module.exports = {
       ...jestRestrictedSyntax
     ],
     'vue/no-v-for-template-key': 'off',
+    'vue/no-v-model-argument': 'off',
     'vue/no-multiple-template-root': [
       'off'
     ],

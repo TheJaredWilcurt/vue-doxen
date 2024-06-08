@@ -4,14 +4,14 @@
       label="CSS&nbsp;Reset"
       :modelValue="includeNormalize"
       name="Normalize"
-      :styleTokens="modelValue"
+      :styleTokens="tokens"
       @update:modelValue="normalizeChanged"
     />
     <DoxenCheckbox
       label="Doxen&nbsp;Stylesheet"
       :modelValue="includeVueDoxenStylesheet"
       name="Include"
-      :styleTokens="modelValue"
+      :styleTokens="tokens"
       @update:modelValue="builtInStyleSheetToggled"
     />
     <DoxenDropdown
@@ -27,11 +27,19 @@
           value: 'bootstrap'
         },
         {
+          name: 'Vuetify 3 (Dark)',
+          value: 'vuetifyDark'
+        },
+        {
+          name: 'Vuetify 3 (Light)',
+          value: 'vuetifyLight'
+        },
+        {
           name: 'Water.css',
           value: 'water'
         }
       ]"
-      :styleTokens="modelValue"
+      :styleTokens="tokens"
       @update:modelValue="styleChanged"
     />
     <DoxenDropdown
@@ -49,9 +57,13 @@
         {
           name: 'No classes',
           value: 'empty'
+        },
+        {
+          name: 'Vuetify 3',
+          value: 'vuetify'
         }
       ]"
-      :styleTokens="modelValue"
+      :styleTokens="tokens"
       @update:modelValue="styleTokensChanged"
     />
 
@@ -61,24 +73,30 @@
       rel="stylesheet"
       type="text/css"
     />
-    <component
-      v-if="includeVueDoxenStylesheet"
-      :is="'style'"
-    >
-      {{ styles }}
-    </component>
     <link
       v-if="$route.name !== 'styles'"
       href="https://unpkg.com/highlightjs@9.16.2/styles/ir_black.css"
       rel="stylesheet"
       type="text/css"
     />
+    <component
+      v-if="styleToDemo.startsWith('vuetify')"
+      :is="'style'"
+    >
+      {{ vuetifyStyles }}
+    </component>
     <link
-      v-if="styleToDemo !== 'none'"
+      v-if="stylesMap[styleToDemo]"
       :href="stylesMap[styleToDemo]"
       rel="stylesheet"
       type="text/css"
     />
+    <component
+      v-if="includeVueDoxenStylesheet"
+      :is="'style'"
+    >
+      {{ doxenStyles }}
+    </component>
   </div>
 </template>
 
@@ -87,9 +105,12 @@ import {
   DoxenCheckbox,
   DoxenDropdown,
   styleTokensBootstrap5,
-  styleTokensBuiltIn
+  styleTokensBuiltIn,
+  styleTokensVuetify3
 } from '@/library.js';
-import styles from '@/sass/vue-doxen.sass?inline';
+import doxenStyles from '@/sass/vue-doxen.sass?inline';
+
+import vuetifyStyles from '@@@/assets/vuetify.css?inline';
 
 export default {
   name: 'StyleSwapper',
@@ -97,26 +118,34 @@ export default {
     DoxenCheckbox,
     DoxenDropdown
   },
-  emits: ['update:model-value'],
+  emits: [
+    'update:styles',
+    'update:tokens'
+  ],
   props: {
-    modelValue: {
+    styles: {
+      type: String,
+      required: true
+    },
+    tokens: {
       type: Object,
       required: true
     }
   },
   constants: {
     localStorageId: 'vueDoxenStyleSwapper',
-    styles,
+    doxenStyles,
     stylesMap: {
-      none: '',
       bootstrap: 'https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css',
       water: 'https://unpkg.com/water.css@2.1.1/out/dark.min.css'
     },
     styleTokensMap: {
       bootstrap: styleTokensBootstrap5,
       builtIn: styleTokensBuiltIn,
-      empty: {}
-    }
+      empty: {},
+      vuetify: styleTokensVuetify3
+    },
+    vuetifyStyles
   },
   data: function () {
     return {
@@ -154,11 +183,12 @@ export default {
     },
     styleChanged: function (styleToDemo) {
       this.styleToDemo = styleToDemo;
+      this.$emit('update:styles', this.styleToDemo);
       this.save();
     },
     styleTokensChanged: function (tokensToDemo) {
       this.tokensToDemo = tokensToDemo;
-      this.$emit('update:model-value', this.styleTokensMap[tokensToDemo]);
+      this.$emit('update:tokens', this.styleTokensMap[tokensToDemo]);
       this.save();
     }
   },

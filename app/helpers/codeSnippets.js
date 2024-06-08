@@ -1034,6 +1034,10 @@ export const GETTING_STARTED_SCRIPT_SETUP_EXAMPLE = unindent(`
   import ComponentA from './ComponentA.vue';
   import ComponentB from './ComponentB.vue';
 
+  defineOptions({
+    name: 'DocumentationPage'
+  });
+
   const selectedDemo = ref('ComponentA');
 
   const demos = computed(() => {

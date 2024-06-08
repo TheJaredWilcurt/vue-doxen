@@ -304,6 +304,7 @@ import {
   styleTokensBootstrap5,
   styleTokensBuiltIn,
   styleTokensEmpty,
+  styleTokensVuetify3,
   VueDoxen
 } from 'vue-doxen';
 `.trim();

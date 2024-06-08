@@ -2,6 +2,15 @@
   <div id="home" class="docs-page">
     <PatrickExplainer />
 
+    <TitleParagraph
+      title="What is Vue-Doxen?"
+      readMore="Read more about demo files"
+      readMoreLink="demoFiles"
+      readMoreHash="#demo-files"
+    >
+      Vue-Doxen is a tool to <strong>auto-generate live documentation</strong> specifically built around the <strong>unique capabilites of Vue components</strong>. You can start by just passing in your components and it will automatically render them for you. Or, if you want more control, you can pass in a "demo" object that defines what custom components to use on the documentation page. Almost everything about Vue-Doxen is customizable!
+    </TitleParagraph>
+
     <TitleParagraph title="Is this library ready for use?">
       <em>Yes!</em> We've reached the <strong>Release Candidate</strong> stage.
       Which means you can <code>npm install</code> it and try it out now to give early feedback.
@@ -25,15 +34,6 @@
           ></a>
         </li>
       </ul>
-    </TitleParagraph>
-
-    <TitleParagraph
-      title="What is Vue-Doxen?"
-      readMore="Read more about demo files"
-      readMoreLink="demoFiles"
-      readMoreHash="#demo-files"
-    >
-      Vue-Doxen is a tool to <strong>auto-generate live documentation</strong> specifically built around the <strong>unique capabilites of Vue components</strong>. You can start by just passing in your components and it will automatically render them for you. Or, if you want more control, you can pass in a "demo" object that defines what custom components to use on the documentation page. Almost everything about Vue-Doxen is customizable!
     </TitleParagraph>
 
     <TitleParagraph

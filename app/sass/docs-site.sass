@@ -1,3 +1,6 @@
+$black10: rgba(0, 1, 16, 0.10)
+$white20: rgba(239, 240, 255, 0.20)
+
 .docs-body
     padding-left: 10px
 
@@ -45,6 +48,9 @@
 .docs-page code
     line-height: 1.35
 
+.docs-page hr
+    margin: 40px 0px 30px 0px
+
 .docs-sidebar
     display: flex
     flex-direction: column
@@ -77,6 +83,31 @@
 /* Slim Loading indicator at top of screen during navigation */
 #nprogress .bar
     background: #41B883
+
+.v-application
+    &.v-theme--dark
+        .docs-page
+            :not(pre) > code
+                background: $white20
+    &.v-theme--light
+        .docs-page
+            :not(pre) > code
+                background: $black10
+    &.v-theme--dark,
+    &.v-theme--light
+        .docs-page code[data-applied-style-tokens~="codeSwapperFileName"]
+            background: transparent
+    .docs-page
+        p
+            margin-top: 1.25rem
+            margin-bottom: 0.75rem
+        ol,
+        ul
+            margin-left: 1rem
+        li
+            ol,
+            ul
+                margin-left: 1.5rem
 
 @media (width < 831px)
     .docs-container
