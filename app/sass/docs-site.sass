@@ -123,3 +123,41 @@ $white20: rgba(239, 240, 255, 0.20)
             font-size: 33px
         code
             word-break: break-word
+
+/* Copied from the library CSS, but name-spaced under .docs-page */
+.docs-page
+    :where([data-applied-style-tokens~="tabsHeader"])
+        display: flex
+        flex-direction: row
+        align-items: baseline
+        justify-content: space-between
+    :where([data-applied-style-tokens~="tabsButtonContainer"])
+        display: flex
+
+/* Copied from the library CSS, but name-spaced under .docs-page */
+.v-application .docs-page
+    :where([data-applied-style-tokens~="formFieldCheckbox"]),
+    :where([data-applied-style-tokens~="formFieldDropdown"]),
+    :where([data-applied-style-tokens~="formFieldTextarea"]),
+    :where([data-applied-style-tokens~="formFieldTextField"])
+        appearance: auto
+        background-color: revert
+    :where([data-applied-style-tokens~="tabsHeader"])
+        align-items: center
+    :where([data-applied-style-tokens~="tabsButtonContainer"])
+        flex: unset
+
+/* Copied from the library CSS, but name-spaced under .docs-page */
+@media (width < 700px)
+    .v-application .docs-page
+        :where([data-applied-style-tokens~="tabsHeader"])
+            height: auto
+            overflow: auto
+
+/* Copied from the library CSS, but name-spaced under .docs-page */
+@media (width < 400px)
+    .v-application .docs-page
+        :where([data-applied-style-tokens~="codeSwapperFileName"])
+            padding: 12px
+        :where([data-applied-style-tokens~="tabsHeader"])
+            flex-direction: column
