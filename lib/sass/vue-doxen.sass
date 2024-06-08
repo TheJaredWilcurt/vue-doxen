@@ -115,3 +115,33 @@ $black10: rgba(0, 1, 16, 0.10)
         flex-direction: column
     :where([data-applied-style-tokens="tabsHeader"])
         align-items: flex-end
+
+/**
+ *  VUETIFY
+ */
+
+/* Had to increase specificity to get around Vuetify's styles */
+.v-application
+    :where([data-applied-style-tokens~="formFieldCheckbox"]),
+    :where([data-applied-style-tokens~="formFieldDropdown"]),
+    :where([data-applied-style-tokens~="formFieldTextarea"]),
+    :where([data-applied-style-tokens~="formFieldTextField"])
+        appearance: auto
+        background-color: revert
+    :where([data-applied-style-tokens~="tabsHeader"])
+        align-items: center
+    :where([data-applied-style-tokens~="tabsButtonContainer"])
+        flex: unset
+
+@media (width < 700px)
+    .v-application
+        :where([data-applied-style-tokens~="tabsHeader"])
+            height: auto
+            overflow: auto
+
+@media (width < 400px)
+    .v-application
+        :where([data-applied-style-tokens~="codeSwapperFileName"])
+            padding: 12px
+        :where([data-applied-style-tokens~="tabsHeader"])
+            flex-direction: column
