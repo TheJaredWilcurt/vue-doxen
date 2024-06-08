@@ -109,6 +109,7 @@ import {
   styleTokensVuetify3
 } from '@/library.js';
 import doxenStyles from '@/sass/vue-doxen.sass?inline';
+
 import vuetifyStyles from '@@@/assets/vuetify.css?inline';
 
 export default {
