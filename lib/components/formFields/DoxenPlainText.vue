@@ -60,7 +60,7 @@ import FormFieldsetWrapper from '@/components/formFields/FormFieldsetWrapper.vue
 const COMPONENT_NAME = 'DoxenPlainText';
 const errorMessage = createErrorMessageProp('plain text');
 const message = createMessageProp('plain text');
-const modelValue = createModelValueProp([String, Number, Boolean, Object, Array]);
+const modelValue = createModelValueProp([String, Number, Boolean, Object, Array, Function]);
 
 export default {
   ...createImportStatement(COMPONENT_NAME),

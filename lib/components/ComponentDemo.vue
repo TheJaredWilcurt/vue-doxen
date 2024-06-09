@@ -201,7 +201,20 @@ export default {
       this.demoProps = {};
       this.demoSlots = {};
       for (const propName in this.propsToDemo) {
-        this.demoProps[propName] = this.propsToDemo?.[propName]?.props?.modelValue;
+        const propDefault = this.playgroundProps?.[propName]?.default;
+        const modelValue = this.propsToDemo?.[propName]?.props?.modelValue;
+
+        if (propDefault === undefined && modelValue === undefined) {
+          this.demoProps[propName] = undefined;
+        } else {
+          if (propDefault !== undefined) {
+            this.demoProps[propName] = propDefault;
+          }
+          // Intentionally not using else if
+          if (modelValue !== undefined) {
+            this.demoProps[propName] = modelValue;
+          }
+        }
       }
       for (const slotName in this.slotsToDemo) {
         this.demoSlots[slotName] = this.slotsToDemo?.[slotName].default;
@@ -398,9 +411,10 @@ export default {
       const attributes = Object.keys(this.propsToDemo)
         .map((propName) => {
           return {
+            default: this.playgroundProps?.[propName]?.default,
             name: propName,
-            value: this.demoProps[propName],
-            required: !!this.demo?.component?.props?.[propName]?.required
+            required: !!this.demo?.component?.props?.[propName]?.required,
+            value: this.demoProps[propName]
           };
         });
       const slots = {};
@@ -423,12 +437,14 @@ export default {
         .sort()
         .forEach((propName) => {
           const value = this.demoProps[propName];
-          const defaultValue = this.demo?.component?.props?.[propName]?.default;
+          const defaultValue = this.playgroundProps?.[propName]?.default;
           if (
             typeof(value) === 'boolean' &&
             typeof(defaultValue) === 'boolean' &&
             defaultValue === value
           ) {
+            return;
+          } else if (defaultValue === value) {
             return;
           } else if (![undefined, null, ''].includes(value)) {
             propsOutput[propName] = value;

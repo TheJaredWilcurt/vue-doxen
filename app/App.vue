@@ -101,7 +101,7 @@ export default {
     };
   },
   methods: {
-    checkLastDeployment: function () {
+    checkLastDeployment: async function () {
       const url = 'https://api.github.com/repos/TheJaredWilcurt/vue-doxen/deployments?per_page=1';
       const options = {
         method: 'GET',
@@ -109,17 +109,16 @@ export default {
           Accept: 'application/vnd.github+json'
         }
       };
-      fetch(url, options)
-        .then(async (response) => {
-          if (!response.ok) {
-            throw new Error('Network response was not OK');
-          }
-          const data = await response.json();
-          this.lastUpdated = new Date(data[0].created_at);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      try {
+        const response = await fetch(url, options);
+        if (!response.ok) {
+          return;
+        }
+        const data = await response.json();
+        this.lastUpdated = new Date(data[0].created_at);
+      } catch (error) {
+        return;
+      }
     }
   },
   created: function () {
@@ -145,6 +144,7 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   max-width: 800px;
   margin: 100px auto 80px auto;
   font-size: 20px;
