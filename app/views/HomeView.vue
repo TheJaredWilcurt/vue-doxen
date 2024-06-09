@@ -11,6 +11,68 @@
       Vue-Doxen is a tool to <strong>auto-generate live documentation</strong> specifically built around the <strong>unique capabilites of Vue components</strong>. You can start by just passing in your components and it will automatically render them for you. Or, if you want more control, you can pass in a "demo" object that defines what custom components to use on the documentation page. Almost everything about Vue-Doxen is customizable!
     </TitleParagraph>
 
+    <TitleParagraph title="Benefits and features of Vue-Doxen">
+      <ul class="star-list">
+        <li>
+          Works anywhere
+          <ul>
+            <li>
+              It's <strong>just a Vue component</strong>,
+              so you can put it <em>anywhere</em>,
+              in any context or environment.
+            </li>
+            <li>
+              You can throw it into your existing app on a secret page.
+              <ul>
+                <li>
+                  Useful if your components use globally installed plugins, components, or Vuex/Pinia stores.
+                </li>
+              </ul>
+            </li>
+            <li>
+              You can put it on a separate docs site.
+            </li>
+          </ul>
+        </li>
+        <li>
+          Just <strong>pass your components in</strong>, it does the rest.
+        </li>
+        <li>
+          Documentation can live directly in the component as code. Most documentation is part of Vue's official API.
+        </li>
+        <li>
+          Generates the docs <strong>at run time</strong> based on the component passed in.
+          <ul>
+            <li>
+              It's never out-of-date.
+            </li>
+          </ul>
+        </li>
+        <li>
+          100% styling agnostic.
+          <ul>
+            <li>
+              All styling optional.
+            </li>
+            <li>
+              Can apply classes to any DOM element.
+            </li>
+          </ul>
+        </li>
+        <li>
+          Fully customizable.
+          <ul>
+            <li>
+              Can replace internal components with your own custom ones globally or on a per-demo basis.
+            </li>
+          </ul>
+        </li>
+        <li>
+          Highly extensible.
+        </li>
+      </ul>
+    </TitleParagraph>
+
     <TitleParagraph title="Is this library ready for use?">
       <em>Yes!</em> We've reached the <strong>Release Candidate</strong> stage.
       Which means you can <code>npm install</code> it and try it out now to give early feedback.
@@ -58,6 +120,20 @@
       Nope! I designed Vue-Doxen exclusively around the component architecture used internally by Vue. I get that you want to use Vue-Doxen's approach elsewhere, but until a frontend framework comes out that is better than Vue, I won't be the one porting it. Similar to how, if you want Pinia, you gotta use Vue, same goes for Vue-Doxen.
     </TitleParagraph>
 
+    <TitleParagraph title="Alternatives Comparison">
+      <ul>
+        <li>
+          <a
+            href="https://dev.to/thejaredwilcurt/comparing-vue-component-documentation-tools-1b1f"
+            target="_blank"
+          >
+            Comparing Vue-Doxen, Vue Styleguidist, and Storybook
+            (DEV.to)
+          </a>
+        </li>
+      </ul>
+    </TitleParagraph>
+
     <TitleParagraph title="Why is there a dog?">
       This is a Documentation tool to help you write your "docs". "Docs" sounds like "Doxen", which is the shortened version of the dog breed "Dachshund". So we have a Dachshund dog in the logo.
     </TitleParagraph>
@@ -85,3 +161,18 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.star-list li {
+  padding-left: 7px;
+}
+.star-list > li {
+  list-style: '✦';
+}
+.star-list > li > ul > li {
+  list-style: '✧';
+}
+.star-list > li > ul > li > ul > li {
+  list-style: '✤';
+}
+</style>
