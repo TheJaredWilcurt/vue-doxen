@@ -201,7 +201,19 @@ export default {
       this.demoProps = {};
       this.demoSlots = {};
       for (const propName in this.propsToDemo) {
-        this.demoProps[propName] = this.propsToDemo?.[propName]?.props?.modelValue;
+        const propDefault = this.playgroundProps?.[propName]?.default;
+        const modelValue = this.propsToDemo?.[propName]?.props?.modelValue;
+
+        if (propDefault === undefined && modelValue === undefined) {
+          this.demoProps[propName] = undefined;
+        } else {
+          if (propDefault !== undefined) {
+            this.demoProps[propName] = propDefault;
+          }
+          if (modelValue !== undefined) {
+            this.demoProps[propName] = modelValue;
+          }
+        }
       }
       for (const slotName in this.slotsToDemo) {
         this.demoSlots[slotName] = this.slotsToDemo?.[slotName].default;
