@@ -219,6 +219,9 @@ export default {
   border-radius: 0px;
   margin: 0px 0px 0px 5px;
 }
+.style-swapper [data-applied-style-tokens~="formFieldCheckboxContainer"] {
+  flex-grow: 0;
+}
 .style-swapper .center-the-checkbox {
   display: flex;
   justify-content: center;
