@@ -443,6 +443,8 @@ export default {
             defaultValue === value
           ) {
             return;
+          } else if (defaultValue === value) {
+            return;
           } else if (![undefined, null, ''].includes(value)) {
             propsOutput[propName] = value;
           }
