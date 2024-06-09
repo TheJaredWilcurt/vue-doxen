@@ -109,8 +109,8 @@ export default {
           Accept: 'application/vnd.github+json'
         }
       };
-      fetch(url)
-        .then(async (response, options) => {
+      fetch(url, options)
+        .then(async (response) => {
           if (!response.ok) {
             throw new Error('Network response was not OK');
           }
