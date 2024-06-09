@@ -106,7 +106,7 @@ export default {
         }
       };
       fetch(url)
-        .then(async (response) => {
+        .then(async (response, options) => {
           if (!response.ok) {
             throw new Error('Network response was not OK');
           }

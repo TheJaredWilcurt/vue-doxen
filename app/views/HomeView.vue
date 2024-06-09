@@ -12,7 +12,7 @@
     </TitleParagraph>
 
     <TitleParagraph title="Benefits and features of Vue-Doxen">
-      <ul>
+      <ul class="star-list">
         <li>
           Works anywhere
           <ul>
@@ -117,6 +117,20 @@
       Nope! I designed Vue-Doxen exclusively around the component architecture used internally by Vue. I get that you want to use Vue-Doxen's approach elsewhere, but until a frontend framework comes out that is better than Vue, I won't be the one porting it. Similar to how, if you want Pinia, you gotta use Vue, same goes for Vue-Doxen.
     </TitleParagraph>
 
+    <TitleParagraph title="Alternatives Comparison">
+      <ul>
+        <li>
+          <a
+            href="https://dev.to/thejaredwilcurt/comparing-vue-component-documentation-tools-1b1f"
+            target="_blank"
+          >
+            Comparing Vue-Doxen, Vue Styleguidist, and Storybook
+            (DEV.to)
+          </a>
+        </li>
+      </ul>
+    </TitleParagraph>
+
     <TitleParagraph title="Why is there a dog?">
       This is a Documentation tool to help you write your "docs". "Docs" sounds like "Doxen", which is the shortened version of the dog breed "Dachshund". So we have a Dachshund dog in the logo.
     </TitleParagraph>
@@ -144,3 +158,18 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.star-list li {
+  padding-left: 7px;
+}
+.star-list > li {
+  list-style: '✦';
+}
+.star-list > li > ul > li {
+  list-style: '✧';
+}
+.star-list > li > ul > li > ul > li {
+  list-style: '✤';
+}
+</style>
