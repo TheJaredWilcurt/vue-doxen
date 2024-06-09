@@ -410,9 +410,10 @@ export default {
       const attributes = Object.keys(this.propsToDemo)
         .map((propName) => {
           return {
+            default: this.playgroundProps?.[propName]?.default,
             name: propName,
-            value: this.demoProps[propName],
-            required: !!this.demo?.component?.props?.[propName]?.required
+            required: !!this.demo?.component?.props?.[propName]?.required,
+            value: this.demoProps[propName]
           };
         });
       const slots = {};
