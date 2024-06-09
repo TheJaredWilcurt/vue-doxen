@@ -210,6 +210,7 @@ export default {
           if (propDefault !== undefined) {
             this.demoProps[propName] = propDefault;
           }
+          // Intentionally not using else if
           if (modelValue !== undefined) {
             this.demoProps[propName] = modelValue;
           }
