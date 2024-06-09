@@ -54,17 +54,21 @@
           </svg>
           GitHub
         </a>
+        <p>
+          MIT Licensed
+        </p>
       </div>
 
       <div class="last-updated">
         <template v-if="lastUpdated">
-          This website was last updated
+          This website was last updated on
           <a
             href="https://github.com/TheJaredWilcurt/vue-doxen/deployments"
             target="_blank"
           >
-            on {{ lastUpdated.toLocaleDateString() }}
-            at {{ lastUpdated.toLocaleTimeString() }}
+            {{ lastUpdated.toLocaleDateString() }}
+            at
+            {{ lastUpdated.toLocaleTimeString() }}
           </a>.
         </template>
         <template v-else>
@@ -142,7 +146,7 @@ footer {
   justify-content: space-between;
   align-items: center;
   max-width: 800px;
-  margin: 100px auto 20px auto;
+  margin: 100px auto 80px auto;
   font-size: 20px;
   text-align: center;
 }
@@ -153,6 +157,9 @@ footer svg {
 }
 .github-container {
   width: 34%;
+}
+.github-container p {
+  font-size: 15px;
 }
 .github {
   display: inline-block;
@@ -174,6 +181,19 @@ footer svg {
   margin-top: 25px;
   margin-bottom: 25px;
   font-size: 15px;
+}
+@media (width < 500px) {
+  footer {
+    flex-direction: column;
+  }
+  .github-container,
+  .created-by,
+  .last-updated {
+    width: 100%;
+  }
+  .github-container {
+    order: 3;
+  }
 }
 </style>
 

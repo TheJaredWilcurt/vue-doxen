@@ -38,6 +38,9 @@
           Just <strong>pass your components in</strong>, it does the rest.
         </li>
         <li>
+          Documentation can live directly in the component as code. Most documentation is part of Vue's official API.
+        </li>
+        <li>
           Generates the docs <strong>at run time</strong> based on the component passed in.
           <ul>
             <li>
