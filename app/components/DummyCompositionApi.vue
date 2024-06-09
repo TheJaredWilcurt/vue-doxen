@@ -54,12 +54,18 @@ export default {
     },
     label: {
       type: String,
-      default: 'potato'
+      default: 'potato',
+      description: 'Testing default string'
     },
     enabled: {
       type: Boolean,
       default: true,
       description: 'Testing logic around boolean props that default to true instead of false.'
+    },
+    validation: {
+      type: Function,
+      required: true,
+      description: 'Testing required function prop'
     }
   },
   setup: function () {

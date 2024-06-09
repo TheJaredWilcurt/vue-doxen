@@ -436,7 +436,7 @@ export default {
         .sort()
         .forEach((propName) => {
           const value = this.demoProps[propName];
-          const defaultValue = this.demo?.component?.props?.[propName]?.default;
+          const defaultValue = this.playgroundProps?.[propName]?.default;
           if (
             typeof(value) === 'boolean' &&
             typeof(defaultValue) === 'boolean' &&
