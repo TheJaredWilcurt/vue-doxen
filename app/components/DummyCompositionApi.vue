@@ -62,7 +62,7 @@ export default {
       default: true,
       description: 'Testing logic around boolean props that default to true instead of false.'
     },
-    validation: {
+    externalValidation: {
       type: Function,
       required: true,
       description: 'Testing required function prop'
@@ -79,6 +79,9 @@ export default {
       greeting,
       colors
     };
+  },
+  created: function () {
+    this.externalValidation();
   }
 };
 </script>
