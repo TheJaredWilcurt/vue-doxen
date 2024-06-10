@@ -11,20 +11,31 @@
       :required="false"
       :styleTokens="styleTokens"
     />
-    <CodeBox
+    <div
       v-if="codeAsString"
-      :code="codeAsString"
-      :styleTokens="styleTokens"
-    />
-    <CodeBox
+      v-bind="applyStyleTokens({ doxenPlainText: true })"
+    >
+      <CodeBox
+        :id="idFor"
+        :code="codeAsString"
+        :styleTokens="styleTokens"
+      />
+    </div>
+    <div
       v-else-if="asCode"
-      :code="serializedModelValue || ''"
-      :styleTokens="styleTokens"
-    />
+      v-bind="applyStyleTokens({ doxenPlainText: true })"
+    >
+      <CodeBox
+        :id="idFor"
+        :code="serializedModelValue || ''"
+        :styleTokens="styleTokens"
+      />
+    </div>
     <div
       v-else
       v-text="modelValue"
       v-bind="applyStyleTokens({ doxenPlainText: true })"
+      :id="idFor"
     ></div>
     <FormFieldFooter
       :errorMessage="errorMessage"

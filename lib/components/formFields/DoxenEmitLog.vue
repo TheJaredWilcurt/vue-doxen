@@ -21,7 +21,10 @@
       </button>
     </div>
     <div v-bind="applyStyleTokens({ emitLogTableContainer: true })">
-      <table v-bind="applyStyleTokens({ emitLogTable: true })">
+      <table
+        v-bind="applyStyleTokens({ emitLogTable: true })"
+        :id="idFor"
+      >
         <thead v-bind="applyStyleTokens({ emitLogThead: true })">
           <tr v-bind="applyStyleTokens({ emitLogTr: true })">
             <th v-bind="applyStyleTokens({ emitLogTh: true })">Emit Name</th>
