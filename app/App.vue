@@ -3,7 +3,8 @@
     :class="{
       'v-application': styles.startsWith('vuetify'),
       'v-theme--dark': styles === 'vuetifyDark',
-      'v-theme--light': styles === 'vuetifyLight'
+      'v-theme--light': styles === 'vuetifyLight',
+      'doxen-dark': ['water', 'vuetifyDark'].includes(styles)
     }"
     style="flex-direction: column;"
   >
@@ -38,7 +39,9 @@
           >
             <img
               alt="TheJaredWilcurt"
-              src="https://raw.githubusercontent.com/TheJaredWilcurt/TheJaredWilcurt/master/TheJaredWilcurt.png"
+              class="signature"
+              :src="'https://raw.githubusercontent.com/TheJaredWilcurt/TheJaredWilcurt/master/TheJaredWilcurt.png?cachebusting=' + signatureKey"
+              @mouseover="signatureKey++"
             />
           </a>
         </div>
@@ -97,7 +100,8 @@ export default {
     return {
       lastUpdated: null,
       styles: 'water',
-      styleTokens: styleTokensBuiltIn
+      styleTokens: styleTokensBuiltIn,
+      signatureKey: 0
     };
   },
   methods: {
@@ -173,9 +177,12 @@ footer svg {
   width: 33%;
   font-size: 15px;
 }
-.created-by img {
+.signature {
   width: 205.233px;
   height: auto;
+}
+.doxen-dark .signature {
+  filter: brightness(20);
 }
 .last-updated {
   width: 33%;
