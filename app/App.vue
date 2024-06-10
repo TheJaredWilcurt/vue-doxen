@@ -138,7 +138,8 @@ header {
   margin-bottom: 1.5rem;
 }
 main {
-  width: 100%;
+  /* Approximation of sidebar width which varies depending on font size of CSS loaded */
+  width: calc(100% - 200px);
 }
 footer {
   display: flex;
@@ -181,6 +182,11 @@ footer svg {
   margin-top: 25px;
   margin-bottom: 25px;
   font-size: 15px;
+}
+@media (width < 831px) {
+  main {
+    width: 100%;
+  }
 }
 @media (width < 500px) {
   footer {
