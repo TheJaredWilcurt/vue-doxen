@@ -110,6 +110,11 @@ $black10: rgba(0, 1, 16, 0.10)
     align-items: center
     justify-content: space-between
 
+:where([data-applied-style-tokens~="doxenPlainText"]),
+:where([data-applied-style-tokens~="emitLogTableContainer"])
+    max-width: 800px
+    overflow: auto
+
 @media (width < 700px)
     :where([data-applied-style-tokens~="tabsButtonContainer"])
         flex-direction: column
