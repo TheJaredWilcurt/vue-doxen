@@ -36,12 +36,13 @@
           <a
             href="https://twitter.com/TheJaredWilcurt"
             title="@TheJaredWilcurt"
+            @focus="signatureKey++"
+            @mouseover="signatureKey++"
           >
             <img
               alt="TheJaredWilcurt"
               class="signature"
               :src="'https://raw.githubusercontent.com/TheJaredWilcurt/TheJaredWilcurt/master/TheJaredWilcurt.png?cachebusting=' + signatureKey"
-              @mouseover="signatureKey++"
             />
           </a>
         </div>
