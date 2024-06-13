@@ -59,7 +59,8 @@ import _cloneDeep from 'lodash.clonedeep';
 
 import {
   createIdFor,
-  createImportStatement
+  createImportStatement,
+  generateRandomId
 } from '@/helpers/componentHelpers.js';
 import {
   createDisabledProp,
@@ -118,7 +119,7 @@ export default {
   },
   computed: {
     uniqueId: function () {
-      return crypto.randomUUID();
+      return generateRandomId();
     },
     uniqueOptions: function () {
       if (!this.options || !Array.isArray(this.options)) {
@@ -128,7 +129,7 @@ export default {
         .map((option) => {
           return {
             ...option,
-            uniqueId: crypto.randomUUID()
+            uniqueId: generateRandomId()
           };
         });
     },

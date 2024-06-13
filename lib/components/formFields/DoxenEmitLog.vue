@@ -49,7 +49,8 @@
 <script>
 import {
   createIdFor,
-  createImportStatement
+  createImportStatement,
+  generateRandomId
 } from '@/helpers/componentHelpers.js';
 import {
   createModelValueProp,
@@ -85,7 +86,7 @@ export default {
   },
   computed: {
     uniqueId: function () {
-      return crypto.randomUUID();
+      return generateRandomId();
     },
     idFor: function () {
       return createIdFor({

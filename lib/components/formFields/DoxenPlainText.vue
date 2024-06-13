@@ -50,7 +50,8 @@
 <script>
 import {
   createIdFor,
-  createImportStatement
+  createImportStatement,
+  generateRandomId
 } from '@/helpers/componentHelpers.js';
 import {
   createErrorMessageProp,
@@ -112,7 +113,7 @@ export default {
       return undefined;
     },
     uniqueId: function () {
-      return crypto.randomUUID();
+      return generateRandomId();
     },
     idFor: function () {
       return createIdFor({
