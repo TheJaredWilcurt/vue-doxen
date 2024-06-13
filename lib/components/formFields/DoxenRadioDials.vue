@@ -67,6 +67,7 @@ import _cloneDeep from 'lodash.clonedeep';
 import {
   createImportStatement,
   createRadioIdFor,
+  generateRandomId,
   replaceWeirdCharacters
 } from '@/helpers/componentHelpers.js';
 import {
@@ -133,7 +134,7 @@ export default {
         .map((option) => {
           return {
             ...option,
-            uniqueId: crypto.randomUUID()
+            uniqueId: generateRandomId()
           };
         });
     },

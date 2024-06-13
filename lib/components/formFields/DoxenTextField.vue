@@ -45,7 +45,8 @@
 <script>
 import {
   createIdFor,
-  createImportStatement
+  createImportStatement,
+  generateRandomId
 } from '@/helpers/componentHelpers.js';
 import {
   createDisabledProp,
@@ -100,7 +101,7 @@ export default {
   },
   computed: {
     uniqueId: function () {
-      return crypto.randomUUID();
+      return generateRandomId();
     },
     idFor: function () {
       return createIdFor({
