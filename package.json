@@ -15,6 +15,8 @@
     "unit": "cross-env TZ=America/New_York vitest --coverage --config vite.config.lib.js",
     "test": "cross-env TZ=America/New_York vitest run --coverage --config vite.config.lib.js"
   },
+  "dependencies": {
+  },
   "devDependencies": {
     "@babel/eslint-parser": "^7.24.7",
     "@highlightjs/vue-plugin": "2.1.2",
@@ -24,6 +26,7 @@
     "axe-core": "^4.9.1",
     "babel-eslint": "^10.1.0",
     "cross-env": "^7.0.3",
+    "crypto-randomuuid": "^1.0.0",
     "eslint": "^8.57.0",
     "eslint-config-tjw-base": "^2.0.0",
     "eslint-config-tjw-import": "^1.0.0",
