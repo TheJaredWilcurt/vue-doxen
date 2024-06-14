@@ -138,14 +138,8 @@
       >
         <div class="buttons-container">
           <span v-text="LIVE_CODE" class="sr-only"></span>
-          <div
-            class="blocks button first"
-            :key="'button' + button"
-          ></div>
-          <div
-            class="blocks button"
-            :key="'button' + button"
-          ></div>
+          <div class="blocks button first"></div>
+          <div class="blocks button"></div>
         </div>
         <div class="code-box">
           <div
