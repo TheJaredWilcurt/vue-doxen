@@ -202,8 +202,8 @@ export default {
       this.demoProps = {};
       this.demoSlots = {};
       for (const propName in this.propsToDemo) {
-        const modelValue = this.propsToDemo?.[propName]?.props?.modelValue;
         const propDefault = getDefaultValue(this.playgroundProps?.[propName]?.default);
+        const modelValue = this.propsToDemo?.[propName]?.props?.modelValue;
 
         if (propDefault === undefined && modelValue === undefined) {
           this.demoProps[propName] = undefined;
@@ -218,8 +218,7 @@ export default {
         }
       }
       for (const slotName in this.slotsToDemo) {
-        const slotDefault = getDefaultValue(this.slotsToDemo?.[slotName].default);
-        this.demoSlots[slotName] = slotDefault;
+        this.demoSlots[slotName] = getDefaultValue(this.slotsToDemo?.[slotName].default);
       }
     }
   },
