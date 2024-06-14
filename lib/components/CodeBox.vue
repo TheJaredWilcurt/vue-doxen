@@ -17,8 +17,8 @@
     />
     <button
       v-bind="applyStyleTokens({
-        codeBoxCopyVisible: showCopy,
-        codeBoxCopy: true
+        codeBoxCopyButton: true,
+        codeBoxCopyVisible: showCopy
       })"
       @blur="showCopy = false"
       @click="copy"
