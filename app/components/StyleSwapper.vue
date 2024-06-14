@@ -151,8 +151,8 @@ export default {
     return {
       includeNormalize: true,
       includeVueDoxenStylesheet: true,
-      styleToDemo: 'water',
-      tokensToDemo: 'builtIn'
+      styleToDemo: 'vuetifyDark',
+      tokensToDemo: 'vuetify'
     };
   },
   methods: {
