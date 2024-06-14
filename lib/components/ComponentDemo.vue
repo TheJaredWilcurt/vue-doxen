@@ -158,7 +158,8 @@ import _startCase from 'lodash.startcase';
 import {
   autoGeneratePlaygroundProps,
   combinePropsAndPropsToDemo,
-  createMarkupExample
+  createMarkupExample,
+  getDefaultValue
 } from '@/helpers/demoHelpers.js';
 import {
   createVueDoxenOptions,
@@ -201,7 +202,7 @@ export default {
       this.demoProps = {};
       this.demoSlots = {};
       for (const propName in this.propsToDemo) {
-        const propDefault = this.playgroundProps?.[propName]?.default;
+        const propDefault = getDefaultValue(this.playgroundProps?.[propName]?.default);
         const modelValue = this.propsToDemo?.[propName]?.props?.modelValue;
 
         if (propDefault === undefined && modelValue === undefined) {
@@ -217,7 +218,7 @@ export default {
         }
       }
       for (const slotName in this.slotsToDemo) {
-        this.demoSlots[slotName] = this.slotsToDemo?.[slotName].default;
+        this.demoSlots[slotName] = getDefaultValue(this.slotsToDemo?.[slotName].default);
       }
     }
   },
@@ -353,7 +354,7 @@ export default {
       for (const slotName in slotsToDemo) {
         slotsToDemo[slotName].default = (
           slotsToDemo[slotName]?.props?.modelValue ||
-          String(slotsToDemo[slotName].default)
+          String(getDefaultValue(slotsToDemo[slotName].default))
         );
       }
 
@@ -411,7 +412,7 @@ export default {
       const attributes = Object.keys(this.propsToDemo)
         .map((propName) => {
           return {
-            default: this.playgroundProps?.[propName]?.default,
+            default: getDefaultValue(this.playgroundProps?.[propName]?.default),
             name: propName,
             required: !!this.demo?.component?.props?.[propName]?.required,
             value: this.demoProps[propName]
@@ -437,7 +438,7 @@ export default {
         .sort()
         .forEach((propName) => {
           const value = this.demoProps[propName];
-          const defaultValue = this.playgroundProps?.[propName]?.default;
+          const defaultValue = getDefaultValue(this.playgroundProps?.[propName]?.default);
           if (
             typeof(value) === 'boolean' &&
             typeof(defaultValue) === 'boolean' &&
