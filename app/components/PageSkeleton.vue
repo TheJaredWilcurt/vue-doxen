@@ -139,7 +139,10 @@
         <div class="buttons-container">
           <span v-text="LIVE_CODE" class="sr-only"></span>
           <div
-            v-for="button in 2"
+            class="blocks button first"
+            :key="'button' + button"
+          ></div>
+          <div
             class="blocks button"
             :key="'button' + button"
           ></div>
@@ -359,7 +362,10 @@ export default {
 }
 .buttons-container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
+}
+.buttons-container .first {
+  margin: 0px;
 }
 .button {
   display: inline-block;
