@@ -87,6 +87,16 @@ $black10: rgba(0, 1, 16, 0.10)
 :where([data-applied-style-tokens~="codeSwapperFileName"])
     float: right
 
+:where([data-applied-style-tokens~="codeBoxContainer"])
+    position: relative
+
+/* Show/Hide copy text on code boxes */
+:where([data-applied-style-tokens~="codeBoxCopy"])
+    display: none
+
+:where([data-applied-style-tokens~="codeBoxCopyVisible"])
+    display: block
+
 /* Make the selected button bold for affordance */
 :where([data-applied-style-tokens~="buttonSelected"]),
 :where([data-applied-style-tokens~="sidebarButtonSelected"]),

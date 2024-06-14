@@ -1,11 +1,34 @@
 <template>
-  <HighlightJS
-    v-bind="applyStyleTokens({ codeBox: true })"
-    :autodetect="false"
-    :code="code"
-    :language="language"
-    :key="index"
-  />
+  <div
+    v-bind="applyStyleTokens({ codeBoxContainer: true })"
+    tabindex="0"
+    @mouseover="showCopy = true"
+    @focus="showCopy = true"
+    @mouseout="showCopy = false"
+  >
+    <HighlightJS
+      v-bind="applyStyleTokens({ codeBox: true })"
+      :autodetect="false"
+      :code="code"
+      :language="language"
+      :key="index"
+    />
+    <button
+      v-bind="applyStyleTokens({
+        codeBoxCopyVisible: showCopy,
+        codeBoxCopy: true
+      })"
+      @blur="showCopy = false"
+      @click="copy"
+    >
+      <template v-if="copied">
+        Copied
+      </template>
+      <template v-else>
+        Copy
+      </template>
+    </button>
+  </div>
 </template>
 
 <script>
@@ -40,8 +63,23 @@ export default {
   },
   data: function () {
     return {
+      copied: false,
+      showCopy: false,
       index: 0
     };
+  },
+  methods: {
+    copy: async function () {
+      try {
+        await navigator.clipboard.writeText(this.code);
+        this.copied = true;
+        setTimeout(() => {
+          this.copied = false;
+        }, 2100);
+      } catch (error) {
+        console.error(error.message);
+      }
+    }
   },
   computed: {
     language: function () {
