@@ -1,10 +1,12 @@
 <template>
   <div
     v-bind="applyStyleTokens({ codeBoxContainer: true })"
+    role="button"
     tabindex="0"
     @mouseover="showCopy = true"
     @focus="showCopy = true"
     @mouseout="showCopy = false"
+    @blur="showCopy = true"
   >
     <HighlightJS
       v-bind="applyStyleTokens({ codeBox: true })"
