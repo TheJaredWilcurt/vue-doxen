@@ -1,20 +1,23 @@
 <template>
-  <div
-    v-bind="applyStyleTokens({ codeBoxContainer: true })"
-    role="button"
-    tabindex="0"
-    @mouseover="showCopy = true"
-    @focus="showCopy = true"
-    @mouseout="showCopy = false"
-    @blur="showCopy = true"
-  >
-    <HighlightJS
-      v-bind="applyStyleTokens({ codeBox: true })"
-      :autodetect="false"
-      :code="code"
-      :language="language"
-      :key="index"
-    />
+  <div v-bind="applyStyleTokens({ codeBoxWrapper: true })">
+    <div
+      v-bind="applyStyleTokens({ codeBoxContainer: true })"
+      aria-label="Code example"
+      role="textbox"
+      tabindex="0"
+      @mouseover="showCopy = true"
+      @focus="showCopy = true"
+      @mouseout="showCopy = false"
+      @blur="showCopy = true"
+    >
+      <HighlightJS
+        v-bind="applyStyleTokens({ codeBox: true })"
+        :autodetect="false"
+        :code="code"
+        :language="language"
+        :key="index"
+      />
+    </div>
     <button
       v-bind="applyStyleTokens({
         codeBoxCopied: copied,

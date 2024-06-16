@@ -7,6 +7,7 @@
       </div>
       <div>
         <a
+          class="created-by-link"
           href="https://twitter.com/TheJaredWilcurt"
           title="@TheJaredWilcurt"
           @focus="signatureKey++"
@@ -123,6 +124,9 @@ footer svg {
   justify-content: center;
   width: 33%;
   font-size: 15px;
+}
+.created-by-link {
+  display: inline-block;
 }
 .signature {
   width: 205.233px;
