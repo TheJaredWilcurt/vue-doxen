@@ -1,40 +1,27 @@
 <template>
-  <div v-bind="applyStyleTokens({ codeBoxWrapper: true })">
+  <div
+    v-bind="applyStyleTokens({ codeBoxContainer: true })"
+    aria-label="Code example"
+    role="textbox"
+    tabindex="0"
+    title="Click to copy"
+    @click="copy"
+    @keydown.enter="copy"
+    @keydown.space.prevent.stop="copy"
+  >
+    <HighlightJS
+      v-bind="applyStyleTokens({ codeBox: true })"
+      :autodetect="false"
+      :code="code"
+      :language="language"
+      :key="index"
+    />
     <div
-      v-bind="applyStyleTokens({ codeBoxContainer: true })"
-      aria-label="Code example"
-      role="textbox"
-      tabindex="0"
-      @mouseover="showCopy = true"
-      @focus="showCopy = true"
-      @mouseout="showCopy = false"
-      @blur="showCopy = true"
+      v-if="copied"
+      v-bind="applyStyleTokens({ codeBoxCopied: copied })"
     >
-      <HighlightJS
-        v-bind="applyStyleTokens({ codeBox: true })"
-        :autodetect="false"
-        :code="code"
-        :language="language"
-        :key="index"
-      />
+      Copied
     </div>
-    <button
-      v-bind="applyStyleTokens({
-        codeBoxCopied: copied,
-        codeBoxCopy: !copied,
-        codeBoxCopyButton: true,
-        codeBoxCopyVisible: showCopy
-      })"
-      @blur="showCopy = false"
-      @click="copy"
-    >
-      <template v-if="copied">
-        Copied
-      </template>
-      <template v-else>
-        Copy
-      </template>
-    </button>
   </div>
 </template>
 
@@ -71,7 +58,6 @@ export default {
   data: function () {
     return {
       copied: false,
-      showCopy: false,
       index: 0
     };
   },
