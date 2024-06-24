@@ -11,7 +11,7 @@ The world's best Vue.js component documentation tool!
 * Documentation lives in the component as code (or in separate object if preferred)
 * Vue-Doxen is just a Vue componet, so it works anywhere a Vue component would work.
 * Generates at runtime, so always up-to-date
-* Doesn't require adopting an entire ecosystem or install tons of dependencies, just use what works with Vue and you're good.
+* Doesn't require adopting an entire ecosystem or installing tons of dependencies, just use what works with Vue and you're good.
 
 
 ## Using the library
