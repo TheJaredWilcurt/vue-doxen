@@ -12,7 +12,7 @@
       })"
       :key="key"
     >
-      {{ value?.component?.name }}
+      {{ value?.component?.name || value?.name || value?.component?.__name || key }}
     </button>
     <slot name="footer"></slot>
   </div>
