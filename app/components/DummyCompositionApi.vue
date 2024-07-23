@@ -29,6 +29,7 @@ import { computed, ref } from 'vue';
 import CodeBox from '@/components/CodeBox.vue';
 
 const ALLOWED_COLORS = [
+  '',
   'red',
   'green',
   'blue',
@@ -46,7 +47,7 @@ export default {
   props: {
     color: {
       type: String,
-      default: ALLOWED_COLORS[0],
+      default: ALLOWED_COLORS[1],
       allowed: ALLOWED_COLORS,
       validator: function (value) {
         return ALLOWED_COLORS.includes(value);
