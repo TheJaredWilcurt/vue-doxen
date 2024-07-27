@@ -1,6 +1,14 @@
 <template>
-  <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Props Documentation</h3>
-  <ul v-bind="applyStyleTokens({ propsDocumentationUl: true })">
+  <h3
+    v-if="hasProps"
+    v-bind="applyStyleTokens({ componentDemoH3: true })"
+  >
+    Props Documentation
+  </h3>
+  <ul
+    v-if="hasProps"
+    v-bind="applyStyleTokens({ propsDocumentationUl: true })"
+  >
     <li
       v-for="(value, prop) in propsToDemo"
       v-bind="applyStyleTokens({ propsDocumentationLi: true })"
@@ -133,6 +141,12 @@ export default {
         value = value();
       }
       return dataValue(value);
+    }
+  },
+  computed: {
+    hasProps: function () {
+      const props = this.propsToDemo || {};
+      return !!Object.keys(props).length;
     }
   }
 };
