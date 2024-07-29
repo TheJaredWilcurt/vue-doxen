@@ -1,5 +1,6 @@
 import {
   DoxenCheckbox,
+  DoxenCodeSwapper,
   DoxenDropdown,
   DoxenEmitLog,
   DoxenEmitsDocumentation,
@@ -21,6 +22,7 @@ import DummyCompositionApi from '@@@/components/DummyCompositionApi.vue';
 import DummyScriptSetupApi from '@@@/components/DummyScriptSetupApi.vue';
 
 import { createDoxenButtonDemo } from '@@@/demos/doxenButtonDemo.js';
+import { createDoxenCodeSwapperDemo } from '@@@/demos/doxenCodeSwapperDemo.js';
 import { createDoxenEmitLogDemo } from '@@@/demos/doxenEmitLogDemo.js';
 import { createDoxenEmitsDocumentationDemo } from '@@@/demos/doxenEmitsDocumentationDemo.js';
 import { createDoxenPropsDocumentationDemo } from '@@@/demos/doxenPropsDocumentationDemo.js';
@@ -126,6 +128,7 @@ export const componentsToListInSidebar = {
   DummyCompositionApi,
   DummyScriptSetupApi,
   DoxenButton,
+  DoxenCodeSwapper,
   DoxenEmitLog,
   DoxenEmitsDocumentation,
   DoxenTabs,
@@ -138,6 +141,7 @@ export const createDemos = function (styleTokens) {
     DummyCompositionApi,
     DummyScriptSetupApi: createDummyScriptSetupApiDemo(styleTokens),
     DoxenButton: createDoxenButtonDemo(styleTokens),
+    DoxenCodeSwapper: createDoxenCodeSwapperDemo(styleTokens),
     DoxenEmitLog: createDoxenEmitLogDemo(styleTokens),
     DoxenEmitsDocumentation: createDoxenEmitsDocumentationDemo(styleTokens),
     DoxenPropsDocumentation: createDoxenPropsDocumentationDemo(styleTokens),

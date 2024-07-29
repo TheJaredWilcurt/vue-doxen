@@ -123,7 +123,7 @@
       />
     </form>
 
-    <CodeSwapper
+    <DoxenCodeSwapper
       :codeTypes="{
         Vue: markup,
         JavaScript: js
@@ -170,7 +170,7 @@ import { serializeJavaScript } from '@/helpers/serializeJavaScript.js';
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
 import CodeBox from '@/components/CodeBox.vue';
-import CodeSwapper from '@/components/CodeSwapper.vue';
+import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
 
 const options = createVueDoxenOptions(true);
 
@@ -178,7 +178,7 @@ export default {
   name: 'ComponentDemo',
   components: {
     CodeBox,
-    CodeSwapper
+    DoxenCodeSwapper
   },
   mixins: [applyStyleTokens],
   props: {

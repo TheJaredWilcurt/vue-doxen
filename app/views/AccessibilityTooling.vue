@@ -139,7 +139,7 @@
           </li>
         </ul>
 
-        <CodeSwapper
+        <DoxenCodeSwapper
           :codeTypes="{
             'Fails Linter': BAD_IMAGE,
             'Passes Linter': GOOD_IMAGE
@@ -193,8 +193,8 @@
 import { styleTokens } from '@/helpers/props.js';
 
 import CodeBox from '@/components/CodeBox.vue';
-import CodeSwapper from '@/components/CodeSwapper.vue';
 import DoxenButton from '@/components/DoxenButton.vue';
+import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
 import DocumentationSection from '@@@/components/DocumentationSection.vue';
 import SubDocumentationSection from '@@@/components/SubDocumentationSection.vue';
 
@@ -304,9 +304,9 @@ export default {
   name: 'AccessibilityOptions',
   components: {
     CodeBox,
-    CodeSwapper,
     DocumentationSection,
     DoxenButton,
+    DoxenCodeSwapper,
     SubDocumentationSection
   },
   props: {

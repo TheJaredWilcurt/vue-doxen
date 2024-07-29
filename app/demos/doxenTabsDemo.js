@@ -6,7 +6,7 @@ import DoxenTextarea from '@/components/formFields/DoxenTextarea.vue';
 export const createDoxenTabsDemo = function (styleTokens) {
   return {
     component: DoxenTabs,
-    description: 'These tabs are primarily used by the <code>CodeSwapper</code> component internally in Vue-Doxen.',
+    description: 'These tabs are primarily used by the <code>DoxenCodeSwapper</code> component internally in Vue-Doxen.',
     propsToDemo: {
       modelValue: {
         component: DoxenTextarea,

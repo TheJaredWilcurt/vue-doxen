@@ -50,7 +50,7 @@
         <code>&lt;VueDoxen /&gt;</code> component.
       </p>
 
-      <CodeSwapper
+      <DoxenCodeSwapper
         :codeTypes="{
           Options: TREE_SHAKING_USING_OPTIONS_OPTIONS_API,
           Composition: TREE_SHAKING_USING_OPTIONS_COMPOSITION_API,
@@ -67,8 +67,8 @@
 import { styleTokens } from '@/helpers/props.js';
 
 import CodeBox from '@/components/CodeBox.vue';
-import CodeSwapper from '@/components/CodeSwapper.vue';
 import DocumentationSection from '@@@/components/DocumentationSection.vue';
+import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
 
 import {
   TREE_SHAKING_IMPORT_EXAMPLE,
@@ -81,8 +81,8 @@ export default {
   name: 'TreeShaking',
   components: {
     CodeBox,
-    CodeSwapper,
-    DocumentationSection
+    DocumentationSection,
+    DoxenCodeSwapper
   },
   props: {
     styleTokens

@@ -34,8 +34,13 @@ const codeTypesExample = `{
   JavaScript: 'console.log("Hello World")'
 }`;
 
+const fileNameExample = `{
+  HTML: 'index.html',
+  JavaScript: 'index.js'
+}`;
+
 export default {
-  name: 'CodeSwapper',
+  name: 'DoxenCodeSwapper',
   components: {
     CodeBox,
     DoxenTabs
@@ -49,7 +54,9 @@ export default {
     },
     fileName: {
       type: [String, Object],
-      default: undefined
+      default: undefined,
+      description: 'You can pass in a string of a filename, like Example.js, or an object where the keys will match the code type, and the value is the string filename',
+      example: fileNameExample
     },
     styleTokens
   },
