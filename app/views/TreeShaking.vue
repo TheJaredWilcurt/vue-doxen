@@ -66,9 +66,9 @@
 <script>
 import { styleTokens } from '@/helpers/props.js';
 
-import DocumentationSection from '@@@/components/DocumentationSection.vue';
 import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
+import DocumentationSection from '@@@/components/DocumentationSection.vue';
 
 import {
   TREE_SHAKING_IMPORT_EXAMPLE,

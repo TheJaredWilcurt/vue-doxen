@@ -255,9 +255,9 @@ import { styleTokens } from '@/helpers/props.js';
 import { dataValue } from '@/helpers/snapshotHelpers.js';
 import { styleTokensBuiltIn } from '@/helpers/styleTokens.js';
 
-import DoxenCheckbox from '@/components/formFields/DoxenCheckbox.vue';
 import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
+import DoxenCheckbox from '@/components/formFields/DoxenCheckbox.vue';
 import DoxenDropdown from '@/components/formFields/DoxenDropdown.vue';
 import DocumentationSection from '@@@/components/DocumentationSection.vue';
 

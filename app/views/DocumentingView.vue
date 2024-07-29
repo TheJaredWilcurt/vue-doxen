@@ -441,8 +441,8 @@
 <script>
 import { styleTokens } from '@/helpers/props.js';
 
-import DocumentationSection from '@@@/components/DocumentationSection.vue';
 import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
+import DocumentationSection from '@@@/components/DocumentationSection.vue';
 import PageSkeleton from '@@@/components/PageSkeleton.vue';
 import SubDocumentationSection from '@@@/components/SubDocumentationSection.vue';
 
