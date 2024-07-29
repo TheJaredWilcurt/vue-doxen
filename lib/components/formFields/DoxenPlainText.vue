@@ -15,7 +15,7 @@
       v-if="codeAsString"
       v-bind="applyStyleTokens({ doxenPlainText: true })"
     >
-      <CodeBox
+      <DoxenCodeBox
         :id="idFor"
         :code="codeAsString"
         :styleTokens="styleTokens"
@@ -25,7 +25,7 @@
       v-else-if="asCode"
       v-bind="applyStyleTokens({ doxenPlainText: true })"
     >
-      <CodeBox
+      <DoxenCodeBox
         :id="idFor"
         :code="serializedModelValue || ''"
         :styleTokens="styleTokens"
@@ -64,7 +64,7 @@ import { serializeJavaScript } from '@/helpers/serializeJavaScript.js';
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
-import CodeBox from '@/components/CodeBox.vue';
+import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 import FormFieldFooter from '@/components/formFields/FormFieldFooter.vue';
 import FormFieldLabel from '@/components/formFields/FormFieldLabel.vue';
 import FormFieldsetWrapper from '@/components/formFields/FormFieldsetWrapper.vue';
@@ -78,7 +78,7 @@ export default {
   ...createImportStatement(COMPONENT_NAME),
   name: COMPONENT_NAME,
   components: {
-    CodeBox,
+    DoxenCodeBox,
     FormFieldFooter,
     FormFieldLabel,
     FormFieldsetWrapper

@@ -13,7 +13,7 @@
         <span class="color"></span>
       </div>
     </div>
-    <CodeBox
+    <DoxenCodeBox
       :code="'<h1>' + greeting + '</h1>'"
       :styleTokens="{}"
     />
@@ -24,7 +24,7 @@
 <script setup>
 import { computed, ref } from 'vue';
 
-import CodeBox from '@/components/CodeBox.vue';
+import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 import MyImportStatement from '@@@/components/MyImportStatement.vue';
 
 defineOptions({

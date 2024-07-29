@@ -20,7 +20,7 @@
         Create a Vue component similar to the one below.
       </li>
     </ol>
-    <CodeSwapper
+    <DoxenCodeSwapper
       :codeTypes="{
         Options: GETTING_STARTED_EXAMPLE,
         Composition: GETTING_STARTED_COMPOSITION_EXAMPLE,
@@ -74,7 +74,7 @@
 <script>
 import { styleTokens } from '@/helpers/props.js';
 
-import CodeSwapper from '@/components/CodeSwapper.vue';
+import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
 
 import {
   GETTING_STARTED_EXAMPLE,
@@ -85,7 +85,7 @@ import {
 export default {
   name: 'GettingStartedView',
   components: {
-    CodeSwapper
+    DoxenCodeSwapper
   },
   props: {
     styleTokens

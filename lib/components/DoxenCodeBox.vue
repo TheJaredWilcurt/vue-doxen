@@ -43,7 +43,7 @@ hljs.registerLanguage(JAVASCRIPT, javascript);
 hljs.registerLanguage(XML, xml);
 
 export default {
-  name: 'CodeBox',
+  name: 'DoxenCodeBox',
   components: {
     HighlightJS: hljsVuePlugin.component
   },

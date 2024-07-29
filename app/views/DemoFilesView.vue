@@ -29,7 +29,7 @@
     </nav>
 
     <DocumentationSection id="example" title="Example Demo File">
-      <CodeSwapper
+      <DoxenCodeSwapper
         fileName="myComponentDemo.js"
         :codeTypes="{ JavaScript: DEMO_FILE_EXAMPLE }"
         :styleTokens="styleTokens"
@@ -37,7 +37,7 @@
     </DocumentationSection>
 
     <DocumentationSection id="using" title="Using Demo Files">
-      <CodeSwapper
+      <DoxenCodeSwapper
         :codeTypes="{
           Options: DEMO_FILE_USAGE_EXAMPLE,
           Composition: DEMO_FILE_USAGE_COMPOSITION_EXAMPLE,
@@ -71,7 +71,7 @@
 <script>
 import { styleTokens } from '@/helpers/props.js';
 
-import CodeSwapper from '@/components/CodeSwapper.vue';
+import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
 import DocumentationSection from '@@@/components/DocumentationSection.vue';
 import SubDocumentationSection from '@@@/components/SubDocumentationSection.vue';
 
@@ -85,8 +85,8 @@ import {
 export default {
   name: 'DemoFilesView',
   components: {
-    CodeSwapper,
     DocumentationSection,
+    DoxenCodeSwapper,
     SubDocumentationSection
   },
   props: {

@@ -52,7 +52,7 @@
         Vue-Doxen ships with a <em>very tiny</em> (&lt;1KB gzipped) CSS file that applies <em>very simple</em> styling to the page using the lowest specificity possible (<code>:where([data-applied-style-tokens~="tokenName"])</code>), so your styles should always win out if targeting the same thing. The styling is just gentle nudges to make Vue-Doxen look a little better in most scenarios. You can toggle it on this website by clicking the <strong>"Doxen Stylesheet: Include"</strong> checkbox at the top of the page. This file is <strong>COMPLETELY OPTIONAL</strong>, if your app looks better without these nudges, don't apply them. You can always customize the styling of anything in Vue-Doxen using Style Tokens.
       </p>
 
-      <CodeSwapper
+      <DoxenCodeSwapper
         :codeTypes="{
           JavaScript: SUPPLIED_CSS_EXAMPLE,
           HTML: SUPPLIED_CSS_CDN_EXAMPLE,
@@ -124,7 +124,7 @@
 
       <p><strong>Example:</strong></p>
 
-      <CodeBox
+      <DoxenCodeBox
         :code="STYLE_TOKEN_USAGE_EXAMPLE"
         :styleTokens="styleTokens"
       />
@@ -143,14 +143,14 @@
 
       <p>The following is a list of all style tokens:</p>
 
-      <CodeBox
+      <DoxenCodeBox
         :code="styleTokensBuiltIn"
         :styleTokens="styleTokens"
       />
 
       <p>You can access this export with:</p>
 
-      <CodeBox
+      <DoxenCodeBox
         :code="STYLE_TOKENS_IMPORTS"
         :styleTokens="styleTokens"
       />
@@ -165,14 +165,14 @@
 
       <p>Import the pre-made tokens you want to use (and any components):</p>
 
-      <CodeBox
+      <DoxenCodeBox
         :code="BUILT_IN_TOKEN_IMPORT_EXAMPLE"
         :styleTokens="styleTokens"
       />
 
       <p>Then pass them in to the component:</p>
 
-      <CodeBox
+      <DoxenCodeBox
         :code="BUILT_IN_TOKEN_USAGE_EXAMPLE"
         :styleTokens="styleTokens"
       />
@@ -221,12 +221,12 @@
         type="text/css"
       />
 
-      <CodeBox
+      <DoxenCodeBox
         :code="linkThemeCode"
         :styleTokens="styleTokens"
       />
 
-      <CodeSwapper
+      <DoxenCodeSwapper
         :codeTypes="{
           Vue: VUE_EXAMPLE,
           JavaScript: JAVASCRIPT_EXAMPLE
@@ -255,8 +255,8 @@ import { styleTokens } from '@/helpers/props.js';
 import { dataValue } from '@/helpers/snapshotHelpers.js';
 import { styleTokensBuiltIn } from '@/helpers/styleTokens.js';
 
-import CodeBox from '@/components/CodeBox.vue';
-import CodeSwapper from '@/components/CodeSwapper.vue';
+import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
+import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
 import DoxenCheckbox from '@/components/formFields/DoxenCheckbox.vue';
 import DoxenDropdown from '@/components/formFields/DoxenDropdown.vue';
 import DocumentationSection from '@@@/components/DocumentationSection.vue';
@@ -349,10 +349,10 @@ const exampleComponentSlots = {
 export default {
   name: 'StylingView',
   components: {
-    CodeBox,
-    CodeSwapper,
     DocumentationSection,
     DoxenCheckbox,
+    DoxenCodeBox,
+    DoxenCodeSwapper,
     DoxenDropdown
   },
   props: {

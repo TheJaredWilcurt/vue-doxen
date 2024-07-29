@@ -54,7 +54,7 @@
             v-text="'Example:'"
             v-bind="applyStyleTokens({ emitsDocumentationStrong: true })"
           ></strong>
-          <CodeBox
+          <DoxenCodeBox
             :code="emit.example"
             :styleTokens="styleTokens"
           />
@@ -72,7 +72,7 @@ import { styleTokens } from '@/helpers/props.js';
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
-import CodeBox from '@/components/CodeBox.vue';
+import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 
 const COMPONENT_NAME = 'DoxenEmitsDocumentation';
 
@@ -80,7 +80,7 @@ export default {
   ...createImportStatement(COMPONENT_NAME),
   name: COMPONENT_NAME,
   components: {
-    CodeBox
+    DoxenCodeBox
   },
   mixins: [
     applyStyleTokens

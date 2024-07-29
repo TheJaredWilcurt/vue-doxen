@@ -11,7 +11,7 @@
         v-bind="applyStyleTokens({ codeSwapperFileName: true })"
       ></code>
     </DoxenTabs>
-    <CodeBox
+    <DoxenCodeBox
       v-for="(code, codeName) in codeTypes"
       v-show="selected === codeName"
       :code="code"
@@ -26,7 +26,7 @@ import { styleTokens } from '@/helpers/props.js';
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
-import CodeBox from '@/components/CodeBox.vue';
+import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 import DoxenTabs from '@/components/DoxenTabs.vue';
 
 const codeTypesExample = `{
@@ -34,10 +34,15 @@ const codeTypesExample = `{
   JavaScript: 'console.log("Hello World")'
 }`;
 
+const fileNameExample = `{
+  HTML: 'index.html',
+  JavaScript: 'index.js'
+}`;
+
 export default {
-  name: 'CodeSwapper',
+  name: 'DoxenCodeSwapper',
   components: {
-    CodeBox,
+    DoxenCodeBox,
     DoxenTabs
   },
   mixins: [applyStyleTokens],
@@ -49,7 +54,9 @@ export default {
     },
     fileName: {
       type: [String, Object],
-      default: undefined
+      default: undefined,
+      description: 'You can pass in a string of a filename, like Example.js, or an object where the keys will match the code type, and the value is the string filename',
+      example: fileNameExample
     },
     styleTokens
   },

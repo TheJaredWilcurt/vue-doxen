@@ -42,7 +42,7 @@
           I would recommend making a <code>demos</code> folder for your demo files with an <code>index.js</code> file in it to compose and export a <code>demos</code> object. This object can then be passed in to Vue-Doxen, but also used to dynamically create sidebar links.
         </p>
 
-        <CodeSwapper
+        <DoxenCodeSwapper
           :codeTypes="{
             JavaScript: COMPOSE_ALL_DEMOS_EXAMPLE
           }"
@@ -56,7 +56,7 @@
           Here is an example of a router file for Vue-Router. It creates a route pointed at the main Vue-Doxen component and uses the URL to know which component to demo.
         </p>
 
-        <CodeSwapper
+        <DoxenCodeSwapper
           :codeTypes="{
             JavaScript: VUE_ROUTER_EXAMPLE
           }"
@@ -73,7 +73,7 @@
           Then the sidebar, routes, and Vue-Doxen will all be based on the same source of truth and not need modified.
         </p>
 
-        <CodeSwapper
+        <DoxenCodeSwapper
           :codeTypes="{
             Options: ROUTER_LINK_OPTIONS_EXAMPLE,
             Composition: ROUTER_LINK_COMPOSITION_EXAMPLE,
@@ -97,7 +97,7 @@
           file per demo.
         </p>
 
-        <CodeSwapper
+        <DoxenCodeSwapper
           :codeTypes="{
             Options: ALTERNATE_OPTIONS_DEMO_EXAMPLE,
             Composition: ALTERNATE_COMPOSITION_DEMO_EXAMPLE,
@@ -118,7 +118,7 @@
           Now that each demo file is a component, they can be code split via their routes.
         </p>
 
-        <CodeSwapper
+        <DoxenCodeSwapper
           :codeTypes="{
             JavaScript: ALTERNATE_VUE_ROUTER_EXAMPLE
           }"
@@ -149,7 +149,7 @@
 <script>
 import { styleTokens } from '@/helpers/props.js';
 
-import CodeSwapper from '@/components/CodeSwapper.vue';
+import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
 import DocumentationSection from '@@@/components/DocumentationSection.vue';
 import SubDocumentationSection from '@@@/components/SubDocumentationSection.vue';
 
@@ -168,8 +168,8 @@ import {
 export default {
   name: 'VueRouterView',
   components: {
-    CodeSwapper,
     DocumentationSection,
+    DoxenCodeSwapper,
     SubDocumentationSection
   },
   props: {

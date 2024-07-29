@@ -36,7 +36,7 @@
         with additional information to help you correct the issue.
       </p>
 
-      <CodeBox
+      <DoxenCodeBox
         :code="TREE_SHAKING_IMPORT_EXAMPLE"
         :styleTokens="styleTokens"
       />
@@ -50,7 +50,7 @@
         <code>&lt;VueDoxen /&gt;</code> component.
       </p>
 
-      <CodeSwapper
+      <DoxenCodeSwapper
         :codeTypes="{
           Options: TREE_SHAKING_USING_OPTIONS_OPTIONS_API,
           Composition: TREE_SHAKING_USING_OPTIONS_COMPOSITION_API,
@@ -66,8 +66,8 @@
 <script>
 import { styleTokens } from '@/helpers/props.js';
 
-import CodeBox from '@/components/CodeBox.vue';
-import CodeSwapper from '@/components/CodeSwapper.vue';
+import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
+import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
 import DocumentationSection from '@@@/components/DocumentationSection.vue';
 
 import {
@@ -80,9 +80,9 @@ import {
 export default {
   name: 'TreeShaking',
   components: {
-    CodeBox,
-    CodeSwapper,
-    DocumentationSection
+    DocumentationSection,
+    DoxenCodeBox,
+    DoxenCodeSwapper
   },
   props: {
     styleTokens

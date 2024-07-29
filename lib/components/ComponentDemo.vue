@@ -25,7 +25,7 @@
     <template v-if="importStatement">
       <template v-if="typeof(importStatement) === 'string'">
         <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Usage</h3>
-        <CodeBox
+        <DoxenCodeBox
           :code="importStatement"
           :styleTokens="styleTokens"
         />
@@ -123,7 +123,7 @@
       />
     </form>
 
-    <CodeSwapper
+    <DoxenCodeSwapper
       :codeTypes="{
         Vue: markup,
         JavaScript: js
@@ -169,16 +169,16 @@ import { serializeJavaScript } from '@/helpers/serializeJavaScript.js';
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
-import CodeBox from '@/components/CodeBox.vue';
-import CodeSwapper from '@/components/CodeSwapper.vue';
+import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
+import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
 
 const options = createVueDoxenOptions(true);
 
 export default {
   name: 'ComponentDemo',
   components: {
-    CodeBox,
-    CodeSwapper
+    DoxenCodeBox,
+    DoxenCodeSwapper
   },
   mixins: [applyStyleTokens],
   props: {

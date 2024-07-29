@@ -63,7 +63,7 @@
         Components written in <code>.vue</code> files, and processed by a bundler, may include the filename in the component. We will prefer the <code>name</code> field in the component first, then in the demo file, and if the name is not explicitly defined in those places, we'll check for a file name provided by the bundler.
       </p>
 
-      <CodeSwapper
+      <DoxenCodeSwapper
         :codeTypes="{
           'Demo File': COMPONENT_NAME_DEMO_EXAMPLE,
           Options: COMPONENT_NAME_OPTIONS_EXAMPLE,
@@ -85,7 +85,7 @@
         title="Description"
         subTitle="String Example"
       >
-        <CodeSwapper
+        <DoxenCodeSwapper
           :codeTypes="{
             'Demo File': COMPONENT_DESCRIPTION_DEMO_EXAMPLE,
             Options: COMPONENT_DESCRIPTION_OPTIONS_EXAMPLE,
@@ -107,7 +107,7 @@
           being demo'd, we allow passing in a custom component to render whatever you want.
         </p>
 
-        <CodeSwapper
+        <DoxenCodeSwapper
           :codeTypes="{
             'Demo File': DESCRIPTION_COMPONENT_DEMO_FILE_EXAMPLE,
             Options: DESCRIPTION_COMPONENT_OPTIONS_EXAMPLE,
@@ -130,7 +130,7 @@
         title="Import Statement"
         subTitle="String example"
       >
-        <CodeSwapper
+        <DoxenCodeSwapper
           :codeTypes="{
             'Demo File': IMPORT_STATEMENT_STRING_DEMO_FILE_EXAMPLE,
             Options: IMPORT_STATEMENT_STRING_OPTIONS_EXAMPLE,
@@ -153,7 +153,7 @@
           component rendering).
         </p>
 
-        <CodeSwapper
+        <DoxenCodeSwapper
           :codeTypes="{
             'Demo File': IMPORT_STATEMENT_COMPONENT_DEMO_FILE_EXAMPLE,
             Options: IMPORT_STATEMENT_COMPONENT_OPTIONS_EXAMPLE,
@@ -197,7 +197,7 @@
           needs placed on the prop definition in order for undefined props to be defaulted to a desired value at runtime.
         </p>
 
-        <CodeSwapper
+        <DoxenCodeSwapper
           :codeTypes="{
             Options: BASIC_PROPS_OPTIONS,
             Composition: BASIC_PROPS_OPTIONS,
@@ -221,7 +221,7 @@
           <li><code>example</code> &ndash; An example of what should be passed in to the prop. Useful for complex data types.</li>
         </ul>
 
-        <CodeSwapper
+        <DoxenCodeSwapper
           :codeTypes="{
             'Demo File': DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_DEMO_FILE,
             Options: DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_OPTIONS,
@@ -263,7 +263,7 @@
           component. This is fully supported!
         </p>
 
-        <CodeSwapper
+        <DoxenCodeSwapper
           :codeTypes="{
             'Demo File': CUSTOM_COMPONENTS_DEMO_EXAMPLE,
             Options: CUSTOM_COMPONENTS_OPTIONS_EXAMPLE,
@@ -288,7 +288,7 @@
         title="Documenting Slots"
         subTitle="Array example"
       >
-        <CodeSwapper
+        <DoxenCodeSwapper
           :codeTypes="{
             'Demo File': SLOTS_DEMO_ARRAY_EXAMPLE,
             Options: SLOTS_OPTIONS_ARRAY_EXAMPLE,
@@ -309,7 +309,7 @@
           You can optionally provide some HTML markup as a string to be used
           as the default text passed in to a slot on the demo page.
         </p>
-        <CodeSwapper
+        <DoxenCodeSwapper
           :codeTypes="{
             'Demo File': SLOTS_DEMO_DEFAULT_TEXT_EXAMPLE,
             Options: SLOTS_OPTIONS_DEFAULT_TEXT_EXAMPLE,
@@ -331,7 +331,7 @@
           whatever they want into it, and it will be passed along to the slot. However,
           you can replace the textarea with your own custom component.
         </p>
-        <CodeSwapper
+        <DoxenCodeSwapper
           :codeTypes="{
             'Demo File': SLOTS_DEMO_CUSTOM_COMPONENT_EXAMPLE,
             Options: SLOTS_OPTIONS_CUSTOM_COMPONENT_EXAMPLE,
@@ -359,7 +359,7 @@
           Vue-Doxen will check this part of the component and attempt to automatically document your emits.
         </p>
 
-        <CodeSwapper
+        <DoxenCodeSwapper
           :codeTypes="{
             Options: EMITS_ARRAY_OPTIONS_EXAMPLE,
             Composition: EMITS_ARRAY_OPTIONS_EXAMPLE,
@@ -380,7 +380,7 @@
           Vue-Doxen will check this part of the component and attempt to automatically document your emits.
         </p>
 
-        <CodeSwapper
+        <DoxenCodeSwapper
           :codeTypes="{
             Options: EMITS_OBJECT_OPTIONS_EXAMPLE,
             Composition: EMITS_OBJECT_OPTIONS_EXAMPLE,
@@ -396,7 +396,7 @@
         title="Documenting Emits"
         subTitle="Array example"
       >
-        <CodeSwapper
+        <DoxenCodeSwapper
           :codeTypes="{
             'Demo File': EMITS_TO_DEMO_ARRAY_DEMO_FILE_EXAMPLE,
             Options: EMITS_TO_DEMO_ARRAY_OPTIONS_EXAMPLE,
@@ -423,7 +423,7 @@
           <li><code>example</code> &ndash; Any example code you want to add for how to use this emit.</li>
         </ul>
 
-        <CodeSwapper
+        <DoxenCodeSwapper
           :codeTypes="{
             'Demo File': EMITS_TO_DEMO_OBJECT_DEMO_FILE_EXAMPLE,
             Options: EMITS_TO_DEMO_OBJECT_OPTIONS_EXAMPLE,
@@ -441,7 +441,7 @@
 <script>
 import { styleTokens } from '@/helpers/props.js';
 
-import CodeSwapper from '@/components/CodeSwapper.vue';
+import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
 import DocumentationSection from '@@@/components/DocumentationSection.vue';
 import PageSkeleton from '@@@/components/PageSkeleton.vue';
 import SubDocumentationSection from '@@@/components/SubDocumentationSection.vue';
@@ -495,8 +495,8 @@ import {
 export default {
   name: 'DocumentingView',
   components: {
-    CodeSwapper,
     DocumentationSection,
+    DoxenCodeSwapper,
     PageSkeleton,
     SubDocumentationSection
   },
