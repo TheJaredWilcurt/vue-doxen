@@ -86,7 +86,7 @@
             v-text="'Example:'"
             v-bind="applyStyleTokens({ propsDocumentationStrong: true })"
           ></strong>
-          <CodeBox
+          <DoxenCodeBox
             :code="value.example"
             :styleTokens="styleTokens"
           />
@@ -108,7 +108,7 @@ import { dataValue } from '@/helpers/snapshotHelpers.js';
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
-import CodeBox from '@/components/CodeBox.vue';
+import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 
 const COMPONENT_NAME = 'DoxenPropsDocumentation';
 
@@ -116,7 +116,7 @@ export default {
   ...createImportStatement(COMPONENT_NAME),
   name: COMPONENT_NAME,
   components: {
-    CodeBox
+    DoxenCodeBox
   },
   mixins: [applyStyleTokens],
   props: {

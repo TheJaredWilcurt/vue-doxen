@@ -15,7 +15,7 @@
         <span class="color"></span>
       </div>
     </div>
-    <CodeBox
+    <DoxenCodeBox
       :code="'<h1>' + greeting + '</h1>'"
       :styleTokens="{}"
     />
@@ -26,7 +26,7 @@
 <script>
 import { computed, ref } from 'vue';
 
-import CodeBox from '@/components/CodeBox.vue';
+import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 
 const ALLOWED_COLORS = [
   '',
@@ -42,7 +42,7 @@ export default {
   description: 'This is an arbitrary test for Composition API components.',
   slots: ['default'],
   components: {
-    CodeBox
+    DoxenCodeBox
   },
   props: {
     color: {

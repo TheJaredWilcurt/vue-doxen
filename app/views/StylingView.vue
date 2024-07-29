@@ -124,7 +124,7 @@
 
       <p><strong>Example:</strong></p>
 
-      <CodeBox
+      <DoxenCodeBox
         :code="STYLE_TOKEN_USAGE_EXAMPLE"
         :styleTokens="styleTokens"
       />
@@ -143,14 +143,14 @@
 
       <p>The following is a list of all style tokens:</p>
 
-      <CodeBox
+      <DoxenCodeBox
         :code="styleTokensBuiltIn"
         :styleTokens="styleTokens"
       />
 
       <p>You can access this export with:</p>
 
-      <CodeBox
+      <DoxenCodeBox
         :code="STYLE_TOKENS_IMPORTS"
         :styleTokens="styleTokens"
       />
@@ -165,14 +165,14 @@
 
       <p>Import the pre-made tokens you want to use (and any components):</p>
 
-      <CodeBox
+      <DoxenCodeBox
         :code="BUILT_IN_TOKEN_IMPORT_EXAMPLE"
         :styleTokens="styleTokens"
       />
 
       <p>Then pass them in to the component:</p>
 
-      <CodeBox
+      <DoxenCodeBox
         :code="BUILT_IN_TOKEN_USAGE_EXAMPLE"
         :styleTokens="styleTokens"
       />
@@ -221,7 +221,7 @@
         type="text/css"
       />
 
-      <CodeBox
+      <DoxenCodeBox
         :code="linkThemeCode"
         :styleTokens="styleTokens"
       />
@@ -255,8 +255,8 @@ import { styleTokens } from '@/helpers/props.js';
 import { dataValue } from '@/helpers/snapshotHelpers.js';
 import { styleTokensBuiltIn } from '@/helpers/styleTokens.js';
 
-import CodeBox from '@/components/CodeBox.vue';
 import DoxenCheckbox from '@/components/formFields/DoxenCheckbox.vue';
+import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
 import DoxenDropdown from '@/components/formFields/DoxenDropdown.vue';
 import DocumentationSection from '@@@/components/DocumentationSection.vue';
@@ -349,9 +349,9 @@ const exampleComponentSlots = {
 export default {
   name: 'StylingView',
   components: {
-    CodeBox,
     DocumentationSection,
     DoxenCheckbox,
+    DoxenCodeBox,
     DoxenCodeSwapper,
     DoxenDropdown
   },

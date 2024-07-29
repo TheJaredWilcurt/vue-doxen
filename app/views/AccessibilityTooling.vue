@@ -43,7 +43,7 @@
         <li><code>npm install --save-dev eslint@8 eslint-plugin-vuejs-accessibility</code></li>
         <li>
           Create an <code>.eslintrc.js</code> file in the root of your project
-          <CodeBox
+          <DoxenCodeBox
             :code="ESLINT_EXAMPLE"
             :styleTokens="styleTokens"
           />
@@ -51,7 +51,7 @@
         <li>
           In the <code>scripts</code> section of your <code>package.json</code>,
           add a <code>lint</code> script.
-          <CodeBox
+          <DoxenCodeBox
             :code="LINT_SCRIPT_EXAMPLE"
             :styleTokens="styleTokens"
           />
@@ -164,14 +164,14 @@
           </li>
           <li>
             In your app's <code>main.js</code> file:
-            <CodeBox
+            <DoxenCodeBox
               :code="VUE_AXE_MAIN_JS"
               :styleTokens="styleTokens"
             />
           </li>
           <li>
             In your <code>vite.config.js</code>:
-            <CodeBox
+            <DoxenCodeBox
               :code="VUE_AXE_VITE_CONFIG"
               :styleTokens="styleTokens"
             />
@@ -192,8 +192,8 @@
 <script>
 import { styleTokens } from '@/helpers/props.js';
 
-import CodeBox from '@/components/CodeBox.vue';
 import DoxenButton from '@/components/DoxenButton.vue';
+import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
 import DocumentationSection from '@@@/components/DocumentationSection.vue';
 import SubDocumentationSection from '@@@/components/SubDocumentationSection.vue';
@@ -303,9 +303,9 @@ export default defineConfig({
 export default {
   name: 'AccessibilityOptions',
   components: {
-    CodeBox,
     DocumentationSection,
     DoxenButton,
+    DoxenCodeBox,
     DoxenCodeSwapper,
     SubDocumentationSection
   },

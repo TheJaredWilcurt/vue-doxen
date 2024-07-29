@@ -11,7 +11,7 @@
         v-bind="applyStyleTokens({ codeSwapperFileName: true })"
       ></code>
     </DoxenTabs>
-    <CodeBox
+    <DoxenCodeBox
       v-for="(code, codeName) in codeTypes"
       v-show="selected === codeName"
       :code="code"
@@ -26,7 +26,7 @@ import { styleTokens } from '@/helpers/props.js';
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
-import CodeBox from '@/components/CodeBox.vue';
+import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 import DoxenTabs from '@/components/DoxenTabs.vue';
 
 const codeTypesExample = `{
@@ -42,7 +42,7 @@ const fileNameExample = `{
 export default {
   name: 'DoxenCodeSwapper',
   components: {
-    CodeBox,
+    DoxenCodeBox,
     DoxenTabs
   },
   mixins: [applyStyleTokens],
