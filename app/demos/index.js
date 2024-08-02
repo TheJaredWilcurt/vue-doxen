@@ -7,6 +7,7 @@ import {
   DoxenEmitsDocumentation,
   DoxenHeader,
   DoxenJsonTextarea,
+  DoxenNumberField,
   DoxenPlainText,
   DoxenPropsDocumentation,
   DoxenRadioDials,
@@ -30,6 +31,8 @@ import { createDoxenEmitsDocumentationDemo } from '@@@/demos/doxenEmitsDocumenta
 import { createDoxenPropsDocumentationDemo } from '@@@/demos/doxenPropsDocumentationDemo.js';
 import { createDoxenTabsDemo } from '@@@/demos/doxenTabsDemo.js';
 import { createDummyScriptSetupApiDemo } from '@@@/demos/dummyScriptSetupApiDemo.js';
+
+const isLocal = location.href.includes('localhost');
 
 const createDoxenDemos = function (components, styleTokens) {
   const demos = {};
@@ -117,6 +120,7 @@ export const doxenComponentsToDemoWithStyleTokens = {
   DoxenDropdown,
   DoxenHeader,
   DoxenJsonTextarea,
+  DoxenNumberField,
   DoxenPlainText,
   DoxenRadioDials,
   DoxenTextField,
@@ -126,23 +130,38 @@ export const doxenComponentsToDemoWithStyleTokens = {
   VueDoxenCustom
 };
 
-export const componentsToListInSidebar = {
-  DummyCompositionApi,
-  DummyScriptSetupApi,
-  DoxenButton,
-  DoxenCodeBox,
-  DoxenCodeSwapper,
-  DoxenEmitLog,
-  DoxenEmitsDocumentation,
-  DoxenTabs,
-  DoxenPropsDocumentation,
-  ...doxenComponentsToDemoWithStyleTokens
-};
+function makeListOfSidebarComponents () {
+  let localComponents = {};
+  if (isLocal) {
+    localComponents = {
+      DummyCompositionApi,
+      DummyScriptSetupApi
+    };
+  }
+  return {
+    ...localComponents,
+    DoxenButton,
+    DoxenCodeBox,
+    DoxenCodeSwapper,
+    DoxenEmitLog,
+    DoxenEmitsDocumentation,
+    DoxenTabs,
+    DoxenPropsDocumentation,
+    ...doxenComponentsToDemoWithStyleTokens
+  };
+}
+export const componentsToListInSidebar = makeListOfSidebarComponents();
 
 export const createDemos = function (styleTokens) {
+  let localDemos = {};
+  if (isLocal) {
+    localDemos = {
+      DummyCompositionApi,
+      DummyScriptSetupApi: createDummyScriptSetupApiDemo(styleTokens)
+    };
+  }
   return {
-    DummyCompositionApi,
-    DummyScriptSetupApi: createDummyScriptSetupApiDemo(styleTokens),
+    ...localDemos,
     DoxenButton: createDoxenButtonDemo(styleTokens),
     DoxenCodeBox: createDoxenCodeBoxDemo(styleTokens),
     DoxenCodeSwapper: createDoxenCodeSwapperDemo(styleTokens),

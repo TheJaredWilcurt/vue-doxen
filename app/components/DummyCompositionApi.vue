@@ -15,6 +15,15 @@
         <span class="color"></span>
       </div>
     </div>
+    <label for="range">Range</label>
+    <input
+      id="range"
+      :value="range"
+      type="range"
+      min="1"
+      max="5"
+      @input="$emit('update:range', parseInt($event.target.value))"
+    />
     <DoxenCodeBox
       :code="'<h1>' + greeting + '</h1>'"
       :styleTokens="{}"
@@ -40,6 +49,7 @@ const ALLOWED_COLORS = [
 export default {
   name: 'DummyCompositionApi',
   description: 'This is an arbitrary test for Composition API components.',
+  emits: ['update:range'],
   slots: ['default'],
   components: {
     DoxenCodeBox
@@ -67,6 +77,13 @@ export default {
       type: Function,
       required: true,
       description: 'Testing required function prop'
+    },
+    range: {
+      type: Number,
+      default: 1,
+      min: 1,
+      max: 5,
+      description: 'A number with a min and max value'
     }
   },
   setup: function () {

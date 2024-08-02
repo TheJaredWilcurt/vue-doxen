@@ -17,6 +17,7 @@
         <li><a href="#built-in-tokens">Built in token maps</a></li>
         <li><a href="#syntax">Code Syntax Highlighting</a></li>
         <li><a href="#contributing">Contributing tokens</a></li>
+        <li><a href="#advanced">Advanced Style Tokens</a></li>
       </ul>
     </nav>
 
@@ -247,6 +248,19 @@
         <li>They are demo'd in <code>/app/components/StyleSwapper.vue</code></li>
       </ul>
     </DocumentationSection>
+
+    <DocumentationSection id="advanced" title="Advanced Style Tokens">
+      <p>
+        For most cases, you'll just pass a string with class names for a style token.
+        But some styling libraries require using attributes for styling.
+        This is also supported by Vue-Doxen's style tokens system, by passing in an object where the keys are attribute names.
+      </p>
+
+      <DoxenCodeBox
+        :code="ADVANCED_STYLE_TOKENS"
+        :styleTokens="styleTokens"
+      />
+    </DocumentationSection>
   </div>
 </template>
 
@@ -345,6 +359,21 @@ const exampleComponentSlots = {
   footer: '<strong>Slot Contents</strong>'
 };
 `.trim();
+const ADVANCED_STYLE_TOKENS = `
+const styleTokens = {
+  // Can use string for class names separated by spaces
+  button: 'button primary',
+  // Can use object with any HTML attributes
+  buttonNotSelected: {
+    class: 'button primary',
+    'data-ghost': true
+  },
+  buttonSelected: {
+    class: 'button',
+    disabled: true
+  }
+};
+`.trim();
 
 export default {
   name: 'StylingView',
@@ -359,6 +388,7 @@ export default {
     styleTokens
   },
   constants: {
+    ADVANCED_STYLE_TOKENS,
     BUILT_IN_TOKEN_IMPORT_EXAMPLE,
     BUILT_IN_TOKEN_USAGE_EXAMPLE,
     JAVASCRIPT_EXAMPLE,
