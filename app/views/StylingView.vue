@@ -253,7 +253,7 @@
       <p>
         For most cases, you'll just pass a string with class names for a style token.
         But some styling libraries require using attributes for styling.
-        This is also supported by Vue-Doxens style tokens system, by passing in an object where the keys are attribute names.
+        This is also supported by Vue-Doxen's style tokens system, by passing in an object where the keys are attribute names.
       </p>
 
       <DoxenCodeBox
