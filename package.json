@@ -1,6 +1,6 @@
 {
   "name": "vue-doxen",
-  "version": "0.1.11",
+  "version": "0.2.0",
   "description": "The world's best Vue.js component documentation tool!",
   "scripts": {
     "start": "vite dev --config vite.config.docs.js",
@@ -19,8 +19,8 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.25.1",
     "@highlightjs/vue-plugin": "2.1.2",
-    "@vitejs/plugin-vue": "^5.1.1",
-    "@vitest/coverage-v8": "^2.0.4",
+    "@vitejs/plugin-vue": "^5.1.2",
+    "@vitest/coverage-v8": "^2.0.5",
     "@vue/test-utils": "^2.4.6",
     "axe-core": "^4.10.0",
     "babel-eslint": "^10.1.0",
@@ -45,11 +45,11 @@
     "nprogress": "^0.2.0",
     "sass": "^1.77.8",
     "vite": "^5.3.5",
-    "vitest": "^2.0.4",
-    "vue": "^3.4.34",
+    "vitest": "^2.0.5",
+    "vue": "^3.4.35",
     "vue-axe": "^3.1.2",
     "vue-options-api-constants-plugin": "^1.0.1",
-    "vue-router": "^4.4.0"
+    "vue-router": "^4.4.2"
   },
   "private": false,
   "type": "module",
