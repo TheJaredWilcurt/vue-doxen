@@ -153,16 +153,15 @@ function makeListOfSidebarComponents () {
 export const componentsToListInSidebar = makeListOfSidebarComponents();
 
 export const createDemos = function (styleTokens) {
-  let demos = {};
+  let localDemos = {};
   if (isLocal) {
-    demos = {
-      ...demos,
+    localDemos = {
       DummyCompositionApi,
       DummyScriptSetupApi: createDummyScriptSetupApiDemo(styleTokens)
     };
   }
-  demos = {
-    ...demos,
+  return {
+    ...localDemos,
     DoxenButton: createDoxenButtonDemo(styleTokens),
     DoxenCodeBox: createDoxenCodeBoxDemo(styleTokens),
     DoxenCodeSwapper: createDoxenCodeSwapperDemo(styleTokens),
@@ -172,5 +171,4 @@ export const createDemos = function (styleTokens) {
     DoxenTabs: createDoxenTabsDemo(styleTokens),
     ...createDoxenDemos(doxenComponentsToDemoWithStyleTokens, styleTokens)
   };
-  return demos;
 };
