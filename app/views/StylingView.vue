@@ -360,17 +360,19 @@ const exampleComponentSlots = {
 };
 `.trim();
 const ADVANCED_STYLE_TOKENS = `
-{
-  button: 'button',
+const styleTokens = {
+  // Can use string for class names separated by spaces
+  button: 'button primary',
+  // Can use object with any HTML attributes
   buttonNotSelected: {
-    class: 'button',
+    class: 'button primary',
     'data-ghost': true
   },
   buttonSelected: {
     class: 'button',
     disabled: true
   }
-}
+};
 `.trim();
 
 export default {
