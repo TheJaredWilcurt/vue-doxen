@@ -130,26 +130,27 @@ export const doxenComponentsToDemoWithStyleTokens = {
   VueDoxenCustom
 };
 
-let sidebarComponents = {};
-if (isLocal) {
-  sidebarComponents = {
-    ...sidebarComponents,
-    DummyCompositionApi,
-    DummyScriptSetupApi
+function makeListOfSidebarComponents () {
+  let localComponents = {};
+  if (isLocal) {
+    localComponents = {
+      DummyCompositionApi,
+      DummyScriptSetupApi
+    };
+  }
+  return {
+    ...localComponents,
+    DoxenButton,
+    DoxenCodeBox,
+    DoxenCodeSwapper,
+    DoxenEmitLog,
+    DoxenEmitsDocumentation,
+    DoxenTabs,
+    DoxenPropsDocumentation,
+    ...doxenComponentsToDemoWithStyleTokens
   };
 }
-sidebarComponents = {
-  ...sidebarComponents,
-  DoxenButton,
-  DoxenCodeBox,
-  DoxenCodeSwapper,
-  DoxenEmitLog,
-  DoxenEmitsDocumentation,
-  DoxenTabs,
-  DoxenPropsDocumentation,
-  ...doxenComponentsToDemoWithStyleTokens
-};
-export const componentsToListInSidebar = sidebarComponents;
+export const componentsToListInSidebar = makeListOfSidebarComponents();
 
 export const createDemos = function (styleTokens) {
   let demos = {};
