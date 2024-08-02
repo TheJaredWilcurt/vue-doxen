@@ -15,7 +15,9 @@
         <span class="color"></span>
       </div>
     </div>
+    <label for="range">Range</label>
     <input
+      id="range"
       :value="range"
       type="range"
       min="1"

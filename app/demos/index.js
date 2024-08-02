@@ -130,16 +130,16 @@ export const doxenComponentsToDemoWithStyleTokens = {
   VueDoxenCustom
 };
 
-export let componentsToListInSidebar = {};
+let sidebarComponents = {};
 if (isLocal) {
-  componentsToListInSidebar = {
-    ...componentsToListInSidebar,
+  sidebarComponents = {
+    ...sidebarComponents,
     DummyCompositionApi,
     DummyScriptSetupApi
   };
 }
-componentsToListInSidebar = {
-  ...componentsToListInSidebar,
+sidebarComponents = {
+  ...sidebarComponents,
   DoxenButton,
   DoxenCodeBox,
   DoxenCodeSwapper,
@@ -149,6 +149,7 @@ componentsToListInSidebar = {
   DoxenPropsDocumentation,
   ...doxenComponentsToDemoWithStyleTokens
 };
+export const componentsToListInSidebar = sidebarComponents;
 
 export const createDemos = function (styleTokens) {
   let demos = {};
