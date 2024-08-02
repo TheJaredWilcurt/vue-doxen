@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DoxenButton.vue > Renders correctly 1`] = `<button aria-pressed="false" class data-applied-style-tokens="button buttonNotSelected" data-style-tokens="button buttonNotSelected buttonSelected">Text</button>`;
+
+exports[`DoxenButton.vue > Selected 1`] = `<button aria-pressed="true" class="doxen-button doxen-button-selected" data-applied-style-tokens="button buttonSelected" data-style-tokens="button buttonNotSelected buttonSelected">Text</button>`;
+
+exports[`DoxenButton.vue > Style tokesn 1`] = `<button aria-pressed="false" class="doxen-button doxen-button-not-selected" data-applied-style-tokens="button buttonNotSelected" data-style-tokens="button buttonNotSelected buttonSelected">Text</button>`;
