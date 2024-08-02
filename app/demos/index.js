@@ -7,6 +7,7 @@ import {
   DoxenEmitsDocumentation,
   DoxenHeader,
   DoxenJsonTextarea,
+  DoxenNumberField,
   DoxenPlainText,
   DoxenPropsDocumentation,
   DoxenRadioDials,
@@ -30,6 +31,8 @@ import { createDoxenEmitsDocumentationDemo } from '@@@/demos/doxenEmitsDocumenta
 import { createDoxenPropsDocumentationDemo } from '@@@/demos/doxenPropsDocumentationDemo.js';
 import { createDoxenTabsDemo } from '@@@/demos/doxenTabsDemo.js';
 import { createDummyScriptSetupApiDemo } from '@@@/demos/dummyScriptSetupApiDemo.js';
+
+const isLocal = location.href.includes('localhost');
 
 const createDoxenDemos = function (components, styleTokens) {
   const demos = {};
@@ -117,6 +120,7 @@ export const doxenComponentsToDemoWithStyleTokens = {
   DoxenDropdown,
   DoxenHeader,
   DoxenJsonTextarea,
+  DoxenNumberField,
   DoxenPlainText,
   DoxenRadioDials,
   DoxenTextField,
@@ -126,9 +130,16 @@ export const doxenComponentsToDemoWithStyleTokens = {
   VueDoxenCustom
 };
 
-export const componentsToListInSidebar = {
-  DummyCompositionApi,
-  DummyScriptSetupApi,
+export let componentsToListInSidebar = {};
+if (isLocal) {
+  componentsToListInSidebar = {
+    ...componentsToListInSidebar,
+    DummyCompositionApi,
+    DummyScriptSetupApi
+  };
+}
+componentsToListInSidebar = {
+  ...componentsToListInSidebar,
   DoxenButton,
   DoxenCodeBox,
   DoxenCodeSwapper,
@@ -140,9 +151,16 @@ export const componentsToListInSidebar = {
 };
 
 export const createDemos = function (styleTokens) {
-  return {
-    DummyCompositionApi,
-    DummyScriptSetupApi: createDummyScriptSetupApiDemo(styleTokens),
+  let demos = {};
+  if (isLocal) {
+    demos = {
+      ...demos,
+      DummyCompositionApi,
+      DummyScriptSetupApi: createDummyScriptSetupApiDemo(styleTokens)
+    };
+  }
+  demos = {
+    ...demos,
     DoxenButton: createDoxenButtonDemo(styleTokens),
     DoxenCodeBox: createDoxenCodeBoxDemo(styleTokens),
     DoxenCodeSwapper: createDoxenCodeSwapperDemo(styleTokens),
@@ -152,4 +170,5 @@ export const createDemos = function (styleTokens) {
     DoxenTabs: createDoxenTabsDemo(styleTokens),
     ...createDoxenDemos(doxenComponentsToDemoWithStyleTokens, styleTokens)
   };
+  return demos;
 };
