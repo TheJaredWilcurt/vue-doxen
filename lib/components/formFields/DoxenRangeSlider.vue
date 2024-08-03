@@ -11,13 +11,13 @@
       :required="required"
       :styleTokens="styleTokens"
     />
-    <div v-bind="applyStyleTokens({ formFieldNumberFieldContainer: true })">
+    <div v-bind="applyStyleTokens({ formFieldRangeSliderContainer: true })">
       <input
         v-bind="{
           ...$attrs,
           ...applyStyleTokens({
-            formFieldNumberField: true,
-            formFieldNumberFieldError: errorMessage
+            formFieldRangeSlider: true,
+            formFieldRangeSliderError: errorMessage
           })
         }"
         :id="idFor"
@@ -27,8 +27,10 @@
         :data-value="dataValue(modelValue)"
         :disabled="disabled"
         :name="idFor"
+        :min="min"
+        :max="max"
         :required="required"
-        type="number"
+        type="range"
         :value="modelValue"
         @input="updateValue"
       />
@@ -66,7 +68,7 @@ import FormFieldFooter from '@/components/formFields/FormFieldFooter.vue';
 import FormFieldLabel from '@/components/formFields/FormFieldLabel.vue';
 import FormFieldsetWrapper from '@/components/formFields/FormFieldsetWrapper.vue';
 
-const COMPONENT_NAME = 'DoxenNumberField';
+const COMPONENT_NAME = 'DoxenRangeSlider';
 const disabled = createDisabledProp('number input');
 const errorMessage = createErrorMessageProp('number input');
 const message = createMessageProp('number input');
@@ -86,6 +88,16 @@ export default {
   inheritAttrs: false,
   emits: ['update:model-value'],
   props: {
+    min: {
+      description: 'The lower numberic bound used by the range slider.',
+      type: Number,
+      default: 0
+    },
+    max: {
+      description: 'The upper numberic bound used by the range slider.',
+      type: Number,
+      default: 100
+    },
     disabled,
     errorMessage,
     label,
