@@ -878,6 +878,101 @@ export const EMITS_TO_DEMO_OBJECT_SCRIPT_SETUP_EXAMPLE = unindent(`
   </script>
 `);
 
+export const GETTING_STARTED_CDN = unindent(`
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>Component Documentation</title>
+      <!-- Load in Vue and Vue-Doxen -->
+      <script
+        type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"
+      ></script>
+      <script
+        type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/vue-doxen@latest/dist/vue-doxen.iife.js"
+      ></script>
+      <!-- OPTIONAL: Load in the Vue-Doxen CSS file -->
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdn.jsdelivr.net/npm/vue-doxen@latest/dist/vue-doxen.css"
+      >
+    </head>
+    <body>
+      <!-- Define a div with an ID to mount Vue to, put Vue-Doxen in it -->
+      <div id="app">
+        <doxen-sidebar
+          v-model="selected"
+          :demos="demos"
+        ></doxen-sidebar>
+        <vue-doxen
+          v-model="selected"
+          :demos="demos"
+        ></vue-doxen>
+      </div>
+
+      <script>
+        // Import the VueDoxen component
+        const {
+          DoxenSidebar,
+          VueDoxen
+        } = window.vueDoxen;
+
+        // Here is a dummy component for example:
+        const ExampleComponent1 = {
+          name: 'ExampleComponent1',
+          description: 'A Description.',
+          template: '<strong>{{ message }}</strong>',
+          props: {
+            message: {
+              description: 'A message.',
+              type: String,
+              default: 'Example'
+            }
+          }
+        };
+        // Another dummy component
+        const ExampleComponent2 = {
+          name: 'ExampleComponent2',
+          template: '{{ someNumber * 10 }}',
+          props: {
+            someNumber: {
+              type: Number,
+              min: 1,
+              max: 5,
+              default: 1
+            }
+          }
+        };
+
+        const app = Vue.createApp({
+          // Register the VueDoxen components for use in the template
+          components: {
+            DoxenSidebar,
+            VueDoxen
+          },
+          data: function () {
+            return {
+              // Create a reactive variable for which component to demo
+              selected: 'ExampleComponent1'
+            };
+          },
+          computed: {
+            demos: function () {
+              return {
+                // Pass in the components to demo
+                ExampleComponent1,
+                ExampleComponent2
+              };
+            }
+          }
+        }).mount('#app');
+      </script>
+    </body>
+  </html>
+`);
+
 export const GETTING_STARTED_EXAMPLE = unindent(`
   <template>
     <div>
