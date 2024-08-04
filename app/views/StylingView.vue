@@ -409,7 +409,12 @@ export default {
   },
   methods: {
     formatJsonForCodeBox: function (object) {
-      let string = JSON.stringify(object, null, 2);
+      let string = '';
+      try {
+        string = JSON.stringify(object, null, 2);
+      } catch (error) {
+        console.log({ error });
+      }
       string = dataValue(string)
         // Remove first quote (external)
         .slice(1)

@@ -157,8 +157,13 @@ export default {
   },
   methods: {
     load: function () {
-      let data = window.localStorage.getItem(this.localStorageId);
-      data = JSON.parse(data);
+      let data = undefined;
+      try {
+        data = window.localStorage.getItem(this.localStorageId);
+        data = JSON.parse(data);
+      } catch (error) {
+        console.log({ error });
+      }
       if (data) {
         this.includeNormalize = data.includeNormalize;
         this.includeVueDoxenStylesheet = data.includeVueDoxenStylesheet;
@@ -179,7 +184,11 @@ export default {
     save: function () {
       const id = this.localStorageId;
       const data = this.dataToSave;
-      window.localStorage.setItem(id, data);
+      try {
+        window.localStorage.setItem(id, data);
+      } catch (error) {
+        console.log({ error });
+      }
     },
     styleChanged: function (styleToDemo) {
       this.styleToDemo = styleToDemo;
@@ -194,12 +203,18 @@ export default {
   },
   computed: {
     dataToSave: function () {
-      return JSON.stringify({
-        includeNormalize: this.includeNormalize,
-        includeVueDoxenStylesheet: this.includeVueDoxenStylesheet,
-        styleToDemo: this.styleToDemo,
-        tokensToDemo: this.tokensToDemo
-      });
+      let result = undefined;
+      try {
+        result = JSON.stringify({
+          includeNormalize: this.includeNormalize,
+          includeVueDoxenStylesheet: this.includeVueDoxenStylesheet,
+          styleToDemo: this.styleToDemo,
+          tokensToDemo: this.tokensToDemo
+        });
+      } catch (error) {
+        console.log({ error });
+      }
+      return result;
     }
   },
   created: function () {
