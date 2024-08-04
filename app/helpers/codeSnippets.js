@@ -586,6 +586,10 @@ export const DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_DEMO_FILE = unindent(`
   export const yourComponentDemo = {
     component: YourComponent,
     propsToDemo: {
+      percent: {
+        min: 0,
+        max: 100
+      },
       color: {
         allowed: ['gold', 'silver', 'bronze'],
         description: 'The trophy color to convey first, second, or third place.'
@@ -617,6 +621,10 @@ export const DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_OPTIONS = unindent(`
 
   export default {
     props: {
+      percent: {
+        min: 0,
+        max: 100
+      },
       color: {
         allowed: ALLOWED_COLORS,
         description: 'The trophy color to convey first, second, or third place.',
@@ -665,6 +673,10 @@ export const DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_SCRIPT_SETUP = unindent(`
   // definitions. This, among many other reasons, is why <script setup>
   // is not a great choice for documenting (or writing) your components.
   defineProps({
+    percent: {
+      min: 0,
+      max: 100
+    },
     color: {
       allowed: ['gold', 'silver', 'bronze'],
       description: 'The trophy color to convey first, second, or third place.',
@@ -1430,6 +1442,7 @@ export const TREE_SHAKING_IMPORT_EXAMPLE = unindent(`
     DoxenPlainText,
     DoxenPropsDocumentation,
     DoxenRadioDials,
+    DoxenRangeSlider,
     DoxenTextField,
     DoxenTextarea
   } from 'vue-doxen';
@@ -1449,6 +1462,7 @@ export const TREE_SHAKING_IMPORT_EXAMPLE = unindent(`
       numberField: DoxenNumberField,
       plainText: DoxenPlainText,
       radioDials: DoxenRadioDials,
+      rangeSlider: DoxenRangeSlider,
       textField: DoxenTextField,
 
       // Playground: Slots
