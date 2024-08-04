@@ -106,7 +106,6 @@
 import { styleTokens } from '@/helpers/props.js';
 
 import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
-
 import DocumentationSection from '@@@/components/DocumentationSection.vue';
 
 import {
