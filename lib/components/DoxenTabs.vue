@@ -62,14 +62,20 @@ export default {
   methods: {
     save: function () {
       const id = this.localStorageId;
-      const data = JSON.stringify({
-        selectedOrderPreference: this.selectedOrderPreference
-      });
-      window.localStorage.setItem(id, data);
+      let data = undefined;
+      try {
+        data = JSON.stringify({
+          selectedOrderPreference: this.selectedOrderPreference
+        });
+        window.localStorage.setItem(id, data);
+      } catch (error) {}
     },
     load: function () {
-      let data = window.localStorage.getItem(this.localStorageId);
-      data = JSON.parse(data);
+      let data = undefined;
+      try {
+        data = window.localStorage.getItem(this.localStorageId);
+        data = JSON.parse(data);
+      } catch (error) {}
       if (data?.selectedOrderPreference) {
         this.selectedOrderPreference = Array.from(new Set([
           ...data.selectedOrderPreference,
