@@ -60,7 +60,7 @@
         The name of the component is used at the top of a demo page, and also used for the tag and variable name in the code example below the props playground.
       </p>
       <p>
-        Components written in <code>.vue</code> files, and processed by a bundler, may include the filename in the component. We will prefer the <code>name</code> field in the component first, then in the demo file, and if the name is not explicitly defined in those places, we'll check for a file name provided by the bundler.
+        Components written in <code>.vue</code> files, and processed by a bundler, may include the filename in the component. We will prefer the <code>name</code> field in the demo file first, then in the component, and if the name is not explicitly defined in those places, we'll check for a file name provided by the bundler.
       </p>
 
       <DoxenCodeSwapper
@@ -77,7 +77,7 @@
 
     <DocumentationSection id="description" title="Component Description">
       <p>
-        The component description is displayed under the component name on a demo page. It can be provided in a demo file or the component as a string or custom component. If defined in multiple locations we will use the version provided in the component (for consistency).
+        The component description is displayed under the component name on a demo page. It can be provided in a demo file or the component as a string or custom component. If defined in multiple locations we will use the version provided in the demo file (for consistency).
       </p>
 
       <SubDocumentationSection
@@ -179,7 +179,7 @@
         </p>
 
         <ul>
-          <li><code>type</code> &ndash; JavaScript type constructor or array of type constructors.</li>
+          <li><code>type</code> &ndash; JavaScript type constructor or array of type constructors restricting what can be passed in to the prop.</li>
           <li><code>required</code> &ndash; Boolean to indicate a value <strong>must</strong> be passed in to this prop.</li>
           <li><code>default</code> &ndash; The value to use if nothing is passed in to this prop, or it recieves <code>undefined</code>.</li>
           <li>
@@ -217,7 +217,7 @@
 
         <ul>
           <li><code>description</code> &ndash; A human readable description of what the prop is for, or the context of why it exists.</li>
-          <li><code>allowed</code> &ndash; An array of the only values permitted by this prop.</li>
+          <li><code>allowed</code> &ndash; An array of the only values permitted by this prop. May be auto-generated based on your validator function if it follows certain patterns.</li>
           <li><code>example</code> &ndash; An example of what should be passed in to the prop. Useful for complex data types.</li>
           <li><code>min</code>/<code>max</code> &ndash; These two keys are used when a prop accepts a number with upper/lower bounds.</li>
         </ul>
@@ -237,21 +237,19 @@
       <SubDocumentationSection id="using-both" title="Using both Demo files and Components for Prop Definitions">
         <p>
           When Vue-Doxen produces a demo page for your component it will <strong>merge the prop definitions</strong>
-          from the component and the demo file together. If the same key is used in both we let the component's
-          version win. We do this for two reasons:
+          from the component and the demo file together. If the same key is used in both the demo file version will win.
+          We do this for the following reasons:
         </p>
 
         <ul>
           <li>
-            <strong>Basic component prop definitions</strong> have a real runtime impact, so it is important that
-            the real values be shown in the documentation of the component.
+            If you are documenting an external component, this allows overriding any aspect of the component on the demo page.
           </li>
           <li>
-            Though <strong>documentation-specific prop definitions</strong> are exclusively used by Vue-Doxen, for
-            consistency and simplicity, we treat them the same as the basic definitions. Also, philosophically, the
-            closer the documentation is to the code it is documenting, the more likely it is to be maintained and
-            therefore accurate. So we assume if the two versions ever differ, the one in the component is more
-            likely to be correct and prefer it.
+            You may want to use Vue's API for runtime checks, but change these values in the documentation without effecting these checks.
+          </li>
+          <li>
+            You may want to change the way the Name is rendered on the page without changing how it is used by Vue-DevTools.
           </li>
         </ul>
       </SubDocumentationSection>
@@ -328,9 +326,9 @@
         subTitle="Custom component example"
       >
         <p>
-          By default, Vue-Doxen displays a text area on the demo page for users to type
-          whatever they want into it, and it will be passed along to the slot. However,
-          you can replace the textarea with your own custom component.
+          By default, Vue-Doxen displays a <code>textarea</code> on the demo page for
+          users to type whatever they want into it, and it will be passed along to the
+          slot. However, you can replace the textarea with your own custom component.
         </p>
         <DoxenCodeSwapper
           :codeTypes="{
