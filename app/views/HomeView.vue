@@ -117,7 +117,7 @@
     </TitleParagraph>
 
     <TitleParagraph title="Is there a non-Vue version of Doxen?">
-      Nope! I designed Vue-Doxen exclusively around the component architecture used internally by Vue. I get that you want to use Vue-Doxen's approach elsewhere, but until a frontend framework comes out that is better than Vue, I won't be the one porting it. Similar to how, if you want Pinia, you gotta use Vue, same goes for Vue-Doxen.
+      Nope! Vue-Doxen is designed exclusively around the component architecture used internally by Vue. This is similar to other Vue-exclusive libraries, like Pinia.
     </TitleParagraph>
 
     <TitleParagraph title="Alternatives Comparison">

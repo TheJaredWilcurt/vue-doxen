@@ -225,8 +225,8 @@ export default {
   computed: {
     componentName: function () {
       return (
-        this.demo?.component?.name ||
         this.demo?.name ||
+        this.demo?.component?.name ||
         this.demo?.component?.__name ||
         ''
       );
@@ -236,14 +236,14 @@ export default {
     },
     description: function () {
       return (
-        this.demo?.component?.description ||
-        this.demo?.description
+        this.demo?.description ||
+        this.demo?.component?.description
       );
     },
     importStatement: function () {
       return (
-        this.demo?.component?.importStatement ||
-        this.demo?.importStatement
+        this.demo?.importStatement ||
+        this.demo?.component?.importStatement
       );
     },
     emitsToDemo: function () {
@@ -265,8 +265,10 @@ export default {
           for (const emitName in emits) {
             const value = emits[emitName];
             demoEmits[emitName] = demoEmits[emitName] || {};
-            // emits[emitName] may be a validator function if using Vue's objet API
-            if (
+            // emits[emitName] may be a validator function if using Vue's object API
+            if (typeof(value) === 'function') {
+              demoEmits[emitName].validator = value;
+            } else if (
               typeof(value) === 'object' &&
               !Array.isArray(value)
             ) {
@@ -274,9 +276,6 @@ export default {
                 ...demoEmits[emitName],
                 ...emits[emitName]
               };
-            }
-            if (typeof(value) === 'function') {
-              demoEmits[emitName].validator = value;
             }
           }
         }
@@ -286,9 +285,10 @@ export default {
       handleEmitArrays(this.demo?.component?.emitsToDemo);
       handleEmitArrays(this.demo?.emitsToDemo);
 
-      handleEmitObjects(this.demo?.emitsToDemo);
-      handleEmitObjects(this.demo?.component?.emitsToDemo);
+      // All of the keys are merged, but the ones at the end win
       handleEmitObjects(this.demo?.component?.emits);
+      handleEmitObjects(this.demo?.component?.emitsToDemo);
+      handleEmitObjects(this.demo?.emitsToDemo);
 
       return demoEmits;
     },
@@ -333,22 +333,22 @@ export default {
       }
 
       /**
-       * ORDER: Stuff in the component always wins over the demo file.
-       * However, because component.slot is not part of Vue's documented
-       * API, we are preferring component.slotsToDemo, in case Vue ever
+       * ORDER: Stuff in the demo file always wins over the component.
+       * Because component.slot is not part of Vue's documented API,
+       * we are preferring component.slotsToDemo, in case Vue ever
        * claims component.slots for something in the future. Users can
        * store both in the component and we won't override the
        * component.slotsToDemo documentation for the unknown
        * component.slots. Also arrays go first because they are just
        * slot names and don't have default string values.
        */
-      handleSlotArrays(this.demo?.slotsToDemo);
       handleSlotArrays(this.demo?.component?.slots);
       handleSlotArrays(this.demo?.component?.slotsToDemo);
+      handleSlotArrays(this.demo?.slotsToDemo);
 
-      handleSlotObjects(this.demo?.slotsToDemo);
       handleSlotObjects(this.demo?.component?.slots);
       handleSlotObjects(this.demo?.component?.slotsToDemo);
+      handleSlotObjects(this.demo?.slotsToDemo);
 
       // Defaults
       for (const slotName in slotsToDemo) {
