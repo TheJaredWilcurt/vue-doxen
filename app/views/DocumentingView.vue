@@ -327,7 +327,7 @@
       >
         <p>
           By default, Vue-Doxen displays a <code>textarea</code> on the demo page for
-          users to type whatever they, and it will be passed along to the           slot. However,
+          users to type whatever they want to be passed along to the           slot. However,
           you can replace the <code>textarea</code> with your own custom component.
         </p>
         <DoxenCodeSwapper
