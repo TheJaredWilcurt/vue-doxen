@@ -237,7 +237,7 @@
       <SubDocumentationSection id="using-both" title="Using both Demo files and Components for Prop Definitions">
         <p>
           When Vue-Doxen produces a demo page for your component it will <strong>merge the prop definitions</strong>
-          from the component and the demo file together. If the same key is used in both the demo file version will win.
+          from the component and the demo file together. If the same key is used in both, the demo file version will win.
           We do this for the following reasons:
         </p>
 
