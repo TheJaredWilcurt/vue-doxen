@@ -243,13 +243,13 @@
 
         <ul>
           <li>
-            If you are documenting an external component, this allows overriding any aspect of the component on the demo page.
+            If you are documenting external components, this allows overriding any aspect of the component on the demo page.
           </li>
           <li>
             You may want to use Vue's API for runtime checks, but change these values in the documentation without effecting these checks.
           </li>
           <li>
-            You may want to change the way the Name is rendered on the page without changing how it is used by Vue-DevTools.
+            You may want to change the way the component name is rendered on the page without changing how it is used by Vue-DevTools.
           </li>
         </ul>
       </SubDocumentationSection>
@@ -327,8 +327,8 @@
       >
         <p>
           By default, Vue-Doxen displays a <code>textarea</code> on the demo page for
-          users to type whatever they want into it, and it will be passed along to the
-          slot. However, you can replace the textarea with your own custom component.
+          users to type whatever they, and it will be passed along to the           slot. However,
+          you can replace the <code>textarea</code> with your own custom component.
         </p>
         <DoxenCodeSwapper
           :codeTypes="{
