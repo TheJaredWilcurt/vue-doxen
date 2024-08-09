@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="count++">increment</button>
-    <slot name="counter" :count="count"></slot>
+    <slot name="counter" :count="count" message="Hello Word"></slot>
     <span>
       <slot name="other"></slot>
     </span>
