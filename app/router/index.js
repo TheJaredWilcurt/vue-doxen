@@ -6,7 +6,9 @@ import {
 } from 'vue-router';
 
 function Catch () {
-  window.location.reload();
+  if (!window.location.href.includes('localhost')) {
+    window.location.reload();
+  }
 }
 
 const routes = [
