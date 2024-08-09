@@ -32,18 +32,7 @@ import { componentsToListInSidebar } from '@@@/demos/index.js';
 export default {
   name: 'SideBar',
   constants: {
-    componentsToListInSidebar,
-    links: {
-      home: 'Home',
-      gettingStarted: 'Getting Started',
-      documenting: 'Documenting',
-      styles: 'Styling',
-      demoFiles: 'Demo Files',
-      vueRouter: 'Vue-Router',
-      treeShaking: 'Tree Shaking',
-      branding: 'Press Kit/Branding',
-      a11y: 'Accessibility'
-    }
+    componentsToListInSidebar
   },
   methods: {
     hash: function (string) {
@@ -51,6 +40,25 @@ export default {
         return '#' + _kebabCase(string);
       }
       return '#' + string;
+    }
+  },
+  computed: {
+    links: function () {
+      const links = {
+        home: 'Home',
+        gettingStarted: 'Getting Started',
+        documenting: 'Documenting',
+        styles: 'Styling',
+        demoFiles: 'Demo Files',
+        vueRouter: 'Vue-Router',
+        treeShaking: 'Tree Shaking',
+        branding: 'Press Kit/Branding',
+        a11y: 'Accessibility'
+      };
+      if (window.location.href.includes('localhost')) {
+        links.devTestingPage = 'Dev Testing Page';
+      }
+      return links;
     }
   }
 };

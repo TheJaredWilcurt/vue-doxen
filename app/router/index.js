@@ -6,7 +6,9 @@ import {
 } from 'vue-router';
 
 function Catch () {
-  window.location.reload();
+  if (!window.location.href.includes('localhost')) {
+    window.location.reload();
+  }
 }
 
 const routes = [
@@ -69,6 +71,14 @@ const routes = [
     })
   }
 ];
+
+if (window.location.href.includes('localhost')) {
+  routes.push({
+    path: '/vue-doxen/dev-testing-page',
+    name: 'devTestingPage',
+    component: () => import('@@@/views/DevTestingPage.vue').catch(Catch)
+  });
+}
 
 function scrollBehavior (to, from, savedPosition) {
   const isSmall = window.innerWidth < 831;
