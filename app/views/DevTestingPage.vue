@@ -20,13 +20,14 @@
 </template>
 
 <script>
-import DummySlots from '@@@/components/DummySlots.vue';
 import { DoxenCodeBox, DoxenRadioDials } from '@/library.js';
 
 import {
   getSlotNamesFromComponent,
   getSlotDataFromComponent
 } from '@/helpers/demoHelpers.js';
+
+import DummySlots from '@@@/components/DummySlots.vue';
 
 export default {
   name: 'DevTestingPage',
