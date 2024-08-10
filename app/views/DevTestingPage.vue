@@ -8,7 +8,7 @@
     </h1>
 
     <div
-      v-for="(component, componentIndex) in test.components"
+      v-for="(component, componentIndex) in components"
       :key="'component' + componentIndex"
     >
       <strong>{{ component.name }} Slot data</strong>
@@ -30,14 +30,12 @@ export default {
     getSlotDataFromComponent
   },
   computed: {
-    test: function () {
-      return {
-        components: [
-          DummySlots,
-          DoxenRadioDials,
-          DoxenCodeBox
-        ]
-      };
+    components: function () {
+      return [
+        DummySlots,
+        DoxenRadioDials,
+        DoxenCodeBox
+      ];
     }
   }
 };
