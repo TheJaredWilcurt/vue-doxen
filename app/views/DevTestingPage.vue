@@ -11,8 +11,6 @@
       v-for="(component, componentIndex) in test.components"
       :key="'component' + componentIndex"
     >
-      <strong>{{ component.name }} Slot names</strong>
-      <pre v-text="getSlotNamesFromComponent(component)"></pre>
       <strong>{{ component.name }} Slot data</strong>
       <pre v-text="getSlotDataFromComponent(component)"></pre>
     </div>
@@ -23,15 +21,11 @@
 import DummySlots from '@@@/components/DummySlots.vue';
 import { DoxenCodeBox, DoxenRadioDials } from '@/library.js';
 
-import {
-  getSlotNamesFromComponent,
-  getSlotDataFromComponent
-} from '@/helpers/demoHelpers.js';
+import { getSlotDataFromComponent } from '@/helpers/demoHelpers.js';
 
 export default {
   name: 'DevTestingPage',
   methods: {
-    getSlotNamesFromComponent,
     getSlotDataFromComponent
   },
   computed: {
