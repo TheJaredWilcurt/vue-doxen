@@ -13,7 +13,6 @@
 <script>
 export default {
   name: 'DocumentationSection',
-  slots: ['default'],
   props: {
     id: {
       type: String,

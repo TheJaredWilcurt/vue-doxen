@@ -31,7 +31,6 @@ const modelValue = createModelValueProp(String);
 
 export default {
   name: 'DoxenTabs',
-  slots: ['default'],
   emits: ['update:model-value'],
   mixins: [applyStyleTokens],
   props: {

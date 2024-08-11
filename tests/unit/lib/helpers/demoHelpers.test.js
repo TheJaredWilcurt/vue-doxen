@@ -29,6 +29,12 @@ import DummySlots from '@@@/components/DummySlots.vue';
 
 describe('Demo helpers', () => {
   describe('getSlotDataFromComponent', () => {
+    const defaultSlot = {
+      default: {
+        default: ''
+      }
+    };
+
     test('Returns empty object for invalid components', () => {
       expect(getSlotDataFromComponent({}))
         .toEqual({});
@@ -38,20 +44,25 @@ describe('Demo helpers', () => {
       expect(getSlotDataFromComponent(DummySlots))
         .toEqual({
           counter: {
+            default: '',
             slotProps: [
               'count',
               'message'
             ]
           },
-          other: {},
-          default: {}
+          other: {
+            default: ''
+          },
+          default: {
+            default: ''
+          }
         });
 
       expect(getSlotDataFromComponent(DummyCompositionApi))
-        .toEqual({ default: {} });
+        .toEqual(defaultSlot);
 
       expect(getSlotDataFromComponent(DummyScriptSetupApi))
-        .toEqual({ default: {} });
+        .toEqual(defaultSlot);
     });
 
     test('Gets correct slot data on library components', () => {
@@ -59,7 +70,7 @@ describe('Demo helpers', () => {
         .toEqual({});
 
       expect(getSlotDataFromComponent(DoxenCheckbox))
-        .toEqual({ default: {} });
+        .toEqual(defaultSlot);
 
       expect(getSlotDataFromComponent(DoxenCodeBox))
         .toEqual({});
@@ -68,7 +79,7 @@ describe('Demo helpers', () => {
         .toEqual({});
 
       expect(getSlotDataFromComponent(DoxenDropdown))
-        .toEqual({ default: {} });
+        .toEqual(defaultSlot);
 
       expect(getSlotDataFromComponent(DoxenEmitLog))
         .toEqual({});
@@ -80,34 +91,38 @@ describe('Demo helpers', () => {
         .toEqual({});
 
       expect(getSlotDataFromComponent(DoxenJsonTextarea))
-        .toEqual({ default: {} });
+        .toEqual(defaultSlot);
 
       expect(getSlotDataFromComponent(DoxenNumberField))
-        .toEqual({ default: {} });
+        .toEqual(defaultSlot);
 
       expect(getSlotDataFromComponent(DoxenPlainText))
-        .toEqual({ default: {} });
+        .toEqual(defaultSlot);
 
       expect(getSlotDataFromComponent(DoxenPropsDocumentation))
         .toEqual({});
 
       expect(getSlotDataFromComponent(DoxenRadioDials))
-        .toEqual({ default: {} });
+        .toEqual(defaultSlot);
 
       expect(getSlotDataFromComponent(DoxenRangeSlider))
-        .toEqual({ default: {} });
+        .toEqual(defaultSlot);
 
       expect(getSlotDataFromComponent(DoxenSideBar))
         .toEqual({
-          default: {},
-          footer: {}
+          default: {
+            default: ''
+          },
+          footer: {
+            default: ''
+          }
         });
 
       expect(getSlotDataFromComponent(DoxenTextField))
-        .toEqual({ default: {} });
+        .toEqual(defaultSlot);
 
       expect(getSlotDataFromComponent(DoxenTextarea))
-        .toEqual({ default: {} });
+        .toEqual(defaultSlot);
 
       expect(getSlotDataFromComponent(VueDoxen))
         .toEqual({});
