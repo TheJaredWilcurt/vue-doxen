@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import { DoxenCodeBox, DoxenRadioDials } from '@/library.js';
-
 import { getSlotDataFromComponent } from '@/helpers/demoHelpers.js';
 
+import DummyCompositionApi from '@@@/components/DummyCompositionApi.vue';
+import DummyScriptSetupApi from '@@@/components/DummyScriptSetupApi.vue';
 import DummySlots from '@@@/components/DummySlots.vue';
 
 export default {
@@ -32,9 +32,9 @@ export default {
   computed: {
     components: function () {
       return [
-        DummySlots,
-        DoxenRadioDials,
-        DoxenCodeBox
+        DummyCompositionApi,
+        DummyScriptSetupApi,
+        DummySlots
       ];
     }
   }

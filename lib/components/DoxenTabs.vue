@@ -68,14 +68,14 @@ export default {
           selectedOrderPreference: this.selectedOrderPreference
         });
         window.localStorage.setItem(id, data);
-      } catch (error) {}
+      } catch {}
     },
     load: function () {
       let data = undefined;
       try {
         data = window.localStorage.getItem(this.localStorageId);
         data = JSON.parse(data);
-      } catch (error) {}
+      } catch {}
       if (data?.selectedOrderPreference) {
         this.selectedOrderPreference = Array.from(new Set([
           ...data.selectedOrderPreference,
