@@ -36,7 +36,9 @@ describe('Demo helpers', () => {
     };
 
     test('Returns empty object for invalid components', () => {
-      expect(getSlotDataFromComponent({}))
+      const InvalidComponent = {};
+
+      expect(getSlotDataFromComponent(InvalidComponent))
         .toEqual({});
     });
 
