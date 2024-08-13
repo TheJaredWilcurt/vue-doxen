@@ -50,7 +50,6 @@ export default {
   name: 'DummyCompositionApi',
   description: 'This is an arbitrary test for Composition API components.',
   emits: ['update:range'],
-  slots: ['default'],
   components: {
     DoxenCodeBox
   },

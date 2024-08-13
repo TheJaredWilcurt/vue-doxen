@@ -159,7 +159,8 @@ import {
   autoGeneratePlaygroundProps,
   combinePropsAndPropsToDemo,
   createMarkupExample,
-  getDefaultValue
+  getDefaultValue,
+  getSlotDataFromComponent
 } from '@/helpers/demoHelpers.js';
 import {
   createVueDoxenOptions,
@@ -293,15 +294,14 @@ export default {
       return demoEmits;
     },
     slotsToDemo: function () {
-      let slotsToDemo = {};
+      // Guess the slots to demo from the component template render function
+      let slotsToDemo = getSlotDataFromComponent(this.demo?.component) || {};
 
       function handleSlotArrays (slots) {
         if (slots && Array.isArray(slots) && slots.length) {
           for (const slotName of slots) {
-            slotsToDemo[slotName] = {
-              default: '',
-              ...(slotsToDemo[slotName] || {})
-            };
+            slotsToDemo[slotName] = slotsToDemo[slotName] || {};
+            slotsToDemo[slotName].default = slotsToDemo[slotName].default || '';
           }
         }
       }
