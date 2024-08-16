@@ -1383,16 +1383,16 @@ export const SLOTS_DEMO_ARRAY_EXAMPLE = unindent(`
 `);
 export const SLOTS_DEMO_CUSTOM_COMPONENT_EXAMPLE = unindent(`
   import MyComponent from '../components/MyComponent.vue';
-  import CustomComponent from '../components/CustomComponent.vue';
+  import CustomSlotComponent from '../components/CustomSlotComponent.vue';
 
   export const myComponentDemo = {
     component: MyComponent,
     slotsToDemo: {
       default: {
-        component: CustomComponent,
+        component: CustomSlotComponent,
         props: {
           modelValue: 'This is passed into the slot'
-          // other props your component takes
+          // other props your CustomSlotComponent takes
         },
         events: {
           // catch any emits from your component
@@ -1435,16 +1435,16 @@ export const SLOTS_OPTIONS_CUSTOM_COMPONENT_EXAMPLE = unindent(`
   // into your component just for Vue-Doxen will bloat your component's
   // file size for no real benefit. If you want to use your own
   // component for the slot, just use a demo file.
-  import CustomComponent from '../components/CustomComponent.vue';
+  import CustomSlotComponent from '../components/CustomSlotComponent.vue';
 
   export default {
     name: 'MyComponent',
     slots: {
       default: {
-        component: CustomComponent,
+        component: CustomSlotComponent,
         props: {
           modelValue: 'This is passed into the slot'
-          // other props your component takes
+          // other props your CustomSlotComponent takes
         },
         events: {
           // catch any emits from your component
@@ -1488,16 +1488,16 @@ export const SLOTS_SCRIPT_SETUP_CUSTOM_COMPONENT_EXAMPLE = unindent(`
   // into your component just for Vue-Doxen will bloat your component's
   // file size for no real benefit. If you want to use your own
   // component for the slot, just use a demo file.
-  import CustomComponent from '../components/CustomComponent.vue';
+  import CustomSlotComponent from '../components/CustomSlotComponent.vue';
 
   defineOptions({
     name: 'MyComponent',
     slots: {
       default: {
-        component: CustomComponent,
+        component: CustomSlotComponent,
         props: {
           modelValue: 'This is passed into the slot'
-          // other props your component takes
+          // other props your CustomSlotComponent takes
         },
         events: {
           // catch any emits from your component

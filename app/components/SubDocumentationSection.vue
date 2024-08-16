@@ -10,7 +10,6 @@
 <script>
 export default {
   name: 'SubDocumentationSection',
-  slots: ['default'],
   props: {
     id: {
       type: String,
