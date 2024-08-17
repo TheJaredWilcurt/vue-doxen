@@ -22,7 +22,8 @@ import {
 import {
   combinePropsAndPropsToDemo,
   createMarkupExample,
-  getSlotDataFromComponent
+  getSlotDataFromComponent,
+  typeToString
 } from '@/helpers/demoHelpers.js';
 
 import DummyCompositionApi from '@@@/components/DummyCompositionApi.vue';
@@ -563,6 +564,7 @@ describe('Demo helpers', () => {
       });
     });
   });
+
   describe('getSlotDataFromComponent', () => {
     const defaultSlot = {
       default: {
@@ -666,6 +668,43 @@ describe('Demo helpers', () => {
 
       expect(getSlotDataFromComponent(VueDoxenCustom))
         .toEqual({});
+    });
+  });
+
+  describe('typeToString', () => {
+    test('Nothing passed in', () => {
+      expect(typeToString())
+        .toEqual(undefined);
+    });
+
+    test('Supported types passed in', () => {
+      expect(typeToString(Array))
+        .toEqual('Array');
+
+      expect(typeToString(Boolean))
+        .toEqual('Boolean');
+
+      expect(typeToString(Function))
+        .toEqual('Function');
+
+      expect(typeToString(Number))
+        .toEqual('Number');
+
+      expect(typeToString(Object))
+        .toEqual('Object');
+
+      expect(typeToString(String))
+        .toEqual('String');
+    });
+
+    test('Array of types passed in', () => {
+      expect(typeToString([Boolean, String, Number, Array, Function]))
+        .toEqual('Boolean, String, Number, Array, or Function');
+    });
+
+    test('Unsupported type', () => {
+      expect(typeToString(Set))
+        .toEqual(Set);
     });
   });
 });
