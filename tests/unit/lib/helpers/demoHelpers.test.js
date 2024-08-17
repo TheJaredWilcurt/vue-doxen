@@ -20,6 +20,7 @@ import {
 } from '@/library.js';
 
 import {
+  combinePropsAndPropsToDemo,
   getSlotDataFromComponent
 } from '@/helpers/demoHelpers.js';
 
@@ -28,6 +29,61 @@ import DummyScriptSetupApi from '@@@/components/DummyScriptSetupApi.vue';
 import DummySlots from '@@@/components/DummySlots.vue';
 
 describe('Demo helpers', () => {
+  describe('combinePropsAndPropsToDemo', () => {
+    test('Combine props with no overlap', () => {
+      const propsToDemo = {
+        percent: {
+          min: 20,
+          max: 30
+        }
+      };
+      const componentProps = {
+        percent: {
+          type: Number
+        }
+      };
+
+      expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+        .toEqual({
+          percent: {
+            type: Number,
+            min: 20,
+            max: 30
+          }
+        });
+    });
+
+    test('Combine props with overlap', () => {
+      const propsToDemo = {
+        percent: {
+          type: [Number],
+          min: 20,
+          max: 30
+        }
+      };
+      const componentProps = {
+        percent: {
+          type: [Boolean, String],
+          min: 10,
+          max: 50
+        }
+      };
+
+      expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+        .toEqual({
+          percent: {
+            type: [
+              Number,
+              Boolean,
+              String
+            ],
+            min: 20,
+            max: 30
+          }
+        });
+    });
+  });
+
   describe('getSlotDataFromComponent', () => {
     const defaultSlot = {
       default: {
