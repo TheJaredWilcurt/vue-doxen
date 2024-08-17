@@ -235,7 +235,7 @@ describe('Demo helpers', () => {
             });
         });
 
-        test('Converts type to array and combines type if only component uses it', () => {
+        test('Converts type to array and combines type if only demo uses it', () => {
           const propsToDemo = {
             amount: {
               type: [Number]
@@ -318,7 +318,7 @@ describe('Demo helpers', () => {
               }
             });
         });
-      })
+      });
     });
   });
 
