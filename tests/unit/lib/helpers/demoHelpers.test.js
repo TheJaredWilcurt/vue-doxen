@@ -384,7 +384,7 @@ describe('Demo helpers', () => {
       test('Has a tag', () => {
         expect(createMarkupExample('DummyComponent'))
           .toEqual('<DummyComponent />');
-      })
+      });
     });
 
     describe('Attributes', () => {
