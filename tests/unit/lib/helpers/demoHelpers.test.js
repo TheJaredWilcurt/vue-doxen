@@ -91,131 +91,235 @@ describe('Demo helpers', () => {
         });
     });
 
-    describe('Prop "type"', () => {
-      test('Picks demo type over component', () => {
-        const propsToDemo = {
-          amount: {
-            type: Number
+    test('Combine subobjects', () => {
+      const propsToDemo = {
+        percent: {
+          subObject: {
+            a: 'a',
+            b: 'b'
           }
-        };
-        const componentProps = {
-          amount: {
-            type: String
+        }
+      };
+      const componentProps = {
+        percent: {
+          subObject: {
+            a: 1,
+            b: 2,
+            c: 3
           }
-        };
+        }
+      };
 
-        expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
-          .toEqual({
+      expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+        .toEqual({
+          percent: {
+            subObject: {
+              a: 'a',
+              b: 'b',
+              c: 3
+            }
+          }
+        });
+    });
+
+    describe('Specific prop keys', () => {
+      describe('allowed', () => {
+        test('Combines prefering demo', () => {
+          const propsToDemo = {
+            amount: {
+              allowed: ['a', 'b']
+            }
+          };
+          const componentProps = {
+            amount: {
+              allowed: ['b', 'c', 'd']
+            }
+          };
+
+          expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+            .toEqual({
+              amount: {
+                allowed: ['a', 'b', 'b', 'c', 'd']
+              }
+            });
+        });
+
+        test('Guesses allowed values from validator preferring demo', () => {
+          const validatorA = function (value) {
+            return ['a', 'b'].includes(value);
+          };
+          const validatorB = function (value) {
+            return ['b', 'c', 'd'].includes(value);
+          };
+          const propsToDemo = {
+            amount: {
+              validator: validatorA
+            }
+          };
+          const componentProps = {
+            amount: {
+              validator: validatorB
+            }
+          };
+
+          expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+            .toEqual({
+              amount: {
+                allowed: ['a', 'b'],
+                validator: validatorA
+              }
+            });
+        });
+
+        test('Guesses allowed values from component validator with empty demo', () => {
+          const validatorB = function (value) {
+            return ['b', 'c', 'd'].includes(value);
+          };
+          const propsToDemo = {
+            amount: {}
+          };
+          const componentProps = {
+            amount: {
+              validator: validatorB
+            }
+          };
+
+          expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+            .toEqual({
+              amount: {
+                allowed: ['b', 'c', 'd'],
+                validator: validatorB
+              }
+            });
+        });
+      });
+
+      describe('type', () => {
+        test('Picks demo type over component', () => {
+          const propsToDemo = {
             amount: {
               type: Number
             }
-          });
-      });
-
-      test('Converts type to array and combines type if only component uses it', () => {
-        const propsToDemo = {
-          amount: {
-            type: Number
-          }
-        };
-        const componentProps = {
-          amount: {
-            type: [String]
-          }
-        };
-
-        expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
-          .toEqual({
+          };
+          const componentProps = {
             amount: {
-              type: [Number, String]
+              type: String
             }
-          });
-      });
+          };
 
-      test('Converts type to array and combines type if only component uses it', () => {
-        const propsToDemo = {
-          amount: {
-            type: [Number]
-          }
-        };
-        const componentProps = {
-          amount: {
-            type: String
-          }
-        };
+          expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+            .toEqual({
+              amount: {
+                type: Number
+              }
+            });
+        });
 
-        expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
-          .toEqual({
+        test('Converts type to array and combines type if only component uses it', () => {
+          const propsToDemo = {
             amount: {
-              type: [Number, String]
+              type: Number
             }
-          });
-      });
+          };
+          const componentProps = {
+            amount: {
+              type: [String]
+            }
+          };
 
-      test('Demo is array, component is undefined', () => {
-        const propsToDemo = {
-          amount: {
-            type: [Number]
-          }
-        };
-        const componentProps = {
-          amount: {}
-        };
+          expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+            .toEqual({
+              amount: {
+                type: [Number, String]
+              }
+            });
+        });
 
-        expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
-          .toEqual({
+        test('Converts type to array and combines type if only component uses it', () => {
+          const propsToDemo = {
             amount: {
               type: [Number]
             }
-          });
-      });
+          };
+          const componentProps = {
+            amount: {
+              type: String
+            }
+          };
 
-      test('Demo is undefined, component is array', () => {
-        const propsToDemo = {
-          amount: {
-            type: undefined
-          }
-        };
-        const componentProps = {
-          amount: {
-            type: [Number]
-          }
-        };
+          expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+            .toEqual({
+              amount: {
+                type: [Number, String]
+              }
+            });
+        });
 
-        expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
-          .toEqual({
+        test('Demo is array, component is undefined', () => {
+          const propsToDemo = {
             amount: {
               type: [Number]
             }
-          });
+          };
+          const componentProps = {
+            amount: {}
+          };
+
+          expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+            .toEqual({
+              amount: {
+                type: [Number]
+              }
+            });
+        });
+
+        test('Demo is undefined, component is array', () => {
+          const propsToDemo = {
+            amount: {
+              type: undefined
+            }
+          };
+          const componentProps = {
+            amount: {
+              type: [Number]
+            }
+          };
+
+          expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+            .toEqual({
+              amount: {
+                type: [Number]
+              }
+            });
+        });
       });
+
+      describe('modelModifiers', () => {
+        test('Without description', () => {
+          const propsToDemo = {};
+          const componentProps = { modelModifiers: {} };
+
+          expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+            .toEqual({
+              modelModifiers: {
+                description: 'Automatically supplied prop from Vue to pass v-model modifiers to native HTML elements.'
+              }
+            });
+        });
+
+        test('With description', () => {
+          const propsToDemo = { modelModifiers: { description: 'Test' } };
+          const componentProps = { modelModifiers: {} };
+
+          expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+            .toEqual({
+              modelModifiers: {
+                description: 'Test'
+              }
+            });
+        });
+      })
     });
-
-    describe('Prop "modelModifiers"', () => {
-      test('Without description', () => {
-        const propsToDemo = {};
-        const componentProps = { modelModifiers: {} };
-
-        expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
-          .toEqual({
-            modelModifiers: {
-              description: 'Automatically supplied prop from Vue to pass v-model modifiers to native HTML elements.'
-            }
-          });
-      });
-
-      test('With description', () => {
-        const propsToDemo = { modelModifiers: { description: 'Test' } };
-        const componentProps = { modelModifiers: {} };
-
-        expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
-          .toEqual({
-            modelModifiers: {
-              description: 'Test'
-            }
-          });
-      });
-    })
   });
 
   describe('getSlotDataFromComponent', () => {
