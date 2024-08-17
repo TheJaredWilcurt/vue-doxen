@@ -30,6 +30,14 @@ import DummySlots from '@@@/components/DummySlots.vue';
 
 describe('Demo helpers', () => {
   describe('combinePropsAndPropsToDemo', () => {
+    test('No props or propsToDemo', () => {
+      const propsToDemo = undefined;
+      const componentProps = undefined;
+
+      expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+        .toEqual({});
+    });
+
     test('Combine props with no overlap', () => {
       const propsToDemo = {
         percent: {
@@ -82,6 +90,132 @@ describe('Demo helpers', () => {
           }
         });
     });
+
+    describe('Prop "type"', () => {
+      test('Picks demo type over component', () => {
+        const propsToDemo = {
+          amount: {
+            type: Number
+          }
+        };
+        const componentProps = {
+          amount: {
+            type: String
+          }
+        };
+
+        expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+          .toEqual({
+            amount: {
+              type: Number
+            }
+          });
+      });
+
+      test('Converts type to array and combines type if only component uses it', () => {
+        const propsToDemo = {
+          amount: {
+            type: Number
+          }
+        };
+        const componentProps = {
+          amount: {
+            type: [String]
+          }
+        };
+
+        expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+          .toEqual({
+            amount: {
+              type: [Number, String]
+            }
+          });
+      });
+
+      test('Converts type to array and combines type if only component uses it', () => {
+        const propsToDemo = {
+          amount: {
+            type: [Number]
+          }
+        };
+        const componentProps = {
+          amount: {
+            type: String
+          }
+        };
+
+        expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+          .toEqual({
+            amount: {
+              type: [Number, String]
+            }
+          });
+      });
+
+      test('Demo is array, component is undefined', () => {
+        const propsToDemo = {
+          amount: {
+            type: [Number]
+          }
+        };
+        const componentProps = {
+          amount: {}
+        };
+
+        expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+          .toEqual({
+            amount: {
+              type: [Number]
+            }
+          });
+      });
+
+      test('Demo is undefined, component is array', () => {
+        const propsToDemo = {
+          amount: {
+            type: undefined
+          }
+        };
+        const componentProps = {
+          amount: {
+            type: [Number]
+          }
+        };
+
+        expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+          .toEqual({
+            amount: {
+              type: [Number]
+            }
+          });
+      });
+    });
+
+    describe('Prop "modelModifiers"', () => {
+      test('Without description', () => {
+        const propsToDemo = {};
+        const componentProps = { modelModifiers: {} };
+
+        expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+          .toEqual({
+            modelModifiers: {
+              description: 'Automatically supplied prop from Vue to pass v-model modifiers to native HTML elements.'
+            }
+          });
+      });
+
+      test('With description', () => {
+        const propsToDemo = { modelModifiers: { description: 'Test' } };
+        const componentProps = { modelModifiers: {} };
+
+        expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+          .toEqual({
+            modelModifiers: {
+              description: 'Test'
+            }
+          });
+      });
+    })
   });
 
   describe('getSlotDataFromComponent', () => {
