@@ -278,7 +278,7 @@ describe('Demo helpers', () => {
                 },
                 {
                   name: 'Green',
-                  value: 'green',
+                  value: 'green'
                 },
                 {
                   name: 'Purple',
