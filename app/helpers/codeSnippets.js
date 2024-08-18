@@ -1256,6 +1256,7 @@ export const IMPORT_STATEMENT_STRING_SCRIPT_SETUP_EXAMPLE = unindent(`
   defineOptions({
     importStatement: 'import { MyComponent } from \\'my-component-library\\''
   });
+  </script>
 `);
 
 export const ROUTER_LINK_OPTIONS_EXAMPLE = unindent(`
@@ -1366,6 +1367,78 @@ export const ROUTER_LINK_SCRIPT_SETUP_EXAMPLE = unindent(`
 
   const componentDemos = computed(() => {
     return demos;
+  });
+  </script>
+`);
+
+export const SETTING_PROP_DEFAULTS_DEMO_EXAMPLE = unindent(`
+  import MyComponent from '../components/MyComponent.vue';
+
+  export const myComponentDemo = {
+    component: MyComponent,
+    propsToDemo: {
+      percent: {
+        props: {
+          modelValue: 20
+        }
+      }
+    }
+  };
+`);
+export const SETTING_PROP_DEFAULTS_OPTIONS_EXAMPLE = unindent(`
+  <script>
+  export default {
+    props: {
+      percent: {
+        props: {
+          modelValue: 20
+        }
+      }
+    }
+  };
+  </script>
+`);
+export const SETTING_PROP_DEFAULTS_SCRIPT_SETUP_EXAMPLE = unindent(`
+  <script setup>
+  defineProps({
+    percent: {
+      props: {
+        modelValue: 20
+      }
+    }
+  });
+  </script>
+`);
+
+export const SETTING_PROP_DEFAULTS_VUE_API_DEMO_EXAMPLE = unindent(`
+  import MyComponent from '../components/MyComponent.vue';
+
+  export const myComponentDemo = {
+    component: MyComponent,
+    propsToDemo: {
+      percent: {
+        default: 20
+      }
+    }
+  };
+`);
+export const SETTING_PROP_DEFAULTS_VUE_API_OPTIONS_EXAMPLE = unindent(`
+  <script>
+  export default {
+    props: {
+      percent: {
+        default: 20
+      }
+    }
+  };
+  </script>
+`);
+export const SETTING_PROP_DEFAULTS_VUE_API_SCRIPT_SETUP_EXAMPLE = unindent(`
+  <script setup>
+  defineProps({
+    percent: {
+      default: 20
+    }
   });
   </script>
 `);

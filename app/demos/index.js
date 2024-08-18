@@ -22,6 +22,7 @@ import {
 import DoxenButton from '@/components/DoxenButton.vue';
 import DoxenTabs from '@/components/DoxenTabs.vue';
 import DummyCompositionApi from '@@@/components/DummyCompositionApi.vue';
+import DummyPropsOverride from '@@@/components/DummyPropsOverride.vue';
 import DummyScriptSetupApi from '@@@/components/DummyScriptSetupApi.vue';
 
 import { createDoxenButtonDemo } from '@@@/demos/doxenButtonDemo.js';
@@ -31,6 +32,7 @@ import { createDoxenEmitLogDemo } from '@@@/demos/doxenEmitLogDemo.js';
 import { createDoxenEmitsDocumentationDemo } from '@@@/demos/doxenEmitsDocumentationDemo.js';
 import { createDoxenPropsDocumentationDemo } from '@@@/demos/doxenPropsDocumentationDemo.js';
 import { createDoxenTabsDemo } from '@@@/demos/doxenTabsDemo.js';
+import { createDummyPropsOverrideDemo } from '@@@/demos/dummyPropsOverrideDemo.js';
 import { createDummyScriptSetupApiDemo } from '@@@/demos/dummyScriptSetupApiDemo.js';
 
 const isLocal = location.href.includes('localhost');
@@ -137,7 +139,8 @@ function makeListOfSidebarComponents () {
   if (isLocal) {
     localComponents = {
       DummyCompositionApi,
-      DummyScriptSetupApi
+      DummyScriptSetupApi,
+      DummyPropsOverride
     };
   }
   return {
@@ -159,7 +162,8 @@ export const createDemos = function (styleTokens) {
   if (isLocal) {
     localDemos = {
       DummyCompositionApi,
-      DummyScriptSetupApi: createDummyScriptSetupApiDemo(styleTokens)
+      DummyScriptSetupApi: createDummyScriptSetupApiDemo(styleTokens),
+      DummyPropsOverride: createDummyPropsOverrideDemo(styleTokens)
     };
   }
   return {

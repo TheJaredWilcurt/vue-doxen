@@ -32,6 +32,7 @@
             <li><a href="#basic-prop">Basic Prop Definitions</a></li>
             <li><a href="#documentation-props">Documentation Specific Prop Definitions</a></li>
             <li><a href="#using-both">Using both Demo files and Components for Prop Definitions</a></li>
+            <li><a href="#setting-defaults">Setting a default value for a prop</a></li>
             <li><a href="#custom-components">Use your own components in the props playground</a></li>
           </ul>
         </li>
@@ -252,6 +253,50 @@
             You may want to change the way the component name is rendered on the page without changing how it is used by Vue-DevTools.
           </li>
         </ul>
+      </SubDocumentationSection>
+
+      <SubDocumentationSection id="setting-defaults" title="Setting a default value for a prop">
+        <p>
+          Sometimes when demoing a component, you'll want to set a default value for
+          components in the props playground. There are two ways to do this:
+        </p>
+
+        <p>
+          Vue's API supports setting a default value on a prop. If you use the official
+          API, we will detect this automatically and use that value for the default.
+          This approach will also be displayed in the Props Documentation section.
+        </p>
+
+        <DoxenCodeSwapper
+          :codeTypes="{
+            'Demo File': SETTING_PROP_DEFAULTS_VUE_API_DEMO_EXAMPLE,
+            Options: SETTING_PROP_DEFAULTS_VUE_API_OPTIONS_EXAMPLE,
+            Composition: SETTING_PROP_DEFAULTS_VUE_API_OPTIONS_EXAMPLE,
+            'Script Setup': SETTING_PROP_DEFAULTS_VUE_API_SCRIPT_SETUP_EXAMPLE
+          }"
+          :fileName="FILE_NAME_MY"
+          :styleTokens="styleTokens"
+        />
+
+        <p>
+          You can override the built-in playground component's props. This is similar
+          to importing a component and providing it with props. We're already doing that
+          under the hood for you, so if you don't have a need to use a custom component,
+          you can still set the props values for the built in ones. <strong>Note:</strong>
+          The built-in components may change, so be careful not to over-rely on this
+          convience by using other, more specific props.
+        </p>
+
+        <DoxenCodeSwapper
+          :codeTypes="{
+            'Demo File': SETTING_PROP_DEFAULTS_DEMO_EXAMPLE,
+            Options: SETTING_PROP_DEFAULTS_OPTIONS_EXAMPLE,
+            Composition: SETTING_PROP_DEFAULTS_OPTIONS_EXAMPLE,
+            'Script Setup': SETTING_PROP_DEFAULTS_SCRIPT_SETUP_EXAMPLE
+          }"
+          :fileName="FILE_NAME_MY"
+          :styleTokens="styleTokens"
+        />
       </SubDocumentationSection>
 
       <SubDocumentationSection id="custom-components" title="Use your own components in the props playground">
@@ -480,6 +525,12 @@ import {
   IMPORT_STATEMENT_STRING_DEMO_FILE_EXAMPLE,
   IMPORT_STATEMENT_STRING_OPTIONS_EXAMPLE,
   IMPORT_STATEMENT_STRING_SCRIPT_SETUP_EXAMPLE,
+  SETTING_PROP_DEFAULTS_DEMO_EXAMPLE,
+  SETTING_PROP_DEFAULTS_OPTIONS_EXAMPLE,
+  SETTING_PROP_DEFAULTS_SCRIPT_SETUP_EXAMPLE,
+  SETTING_PROP_DEFAULTS_VUE_API_DEMO_EXAMPLE,
+  SETTING_PROP_DEFAULTS_VUE_API_OPTIONS_EXAMPLE,
+  SETTING_PROP_DEFAULTS_VUE_API_SCRIPT_SETUP_EXAMPLE,
   SLOTS_DEMO_ARRAY_EXAMPLE,
   SLOTS_DEMO_CUSTOM_COMPONENT_EXAMPLE,
   SLOTS_DEMO_DEFAULT_TEXT_EXAMPLE,
@@ -549,6 +600,12 @@ export default {
     IMPORT_STATEMENT_STRING_DEMO_FILE_EXAMPLE,
     IMPORT_STATEMENT_STRING_OPTIONS_EXAMPLE,
     IMPORT_STATEMENT_STRING_SCRIPT_SETUP_EXAMPLE,
+    SETTING_PROP_DEFAULTS_DEMO_EXAMPLE,
+    SETTING_PROP_DEFAULTS_OPTIONS_EXAMPLE,
+    SETTING_PROP_DEFAULTS_SCRIPT_SETUP_EXAMPLE,
+    SETTING_PROP_DEFAULTS_VUE_API_DEMO_EXAMPLE,
+    SETTING_PROP_DEFAULTS_VUE_API_OPTIONS_EXAMPLE,
+    SETTING_PROP_DEFAULTS_VUE_API_SCRIPT_SETUP_EXAMPLE,
     SLOTS_DEMO_ARRAY_EXAMPLE,
     SLOTS_DEMO_CUSTOM_COMPONENT_EXAMPLE,
     SLOTS_DEMO_DEFAULT_TEXT_EXAMPLE,
