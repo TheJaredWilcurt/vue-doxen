@@ -17,24 +17,25 @@ describe('VueDoxenCustom.vue', () => {
   const modelValue = 'DummyButton';
   function makeDummyComponent (name) {
     return markRaw({
-      template: '<div>' + name + '</div>'
+      name: 'Dummy' + name,
+      template: '<div>Dummy' + name + '</div>'
     });
   }
   const options = {
     components: {
-      checkbox: makeDummyComponent('DummyCheckbox'),
-      dropdown: makeDummyComponent('DummyDropdown'),
-      emitLog: makeDummyComponent('DummyEmitLog'),
-      emitsDocumentation: makeDummyComponent('DummyEmitsDocumentation'),
-      header: makeDummyComponent('DummyHeader'),
-      jsonTextarea: makeDummyComponent('DummyJsonTextarea'),
-      numberField: makeDummyComponent('DummyNumberField'),
-      plainText: makeDummyComponent('DummyPlainText'),
-      propsDocumentation: makeDummyComponent('DummyPropsDocumentation'),
-      radioDials: makeDummyComponent('DummyRadioDials'),
-      rangeSlider: makeDummyComponent('DummyRangeSlider'),
-      textField: makeDummyComponent('DummyTextField'),
-      textarea: makeDummyComponent('DummyTextarea')
+      checkbox: makeDummyComponent('Checkbox'),
+      dropdown: makeDummyComponent('Dropdown'),
+      emitLog: makeDummyComponent('EmitLog'),
+      emitsDocumentation: makeDummyComponent('EmitsDocumentation'),
+      header: makeDummyComponent('Header'),
+      jsonTextarea: makeDummyComponent('JsonTextarea'),
+      numberField: makeDummyComponent('NumberField'),
+      plainText: makeDummyComponent('PlainText'),
+      propsDocumentation: makeDummyComponent('PropsDocumentation'),
+      radioDials: makeDummyComponent('RadioDials'),
+      rangeSlider: makeDummyComponent('RangeSlider'),
+      textField: makeDummyComponent('TextField'),
+      textarea: makeDummyComponent('Textarea')
     }
   };
   const styleTokens = styleTokensBuiltIn;
