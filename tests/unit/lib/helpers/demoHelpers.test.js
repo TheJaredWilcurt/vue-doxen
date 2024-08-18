@@ -455,6 +455,29 @@ describe('Demo helpers', () => {
           }
         });
     });
+
+    test('Override default value', () => {
+      const props = {
+        amount: {
+          type: Number,
+          props: {
+            modelValue: 30
+          }
+        }
+      };
+
+      expect(autoGeneratePlaygroundProps(props, components, styleTokens))
+        .toEqual({
+          amount: {
+            component: components.numberField,
+            props: {
+              label: 'Amount',
+              modelValue: 30,
+              styleTokens
+            }
+          }
+        });
+    });
   });
 
   describe('combinePropsAndPropsToDemo', () => {
