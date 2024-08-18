@@ -1,8 +1,8 @@
 import { markRaw } from 'vue';
 
-import VueDoxenCustom from '@/components/VueDoxenCustom.vue';
-
 import { styleTokensBuiltIn } from '@/helpers/styleTokens.js';
+
+import VueDoxenCustom from '@/components/VueDoxenCustom.vue';
 
 import testHelpers from '@@/unit/testHelpers.js';
 
@@ -29,7 +29,7 @@ describe('VueDoxenCustom.vue', () => {
       radioDials: markRaw({ template: '<div>DummyRadioDials</div>' }),
       rangeSlider: markRaw({ template: '<div>DummyRangeSlider</div>' }),
       textField: markRaw({ template: '<div>DummyTextField</div>' }),
-      textarea: markRaw({ template: '<div>DummyTextarea</div>' }),
+      textarea: markRaw({ template: '<div>DummyTextarea</div>' })
     }
   };
   const styleTokens = styleTokensBuiltIn;
