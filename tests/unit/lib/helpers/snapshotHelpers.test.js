@@ -18,6 +18,12 @@ describe('Snapshot Helpers', () => {
       expect(dataValue(undefined))
         .toEqual('undefined');
 
+      expect(dataValue(true))
+        .toEqual('true');
+
+      expect(dataValue(false))
+        .toEqual('false');
+
       expect(dataValue(7))
         .toEqual('7');
 
@@ -39,7 +45,7 @@ describe('Snapshot Helpers', () => {
       expect(dataValue(new Date('2024')))
         .toEqual('1704067200000');
 
-      expect(dataValue(new Date('INVALID_DATE')))
+      expect(dataValue(new Date('asdf')))
         .toEqual('Invalid Date');
 
       expect(dataValue([BigInt(9007199254740991)]))
