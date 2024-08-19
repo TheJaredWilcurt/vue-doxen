@@ -38,7 +38,13 @@ describe('VueDoxenCustom.vue', () => {
       textarea: makeDummyComponent('Textarea')
     }
   };
-  const styleTokens = styleTokensBuiltIn;
+  const styleTokens = {
+    ...styleTokensBuiltIn,
+    vueDoxen: {
+      class: 'test',
+      'data-test': true
+    }
+  };
   const requiredProps = {
     options
   };
