@@ -45,6 +45,9 @@ describe('Snapshot Helpers', () => {
       expect(dataValue([BigInt(9007199254740991)]))
         .toEqual('');
 
+      expect(dataValue(new Set([BigInt(9007199254740991)])))
+        .toEqual('');
+
       expect(dataValue(Boolean))
         .toEqual('Function');
 
