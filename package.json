@@ -44,9 +44,9 @@
     "lodash.startcase": "^4.4.0",
     "nprogress": "^0.2.0",
     "sass": "^1.77.8",
-    "vite": "^5.4.0",
+    "vite": "^5.4.1",
     "vitest": "^2.0.5",
-    "vue": "^3.4.37",
+    "vue": "^3.4.38",
     "vue-axe": "^3.1.2",
     "vue-options-api-constants-plugin": "^1.0.1",
     "vue-router": "^4.4.3"
