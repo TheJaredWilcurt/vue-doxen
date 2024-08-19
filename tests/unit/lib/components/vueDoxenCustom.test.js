@@ -123,7 +123,7 @@ describe('VueDoxenCustom.vue', () => {
       .toEqual(['DummyButton']);
   });
 
-  test('Logs warning if missing custom component and use FallBack', async () => {
+  test('Logs warning if missing custom component and uses FallBack', async () => {
     const props = {
       demos,
       modelValue,
