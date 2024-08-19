@@ -41,8 +41,8 @@ describe('VueDoxenCustom.vue', () => {
   const styleTokens = {
     ...styleTokensBuiltIn,
     vueDoxen: {
-      class: 'test',
-      'data-test': true
+      class: 'doxen-vue-doxen',
+      'data-example': 'test'
     }
   };
   const requiredProps = {

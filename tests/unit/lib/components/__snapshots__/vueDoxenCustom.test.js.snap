@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`VueDoxenCustom.vue > Renders correctly with all props 1`] = `
-<div class="test" data-applied-style-tokens="vueDoxen" data-style-tokens="vueDoxen">
+<div class="doxen-vue-doxen" data-applied-style-tokens="vueDoxen" data-example="test" data-style-tokens="vueDoxen">
   <div class="doxen-component-demo" data-applied-style-tokens="componentDemo" data-style-tokens="componentDemo">
     <!-- DoxenHeader -->
     <div styletokens="[object Object]" title="Dummy Button">DummyHeader</div>
