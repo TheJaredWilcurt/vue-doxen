@@ -50,7 +50,7 @@
         :key="componentName + '-demo'"
       >
         <template
-          v-for="(slotValue, slotName) in slotsToDemo"
+          v-for="(slotValue, slotName) in slotsToRender"
           #[slotName]
         >
           <span
@@ -359,6 +359,17 @@ export default {
       }
 
       return slotsToDemo;
+    },
+    slotsToRender: function () {
+      const slotsToRender = {};
+      for (const slotName in this.demoSlots) {
+        if (this.demoSlots[slotName]) {
+          slotsToRender[slotName] = {
+            ...this.demoSlots[slotName]
+          }
+        }
+      }
+      return slotsToRender;
     },
     playgroundProps: function () {
       const propsToDemo = this.demo?.propsToDemo || {};
