@@ -366,7 +366,7 @@ export default {
         if (this.demoSlots[slotName]) {
           slotsToRender[slotName] = {
             ...this.demoSlots[slotName]
-          }
+          };
         }
       }
       return slotsToRender;

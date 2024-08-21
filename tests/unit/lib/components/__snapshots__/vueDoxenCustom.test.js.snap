@@ -27,7 +27,7 @@ exports[`VueDoxenCustom.vue > Renders correctly with all props 1`] = `
           <button aria-pressed="false" class="doxen-tab-button doxen-tab-button-not-selected" data-applied-style-tokens="tabButton tabButtonNotSelected" data-style-tokens="tabButton tabButtonNotSelected tabButtonSelected">JavaScript</button>
         </div>
       </div>
-      <div aria-label="Code example" class="doxen-code-box-container" data-applied-style-tokens="codeBoxContainer" data-style-tokens="codeBoxContainer" role="textbox" tabindex="0" title="Click to copy"><pre class="doxen-code-box" data-applied-style-tokens="codeBox" data-style-tokens="codeBox"><code class="hljs xml" tabindex="0"><span class="hljs-tag"><<span class="hljs-name">DummyButton</span> /></span></code></pre>
+      <div aria-label="Code example" class="doxen-code-box-container" data-applied-style-tokens="codeBoxContainer" data-style-tokens="codeBoxContainer" role="textbox" tabindex="0" title="Click to copy"><pre class="doxen-code-box" data-applied-style-tokens="codeBox" data-style-tokens="codeBox"><code class="hljs xml" tabindex="0"><span class="hljs-tag">&lt;<span class="hljs-name">DummyButton</span> /&gt;</span></code></pre>
         <!--v-if-->
       </div>
       <div aria-label="Code example" class="doxen-code-box-container" data-applied-style-tokens="codeBoxContainer" data-style-tokens="codeBoxContainer" role="textbox" style="display: none;" tabindex="0" title="Click to copy"><pre class="doxen-code-box" data-applied-style-tokens="codeBox" data-style-tokens="codeBox"><code class="hljs javascript" tabindex="0"><span class="hljs-keyword">const</span> dummyButtonProps = {};</code></pre>
