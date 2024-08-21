@@ -38,7 +38,13 @@ describe('VueDoxenCustom.vue', () => {
       textarea: makeDummyComponent('Textarea')
     }
   };
-  const styleTokens = styleTokensBuiltIn;
+  const styleTokens = {
+    ...styleTokensBuiltIn,
+    vueDoxen: {
+      class: 'doxen-vue-doxen-test',
+      'data-example': 'test'
+    }
+  };
   const requiredProps = {
     options
   };
@@ -115,5 +121,29 @@ describe('VueDoxenCustom.vue', () => {
 
     expect(wrapper.emitted()['update:model-value'][0])
       .toEqual(['DummyButton']);
+  });
+
+  test('Logs warning if missing custom component and uses FallBack', async () => {
+    const props = {
+      demos,
+      modelValue,
+      options: {
+        components: {
+          ...options.components,
+          checkbox: null
+        }
+      },
+      styleTokens
+    };
+    const wrapper = await setupWrapper(props);
+
+    expect(console.info)
+      .toHaveBeenCalledWith(
+        'REQUIRED: options.components.checkbox is missing a custom component. ' +
+        'One MUST be provided. No fallback will be used and errors will occur.'
+      );
+
+    expect(wrapper.vm.validatedOptions.components.checkbox.name)
+      .toEqual('FallBack');
   });
 });

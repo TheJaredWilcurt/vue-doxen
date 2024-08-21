@@ -14,6 +14,7 @@ module.exports = {
     sourceType: 'module'
   },
   globals: {
+    BigInt: true,
     globalThis: true,
     Promise: true,
     vi: true,
