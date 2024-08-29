@@ -25,6 +25,7 @@
     "axe-core": "^4.10.0",
     "babel-eslint": "^10.1.0",
     "cross-env": "^7.0.3",
+    "diffable-html": "^5.0.0",
     "eslint": "^8.57.0",
     "eslint-config-tjw-base": "^2.0.0",
     "eslint-config-tjw-import": "^1.0.0",

@@ -51,7 +51,7 @@ export default {
   props: {
     code: {
       type: String,
-      default: undefined
+      default: ''
     },
     styleTokens
   },

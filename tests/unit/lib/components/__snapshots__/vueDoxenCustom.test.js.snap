@@ -1,47 +1,165 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`VueDoxenCustom.vue > Renders correctly with all props 1`] = `
-<div class="doxen-vue-doxen-test" data-applied-style-tokens="vueDoxen" data-example="test" data-style-tokens="vueDoxen">
-  <div class="doxen-component-demo" data-applied-style-tokens="componentDemo" data-style-tokens="componentDemo">
-    <!-- DoxenHeader -->
-    <div styletokens="[object Object]" title="Dummy Button">DummyHeader</div>
-    <div class="doxen-demo-description" data-applied-style-tokens="demoDescription" data-style-tokens="demoDescription">Dummy button description</div>
-    <!--v-if-->
-    <!-- Component being demo'd -->
-    <div class="doxen-component-demo-container" data-applied-style-tokens="componentDemoContainer" data-style-tokens="componentDemoContainer">
-      <hr class="doxen-component-demo-hr" data-applied-style-tokens="componentDemoHr" data-style-tokens="componentDemoHr">
-      <button>DummyButton</button>
-      <hr class="doxen-component-demo-hr" data-applied-style-tokens="componentDemoHr" data-style-tokens="componentDemoHr">
+<div
+  class="doxen-vue-doxen-test"
+  data-applied-style-tokens="vueDoxen"
+  data-example="test"
+  data-style-tokens="vueDoxen"
+>
+  <div
+    class="doxen-component-demo"
+    data-applied-style-tokens="componentDemo"
+    data-style-tokens="componentDemo"
+  >
+    <div
+      styletokens="[object Object]"
+      title="Dummy Button"
+    >
+      DummyHeader
     </div>
-    <h3 class="doxen-component-demo-h3" data-applied-style-tokens="componentDemoH3" data-style-tokens="componentDemoH3">Props Playground:</h3>
-    <form class="doxen-props-playground-form" data-applied-style-tokens="propsPlaygroundForm" data-style-tokens="propsPlaygroundForm">
-      <!-- Anything for Props -->
-      <!-- Slots Playground -->
-      <!-- DoxenEmitLog for emits -->
-      <!--v-if-->
+    <div
+      class="doxen-demo-description"
+      data-applied-style-tokens="demoDescription"
+      data-style-tokens="demoDescription"
+    >
+      Dummy button description
+    </div>
+    <div
+      class="doxen-component-demo-container"
+      data-applied-style-tokens="componentDemoContainer"
+      data-style-tokens="componentDemoContainer"
+    >
+      <hr
+        class="doxen-component-demo-hr"
+        data-applied-style-tokens="componentDemoHr"
+        data-style-tokens="componentDemoHr"
+      >
+      <button>
+        DummyButton
+      </button>
+      <hr
+        class="doxen-component-demo-hr"
+        data-applied-style-tokens="componentDemoHr"
+        data-style-tokens="componentDemoHr"
+      >
+    </div>
+    <h3
+      class="doxen-component-demo-h3"
+      data-applied-style-tokens="componentDemoH3"
+      data-style-tokens="componentDemoH3"
+    >
+      Props Playground:
+    </h3>
+    <form
+      class="doxen-props-playground-form"
+      data-applied-style-tokens="propsPlaygroundForm"
+      data-style-tokens="propsPlaygroundForm"
+    >
     </form>
-    <div class="doxen-code-swapper" data-applied-style-tokens="codeSwapper" data-style-tokens="codeSwapper">
-      <div class="doxen-tabs-header" data-applied-style-tokens="tabsHeader" data-style-tokens="tabsHeader">
-        <div class="doxen-tabs-button-container" data-applied-style-tokens="tabsButtonContainer" data-style-tokens="tabsButtonContainer">
-          <button aria-pressed="true" class="doxen-tab-button doxen-tab-button-selected" data-applied-style-tokens="tabButton tabButtonSelected" data-style-tokens="tabButton tabButtonNotSelected tabButtonSelected">Vue</button>
-          <button aria-pressed="false" class="doxen-tab-button doxen-tab-button-not-selected" data-applied-style-tokens="tabButton tabButtonNotSelected" data-style-tokens="tabButton tabButtonNotSelected tabButtonSelected">JavaScript</button>
+    <div
+      class="doxen-code-swapper"
+      data-applied-style-tokens="codeSwapper"
+      data-style-tokens="codeSwapper"
+    >
+      <div
+        class="doxen-tabs-header"
+        data-applied-style-tokens="tabsHeader"
+        data-style-tokens="tabsHeader"
+      >
+        <div
+          class="doxen-tabs-button-container"
+          data-applied-style-tokens="tabsButtonContainer"
+          data-style-tokens="tabsButtonContainer"
+        >
+          <button
+            aria-pressed="true"
+            class="doxen-tab-button doxen-tab-button-selected"
+            data-applied-style-tokens="tabButton tabButtonSelected"
+            data-style-tokens="tabButton tabButtonNotSelected tabButtonSelected"
+          >
+            Vue
+          </button>
+          <button
+            aria-pressed="false"
+            class="doxen-tab-button doxen-tab-button-not-selected"
+            data-applied-style-tokens="tabButton tabButtonNotSelected"
+            data-style-tokens="tabButton tabButtonNotSelected tabButtonSelected"
+          >
+            JavaScript
+          </button>
         </div>
       </div>
-      <div aria-label="Code example" class="doxen-code-box-container" data-applied-style-tokens="codeBoxContainer" data-style-tokens="codeBoxContainer" role="textbox" tabindex="0" title="Click to copy"><pre class="doxen-code-box" data-applied-style-tokens="codeBox" data-style-tokens="codeBox"><code class="hljs xml" tabindex="0"><span class="hljs-tag">&lt;<span class="hljs-name">DummyButton</span> /&gt;</span></code></pre>
-        <!--v-if-->
+      <div
+        aria-label="Code example"
+        class="doxen-code-box-container"
+        data-applied-style-tokens="codeBoxContainer"
+        data-style-tokens="codeBoxContainer"
+        role="textbox"
+        tabindex="0"
+        title="Click to copy"
+      >
+        <pre
+          class="doxen-code-box"
+          data-applied-style-tokens="codeBox"
+          data-style-tokens="codeBox"
+        >
+          <code
+            class="hljs xml"
+            tabindex="0"
+          >
+            <span class="hljs-tag">
+              &lt;
+              <span class="hljs-name">
+                DummyButton
+              </span>
+              /&gt;
+            </span>
+          </code>
+        </pre>
       </div>
-      <div aria-label="Code example" class="doxen-code-box-container" data-applied-style-tokens="codeBoxContainer" data-style-tokens="codeBoxContainer" role="textbox" style="display: none;" tabindex="0" title="Click to copy"><pre class="doxen-code-box" data-applied-style-tokens="codeBox" data-style-tokens="codeBox"><code class="hljs javascript" tabindex="0"><span class="hljs-keyword">const</span> dummyButtonProps = {};</code></pre>
-        <!--v-if-->
+      <div
+        aria-label="Code example"
+        class="doxen-code-box-container"
+        data-applied-style-tokens="codeBoxContainer"
+        data-style-tokens="codeBoxContainer"
+        role="textbox"
+        style="display: none;"
+        tabindex="0"
+        title="Click to copy"
+      >
+        <pre
+          class="doxen-code-box"
+          data-applied-style-tokens="codeBox"
+          data-style-tokens="codeBox"
+        >
+          <code
+            class="hljs javascript"
+            tabindex="0"
+          >
+            <span class="hljs-keyword">
+              const
+            </span>
+            dummyButtonProps = {};
+          </code>
+        </pre>
       </div>
-    </div><!-- DoxenPropsDocumentation -->
-    <div propstodemo="[object Object]" styletokens="[object Object]">DummyPropsDocumentation</div>
-    <!--v-if-->
+    </div>
+    <div
+      propstodemo="[object Object]"
+      styletokens="[object Object]"
+    >
+      DummyPropsDocumentation
+    </div>
   </div>
 </div>
 `;
 
 exports[`VueDoxenCustom.vue > Renders correctly with required props 1`] = `
-<div class data-applied-style-tokens="vueDoxen" data-style-tokens="vueDoxen">
-  <!--v-if-->
+<div
+  class
+  data-applied-style-tokens="vueDoxen"
+  data-style-tokens="vueDoxen"
+>
 </div>
 `;
