@@ -1,4 +1,6 @@
+const diffableHtml = require('diffable-html');
 const jestSerializerVueTJW = require('jest-serializer-vue-tjw');
+
 
 const isHtmlString = function (received) {
   return (
@@ -21,6 +23,6 @@ module.exports = {
     return isHtmlString(received) || isVueWrapper(received);
   },
   print: function (received) {
-    return jestSerializerVueTJW.print(received);
+    return diffableHtml(jestSerializerVueTJW.print(received)).trim();
   }
 };
