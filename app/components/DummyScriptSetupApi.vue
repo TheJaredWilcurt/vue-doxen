@@ -63,7 +63,8 @@ defineProps({
   label: {
     type: String,
     default: 'potato'
-  }
+  },
+  typeShortHand: String
 });
 
 const greeting = ref('Hello');
