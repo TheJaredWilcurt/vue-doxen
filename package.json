@@ -13,7 +13,8 @@
     "lint": "eslint --ext .js,.vue --config=.eslintrc.cjs lib scripts tests app vite.config.*.js .eslintrc.cjs",
     "fix": "eslint --fix --ext .js,.vue --config=.eslintrc.cjs lib scripts tests app vite.config.*.js .eslintrc.cjs",
     "unit": "cross-env TZ=America/New_York vitest --coverage --config vite.config.lib.js",
-    "test": "cross-env TZ=America/New_York vitest run --coverage --config vite.config.lib.js"
+    "test": "cross-env TZ=America/New_York vitest run --coverage --config vite.config.lib.js",
+    "outdated": "npx --yes -- check-outdated --ignore-packages eslint,eslint-config-tjw-vue,eslint-config-tjw-base,eslint-plugin-import,eslint-plugin-vue,vue-axe --columns package,current,wanted,latest --types major,minor,patch"
   },
   "dependencies": {},
   "devDependencies": {
@@ -34,7 +35,7 @@
     "eslint-plugin-import": "^2.30.0",
     "eslint-plugin-vue": "^9.30.0",
     "eslint-plugin-vuejs-accessibility": "^2.4.1",
-    "happy-dom": "^15.8.3",
+    "happy-dom": "^15.11.0",
     "jest-serializer-vue-tjw": "^3.20.0",
     "json5": "^2.2.3",
     "lodash.clonedeep": "^4.5.0",
