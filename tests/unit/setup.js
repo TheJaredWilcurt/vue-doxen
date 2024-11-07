@@ -1,8 +1,9 @@
-import vueSnapshotSerializer from './serializer.js';
-
-expect.addSnapshotSerializer(vueSnapshotSerializer);
-
 global.beforeEach(() => {
+  global.vueSnapshots = {
+    formatting: {
+      emptyAttributes: false
+    }
+  };
 });
 
 global.afterEach(() => {
