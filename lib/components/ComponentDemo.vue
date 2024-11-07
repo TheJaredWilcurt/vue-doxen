@@ -19,7 +19,17 @@
         v-bind="description.props || {}"
         v-on="description.events || {}"
         :key="componentName + '-description'"
-      />
+      >
+        <template
+          v-for="(slotValue, slotName) in description.slots"
+          #[slotName]
+        >
+          <span
+            v-html="description.slots[slotName]"
+            :key="'slot-' + slotName"
+          ></span>
+        </template>
+      </component>
     </template>
 
     <template v-if="importStatement">
@@ -36,7 +46,17 @@
           v-bind="importStatement.props || {}"
           v-on="importStatement.events || {}"
           :key="componentName + '-import-statment'"
-        />
+        >
+          <template
+            v-for="(slotValue, slotName) in importStatement.slots"
+            #[slotName]
+          >
+            <span
+              v-html="importStatement.slots[slotName]"
+              :key="'slot-' + slotName"
+            ></span>
+          </template>
+        </component>
       </template>
     </template>
 
