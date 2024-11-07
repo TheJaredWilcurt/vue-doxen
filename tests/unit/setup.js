@@ -1,5 +1,9 @@
 global.beforeEach(() => {
-  global.vueSnapshots = {};
+  global.vueSnapshots = {
+    formatting: {
+      emptyAttributes: false
+    }
+  };
 });
 
 global.afterEach(() => {
