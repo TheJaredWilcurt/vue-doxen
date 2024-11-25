@@ -15,7 +15,6 @@
     "unit": "cross-env TZ=America/New_York vitest --coverage --config vite.config.lib.js",
     "test": "cross-env TZ=America/New_York vitest run --coverage --config vite.config.lib.js"
   },
-  "dependencies": {},
   "devDependencies": {
     "@babel/eslint-parser": "^7.25.8",
     "@highlightjs/vue-plugin": "2.1.2",
@@ -35,7 +34,6 @@
     "eslint-plugin-vue": "^9.29.1",
     "eslint-plugin-vuejs-accessibility": "^2.4.1",
     "happy-dom": "^15.7.4",
-    "jest-serializer-vue-tjw": "^3.20.0",
     "json5": "^2.2.3",
     "lodash.clonedeep": "^4.5.0",
     "lodash.isequal": "^4.5.0",
@@ -49,7 +47,8 @@
     "vue": "^3.5.12",
     "vue-axe": "^3.1.2",
     "vue-options-api-constants-plugin": "^1.0.1",
-    "vue-router": "^4.4.5"
+    "vue-router": "^4.4.5",
+    "vue3-snapshot-serializer": "^0.2.0"
   },
   "private": false,
   "type": "module",
