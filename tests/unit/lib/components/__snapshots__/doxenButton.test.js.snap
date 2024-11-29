@@ -3,7 +3,7 @@
 exports[`DoxenButton.vue > Renders correctly 1`] = `
 <button
   aria-pressed="false"
-  class
+  class=""
   data-applied-style-tokens="button buttonNotSelected"
   data-style-tokens="button buttonNotSelected buttonSelected"
 >

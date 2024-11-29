@@ -1,8 +1,11 @@
-import vueSnapshotSerializer from './serializer.js';
-
-expect.addSnapshotSerializer(vueSnapshotSerializer);
+/** @typedef {import('vue3-snapshot-serializer/types').SETTINGS} SETTINGS */
 
 global.beforeEach(() => {
+  /** @type {SETTINGS} */
+  const snapshotSettings = {
+    formatting: {}
+  };
+  globalThis.vueSnapshots = snapshotSettings;
 });
 
 global.afterEach(() => {

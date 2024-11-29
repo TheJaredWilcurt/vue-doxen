@@ -91,6 +91,8 @@ describe('VueDoxenCustom.vue', () => {
     expect(console.info)
       .not.toHaveBeenCalled();
 
+    global.vueSnapshots.stringifyAttributes = true;
+
     expect(wrapper)
       .toMatchSnapshot();
   });

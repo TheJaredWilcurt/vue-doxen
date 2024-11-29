@@ -63,7 +63,9 @@ defineProps({
   label: {
     type: String,
     default: 'potato'
-  }
+  },
+  // eslint-disable-next-line vue/require-default-prop
+  typeShortHand: String
 });
 
 const greeting = ref('Hello');

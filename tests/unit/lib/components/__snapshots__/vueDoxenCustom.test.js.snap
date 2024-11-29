@@ -12,6 +12,7 @@ exports[`VueDoxenCustom.vue > Renders correctly with all props 1`] = `
     data-applied-style-tokens="componentDemo"
     data-style-tokens="componentDemo"
   >
+    <!-- DoxenHeader -->
     <div
       styletokens="[object Object]"
       title="Dummy Button"
@@ -25,6 +26,8 @@ exports[`VueDoxenCustom.vue > Renders correctly with all props 1`] = `
     >
       Dummy button description
     </div>
+    <!-- v-if -->
+    <!-- Component being demo'd -->
     <div
       class="doxen-component-demo-container"
       data-applied-style-tokens="componentDemoContainer"
@@ -34,7 +37,7 @@ exports[`VueDoxenCustom.vue > Renders correctly with all props 1`] = `
         class="doxen-component-demo-hr"
         data-applied-style-tokens="componentDemoHr"
         data-style-tokens="componentDemoHr"
-      >
+      />
       <button>
         DummyButton
       </button>
@@ -42,7 +45,7 @@ exports[`VueDoxenCustom.vue > Renders correctly with all props 1`] = `
         class="doxen-component-demo-hr"
         data-applied-style-tokens="componentDemoHr"
         data-style-tokens="componentDemoHr"
-      >
+      />
     </div>
     <h3
       class="doxen-component-demo-h3"
@@ -56,6 +59,10 @@ exports[`VueDoxenCustom.vue > Renders correctly with all props 1`] = `
       data-applied-style-tokens="propsPlaygroundForm"
       data-style-tokens="propsPlaygroundForm"
     >
+      <!-- Anything for Props -->
+      <!-- Slots Playground -->
+      <!-- DoxenEmitLog for emits -->
+      <!-- v-if -->
     </form>
     <div
       class="doxen-code-swapper"
@@ -103,20 +110,11 @@ exports[`VueDoxenCustom.vue > Renders correctly with all props 1`] = `
           class="doxen-code-box"
           data-applied-style-tokens="codeBox"
           data-style-tokens="codeBox"
-        >
-          <code
-            class="hljs xml"
-            tabindex="0"
-          >
-            <span class="hljs-tag">
-              &lt;
-              <span class="hljs-name">
-                DummyButton
-              </span>
-              /&gt;
-            </span>
-          </code>
-        </pre>
+        ><code
+          class="hljs xml"
+          tabindex="0"
+        ><span class="hljs-tag">&lt;<span class="hljs-name">DummyButton</span> /&gt;</span></code></pre>
+        <!-- v-if -->
       </div>
       <div
         aria-label="Code example"
@@ -132,34 +130,31 @@ exports[`VueDoxenCustom.vue > Renders correctly with all props 1`] = `
           class="doxen-code-box"
           data-applied-style-tokens="codeBox"
           data-style-tokens="codeBox"
-        >
-          <code
-            class="hljs javascript"
-            tabindex="0"
-          >
-            <span class="hljs-keyword">
-              const
-            </span>
-            dummyButtonProps = {};
-          </code>
-        </pre>
+        ><code
+          class="hljs javascript"
+          tabindex="0"
+        ><span class="hljs-keyword">const</span> dummyButtonProps = {};</code></pre>
+        <!-- v-if -->
       </div>
     </div>
+    <!-- DoxenPropsDocumentation -->
     <div
       propstodemo="[object Object]"
       styletokens="[object Object]"
     >
       DummyPropsDocumentation
     </div>
+    <!-- v-if -->
   </div>
 </div>
 `;
 
 exports[`VueDoxenCustom.vue > Renders correctly with required props 1`] = `
 <div
-  class
+  class=""
   data-applied-style-tokens="vueDoxen"
   data-style-tokens="vueDoxen"
 >
+  <!-- v-if -->
 </div>
 `;

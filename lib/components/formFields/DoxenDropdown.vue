@@ -37,7 +37,6 @@
           v-for="option in uniqueOptions"
           v-text="option.name"
           v-bind="applyStyleTokens({ formFieldDropdownOption: true })"
-          :id="createIdFor({ label, uniqueId })"
           :data-test="'option-' + option.value"
           :value="option.value"
           :key="'option' + option.uniqueId"

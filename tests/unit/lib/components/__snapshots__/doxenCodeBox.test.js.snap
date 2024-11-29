@@ -14,35 +14,13 @@ exports[`DoxenCodeBox > Renders HTML 1`] = `
     class="doxen-code-box"
     data-applied-style-tokens="codeBox"
     data-style-tokens="codeBox"
-  >
-    <code
-      class="hljs xml"
-      tabindex="0"
-    >
-      <span class="hljs-tag">
-        &lt;
-        <span class="hljs-name">
-          div
-        </span>
-        <span class="hljs-attr">
-          attribute
-        </span>
-        =
-        <span class="hljs-string">
-          "value"
-        </span>
-        &gt;
-      </span>
-      Text
-      <span class="hljs-tag">
-        &lt;/
-        <span class="hljs-name">
-          div
-        </span>
-        &gt;
-      </span>
-    </code>
-  </pre>
+  ><code
+    class="hljs xml"
+    tabindex="0"
+  ><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">attribute</span>=<span class="hljs-string">"value"</span>&gt;</span>
+  Text
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+  <!-- v-if -->
 </div>
 `;
 
@@ -60,41 +38,21 @@ exports[`DoxenCodeBox > Renders JavaScript 1`] = `
     class="doxen-code-box"
     data-applied-style-tokens="codeBox"
     data-style-tokens="codeBox"
-  >
-    <code
-      class="hljs javascript"
-      tabindex="0"
-    >
-      <span class="hljs-keyword">
-        const
-      </span>
-      value =
-      <span class="hljs-number">
-        4
-      </span>
-      ;
-      <span class="hljs-variable language_">
-        console
-      </span>
-      .
-      <span class="hljs-title function_">
-        log
-      </span>
-      ({
-      <span class="hljs-attr">
-        key
-      </span>
-      : value
-});
-    </code>
-  </pre>
+  ><code
+    class="hljs javascript"
+    tabindex="0"
+  ><span class="hljs-keyword">const</span> value = <span class="hljs-number">4</span>;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>({
+  <span class="hljs-attr">key</span>: value
+});</code></pre>
+  <!-- v-if -->
 </div>
 `;
 
 exports[`DoxenCodeBox > Renders with just required props 1`] = `
 <div
   aria-label="Code example"
-  class
+  class=""
   data-applied-style-tokens="codeBoxContainer"
   data-style-tokens="codeBoxContainer"
   role="textbox"
@@ -102,15 +60,13 @@ exports[`DoxenCodeBox > Renders with just required props 1`] = `
   title="Click to copy"
 >
   <pre
-    class
+    class=""
     data-applied-style-tokens="codeBox"
     data-style-tokens="codeBox"
-  >
-    <code
-      class="hljs javascript"
-      tabindex="0"
-    >
-    </code>
-  </pre>
+  ><code
+    class="hljs javascript"
+    tabindex="0"
+  ></code></pre>
+  <!-- v-if -->
 </div>
 `;
