@@ -1,3 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`FallBack.vue > Renders correctly 1`] = `<h1 id="fallback"> OH NO! You are missing a needed component! View console for details. </h1>`;
+exports[`FallBack.vue > Renders correctly 1`] = `
+<h1 id="fallback">
+  OH NO! You are missing a needed component! View console for details.
+</h1>
+`;
