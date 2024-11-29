@@ -2,6 +2,7 @@
   <FormFieldsetWrapper
     :modelValue="modelValue"
     :styleTokens="styleTokens"
+    :title="title"
   >
     <FormFieldLabel
       :disabled="disabled"
@@ -113,6 +114,10 @@ export default {
     modelValue,
     required,
     styleTokens,
+    title: {
+      type: String,
+      default: undefined
+    },
     name: {
       type: String,
       default: undefined,

@@ -505,7 +505,11 @@ export const DESCRIPTION_COMPONENT_DEMO_FILE_EXAMPLE = unindent(`
       props: {
         yourProp: 'your value'
       },
-      // Optional: if your component has emits
+      // Optional, if your component has slots
+      slots: {
+        default: '<em>Content</em>'
+      },
+      // Optional, if your component has emits
       events: {
         click: function ($event) {
           console.log($event);
@@ -521,16 +525,20 @@ export const DESCRIPTION_COMPONENT_OPTIONS_EXAMPLE = unindent(`
   // into your component just for Vue-Doxen will bloat your component's
   // file size for no real benefit. If you want to use your own
   // component for the description, just use a demo file.
-  import MyImportStatement from './MyImportStatement.vue';
+  import MyDescription from '../components/MyDescription.vue';
 
   export default {
-    importStatement: {
-      component: MyImportStatement,
+    description: {
+      component: MyDescription,
       // Optional, if your component needs props
       props: {
         yourProp: 'your value'
       },
-      // Optional: if your component has emits
+      // Optional, if your component has slots
+      slots: {
+        default: '<em>Content</em>'
+      },
+      // Optional, if your component has emits
       events: {
         click: function ($event) {
           console.log($event);
@@ -547,16 +555,20 @@ export const DESCRIPTION_COMPONENT_SCRIPT_SETUP_EXAMPLE = unindent(`
   // into your component just for Vue-Doxen will bloat your component's
   // file size for no real benefit. If you want to use your own
   // component for the description, just use a demo file.
-  import MyImportStatement from './MyImportStatement.vue';
+  import MyDescription from '../components/MyDescription.vue';
 
   defineOptions({
-    importStatement: {
-      component: MyImportStatement,
+    description: {
+      component: MyDescription,
       // Optional, if your component needs props
       props: {
         yourProp: 'your value'
       },
-      // Optional: if your component has emits
+      // Optional, if your component has slots
+      slots: {
+        default: '<em>Content</em>'
+      },
+      // Optional, if your component has emits
       events: {
         click: function ($event) {
           console.log($event);
@@ -1174,7 +1186,11 @@ export const IMPORT_STATEMENT_COMPONENT_DEMO_FILE_EXAMPLE = unindent(`
       props: {
         yourProp: 'your value'
       },
-      // Optional: if your component has emits
+      // Optional, if your component has slots
+      slots: {
+        default: '<em>Content</em>'
+      },
+      // Optional, if your component has emits
       events: {
         click: function ($event) {
           console.log($event);
@@ -1190,7 +1206,7 @@ export const IMPORT_STATEMENT_COMPONENT_OPTIONS_EXAMPLE = unindent(`
   // into your component just for Vue-Doxen will bloat your component's
   // file size for no real benefit. If you want to use your own
   // component for the import statement, just use a demo file.
-  import MyImportStatement from './MyImportStatement.vue';
+  import MyImportStatement from '../components/MyImportStatement.vue';
 
   export default {
     importStatement: {
@@ -1199,7 +1215,11 @@ export const IMPORT_STATEMENT_COMPONENT_OPTIONS_EXAMPLE = unindent(`
       props: {
         yourProp: 'your value'
       },
-      // Optional: if your component has emits
+      // Optional, if your component has slots
+      slots: {
+        default: '<em>Content</em>'
+      },
+      // Optional, if your component has emits
       events: {
         click: function ($event) {
           console.log($event);
@@ -1216,7 +1236,7 @@ export const IMPORT_STATEMENT_COMPONENT_SCRIPT_SETUP_EXAMPLE = unindent(`
   // into your component just for Vue-Doxen will bloat your component's
   // file size for no real benefit. If you want to use your own
   // component for the import statement, just use a demo file.
-  import MyImportStatement from './MyImportStatement.vue';
+  import MyImportStatement from '../components/MyImportStatement.vue';
 
   defineOptions({
     importStatement: {
@@ -1225,7 +1245,11 @@ export const IMPORT_STATEMENT_COMPONENT_SCRIPT_SETUP_EXAMPLE = unindent(`
       props: {
         yourProp: 'your value'
       },
-      // Optional: if your component has emits
+      // Optional, if your component has slots
+      slots: {
+        default: '<em>Content</em>'
+      },
+      // Optional, if your component has emits
       events: {
         click: function ($event) {
           console.log($event);

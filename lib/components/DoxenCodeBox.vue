@@ -4,10 +4,10 @@
     aria-label="Code example"
     role="textbox"
     tabindex="0"
-    title="Click to copy"
-    @click="copy"
-    @keydown.enter="copy"
-    @keydown.space.prevent.stop="copy"
+    :title="copy ? 'Click to copy' : undefined"
+    @click="copyCode"
+    @keydown.enter="copyCode"
+    @keydown.space.prevent.stop="copyCode"
   >
     <HighlightJS
       v-bind="applyStyleTokens({ codeBox: true })"
@@ -49,6 +49,10 @@ export default {
   },
   mixins: [applyStyleTokens],
   props: {
+    copy: {
+      type: Boolean,
+      default: true
+    },
     code: {
       type: String,
       default: undefined
@@ -62,15 +66,17 @@ export default {
     };
   },
   methods: {
-    copy: async function () {
-      try {
-        await navigator.clipboard.writeText(this.code);
-        this.copied = true;
-        setTimeout(() => {
-          this.copied = false;
-        }, 2100);
-      } catch (error) {
-        console.error(error.message);
+    copyCode: async function () {
+      if (this.copy) {
+        try {
+          await navigator.clipboard.writeText(this.code);
+          this.copied = true;
+          setTimeout(() => {
+            this.copied = false;
+          }, 2100);
+        } catch (error) {
+          console.error(error.message);
+        }
       }
     }
   },
