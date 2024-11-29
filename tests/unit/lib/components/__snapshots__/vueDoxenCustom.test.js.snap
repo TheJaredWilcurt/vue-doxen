@@ -111,9 +111,9 @@ exports[`VueDoxenCustom.vue > Renders correctly with all props 1`] = `
           data-applied-style-tokens="codeBox"
           data-style-tokens="codeBox"
         ><code
-            class="hljs xml"
-            tabindex="0"
-          ><span class="hljs-tag">&lt;<span class="hljs-name">DummyButton</span> /&gt;</span></code></pre>
+          class="hljs xml"
+          tabindex="0"
+        ><span class="hljs-tag">&lt;<span class="hljs-name">DummyButton</span> /&gt;</span></code></pre>
         <!-- v-if -->
       </div>
       <div
@@ -131,9 +131,9 @@ exports[`VueDoxenCustom.vue > Renders correctly with all props 1`] = `
           data-applied-style-tokens="codeBox"
           data-style-tokens="codeBox"
         ><code
-            class="hljs javascript"
-            tabindex="0"
-          ><span class="hljs-keyword">const</span> dummyButtonProps = {};</code></pre>
+          class="hljs javascript"
+          tabindex="0"
+        ><span class="hljs-keyword">const</span> dummyButtonProps = {};</code></pre>
         <!-- v-if -->
       </div>
     </div>

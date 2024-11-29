@@ -48,7 +48,7 @@
     "vue-axe": "^3.1.2",
     "vue-options-api-constants-plugin": "^1.0.1",
     "vue-router": "^4.5.0",
-    "vue3-snapshot-serializer": "^0.12.0"
+    "vue3-snapshot-serializer": "^0.13.0"
   },
   "private": false,
   "type": "module",
