@@ -5,7 +5,7 @@ export const createDoxenCodeSwapperDemo = function (styleTokens) {
   return {
     component: DoxenCodeSwapper,
     description: 'This component allows you to pass in an optional file name, and various code examples to switch (or swap) between. The code is syntax highlighted, and clicking it will copy to the clipboard. Click the "code type" tabs, will store a "vueDoxenTab" value in local storage. It remembers the most recently clicked tabs in order (without duplicates), so that on page load, the user\'s preferred tab type will be selected automatically.',
-    importStatement: 'import { DoxenCodeSwapper } from \'vue-doxen\'',
+    importStatement: 'import { DoxenCodeSwapper } from \'vue-doxen\';',
     propsToDemo: {
       codeTypes: {
         component: DoxenJsonTextarea,
