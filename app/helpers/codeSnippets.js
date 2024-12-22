@@ -328,7 +328,7 @@ export const DEMO_FILE_EXAMPLE = unindent(`
   export const myComponentDemo = {
     component: MyComponent,
     description: '<p>Some description of the component.</p>',
-    importStatement: 'import { MyComponent } from \\'my-component-library\\'',
+    importStatement: 'import { MyComponent } from \\'my-component-library\\';',
     propsToDemo: {
       color: {
         component: MyCustomColorPicker,
