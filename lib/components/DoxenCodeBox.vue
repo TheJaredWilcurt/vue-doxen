@@ -55,7 +55,7 @@ export default {
     },
     code: {
       type: String,
-      default: undefined
+      default: ''
     },
     styleTokens
   },
