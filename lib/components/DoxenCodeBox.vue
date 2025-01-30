@@ -55,7 +55,7 @@ export default {
       default: true
     },
     code: {
-      type: [String, Object],
+      type: null,
       default: undefined
     },
     styleTokens
@@ -83,10 +83,10 @@ export default {
   },
   computed: {
     formattedCode: function () {
-      if (typeof this.code === 'object' && this.code !== null) {
-        return serializeJavaScript(this.code);
+      if (typeof(this.code) === 'string') {
+        return this.code;
       }
-      return this.code;
+      return serializeJavaScript(this.code);
     },
     language: function () {
       if (this.code.trim().startsWith('<')) {
