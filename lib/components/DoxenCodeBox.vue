@@ -12,7 +12,7 @@
     <HighlightJS
       v-bind="applyStyleTokens({ codeBox: true })"
       :autodetect="false"
-      :code="code"
+      :code="formattedCode"
       :language="language"
       :key="index"
     />
@@ -33,6 +33,7 @@ import javascript from 'highlight.js/lib/languages/javascript';
 import xml from 'highlight.js/lib/languages/xml';
 
 import { styleTokens } from '@/helpers/props.js';
+import { serializeJavaScript } from '@/helpers/serializeJavaScript.js';
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
@@ -54,7 +55,7 @@ export default {
       default: true
     },
     code: {
-      type: String,
+      type: [String, Object],
       default: undefined
     },
     styleTokens
@@ -81,6 +82,12 @@ export default {
     }
   },
   computed: {
+    formattedCode: function () {
+      if (typeof this.code === 'object' && this.code !== null) {
+        return serializeJavaScript(this.code);
+      }
+      return this.code;
+    },
     language: function () {
       if (this.code.trim().startsWith('<')) {
         return XML;
