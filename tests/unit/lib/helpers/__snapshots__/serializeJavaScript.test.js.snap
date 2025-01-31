@@ -62,7 +62,8 @@ exports[`Serialize JavaScript > Serialize objects > Object serialized with defau
   uglyAF: foo => foo.toUpperCase(),
   isUndefined: undefined,
   isNull: null,
-  isError: 'Error: This is an error'
+  isError: 'Error: This is an error',
+  domNode: '<body></body>'
 }"
 `;
 
@@ -128,7 +129,8 @@ exports[`Serialize JavaScript > Serialize objects > Object serialized with inden
     uglyAF: foo => foo.toUpperCase(),
     isUndefined: undefined,
     isNull: null,
-    isError: 'Error: This is an error'
+    isError: 'Error: This is an error',
+    domNode: '<body></body>'
 }"
 `;
 
@@ -184,6 +186,7 @@ exports[`Serialize JavaScript > Serialize objects > Object serialized without fu
   uglyAF: '[object Function]',
   isUndefined: undefined,
   isNull: null,
-  isError: 'Error: This is an error'
+  isError: 'Error: This is an error',
+  domNode: '<body></body>'
 }"
 `;
