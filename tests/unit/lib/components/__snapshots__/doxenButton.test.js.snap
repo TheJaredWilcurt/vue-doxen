@@ -14,7 +14,10 @@ exports[`DoxenButton.vue > Renders correctly 1`] = `
 exports[`DoxenButton.vue > Selected 1`] = `
 <button
   aria-pressed="true"
-  class="doxen-button doxen-button-selected"
+  class="
+    doxen-button
+    doxen-button-selected
+  "
   data-applied-style-tokens="button buttonSelected"
   data-style-tokens="button buttonNotSelected buttonSelected"
 >
@@ -25,7 +28,10 @@ exports[`DoxenButton.vue > Selected 1`] = `
 exports[`DoxenButton.vue > Style tokens 1`] = `
 <button
   aria-pressed="false"
-  class="doxen-button doxen-button-not-selected"
+  class="
+    doxen-button
+    doxen-button-not-selected
+  "
   data-applied-style-tokens="button buttonNotSelected"
   data-style-tokens="button buttonNotSelected buttonSelected"
 >

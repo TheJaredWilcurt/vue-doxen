@@ -85,7 +85,8 @@ describe('Serialize JavaScript', () => {
       uglyAF: foo => foo.toUpperCase(),
       isUndefined: undefinedValue,
       isNull: null,
-      isError: new Error('This is an error')
+      isError: new Error('This is an error'),
+      domNode: global.document.body
     };
 
     // Circular reference
@@ -187,6 +188,13 @@ describe('Serialize JavaScript', () => {
 
       expect(serialized)
         .toMatchSnapshot();
+    });
+  });
+
+  describe('Serialize DOM nodes', () => {
+    test('The document', () => {
+      expect(serializeJavaScript(global.document.body))
+        .toEqual('<body></body>');
     });
   });
 });

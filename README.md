@@ -41,7 +41,7 @@ Go to the docs site for usage and installation steps:
 * **Documentation site**
   * `npm start` will launch the app for local development
   * Code lives in `app` folder
-  * Uses `vite.config.doc.js`
+  * Uses `vite.config.docs.js`
   * `npm run build` will produce `docs` folder
 * **Library**
   * To manually test/develop the library use the docs site via `npm start`
