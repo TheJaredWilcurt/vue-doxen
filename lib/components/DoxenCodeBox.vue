@@ -70,7 +70,7 @@ export default {
     copyCode: async function () {
       if (this.copy) {
         try {
-          await navigator.clipboard.writeText(this.code);
+          await navigator.clipboard.writeText(this.formattedCode);
           this.copied = true;
           setTimeout(() => {
             this.copied = false;
@@ -89,7 +89,7 @@ export default {
       return serializeJavaScript(this.code);
     },
     language: function () {
-      if (this.code.trim().startsWith('<')) {
+      if (this.formattedCode.trim().startsWith('<')) {
         return XML;
       } else {
         return JAVASCRIPT;
