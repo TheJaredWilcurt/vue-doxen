@@ -40,7 +40,7 @@
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-vue": "^9.31.0",
     "eslint-plugin-vuejs-accessibility": "^2.4.1",
-    "happy-dom": "^16.7.3",
+    "happy-dom": "^16.8.1",
     "json5": "^2.2.3",
     "lodash.clonedeep": "^4.5.0",
     "lodash.isequal": "^4.5.0",
