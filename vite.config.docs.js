@@ -44,7 +44,7 @@ export default defineConfig({
   plugins: [
     vue(),
     vueDevTools({
-      launchEditor: 'codium'
+      launchEditor: 'subl'
     })
   ],
   resolve: {
