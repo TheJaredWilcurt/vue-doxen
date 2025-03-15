@@ -4,6 +4,7 @@ import { fileURLToPath, URL } from 'node:url';
 
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
+import vueDevTools from 'vite-plugin-vue-devtools';
 
 const __dirname = import.meta.dirname;
 
@@ -40,7 +41,12 @@ export default defineConfig({
   optimizeDeps: {
     include: ['axe-core']
   },
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    vueDevTools({
+      launchEditor: 'codium'
+    })
+  ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./lib', import.meta.url)),
