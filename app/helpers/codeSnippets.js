@@ -328,7 +328,7 @@ export const DEMO_FILE_EXAMPLE = unindent(`
   export const myComponentDemo = {
     component: MyComponent,
     description: '<p>Some description of the component.</p>',
-    importStatement: 'import { MyComponent } from \\'my-component-library\\'',
+    importStatement: 'import { MyComponent } from \\'my-component-library\\';',
     propsToDemo: {
       color: {
         component: MyCustomColorPicker,
@@ -640,7 +640,7 @@ export const DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_OPTIONS = unindent(`
       color: {
         allowed: ALLOWED_COLORS,
         description: 'The trophy color to convey first, second, or third place.',
-        vaidator: function (value) {
+        validator: function (value) {
           return ALLOWED_COLORS.includes(value);
         }
       },
@@ -692,7 +692,7 @@ export const DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_SCRIPT_SETUP = unindent(`
     color: {
       allowed: ['gold', 'silver', 'bronze'],
       description: 'The trophy color to convey first, second, or third place.',
-      vaidator: function (value) {
+      validator: function (value) {
         return ['gold', 'silver', 'bronze'].includes(value);
       }
     },

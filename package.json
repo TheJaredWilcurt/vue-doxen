@@ -1,6 +1,6 @@
 {
   "name": "vue-doxen",
-  "version": "0.4.8",
+  "version": "0.4.9",
   "description": "The world's best Vue.js component documentation tool!",
   "scripts": {
     "start": "vite dev --config vite.config.docs.js",
@@ -16,6 +16,11 @@
     "test": "cross-env TZ=America/New_York vitest run --coverage --config vite.config.lib.js",
     "outdated": "npx --yes -- check-outdated --ignore-packages eslint,eslint-config-tjw-jest,eslint-config-tjw-vue,eslint-config-tjw-base,eslint-plugin-import,eslint-plugin-vue,vue-axe --columns package,current,wanted,latest --types major,minor,patch"
   },
+  "ManifestComments": [
+    "@highlightjs/vue-plugin pinned to 2.1.2 because it was released years ago, but never marked as latest",
+    "vue-axe 3 was released years ago, but never marked as latest",
+    "ESLint 8 until all ESLint configs can be updated to ESLint 9"
+  ],
   "devDependencies": {
     "@babel/eslint-parser": "^7.26.10",
     "@highlightjs/vue-plugin": "2.1.2",
@@ -32,7 +37,7 @@
     "eslint-config-tjw-vue": "^3.0.0",
     "eslint-import-resolver-webpack": "^0.13.10",
     "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-vue": "^9.31.0",
+    "eslint-plugin-vue": "^9.33.0",
     "eslint-plugin-vuejs-accessibility": "^2.4.1",
     "happy-dom": "^17.4.4",
     "json5": "^2.2.3",
@@ -45,6 +50,7 @@
     "sass": "^1.86.0",
     "vite": "^6.2.2",
     "vitest": "^3.0.9",
+    "vite-plugin-vue-devtools": "^7.7.2",
     "vue": "^3.5.13",
     "vue-axe": "^3.1.2",
     "vue-options-api-constants-plugin": "^1.0.3",

@@ -81,7 +81,10 @@ exports[`VueDoxenCustom.vue > Renders correctly with all props 1`] = `
         >
           <button
             aria-pressed="true"
-            class="doxen-tab-button doxen-tab-button-selected"
+            class="
+              doxen-tab-button
+              doxen-tab-button-selected
+            "
             data-applied-style-tokens="tabButton tabButtonSelected"
             data-style-tokens="tabButton tabButtonNotSelected tabButtonSelected"
           >
@@ -89,7 +92,10 @@ exports[`VueDoxenCustom.vue > Renders correctly with all props 1`] = `
           </button>
           <button
             aria-pressed="false"
-            class="doxen-tab-button doxen-tab-button-not-selected"
+            class="
+              doxen-tab-button
+              doxen-tab-button-not-selected
+            "
             data-applied-style-tokens="tabButton tabButtonNotSelected"
             data-style-tokens="tabButton tabButtonNotSelected tabButtonSelected"
           >
@@ -111,7 +117,10 @@ exports[`VueDoxenCustom.vue > Renders correctly with all props 1`] = `
           data-applied-style-tokens="codeBox"
           data-style-tokens="codeBox"
         ><code
-          class="hljs xml"
+          class="
+            hljs
+            xml
+          "
           tabindex="0"
         ><span class="hljs-tag">&lt;<span class="hljs-name">DummyButton</span> /&gt;</span></code></pre>
         <!-- v-if -->
@@ -131,7 +140,10 @@ exports[`VueDoxenCustom.vue > Renders correctly with all props 1`] = `
           data-applied-style-tokens="codeBox"
           data-style-tokens="codeBox"
         ><code
-          class="hljs javascript"
+          class="
+            hljs
+            javascript
+          "
           tabindex="0"
         ><span class="hljs-keyword">const</span> dummyButtonProps = {};</code></pre>
         <!-- v-if -->
