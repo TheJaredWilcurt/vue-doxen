@@ -1,8 +1,10 @@
 <template>
   <div
+     v-bind="applyStyleTokens({ accordionContainer: true })"
     :style="accordionContainer"
   >
     <div
+      v-bind="applyStyleTokens({ accordionInner: true })"
       :style="accordionInner"
     >
       <slot></slot>
@@ -11,9 +13,15 @@
 </template>
 
 <script>
+import { styleTokens } from '@/helpers/props.js';
+
+import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
+
 export default {
   name: 'DoxenAccordion',
+  mixins: [applyStyleTokens],
   props: {
+    styleTokens,
     direction: {
       type: String,
       default: 'up',

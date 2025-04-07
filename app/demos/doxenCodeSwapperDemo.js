@@ -14,7 +14,8 @@ export const createDoxenCodeSwapperDemo = function (styleTokens) {
           modelValue: {
             Vue: '<ExampleCode :prop="true" />',
             JavaScript: 'const exampleCode = { prop: true };'
-          }
+          },
+          styleTokens
         }
       },
       fileName: {
@@ -24,7 +25,8 @@ export const createDoxenCodeSwapperDemo = function (styleTokens) {
           modelValue: {
             Vue: 'Example.vue',
             JavaScript: 'Example.js'
-          }
+          },
+          styleTokens
         }
       },
       styleTokens: {

@@ -12,7 +12,8 @@ export const createDoxenCodeBoxDemo = function (styleTokens) {
         component: DoxenTextarea,
         props: {
           label: 'Code',
-          modelValue: '<ExampleCode :prop="true" />'
+          modelValue: '<ExampleCode :prop="true" />',
+          styleTokens
         }
       },
       styleTokens: {
