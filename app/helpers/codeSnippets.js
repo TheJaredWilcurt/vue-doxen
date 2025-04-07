@@ -140,6 +140,50 @@ export const ALTERNATE_VUE_ROUTER_EXAMPLE = unindent(`
   export default router;
 `);
 
+export const BARE_MINIMUM_EXAMPLE = unindent(`
+  <template>
+    <VueDoxen :demos="demos" />
+  </template>
+  <script>
+  import { VueDoxen } from 'vue-doxen';
+  import MyComponent from './MyComponent.vue';
+
+  export default {
+    components: { VueDoxen },
+    computed: {
+      demos: function () {
+        return { MyComponent };
+      }
+    }
+  };
+  </script>
+`);
+export const BARE_MINIMUM_COMPOSITION_EXAMPLE = unindent(`
+  <template>
+    <VueDoxen :demos="{ MyComponent }" />
+  </template>
+  <script>
+  import { VueDoxen } from 'vue-doxen';
+  import MyComponent from './MyComponent.vue';
+
+  export default {
+    components: { VueDoxen },
+    setup: function () {
+      return { MyComponent };
+    }
+  };
+  </script>
+`);
+export const BARE_MINIMUM_SCRIPT_SETUP_EXAMPLE = unindent(`
+  <template>
+    <VueDoxen :demos="{ MyComponent }" />
+  </template>
+  <script setup>
+  import { VueDoxen } from 'vue-doxen';
+  import MyComponent from './MyComponent.vue';
+  </script>
+`);
+
 export const BASIC_PROPS_DEMO_FILE = unindent(`
   import YourComponent from '../components/YourComponent.vue';
 
