@@ -89,58 +89,74 @@
       @submit.prevent
     >
       <!-- Anything for Props -->
-      <component
-        v-for="(prop, propName) in propsToDemo"
-        v-bind="prop.props || {}"
-        v-model="demoProps[propName]"
-        :is="prop.component"
-        v-on="prop.events || {}"
-        :key="propName"
-      >
-        <template
-          v-for="(slotValue, slotName) in prop.slots"
-          #[slotName]
-        >
-          <span
-            v-html="slotValue"
-            :key="'slot-' + slotName"
-          ></span>
-        </template>
-      </component>
-      <!-- Slots Playground -->
-      <template v-for="(slotValue, slotName) in slotsToDemo">
-        <!-- Custom component for slots -->
-        <component
-          v-if="slotValue.component"
-          v-bind="{
-            ...(slotValue.props || {}),
-            modelValue: demoSlots[slotName]
-          }"
-          :is="slotValue.component"
-          v-on="{
-            ...(slotValue.events || {}),
-            'update:model-value': ($event) => demoSlots[slotName] = $event,
-            'update:modelValue': ($event) => demoSlots[slotName] = $event
-          }"
-          :key="'custom-slot-playground' + slotName"
-        />
-        <!-- DoxenTextarea for slots -->
-        <component
-          v-else
-          v-model="demoSlots[slotName]"
-          :is="options.components.textarea"
-          :label="_startCase(slotName) + ' Slot'"
-          :styleTokens="styleTokens"
-          :key="'slot-playground-' + slotName"
-        />
+      <template v-if="Object.keys(propsToDemo).length">
+        <button v-bind="applyStyleTokens({ playgroundGroupTitle: true })">Props</button>
+        <section v-bind="applyStyleTokens({ playgroundGrouping: true })">
+          <component
+            v-for="(prop, propName) in propsToDemo"
+            v-bind="prop.props || {}"
+            v-model="demoProps[propName]"
+            :is="prop.component"
+            v-on="prop.events || {}"
+            :key="propName"
+          >
+            <template
+              v-for="(slotValue, slotName) in prop.slots"
+              #[slotName]
+            >
+              <span
+                v-html="slotValue"
+                :key="'slot-' + slotName"
+              ></span>
+            </template>
+          </component>
+        </section>
       </template>
+
+      <!-- Slots Playground -->
+      <template v-if="Object.keys(slotsToDemo).length">
+        <button v-bind="applyStyleTokens({ playgroundGroupTitle: true })">Slots</button>
+        <section v-bind="applyStyleTokens({ playgroundGrouping: true })">
+          <template v-for="(slotValue, slotName) in slotsToDemo">
+            <!-- Custom component for slots -->
+            <component
+              v-if="slotValue.component"
+              v-bind="{
+                ...(slotValue.props || {}),
+                modelValue: demoSlots[slotName]
+              }"
+              :is="slotValue.component"
+              v-on="{
+                ...(slotValue.events || {}),
+                'update:model-value': ($event) => demoSlots[slotName] = $event,
+                'update:modelValue': ($event) => demoSlots[slotName] = $event
+              }"
+              :key="'custom-slot-playground' + slotName"
+            />
+            <!-- DoxenTextarea for slots -->
+            <component
+              v-else
+              v-model="demoSlots[slotName]"
+              :is="options.components.textarea"
+              :label="_startCase(slotName) + ' Slot'"
+              :styleTokens="styleTokens"
+              :key="'slot-playground-' + slotName"
+            />
+          </template>
+        </section>
+      </template>
+
       <!-- DoxenEmitLog for emits -->
-      <component
-        v-if="Object.keys(emitsToDemo).length"
-        v-model="emitLog"
-        :is="options.components.emitLog"
-        :styleTokens="styleTokens"
-      />
+      <template v-if="Object.keys(emitsToDemo).length">
+        <button v-bind="applyStyleTokens({ playgroundGroupTitle: true })">Emits</button>
+        <section v-bind="applyStyleTokens({ playgroundGrouping: true })">
+          <component
+            v-model="emitLog"
+            :is="options.components.emitLog"
+            :styleTokens="styleTokens"
+          />
+        </section>
+      </template>
     </form>
 
     <DoxenCodeSwapper

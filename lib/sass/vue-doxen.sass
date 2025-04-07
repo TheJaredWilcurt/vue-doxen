@@ -10,9 +10,11 @@ $black10: rgba(0, 1, 16, 0.10)
  */
 
 /* Props Playground */
-:where([data-applied-style-tokens~="propsPlaygroundForm"])
+:where([data-applied-style-tokens~="propsPlaygroundForm"]),
+:where([data-applied-style-tokens~="playgroundGrouping"])
     display: flex
     flex-wrap: wrap
+    width: 100%
 
 /* Basic styling on field sets */
 :where([data-applied-style-tokens~="formFieldFieldset"])

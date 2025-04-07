@@ -60,7 +60,9 @@ exports[`VueDoxenCustom.vue > Renders correctly with all props 1`] = `
       data-style-tokens="propsPlaygroundForm"
     >
       <!-- Anything for Props -->
+      <!-- v-if -->
       <!-- Slots Playground -->
+      <!-- v-if -->
       <!-- DoxenEmitLog for emits -->
       <!-- v-if -->
     </form>
