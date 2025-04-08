@@ -32,10 +32,6 @@ export default {
     show: {
       type: Boolean,
       default: true
-    },
-    speedMs: {
-      type: Number,
-      default: 750
     }
   },
   computed: {
@@ -51,7 +47,7 @@ export default {
       return [
         'display: grid',
         'grid-template-' + type + ': ' + frames + 'fr',
-        'transition: ' + this.speedMs + 'ms ease grid-template-' + type
+        'transition-property: grid-template-' + type
       ].join(';');
     },
     accordionInner: function () {
@@ -60,8 +56,7 @@ export default {
         type = 'column';
       }
       return [
-        'grid-' + type + ': 1 / span 2',
-        'overflow: hidden'
+        'grid-' + type + ': 1 / span 2'
       ].join(';');
     }
   }

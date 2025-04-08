@@ -423,11 +423,19 @@ export default {
         // Split on the fake new line
         .split('\\n')
         // 'key': 'value' => key: 'value'
-        .map((line) => {
+        .map((line, index, array) => {
           if (line.includes(':')) {
+            // "'key': 'value'" => "'key'"
             let key = line.split(':')[0];
+            // "'key'" => "key"
             key = key.replaceAll('\'', '');
-            return [key, '\'\''].join(': ');
+            // Don't add a comma to the last item
+            if (array.length - 2 === index) {
+              // key: ''
+              return key + ': \'\'';
+            }
+            // key: '',
+            return key + ': \'\',';
           }
           return line;
         })
