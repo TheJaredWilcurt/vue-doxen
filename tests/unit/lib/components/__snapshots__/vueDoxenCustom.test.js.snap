@@ -48,7 +48,7 @@ exports[`VueDoxenCustom.vue > Renders correctly with all props 1`] = `
       />
     </div>
     <section
-      class=""
+      class="doxen-props-playground-container"
       data-applied-style-tokens="propsPlaygroundContainer"
       data-style-tokens="propsPlaygroundContainer"
     >
