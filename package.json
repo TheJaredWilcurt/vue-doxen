@@ -1,6 +1,6 @@
 {
   "name": "vue-doxen",
-  "version": "0.4.9",
+  "version": "0.5.0",
   "description": "The world's best Vue.js component documentation tool!",
   "scripts": {
     "start": "vite dev --config vite.config.docs.js",
@@ -27,7 +27,7 @@
     "@vitejs/plugin-vue": "^5.2.3",
     "@vitest/coverage-v8": "^3.1.1",
     "@vue/test-utils": "^2.4.6",
-    "axe-core": "^4.10.3",
+    "axe-core": "4.0.0",
     "babel-eslint": "^10.1.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
@@ -130,6 +130,6 @@
   "homepage": "https://github.com/TheJaredWilcurt/vue-doxen#readme",
   "volta": {
     "node": "23.11.0",
-    "npm": "11.2.0"
+    "npm": "11.3.0"
   }
 }

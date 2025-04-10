@@ -47,23 +47,31 @@ exports[`VueDoxenCustom.vue > Renders correctly with all props 1`] = `
         data-style-tokens="componentDemoHr"
       />
     </div>
-    <h3
-      class="doxen-component-demo-h3"
-      data-applied-style-tokens="componentDemoH3"
-      data-style-tokens="componentDemoH3"
+    <section
+      class="doxen-props-playground-container"
+      data-applied-style-tokens="propsPlaygroundContainer"
+      data-style-tokens="propsPlaygroundContainer"
     >
-      Props Playground:
-    </h3>
-    <form
-      class="doxen-props-playground-form"
-      data-applied-style-tokens="propsPlaygroundForm"
-      data-style-tokens="propsPlaygroundForm"
-    >
-      <!-- Anything for Props -->
-      <!-- Slots Playground -->
-      <!-- DoxenEmitLog for emits -->
-      <!-- v-if -->
-    </form>
+      <h3
+        class="doxen-component-demo-h3"
+        data-applied-style-tokens="componentDemoH3"
+        data-style-tokens="componentDemoH3"
+      >
+        Props Playground:
+      </h3>
+      <form
+        class="doxen-props-playground-form"
+        data-applied-style-tokens="propsPlaygroundForm"
+        data-style-tokens="propsPlaygroundForm"
+      >
+        <!-- Anything for Props -->
+        <!-- v-if -->
+        <!-- Slots Playground -->
+        <!-- v-if -->
+        <!-- DoxenEmitLog for emits -->
+        <!-- v-if -->
+      </form>
+    </section>
     <div
       class="doxen-code-swapper"
       data-applied-style-tokens="codeSwapper"
