@@ -137,6 +137,7 @@ export const BARE_MINIMUM_EXAMPLE = unindent(`
   <template>
     <VueDoxen :demos="demos" />
   </template>
+
   <script>
   import { VueDoxen } from 'vue-doxen';
   import MyComponent from './MyComponent.vue';
@@ -170,9 +171,6 @@ export const BARE_MINIMUM_COMPOSITION_EXAMPLE = templatePrefix(BARE_MINIMUM_TEMP
   </script>
 `);
 export const BARE_MINIMUM_SCRIPT_SETUP_EXAMPLE = templatePrefix(BARE_MINIMUM_TEMPLATE, `
-  <template>
-    <VueDoxen :demos="{ MyComponent }" />
-  </template>
   <script setup>
   import { VueDoxen } from 'vue-doxen';
   import MyComponent from './MyComponent.vue';
@@ -1075,7 +1073,7 @@ export const GETTING_STARTED_EXAMPLE = templatePrefix(GETTING_STARTED_TEMPLATE, 
   };
   </script>
 `);
-export const GETTING_STARTED_COMPOSITION_EXAMPLE = templatePrefix(templatePrefix, `
+export const GETTING_STARTED_COMPOSITION_EXAMPLE = templatePrefix(GETTING_STARTED_TEMPLATE, `
   <script>
   import { computed, ref } from 'vue';
   import { DoxenSidebar, VueDoxen } from 'vue-doxen';
