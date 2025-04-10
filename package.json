@@ -1,6 +1,6 @@
 {
   "name": "vue-doxen",
-  "version": "0.4.9",
+  "version": "0.5.0",
   "description": "The world's best Vue.js component documentation tool!",
   "scripts": {
     "start": "vite dev --config vite.config.docs.js",
@@ -130,6 +130,6 @@
   "homepage": "https://github.com/TheJaredWilcurt/vue-doxen#readme",
   "volta": {
     "node": "23.11.0",
-    "npm": "11.2.0"
+    "npm": "11.3.0"
   }
 }
