@@ -32,7 +32,8 @@
 
       <p>
         But this is just demoing one component, the below examples show how you can switch between
-        components to demo.
+        components to demo. Or you can look at more advanced ways to set up Vue-Doxen using
+        <RouterLink :to="{ name: 'vueRouter', hash: '#vue-router' }">Vue-Router</RouterLink>.
       </p>
     </DocumentationSection>
 
