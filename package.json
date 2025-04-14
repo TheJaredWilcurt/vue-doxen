@@ -1,6 +1,6 @@
 {
   "name": "vue-doxen",
-  "version": "0.4.8",
+  "version": "0.4.9",
   "description": "The world's best Vue.js component documentation tool!",
   "scripts": {
     "start": "vite dev --config vite.config.docs.js",
@@ -15,7 +15,7 @@
     "unit": "cross-env TZ=America/New_York vitest --coverage --config vite.config.lib.js",
     "test": "cross-env TZ=America/New_York vitest run --coverage --config vite.config.lib.js",
     "coverage": "cd tests && cd unit && cd coverage && node ../../../node_modules/npm-free-server/dist/server.js",
-    "outdated": "npx --yes -- check-outdated --ignore-packages eslint,eslint-config-tjw-jest,eslint-config-tjw-vue,eslint-config-tjw-base,eslint-plugin-import,eslint-plugin-vue,vue-axe --columns package,current,wanted,latest --types major,minor,patch"
+    "outdated": "npx --yes -- check-outdated --ignore-packages eslint-config-tjw-import,eslint,eslint-config-tjw-jest,eslint-config-tjw-vue,eslint-config-tjw-base,eslint-plugin-import,eslint-plugin-vue,vue-axe --columns package,current,wanted,latest --types major,minor,patch"
   },
   "ManifestComments": [
     "@highlightjs/vue-plugin pinned to 2.1.2 because it was released years ago, but never marked as latest",
