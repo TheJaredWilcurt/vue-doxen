@@ -505,7 +505,7 @@ describe('Demo helpers', () => {
       expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
         .toEqual({
           percent: {
-            type: Number,
+            type: [Number],
             min: 20,
             max: 30
           }
@@ -531,11 +531,7 @@ describe('Demo helpers', () => {
       expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
         .toEqual({
           percent: {
-            type: [
-              Number,
-              Boolean,
-              String
-            ],
+            type: [Number],
             min: 20,
             max: 30
           }
@@ -661,7 +657,7 @@ describe('Demo helpers', () => {
           expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
             .toEqual({
               amount: {
-                type: Number
+                type: [Number]
               }
             });
         });
@@ -681,7 +677,7 @@ describe('Demo helpers', () => {
           expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
             .toEqual({
               amount: {
-                type: [Number, String]
+                type: [Number]
               }
             });
         });
@@ -701,7 +697,7 @@ describe('Demo helpers', () => {
           expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
             .toEqual({
               amount: {
-                type: [Number, String]
+                type: [Number]
               }
             });
         });
@@ -740,6 +736,38 @@ describe('Demo helpers', () => {
             .toEqual({
               amount: {
                 type: [Number]
+              }
+            });
+        });
+
+        test('Remove duplicate types from demo', () => {
+          const propsToDemo = {
+            amount: {
+              type: [Number, String, Number]
+            }
+          };
+          const componentProps = {};
+
+          expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+            .toEqual({
+              amount: {
+                type: [Number, String]
+              }
+            });
+        });
+
+        test('Remove duplicate types from component', () => {
+          const propsToDemo = {};
+          const componentProps = {
+            amount: {
+              type: [Number, String, Number]
+            }
+          };
+
+          expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+            .toEqual({
+              amount: {
+                type: [Number, String]
               }
             });
         });

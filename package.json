@@ -1,6 +1,6 @@
 {
   "name": "vue-doxen",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "The world's best Vue.js component documentation tool!",
   "scripts": {
     "start": "vite dev --config vite.config.docs.js",
@@ -14,7 +14,8 @@
     "fix": "eslint --fix --ext .js,.vue --config=.eslintrc.cjs lib scripts tests app vite.config.*.js .eslintrc.cjs",
     "unit": "cross-env TZ=America/New_York vitest --coverage --config vite.config.lib.js",
     "test": "cross-env TZ=America/New_York vitest run --coverage --config vite.config.lib.js",
-    "outdated": "npx --yes -- check-outdated --ignore-packages eslint,eslint-config-tjw-jest,eslint-config-tjw-vue,eslint-config-tjw-base,eslint-plugin-import,eslint-plugin-vue,vue-axe --columns package,current,wanted,latest --types major,minor,patch"
+    "coverage": "cd tests && cd unit && cd coverage && node ../../../node_modules/npm-free-server/dist/server.js",
+    "outdated": "npx --yes -- check-outdated --ignore-packages eslint-config-tjw-import,eslint,eslint-config-tjw-jest,eslint-config-tjw-vue,eslint-config-tjw-base,eslint-plugin-import,eslint-plugin-vue,vue-axe --columns package,current,wanted,latest --types major,minor,patch"
   },
   "ManifestComments": [
     "@highlightjs/vue-plugin pinned to 2.1.2 because it was released years ago, but never marked as latest",
@@ -46,6 +47,7 @@
     "lodash.kebabcase": "^4.1.1",
     "lodash.lowerfirst": "^4.3.1",
     "lodash.startcase": "^4.4.0",
+    "npm-free-server": "^1.1.0",
     "nprogress": "^0.2.0",
     "sass": "^1.86.3",
     "vite": "^6.2.5",
