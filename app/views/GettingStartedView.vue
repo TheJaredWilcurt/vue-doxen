@@ -9,10 +9,33 @@
 
     <nav>
       <ul>
+        <li><a href="#bare-minimum">Bare minimum</a></li>
         <li><a href="#npm">npm install</a></li>
         <li><a href="#cdn">CDN Usage</a></li>
       </ul>
     </nav>
+
+    <DocumentationSection id="bare-minimum" title="Bare Minimum">
+      <p>
+        This is the absolute bare minimum to get up and running with Vue-Doxen.
+      </p>
+
+      <DoxenCodeSwapper
+        :codeTypes="{
+          Options: BARE_MINIMUM_EXAMPLE,
+          Composition: BARE_MINIMUM_COMPOSITION_EXAMPLE,
+          'Script Setup': BARE_MINIMUM_SCRIPT_SETUP_EXAMPLE
+        }"
+        fileName="DocumentationPage.vue"
+        :styleTokens="styleTokens"
+      />
+
+      <p>
+        But this is just demoing one component, the below examples show how you can switch between
+        components to demo. Or you can look at more advanced ways to set up Vue-Doxen using
+        <RouterLink :to="{ name: 'vueRouter', hash: '#vue-router' }">Vue-Router</RouterLink>.
+      </p>
+    </DocumentationSection>
 
     <DocumentationSection id="npm" title="npm install">
       <h2>In just 2 steps!</h2>
@@ -109,6 +132,9 @@ import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
 import DocumentationSection from '@@@/components/DocumentationSection.vue';
 
 import {
+  BARE_MINIMUM_EXAMPLE,
+  BARE_MINIMUM_COMPOSITION_EXAMPLE,
+  BARE_MINIMUM_SCRIPT_SETUP_EXAMPLE,
   GETTING_STARTED_CDN,
   GETTING_STARTED_COMPOSITION_EXAMPLE,
   GETTING_STARTED_EXAMPLE,
@@ -125,6 +151,9 @@ export default {
     styleTokens
   },
   constants: {
+    BARE_MINIMUM_EXAMPLE,
+    BARE_MINIMUM_COMPOSITION_EXAMPLE,
+    BARE_MINIMUM_SCRIPT_SETUP_EXAMPLE,
     GETTING_STARTED_CDN,
     GETTING_STARTED_COMPOSITION_EXAMPLE,
     GETTING_STARTED_EXAMPLE,

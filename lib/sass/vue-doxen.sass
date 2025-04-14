@@ -12,7 +12,19 @@ $black10: rgba(0, 1, 16, 0.10)
 /* Props Playground */
 :where([data-applied-style-tokens~="propsPlaygroundForm"])
     display: flex
+    flex-direction: column
+
+:where([data-applied-style-tokens~="playgroundGrouping"])
+    display: flex
     flex-wrap: wrap
+    width: 100%
+
+:where([data-applied-style-tokens~="accordionContainer"])
+    transition-duration: 750ms
+    transition-timing-function: ease
+
+:where([data-applied-style-tokens~="accordionInner"])
+    overflow: hidden
 
 /* Basic styling on field sets */
 :where([data-applied-style-tokens~="formFieldFieldset"])
