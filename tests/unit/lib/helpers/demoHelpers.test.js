@@ -771,6 +771,36 @@ describe('Demo helpers', () => {
               }
             });
         });
+
+        test('Type shorthand', () => {
+          const propsToDemo = {};
+          const componentProps = {
+            amount: Number
+          };
+
+          expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+            .toEqual({
+              amount: {
+                type: [Number]
+              }
+            });
+        });
+
+        test('Type shorthand as array', () => {
+          const propsToDemo = {
+            amount: [Number, String]
+          };
+          const componentProps = {
+            amount: Number
+          };
+
+          expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+            .toEqual({
+              amount: {
+                type: [Number, String]
+              }
+            });
+        });
       });
 
       describe('modelModifiers', () => {
