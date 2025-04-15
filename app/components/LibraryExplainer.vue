@@ -138,4 +138,19 @@ export default {
 .explainer-code {
   font-size: 1.1rem;
 }
+@media (width < 1000px) {
+  .explainer-list li {
+    font-size: 1.25rem;
+    list-style: none;
+  }
+  .explainer-list li:before {
+    content: '1. ';
+  }
+  .explainer-list li:nth-of-type(3):before {
+    content: '2. ';
+  }
+  .explainer-code {
+    font-size: 0.85rem;
+  }
+}
 </style>
