@@ -914,6 +914,106 @@ export const EMITS_TO_DEMO_OBJECT_SCRIPT_SETUP_EXAMPLE = unindent(`
   </script>
 `);
 
+export const EXPLAINER_OPTIONS_EXAMPLE = unindent(`
+  <script>
+  export default {
+    name: 'MyButton',
+    description: 'Your component description.',
+    props: {
+      color: {
+        type: String,
+        allowed: ['gold', 'silver', 'bronze']
+      }
+    }
+  };
+  </script>
+`);
+export const EXPLAINER_SCRIPT_SETUP_EXAMPLE = unindent(`
+  <script setup>
+  defineOptions({
+    name: 'MyButton',
+    description: 'Your component description.'
+  });
+  defineProps({
+    color: {
+      type: String,
+      allowed: ['gold', 'silver', 'bronze']
+    }
+  });
+  </script>
+`);
+export const EXPLAINER_DEMO_EXAMPLE = unindent(`
+  import MyButton from '../components/MyButton.vue';
+
+  export const myButtonDemo = {
+    component: MyButton,
+    description: 'Your component description',
+    propsToDemo: {
+      color: {
+        allowed: ['gold', 'silver', 'bronze']
+      }
+    }
+  };
+`);
+export const EXPLAINER_DOXEN_OPTIONS_API = unindent(`
+  <template>
+    <VueDoxen :demos="demos" />
+  </template>
+
+  <script>
+  import { VueDoxen } from 'vue-doxen';
+  import MyButton from '../components/MyButton.vue';
+
+  export default {
+    components: { VueDoxen },
+    computed: {
+      demos: function () {
+        return { MyButton };
+      }
+    }
+  };
+  </script>
+`);
+export const EXPLAINER_DOXEN_OPTIONS_API_DEMO = unindent(`
+  <template>
+    <VueDoxen :demos="demos" />
+  </template>
+
+  <script>
+  import { VueDoxen } from 'vue-doxen';
+  import { myButtonDemo } from '../demos/myButtonDemo.js';
+
+  export default {
+    components: { VueDoxen },
+    computed: {
+      demos: function () {
+        return { myButtonDemo };
+      }
+    }
+  };
+  </script>
+`);
+export const EXPLAINER_DOXEN_SCRIPT_SETUP = unindent(`
+  <template>
+    <VueDoxen :demos="{ MyButton }" />
+  </template>
+
+  <script setup>
+  import { VueDoxen } from 'vue-doxen';
+  import MyButton from '../components/MyButton.vue';
+  </script>
+`);
+export const EXPLAINER_DOXEN_SCRIPT_SETUP_DEMO = unindent(`
+  <template>
+    <VueDoxen :demos="{ myButtonDemo }" />
+  </template>
+
+  <script setup>
+  import { VueDoxen } from 'vue-doxen';
+  import { myButtonDemo } from '../demos/myButtonDemo.js';
+  </script>
+`);
+
 export const GETTING_STARTED_CDN = unindent(`
   <!DOCTYPE html>
   <html>

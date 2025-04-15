@@ -16,6 +16,7 @@
       v-for="(code, codeName) in codeTypes"
       v-show="selected === codeName"
       :code="code"
+      :copy="copy"
       :styleTokens="styleTokens"
       :key="codeName"
     />
@@ -53,6 +54,10 @@ export default {
       type: Object,
       required: true,
       example: codeTypesExample
+    },
+    copy: {
+      type: Boolean,
+      default: true
     },
     fileName: {
       type: [String, Object],
