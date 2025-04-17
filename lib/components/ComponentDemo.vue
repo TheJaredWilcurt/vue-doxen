@@ -92,7 +92,11 @@
         <!-- Anything for Props -->
         <template v-if="Object.keys(propsToDemo).length">
           <button
-            v-bind="applyStyleTokens({ playgroundGroupTitle: true })"
+            v-bind="applyStyleTokens({
+              playgroundGroupTitle: true,
+              playgroundGroupTitleCollapsed: currentPlaygroundSection !== 'props',
+              playgroundGroupTitleExpanded: currentPlaygroundSection === 'props'
+            })"
             @click="togglePlaygroundSection('props')"
           >Props</button>
           <DoxenAccordion
@@ -125,7 +129,11 @@
         <!-- Slots Playground -->
         <template v-if="Object.keys(slotsToDemo).length">
           <button
-            v-bind="applyStyleTokens({ playgroundGroupTitle: true })"
+            v-bind="applyStyleTokens({
+              playgroundGroupTitle: true,
+              playgroundGroupTitleCollapsed: currentPlaygroundSection !== 'slots',
+              playgroundGroupTitleExpanded: currentPlaygroundSection === 'slots'
+            })"
             @click="togglePlaygroundSection('slots')"
           >Slots</button>
           <DoxenAccordion
@@ -166,7 +174,11 @@
         <!-- DoxenEmitLog for emits -->
         <template v-if="Object.keys(emitsToDemo).length">
           <button
-            v-bind="applyStyleTokens({ playgroundGroupTitle: true })"
+            v-bind="applyStyleTokens({
+              playgroundGroupTitle: true,
+              playgroundGroupTitleCollapsed: currentPlaygroundSection !== 'emits',
+              playgroundGroupTitleExpanded: currentPlaygroundSection === 'emits'
+            })"
             @click="togglePlaygroundSection('emits')"
           >Emits</button>
           <DoxenAccordion
