@@ -8,7 +8,7 @@
       <li>
         <strong>Document your components:</strong>
         <p>
-           Put your docs either inside your component or in an external "demo" object.
+          Put your docs either inside your component or in an external "demo" object.
         </p>
         <DoxenCodeSwapper
           class="explainer-code"
@@ -47,10 +47,11 @@
 </template>
 
 <script>
+import { styleTokens } from '@/helpers/props.js';
+
 import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
 
-import { styleTokens } from '@/helpers/props.js';
 import {
   EXPLAINER_DEMO_EXAMPLE,
   EXPLAINER_DOXEN_OPTIONS_API,
