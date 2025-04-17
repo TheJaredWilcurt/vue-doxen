@@ -141,16 +141,97 @@ export default {
 @media (width < 1000px) {
   .explainer-list li {
     font-size: 1.25rem;
+  }
+  .explainer-code {
+    font-size: 0.85rem;
+  }
+}
+@media (width < 945px) {
+  .explainer-code [data-style-tokens="tabsHeader"] {
+    height: auto;
+    align-items: end;
+  }
+  .explainer-code [data-style-tokens="tabsButtonContainer"] {
+    flex-direction: column;
+  }
+  .explainer-code [data-applied-style-tokens="codeSwapperFileName"] {
+    padding-left: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
+@media (width < 831px) {
+  .explainer-code [data-applied-style-tokens="codeSwapperFileName"] {
+    padding: unset;
+  }
+  .explainer-code [data-style-tokens="tabsHeader"] {
+    align-items: center;
+  }
+  .explainer-code [data-style-tokens="tabsButtonContainer"] {
+    flex-direction: row;
+  }
+  .explainer-list li {
     list-style: none;
   }
   .explainer-list li:before {
     content: '1. ';
   }
-  .explainer-list li:nth-of-type(3):before {
+  .explainer-list li:nth-of-type(2):before {
     content: '2. ';
   }
+  .explainer-list li:nth-of-type(3):before {
+    content: '3. ';
+  }
+  .explainer-list {
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+}
+@media (width < 730px) {
+  .explainer-code [data-style-tokens="tabsButtonContainer"] {
+    flex-direction: column;
+  }
+  .explainer-code [data-applied-style-tokens="tabsHeader"] {
+    align-items: end;
+  }
+  .explainer-code [data-applied-style-tokens="codeSwapperFileName"] {
+    padding-left: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
+@media (width < 525px) {
   .explainer-code {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+  }
+  .explainer-code [data-style-tokens="tabsButtonContainer"] button {
+    font-size: inherit;
+  }
+}
+@media (width < 410px) {
+  .explainer-code {
+    font-size: 0.725rem;
+  }
+}
+@media (width < 400px) {
+  .v-application .explainer-code [data-applied-style-tokens~="tabsHeader"] {
+    flex-direction: row;
+  }
+}
+@media (width < 371px) {
+  .v-application .explainer-code [data-applied-style-tokens~="tabsHeader"],
+  .explainer-code [data-applied-style-tokens="tabsHeader"] {
+    flex-direction: column;
+    align-items: center;
+  }
+  .explainer-code [data-applied-style-tokens="codeSwapperFileName"] {
+    padding-left: 0px;
+    padding-bottom: 0px;
+  }
+}
+@media (width < 225px) {
+  .explainer-code {
+    font-size: 0.65rem;
   }
 }
 </style>
