@@ -1,6 +1,6 @@
 <template>
   <div id="home" class="docs-page">
-    <PatrickExplainer />
+    <LibraryExplainer :styleTokens="styleTokens" />
 
     <TitleParagraph
       title="What is Vue-Doxen?"
@@ -76,18 +76,10 @@
     <TitleParagraph title="Is this library ready for use?">
       <em>Yes!</em> We've reached the <strong>Release Candidate</strong> stage.
       Which means you can <code>npm install</code> it and try it out now to give early feedback.
-      The documentation and API are both completely finished, but may get slight tweaks before v1 based on <strong>your</strong> feedback.
+      <p>
+        The documentation and API are both completely finished, but may get slight tweaks before v1 based on <strong>your</strong> feedback.
+      </p>
       <ul>
-        <li>
-          <strong>Looking for feedback on:</strong>
-          <ul>
-            <li>Does it explain itself well? (The core concept)</li>
-            <li>Is the API easy to use?</li>
-            <li>Is there anything in the documentation that could be improved, around onboarding, or just in general</li>
-            <li>Any bugs you find when passing in your own weird components</li>
-            <li>Any features you need that are missing</li>
-          </ul>
-        </li>
         <li>
           <a
             v-text="'Give Feedback on GitHub Issues'"
@@ -147,13 +139,13 @@
 <script>
 import { styleTokens } from '@/helpers/props.js';
 
-import PatrickExplainer from '@@@/components/PatrickExplainer.vue';
+import LibraryExplainer from '@@@/components/LibraryExplainer.vue';
 import TitleParagraph from '@@@/components/TitleParagraph.vue';
 
 export default {
   name: 'HomeView',
   components: {
-    PatrickExplainer,
+    LibraryExplainer,
     TitleParagraph
   },
   props: {
