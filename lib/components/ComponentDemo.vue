@@ -2,9 +2,27 @@
   <div v-bind="applyStyleTokens({ componentDemo: true })">
     <!-- DoxenHeader -->
     <component
+      v-if="title && title.component"
+      :is="title.component"
+      v-bind="title.props || {}"
+      v-on="title.events || {}"
+      :key="componentName + '-title'"
+    >
+      <template
+        v-for="(slotValue, slotName) in title.slots"
+        #[slotName]
+      >
+        <span
+          v-html="title.slots[slotName]"
+          :key="'slot-' + slotName"
+        ></span>
+      </template>
+    </component>
+    <component
+      v-else
       :is="options.components.header"
       :styleTokens="styleTokens"
-      :title="title"
+      :title="componentTitle"
     />
 
     <template v-if="description">
@@ -316,8 +334,17 @@ export default {
         ''
       );
     },
-    title: function () {
+    componentTitle: function () {
+      if (typeof(this.title) === 'string') {
+        return this.title;
+      }
       return _startCase(this.componentName);
+    },
+    title: function () {
+      return (
+        this.demo?.title ||
+        this.demo?.component?.title
+      );
     },
     description: function () {
       return (
@@ -485,7 +512,7 @@ export default {
             this.demo.events[emitName](value);
           }
           // Intentional console.info to demonstrate emits
-          console.info(this.title + ' emit log:', { emitName, value });
+          console.info(this.componentTitle + ' emit log:', { emitName, value });
 
           // If the emit is part of a v-model
           if (emitName.startsWith('update:')) {

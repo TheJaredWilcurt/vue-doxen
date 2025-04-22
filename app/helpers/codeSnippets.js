@@ -275,6 +275,29 @@ export const COMPONENT_NAME_SCRIPT_SETUP_EXAMPLE = unindent(`
   </script>
 `);
 
+export const COMPONENT_TITLE_DEMO_EXAMPLE = unindent(`
+  import YourComponent from '../components/YourComponent.vue';
+
+  export const yourComponentDemo = {
+    component: YourComponent,
+    title: 'Your Component'
+  };
+`);
+export const COMPONENT_TITLE_OPTIONS_EXAMPLE = unindent(`
+  <script>
+  export default {
+    title: 'Your Component'
+  };
+  </script>
+`);
+export const COMPONENT_TITLE_SCRIPT_SETUP_EXAMPLE = unindent(`
+  <script setup>
+  defineOptions({
+    title: 'Your Component'
+  });
+  </script>
+`);
+
 export const COMPOSE_ALL_DEMOS_EXAMPLE = unindent(`
   import ComponentA from '../components/ComponentA.vue';
   import ComponentB from '../components/ComponentB.vue';
@@ -1647,6 +1670,92 @@ export const SLOTS_SCRIPT_SETUP_DEFAULT_TEXT_EXAMPLE = unindent(`
     slots: {
       default: 'This appears <strong>above</strong> the component.',
       footer: 'This appears <strong>below</strong> the component.'
+    }
+  });
+  </script>
+`);
+
+export const TITLE_COMPONENT_DEMO_FILE_EXAMPLE = unindent(`
+  import MyComponent from '../components/MyComponent.vue';
+  import MyTitle from '../components/MyTitle.vue';
+
+  export const myComponentDemo = {
+    component: MyComponent,
+    title: {
+      component: MyTitle,
+      // Optional, if your component needs props
+      props: {
+        yourProp: 'your value'
+      },
+      // Optional, if your component has slots
+      slots: {
+        default: '<em>Content</em>'
+      },
+      // Optional, if your component has emits
+      events: {
+        click: function ($event) {
+          console.log($event);
+        }
+      }
+    }
+  };
+`);
+export const TITLE_COMPONENT_OPTIONS_EXAMPLE = unindent(`
+  <script>
+  // DO NOT ACTUALLY DO THIS! USE A DEMO FILE INSTEAD.
+  // Though this is technically supported, importing custom components
+  // into your component just for Vue-Doxen will bloat your component's
+  // file size for no real benefit. If you want to use your own
+  // component for the description, just use a demo file.
+  import MyTitle from '../components/MyTitle.vue';
+
+  export default {
+    title: {
+      component: MyTitle,
+      // Optional, if your component needs props
+      props: {
+        yourProp: 'your value'
+      },
+      // Optional, if your component has slots
+      slots: {
+        default: '<em>Content</em>'
+      },
+      // Optional, if your component has emits
+      events: {
+        click: function ($event) {
+          console.log($event);
+        }
+      }
+    }
+  };
+  </script>
+`);
+export const TITLE_COMPONENT_SCRIPT_SETUP_EXAMPLE = unindent(`
+  <script setup>
+  // DO NOT ACTUALLY DO THIS! USE A DEMO FILE INSTEAD.
+  // Though this is technically supported, importing custom components
+  // into your component just for Vue-Doxen will bloat your component's
+  // file size for no real benefit. If you want to use your own
+  // component for the description, just use a demo file.
+  import MyTitle from '../components/MyTitle.vue';
+
+  defineOptions({
+    description: {
+      component: MyTitle,
+      // Optional, if your component needs props
+      props: {
+        yourProp: 'your value'
+      },
+      // Optional, if your component has slots
+      slots: {
+        default: '<em>Content</em>'
+      },
+      // Optional, if your component has emits
+      events: {
+        click: function ($event) {
+          console.log($event);
+        }
+      }
     }
   });
   </script>

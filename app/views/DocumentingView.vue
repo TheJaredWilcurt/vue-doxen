@@ -11,7 +11,14 @@
 
     <nav>
       <ul>
-        <li><a href="#name">Component Name</a></li>
+        <li>
+          <a href="#title-name">Component Title/Name</a>
+          <ul>
+            <li><a href="#title">Title (string)</a></li>
+            <li><a href="#title-component">Title (component)</a></li>
+            <li><a href="#name">Name (string)</a></li>
+          </ul>
+        </li>
         <li>
           <a href="#description">Component Description</a>
           <ul>
@@ -56,24 +63,83 @@
       </ul>
     </nav>
 
-    <DocumentationSection id="name" title="Component Name">
+    <DocumentationSection id="title-name" title="Component Title/Name">
       <p>
-        The name of the component is used at the top of a demo page, and also used for the tag and variable name in the code example below the props playground.
-      </p>
-      <p>
-        Components written in <code>.vue</code> files, and processed by a bundler, may include the filename in the component. We will prefer the <code>name</code> field in the demo file first, then in the component, and if the name is not explicitly defined in those places, we'll check for a file name provided by the bundler.
+        The component title is used at the top of a demo page.
+        The component name is used for the tag and variable name in the code example below the props playground.
       </p>
 
-      <DoxenCodeSwapper
-        :codeTypes="{
-          'Demo File': COMPONENT_NAME_DEMO_EXAMPLE,
-          Options: COMPONENT_NAME_OPTIONS_EXAMPLE,
-          Composition: COMPONENT_NAME_OPTIONS_EXAMPLE,
-          'Script Setup': COMPONENT_NAME_SCRIPT_SETUP_EXAMPLE
-        }"
-        :fileName="FILE_NAME_YOUR"
-        :styleTokens="styleTokens"
-      />
+      <SubDocumentationSection
+        id="title"
+        title="Title"
+        subTitle="String example"
+      >
+        <p>
+          You can directly set the title of your demo page to any string you want, this is separate from the component name used in the code examples below the playground.
+          If no <code>title</code> is passed in via the demo or component, we'll use the <code>name</code> provided in the demo or component.
+          If the title/name is not explicitly defined in those places, we'll check for a file name (this is sometimes provided by the bundler when using <code>.vue</code> files).
+        </p>
+
+        <DoxenCodeSwapper
+          :codeTypes="{
+            'Demo File': COMPONENT_TITLE_DEMO_EXAMPLE,
+            Options: COMPONENT_TITLE_OPTIONS_EXAMPLE,
+            Composition: COMPONENT_TITLE_OPTIONS_EXAMPLE,
+            'Script Setup': COMPONENT_TITLE_SCRIPT_SETUP_EXAMPLE
+          }"
+          :fileName="FILE_NAME_YOUR"
+          :styleTokens="styleTokens"
+        />
+      </SubDocumentationSection>
+
+      <SubDocumentationSection
+        id="title-component"
+        title="Title"
+        subTitle="Custom component example"
+      >
+        <p>
+          If you need more control than just a string for the title, you can pass in a custom component to be rendered at the top of your demo.
+        </p>
+
+        <DoxenCodeSwapper
+          :codeTypes="{
+            'Demo File': TITLE_COMPONENT_DEMO_FILE_EXAMPLE,
+            Options: TITLE_COMPONENT_OPTIONS_EXAMPLE,
+            Composition: TITLE_COMPONENT_OPTIONS_EXAMPLE,
+            'Script Setup': TITLE_COMPONENT_SCRIPT_SETUP_EXAMPLE
+          }"
+          :fileName="FILE_NAME_MY"
+          :styleTokens="styleTokens"
+        />
+      </SubDocumentationSection>
+
+      <SubDocumentationSection
+        id="name"
+        title="Name"
+        subTitle="String example"
+      >
+        <p>
+          The component <code>name</code>, is an official part of Vue's API. It is used to identify the component in the Vue-DevTools.
+          In Vue-Doxen, we use it to set the tag name and variable name in the live code examples below the Props playground.
+          It is also used a fallback for the <code>title</code> if one is not provided.
+        </p>
+
+        <p>
+          We will prefer the <code>name</code> provided in the demo object over the one in the component. If none is provided,
+          we will look for a file name that is sometimes provided by bundlers when using <code>.vue</code> files.
+        </p>
+
+        <DoxenCodeSwapper
+          :codeTypes="{
+            'Demo File': COMPONENT_NAME_DEMO_EXAMPLE,
+            Options: COMPONENT_NAME_OPTIONS_EXAMPLE,
+            Composition: COMPONENT_NAME_OPTIONS_EXAMPLE,
+            'Script Setup': COMPONENT_NAME_SCRIPT_SETUP_EXAMPLE
+          }"
+          :fileName="FILE_NAME_YOUR"
+          :styleTokens="styleTokens"
+        />
+      </SubDocumentationSection>
     </DocumentationSection>
 
     <DocumentationSection id="description" title="Component Description">
@@ -500,6 +566,9 @@ import {
   COMPONENT_NAME_DEMO_EXAMPLE,
   COMPONENT_NAME_OPTIONS_EXAMPLE,
   COMPONENT_NAME_SCRIPT_SETUP_EXAMPLE,
+  COMPONENT_TITLE_DEMO_EXAMPLE,
+  COMPONENT_TITLE_OPTIONS_EXAMPLE,
+  COMPONENT_TITLE_SCRIPT_SETUP_EXAMPLE,
   CUSTOM_COMPONENTS_DEMO_EXAMPLE,
   CUSTOM_COMPONENTS_OPTIONS_EXAMPLE,
   CUSTOM_COMPONENTS_SCRIPT_SETUP_EXAMPLE,
@@ -539,7 +608,10 @@ import {
   SLOTS_OPTIONS_DEFAULT_TEXT_EXAMPLE,
   SLOTS_SCRIPT_SETUP_ARRAY_EXAMPLE,
   SLOTS_SCRIPT_SETUP_CUSTOM_COMPONENT_EXAMPLE,
-  SLOTS_SCRIPT_SETUP_DEFAULT_TEXT_EXAMPLE
+  SLOTS_SCRIPT_SETUP_DEFAULT_TEXT_EXAMPLE,
+  TITLE_COMPONENT_DEMO_FILE_EXAMPLE,
+  TITLE_COMPONENT_OPTIONS_EXAMPLE,
+  TITLE_COMPONENT_SCRIPT_SETUP_EXAMPLE
 } from '@@@/helpers/codeSnippets.js';
 
 export default {
@@ -563,6 +635,9 @@ export default {
     COMPONENT_NAME_DEMO_EXAMPLE,
     COMPONENT_NAME_OPTIONS_EXAMPLE,
     COMPONENT_NAME_SCRIPT_SETUP_EXAMPLE,
+    COMPONENT_TITLE_DEMO_EXAMPLE,
+    COMPONENT_TITLE_OPTIONS_EXAMPLE,
+    COMPONENT_TITLE_SCRIPT_SETUP_EXAMPLE,
     CUSTOM_COMPONENTS_DEMO_EXAMPLE,
     CUSTOM_COMPONENTS_OPTIONS_EXAMPLE,
     CUSTOM_COMPONENTS_SCRIPT_SETUP_EXAMPLE,
@@ -614,7 +689,10 @@ export default {
     SLOTS_OPTIONS_DEFAULT_TEXT_EXAMPLE,
     SLOTS_SCRIPT_SETUP_ARRAY_EXAMPLE,
     SLOTS_SCRIPT_SETUP_CUSTOM_COMPONENT_EXAMPLE,
-    SLOTS_SCRIPT_SETUP_DEFAULT_TEXT_EXAMPLE
+    SLOTS_SCRIPT_SETUP_DEFAULT_TEXT_EXAMPLE,
+    TITLE_COMPONENT_DEMO_FILE_EXAMPLE,
+    TITLE_COMPONENT_OPTIONS_EXAMPLE,
+    TITLE_COMPONENT_SCRIPT_SETUP_EXAMPLE
   }
 };
 </script>

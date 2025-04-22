@@ -4,7 +4,7 @@
       <a
         class="flex zone"
         :class="{ 'zone-hover': hover === COMPONENT_NAME }"
-        href="#name"
+        href="#title-name"
         @mouseover="hover = COMPONENT_NAME"
         @mouseout="hoverOff"
         @focus="hover = COMPONENT_NAME"
@@ -201,7 +201,7 @@
 </template>
 
 <script>
-const COMPONENT_NAME = 'Component Name';
+const COMPONENT_NAME = 'Component Title/Name';
 const COMPONENT_DESCRIPTION = 'Component Description';
 const IMPORT_STATEMENT = 'Import Statement';
 const YOUR_COMPONENT = 'Your Component';

@@ -5,7 +5,7 @@ import DummyScriptSetupApi from '@@@/components/DummyScriptSetupApi.vue';
 export const createDummyScriptSetupApiDemo = function (styleTokens) {
   return {
     component: DummyScriptSetupApi,
-    name: 'Dummy Script Setup API',
+    title: 'Dummy Script Setup API',
     description: 'This is an <strong>arbitrary test</strong> for Script Setup API components.',
     propsToDemo: {
       label: {
