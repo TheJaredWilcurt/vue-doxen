@@ -26,7 +26,7 @@
     "@babel/eslint-parser": "^7.27.1",
     "@highlightjs/vue-plugin": "2.1.2",
     "@vitejs/plugin-vue": "^5.2.3",
-    "@vitest/coverage-v8": "^3.1.2",
+    "@vitest/coverage-v8": "^3.1.3",
     "@vue/test-utils": "^2.4.6",
     "axe-core": "4.0.0",
     "babel-eslint": "^10.1.0",
@@ -52,7 +52,7 @@
     "sass": "^1.87.0",
     "vite": "^6.3.5",
     "vite-plugin-vue-devtools": "^7.7.6",
-    "vitest": "^3.1.2",
+    "vitest": "^3.1.3",
     "vue": "^3.5.13",
     "vue-axe": "^3.1.2",
     "vue-options-api-constants-plugin": "^1.0.3",
@@ -60,7 +60,7 @@
     "vue3-snapshot-serializer": "^2.10.0"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "^4.40.1"
+    "@rollup/rollup-linux-x64-gnu": "^4.40.2"
   },
   "private": false,
   "type": "module",
