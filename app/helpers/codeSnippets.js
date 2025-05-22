@@ -321,11 +321,18 @@ export const CUSTOM_COMPONENTS_DEMO_EXAMPLE = unindent(`
     component: MyComponent,
     propsToDemo: {
       color: {
+        // Provide your own component for the playground
         component: MyCustomColorPicker,
+        // Pass in props to MyCustomColorPicker
         props: {
           // Default value to demo
           modelValue: 'red'
-          // any other props your custom component takes
+        },
+        // You can listen to events emitted from MyCustomColorPicker
+        events: {
+          'update:modelValue': function (value) {
+            console.log({ value });
+          }
         }
       }
     }
@@ -344,11 +351,18 @@ export const CUSTOM_COMPONENTS_OPTIONS_EXAMPLE = unindent(`
     name: 'MyComponent',
     props: {
       color: {
+        // Provide your own component for the playground
         component: MyCustomColorPicker,
+        // Pass in props to MyCustomColorPicker
         props: {
           // Default value to demo
           modelValue: 'red'
-          // any other props your custom component takes
+        },
+        // You can listen to events emitted from MyCustomColorPicker
+        events: {
+          'update:modelValue': function (value) {
+            console.log({ value });
+          }
         }
       }
     }
@@ -370,11 +384,18 @@ export const CUSTOM_COMPONENTS_SCRIPT_SETUP_EXAMPLE = unindent(`
 
   defineProps({
     color: {
+      // Provide your own component for the playground
       component: MyCustomColorPicker,
+      // Pass in props to MyCustomColorPicker
       props: {
         // Default value to demo
         modelValue: 'red'
-        // any other props your custom component takes
+      },
+      // You can listen to events emitted from MyCustomColorPicker
+      events: {
+        'update:modelValue': function (value) {
+          console.log({ value });
+        }
       }
     }
   });
