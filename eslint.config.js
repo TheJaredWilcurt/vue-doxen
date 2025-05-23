@@ -46,7 +46,8 @@ export default [
       'import/namespace': 'off',
       'import/no-cycle': 'off',
       'import/no-deprecated': 'off',
-
+      // Turned off because import plugin can't see exports used in .vue files
+      'import/no-unused-modules': 'off',
       'import/order': [
         'error',
         {

@@ -101,6 +101,7 @@
 </template>
 
 <script>
+/* eslint-disable-next-line import/no-unresolved */
 import vuetifyStyles from '@@@/assets/vuetify.css?inline';
 
 import {
@@ -111,8 +112,8 @@ import {
   styleTokensVuetify3
 } from '@/library.js';
 
+/* eslint-disable-next-line import/no-unresolved */
 import doxenStyles from '@/sass/vue-doxen.sass?inline';
-
 
 export default {
   name: 'StyleSwapper',

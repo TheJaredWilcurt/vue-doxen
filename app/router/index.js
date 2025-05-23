@@ -112,7 +112,7 @@ function scrollBehavior (to, from, savedPosition) {
   }
 }
 
-const router = createRouter({
+export const router = createRouter({
   history: createWebHistory(),
   scrollBehavior,
   routes
@@ -125,5 +125,3 @@ router.beforeEach((to, from, next) => {
 router.afterEach(() => {
   NProgress.done();
 });
-
-export default router;
