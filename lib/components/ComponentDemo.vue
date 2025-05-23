@@ -11,11 +11,9 @@
       <template
         v-for="(slotValue, slotName) in title.slots"
         #[slotName]
+        :key="'slot-' + slotName"
       >
-        <span
-          v-html="title.slots[slotName]"
-          :key="'slot-' + slotName"
-        ></span>
+        <span v-html="title.slots[slotName]"></span>
       </template>
     </component>
     <component
@@ -41,11 +39,9 @@
         <template
           v-for="(slotValue, slotName) in description.slots"
           #[slotName]
+          :key="'slot-' + slotName"
         >
-          <span
-            v-html="description.slots[slotName]"
-            :key="'slot-' + slotName"
-          ></span>
+          <span v-html="description.slots[slotName]"></span>
         </template>
       </component>
     </template>
@@ -68,11 +64,9 @@
           <template
             v-for="(slotValue, slotName) in importStatement.slots"
             #[slotName]
+            :key="'slot-' + slotName"
           >
-            <span
-              v-html="importStatement.slots[slotName]"
-              :key="'slot-' + slotName"
-            ></span>
+            <span v-html="importStatement.slots[slotName]"></span>
           </template>
         </component>
       </template>
@@ -90,11 +84,9 @@
         <template
           v-for="(slotValue, slotName) in slotsToRender"
           #[slotName]
+          :key="'slot-' + slotName"
         >
-          <span
-            v-html="demoSlots[slotName]"
-            :key="'slot-' + slotName"
-          ></span>
+          <span v-html="demoSlots[slotName]"></span>
         </template>
       </component>
       <hr v-bind="applyStyleTokens({ componentDemoHr: true })" />
@@ -133,11 +125,9 @@
                 <template
                   v-for="(slotValue, slotName) in prop.slots"
                   #[slotName]
+                  :key="'slot-' + slotName"
                 >
-                  <span
-                    v-html="slotValue"
-                    :key="'slot-' + slotName"
-                  ></span>
+                  <span v-html="slotValue"></span>
                 </template>
               </component>
             </section>
