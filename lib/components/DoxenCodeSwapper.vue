@@ -4,7 +4,7 @@
       v-model="selected"
       :styleTokens="styleTokens"
       :tabs="Object.keys(codeTypes)"
-      @update:model-value="$emit('tabChanged', $event)"
+      @update:modelValue="$emit('tabChanged', $event)"
     >
       <code
         v-if="currentFileName"

@@ -106,6 +106,16 @@ export default [
       'vue/no-multiple-template-root': [
         'off'
       ],
+      'vue/v-on-event-hyphenation': [
+        'error',
+        'never',
+        {
+          ignore: [],
+          ignoreTags: [],
+          // Breaks things in Vue 2
+          autofix: true
+        }
+      ],
       'vuejs-accessibility/label-has-for': [
         'error',
         {
@@ -131,6 +141,15 @@ export default [
           }
         }
       }
+    }
+  },
+  // Turn off rules in the docs site
+  {
+    files: [
+      './app/**/*'
+    ],
+    rules: {
+      'import/no-extraneous-dependencies': 'off'
     }
   }
 ];
