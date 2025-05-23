@@ -243,7 +243,7 @@
 </template>
 
 <script>
-/* eslint-diable import/no-extraneous-dependencies */
+/* eslint-disable import/no-extraneous-dependencies */
 import _cloneDeep from 'lodash.clonedeep';
 import _lowerFirst from 'lodash.lowerfirst';
 import _startCase from 'lodash.startcase';

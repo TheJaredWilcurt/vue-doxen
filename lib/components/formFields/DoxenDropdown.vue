@@ -54,6 +54,7 @@
 </template>
 
 <script>
+/* eslint-disable-next-line import/no-extraneous-dependencies */
 import _cloneDeep from 'lodash.clonedeep';
 
 import {

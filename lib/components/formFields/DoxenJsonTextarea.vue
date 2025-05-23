@@ -51,6 +51,7 @@
 </template>
 
 <script>
+/* eslint-disable import/no-extraneous-dependencies */
 import JSON5 from 'json5';
 import _isEqual from 'lodash.isequal';
 
