@@ -81,7 +81,7 @@ export default {
         }
         const data = await response.json();
         this.lastUpdated = new Date(data[0].created_at);
-      } catch (error) {
+      } catch {
         return;
       }
     }

@@ -101,6 +101,9 @@
 </template>
 
 <script>
+/* eslint-disable-next-line import/no-unresolved */
+import vuetifyStyles from '@@@/assets/vuetify.css?inline';
+
 import {
   DoxenCheckbox,
   DoxenDropdown,
@@ -108,9 +111,9 @@ import {
   styleTokensBuiltIn,
   styleTokensVuetify3
 } from '@/library.js';
-import doxenStyles from '@/sass/vue-doxen.sass?inline';
 
-import vuetifyStyles from '@@@/assets/vuetify.css?inline';
+/* eslint-disable-next-line import/no-unresolved */
+import doxenStyles from '@/sass/vue-doxen.sass?inline';
 
 export default {
   name: 'StyleSwapper',

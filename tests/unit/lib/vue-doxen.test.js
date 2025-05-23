@@ -1,7 +1,7 @@
 import { vueDoxenPlugin } from '@/vue-doxen.js';
 
 describe('Vue-Doxen', () => {
-  test('install', () => {
+  test('Install', () => {
     const mockApp = {
       component: vi.fn()
     };

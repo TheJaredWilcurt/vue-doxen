@@ -1,14 +1,15 @@
-/* eslint-disable import/no-unused-modules */
+/* eslint-disable import/no-extraneous-dependencies */
 import { resolve } from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
 
+/* eslint-disable-next-line import/default,import/no-named-as-default,import/no-named-as-default-member */
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
 import vueDevTools from 'vite-plugin-vue-devtools';
 
 const __dirname = import.meta.dirname;
 
-export default defineConfig({
+const config = defineConfig({
   base: '/vue-doxen',
   build: {
     chunkSizeWarningLimit: 572.36,
@@ -58,3 +59,5 @@ export default defineConfig({
     open: '/index.html'
   }
 });
+
+export default config;
