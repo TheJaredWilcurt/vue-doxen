@@ -23,7 +23,7 @@
     "vue-axe 3 was released years ago, but never marked as latest"
   ],
   "devDependencies": {
-    "@eslint/js": "^9.26.0",
+    "@eslint/js": "^9.27.0",
     "@highlightjs/vue-plugin": "2.1.2",
     "@stylistic/eslint-plugin-js": "^4.2.0",
     "@vitejs/plugin-vue": "^5.2.4",
@@ -31,7 +31,7 @@
     "@vue/test-utils": "^2.4.6",
     "axe-core": "4.0.0",
     "cross-env": "^7.0.3",
-    "eslint": "^9.26.0",
+    "eslint": "^9.27.0",
     "eslint-config-tjw-base": "^4.1.0",
     "eslint-config-tjw-import": "^2.0.0",
     "eslint-config-tjw-jest": "^3.0.0",
