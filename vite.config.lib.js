@@ -1,14 +1,15 @@
-/* eslint-disable import/no-unused-modules */
+/* eslint-disable import/no-extraneous-dependencies */
 import { resolve } from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
 
+/* eslint-disable-next-line import/default,import/no-named-as-default,import/no-named-as-default-member */
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
 import { configDefaults } from 'vitest/dist/config.js';
 
 const __dirname = import.meta.dirname;
 
-export default defineConfig({
+const config = defineConfig({
   build: {
     copyPublicDir: false,
     lib: {
@@ -71,3 +72,5 @@ export default defineConfig({
     ]
   }
 });
+
+export default config;

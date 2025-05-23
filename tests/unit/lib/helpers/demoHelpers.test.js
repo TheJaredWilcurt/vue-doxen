@@ -95,7 +95,8 @@ describe('Demo helpers', () => {
               asCode: true,
               label: 'Model Value',
               styleTokens
-            }
+            },
+            events: {}
           }
         });
     });
@@ -114,7 +115,8 @@ describe('Demo helpers', () => {
             props: {
               label: 'Model Modifiers',
               styleTokens
-            }
+            },
+            events: {}
           }
         });
     });
@@ -131,7 +133,8 @@ describe('Demo helpers', () => {
             props: {
               label: 'Some Messages',
               styleTokens
-            }
+            },
+            events: {}
           }
         });
     });
@@ -148,7 +151,8 @@ describe('Demo helpers', () => {
             props: {
               label: 'Some Notes',
               styleTokens
-            }
+            },
+            events: {}
           }
         });
     });
@@ -165,7 +169,8 @@ describe('Demo helpers', () => {
             props: {
               label: 'Some Comments',
               styleTokens
-            }
+            },
+            events: {}
           }
         });
     });
@@ -189,7 +194,8 @@ describe('Demo helpers', () => {
               min: 20,
               max: 30,
               styleTokens
-            }
+            },
+            events: {}
           }
         });
     });
@@ -209,7 +215,8 @@ describe('Demo helpers', () => {
               label: 'Amount',
               modelValue: undefined,
               styleTokens
-            }
+            },
+            events: {}
           }
         });
     });
@@ -242,7 +249,8 @@ describe('Demo helpers', () => {
                 }
               ],
               styleTokens
-            }
+            },
+            events: {}
           }
         });
     });
@@ -290,7 +298,8 @@ describe('Demo helpers', () => {
                 }
               ],
               styleTokens
-            }
+            },
+            events: {}
           }
         });
     });
@@ -310,7 +319,8 @@ describe('Demo helpers', () => {
               name: 'Disabled',
               modelValue: false,
               styleTokens
-            }
+            },
+            events: {}
           }
         });
     });
@@ -331,7 +341,8 @@ describe('Demo helpers', () => {
               label: 'Colors',
               modelValue: [],
               styleTokens
-            }
+            },
+            events: {}
           }
         });
     });
@@ -352,7 +363,8 @@ describe('Demo helpers', () => {
               label: 'User',
               modelValue: {},
               styleTokens
-            }
+            },
+            events: {}
           }
         });
     });
@@ -373,7 +385,8 @@ describe('Demo helpers', () => {
               label: 'User',
               modelValue: {},
               styleTokens
-            }
+            },
+            events: {}
           }
         });
     });
@@ -392,7 +405,8 @@ describe('Demo helpers', () => {
             props: {
               label: 'Action',
               styleTokens
-            }
+            },
+            events: {}
           }
         });
     });
@@ -413,7 +427,8 @@ describe('Demo helpers', () => {
               label: 'Action',
               modelValue: expect.any(Function),
               styleTokens
-            }
+            },
+            events: {}
           }
         });
     });
@@ -431,7 +446,8 @@ describe('Demo helpers', () => {
               label: 'Name',
               modelValue: 'Name',
               styleTokens
-            }
+            },
+            events: {}
           }
         });
     });
@@ -451,7 +467,8 @@ describe('Demo helpers', () => {
               label: 'Name',
               modelValue: 'Text',
               styleTokens
-            }
+            },
+            events: {}
           }
         });
     });
@@ -474,7 +491,8 @@ describe('Demo helpers', () => {
               label: 'Amount',
               modelValue: 30,
               styleTokens
-            }
+            },
+            events: {}
           }
         });
     });
@@ -505,7 +523,7 @@ describe('Demo helpers', () => {
       expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
         .toEqual({
           percent: {
-            type: Number,
+            type: [Number],
             min: 20,
             max: 30
           }
@@ -531,11 +549,7 @@ describe('Demo helpers', () => {
       expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
         .toEqual({
           percent: {
-            type: [
-              Number,
-              Boolean,
-              String
-            ],
+            type: [Number],
             min: 20,
             max: 30
           }
@@ -661,7 +675,7 @@ describe('Demo helpers', () => {
           expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
             .toEqual({
               amount: {
-                type: Number
+                type: [Number]
               }
             });
         });
@@ -681,7 +695,7 @@ describe('Demo helpers', () => {
           expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
             .toEqual({
               amount: {
-                type: [Number, String]
+                type: [Number]
               }
             });
         });
@@ -701,7 +715,7 @@ describe('Demo helpers', () => {
           expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
             .toEqual({
               amount: {
-                type: [Number, String]
+                type: [Number]
               }
             });
         });
@@ -740,6 +754,68 @@ describe('Demo helpers', () => {
             .toEqual({
               amount: {
                 type: [Number]
+              }
+            });
+        });
+
+        test('Remove duplicate types from demo', () => {
+          const propsToDemo = {
+            amount: {
+              type: [Number, String, Number]
+            }
+          };
+          const componentProps = {};
+
+          expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+            .toEqual({
+              amount: {
+                type: [Number, String]
+              }
+            });
+        });
+
+        test('Remove duplicate types from component', () => {
+          const propsToDemo = {};
+          const componentProps = {
+            amount: {
+              type: [Number, String, Number]
+            }
+          };
+
+          expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+            .toEqual({
+              amount: {
+                type: [Number, String]
+              }
+            });
+        });
+
+        test('Type shorthand', () => {
+          const propsToDemo = {};
+          const componentProps = {
+            amount: Number
+          };
+
+          expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+            .toEqual({
+              amount: {
+                type: [Number]
+              }
+            });
+        });
+
+        test('Type shorthand as array', () => {
+          const propsToDemo = {
+            amount: [Number, String]
+          };
+          const componentProps = {
+            amount: Number
+          };
+
+          expect(combinePropsAndPropsToDemo(propsToDemo, componentProps))
+            .toEqual({
+              amount: {
+                type: [Number, String]
               }
             });
         });

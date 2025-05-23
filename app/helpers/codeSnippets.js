@@ -16,15 +16,22 @@ function unindent (value) {
     .join('\n')
     .trim();
 }
+function templatePrefix (template, script) {
+  return [
+    unindent(template),
+    unindent(script)
+  ].join('\n\n');
+}
 
-export const ALTERNATE_COMPOSITION_DEMO_EXAMPLE = unindent(`
+const ALTERNATE_TEMPLATE = (`
   <template>
     <VueDoxen
       modelValue="MyComponent"
       :demos="{ MyComponent: demo }"
     />
   </template>
-
+`);
+export const ALTERNATE_COMPOSITION_DEMO_EXAMPLE = templatePrefix(ALTERNATE_TEMPLATE, `
   <script>
   import { computed } from 'vue';
   import { VueDoxen } from 'vue-doxen';
@@ -53,14 +60,7 @@ export const ALTERNATE_COMPOSITION_DEMO_EXAMPLE = unindent(`
   };
   </script>
 `);
-export const ALTERNATE_OPTIONS_DEMO_EXAMPLE = unindent(`
-  <template>
-    <VueDoxen
-      modelValue="MyComponent"
-      :demos="{ MyComponent: demo }"
-    />
-  </template>
-
+export const ALTERNATE_OPTIONS_DEMO_EXAMPLE = templatePrefix(ALTERNATE_TEMPLATE, `
   <script>
   import { VueDoxen } from 'vue-doxen';
 
@@ -85,14 +85,7 @@ export const ALTERNATE_OPTIONS_DEMO_EXAMPLE = unindent(`
   };
   </script>
 `);
-export const ALTERNATE_SCRIPT_SETUP_DEMO_EXAMPLE = unindent(`
-  <template>
-    <VueDoxen
-      modelValue="MyComponent"
-      :demos="{ MyComponent: demo }"
-    />
-  </template>
-
+export const ALTERNATE_SCRIPT_SETUP_DEMO_EXAMPLE = templatePrefix(ALTERNATE_TEMPLATE, `
   <script setup>
   import { computed } from 'vue';
   import { VueDoxen } from 'vue-doxen';
@@ -138,6 +131,50 @@ export const ALTERNATE_VUE_ROUTER_EXAMPLE = unindent(`
 
   // Export the router
   export default router;
+`);
+
+export const BARE_MINIMUM_EXAMPLE = unindent(`
+  <template>
+    <VueDoxen :demos="demos" />
+  </template>
+
+  <script>
+  import { VueDoxen } from 'vue-doxen';
+  import MyComponent from './MyComponent.vue';
+
+  export default {
+    components: { VueDoxen },
+    computed: {
+      demos: function () {
+        return { MyComponent };
+      }
+    }
+  };
+  </script>
+`);
+const BARE_MINIMUM_TEMPLATE = (`
+  <template>
+    <VueDoxen :demos="{ MyComponent }" />
+  </template>
+`);
+export const BARE_MINIMUM_COMPOSITION_EXAMPLE = templatePrefix(BARE_MINIMUM_TEMPLATE, `
+  <script>
+  import { VueDoxen } from 'vue-doxen';
+  import MyComponent from './MyComponent.vue';
+
+  export default {
+    components: { VueDoxen },
+    setup: function () {
+      return { MyComponent };
+    }
+  };
+  </script>
+`);
+export const BARE_MINIMUM_SCRIPT_SETUP_EXAMPLE = templatePrefix(BARE_MINIMUM_TEMPLATE, `
+  <script setup>
+  import { VueDoxen } from 'vue-doxen';
+  import MyComponent from './MyComponent.vue';
+  </script>
 `);
 
 export const BASIC_PROPS_DEMO_FILE = unindent(`
@@ -238,6 +275,29 @@ export const COMPONENT_NAME_SCRIPT_SETUP_EXAMPLE = unindent(`
   </script>
 `);
 
+export const COMPONENT_TITLE_DEMO_EXAMPLE = unindent(`
+  import YourComponent from '../components/YourComponent.vue';
+
+  export const yourComponentDemo = {
+    component: YourComponent,
+    title: 'Your Component'
+  };
+`);
+export const COMPONENT_TITLE_OPTIONS_EXAMPLE = unindent(`
+  <script>
+  export default {
+    title: 'Your Component'
+  };
+  </script>
+`);
+export const COMPONENT_TITLE_SCRIPT_SETUP_EXAMPLE = unindent(`
+  <script setup>
+  defineOptions({
+    title: 'Your Component'
+  });
+  </script>
+`);
+
 export const COMPOSE_ALL_DEMOS_EXAMPLE = unindent(`
   import ComponentA from '../components/ComponentA.vue';
   import ComponentB from '../components/ComponentB.vue';
@@ -261,11 +321,18 @@ export const CUSTOM_COMPONENTS_DEMO_EXAMPLE = unindent(`
     component: MyComponent,
     propsToDemo: {
       color: {
+        // Provide your own component for the playground
         component: MyCustomColorPicker,
+        // Pass in props to MyCustomColorPicker
         props: {
           // Default value to demo
           modelValue: 'red'
-          // any other props your custom component takes
+        },
+        // You can listen to events emitted from MyCustomColorPicker
+        events: {
+          'update:modelValue': function (value) {
+            console.log({ value });
+          }
         }
       }
     }
@@ -284,11 +351,18 @@ export const CUSTOM_COMPONENTS_OPTIONS_EXAMPLE = unindent(`
     name: 'MyComponent',
     props: {
       color: {
+        // Provide your own component for the playground
         component: MyCustomColorPicker,
+        // Pass in props to MyCustomColorPicker
         props: {
           // Default value to demo
           modelValue: 'red'
-          // any other props your custom component takes
+        },
+        // You can listen to events emitted from MyCustomColorPicker
+        events: {
+          'update:modelValue': function (value) {
+            console.log({ value });
+          }
         }
       }
     }
@@ -310,11 +384,18 @@ export const CUSTOM_COMPONENTS_SCRIPT_SETUP_EXAMPLE = unindent(`
 
   defineProps({
     color: {
+      // Provide your own component for the playground
       component: MyCustomColorPicker,
+      // Pass in props to MyCustomColorPicker
       props: {
         // Default value to demo
         modelValue: 'red'
-        // any other props your custom component takes
+      },
+      // You can listen to events emitted from MyCustomColorPicker
+      events: {
+        'update:modelValue': function (value) {
+          console.log({ value });
+        }
       }
     }
   });
@@ -328,7 +409,7 @@ export const DEMO_FILE_EXAMPLE = unindent(`
   export const myComponentDemo = {
     component: MyComponent,
     description: '<p>Some description of the component.</p>',
-    importStatement: 'import { MyComponent } from \\'my-component-library\\'',
+    importStatement: 'import { MyComponent } from \\'my-component-library\\';',
     propsToDemo: {
       color: {
         component: MyCustomColorPicker,
@@ -367,14 +448,15 @@ export const DEMO_FILE_EXAMPLE = unindent(`
     }
   };
 `);
-export const DEMO_FILE_USAGE_COMPOSITION_EXAMPLE = unindent(`
+const DEMO_FILE_TEMPLATE = (`
   <template>
     <VueDoxen
       v-model="selectedDemo"
       :demos="demos"
     />
   </template>
-
+`);
+export const DEMO_FILE_USAGE_COMPOSITION_EXAMPLE = templatePrefix(DEMO_FILE_TEMPLATE, `
   <script>
   import { computed, ref } from 'vue';
   import { VueDoxen } from 'vue-doxen';
@@ -414,14 +496,7 @@ export const DEMO_FILE_USAGE_COMPOSITION_EXAMPLE = unindent(`
   };
   </script>
 `);
-export const DEMO_FILE_USAGE_EXAMPLE = unindent(`
-  <template>
-    <VueDoxen
-      v-model="selectedDemo"
-      :demos="demos"
-    />
-  </template>
-
+export const DEMO_FILE_USAGE_EXAMPLE = templatePrefix(DEMO_FILE_TEMPLATE, `
   <script>
   import { VueDoxen } from 'vue-doxen';
 
@@ -458,14 +533,7 @@ export const DEMO_FILE_USAGE_EXAMPLE = unindent(`
   };
   </script>
 `);
-export const DEMO_FILE_USAGE_SCRIPT_SETUP_EXAMPLE = unindent(`
-  <template>
-    <VueDoxen
-      v-model="selectedDemo"
-      :demos="demos"
-    />
-  </template>
-
+export const DEMO_FILE_USAGE_SCRIPT_SETUP_EXAMPLE = templatePrefix(DEMO_FILE_TEMPLATE, `
   <script setup>
   import { computed, ref } from 'vue';
   import { VueDoxen } from 'vue-doxen';
@@ -640,7 +708,7 @@ export const DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_OPTIONS = unindent(`
       color: {
         allowed: ALLOWED_COLORS,
         description: 'The trophy color to convey first, second, or third place.',
-        vaidator: function (value) {
+        validator: function (value) {
           return ALLOWED_COLORS.includes(value);
         }
       },
@@ -692,7 +760,7 @@ export const DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_SCRIPT_SETUP = unindent(`
     color: {
       allowed: ['gold', 'silver', 'bronze'],
       description: 'The trophy color to convey first, second, or third place.',
-      vaidator: function (value) {
+      validator: function (value) {
         return ['gold', 'silver', 'bronze'].includes(value);
       }
     },
@@ -890,6 +958,106 @@ export const EMITS_TO_DEMO_OBJECT_SCRIPT_SETUP_EXAMPLE = unindent(`
   </script>
 `);
 
+export const EXPLAINER_OPTIONS_EXAMPLE = unindent(`
+  <script>
+  export default {
+    name: 'MyButton',
+    description: 'Your component description.',
+    props: {
+      color: {
+        type: String,
+        allowed: ['gold', 'silver', 'bronze']
+      }
+    }
+  };
+  </script>
+`);
+export const EXPLAINER_SCRIPT_SETUP_EXAMPLE = unindent(`
+  <script setup>
+  defineOptions({
+    name: 'MyButton',
+    description: 'Your component description.'
+  });
+  defineProps({
+    color: {
+      type: String,
+      allowed: ['gold', 'silver', 'bronze']
+    }
+  });
+  </script>
+`);
+export const EXPLAINER_DEMO_EXAMPLE = unindent(`
+  import MyButton from '../components/MyButton.vue';
+
+  export const myButtonDemo = {
+    component: MyButton,
+    description: 'Your component description',
+    propsToDemo: {
+      color: {
+        allowed: ['gold', 'silver', 'bronze']
+      }
+    }
+  };
+`);
+export const EXPLAINER_DOXEN_OPTIONS_API = unindent(`
+  <template>
+    <VueDoxen :demos="demos" />
+  </template>
+
+  <script>
+  import { VueDoxen } from 'vue-doxen';
+  import MyButton from '../components/MyButton.vue';
+
+  export default {
+    components: { VueDoxen },
+    computed: {
+      demos: function () {
+        return { MyButton };
+      }
+    }
+  };
+  </script>
+`);
+export const EXPLAINER_DOXEN_OPTIONS_API_DEMO = unindent(`
+  <template>
+    <VueDoxen :demos="demos" />
+  </template>
+
+  <script>
+  import { VueDoxen } from 'vue-doxen';
+  import { myButtonDemo } from '../demos/myButtonDemo.js';
+
+  export default {
+    components: { VueDoxen },
+    computed: {
+      demos: function () {
+        return { myButtonDemo };
+      }
+    }
+  };
+  </script>
+`);
+export const EXPLAINER_DOXEN_SCRIPT_SETUP = unindent(`
+  <template>
+    <VueDoxen :demos="{ MyButton }" />
+  </template>
+
+  <script setup>
+  import { VueDoxen } from 'vue-doxen';
+  import MyButton from '../components/MyButton.vue';
+  </script>
+`);
+export const EXPLAINER_DOXEN_SCRIPT_SETUP_DEMO = unindent(`
+  <template>
+    <VueDoxen :demos="{ myButtonDemo }" />
+  </template>
+
+  <script setup>
+  import { VueDoxen } from 'vue-doxen';
+  import { myButtonDemo } from '../demos/myButtonDemo.js';
+  </script>
+`);
+
 export const GETTING_STARTED_CDN = unindent(`
   <!DOCTYPE html>
   <html>
@@ -984,8 +1152,7 @@ export const GETTING_STARTED_CDN = unindent(`
     </body>
   </html>
 `);
-
-export const GETTING_STARTED_EXAMPLE = unindent(`
+const GETTING_STARTED_TEMPLATE = (`
   <template>
     <div>
       <!--
@@ -1010,7 +1177,8 @@ export const GETTING_STARTED_EXAMPLE = unindent(`
       />
     </div>
   </template>
-
+`);
+export const GETTING_STARTED_EXAMPLE = templatePrefix(GETTING_STARTED_TEMPLATE, `
   <script>
   import { DoxenSidebar, VueDoxen } from 'vue-doxen';
 
@@ -1049,32 +1217,7 @@ export const GETTING_STARTED_EXAMPLE = unindent(`
   };
   </script>
 `);
-export const GETTING_STARTED_COMPOSITION_EXAMPLE = unindent(`
-  <template>
-    <div>
-      <!--
-        Simple way of switching selected component,
-        or use your own sidebar component
-      -->
-      <DoxenSidebar
-        v-model="selectedDemo"
-        :demos="demos"
-      />
-      <VueDoxen
-        v-model="selectedDemo"
-        :demos="demos"
-      />
-      <!--
-        Optional CSS file for syntax highlighting
-      -->
-      <link
-        href="https://unpkg.com/highlightjs/styles/ir-black.css"
-        rel="stylesheet"
-        type="text/css"
-      />
-    </div>
-  </template>
-
+export const GETTING_STARTED_COMPOSITION_EXAMPLE = templatePrefix(GETTING_STARTED_TEMPLATE, `
   <script>
   import { computed, ref } from 'vue';
   import { DoxenSidebar, VueDoxen } from 'vue-doxen';
@@ -1116,32 +1259,7 @@ export const GETTING_STARTED_COMPOSITION_EXAMPLE = unindent(`
   };
   </script>
 `);
-export const GETTING_STARTED_SCRIPT_SETUP_EXAMPLE = unindent(`
-  <template>
-    <div>
-      <!--
-        Simple way of switching selected component,
-        or use your own sidebar component
-      -->
-      <DoxenSidebar
-        v-model="selectedDemo"
-        :demos="demos"
-      />
-      <VueDoxen
-        v-model="selectedDemo"
-        :demos="demos"
-      />
-      <!--
-        Optional CSS file for syntax highlighting
-      -->
-      <link
-        href="https://unpkg.com/highlightjs/styles/ir-black.css"
-        rel="stylesheet"
-        type="text/css"
-      />
-    </div>
-  </template>
-
+export const GETTING_STARTED_SCRIPT_SETUP_EXAMPLE = templatePrefix(GETTING_STARTED_TEMPLATE, `
   <script setup>
   import { computed, ref } from 'vue';
   import { DoxenSidebar, VueDoxen } from 'vue-doxen';
@@ -1283,7 +1401,7 @@ export const IMPORT_STATEMENT_STRING_SCRIPT_SETUP_EXAMPLE = unindent(`
   </script>
 `);
 
-export const ROUTER_LINK_OPTIONS_EXAMPLE = unindent(`
+const ROUTER_LINK_TEMPLATE = (`
   <template>
     <div>
       <aside>
@@ -1305,7 +1423,8 @@ export const ROUTER_LINK_OPTIONS_EXAMPLE = unindent(`
       </main>
     </div>
   </template>
-
+`);
+export const ROUTER_LINK_OPTIONS_EXAMPLE = templatePrefix(ROUTER_LINK_TEMPLATE, `
   <script>
   import { demos } from './demos/index.js';
 
@@ -1319,29 +1438,7 @@ export const ROUTER_LINK_OPTIONS_EXAMPLE = unindent(`
   };
   </script>
 `);
-export const ROUTER_LINK_COMPOSITION_EXAMPLE = unindent(`
-  <template>
-    <div>
-      <aside>
-        <nav>
-          <RouterLink
-            v-for="(demo, componentName) in componentDemos"
-            :to="{
-              name: 'components',
-              params: { componentName }
-            }"
-            :key="'sidebar-link-' + componentName"
-          >
-            {{ demo.component?.name || demo.name || componentName }}
-          </RouterLink>
-        </nav>
-      </aside>
-      <main>
-        <RouterView />
-      </main>
-    </div>
-  </template>
-
+export const ROUTER_LINK_COMPOSITION_EXAMPLE = templatePrefix(ROUTER_LINK_TEMPLATE, `
   <script>
   import { computed } from 'vue';
 
@@ -1361,29 +1458,7 @@ export const ROUTER_LINK_COMPOSITION_EXAMPLE = unindent(`
   };
   </script>
 `);
-export const ROUTER_LINK_SCRIPT_SETUP_EXAMPLE = unindent(`
-  <template>
-    <div>
-      <aside>
-        <nav>
-          <RouterLink
-            v-for="(demo, componentName) in componentDemos"
-            :to="{
-              name: 'components',
-              params: { componentName }
-            }"
-            :key="'sidebar-link-' + componentName"
-          >
-            {{ demo.component?.name || demo.name || componentName }}
-          </RouterLink>
-        </nav>
-      </aside>
-      <main>
-        <RouterView />
-      </main>
-    </div>
-  </template>
-
+export const ROUTER_LINK_SCRIPT_SETUP_EXAMPLE = templatePrefix(ROUTER_LINK_TEMPLATE, `
   <script setup>
   import { computed } from 'vue';
 
@@ -1621,6 +1696,92 @@ export const SLOTS_SCRIPT_SETUP_DEFAULT_TEXT_EXAMPLE = unindent(`
   </script>
 `);
 
+export const TITLE_COMPONENT_DEMO_FILE_EXAMPLE = unindent(`
+  import MyComponent from '../components/MyComponent.vue';
+  import MyTitle from '../components/MyTitle.vue';
+
+  export const myComponentDemo = {
+    component: MyComponent,
+    title: {
+      component: MyTitle,
+      // Optional, if your component needs props
+      props: {
+        yourProp: 'your value'
+      },
+      // Optional, if your component has slots
+      slots: {
+        default: '<em>Content</em>'
+      },
+      // Optional, if your component has emits
+      events: {
+        click: function ($event) {
+          console.log($event);
+        }
+      }
+    }
+  };
+`);
+export const TITLE_COMPONENT_OPTIONS_EXAMPLE = unindent(`
+  <script>
+  // DO NOT ACTUALLY DO THIS! USE A DEMO FILE INSTEAD.
+  // Though this is technically supported, importing custom components
+  // into your component just for Vue-Doxen will bloat your component's
+  // file size for no real benefit. If you want to use your own
+  // component for the description, just use a demo file.
+  import MyTitle from '../components/MyTitle.vue';
+
+  export default {
+    title: {
+      component: MyTitle,
+      // Optional, if your component needs props
+      props: {
+        yourProp: 'your value'
+      },
+      // Optional, if your component has slots
+      slots: {
+        default: '<em>Content</em>'
+      },
+      // Optional, if your component has emits
+      events: {
+        click: function ($event) {
+          console.log($event);
+        }
+      }
+    }
+  };
+  </script>
+`);
+export const TITLE_COMPONENT_SCRIPT_SETUP_EXAMPLE = unindent(`
+  <script setup>
+  // DO NOT ACTUALLY DO THIS! USE A DEMO FILE INSTEAD.
+  // Though this is technically supported, importing custom components
+  // into your component just for Vue-Doxen will bloat your component's
+  // file size for no real benefit. If you want to use your own
+  // component for the description, just use a demo file.
+  import MyTitle from '../components/MyTitle.vue';
+
+  defineOptions({
+    description: {
+      component: MyTitle,
+      // Optional, if your component needs props
+      props: {
+        yourProp: 'your value'
+      },
+      // Optional, if your component has slots
+      slots: {
+        default: '<em>Content</em>'
+      },
+      // Optional, if your component has emits
+      events: {
+        click: function ($event) {
+          console.log($event);
+        }
+      }
+    }
+  });
+  </script>
+`);
+
 export const TREE_SHAKING_IMPORT_EXAMPLE = unindent(`
   // Import all the needed components from Vue-Doxen
   import {
@@ -1669,7 +1830,7 @@ export const TREE_SHAKING_IMPORT_EXAMPLE = unindent(`
     }
   };
 `);
-export const TREE_SHAKING_USING_OPTIONS_OPTIONS_API = unindent(`
+const TREE_SHAKING_TEMPLATE = (`
   <template>
     <div>
       <DoxenSideBar
@@ -1683,7 +1844,8 @@ export const TREE_SHAKING_USING_OPTIONS_OPTIONS_API = unindent(`
       />
     </div>
   </template>
-
+`);
+export const TREE_SHAKING_USING_OPTIONS_OPTIONS_API = templatePrefix(TREE_SHAKING_TEMPLATE, `
   <script>
   import { DoxenSideBar, VueDoxenCustom } from 'vue-doxen';
 
@@ -1712,21 +1874,7 @@ export const TREE_SHAKING_USING_OPTIONS_OPTIONS_API = unindent(`
   };
   </script>
 `);
-export const TREE_SHAKING_USING_OPTIONS_COMPOSITION_API = unindent(`
-  <template>
-    <div>
-      <DoxenSideBar
-        v-model="selectedDemo"
-        :demos="componentDemos"
-      />
-      <VueDoxenCustom
-        v-model="selectedDemo"
-        :demos="componentDemos"
-        :options="vueDoxenOptions"
-      />
-    </div>
-  </template>
-
+export const TREE_SHAKING_USING_OPTIONS_COMPOSITION_API = templatePrefix(TREE_SHAKING_TEMPLATE, `
   <script>
   import { computed, ref } from 'vue';
   import { DoxenSideBar, VueDoxenCustom } from 'vue-doxen';
@@ -1760,21 +1908,7 @@ export const TREE_SHAKING_USING_OPTIONS_COMPOSITION_API = unindent(`
   };
   </script>
 `);
-export const TREE_SHAKING_USING_OPTIONS_SCRIPT_SETUP = unindent(`
-  <template>
-    <div>
-      <DoxenSideBar
-        v-model="selectedDemo"
-        :demos="componentDemos"
-      />
-      <VueDoxenCustom
-        v-model="selectedDemo"
-        :demos="componentDemos"
-        :options="vueDoxenOptions"
-      />
-    </div>
-  </template>
-
+export const TREE_SHAKING_USING_OPTIONS_SCRIPT_SETUP = templatePrefix(TREE_SHAKING_TEMPLATE, `
   <script setup>
   import { computed } from 'vue';
   import { DoxenSideBar, VueDoxenCustom } from 'vue-doxen';

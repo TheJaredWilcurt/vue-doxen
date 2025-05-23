@@ -4,6 +4,7 @@
       v-model="selected"
       :styleTokens="styleTokens"
       :tabs="Object.keys(codeTypes)"
+      @update:modelValue="$emit('tabChanged', $event)"
     >
       <code
         v-if="currentFileName"
@@ -15,6 +16,7 @@
       v-for="(code, codeName) in codeTypes"
       v-show="selected === codeName"
       :code="code"
+      :copy="copy"
       :styleTokens="styleTokens"
       :key="codeName"
     />
@@ -46,11 +48,16 @@ export default {
     DoxenTabs
   },
   mixins: [applyStyleTokens],
+  emits: ['tabChanged'],
   props: {
     codeTypes: {
       type: Object,
       required: true,
       example: codeTypesExample
+    },
+    copy: {
+      type: Boolean,
+      default: true
     },
     fileName: {
       type: [String, Object],

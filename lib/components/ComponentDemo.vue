@@ -2,9 +2,25 @@
   <div v-bind="applyStyleTokens({ componentDemo: true })">
     <!-- DoxenHeader -->
     <component
+      v-if="title && title.component"
+      :is="title.component"
+      v-bind="title.props || {}"
+      v-on="title.events || {}"
+      :key="componentName + '-title'"
+    >
+      <template
+        v-for="(slotValue, slotName) in title.slots"
+        #[slotName]
+        :key="'slot-' + slotName"
+      >
+        <span v-html="title.slots[slotName]"></span>
+      </template>
+    </component>
+    <component
+      v-else
       :is="options.components.header"
       :styleTokens="styleTokens"
-      :title="title"
+      :title="componentTitle"
     />
 
     <template v-if="description">
@@ -23,11 +39,9 @@
         <template
           v-for="(slotValue, slotName) in description.slots"
           #[slotName]
+          :key="'slot-' + slotName"
         >
-          <span
-            v-html="description.slots[slotName]"
-            :key="'slot-' + slotName"
-          ></span>
+          <span v-html="description.slots[slotName]"></span>
         </template>
       </component>
     </template>
@@ -50,11 +64,9 @@
           <template
             v-for="(slotValue, slotName) in importStatement.slots"
             #[slotName]
+            :key="'slot-' + slotName"
           >
-            <span
-              v-html="importStatement.slots[slotName]"
-              :key="'slot-' + slotName"
-            ></span>
+            <span v-html="importStatement.slots[slotName]"></span>
           </template>
         </component>
       </template>
@@ -72,76 +84,126 @@
         <template
           v-for="(slotValue, slotName) in slotsToRender"
           #[slotName]
+          :key="'slot-' + slotName"
         >
-          <span
-            v-html="demoSlots[slotName]"
-            :key="'slot-' + slotName"
-          ></span>
+          <span v-html="demoSlots[slotName]"></span>
         </template>
       </component>
       <hr v-bind="applyStyleTokens({ componentDemoHr: true })" />
     </div>
 
-    <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Props Playground:</h3>
+    <section v-bind="applyStyleTokens({ propsPlaygroundContainer: true })">
+      <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Props Playground:</h3>
 
-    <form
-      v-bind="applyStyleTokens({ propsPlaygroundForm: true })"
-      @submit.prevent
-    >
-      <!-- Anything for Props -->
-      <component
-        v-for="(prop, propName) in propsToDemo"
-        v-bind="prop.props || {}"
-        v-model="demoProps[propName]"
-        :is="prop.component"
-        v-on="prop.events || {}"
-        :key="propName"
+      <form
+        v-bind="applyStyleTokens({ propsPlaygroundForm: true })"
+        @submit.prevent
       >
-        <template
-          v-for="(slotValue, slotName) in prop.slots"
-          #[slotName]
-        >
-          <span
-            v-html="slotValue"
-            :key="'slot-' + slotName"
-          ></span>
+        <!-- Anything for Props -->
+        <template v-if="Object.keys(propsToDemo).length">
+          <button
+            v-bind="applyStyleTokens({
+              playgroundGroupTitle: true,
+              playgroundGroupTitleCollapsed: currentPlaygroundSection !== 'props',
+              playgroundGroupTitleExpanded: currentPlaygroundSection === 'props'
+            })"
+            @click="togglePlaygroundSection('props')"
+          >Props</button>
+          <DoxenAccordion
+            :show="currentPlaygroundSection === 'props'"
+            :styleTokens="styleTokens"
+          >
+            <section v-bind="applyStyleTokens({ playgroundGrouping: true })">
+              <component
+                v-for="(prop, propName) in propsToDemo"
+                v-bind="prop.props || {}"
+                v-model="demoProps[propName]"
+                :is="prop.component"
+                v-on="prop.events || {}"
+                :key="propName"
+              >
+                <template
+                  v-for="(slotValue, slotName) in prop.slots"
+                  #[slotName]
+                  :key="'slot-' + slotName"
+                >
+                  <span v-html="slotValue"></span>
+                </template>
+              </component>
+            </section>
+          </DoxenAccordion>
         </template>
-      </component>
-      <!-- Slots Playground -->
-      <template v-for="(slotValue, slotName) in slotsToDemo">
-        <!-- Custom component for slots -->
-        <component
-          v-if="slotValue.component"
-          v-bind="{
-            ...(slotValue.props || {}),
-            modelValue: demoSlots[slotName]
-          }"
-          :is="slotValue.component"
-          v-on="{
-            ...(slotValue.events || {}),
-            'update:model-value': ($event) => demoSlots[slotName] = $event,
-            'update:modelValue': ($event) => demoSlots[slotName] = $event
-          }"
-          :key="'custom-slot-playground' + slotName"
-        />
-        <!-- DoxenTextarea for slots -->
-        <component
-          v-else
-          v-model="demoSlots[slotName]"
-          :is="options.components.textarea"
-          :label="_startCase(slotName) + ' Slot'"
-          :styleTokens="styleTokens"
-          :key="'slot-playground-' + slotName"
-        />
-      </template>
-      <!-- DoxenEmitLog for emits -->
-      <component
-        v-if="Object.keys(emitsToDemo).length"
-        v-model="emitLog"
-        :is="options.components.emitLog"
-        :styleTokens="styleTokens"
-      />
-    </form>
+
+        <!-- Slots Playground -->
+        <template v-if="Object.keys(slotsToDemo).length">
+          <button
+            v-bind="applyStyleTokens({
+              playgroundGroupTitle: true,
+              playgroundGroupTitleCollapsed: currentPlaygroundSection !== 'slots',
+              playgroundGroupTitleExpanded: currentPlaygroundSection === 'slots'
+            })"
+            @click="togglePlaygroundSection('slots')"
+          >Slots</button>
+          <DoxenAccordion
+            :show="currentPlaygroundSection === 'slots'"
+            :styleTokens="styleTokens"
+          >
+            <section v-bind="applyStyleTokens({ playgroundGrouping: true })">
+              <template v-for="(slotValue, slotName) in slotsToDemo">
+                <!-- Custom component for slots -->
+                <component
+                  v-if="slotValue.component"
+                  v-bind="{
+                    ...(slotValue.props || {}),
+                    modelValue: demoSlots[slotName]
+                  }"
+                  :is="slotValue.component"
+                  v-on="{
+                    ...(slotValue.events || {}),
+                    'update:model-value': ($event) => demoSlots[slotName] = $event,
+                    'update:modelValue': ($event) => demoSlots[slotName] = $event
+                  }"
+                  :key="'custom-slot-playground' + slotName"
+                />
+                <!-- DoxenTextarea for slots -->
+                <component
+                  v-else
+                  v-model="demoSlots[slotName]"
+                  :is="options.components.textarea"
+                  :label="_startCase(slotName) + ' Slot'"
+                  :styleTokens="styleTokens"
+                  :key="'slot-playground-' + slotName"
+                />
+              </template>
+            </section>
+          </DoxenAccordion>
+        </template>
+
+        <!-- DoxenEmitLog for emits -->
+        <template v-if="Object.keys(emitsToDemo).length">
+          <button
+            v-bind="applyStyleTokens({
+              playgroundGroupTitle: true,
+              playgroundGroupTitleCollapsed: currentPlaygroundSection !== 'emits',
+              playgroundGroupTitleExpanded: currentPlaygroundSection === 'emits'
+            })"
+            @click="togglePlaygroundSection('emits')"
+          >Emits</button>
+          <DoxenAccordion
+            :show="currentPlaygroundSection === 'emits'"
+            :styleTokens="styleTokens"
+          >
+            <section v-bind="applyStyleTokens({ playgroundGrouping: true })">
+              <component
+                v-model="emitLog"
+                :is="options.components.emitLog"
+                :styleTokens="styleTokens"
+              />
+            </section>
+          </DoxenAccordion>
+        </template>
+      </form>
+    </section>
 
     <DoxenCodeSwapper
       :codeTypes="{
@@ -171,6 +233,7 @@
 </template>
 
 <script>
+/* eslint-disable import/no-extraneous-dependencies */
 import _cloneDeep from 'lodash.clonedeep';
 import _lowerFirst from 'lodash.lowerfirst';
 import _startCase from 'lodash.startcase';
@@ -190,6 +253,7 @@ import { serializeJavaScript } from '@/helpers/serializeJavaScript.js';
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
+import DoxenAccordion from '@/components/DoxenAccordion.vue';
 import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
 
@@ -198,6 +262,7 @@ const options = createVueDoxenOptions(true);
 export default {
   name: 'ComponentDemo',
   components: {
+    DoxenAccordion,
     DoxenCodeBox,
     DoxenCodeSwapper
   },
@@ -212,6 +277,7 @@ export default {
   },
   data: function () {
     return {
+      currentPlaygroundSection: 'props',
       demoProps: {},
       demoSlots: {},
       emitLog: []
@@ -241,6 +307,13 @@ export default {
       for (const slotName in this.slotsToDemo) {
         this.demoSlots[slotName] = getDefaultValue(this.slotsToDemo?.[slotName].default);
       }
+    },
+    togglePlaygroundSection: function (section) {
+      if (this.currentPlaygroundSection === section) {
+        this.currentPlaygroundSection = 'none';
+      } else {
+        this.currentPlaygroundSection = section;
+      }
     }
   },
   computed: {
@@ -252,8 +325,17 @@ export default {
         ''
       );
     },
-    title: function () {
+    componentTitle: function () {
+      if (typeof(this.title) === 'string') {
+        return this.title;
+      }
       return _startCase(this.componentName);
+    },
+    title: function () {
+      return (
+        this.demo?.title ||
+        this.demo?.component?.title
+      );
     },
     description: function () {
       return (
@@ -421,7 +503,7 @@ export default {
             this.demo.events[emitName](value);
           }
           // Intentional console.info to demonstrate emits
-          console.info(this.title + ' emit log:', { emitName, value });
+          console.info(this.componentTitle + ' emit log:', { emitName, value });
 
           // If the emit is part of a v-model
           if (emitName.startsWith('update:')) {
