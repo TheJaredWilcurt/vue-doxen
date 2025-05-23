@@ -1,4 +1,3 @@
-/* eslint-disable-next-line import/no-unresolved */
 import NProgress from 'nprogress';
 import {
   createRouter,

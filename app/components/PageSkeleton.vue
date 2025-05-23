@@ -277,7 +277,7 @@ export default {
       this.skeletonKey++;
     }, 10 * 1000);
   },
-  beforeDestroy: function () {
+  beforeUnmount: function () {
     clearInterval(this.skeletonInterval);
   }
 };
