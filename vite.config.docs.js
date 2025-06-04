@@ -13,7 +13,7 @@ const config = defineConfig({
   base: '/vue-doxen',
   build: {
     chunkSizeWarningLimit: 572.36,
-    outDir: resolve(__dirname, 'docs'),
+    outDir: resolve(__dirname, 'site'),
     rollupOptions: {
       external: [
         '/vue-doxen/branding/vue-doxen-dog.png',
