@@ -1,4 +1,5 @@
 import {
+  DoxenAccordion,
   DoxenCheckbox,
   DoxenCodeBox,
   DoxenCodeSwapper,
@@ -119,6 +120,7 @@ const createDoxenDemos = function (components, styleTokens) {
   return demos;
 };
 export const doxenComponentsToDemoWithStyleTokens = {
+  DoxenAccordion,
   DoxenCheckbox,
   DoxenDropdown,
   DoxenHeader,

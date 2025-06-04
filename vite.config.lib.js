@@ -56,7 +56,7 @@ const config = defineConfig({
         ...(configDefaults?.coverage?.exclude || []),
         '.eslintrc.cjs',
         '**/app/',
-        '**/docs/',
+        '**/site/',
         '**/scripts/'
       ],
       reportsDirectory: './tests/unit/coverage'
