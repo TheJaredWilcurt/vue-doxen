@@ -19,25 +19,18 @@ import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
 export default {
   name: 'DoxenAccordion',
-  description: 'A component that animates the visibility of content.',
-  slotsToDemo: {
-    default: '<div style="background: #000; color: #FFF; height: 200px;">\n  Content\n</div>'
-  },
   mixins: [applyStyleTokens],
   props: {
     styleTokens,
     durationMs: {
-      description: 'Controls the length of time, in milliseconds (ms) that the animation lasts.',
       type: Number,
       default: 750
     },
     show: {
-      description: 'Determines if the accordion is expanded (true) or collapsed (false).',
       type: Boolean,
       default: true
     },
     timingFunction: {
-      description: 'Any valid CSS transition-timing-function value.',
       type: String,
       default: 'ease'
     }
