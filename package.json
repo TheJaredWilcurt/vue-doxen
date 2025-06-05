@@ -10,7 +10,7 @@
     "build:docs": "vite build --config vite.config.docs.js",
     "build:library": "vite build --config vite.config.lib.js",
     "postbuild": "node ./scripts/postbuild.js",
-    "lint": "eslint --ext .js,.vue lib scripts tests app vite.config.*.js",
+    "lint": "eslint --ext .js,.vue lib scripts tests docs vite.config.*.js",
     "fix": "npm run lint -- --fix",
     "unit": "cross-env TZ=America/New_York vitest --coverage --config vite.config.lib.js",
     "test": "npm run unit -- run",
