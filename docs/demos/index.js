@@ -26,6 +26,7 @@ import DummyCompositionApi from '@@@/components/DummyCompositionApi.vue';
 import DummyPropsOverride from '@@@/components/DummyPropsOverride.vue';
 import DummyScriptSetupApi from '@@@/components/DummyScriptSetupApi.vue';
 
+import { createDoxenAccordionDemo } from '@@@/demos/doxenAccordionDemo.js';
 import { createDoxenButtonDemo } from '@@@/demos/doxenButtonDemo.js';
 import { createDoxenCodeBoxDemo } from '@@@/demos/doxenCodeBoxDemo.js';
 import { createDoxenCodeSwapperDemo } from '@@@/demos/doxenCodeSwapperDemo.js';
@@ -120,7 +121,6 @@ const createDoxenDemos = function (components, styleTokens) {
   return demos;
 };
 export const doxenComponentsToDemoWithStyleTokens = {
-  DoxenAccordion,
   DoxenCheckbox,
   DoxenDropdown,
   DoxenHeader,
@@ -147,6 +147,7 @@ function makeListOfSidebarComponents () {
   }
   return {
     ...localComponents,
+    DoxenAccordion,
     DoxenButton,
     DoxenCodeBox,
     DoxenCodeSwapper,
@@ -170,6 +171,7 @@ export const createDemos = function (styleTokens) {
   }
   return {
     ...localDemos,
+    DoxenAccordion: createDoxenAccordionDemo(styleTokens),
     DoxenButton: createDoxenButtonDemo(styleTokens),
     DoxenCodeBox: createDoxenCodeBoxDemo(styleTokens),
     DoxenCodeSwapper: createDoxenCodeSwapperDemo(styleTokens),
