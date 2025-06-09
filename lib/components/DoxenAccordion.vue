@@ -5,6 +5,7 @@
   >
     <div
       v-bind="applyStyleTokens({ accordionInner: true })"
+      :aria-hidden="!show"
       :inert="!show"
       :style="accordionInner"
     >
