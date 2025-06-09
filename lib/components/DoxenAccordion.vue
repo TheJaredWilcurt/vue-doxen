@@ -5,6 +5,7 @@
   >
     <div
       v-bind="applyStyleTokens({ accordionInner: true })"
+      :inert="!show"
       :style="accordionInner"
     >
       <slot></slot>
