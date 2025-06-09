@@ -1,10 +1,13 @@
 import DoxenAccordion from '@/components/DoxenAccordion.vue';
 import DoxenJsonTextarea from '@/components/formFields/DoxenJsonTextarea.vue';
+import DoxenAccordionDescription from '@@@/components/DoxenAccordionDescription.vue';
 
 export const createDoxenAccordionDemo = function (styleTokens) {
   return {
     component: DoxenAccordion,
-    description: 'A component that animates the visibility of content.',
+    description: {
+      component: DoxenAccordionDescription
+    },
     propsToDemo: {
       styleTokens: {
         component: DoxenJsonTextarea,
@@ -25,7 +28,7 @@ export const createDoxenAccordionDemo = function (styleTokens) {
       }
     },
     slotsToDemo: {
-      default: '<div style="background: #000; color: #FFF; height: 200px;">\n  Content\n</div>'
+      default: '<div style="background: #000; color: #FFF; height: 200px;">\n  My content.\n</div>'
     }
   };
 };
