@@ -3,7 +3,7 @@
     v-bind="applyStyleTokens({ codeBoxContainer: true })"
     aria-label="Code example"
     role="textbox"
-    tabindex="0"
+    :tabindex="tabindex"
     :title="copy ? 'Click to copy' : undefined"
     @click="copyCode"
     @keydown.enter="copyCode"
@@ -14,6 +14,7 @@
       :autodetect="false"
       :code="formattedCode"
       :language="language"
+      :tabindex="tabindex"
       :key="index"
     />
     <div
@@ -57,6 +58,10 @@ export default {
     code: {
       type: null,
       default: undefined
+    },
+    tabindex: {
+      type: [Number, String],
+      default: '0'
     },
     styleTokens
   },
