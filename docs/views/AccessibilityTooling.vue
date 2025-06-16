@@ -25,7 +25,7 @@
       <ul>
         <li><a href="#eslint">Vue.js Accessibility ESLint Plugin</a></li>
         <li>
-          <a href="#axe">Vue-Axe</a>
+          <a href="#vdta">Vue-Dev-Tools-Accessibility</a>
           <ul>
             <li><a href="#install-vue-axe">Installing Vue-Axe</a></li>
           </ul>
@@ -67,7 +67,7 @@
       </ol>
     </DocumentationSection>
 
-    <DocumentationSection id="axe" title="Vue-Axe">
+    <DocumentationSection id="vdta" title="Vue-Dev-Tools-Accessibility">
       <p>
         Axe is a commonly used open source rule set for automated accessibility validation.
         It is generally ran against the actual rendered DOM of a page and can catch things
@@ -75,11 +75,22 @@
       </p>
 
       <p>
-        Vue-Axe is actually running in the bottom right corner of this page. It's hooked into my
-        Vue app's main render function. This means any time Vue updates the DOM, it automatically
-        re-runs to look for issues. Click the button below to trigger a DOM update with intentional
-        accessibility issues to see Vue-Axe in action.
+        The Vite-Vue-DevTools are the officially recommened approach to debug and analyze
+        your Vue apps. I've created a plugin for it that adds an Accessibility tab that
+        uses Axe to scan your page for issues.
       </p>
+
+      <p>To install it, follow the instructions on the website:</p>
+
+      <ul>
+        <li>
+          <a href="https://vue-dev-tools-accessibility.github.io">
+            Vue-Dev-Tools-Accessibility.github.io
+          </a>
+        </li>
+      </ul>
+
+      <h1>Example</h1>
 
       <DoxenButton
         :selected="showBadDom"
@@ -148,43 +159,6 @@
           :styleTokens="styleTokens"
         />
       </template>
-
-      <SubDocumentationSection id="install-vue-axe" title="Installing Vue-Axe">
-        <ol>
-          <li>
-            <code>npm install --save-dev axe-core@4 vue-axe@3</code>
-            <ul>
-              <li>
-                <strong>The version numbers are important.</strong> By default it will install the
-                Vue 2 version of <code>vue-axe</code> if you don't include <code>@3</code>. If you think
-                the Vue 3 version should be the default, go thumbs up this
-                <a href="https://github.com/vue-a11y/vue-axe/issues/62" target="_blank">GitHub issue</a>.
-              </li>
-            </ul>
-          </li>
-          <li>
-            In your app's <code>main.js</code> file:
-            <DoxenCodeBox
-              :code="VUE_AXE_MAIN_JS"
-              :styleTokens="styleTokens"
-            />
-          </li>
-          <li>
-            In your <code>vite.config.js</code>:
-            <DoxenCodeBox
-              :code="VUE_AXE_VITE_CONFIG"
-              :styleTokens="styleTokens"
-            />
-          </li>
-          <li>
-            <a
-              v-text="'Additional Documentation'"
-              href="https://github.com/vue-a11y/vue-axe/tree/next"
-              target="_blank"
-            ></a>
-          </li>
-        </ol>
-      </SubDocumentationSection>
     </DocumentationSection>
   </div>
 </template>
@@ -251,56 +225,6 @@ const GOOD_IMAGE = `
   />
 </template>
 `.trim();
-const VUE_AXE_MAIN_JS = `
-// Import Vue and VueAxe
-import {
-  createApp,
-  Fragment,
-  h as hyperscript
-} from 'vue';
-import VueAxe, { VueAxePopup } from 'vue-axe';
-
-// Import your top-most Vue file
-import App from './App.vue';
-
-let app;
-
-// If we are running locally
-if (process.env.NODE_ENV === 'development') {
-  // Inject VueAxe into your app
-  app = createApp({
-    render: function () {
-      return hyperscript(
-        Fragment,
-        [
-          hyperscript(App),
-          hyperscript(VueAxePopup)
-        ]
-      );
-    }
-  });
-  app.use(VueAxe);
-} else {
-  // Otherwise if we are building for production,
-  // skip VueAxe to have a smaller build.
-  app = createApp(App);
-}
-
-// Mount your Vue app to the page
-app.mount('#app');
-`.trim();
-const VUE_AXE_VITE_CONFIG = `
-import vue from '@vitejs/plugin-vue';
-import { defineConfig } from 'vite';
-
-export default defineConfig({
-  plugins: [vue()],
-  optimizeDeps: {
-    // Ensures this doesn't get shipped to prod
-    include: ['axe-core']
-  }
-});
-`.trim();
 
 export default {
   name: 'AccessibilityOptions',
@@ -318,9 +242,7 @@ export default {
     BAD_IMAGE,
     ESLINT_EXAMPLE,
     GOOD_IMAGE,
-    LINT_SCRIPT_EXAMPLE,
-    VUE_AXE_MAIN_JS,
-    VUE_AXE_VITE_CONFIG
+    LINT_SCRIPT_EXAMPLE
   },
   data: function () {
     return {
