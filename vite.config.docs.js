@@ -6,6 +6,7 @@ import { fileURLToPath, URL } from 'node:url';
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
 import vueDevTools from 'vite-plugin-vue-devtools';
+import vueDevToolsAccessibility from 'vue-dev-tools-accessibility';
 
 const __dirname = import.meta.dirname;
 
@@ -46,7 +47,8 @@ const config = defineConfig({
     vue(),
     vueDevTools({
       launchEditor: 'subl'
-    })
+    }),
+    vueDevToolsAccessibility()
   ],
   resolve: {
     alias: {
