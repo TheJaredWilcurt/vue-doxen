@@ -40,9 +40,9 @@
       </p>
 
       <ol>
-        <li><code>npm install --save-dev eslint@8 eslint-plugin-vuejs-accessibility</code></li>
+        <li><code>npm install --save-dev eslint@9 eslint-plugin-vuejs-accessibility</code></li>
         <li>
-          Create an <code>.eslintrc.js</code> file in the root of your project
+          Create an <code>eslint.config.js</code> file in the root of your project
           <DoxenCodeBox
             :code="ESLINT_EXAMPLE"
             :styleTokens="styleTokens"
@@ -199,32 +199,34 @@ import DocumentationSection from '@@@/components/DocumentationSection.vue';
 import SubDocumentationSection from '@@@/components/SubDocumentationSection.vue';
 
 const ESLINT_EXAMPLE = `
-module.exports = {
-  root: true,
-  plugins: [
-    'vuejs-accessibility'
-  ],
-  extends: [
-    'plugin:vuejs-accessibility/recommended'
-  ],
-  rules: {
-    'vuejs-accessibility/label-has-for': [
-      'error',
-      {
-        components: ['Label'],
-        required: {
-          some: ['nesting', 'id']
-        },
-        allowChildren: false
-      }
-    ]
+import pluginVueA11y from 'eslint-plugin-vuejs-accessibility';
+
+export default [
+  ...pluginVueA11y.configs['flat/recommended'],
+  {
+    languageOptions: {
+      ecmaVersion: 2025
+    },
+    // project specific rules/settings
+    rules: {
+      'vuejs-accessibility/label-has-for': [
+        'error',
+        {
+          components: ['Label'],
+          required: {
+            some: ['nesting', 'id']
+          },
+          allowChildren: false
+        }
+      ]
+    }
   }
-};
+];
 `.trim();
 const LINT_SCRIPT_EXAMPLE = `
 {
   "scripts": {
-    "lint": "eslint --ext .js,.vue --config=.eslintrc.js src vite.config.js"
+    "lint": "eslint --ext .js,.vue src vite.config.js"
   }
 }
 `.trim();
