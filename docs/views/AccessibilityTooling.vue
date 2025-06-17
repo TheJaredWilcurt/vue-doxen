@@ -187,11 +187,16 @@
         font size: <strong>12.0pt (16px)</strong>,
         font weight: <strong>normal</strong>).
         Expected contrast ratio of <strong>4.5:1</strong>.
-        <ul><li>
-          Suggested text color:
-        <span class="color-block-text"><span class="color-block" style="background: rgb(11, 15, 19);"></span><strong>#0B0F13</strong></span></li><li>
-          Suggested background color:
-          <span class="color-block-text"><span class="color-block" style="background: rgb(197, 208, 222);"></span><strong>#C5D0DE</strong></span></li></ul>
+        <ul>
+          <li>
+            Suggested text color:
+            <span class="color-block-text"><span class="color-block" style="background: rgb(11, 15, 19);"></span><strong>#0B0F13</strong></span>
+          </li>
+          <li>
+            Suggested background color:
+            <span class="color-block-text"><span class="color-block" style="background: rgb(197, 208, 222);"></span><strong>#C5D0DE</strong></span>
+          </li>
+        </ul>
         You should not need to change both text and background. Changing either to the suggested color should be enough.
       </AccessibilityCard>
 
@@ -259,7 +264,6 @@ import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
 import AccessibilityCard from '@@@/components/AccessibilityCard.vue';
 import DocumentationSection from '@@@/components/DocumentationSection.vue';
-import SubDocumentationSection from '@@@/components/SubDocumentationSection.vue';
 
 const ESLINT_EXAMPLE = `
 import pluginVueA11y from 'eslint-plugin-vuejs-accessibility';
@@ -321,8 +325,7 @@ export default {
     AccessibilityCard,
     DocumentationSection,
     DoxenCodeBox,
-    DoxenCodeSwapper,
-    SubDocumentationSection
+    DoxenCodeSwapper
   },
   props: {
     styleTokens
@@ -350,7 +353,7 @@ export default {
     },
     setHighlighted: function (name) {
       if (this.highlighted === name) {
-        this.highlighted = undefined
+        this.highlighted = undefined;
       } else {
         this.highlighted = name;
         document
