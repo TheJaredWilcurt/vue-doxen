@@ -150,7 +150,7 @@
         </li>
       </ul>
 
-      <p>To correct the linting errors, this is hwo the code would need to be changed to be accessible:</p>
+      <p>To correct the linting errors, this is how the code would need to be changed to be accessible:</p>
 
       <DoxenCodeSwapper
         :codeTypes="{
@@ -171,56 +171,15 @@
         would catch these errors:
       </p>
 
-      <div class="vdta-card">
-        <div class="vdta-heading">
-          <h3>Color&nbsp;Contrast</h3>
-          <p class="vdta-subheading">Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds.</p>
-        </div>
-        <p>
-          Elements must meet minimum color contrast ratio thresholds.
-          <a
-            class="rule-learn-more"
-            href="https://dequeuniversity.com/rules/axe/4.10/color-contrast"
-            target="_blank"
-            title="dequeuniversity.com/rules/axe/4.10/color-contrast"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <title>Learn more</title>
-              <path
-                d="M15.07,11.25L14.17,12.17C13.45,12.89 13,13.5 13,15H11V14.5C11,13.39 11.45,12.39 12.17,11.67L13.41,10.41C13.78,10.05 14,9.55 14,9C14,7.89 13.1,7 12,7A2,2 0 0,0 10,9H8A4,4 0 0,1 12,5A4,4 0 0,1 16,9C16,9.88 15.64,10.67 15.07,11.25M13,19H11V17H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"
-                fill="currentColor"
-              />
-            </svg>
-          </a>
-        </p>
-
-        <DoxenCodeBox
-          :code="'<h4\n  class=&quot;&quot;\n  style=&quot;\n    background: rgb(93, 125, 162);\n    color: rgb(67, 90, 117);\n  &quot;\n>\n  Low contrast\n</h4>'"
-          :copy="false"
-          :styleTokens="styleTokens"
-        />
-
-        <DoxenButton
-          class="vdta-highlight-button"
-          :styleTokens="styleTokens"
-          @click="setHighlighted('h4')"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>target icon</title>
-            <path
-              d="M22.08,11.04H20.08V4H13.05V2H11.04V4H4V11.04H2V13.05H4V20.08H11.04V22.08H13.05V20.08H20.08V13.05H22.08V11.04M18.07,18.07H13.05V16.06H11.04V18.07H6V13.05H8.03V11.04H6V6H11.04V8.03H13.05V6H18.07V11.04H16.06V13.05H18.07V18.07M13.05,12.05A1,1 0 0,1 12.05,13.05C11.5,13.05 11.04,12.6 11.04,12.05C11.04,11.5 11.5,11.04 12.05,11.04C12.6,11.04 13.05,11.5 13.05,12.05Z"
-              fill="currentColor"
-            />
-          </svg>
-          Highlight element on page
-        </DoxenButton>
-
+      <AccessibilityCard
+        title="Color Contrast"
+        subHeading="Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds."
+        description="Elements must meet minimum color contrast ratio thresholds."
+        learnLink="https://dequeuniversity.com/rules/axe/4.10/color-contrast"
+        :dom="'<h4\n  class=&quot;&quot;\n  style=&quot;\n    background: rgb(93, 125, 162);\n    color: rgb(67, 90, 117);\n  &quot;\n>\n  Low contrast\n</h4>'"
+        :styleTokens="styleTokens"
+        @highlight="setHighlighted('h4')"
+      >
         Element has insufficient color contrast of
         <strong>1.66:1</strong>
         (text color: <span class="color-block-text"><span class="color-block" style="background: rgb(67, 90, 117);"></span><strong>#435A75</strong></span>,
@@ -234,113 +193,29 @@
           Suggested background color:
           <span class="color-block-text"><span class="color-block" style="background: rgb(197, 208, 222);"></span><strong>#C5D0DE</strong></span></li></ul>
         You should not need to change both text and background. Changing either to the suggested color should be enough.
-      </div>
+      </AccessibilityCard>
 
-      <div class="vdta-card">
-        <div class="vdta-heading">
-          <h3>Heading&nbsp;Order</h3>
-          <p class="vdta-subheading">Ensure the order of headings is semantically correct.</p>
-        </div>
-        <p>
-          Heading levels should only increase by one.
-          <a
-            class="rule-learn-more"
-            href="https://dequeuniversity.com/rules/axe/4.10/heading-order"
-            target="_blank"
-            title="dequeuniversity.com/rules/axe/4.10/heading-order"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-            >
-              <title>Learn more</title>
-              <path
-                d="M15.07,11.25L14.17,12.17C13.45,12.89 13,13.5 13,15H11V14.5C11,13.39 11.45,12.39 12.17,11.67L13.41,10.41C13.78,10.05 14,9.55 14,9C14,7.89 13.1,7 12,7A2,2 0 0,0 10,9H8A4,4 0 0,1 12,5A4,4 0 0,1 16,9C16,9.88 15.64,10.67 15.07,11.25M13,19H11V17H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"
-                fill="currentColor"
-              />
-            </svg>
-          </a>
-        </p>
-
-        <DoxenCodeBox
-          :code="'<h4\n  class=&quot;&quot;\n  style=&quot;\n    background: rgb(93, 125, 162);\n    color: rgb(67, 90, 117);\n  &quot;\n>\n  Low contrast\n</h4>'"
-          :copy="false"
-          :styleTokens="styleTokens"
-        />
-
-        <DoxenButton
-          class="vdta-highlight-button"
-          :styleTokens="styleTokens"
-          @click="setHighlighted('h4')"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>target icon</title>
-            <path
-              d="M22.08,11.04H20.08V4H13.05V2H11.04V4H4V11.04H2V13.05H4V20.08H11.04V22.08H13.05V20.08H20.08V13.05H22.08V11.04M18.07,18.07H13.05V16.06H11.04V18.07H6V13.05H8.03V11.04H6V6H11.04V8.03H13.05V6H18.07V11.04H16.06V13.05H18.07V18.07M13.05,12.05A1,1 0 0,1 12.05,13.05C11.5,13.05 11.04,12.6 11.04,12.05C11.04,11.5 11.5,11.04 12.05,11.04C12.6,11.04 13.05,11.5 13.05,12.05Z"
-              fill="currentColor"
-            />
-          </svg>
-          Highlight element on page
-        </DoxenButton>
-
+      <AccessibilityCard
+        title="Heading Order"
+        subHeading="Ensure the order of headings is semantically correct."
+        description="Heading levels should only increase by one."
+        learnLink="https://dequeuniversity.com/rules/axe/4.10/heading-order"
+        :dom="'<h4\n  class=&quot;&quot;\n  style=&quot;\n    background: rgb(93, 125, 162);\n    color: rgb(67, 90, 117);\n  &quot;\n>\n  Low contrast\n</h4>'"
+        :styleTokens="styleTokens"
+        @highlight="setHighlighted('h4')"
+      >
         Heading order invalid.
-      </div>
+      </AccessibilityCard>
 
-      <div class="vdta-card">
-        <div class="vdta-heading">
-          <h3>Image&nbsp;Alt</h3>
-          <p class="vdta-subheading">
-            Ensure &lt;img&gt; elements have alternative text or a role of none or presentation.
-          </p>
-        </div>
-        <p>
-          Images must have alternative text.
-          <a
-            class="rule-learn-more"
-            href="https://dequeuniversity.com/rules/axe/4.10/image-alt"
-            target="_blank"
-            title="dequeuniversity.com/rules/axe/4.10/image-alt"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <title>Learn more</title>
-              <path
-                d="M15.07,11.25L14.17,12.17C13.45,12.89 13,13.5 13,15H11V14.5C11,13.39 11.45,12.39 12.17,11.67L13.41,10.41C13.78,10.05 14,9.55 14,9C14,7.89 13.1,7 12,7A2,2 0 0,0 10,9H8A4,4 0 0,1 12,5A4,4 0 0,1 16,9C16,9.88 15.64,10.67 15.07,11.25M13,19H11V17H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"
-                fill="currentColor"
-              />
-            </svg>
-          </a>
-        </p>
-
-        <DoxenCodeBox
-          :code="'<img\n  class=&quot;&quot;\n  src=&quot;/vue-doxen/docs/assets/vue-doxen-logo-small.png&quot;\n/>'"
-          :copy="false"
-          :styleTokens="styleTokens"
-        />
-
-        <DoxenButton
-          class="vdta-highlight-button"
-          :styleTokens="styleTokens"
-          @click="setHighlighted('img')"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>target icon</title>
-            <path
-              d="M22.08,11.04H20.08V4H13.05V2H11.04V4H4V11.04H2V13.05H4V20.08H11.04V22.08H13.05V20.08H20.08V13.05H22.08V11.04M18.07,18.07H13.05V16.06H11.04V18.07H6V13.05H8.03V11.04H6V6H11.04V8.03H13.05V6H18.07V11.04H16.06V13.05H18.07V18.07M13.05,12.05A1,1 0 0,1 12.05,13.05C11.5,13.05 11.04,12.6 11.04,12.05C11.04,11.5 11.5,11.04 12.05,11.04C12.6,11.04 13.05,11.5 13.05,12.05Z"
-              fill="currentColor"
-            />
-          </svg>
-          Highlight element on page
-        </DoxenButton>
-
+      <AccessibilityCard
+        title="Image Alt"
+        subHeading="Ensure &lt;img&gt; elements have alternative text or a role of none or presentation."
+        description="Images must have alternative text."
+        learnLink="https://dequeuniversity.com/rules/axe/4.10/image-alt"
+        :dom="'<img\n  class=&quot;&quot;\n  src=&quot;/vue-doxen/docs/assets/vue-doxen-logo-small.png&quot;\n/>'"
+        :styleTokens="styleTokens"
+        @highlight="setHighlighted('img')"
+      >
         Fix any of the following:
 
         <ul>
@@ -350,61 +225,17 @@
           <li>Element has no title attribute</li>
           <li>Element's default semantics were not overridden with role="none" or role="presentation".</li>
         </ul>
-      </div>
+      </AccessibilityCard>
 
-      <div class="vdta-card">
-        <div class="vdta-heading">
-          <h3>Label</h3>
-          <p class="vdta-subheading">
-            Ensure every form element has a label.
-          </p>
-        </div>
-
-        <p>
-          Form elements must have labels.
-          <a
-            class="rule-learn-more"
-            href="https://dequeuniversity.com/rules/axe/4.10/label"
-            target="_blank"
-            title="dequeuniversity.com/rules/axe/4.10/label"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <title>Learn more</title>
-              <path
-                d="M15.07,11.25L14.17,12.17C13.45,12.89 13,13.5 13,15H11V14.5C11,13.39 11.45,12.39 12.17,11.67L13.41,10.41C13.78,10.05 14,9.55 14,9C14,7.89 13.1,7 12,7A2,2 0 0,0 10,9H8A4,4 0 0,1 12,5A4,4 0 0,1 16,9C16,9.88 15.64,10.67 15.07,11.25M13,19H11V17H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"
-                fill="currentColor"
-              />
-            </svg>
-          </a>
-        </p>
-
-        <DoxenCodeBox
-          code="<input value=&quot;input needs label&quot; />"
-          :copy="false"
-          :styleTokens="styleTokens"
-        />
-
-        <DoxenButton
-          class="vdta-highlight-button"
-          :styleTokens="styleTokens"
-          @click="setHighlighted('input')"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>target icon</title>
-            <path
-              d="M22.08,11.04H20.08V4H13.05V2H11.04V4H4V11.04H2V13.05H4V20.08H11.04V22.08H13.05V20.08H20.08V13.05H22.08V11.04M18.07,18.07H13.05V16.06H11.04V18.07H6V13.05H8.03V11.04H6V6H11.04V8.03H13.05V6H18.07V11.04H16.06V13.05H18.07V18.07M13.05,12.05A1,1 0 0,1 12.05,13.05C11.5,13.05 11.04,12.6 11.04,12.05C11.04,11.5 11.5,11.04 12.05,11.04C12.6,11.04 13.05,11.5 13.05,12.05Z"
-              fill="currentColor"
-            />
-          </svg>
-          Highlight element on page
-        </DoxenButton>
-
+      <AccessibilityCard
+        title="Label"
+        subHeading="Ensure every form element has a label."
+        description="Form elements must have labels."
+        learnLink="https://dequeuniversity.com/rules/axe/4.10/label"
+        dom="<input value=&quot;input needs label&quot; />"
+        :styleTokens="styleTokens"
+        @highlight="setHighlighted('input')"
+      >
         Fix any of the following:
 
         <ul>
@@ -416,7 +247,7 @@
           <li>Element has no placeholder attribute</li>
           <li>Element's default semantics were not overridden with role="none" or role="presentation".</li>
         </ul>
-      </div>
+      </AccessibilityCard>
     </DocumentationSection>
   </div>
 </template>
@@ -424,9 +255,9 @@
 <script>
 import { styleTokens } from '@/helpers/props.js';
 
-import DoxenButton from '@/components/DoxenButton.vue';
 import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
+import AccessibilityCard from '@@@/components/AccessibilityCard.vue';
 import DocumentationSection from '@@@/components/DocumentationSection.vue';
 import SubDocumentationSection from '@@@/components/SubDocumentationSection.vue';
 
@@ -487,8 +318,8 @@ const GOOD_IMAGE = `
 export default {
   name: 'AccessibilityOptions',
   components: {
+    AccessibilityCard,
     DocumentationSection,
-    DoxenButton,
     DoxenCodeBox,
     DoxenCodeSwapper,
     SubDocumentationSection
@@ -549,28 +380,7 @@ img {
   height: 106px;
   z-index: 1;
 }
-.vdta-card {
-  border: 1px solid currentColor;
-  margin: 1rem;
-  padding: 1rem;
-}
-.vdta-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  border-bottom: 1px solid currentColor;
-}
-.vdta-subheading {
-  display: inline-block;
-  max-width: 677px;
-  margin-left: auto;
-  text-align: right
-}
-.vdta-card h3 {
-  margin: 0px;
-  font-weight: 700;
-}
+
 .color-block-text {
   display: inline-flex;
   align-items: center;
@@ -583,22 +393,7 @@ img {
   border: 1px solid currentColor;
   margin: 0 3px 0 0;
 }
-.rule-learn-more {
-  text-decoration: none;
-}
-.rule-learn-more svg {
-  height: 20px;
-  vertical-align: sub;
-}
-.vdta-highlight-button {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 1rem;
-}
-.vdta-highlight-button svg {
-  height: 17px;
-}
+
 .highlighted {
   outline: 4px solid #F00;
 }
