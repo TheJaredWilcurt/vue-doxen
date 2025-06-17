@@ -60,6 +60,12 @@
             href="https://vue-a11y.github.io/eslint-plugin-vuejs-accessibility"
           ></a>
         </li>
+        <li>
+          <a
+            v-text="'Other linting tools for Vue projects'"
+            href="https://tjw-lint.github.io"
+          ></a>
+        </li>
       </ol>
     </DocumentationSection>
 
