@@ -25,14 +25,12 @@ const config = defineConfig({
       output: {
         manualChunks: {
           '@highlightjs/vue-plugin': ['@highlightjs/vue-plugin'],
-          'axe-core': ['axe-core'],
           json5: ['json5'],
           'lodash.clonedeep': ['lodash.clonedeep'],
           'lodash.isequal': ['lodash.isequal'],
           'lodash.lowerfirst': ['lodash.lowerfirst'],
           'lodash.startcase': ['lodash.startcase'],
           nprogress: ['nprogress'],
-          'vue-axe': ['vue-axe'],
           'vue-options-api-constants-plugin': ['vue-options-api-constants-plugin'],
           'vue-router': ['vue-router'],
           vue: ['vue']
