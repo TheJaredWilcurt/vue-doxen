@@ -77,9 +77,9 @@
       </p>
 
       <p>
-        The Vite-Vue-DevTools are the officially recommened approach to debug and analyze
+        The Vite-Vue-DevTools are the officially recommended approach to debug and analyze
         your Vue apps. I've created a plugin for it that adds an Accessibility tab that
-        uses Axe to scan your page for issues.
+        uses Axe to scan your page for accessibility violations.
       </p>
 
       <p>To install it, follow the instructions on the website:</p>
