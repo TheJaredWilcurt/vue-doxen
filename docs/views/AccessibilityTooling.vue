@@ -24,12 +24,8 @@
     <nav>
       <ul>
         <li><a href="#eslint">Vue.js Accessibility ESLint Plugin</a></li>
-        <li>
-          <a href="#axe">Vue-Axe</a>
-          <ul>
-            <li><a href="#install-vue-axe">Installing Vue-Axe</a></li>
-          </ul>
-        </li>
+        <li><a href="#vdta">Vue-Dev-Tools-Accessibility</a></li>
+        <li><a href="#demo">Tooling demonstration</a></li>
       </ul>
     </nav>
 
@@ -40,9 +36,9 @@
       </p>
 
       <ol>
-        <li><code>npm install --save-dev eslint@8 eslint-plugin-vuejs-accessibility</code></li>
+        <li><code>npm install --save-dev eslint@9 eslint-plugin-vuejs-accessibility</code></li>
         <li>
-          Create an <code>.eslintrc.js</code> file in the root of your project
+          Create an <code>eslint.config.js</code> file in the root of your project
           <DoxenCodeBox
             :code="ESLINT_EXAMPLE"
             :styleTokens="styleTokens"
@@ -64,10 +60,16 @@
             href="https://vue-a11y.github.io/eslint-plugin-vuejs-accessibility"
           ></a>
         </li>
+        <li>
+          <a
+            v-text="'Other linting tools for Vue projects'"
+            href="https://tjw-lint.github.io"
+          ></a>
+        </li>
       </ol>
     </DocumentationSection>
 
-    <DocumentationSection id="axe" title="Vue-Axe">
+    <DocumentationSection id="vdta" title="Vue-Dev-Tools-Accessibility">
       <p>
         Axe is a commonly used open source rule set for automated accessibility validation.
         It is generally ran against the actual rendered DOM of a page and can catch things
@@ -75,116 +77,182 @@
       </p>
 
       <p>
-        Vue-Axe is actually running in the bottom right corner of this page. It's hooked into my
-        Vue app's main render function. This means any time Vue updates the DOM, it automatically
-        re-runs to look for issues. Click the button below to trigger a DOM update with intentional
-        accessibility issues to see Vue-Axe in action.
+        The Vite-Vue-DevTools are the officially recommended approach to debug and analyze
+        your Vue apps. I've created a plugin for it that adds an Accessibility tab that
+        uses Axe to scan your page for accessibility violations.
       </p>
 
-      <DoxenButton
-        :selected="showBadDom"
+      <p>To install it, follow the instructions on the website:</p>
+
+      <ul>
+        <li>
+          <a href="https://vue-dev-tools-accessibility.github.io">
+            Vue-Dev-Tools-Accessibility.github.io
+          </a>
+        </li>
+      </ul>
+    </DocumentationSection>
+
+    <DocumentationSection id="demo" title="Tooling demonstration">
+      <p>The following intentionally has accessibility issues, to demonstrate the accessibility tools.</p>
+
+      <div class="bad-dom">
+        <!-- eslint-disable -->
+        <input
+          :class="{ highlighted: highlighted === 'input' }"
+          :value="'input needs label'"
+        />
+        <img
+          :class="{ highlighted: highlighted === 'img' }"
+          src="@@@/assets/vue-doxen-logo-small.png"
+          @click="bark"
+        />
+        <img
+          v-show="barking"
+          src="@@@/assets/bork-face.png"
+        />
+
+        <h4
+          :class="{ highlighted: highlighted === 'h4' }"
+          style="background: #5D7DA2; color: #435A75;"
+        >Low contrast</h4>
+        <!-- eslint-enable -->
+      </div>
+
+      <p>
+        The above example also results in the following linting errors when using the linter plugin:
+      </p>
+
+      <ul>
+        <li>
+          <code>vuejs-accessibility/alt-text</code>
+          <ul>
+            <li>
+              <code>img</code> elements must have an <code>alt</code> prop, either with meaningful text, or an empty string for decorative images
+            </li>
+          </ul>
+        </li>
+        <li>
+          <code>vuejs-accessibility/click-events-have-key-events</code>
+          <ul>
+            <li>
+              Visible, non-interactive elements with click handlers must have at least one keyboard listener
+            </li>
+          </ul>
+        </li>
+        <li>
+          <code>vuejs-accessibility/no-static-element-interactions</code>
+          <ul>
+            <li>
+              Visible, non-interactive elements should not have an interactive handler
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <p>To correct the linting errors, this is how the code would need to be changed to be accessible:</p>
+
+      <DoxenCodeSwapper
+        :codeTypes="{
+          'Fails Linter': BAD_IMAGE,
+          'Passes Linter': GOOD_IMAGE
+        }"
+        fileName="ExampleComponent.vue"
         :styleTokens="styleTokens"
-        @click="showBadDom = !showBadDom"
+      />
+
+      <p>
+        The
+        <strong><a
+          v-text="'Vue-Dev-Tools-Accessibility plugin'"
+          href="https://vue-dev-tools-accessibility.github.io"
+          target="_blank"
+        ></a></strong>
+        would catch these errors:
+      </p>
+
+      <AccessibilityCard
+        title="Color Contrast"
+        subHeading="Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds."
+        description="Elements must meet minimum color contrast ratio thresholds."
+        learnLink="https://dequeuniversity.com/rules/axe/4.10/color-contrast"
+        :dom="'<h4\n  class=&quot;&quot;\n  style=&quot;\n    background: rgb(93, 125, 162);\n    color: rgb(67, 90, 117);\n  &quot;\n>\n  Low contrast\n</h4>'"
+        :styleTokens="styleTokens"
+        @highlight="setHighlighted('h4')"
       >
-        {{ showBadDom ? 'Hide' : 'Show' }} example that fails accessibility
-      </DoxenButton>
-
-      <template v-if="showBadDom">
-        <hr />
-
-        <div class="bad-dom">
-          <!-- eslint-disable -->
-          <input :value="'input needs label'" />
-          <img
-            src="@@@/assets/vue-doxen-logo-small.png"
-            @click="bark"
-          />
-          <img
-            v-show="barking"
-            src="@@@/assets/bork-face.png"
-          />
-
-          <h4 style="background: #5D7DA2; color: #435A75;">Low contrast</h4>
-          <!-- eslint-enable -->
-        </div>
-
-        <p>
-          The above example also results in the following linting errors when using the linter plugin:
-        </p>
-
+        Element has insufficient color contrast of
+        <strong>1.66:1</strong>
+        (text color: <span class="color-block-text"><span class="color-block" style="background: rgb(67, 90, 117);"></span><strong>#435A75</strong></span>,
+        background color: <span class="color-block-text"><span class="color-block" style="background: rgb(93, 125, 162);"></span><strong>#5D7DA2</strong></span>,
+        font size: <strong>12.0pt (16px)</strong>,
+        font weight: <strong>normal</strong>).
+        Expected contrast ratio of <strong>4.5:1</strong>.
         <ul>
           <li>
-            <code>vuejs-accessibility/alt-text</code>
-            <ul>
-              <li>
-                <code>img</code> elements must have an <code>alt</code> prop, either with meaningful text, or an empty string for decorative images
-              </li>
-            </ul>
+            Suggested text color:
+            <span class="color-block-text"><span class="color-block" style="background: rgb(11, 15, 19);"></span><strong>#0B0F13</strong></span>
           </li>
           <li>
-            <code>vuejs-accessibility/click-events-have-key-events</code>
-            <ul>
-              <li>
-                Visible, non-interactive elements with click handlers must have at least one keyboard listener
-              </li>
-            </ul>
-          </li>
-          <li>
-            <code>vuejs-accessibility/no-static-element-interactions</code>
-            <ul>
-              <li>
-                Visible, non-interactive elements should not have an interactive handler
-              </li>
-            </ul>
+            Suggested background color:
+            <span class="color-block-text"><span class="color-block" style="background: rgb(197, 208, 222);"></span><strong>#C5D0DE</strong></span>
           </li>
         </ul>
+        You should not need to change both text and background. Changing either to the suggested color should be enough.
+      </AccessibilityCard>
 
-        <DoxenCodeSwapper
-          :codeTypes="{
-            'Fails Linter': BAD_IMAGE,
-            'Passes Linter': GOOD_IMAGE
-          }"
-          fileName="ExampleComponent.vue"
-          :styleTokens="styleTokens"
-        />
-      </template>
+      <AccessibilityCard
+        title="Heading Order"
+        subHeading="Ensure the order of headings is semantically correct."
+        description="Heading levels should only increase by one."
+        learnLink="https://dequeuniversity.com/rules/axe/4.10/heading-order"
+        :dom="'<h4\n  class=&quot;&quot;\n  style=&quot;\n    background: rgb(93, 125, 162);\n    color: rgb(67, 90, 117);\n  &quot;\n>\n  Low contrast\n</h4>'"
+        :styleTokens="styleTokens"
+        @highlight="setHighlighted('h4')"
+      >
+        Heading order invalid.
+      </AccessibilityCard>
 
-      <SubDocumentationSection id="install-vue-axe" title="Installing Vue-Axe">
-        <ol>
-          <li>
-            <code>npm install --save-dev axe-core@4 vue-axe@3</code>
-            <ul>
-              <li>
-                <strong>The version numbers are important.</strong> By default it will install the
-                Vue 2 version of <code>vue-axe</code> if you don't include <code>@3</code>. If you think
-                the Vue 3 version should be the default, go thumbs up this
-                <a href="https://github.com/vue-a11y/vue-axe/issues/62" target="_blank">GitHub issue</a>.
-              </li>
-            </ul>
-          </li>
-          <li>
-            In your app's <code>main.js</code> file:
-            <DoxenCodeBox
-              :code="VUE_AXE_MAIN_JS"
-              :styleTokens="styleTokens"
-            />
-          </li>
-          <li>
-            In your <code>vite.config.js</code>:
-            <DoxenCodeBox
-              :code="VUE_AXE_VITE_CONFIG"
-              :styleTokens="styleTokens"
-            />
-          </li>
-          <li>
-            <a
-              v-text="'Additional Documentation'"
-              href="https://github.com/vue-a11y/vue-axe/tree/next"
-              target="_blank"
-            ></a>
-          </li>
-        </ol>
-      </SubDocumentationSection>
+      <AccessibilityCard
+        title="Image Alt"
+        subHeading="Ensure &lt;img&gt; elements have alternative text or a role of none or presentation."
+        description="Images must have alternative text."
+        learnLink="https://dequeuniversity.com/rules/axe/4.10/image-alt"
+        :dom="'<img\n  class=&quot;&quot;\n  src=&quot;/vue-doxen/docs/assets/vue-doxen-logo-small.png&quot;\n/>'"
+        :styleTokens="styleTokens"
+        @highlight="setHighlighted('img')"
+      >
+        Fix any of the following:
+
+        <ul>
+          <li>Element does not have an alt attribute.</li>
+          <li>Aria-label attribute does not exist or is empty</li>
+          <li>Aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty</li>
+          <li>Element has no title attribute</li>
+          <li>Element's default semantics were not overridden with role="none" or role="presentation".</li>
+        </ul>
+      </AccessibilityCard>
+
+      <AccessibilityCard
+        title="Label"
+        subHeading="Ensure every form element has a label."
+        description="Form elements must have labels."
+        learnLink="https://dequeuniversity.com/rules/axe/4.10/label"
+        dom="<input value=&quot;input needs label&quot; />"
+        :styleTokens="styleTokens"
+        @highlight="setHighlighted('input')"
+      >
+        Fix any of the following:
+
+        <ul>
+          <li>Element does not have an implicit (wrapped) &lt;label&gt;</li>
+          <li>Element does not have an explicit &lt;label&gt;</li>
+          <li>Aria-label attribute does not exist or is empty</li>
+          <li>Aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty</li>
+          <li>Element has no title attribute</li>
+          <li>Element has no placeholder attribute</li>
+          <li>Element's default semantics were not overridden with role="none" or role="presentation".</li>
+        </ul>
+      </AccessibilityCard>
     </DocumentationSection>
   </div>
 </template>
@@ -192,39 +260,40 @@
 <script>
 import { styleTokens } from '@/helpers/props.js';
 
-import DoxenButton from '@/components/DoxenButton.vue';
 import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
+import AccessibilityCard from '@@@/components/AccessibilityCard.vue';
 import DocumentationSection from '@@@/components/DocumentationSection.vue';
-import SubDocumentationSection from '@@@/components/SubDocumentationSection.vue';
 
 const ESLINT_EXAMPLE = `
-module.exports = {
-  root: true,
-  plugins: [
-    'vuejs-accessibility'
-  ],
-  extends: [
-    'plugin:vuejs-accessibility/recommended'
-  ],
-  rules: {
-    'vuejs-accessibility/label-has-for': [
-      'error',
-      {
-        components: ['Label'],
-        required: {
-          some: ['nesting', 'id']
-        },
-        allowChildren: false
-      }
-    ]
+import pluginVueA11y from 'eslint-plugin-vuejs-accessibility';
+
+export default [
+  ...pluginVueA11y.configs['flat/recommended'],
+  {
+    languageOptions: {
+      ecmaVersion: 2025
+    },
+    // project specific rules/settings
+    rules: {
+      'vuejs-accessibility/label-has-for': [
+        'error',
+        {
+          components: ['Label'],
+          required: {
+            some: ['nesting', 'id']
+          },
+          allowChildren: false
+        }
+      ]
+    }
   }
-};
+];
 `.trim();
 const LINT_SCRIPT_EXAMPLE = `
 {
   "scripts": {
-    "lint": "eslint --ext .js,.vue --config=.eslintrc.js src vite.config.js"
+    "lint": "eslint --ext .js,.vue src vite.config.js"
   }
 }
 `.trim();
@@ -249,65 +318,14 @@ const GOOD_IMAGE = `
   />
 </template>
 `.trim();
-const VUE_AXE_MAIN_JS = `
-// Import Vue and VueAxe
-import {
-  createApp,
-  Fragment,
-  h as hyperscript
-} from 'vue';
-import VueAxe, { VueAxePopup } from 'vue-axe';
-
-// Import your top-most Vue file
-import App from './App.vue';
-
-let app;
-
-// If we are running locally
-if (process.env.NODE_ENV === 'development') {
-  // Inject VueAxe into your app
-  app = createApp({
-    render: function () {
-      return hyperscript(
-        Fragment,
-        [
-          hyperscript(App),
-          hyperscript(VueAxePopup)
-        ]
-      );
-    }
-  });
-  app.use(VueAxe);
-} else {
-  // Otherwise if we are building for production,
-  // skip VueAxe to have a smaller build.
-  app = createApp(App);
-}
-
-// Mount your Vue app to the page
-app.mount('#app');
-`.trim();
-const VUE_AXE_VITE_CONFIG = `
-import vue from '@vitejs/plugin-vue';
-import { defineConfig } from 'vite';
-
-export default defineConfig({
-  plugins: [vue()],
-  optimizeDeps: {
-    // Ensures this doesn't get shipped to prod
-    include: ['axe-core']
-  }
-});
-`.trim();
 
 export default {
   name: 'AccessibilityOptions',
   components: {
+    AccessibilityCard,
     DocumentationSection,
-    DoxenButton,
     DoxenCodeBox,
-    DoxenCodeSwapper,
-    SubDocumentationSection
+    DoxenCodeSwapper
   },
   props: {
     styleTokens
@@ -316,14 +334,12 @@ export default {
     BAD_IMAGE,
     ESLINT_EXAMPLE,
     GOOD_IMAGE,
-    LINT_SCRIPT_EXAMPLE,
-    VUE_AXE_MAIN_JS,
-    VUE_AXE_VITE_CONFIG
+    LINT_SCRIPT_EXAMPLE
   },
   data: function () {
     return {
       barking: false,
-      showBadDom: false
+      highlighted: undefined
     };
   },
   methods: {
@@ -334,6 +350,20 @@ export default {
       setTimeout(() => { this.barking = false; }, 250);
       setTimeout(() => { this.barking = true; }, 600);
       setTimeout(() => { this.barking = false; }, 800);
+    },
+    setHighlighted: function (name) {
+      if (this.highlighted === name) {
+        this.highlighted = undefined;
+      } else {
+        this.highlighted = name;
+        document
+          .querySelector('.bad-dom')
+          .scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+            inline: 'center'
+          });
+      }
     }
   }
 };
@@ -352,5 +382,22 @@ img {
   max-width: fit-content;
   height: 106px;
   z-index: 1;
+}
+
+.color-block-text {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: -2px;
+}
+.color-block {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 1px solid currentColor;
+  margin: 0 3px 0 0;
+}
+
+.highlighted {
+  outline: 4px solid #F00;
 }
 </style>
