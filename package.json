@@ -24,9 +24,9 @@
   "devDependencies": {
     "@eslint/js": "^9.29.0",
     "@highlightjs/vue-plugin": "2.1.2",
-    "@stylistic/eslint-plugin": "^4.4.1",
+    "@stylistic/eslint-plugin": "^5.0.0",
     "@vitejs/plugin-vue": "^5.2.4",
-    "@vitest/coverage-v8": "^3.2.3",
+    "@vitest/coverage-v8": "^3.2.4",
     "@vue/test-utils": "^2.4.6",
     "cross-env": "^7.0.3",
     "eslint": "^9.29.0",
@@ -35,8 +35,8 @@
     "eslint-config-tjw-jest": "^3.0.0",
     "eslint-config-tjw-vue": "^4.0.0",
     "eslint-import-resolver-vite": "^2.1.0",
-    "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-jest": "^28.14.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jest": "^29.0.1",
     "eslint-plugin-vue": "^10.2.0",
     "eslint-plugin-vuejs-accessibility": "^2.4.1",
     "globals": "^16.2.0",
@@ -53,14 +53,14 @@
     "vite": "^6.3.5",
     "vite-plugin-vue-devtools": "^7.7.7",
     "vitest": "^3.2.3",
-    "vue": "^3.5.16",
-    "vue-dev-tools-accessibility": "^0.0.8",
+    "vue": "^3.5.17",
+    "vue-dev-tools-accessibility": "^0.1.1",
     "vue-options-api-constants-plugin": "^1.0.3",
     "vue-router": "^4.5.1",
     "vue3-snapshot-serializer": "^2.12.0"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "^4.43.0"
+    "@rollup/rollup-linux-x64-gnu": "^4.44.0"
   },
   "private": false,
   "type": "module",
