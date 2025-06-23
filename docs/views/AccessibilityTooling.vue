@@ -406,6 +406,6 @@ img {
 }
 
 .clowns {
-  font-family: 'Comic Sans MS', 'Comic Sans', 'LDF Comic Sans', 'Comic Neue', Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', Courier Bold, Courier, Georgia, serif;
+  font-family: 'Comic Sans MS', 'Comic Sans', 'Comic Relief', 'LDF Comic Sans', 'Comic Neue', Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', Courier Bold, Courier, Georgia, serif;
 }
 </style>
