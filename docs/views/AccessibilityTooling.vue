@@ -71,15 +71,20 @@
 
     <DocumentationSection id="vdta" title="Vue-Dev-Tools-Accessibility">
       <p>
-        Axe is a commonly used open source rule set for automated accessibility validation.
-        It is generally ran against the actual rendered DOM of a page and can catch things
-        that a linter cannot, like color contrast issues.
+        <strong>Axe</strong> is a commonly used open source tool for automated
+        accessibility validation. It is ran against the actual rendered DOM of a page
+        and can catch things that a linter cannot, like color contrast issues.
       </p>
 
       <p>
-        The Vite-Vue-DevTools are the officially recommended approach to debug and analyze
-        your Vue apps. I've created a plugin for it that adds an Accessibility tab that
-        uses Axe to scan your page for accessibility violations.
+        The <strong>Vite-Vue-DevTools</strong> are the officially recommended approach
+        to debug and analyze your Vue apps. I've created a plugin for it that adds an
+        <em>Accessibility</em> tab that uses Axe to scan your page for accessibility
+        violations. I made it work for the entire Vue community. I could have made the
+        plugin only work with Vue-Doxen, locking you in to a "Vue-Doxen ecosystem", but
+        that seems kinda evil. What's that? That's literally the exact way
+        <span style="font-family: 'Comic Sans'">Storybook</span> operates? Wow, that's
+        really terrible.
       </p>
 
       <p>To install it, follow the instructions on the website:</p>
