@@ -83,8 +83,7 @@
         violations. I made it work for the entire Vue community. I could have made the
         plugin only work with Vue-Doxen, locking you in to a "Vue-Doxen ecosystem", but
         that seems kinda evil. What's that? That's literally the exact way
-        <span style="font-family: 'Comic Sans'">Storybook</span> operates? Wow, that's
-        really terrible.
+        <span class="clowns">Storybook</span> operates? Wow, that's really terrible.
       </p>
 
       <p>To install it, follow the instructions on the website:</p>
@@ -404,5 +403,9 @@ img {
 
 .highlighted {
   outline: 4px solid #F00;
+}
+
+.clowns {
+  font-family: 'Comic Sans MS', 'Comic Sans', 'LDF Comic Sans', 'Comic Neue', Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', Courier Bold, Courier, Georgia, serif;
 }
 </style>
