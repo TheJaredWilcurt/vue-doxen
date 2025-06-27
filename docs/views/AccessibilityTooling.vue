@@ -180,25 +180,25 @@
         subHeading="Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds."
         description="Elements must meet minimum color contrast ratio thresholds."
         learnLink="https://dequeuniversity.com/rules/axe/4.10/color-contrast"
-        :dom="'<h4\n  class=&quot;&quot;\n  style=&quot;\n    background: rgb(93, 125, 162);\n    color: rgb(67, 90, 117);\n  &quot;\n>\n  Low contrast\n</h4>'"
+        :dom="'<h4\n  class=&quot;&quot;\n  style=&quot;\n    background: #5D7DA2;\n    color: #435A75;\n  &quot;\n>\n  Low contrast\n</h4>'"
         :styleTokens="styleTokens"
         @highlight="setHighlighted('h4')"
       >
         Element has insufficient color contrast of
         <strong>1.66:1</strong>
-        (text color: <span class="color-block-text"><span class="color-block" style="background: rgb(67, 90, 117);"></span><strong>#435A75</strong></span>,
-        background color: <span class="color-block-text"><span class="color-block" style="background: rgb(93, 125, 162);"></span><strong>#5D7DA2</strong></span>,
+        (text color: <span class="color-block-text"><span class="color-block" style="background: #435A75;"></span><strong>#435A75</strong></span>,
+        background color: <span class="color-block-text"><span class="color-block" style="background: #5D7DA2;"></span><strong>#5D7DA2</strong></span>,
         font size: <strong>12.0pt (16px)</strong>,
         font weight: <strong>normal</strong>).
         Expected contrast ratio of <strong>4.5:1</strong>.
         <ul>
           <li>
             Suggested text color:
-            <span class="color-block-text"><span class="color-block" style="background: rgb(11, 15, 19);"></span><strong>#0B0F13</strong></span>
+            <span class="color-block-text"><span class="color-block" style="background: #0B0F13;"></span><strong>#0B0F13</strong></span>
           </li>
           <li>
             Suggested background color:
-            <span class="color-block-text"><span class="color-block" style="background: rgb(197, 208, 222);"></span><strong>#C5D0DE</strong></span>
+            <span class="color-block-text"><span class="color-block" style="background: #C5D0DE;"></span><strong>#C5D0DE</strong></span>
           </li>
         </ul>
         You should not need to change both text and background. Changing either to the suggested color should be enough.
@@ -209,7 +209,7 @@
         subHeading="Ensure the order of headings is semantically correct."
         description="Heading levels should only increase by one."
         learnLink="https://dequeuniversity.com/rules/axe/4.10/heading-order"
-        :dom="'<h4\n  class=&quot;&quot;\n  style=&quot;\n    background: rgb(93, 125, 162);\n    color: rgb(67, 90, 117);\n  &quot;\n>\n  Low contrast\n</h4>'"
+        :dom="'<h4\n  class=&quot;&quot;\n  style=&quot;\n    background: #5D7DA2;\n    color: #435A75;\n  &quot;\n>\n  Low contrast\n</h4>'"
         :styleTokens="styleTokens"
         @highlight="setHighlighted('h4')"
       >
