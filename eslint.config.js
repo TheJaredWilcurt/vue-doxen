@@ -27,6 +27,7 @@ export default [
   {
     // project specific rules/settings
     languageOptions: {
+      ecmaVersion: 2025,
       globals: {
         BigInt: true,
         globalThis: true,

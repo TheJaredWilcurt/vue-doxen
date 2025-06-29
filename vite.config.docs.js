@@ -2,7 +2,7 @@
 import { resolve } from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
 
-/* eslint-disable-next-line import/default,import/no-named-as-default,import/no-named-as-default-member */
+/* eslint-disable-next-line import/no-unresolved */
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
 import vueDevTools from 'vite-plugin-vue-devtools';
