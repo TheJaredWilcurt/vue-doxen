@@ -54,7 +54,7 @@
     "vite-plugin-vue-devtools": "^7.7.7",
     "vitest": "^3.2.3",
     "vue": "^3.5.17",
-    "vue-dev-tools-accessibility": "^0.3.2",
+    "vue-dev-tools-accessibility": "^0.4.0",
     "vue-options-api-constants-plugin": "^1.0.3",
     "vue-router": "^4.5.1",
     "vue3-snapshot-serializer": "^2.12.0"
