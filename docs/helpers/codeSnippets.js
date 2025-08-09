@@ -670,9 +670,13 @@ export const DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_DEMO_FILE = unindent(`
         min: 0,
         max: 100
       },
-      color: {
+      trophyColor: {
         allowed: ['gold', 'silver', 'bronze'],
         description: 'The trophy color to convey first, second, or third place.'
+      },
+      color: {
+        description: 'Use trophyColor prop instead.',
+        deprecated: true
       },
       options: {
         // A complex validator function is defined on this prop in
@@ -705,12 +709,16 @@ export const DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_OPTIONS = unindent(`
         min: 0,
         max: 100
       },
-      color: {
+      trophyColor: {
         allowed: ALLOWED_COLORS,
         description: 'The trophy color to convey first, second, or third place.',
         validator: function (value) {
           return ALLOWED_COLORS.includes(value);
         }
+      },
+      color: {
+        description: 'Use trophyColor prop instead.',
+        deprecated: true
       },
       options: {
         // A complex validator function is defined, so to better convey what
@@ -757,12 +765,16 @@ export const DOCUMENTATION_SPECIFIC_PROP_DEFINITIONS_SCRIPT_SETUP = unindent(`
       min: 0,
       max: 100
     },
-    color: {
+    trophyColor: {
       allowed: ['gold', 'silver', 'bronze'],
       description: 'The trophy color to convey first, second, or third place.',
       validator: function (value) {
         return ['gold', 'silver', 'bronze'].includes(value);
       }
+    },
+    color: {
+      description: 'Use trophyColor prop instead.',
+      deprecated: true
     },
     options: {
       // A complex validator function is defined, so to better convey what

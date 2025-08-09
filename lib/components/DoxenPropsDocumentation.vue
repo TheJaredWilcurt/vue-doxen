@@ -19,9 +19,7 @@
     >
       <code v-bind="applyStyleTokens({ propsDocumentationCode: true })">{{ prop }}</code>
       <ul v-bind="applyStyleTokens({ propsDocumentationUl: true })">
-        <li
-          v-if="value.deprecated"
-        >
+        <li v-if="value.deprecated">
           This prop is <strong>DEPRECATED</strong> and should not be used.
         </li>
         <li

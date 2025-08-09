@@ -313,6 +313,9 @@ export default {
   background: #737373;
   border-radius: 7px;
 }
+.component-container {
+  width: 100%;
+}
 .component {
   width: 100px;
   height: 40px;
