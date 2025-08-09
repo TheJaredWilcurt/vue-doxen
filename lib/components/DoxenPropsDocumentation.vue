@@ -11,11 +11,19 @@
   >
     <li
       v-for="(value, prop) in propsToDemo"
-      v-bind="applyStyleTokens({ propsDocumentationLi: true })"
+      v-bind="applyStyleTokens({
+        propsDocumentationLi: true,
+        propsDocumentationDeprecated: value.deprecated
+      })"
       :key="prop"
     >
       <code v-bind="applyStyleTokens({ propsDocumentationCode: true })">{{ prop }}</code>
       <ul v-bind="applyStyleTokens({ propsDocumentationUl: true })">
+        <li
+          v-if="value.deprecated"
+        >
+          This prop is <strong>DEPRECATED</strong> and should not be used.
+        </li>
         <li
           v-if="value.description"
           v-html="value.description"

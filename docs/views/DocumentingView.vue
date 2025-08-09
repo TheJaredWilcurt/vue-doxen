@@ -286,6 +286,7 @@
           <li><code>description</code> &ndash; A human readable description of what the prop is for, or the context of why it exists.</li>
           <li><code>allowed</code> &ndash; An array of the only values permitted by this prop. May be auto-generated based on your validator function if it follows certain patterns.</li>
           <li><code>example</code> &ndash; An example of what should be passed in to the prop. Useful for complex data types.</li>
+          <li><code>deprecated</code> &ndash; Marks the component as deprecated, removing it from the Props Playground and the Vue/JS code samples. Also denotes the prop as deprecated in the Props Documentation section.</li>
           <li><code>min</code>/<code>max</code> &ndash; These two keys are used when a prop accepts a number with upper/lower bounds.</li>
         </ul>
 

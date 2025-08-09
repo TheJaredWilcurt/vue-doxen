@@ -3,6 +3,7 @@ import {
   DoxenCheckbox,
   DoxenCodeBox,
   DoxenCodeSwapper,
+  DoxenDeprecatedProp,
   DoxenDropdown,
   DoxenEmitLog,
   DoxenEmitsDocumentation,
@@ -122,6 +123,7 @@ const createDoxenDemos = function (components, styleTokens) {
 };
 export const doxenComponentsToDemoWithStyleTokens = {
   DoxenCheckbox,
+  DoxenDeprecatedProp,
   DoxenDropdown,
   DoxenHeader,
   DoxenJsonTextarea,

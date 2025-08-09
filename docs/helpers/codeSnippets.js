@@ -1786,6 +1786,7 @@ export const TREE_SHAKING_IMPORT_EXAMPLE = unindent(`
   // Import all the needed components from Vue-Doxen
   import {
     DoxenCheckbox,
+    DoxenDeprecatedProp,
     DoxenDropdown,
     DoxenEmitLog,
     DoxenEmitsDocumentation,
@@ -1810,6 +1811,7 @@ export const TREE_SHAKING_IMPORT_EXAMPLE = unindent(`
 
       // Props Playground
       checkbox: DoxenCheckbox,
+      deprecatedProp: DoxenDeprecatedProp,
       dropdown: DoxenDropdown,
       jsonTextarea: DoxenJsonTextarea,
       numberField: DoxenNumberField,
