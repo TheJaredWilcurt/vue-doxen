@@ -523,6 +523,9 @@ export default {
       const tag = (this.componentName || '').replaceAll(' ', '');
       const emits = Object.keys(this.emitsToDemo);
       const attributes = Object.keys(this.propsToDemo)
+        .filter((propName) => {
+          return !this.playgroundProps[propName].deprecated;
+        })
         .map((propName) => {
           return {
             default: getDefaultValue(this.playgroundProps?.[propName]?.default),
@@ -549,6 +552,9 @@ export default {
       // Process Props
       Object.keys(this.propsToDemo)
         .sort()
+        .filter((propName) => {
+          return !this.playgroundProps[propName].deprecated;
+        })
         .forEach((propName) => {
           const value = this.demoProps[propName];
           const defaultValue = getDefaultValue(this.playgroundProps?.[propName]?.default);
