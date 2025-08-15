@@ -1,6 +1,6 @@
 {
   "name": "vue-doxen",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "The world's best Vue.js component documentation tool!",
   "scripts": {
     "start": "vite dev --config vite.config.docs.js",
@@ -16,7 +16,8 @@
     "test": "npm run unit -- run",
     "coverage": "cd tests && cd unit && cd coverage && node ../../../node_modules/npm-free-server/dist/server.js",
     "bump": "npx --yes -- @jsdevtools/version-bump-prompt && npm i",
-    "outdated": "npx --yes -- check-outdated --ignore-packages @highlightjs/vue-plugin --columns package,current,wanted,latest --types major,minor,patch"
+    "outdated": "npx --yes -- check-outdated --ignore-packages @highlightjs/vue-plugin --columns package,current,wanted,latest --types major,minor,patch",
+    "volta": "volta pin node@latest && volta pin npm@latest && git status"
   },
   "ManifestComments": [
     "@highlightjs/vue-plugin pinned to 2.1.2 because it was released years ago, but never marked as latest"
@@ -50,7 +51,7 @@
     "npm-free-server": "^1.1.0",
     "nprogress": "^0.2.0",
     "sass": "^1.90.0",
-    "vite": "^7.1.1",
+    "vite": "^7.1.2",
     "vite-plugin-vue-devtools": "^8.0.0",
     "vitest": "^3.2.3",
     "vue": "^3.5.18",
