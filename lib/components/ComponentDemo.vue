@@ -238,6 +238,8 @@ import _cloneDeep from 'lodash.clonedeep';
 import _lowerFirst from 'lodash.lowerfirst';
 import _startCase from 'lodash.startcase';
 
+import HtmlFragment from '@/components/HtmlFragment.js';
+
 import {
   autoGeneratePlaygroundProps,
   combinePropsAndPropsToDemo,
@@ -256,7 +258,6 @@ import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 import DoxenAccordion from '@/components/DoxenAccordion.vue';
 import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
-import HtmlFragment from '@/components/HtmlFragment.js';
 
 const options = createVueDoxenOptions(true);
 
