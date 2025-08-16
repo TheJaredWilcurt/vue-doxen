@@ -13,7 +13,7 @@
         #[slotName]
         :key="'slot-' + slotName"
       >
-        <VHtml :html="title.slots[slotName]" />
+        <HtmlFragments :html="title.slots[slotName]" />
       </template>
     </component>
     <component
@@ -41,7 +41,7 @@
           #[slotName]
           :key="'slot-' + slotName"
         >
-          <VHtml :html="description.slots[slotName]" />
+          <HtmlFragments :html="description.slots[slotName]" />
         </template>
       </component>
     </template>
@@ -66,7 +66,7 @@
             #[slotName]
             :key="'slot-' + slotName"
           >
-            <VHtml :html="importStatement.slots[slotName]" />
+            <HtmlFragments :html="importStatement.slots[slotName]" />
           </template>
         </component>
       </template>
@@ -86,7 +86,7 @@
           #[slotName]
           :key="'slot-' + slotName"
         >
-          <VHtml :html="demoSlots[slotName]" />
+          <HtmlFragments :html="demoSlots[slotName]" />
         </template>
       </component>
       <hr v-bind="applyStyleTokens({ componentDemoHr: true })" />
@@ -127,7 +127,7 @@
                   #[slotName]
                   :key="'slot-' + slotName"
                 >
-                  <VHtml :html="slotValue" />
+                  <HtmlFragments :html="slotValue" />
                 </template>
               </component>
             </section>
@@ -256,7 +256,7 @@ import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 import DoxenAccordion from '@/components/DoxenAccordion.vue';
 import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
-import VHtml from '@/components/VHtml.vue';
+import HtmlFragments from '@/components/HtmlFragments.vue';
 
 const options = createVueDoxenOptions(true);
 
@@ -266,7 +266,7 @@ export default {
     DoxenAccordion,
     DoxenCodeBox,
     DoxenCodeSwapper,
-    VHtml
+    HtmlFragments
   },
   mixins: [applyStyleTokens],
   props: {

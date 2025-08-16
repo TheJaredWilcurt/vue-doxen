@@ -9,11 +9,15 @@
 </template>
 
 <script>
+/**
+ * @file This renders HTML markup without a wrapper element (required by v-html).
+ */
+
 /* eslint-disable-next-line import/no-extraneous-dependencies */
 import { parseDocument } from 'htmlparser2';
 
 export default {
-  name: 'VHtml',
+  name: 'HtmlFragments',
   props: {
     html: {
       type: String,
