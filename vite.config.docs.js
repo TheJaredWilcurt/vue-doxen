@@ -30,6 +30,7 @@ const config = defineConfig({
           'lodash.isequal': ['lodash.isequal'],
           'lodash.lowerfirst': ['lodash.lowerfirst'],
           'lodash.startcase': ['lodash.startcase'],
+          'htmlparser2': ['htmlparser2'],
           nprogress: ['nprogress'],
           'vue-options-api-constants-plugin': ['vue-options-api-constants-plugin'],
           'vue-router': ['vue-router'],
