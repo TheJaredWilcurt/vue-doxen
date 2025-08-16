@@ -1,16 +1,19 @@
 <template>
+  <!-- eslint-disable vue/no-v-text-v-html-on-component -->
   <component
-    v-for="node in astTree"
+    v-for="(node, nodeIndex) in astTree"
     v-html="node.source"
     :is="node.tag"
+    :key="'slot-item' + nodeIndex"
   />
 </template>
 
 <script>
-import * as htmlparser2 from 'htmlparser2';
+/* eslint-disable-next-line import/no-extraneous-dependencies */
+import { parseDocument } from 'htmlparser2';
 
 export default {
-  name:'VHtml',
+  name: 'VHtml',
   props: {
     html: {
       type: String,
@@ -28,8 +31,7 @@ export default {
         recognizeSelfClosing: false,
         xmlMode: false
       };
-      return htmlparser2
-        .parseDocument(this.html, xmlOptions)
+      return parseDocument(this.html, xmlOptions)
         .children
         .filter((node) => {
           return node && node.type === 'tag';
