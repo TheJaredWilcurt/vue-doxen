@@ -1,6 +1,6 @@
 {
   "name": "vue-doxen",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "The world's best Vue.js component documentation tool!",
   "scripts": {
     "start": "vite dev --config vite.config.docs.js",
@@ -42,6 +42,7 @@
     "eslint-plugin-vuejs-accessibility": "^2.4.1",
     "globals": "^16.3.0",
     "happy-dom": "^18.0.1",
+    "htmlparser2": "^10.0.0",
     "json5": "^2.2.3",
     "lodash.clonedeep": "^4.5.0",
     "lodash.isequal": "^4.5.0",

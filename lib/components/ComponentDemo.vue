@@ -13,7 +13,7 @@
         #[slotName]
         :key="'slot-' + slotName"
       >
-        <HtmlFragment :html="title.slots[slotName]" />
+        <HtmlFragments :html="title.slots[slotName]" />
       </template>
     </component>
     <component
@@ -41,7 +41,7 @@
           #[slotName]
           :key="'slot-' + slotName"
         >
-          <HtmlFragment :html="description.slots[slotName]" />
+          <HtmlFragments :html="description.slots[slotName]" />
         </template>
       </component>
     </template>
@@ -66,7 +66,7 @@
             #[slotName]
             :key="'slot-' + slotName"
           >
-            <HtmlFragment :html="importStatement.slots[slotName]" />
+            <HtmlFragments :html="importStatement.slots[slotName]" />
           </template>
         </component>
       </template>
@@ -86,7 +86,7 @@
           #[slotName]
           :key="'slot-' + slotName"
         >
-          <HtmlFragment :html="demoSlots[slotName]" />
+          <HtmlFragments :html="demoSlots[slotName]" />
         </template>
       </component>
       <hr v-bind="applyStyleTokens({ componentDemoHr: true })" />
@@ -127,7 +127,7 @@
                   #[slotName]
                   :key="'slot-' + slotName"
                 >
-                  <HtmlFragment :html="slotValue" />
+                  <HtmlFragments :html="slotValue" />
                 </template>
               </component>
             </section>
@@ -238,8 +238,6 @@ import _cloneDeep from 'lodash.clonedeep';
 import _lowerFirst from 'lodash.lowerfirst';
 import _startCase from 'lodash.startcase';
 
-import HtmlFragment from '@/components/HtmlFragment.js';
-
 import {
   autoGeneratePlaygroundProps,
   combinePropsAndPropsToDemo,
@@ -258,6 +256,7 @@ import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 import DoxenAccordion from '@/components/DoxenAccordion.vue';
 import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
+import HtmlFragments from '@/components/HtmlFragments.vue';
 
 const options = createVueDoxenOptions(true);
 
@@ -267,7 +266,7 @@ export default {
     DoxenAccordion,
     DoxenCodeBox,
     DoxenCodeSwapper,
-    HtmlFragment
+    HtmlFragments
   },
   mixins: [applyStyleTokens],
   props: {
