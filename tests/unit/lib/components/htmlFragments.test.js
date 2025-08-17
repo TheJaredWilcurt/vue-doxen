@@ -75,7 +75,7 @@ describe('HtmlFragments.vue', () => {
         .toMatchSnapshot();
     });
 
-    describe('Mutate markup', () => {
+    describe('Partial markup', () => {
       test('Type out new wrapper element', async () => {
         const inner = '<div>Text</div>';
         const wrapper = await setupWrapper(inner);
@@ -100,7 +100,7 @@ describe('HtmlFragments.vue', () => {
           .toMatchSnapshot();
       });
 
-      test('Partial new wrapper element on previous line', async () => {
+      test('New wrapper element on previous line', async () => {
         const inner = '\n<div>Text</div>\n';
         const wrapper = await setupWrapper(inner);
 
