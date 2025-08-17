@@ -1,0 +1,20 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`HtmlFragments.vue > Renders nothing 1`] = ``;
+
+exports[`HtmlFragments.vue > Renders one element 1`] = `
+<div>
+  Text
+</div>
+`;
+
+exports[`HtmlFragments.vue > Renders one text node 1`] = `Some Text`;
+
+exports[`HtmlFragments.vue > Renders two root elements 1`] = `
+<div>
+  Text
+</div>
+<p>
+  Paragraph
+</p>
+`;
