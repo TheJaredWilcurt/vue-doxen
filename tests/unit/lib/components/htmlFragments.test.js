@@ -77,7 +77,7 @@ describe('HtmlFragments.vue', () => {
 
     describe('Mutate markup', () => {
       test('Type out new wrapper element', async () => {
-        const inner = '<div>Text</div>'
+        const inner = '<div>Text</div>';
         const wrapper = await setupWrapper(inner);
 
         await wrapper.setProps({ html: '<' + inner });
@@ -89,12 +89,12 @@ describe('HtmlFragments.vue', () => {
         await wrapper.setProps({ html: '<di' + inner });
         await wrapper.setProps({ html: '<div' + inner });
         await wrapper.setProps({ html: '<div>' + inner });
-        await wrapper.setProps({ html: '<div>' + inner + '<'});
-        await wrapper.setProps({ html: '<div>' + inner + '</'});
-        await wrapper.setProps({ html: '<div>' + inner + '</d'});
-        await wrapper.setProps({ html: '<div>' + inner + '</di'});
-        await wrapper.setProps({ html: '<div>' + inner + '</div'});
-        await wrapper.setProps({ html: '<div>' + inner + '</div>'});
+        await wrapper.setProps({ html: '<div>' + inner + '<' });
+        await wrapper.setProps({ html: '<div>' + inner + '</' });
+        await wrapper.setProps({ html: '<div>' + inner + '</d' });
+        await wrapper.setProps({ html: '<div>' + inner + '</di' });
+        await wrapper.setProps({ html: '<div>' + inner + '</div' });
+        await wrapper.setProps({ html: '<div>' + inner + '</div>' });
 
         expect(wrapper)
           .toMatchSnapshot();
