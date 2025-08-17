@@ -8,6 +8,17 @@ exports[`HtmlFragments.vue > Renders one element 1`] = `
 </div>
 `;
 
+exports[`HtmlFragments.vue > Renders one element with children 1`] = `
+<div class="box">
+  <span>
+    Text1
+  </span>
+  <span>
+    Text2
+  </span>
+</div>
+`;
+
 exports[`HtmlFragments.vue > Renders one text node 1`] = `Some Text`;
 
 exports[`HtmlFragments.vue > Renders two root elements 1`] = `

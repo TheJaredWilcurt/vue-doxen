@@ -2,7 +2,8 @@
   <!-- eslint-disable vue/no-v-text-v-html-on-component -->
   <component
     v-for="(node, nodeIndex) in astTree"
-    v-html="node.source"
+    v-bind="node.attributes"
+    v-html="node.childrenHtml"
     :is="node.tag"
     :key="'slot-item' + nodeIndex"
   />
@@ -41,8 +42,19 @@ export default {
           return node && node.type === 'tag';
         })
         .map((node) => {
+          let start = node.endIndex;
+          let end = node.startIndex;
+          node.children.forEach((child) => {
+            if (child.startIndex < start) {
+              start = child.startIndex;
+            }
+            if (child.endIndex > end) {
+              end = child.endIndex;
+            }
+          });
           return {
-            source: this.html.substring(node.startIndex, node.endIndex + 1),
+            attributes: node.attribs,
+            childrenHtml: this.html.substring(start, end + 1),
             tag: node.name
           };
         });

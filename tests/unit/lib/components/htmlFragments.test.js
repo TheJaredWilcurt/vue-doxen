@@ -31,6 +31,19 @@ describe('HtmlFragments.vue', () => {
       .toMatchSnapshot();
   });
 
+  test('Renders one element with children', async () => {
+    const wrapper = await setupWrapper([
+      '<div class="box">',
+      '<span>Text1</span>',
+      '<span>Text2</span>',
+      '</div>'
+    ].join(''));
+
+    expect(wrapper)
+      .toMatchSnapshot();
+  });
+
+
   test('Renders two root elements', async () => {
     const wrapper = await setupWrapper([
       '<div>Text</div>',
