@@ -25,6 +25,20 @@ exports[`HtmlFragments.vue > Renders correctly > Mix of everything 1`] = `
 </p>
 `;
 
+exports[`HtmlFragments.vue > Renders correctly > Mutate markup > Type out new wrapper element 1`] = `
+<div>
+  Text
+</div>
+`;
+
+exports[`HtmlFragments.vue > Renders correctly > Mutate markup > Type out new wrapper element 2`] = `
+<div>
+  <div>
+    Text
+  </div>
+</div>
+`;
+
 exports[`HtmlFragments.vue > Renders correctly > One element with children 1`] = `
 <div class="box">
   <span>

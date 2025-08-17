@@ -39,13 +39,10 @@ export default {
       return parseDocument(this.html, xmlOptions)
         .children
         .filter((node) => {
-          if (!node) {
-            return false;
-          }
-          if (node.type === 'tag') {
+          if (node && node.type === 'tag') {
             return true;
           }
-          if (node.type === 'text') {
+          if (node && node.type === 'text') {
             const text = this.html.substring(node.startIndex, node.endIndex + 1);
             if (text.trim()) {
               return true;
@@ -61,11 +58,24 @@ export default {
               tag: 'span'
             };
           }
+
+          const attributes = node.attribs;
+          let tag = node.name;
+          /**
+           * When mid-typing, you may have something like '<d<div></div>'
+           * which gets interpretted as the tag name 'd<div'.
+           * This is an invalid tag name and causes a console error,
+           * so we avoid that with this fix:
+           */
+          if (tag.includes('<')) {
+            tag = tag.split('<')[1];
+          }
+
           if (!node.children.length) {
             return {
-              attributes: node.attribs,
+              attributes,
               childrenHtml: '',
-              tag: node.name
+              tag
             };
           }
           let start = node.endIndex;
@@ -79,9 +89,9 @@ export default {
             }
           });
           return {
-            attributes: node.attribs,
+            attributes,
             childrenHtml: this.html.substring(start, end + 1),
-            tag: node.name
+            tag
           };
         });
     }
