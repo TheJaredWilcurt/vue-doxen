@@ -2,7 +2,8 @@
   <!-- eslint-disable vue/no-v-text-v-html-on-component -->
   <component
     v-for="(node, nodeIndex) in astTree"
-    v-html="node.source"
+    v-html="node.childrenHtml"
+    v-bind="node.attributes"
     :is="node.tag"
     :key="'slot-item' + nodeIndex"
   />
@@ -38,11 +39,48 @@ export default {
       return parseDocument(this.html, xmlOptions)
         .children
         .filter((node) => {
-          return node && node.type === 'tag';
+          if (!node) {
+            return false;
+          }
+          if (node.type === 'tag') {
+            return true;
+          }
+          if (node.type === 'text') {
+            const text = this.html.substring(node.startIndex, node.endIndex + 1);
+            if (text.trim()) {
+              return true;
+            }
+          }
+          return false;
         })
         .map((node) => {
+          if (node.type === 'text') {
+            return {
+              attributes: {},
+              childrenHtml: this.html.substring(node.startIndex, node.endIndex + 1),
+              tag: 'span'
+            };
+          }
+          if (!node.children.length) {
+            return {
+              attributes: node.attribs,
+              childrenHtml: '',
+              tag: node.name
+            };
+          }
+          let start = node.endIndex;
+          let end = node.startIndex;
+          node.children.forEach((child) => {
+            if (child.startIndex < start) {
+              start = child.startIndex;
+            }
+            if (child.endIndex > end) {
+              end = child.endIndex;
+            }
+          });
           return {
-            source: this.html.substring(node.startIndex, node.endIndex + 1),
+            attributes: node.attribs,
+            childrenHtml: this.html.substring(start, end + 1),
             tag: node.name
           };
         });
