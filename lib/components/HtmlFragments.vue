@@ -60,6 +60,27 @@ export default {
           }
 
           const attributes = node.attribs;
+          /**
+           * When mid-typing, you may have something like '<div <div></div>'
+           * which gets interpreted as `attribs: { '<div': '' }`.
+           * This is an invalid attribute name, causing a console error,
+           * so we avoid that with this fix:
+           */
+          for (const attributeName in attributes) {
+            if (
+              attributeName.includes('<') ||
+              attributeName.includes('>') ||
+              attributeName.includes('&')
+            ) {
+              const newName = attributeName
+                .replace('<', '')
+                .replace('>', '')
+                .replace('&', '');
+              attributes[newName] = attributes[attributeName];
+              delete attributes[attributeName];
+            }
+          }
+
           let tag = node.name;
           /**
            * When mid-typing, you may have something like '<d<div></div>'
