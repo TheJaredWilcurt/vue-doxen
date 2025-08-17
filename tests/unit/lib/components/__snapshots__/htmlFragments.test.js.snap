@@ -25,6 +25,20 @@ exports[`HtmlFragments.vue > Renders correctly > Mix of everything 1`] = `
 </p>
 `;
 
+exports[`HtmlFragments.vue > Renders correctly > Mutate markup > Partial new wrapper element on previous line 1`] = `
+<d div="">
+  Text
+</d>
+`;
+
+exports[`HtmlFragments.vue > Renders correctly > Mutate markup > Partial new wrapper element on previous line 2`] = `
+<div>
+  <div>
+    Text
+  </div>
+</div>
+`;
+
 exports[`HtmlFragments.vue > Renders correctly > Mutate markup > Type out new wrapper element 1`] = `
 <div>
   Text
