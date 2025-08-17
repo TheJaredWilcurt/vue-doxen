@@ -1,14 +1,31 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`HtmlFragments.vue > Renders nothing 1`] = ``;
-
-exports[`HtmlFragments.vue > Renders one element 1`] = `
-<div>
-  Text
+exports[`HtmlFragments.vue > Renders correctly > Mix of everything 1`] = `
+<div></div>
+<div
+  class="
+    box
+    cow
+  "
+  style="background: #F00;"
+>
+  Content
 </div>
+<span>
+  Text node
+</span>
+<p class="a">
+  <strong class="
+    a
+    b
+    c
+  ">
+    Text
+  </strong>
+</p>
 `;
 
-exports[`HtmlFragments.vue > Renders one element with children 1`] = `
+exports[`HtmlFragments.vue > Renders correctly > One element with children 1`] = `
 <div class="box">
   <span>
     Text1
@@ -19,9 +36,17 @@ exports[`HtmlFragments.vue > Renders one element with children 1`] = `
 </div>
 `;
 
-exports[`HtmlFragments.vue > Renders one text node 1`] = `Some Text`;
+exports[`HtmlFragments.vue > Renders correctly > One element without children 1`] = `<div></div>`;
 
-exports[`HtmlFragments.vue > Renders two root elements 1`] = `
+exports[`HtmlFragments.vue > Renders correctly > One text node 1`] = `
+<span>
+  Some Text
+</span>
+`;
+
+exports[`HtmlFragments.vue > Renders correctly > Renders nothing 1`] = ``;
+
+exports[`HtmlFragments.vue > Renders correctly > Two root elements 1`] = `
 <div>
   Text
 </div>

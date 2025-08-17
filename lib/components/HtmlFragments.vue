@@ -39,9 +39,35 @@ export default {
       return parseDocument(this.html, xmlOptions)
         .children
         .filter((node) => {
-          return node && node.type === 'tag';
+          if (!node) {
+            return false;
+          }
+          if (node.type === 'tag') {
+            return true;
+          }
+          if (node.type === 'text') {
+            const text = this.html.substring(node.startIndex, node.endIndex + 1);
+            if (text.trim()) {
+              return true
+            }
+          }
+          return false;
         })
         .map((node) => {
+          if (node.type === 'text') {
+            return {
+              attributes: {},
+              childrenHtml: this.html.substring(node.startIndex, node.endIndex + 1),
+              tag: 'span'
+            };
+          }
+          if (!node.children.length) {
+            return {
+              attributes: node.attribs,
+              childrenHtml: '',
+              tag: node.name
+            };
+          }
           let start = node.endIndex;
           let end = node.startIndex;
           node.children.forEach((child) => {
