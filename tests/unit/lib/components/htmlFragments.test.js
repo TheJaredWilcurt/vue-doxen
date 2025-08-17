@@ -74,5 +74,31 @@ describe('HtmlFragments.vue', () => {
       expect(wrapper)
         .toMatchSnapshot();
     });
+
+    describe('Mutate markup', () => {
+      test('Type out new wrapper element', async () => {
+        const inner = '<div>Text</div>';
+        const wrapper = await setupWrapper(inner);
+
+        await wrapper.setProps({ html: '<' + inner });
+        await wrapper.setProps({ html: '<d' + inner });
+
+        expect(wrapper)
+          .toMatchSnapshot();
+
+        await wrapper.setProps({ html: '<di' + inner });
+        await wrapper.setProps({ html: '<div' + inner });
+        await wrapper.setProps({ html: '<div>' + inner });
+        await wrapper.setProps({ html: '<div>' + inner + '<' });
+        await wrapper.setProps({ html: '<div>' + inner + '</' });
+        await wrapper.setProps({ html: '<div>' + inner + '</d' });
+        await wrapper.setProps({ html: '<div>' + inner + '</di' });
+        await wrapper.setProps({ html: '<div>' + inner + '</div' });
+        await wrapper.setProps({ html: '<div>' + inner + '</div>' });
+
+        expect(wrapper)
+          .toMatchSnapshot();
+      });
+    });
   });
 });
