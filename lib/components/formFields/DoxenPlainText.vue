@@ -13,7 +13,7 @@
     />
     <div
       v-if="codeAsString"
-      v-bind="applyStyleTokens({ doxenPlainText: true })"
+      v-bind="applyStyleTokens({ plainText: true })"
     >
       <DoxenCodeBox
         :id="idFor"
@@ -23,7 +23,7 @@
     </div>
     <div
       v-else-if="asCode"
-      v-bind="applyStyleTokens({ doxenPlainText: true })"
+      v-bind="applyStyleTokens({ plainText: true })"
     >
       <DoxenCodeBox
         :id="idFor"
@@ -34,7 +34,7 @@
     <div
       v-else
       v-text="modelValue"
-      v-bind="applyStyleTokens({ doxenPlainText: true })"
+      v-bind="applyStyleTokens({ plainText: true })"
       :id="idFor"
     ></div>
     <FormFieldFooter
