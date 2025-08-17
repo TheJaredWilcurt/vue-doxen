@@ -2,8 +2,8 @@
   <!-- eslint-disable vue/no-v-text-v-html-on-component -->
   <component
     v-for="(node, nodeIndex) in astTree"
-    v-bind="node.attributes"
     v-html="node.childrenHtml"
+    v-bind="node.attributes"
     :is="node.tag"
     :key="'slot-item' + nodeIndex"
   />
@@ -48,7 +48,7 @@ export default {
           if (node.type === 'text') {
             const text = this.html.substring(node.startIndex, node.endIndex + 1);
             if (text.trim()) {
-              return true
+              return true;
             }
           }
           return false;
