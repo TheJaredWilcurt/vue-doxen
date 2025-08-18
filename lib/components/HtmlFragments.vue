@@ -17,6 +17,53 @@
 /* eslint-disable-next-line import/no-extraneous-dependencies */
 import { parseDocument } from 'htmlparser2';
 
+const badAttributeAndTagCharacters = [
+  '<',
+  '>',
+  '(',
+  ')',
+  '[',
+  ']',
+  '/',
+  '\\',
+  ':',
+  ';',
+  '=',
+  '#',
+  '@',
+  '!',
+  '$',
+  '%',
+  '^',
+  '*',
+  '|',
+  '+',
+  '&',
+  ',',
+  '~',
+  '`',
+  '\'',
+  '"',
+  ' '
+];
+
+function checkTagOrAttributeName (attributeOrTagName) {
+  return badAttributeAndTagCharacters.some((character) => {
+    return attributeOrTagName.includes(character);
+  });
+}
+
+function cleanTagOrAttributeName (attributeOrTagName) {
+  return attributeOrTagName
+    .trim()
+    .split('')
+    .filter((character) => {
+      return !badAttributeAndTagCharacters.includes(character);
+    })
+    .join('');
+}
+
+
 export default {
   name: 'HtmlFragments',
   props: {
@@ -66,29 +113,10 @@ export default {
            * This is an invalid attribute name, causing a console error,
            * so we avoid that with this fix:
            */
-          const badAttributeNameCharacters = [
-            '<',
-            '/',
-            '>',
-            ':',
-            '=',
-            '&',
-            '\'',
-            '"'
-          ];
           for (const attributeName in attributes) {
-            const hasBadCharacter = badAttributeNameCharacters.some((character) => {
-              return attributeName.includes(character);
-            });
-
+            const hasBadCharacter = checkTagOrAttributeName(attributeName);
             if (hasBadCharacter) {
-              const newName = attributeName
-                .trim()
-                .split('')
-                .filter((character) => {
-                  return !badAttributeNameCharacters.includes(character);
-                })
-                .join('');
+              const newName = cleanTagOrAttributeName(attributeName);
               if (newName) {
                 attributes[newName] = attributes[attributeName];
               }
@@ -96,16 +124,13 @@ export default {
             }
           }
 
-          let tag = node.name;
           /**
            * When mid-typing, you may have something like '<d<div></div>'
            * which gets interpretted as the tag name 'd<div'.
            * This is an invalid tag name and causes a console error,
            * so we avoid that with this fix:
            */
-          if (tag.includes('<')) {
-            tag = tag.split('<')[1];
-          }
+          const tag = cleanTagOrAttributeName(node.name) || 'span';
 
           if (!node.children.length) {
             return {
