@@ -56,6 +56,12 @@ exports[`HtmlFragments.vue > Renders correctly > Partial markup > Incomplete att
 </div>
 `;
 
+exports[`HtmlFragments.vue > Renders correctly > Partial markup > Incomplete tag 1`] = `
+<div>
+  Text
+</div>
+`;
+
 exports[`HtmlFragments.vue > Renders correctly > Partial markup > New wrapper element on previous line 1`] = `
 <d div="">
   Text
@@ -70,10 +76,16 @@ exports[`HtmlFragments.vue > Renders correctly > Partial markup > New wrapper el
 </div>
 `;
 
-exports[`HtmlFragments.vue > Renders correctly > Partial markup > Type out new wrapper element 1`] = `
-<div>
+exports[`HtmlFragments.vue > Renders correctly > Partial markup > Tagless with attribute 1`] = `
+<stylecolorf00>
   Text
-</div>
+</stylecolorf00>
+`;
+
+exports[`HtmlFragments.vue > Renders correctly > Partial markup > Type out new wrapper element 1`] = `
+<ddiv>
+  Text
+</ddiv>
 `;
 
 exports[`HtmlFragments.vue > Renders correctly > Partial markup > Type out new wrapper element 2`] = `

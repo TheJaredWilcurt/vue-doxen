@@ -147,6 +147,20 @@ describe('HtmlFragments.vue', () => {
         expect(wrapper)
           .toMatchSnapshot();
       });
+
+      test('Incomplete tag', async () => {
+        const wrapper = await setupWrapper('<div">Text</div>');
+
+        expect(wrapper)
+          .toMatchSnapshot();
+      });
+
+      test('Tagless with attribute', async () => {
+        const wrapper = await setupWrapper('<style="color:#F00">Text</div>');
+
+        expect(wrapper)
+          .toMatchSnapshot();
+      });
     });
   });
 });
