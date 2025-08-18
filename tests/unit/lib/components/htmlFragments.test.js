@@ -123,6 +123,30 @@ describe('HtmlFragments.vue', () => {
         expect(wrapper)
           .toMatchSnapshot();
       });
+
+      test('Incomplete attribute', async () => {
+        const wrapper = await setupWrapper('<div class="moo">Text</div>');
+
+        await wrapper.setProps({ html: '<div class="mo">Text</div>' });
+        await wrapper.setProps({ html: '<div class="m">Text</div>' });
+        await wrapper.setProps({ html: '<div class="">Text</div>' });
+        await wrapper.setProps({ html: '<div class=">Text</div>' });
+        await wrapper.setProps({ html: '<div class">Text</div>' });
+
+        expect(wrapper)
+          .toMatchSnapshot();
+
+        await wrapper.setProps({ html: '<div clas">Text</div>' });
+        await wrapper.setProps({ html: '<div cla">Text</div>' });
+        await wrapper.setProps({ html: '<div cl">Text</div>' });
+        await wrapper.setProps({ html: '<div c">Text</div>' });
+        await wrapper.setProps({ html: '<div ">Text</div>' });
+        await wrapper.setProps({ html: '<div">Text</div>' });
+        await wrapper.setProps({ html: '<div>Text</div>' });
+
+        expect(wrapper)
+          .toMatchSnapshot();
+      });
     });
   });
 });
