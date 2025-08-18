@@ -66,17 +66,32 @@ export default {
            * This is an invalid attribute name, causing a console error,
            * so we avoid that with this fix:
            */
+          const badAttributeNameCharacters = [
+            '<',
+            '/',
+            '>',
+            ':',
+            '=',
+            '&',
+            '\'',
+            '"'
+          ];
           for (const attributeName in attributes) {
-            if (
-              attributeName.includes('<') ||
-              attributeName.includes('>') ||
-              attributeName.includes('&')
-            ) {
+            const hasBadCharacter = badAttributeNameCharacters.some((character) => {
+              return attributeName.includes(character);
+            });
+
+            if (hasBadCharacter) {
               const newName = attributeName
-                .replace('<', '')
-                .replace('>', '')
-                .replace('&', '');
-              attributes[newName] = attributes[attributeName];
+                .trim()
+                .split('')
+                .filter((character) => {
+                  return !badAttributeNameCharacters.includes(character);
+                })
+                .join('');
+              if (newName) {
+                attributes[newName] = attributes[attributeName];
+              }
               delete attributes[attributeName];
             }
           }

@@ -75,7 +75,7 @@ describe('HtmlFragments.vue', () => {
         .toMatchSnapshot();
     });
 
-    describe('Mutate markup', () => {
+    describe('Partial markup', () => {
       test('Type out new wrapper element', async () => {
         const inner = '<div>Text</div>';
         const wrapper = await setupWrapper(inner);
@@ -100,7 +100,7 @@ describe('HtmlFragments.vue', () => {
           .toMatchSnapshot();
       });
 
-      test('Partial new wrapper element on previous line', async () => {
+      test('New wrapper element on previous line', async () => {
         const inner = '\n<div>Text</div>\n';
         const wrapper = await setupWrapper(inner);
 
@@ -119,6 +119,30 @@ describe('HtmlFragments.vue', () => {
         await wrapper.setProps({ html: '<div>' + inner + '</di' });
         await wrapper.setProps({ html: '<div>' + inner + '</div' });
         await wrapper.setProps({ html: '<div>' + inner + '</div>' });
+
+        expect(wrapper)
+          .toMatchSnapshot();
+      });
+
+      test('Incomplete attribute', async () => {
+        const wrapper = await setupWrapper('<div class="moo">Text</div>');
+
+        await wrapper.setProps({ html: '<div class="mo">Text</div>' });
+        await wrapper.setProps({ html: '<div class="m">Text</div>' });
+        await wrapper.setProps({ html: '<div class="">Text</div>' });
+        await wrapper.setProps({ html: '<div class=">Text</div>' });
+        await wrapper.setProps({ html: '<div class">Text</div>' });
+
+        expect(wrapper)
+          .toMatchSnapshot();
+
+        await wrapper.setProps({ html: '<div clas">Text</div>' });
+        await wrapper.setProps({ html: '<div cla">Text</div>' });
+        await wrapper.setProps({ html: '<div cl">Text</div>' });
+        await wrapper.setProps({ html: '<div c">Text</div>' });
+        await wrapper.setProps({ html: '<div ">Text</div>' });
+        await wrapper.setProps({ html: '<div">Text</div>' });
+        await wrapper.setProps({ html: '<div>Text</div>' });
 
         expect(wrapper)
           .toMatchSnapshot();

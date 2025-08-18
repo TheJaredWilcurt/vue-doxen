@@ -25,34 +25,6 @@ exports[`HtmlFragments.vue > Renders correctly > Mix of everything 1`] = `
 </p>
 `;
 
-exports[`HtmlFragments.vue > Renders correctly > Mutate markup > Partial new wrapper element on previous line 1`] = `
-<d div="">
-  Text
-</d>
-`;
-
-exports[`HtmlFragments.vue > Renders correctly > Mutate markup > Partial new wrapper element on previous line 2`] = `
-<div>
-  <div>
-    Text
-  </div>
-</div>
-`;
-
-exports[`HtmlFragments.vue > Renders correctly > Mutate markup > Type out new wrapper element 1`] = `
-<div>
-  Text
-</div>
-`;
-
-exports[`HtmlFragments.vue > Renders correctly > Mutate markup > Type out new wrapper element 2`] = `
-<div>
-  <div>
-    Text
-  </div>
-</div>
-`;
-
 exports[`HtmlFragments.vue > Renders correctly > One element with children 1`] = `
 <div class="box">
   <span>
@@ -70,6 +42,46 @@ exports[`HtmlFragments.vue > Renders correctly > One text node 1`] = `
 <span>
   Some Text
 </span>
+`;
+
+exports[`HtmlFragments.vue > Renders correctly > Partial markup > Incomplete attribute 1`] = `
+<div class="">
+  Text
+</div>
+`;
+
+exports[`HtmlFragments.vue > Renders correctly > Partial markup > Incomplete attribute 2`] = `
+<div>
+  Text
+</div>
+`;
+
+exports[`HtmlFragments.vue > Renders correctly > Partial markup > New wrapper element on previous line 1`] = `
+<d div="">
+  Text
+</d>
+`;
+
+exports[`HtmlFragments.vue > Renders correctly > Partial markup > New wrapper element on previous line 2`] = `
+<div>
+  <div>
+    Text
+  </div>
+</div>
+`;
+
+exports[`HtmlFragments.vue > Renders correctly > Partial markup > Type out new wrapper element 1`] = `
+<div>
+  Text
+</div>
+`;
+
+exports[`HtmlFragments.vue > Renders correctly > Partial markup > Type out new wrapper element 2`] = `
+<div>
+  <div>
+    Text
+  </div>
+</div>
 `;
 
 exports[`HtmlFragments.vue > Renders correctly > Renders nothing 1`] = ``;
