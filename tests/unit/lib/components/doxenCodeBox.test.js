@@ -11,6 +11,10 @@ describe('DoxenCodeBox', () => {
   const html = '<div attribute="value">\n  Text\n</div>';
   const js = 'const value = 4;\nconsole.log({\n  key: value\n});';
   const code = '<h1>Text</h1>';
+  const object = {
+    key: 'value',
+    fn: () => { return 2; }
+  };
   const styleTokens = styleTokensBuiltIn;
   const requiredProps = {};
 
@@ -56,6 +60,29 @@ describe('DoxenCodeBox', () => {
   test('Renders JavaScript', async () => {
     const props = {
       code: js,
+      styleTokens
+    };
+    const wrapper = await setupWrapper(props);
+
+    expect(wrapper)
+      .toMatchSnapshot();
+  });
+
+  test('Serialize JS', async () => {
+    const props = {
+      code: object,
+      styleTokens
+    };
+    const wrapper = await setupWrapper(props);
+
+    expect(wrapper)
+      .toMatchSnapshot();
+  });
+
+  test('Copy disabled', async () => {
+    const props = {
+      code,
+      copy: false,
       styleTokens
     };
     const wrapper = await setupWrapper(props);
