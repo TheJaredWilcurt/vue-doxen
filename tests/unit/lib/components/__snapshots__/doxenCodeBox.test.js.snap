@@ -15,7 +15,10 @@ exports[`DoxenCodeBox > Renders HTML 1`] = `
     data-applied-style-tokens="codeBox"
     data-style-tokens="codeBox"
   ><code
-    class="hljs xml"
+    class="
+      hljs
+      xml
+    "
     tabindex="0"
   ><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">attribute</span>=<span class="hljs-string">"value"</span>&gt;</span>
   Text
@@ -39,10 +42,19 @@ exports[`DoxenCodeBox > Renders JavaScript 1`] = `
     data-applied-style-tokens="codeBox"
     data-style-tokens="codeBox"
   ><code
-    class="hljs javascript"
+    class="
+      hljs
+      javascript
+    "
     tabindex="0"
   ><span class="hljs-keyword">const</span> value = <span class="hljs-number">4</span>;
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>({
+<span class="
+    hljs-variable
+    language_
+  ">console</span>.<span class="
+    function_
+    hljs-title
+  ">log</span>({
   <span class="hljs-attr">key</span>: value
 });</code></pre>
   <!-- v-if -->
@@ -64,7 +76,10 @@ exports[`DoxenCodeBox > Renders with just required props 1`] = `
     data-applied-style-tokens="codeBox"
     data-style-tokens="codeBox"
   ><code
-    class="hljs javascript"
+    class="
+      hljs
+      javascript
+    "
     tabindex="0"
   ></code></pre>
   <!-- v-if -->
