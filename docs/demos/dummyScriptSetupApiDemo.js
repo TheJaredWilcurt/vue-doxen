@@ -34,6 +34,13 @@ export const createDummyScriptSetupApiDemo = function (styleTokens) {
           }),
           styleTokens
         }
+      },
+      oldProp: {
+        deprecated: true,
+        description: 'Do not use this.',
+        props: {
+          modelValue: 'asdf'
+        }
       }
     },
     slotsToDemo: {

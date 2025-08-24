@@ -13,7 +13,7 @@
         #[slotName]
         :key="'slot-' + slotName"
       >
-        <span v-html="title.slots[slotName]"></span>
+        <HtmlFragments :html="title.slots[slotName]" />
       </template>
     </component>
     <component
@@ -41,7 +41,7 @@
           #[slotName]
           :key="'slot-' + slotName"
         >
-          <span v-html="description.slots[slotName]"></span>
+          <HtmlFragments :html="description.slots[slotName]" />
         </template>
       </component>
     </template>
@@ -66,7 +66,7 @@
             #[slotName]
             :key="'slot-' + slotName"
           >
-            <span v-html="importStatement.slots[slotName]"></span>
+            <HtmlFragments :html="importStatement.slots[slotName]" />
           </template>
         </component>
       </template>
@@ -86,7 +86,7 @@
           #[slotName]
           :key="'slot-' + slotName"
         >
-          <span v-html="demoSlots[slotName]"></span>
+          <HtmlFragments :html="demoSlots[slotName]" />
         </template>
       </component>
       <hr v-bind="applyStyleTokens({ componentDemoHr: true })" />
@@ -127,7 +127,7 @@
                   #[slotName]
                   :key="'slot-' + slotName"
                 >
-                  <span v-html="slotValue"></span>
+                  <HtmlFragments :html="slotValue" />
                 </template>
               </component>
             </section>
@@ -256,6 +256,7 @@ import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 import DoxenAccordion from '@/components/DoxenAccordion.vue';
 import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
+import HtmlFragments from '@/components/HtmlFragments.vue';
 
 const options = createVueDoxenOptions(true);
 
@@ -264,7 +265,8 @@ export default {
   components: {
     DoxenAccordion,
     DoxenCodeBox,
-    DoxenCodeSwapper
+    DoxenCodeSwapper,
+    HtmlFragments
   },
   mixins: [applyStyleTokens],
   props: {
@@ -523,6 +525,9 @@ export default {
       const tag = (this.componentName || '').replaceAll(' ', '');
       const emits = Object.keys(this.emitsToDemo);
       const attributes = Object.keys(this.propsToDemo)
+        .filter((propName) => {
+          return !this.playgroundProps[propName].deprecated;
+        })
         .map((propName) => {
           return {
             default: getDefaultValue(this.playgroundProps?.[propName]?.default),
@@ -549,6 +554,9 @@ export default {
       // Process Props
       Object.keys(this.propsToDemo)
         .sort()
+        .filter((propName) => {
+          return !this.playgroundProps[propName].deprecated;
+        })
         .forEach((propName) => {
           const value = this.demoProps[propName];
           const defaultValue = getDefaultValue(this.playgroundProps?.[propName]?.default);

@@ -2,7 +2,7 @@
 import { resolve } from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
 
-/* eslint-disable-next-line import/default,import/no-named-as-default,import/no-named-as-default-member */
+/* eslint-disable-next-line import/no-unresolved */
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
 import { configDefaults } from 'vitest/dist/config.js';
@@ -47,7 +47,7 @@ const config = defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./lib', import.meta.url)),
       '@@': fileURLToPath(new URL('./tests', import.meta.url)),
-      '@@@': fileURLToPath(new URL('./app', import.meta.url))
+      '@@@': fileURLToPath(new URL('./docs', import.meta.url))
     }
   },
   test: {
@@ -55,8 +55,8 @@ const config = defineConfig({
       exclude: [
         ...(configDefaults?.coverage?.exclude || []),
         '.eslintrc.cjs',
-        '**/app/',
         '**/docs/',
+        '**/site/',
         '**/scripts/'
       ],
       reportsDirectory: './tests/unit/coverage'

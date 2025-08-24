@@ -1,6 +1,6 @@
 {
   "name": "vue-doxen",
-  "version": "0.7.1",
+  "version": "0.9.7",
   "description": "The world's best Vue.js component documentation tool!",
   "scripts": {
     "start": "vite dev --config vite.config.docs.js",
@@ -10,39 +10,39 @@
     "build:docs": "vite build --config vite.config.docs.js",
     "build:library": "vite build --config vite.config.lib.js",
     "postbuild": "node ./scripts/postbuild.js",
-    "lint": "eslint --ext .js,.vue lib scripts tests app vite.config.*.js",
-    "fix": "eslint --fix --ext .js,.vue lib scripts tests app vite.config.*.js",
-    "unit": "cross-env TZ=America/New_York vitest --coverage --config vite.config.lib.js",
-    "test": "cross-env TZ=America/New_York vitest run --coverage --config vite.config.lib.js",
+    "lint": "eslint --ext .js,.vue lib scripts tests docs vite.config.*.js",
+    "fix": "npm run lint -- --fix",
+    "unit": "cross-env TZ=America/New_York vitest --config vite.config.lib.js",
+    "test": "npm run unit -- run --coverage",
     "coverage": "cd tests && cd unit && cd coverage && node ../../../node_modules/npm-free-server/dist/server.js",
     "bump": "npx --yes -- @jsdevtools/version-bump-prompt && npm i",
-    "outdated": "npx --yes -- check-outdated --ignore-packages axe-core,vue-axe --columns package,current,wanted,latest --types major,minor,patch"
+    "outdated": "npx --yes -- check-outdated --ignore-packages @highlightjs/vue-plugin --columns package,current,wanted,latest --types major,minor,patch",
+    "volta": "volta pin node@latest && volta pin npm@latest && git status"
   },
   "ManifestComments": [
-    "@highlightjs/vue-plugin pinned to 2.1.2 because it was released years ago, but never marked as latest",
-    "vue-axe 3 was released years ago, but never marked as latest"
+    "@highlightjs/vue-plugin pinned to 2.1.2 because it was released years ago, but never marked as latest"
   ],
   "devDependencies": {
-    "@eslint/js": "^9.27.0",
+    "@eslint/js": "^9.33.0",
     "@highlightjs/vue-plugin": "2.1.2",
-    "@stylistic/eslint-plugin-js": "^4.2.0",
-    "@vitejs/plugin-vue": "^5.2.4",
-    "@vitest/coverage-v8": "^3.1.4",
+    "@stylistic/eslint-plugin": "^5.2.3",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vitest/coverage-v8": "^3.2.4",
     "@vue/test-utils": "^2.4.6",
-    "axe-core": "4.0.0",
-    "cross-env": "^7.0.3",
-    "eslint": "^9.27.0",
-    "eslint-config-tjw-base": "^4.1.0",
+    "cross-env": "^10.0.0",
+    "eslint": "^9.33.0",
+    "eslint-config-tjw-base": "^4.3.0",
     "eslint-config-tjw-import": "^2.0.0",
     "eslint-config-tjw-jest": "^3.0.0",
     "eslint-config-tjw-vue": "^4.0.0",
     "eslint-import-resolver-vite": "^2.1.0",
-    "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-jest": "^28.11.0",
-    "eslint-plugin-vue": "^10.1.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jest": "^29.0.1",
+    "eslint-plugin-vue": "^10.4.0",
     "eslint-plugin-vuejs-accessibility": "^2.4.1",
-    "globals": "^16.1.0",
-    "happy-dom": "^17.4.7",
+    "globals": "^16.3.0",
+    "happy-dom": "^18.0.1",
+    "htmlparser2": "^10.0.0",
     "json5": "^2.2.3",
     "lodash.clonedeep": "^4.5.0",
     "lodash.isequal": "^4.5.0",
@@ -51,18 +51,18 @@
     "lodash.startcase": "^4.4.0",
     "npm-free-server": "^1.1.0",
     "nprogress": "^0.2.0",
-    "sass": "^1.89.0",
-    "vite": "^6.3.5",
-    "vite-plugin-vue-devtools": "^7.7.6",
-    "vitest": "^3.1.4",
-    "vue": "^3.5.14",
-    "vue-axe": "^3.1.2",
+    "sass": "^1.90.0",
+    "vite": "^7.1.2",
+    "vite-plugin-vue-devtools": "^8.0.0",
+    "vitest": "^3.2.3",
+    "vue": "^3.5.18",
+    "vue-dev-tools-accessibility": "^0.5.1",
     "vue-options-api-constants-plugin": "^1.0.3",
     "vue-router": "^4.5.1",
-    "vue3-snapshot-serializer": "^2.10.0"
+    "vue3-snapshot-serializer": "^2.12.0"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "^4.41.0"
+    "@rollup/rollup-linux-x64-gnu": "^4.46.3"
   },
   "private": false,
   "type": "module",
@@ -133,7 +133,7 @@
   },
   "homepage": "https://github.com/TheJaredWilcurt/vue-doxen#readme",
   "volta": {
-    "node": "23.11.0",
-    "npm": "11.3.0"
+    "node": "24.6.0",
+    "npm": "11.5.2"
   }
 }

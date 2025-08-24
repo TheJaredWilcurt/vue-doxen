@@ -27,6 +27,7 @@ export default [
   {
     // project specific rules/settings
     languageOptions: {
+      ecmaVersion: 2025,
       globals: {
         BigInt: true,
         globalThis: true,
@@ -136,7 +137,7 @@ export default [
               alias: {
                 '@': path.resolve(__dirname, 'lib'),
                 '@@': path.resolve(__dirname, 'tests'),
-                '@@@': path.resolve(__dirname, 'app')
+                '@@@': path.resolve(__dirname, 'docs')
               }
             }
           }
@@ -147,7 +148,7 @@ export default [
   // Turn off rules in the docs site
   {
     files: [
-      './app/**/*'
+      './docs/**/*'
     ],
     rules: {
       'import/no-extraneous-dependencies': 'off'
