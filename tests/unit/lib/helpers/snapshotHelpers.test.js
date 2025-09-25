@@ -42,6 +42,12 @@ describe('Snapshot Helpers', () => {
       expect(dataValue(new Set([1, 2])))
         .toEqual('[1,2]');
 
+      expect(dataValue(new File(['Hello'], '', { type: 'text/html' })))
+        .toEqual('File');
+
+      expect(dataValue(new File(['Hello'], '0.txt', { type: 'text/html' })))
+        .toEqual('File (0.txt)');
+
       expect(dataValue(new Date('2024')))
         .toEqual('1704067200000');
 
