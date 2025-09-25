@@ -133,7 +133,7 @@
   },
   "homepage": "https://github.com/TheJaredWilcurt/vue-doxen#readme",
   "volta": {
-    "node": "24.6.0",
-    "npm": "11.5.2"
+    "node": "24.8.0",
+    "npm": "11.6.1"
   }
 }
