@@ -41,7 +41,7 @@
     "eslint-plugin-vue": "^10.5.0",
     "eslint-plugin-vuejs-accessibility": "^2.4.1",
     "globals": "^16.4.0",
-    "happy-dom": "^18.0.1",
+    "happy-dom": "^19.0.1",
     "htmlparser2": "^10.0.0",
     "json5": "^2.2.3",
     "lodash.clonedeep": "^4.5.0",
@@ -62,7 +62,7 @@
     "vue3-snapshot-serializer": "^2.13.0"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "^4.52.2"
+    "@rollup/rollup-linux-x64-gnu": "^4.52.3"
   },
   "private": false,
   "type": "module",
