@@ -1798,6 +1798,7 @@ export const TREE_SHAKING_IMPORT_EXAMPLE = unindent(`
   // Import all the needed components from Vue-Doxen
   import {
     DoxenCheckbox,
+    DoxenDeprecationBanner,
     DoxenDeprecatedProp,
     DoxenDropdown,
     DoxenEmitLog,
@@ -1819,6 +1820,7 @@ export const TREE_SHAKING_IMPORT_EXAMPLE = unindent(`
   export const options = {
     components: {
       // Top of demo
+      deprecationBanner: DoxenDeprecationBanner,
       header: DoxenHeader,
 
       // Props Playground

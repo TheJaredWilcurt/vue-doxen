@@ -7,6 +7,7 @@ export const createDummyScriptSetupApiDemo = function (styleTokens) {
     component: DummyScriptSetupApi,
     title: 'Dummy Script Setup API',
     description: 'This is an <strong>arbitrary test</strong> for Script Setup API components.',
+    deprecationNotice: 'This component has been deprecated.',
     propsToDemo: {
       label: {
         allowed: ['potato', 'Greeting'],
