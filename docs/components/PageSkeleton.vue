@@ -3,6 +3,19 @@
     <div class="page">
       <a
         class="flex zone"
+        :class="{ 'zone-hover': hover === DEPRECATION_NOTICE }"
+        href="#deprecation-notice"
+        @mouseover="hover = DEPRECATION_NOTICE"
+        @mouseout="hoverOff"
+        @focus="hover = DEPRECATION_NOTICE"
+        @blur="hoverOff"
+      >
+        <div class="blocks deprecation-banner">
+          <span v-text="DEPRECATION_NOTICE" class="sr-only"></span>
+        </div>
+      </a>
+      <a
+        class="flex zone"
         :class="{ 'zone-hover': hover === COMPONENT_NAME }"
         href="#title-name"
         @mouseover="hover = COMPONENT_NAME"
@@ -58,74 +71,59 @@
           <div class="hr"></div>
         </div>
       </RouterLink>
-      <div class="props-playground">
-        <a
-          href="#props"
-          @mouseover="hover = PROPS_PLAYGROUND"
-          @mouseout="hoverOff"
-          @focus="hover = PROPS_PLAYGROUND"
-          @blur="hoverOff"
-        >
-          <div
-            class="props-1 props-zone"
-            :class="{ 'props-hover': hover === PROPS_PLAYGROUND }"
-          >
-            <div
-              v-for="prop in 4"
-              class="blocks prop"
-              :key="'prop' + prop"
-            >
-              <span v-text="PROPS_PLAYGROUND" class="sr-only"></span>
-            </div>
-          </div>
-        </a>
-        <div class="props-2">
-          <a
-            class="props-zone"
-            :class="{ 'props-hover': hover === PROPS_PLAYGROUND }"
-            href="#props"
-            @mouseover="hover = PROPS_PLAYGROUND"
-            @mouseout="hoverOff"
-            @focus="hover = PROPS_PLAYGROUND"
-            @blur="hoverOff"
-          >
-            <div class="blocks prop">
-              <span v-text="PROPS_PLAYGROUND" class="sr-only"></span>
-            </div>
-          </a>
-          <a
-            class="zone slots-playground"
-            :class="{ 'zone-hover': hover === SLOTS_PLAYGROUND }"
-            href="#slots"
-            @mouseover="hover = SLOTS_PLAYGROUND"
-            @mouseout="hoverOff"
-            @focus="hover = SLOTS_PLAYGROUND"
-            @blur="hoverOff"
-          >
-            <div
-              v-for="slot in 2"
-              class="blocks slot"
-              :class="'slot-' + slot"
-              :key="'slot' + slot"
-            >
-              <span v-text="SLOTS_PLAYGROUND" class="sr-only"></span>
-            </div>
-          </a>
-          <a
-            class="zone emit-logger-container"
-            :class="{ 'zone-hover': hover === EMIT_LOGGER }"
-            href="#emits"
-            @mouseover="hover = EMIT_LOGGER"
-            @mouseout="hoverOff"
-            @focus="hover = EMIT_LOGGER"
-            @blur="hoverOff"
-          >
-            <div class="blocks emit-logger">
-              <span v-text="EMIT_LOGGER" class="sr-only"></span>
-            </div>
-          </a>
+      <a
+        class="playground zone"
+        :class="{ 'zone-hover': hover === PROPS_PLAYGROUND }"
+        href="#props"
+        @mouseover="hover = PROPS_PLAYGROUND"
+        @mouseout="hoverOff"
+        @focus="hover = PROPS_PLAYGROUND"
+        @blur="hoverOff"
+      >
+        <div class="playground-header"></div>
+        <span v-text="PROPS_PLAYGROUND" class="sr-only"></span>
+        <div class="playground-props">
+          <div class="prop-input"></div>
+          <div class="prop-input"></div>
+          <div class="prop-checkbox"></div>
+          <div class="prop-checkbox"></div>
+          <div class="prop-checkbox"></div>
         </div>
-      </div>
+      </a>
+
+      <a
+        class="playground zone"
+        :class="{ 'zone-hover': hover === SLOTS_PLAYGROUND }"
+        href="#slots"
+        @mouseover="hover = SLOTS_PLAYGROUND"
+        @mouseout="hoverOff"
+        @focus="hover = SLOTS_PLAYGROUND"
+        @blur="hoverOff"
+      >
+        <div class="playground-header"></div>
+        <span v-text="SLOTS_PLAYGROUND" class="sr-only"></span>
+        <div class="playground-props">
+          <div class="slot-input"></div>
+          <div class="slot-input"></div>
+        </div>
+      </a>
+
+      <a
+        class="playground zone"
+        :class="{ 'zone-hover': hover === EMIT_LOGGER }"
+        href="#emits"
+        @mouseover="hover = EMIT_LOGGER"
+        @mouseout="hoverOff"
+        @focus="hover = EMIT_LOGGER"
+        @blur="hoverOff"
+      >
+        <div class="playground-header"></div>
+        <span v-text="EMIT_LOGGER" class="sr-only"></span>
+        <div class="playground-props">
+          <div class="emit-logger"></div>
+        </div>
+      </a>
+
       <div
         class="zone live-code"
         :class="{ 'live-code-hover': hover === LIVE_CODE }"
@@ -201,6 +199,7 @@
 </template>
 
 <script>
+const DEPRECATION_NOTICE = 'Deprecation Notice';
 const COMPONENT_NAME = 'Component Title/Name';
 const COMPONENT_DESCRIPTION = 'Component Description';
 const IMPORT_STATEMENT = 'Import Statement';
@@ -215,6 +214,7 @@ const EMITS_DOCUMENTATION = 'Emits Documentation';
 export default {
   name: 'PageSkeleton',
   constants: {
+    DEPRECATION_NOTICE,
     COMPONENT_NAME,
     COMPONENT_DESCRIPTION,
     IMPORT_STATEMENT,
@@ -253,16 +253,17 @@ export default {
   computed: {
     hoverTextPosition: function () {
       const hoverTextTopOffsetMap = {
-        [COMPONENT_NAME]: 11,
-        [COMPONENT_DESCRIPTION]: 42,
-        [IMPORT_STATEMENT]: 59,
-        [YOUR_COMPONENT]: 99,
-        [PROPS_PLAYGROUND]: 159,
-        [SLOTS_PLAYGROUND]: 201,
-        [EMIT_LOGGER]: 201,
-        [LIVE_CODE]: 283,
-        [PROPS_DOCUMENTATION]: 372,
-        [EMITS_DOCUMENTATION]: 441
+        [DEPRECATION_NOTICE]: 16,
+        [COMPONENT_NAME]: 49,
+        [COMPONENT_DESCRIPTION]: 72,
+        [IMPORT_STATEMENT]: 89,
+        [YOUR_COMPONENT]: 129,
+        [PROPS_PLAYGROUND]: 189,
+        [SLOTS_PLAYGROUND]: 253,
+        [EMIT_LOGGER]: 319,
+        [LIVE_CODE]: 406,
+        [PROPS_DOCUMENTATION]: 499,
+        [EMITS_DOCUMENTATION]: 569
       };
       const top = hoverTextTopOffsetMap[this.hover];
 
@@ -287,6 +288,9 @@ export default {
 .page-skeleton {
   display: flex;
 }
+.page-skeleton * {
+  box-sizing: border-box;
+}
 .page {
   position: relative;
   display: inline-block;
@@ -295,13 +299,50 @@ export default {
   border-radius: 7px;
   padding: 10px 7px;
 }
+.swapper-bootstrap .page {
+  border: 1px solid #DEDEDE;
+}
+.swapper-vuetifyDark .page {
+  background: #F7F7F7;
+  filter: invert(1);
+}
+.swapper-vuetifyDark .code-box{
+  background: #ECECEC;
+}
+.swapper-vuetifyDark .import-statement {
+  background: #999;
+}
+.swapper-water .page {
+  filter: sepia(0.5) invert(1) hue-rotate(330deg) brightness(1.4) contrast(0.8);
+}
+.swapper-water .code-box {
+  background: #FFF;
+}
+.swapper-water .import-statement {
+  background: #A9A9A9;
+}
 .blocks {
   background: #CCC;
   border-radius: 7px;
 }
-.header {
+.deprecation-banner {
   width: 100%;
-  height: 30px;
+  height: 31px;
+}
+.deprecation-banner:before {
+  content: '';
+  position: relative;
+  top: 9px;
+  left: 10px;
+  display: block;
+  width: 13px;
+  height: 13px;
+  background: #B5B5B5;
+  border-radius: 20px;
+}
+.header {
+  width: 87px;
+  height: 22px;
 }
 .description {
   width: 190px;
@@ -325,38 +366,128 @@ export default {
   height: 1px;
   background: #BBB;
 }
-.props-playground {
-  padding: 7px 0px;
-}
-.props-1,
-.props-2,
-.slots-playground {
+.playground {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  flex-direction: column;
+  margin-bottom: 6px;
 }
-.props-2 {
+.playground-header {
+  background: #CCC;
+  width: 100%;
+  height: 10px;
+  border-radius: 3px;
+  margin-bottom: 3px;
+}
+.playground-props {
   display: flex;
+  align-items: end;
+  justify-content: start;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
-.prop,
-.slot,
-.emit-logger {
-  width: 50px;
-  height: 25px;
-  margin: 5px 0px;
+.prop-checkbox {
+  position: relative;
+  display: block;
+  background: #CCC;
+  width: 53px;
+  height: 8px;
+  border-radius: 3px;
+  margin: 10px 2px 0px 16px;
 }
-.slots-playground {
+.prop-checkbox:nth-of-type(4) {
+  width: 68px;
+}
+.prop-checkbox:nth-of-type(5) {
+  width: 90px;
+}
+.prop-checkbox:before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -13px;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: #EEE8;
+  border: 2px solid #CCC;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+.prop-input {
+  position: relative;
   flex-grow: 1;
-  justify-content: space-evenly;
+  width: 87px;
+  height: 10px;
+  background: #EEE8;
+  border: 2px solid #CCC;
+  border-radius: 3px;
+  margin: 13px 3px 0px 3px;
 }
-.slot-1 {
-  margin-right: 3.5px;
+.prop-input:before {
+  content: '';
+  position: absolute;
+  top: -13px;
+  left: -1px;
+  width: 50px;
+  height: 7px;
+  background: #CCC;
+  border-radius: 3px;
 }
-.slot-2 {
-  margin-left: 3.5px;
+.prop-input:nth-of-type(2):before {
+  width: 39px;
 }
+
+.slot-input {
+  position: relative;
+  flex-grow: 1;
+  width: 87px;
+  height: 24px;
+  background: #EEE8;
+  border: 2px solid #CCC;
+  border-radius: 3px;
+  margin: 13px 3px 0px 3px;
+}
+.slot-input:before {
+  content: '';
+  position: absolute;
+  top: -13px;
+  left: -1px;
+  width: 50px;
+  height: 7px;
+  background: #CCC;
+  border-radius: 3px;
+}
+
+.emit-logger {
+  position: relative;
+  flex-grow: 1;
+  width: 87px;
+  height: 24px;
+  background: #CCC;
+  border-radius: 3px;
+  margin: 18px 3px 0px 3px;
+}
+.emit-logger:after {
+  content: '';
+  position: absolute;
+  top: -17px;
+  right: 0px;
+  width: 35px;
+  height: 10px;
+  background: #CCC;
+  border: 2px solid #CCC;
+  border-radius: 4px;
+}
+.emit-logger:before {
+  content: '';
+  position: absolute;
+  top: -11px;
+  left: 0px;
+  width: 35px;
+  height: 7px;
+  background: #CCC;
+  border-radius: 3px;
+}
+
 .buttons-container {
   display: flex;
   justify-content: flex-start;
@@ -404,13 +535,10 @@ export default {
   top: 0px;
   left: 11px;
 }
-
-.props-zone,
 .zone {
   padding: 3.5px 3.5px;
 }
 .live-code-hover,
-.props-hover,
 .zone-hover,
 .zone:hover {
   background: #A7A7A7;
@@ -420,39 +548,6 @@ export default {
 }
 .zone-hover {
   display: flex;
-}
-.props-1.props-hover {
-  border-radius: 7px 7px 7px 0px;
-}
-.props-2 .props-hover {
-  position: relative;
-  border-radius: 0px 0px 7px 7px;
-}
-.props-2 .props-hover:before {
-  content: '';
-  position: absolute;
-  top: 0px;
-  right: -7px;
-  display: block;
-  background: #A7A7A7;
-  width: 7px;
-  height: 7px;
-}
-.props-2 .props-hover:after {
-  content: '';
-  position: absolute;
-  top: 0px;
-  right: -7px;
-  display: block;
-  background: #EEE;
-  width: 7px;
-  height: 7px;
-  border-radius: 7px 0px 0px 0px;
-}
-
-.zone.slots-playground,
-.zone.emit-logger-container {
-  border-radius: 7px;
 }
 
 .code-blocks-enter-active,

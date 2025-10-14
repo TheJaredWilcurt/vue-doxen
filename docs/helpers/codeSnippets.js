@@ -561,6 +561,115 @@ export const DEMO_FILE_USAGE_SCRIPT_SETUP_EXAMPLE = templatePrefix(DEMO_FILE_TEM
   </script>
 `);
 
+export const DEPRECATION_NOTICE_DEMO_EXAMPLE = unindent(`
+  import YourComponent from '../components/YourComponent.vue';
+
+  export const yourComponentDemo = {
+    component: YourComponent,
+    deprecationNotice: 'This component is deprecated. Use <code>OtheComponent</code> instead.'
+  };
+`);
+export const DEPRECATION_NOTICE_OPTIONS_EXAMPLE = unindent(`
+  <script>
+  export default {
+    deprecationNotice: 'This component is deprecated. Use <code>OtheComponent</code> instead.'
+  };
+  </script>
+`);
+export const DEPRECATION_NOTICE_SCRIPT_SETUP_EXAMPLE = unindent(`
+  <script setup>
+  defineOptions({
+    deprecationNotice: 'This component is deprecated. Use <code>OtheComponent</code> instead.'
+  });
+  </script>
+`);
+
+export const DEPRECATION_NOTICE_COMPONENT_DEMO_FILE_EXAMPLE = unindent(`
+  import MyComponent from '../components/MyComponent.vue';
+  import MyDeprecationBanner from '../components/MyDeprecationBanner.vue';
+
+  export const myComponentDemo = {
+    component: MyComponent,
+    deprecationNotice: {
+      component: MyDeprecationBanner,
+      // Optional, if your component needs props
+      props: {
+        yourProp: 'your value'
+      },
+      // Optional, if your component has slots
+      slots: {
+        default: '<em>Content</em>'
+      },
+      // Optional, if your component has emits
+      events: {
+        click: function ($event) {
+          console.log($event);
+        }
+      }
+    }
+  };
+`);
+export const DEPRECATION_NOTICE_COMPONENT_OPTIONS_EXAMPLE = unindent(`
+  <script>
+  // DO NOT ACTUALLY DO THIS! USE A DEMO FILE INSTEAD.
+  // Though this is technically supported, importing custom components
+  // into your component just for Vue-Doxen will bloat your component's
+  // file size for no real benefit. If you want to use your own
+  // component for the deprecation notice, just use a demo file.
+  import MyDeprecationBanner from '../components/MyDeprecationBanner.vue';
+
+  export default {
+    deprecationNotice: {
+      component: MyDeprecationBanner,
+      // Optional, if your component needs props
+      props: {
+        yourProp: 'your value'
+      },
+      // Optional, if your component has slots
+      slots: {
+        default: '<em>Content</em>'
+      },
+      // Optional, if your component has emits
+      events: {
+        click: function ($event) {
+          console.log($event);
+        }
+      }
+    }
+  };
+  </script>
+`);
+export const DEPRECATION_NOTICE_COMPONENT_SCRIPT_SETUP_EXAMPLE = unindent(`
+  <script setup>
+  // DO NOT ACTUALLY DO THIS! USE A DEMO FILE INSTEAD.
+  // Though this is technically supported, importing custom components
+  // into your component just for Vue-Doxen will bloat your component's
+  // file size for no real benefit. If you want to use your own
+  // component for the deprecation notice, just use a demo file.
+  import MyDeprecationBanner from '../components/MyDeprecationBanner.vue';
+
+  defineOptions({
+    deprecationNotice: {
+      component: MyDeprecationBanner,
+      // Optional, if your component needs props
+      props: {
+        yourProp: 'your value'
+      },
+      // Optional, if your component has slots
+      slots: {
+        default: '<em>Content</em>'
+      },
+      // Optional, if your component has emits
+      events: {
+        click: function ($event) {
+          console.log($event);
+        }
+      }
+    }
+  });
+  </script>
+`);
+
 export const DESCRIPTION_COMPONENT_DEMO_FILE_EXAMPLE = unindent(`
   import MyComponent from '../components/MyComponent.vue';
   import MyDescription from '../components/MyDescription.vue';
@@ -1798,6 +1907,7 @@ export const TREE_SHAKING_IMPORT_EXAMPLE = unindent(`
   // Import all the needed components from Vue-Doxen
   import {
     DoxenCheckbox,
+    DoxenDeprecationBanner,
     DoxenDeprecatedProp,
     DoxenDropdown,
     DoxenEmitLog,
@@ -1819,6 +1929,7 @@ export const TREE_SHAKING_IMPORT_EXAMPLE = unindent(`
   export const options = {
     components: {
       // Top of demo
+      deprecationBanner: DoxenDeprecationBanner,
       header: DoxenHeader,
 
       // Props Playground

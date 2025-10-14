@@ -1,26 +1,27 @@
 <template>
-  <div v-bind="applyStyleTokens({ componentDemo: true })">
-    <!-- DoxenHeader -->
-    <component
-      v-if="title && title.component"
-      :is="title.component"
-      v-bind="title.props || {}"
-      v-on="title.events || {}"
-      :key="componentName + '-title'"
-    >
-      <template
-        v-for="(slotValue, slotName) in title.slots"
-        #[slotName]
-        :key="'slot-' + slotName"
-      >
-        <HtmlFragments :html="title.slots[slotName]" />
-      </template>
-    </component>
-    <component
-      v-else
-      :is="options.components.header"
+  <div
+    v-bind="applyStyleTokens({
+      componentDemo: true,
+      deprecated: !!deprecationNotice
+    })"
+  >
+    <!-- DoxenDeprecationBanner -->
+    <OptionalCustomComponent
+      v-if="deprecationNotice"
+      :customComponent="deprecationNotice"
+      :fallbackComponent="options.components.deprecationBanner"
+      :fallbackProps="{ description: deprecationNotice }"
+      :rootKey="componentName + '-deprecationNotice'"
       :styleTokens="styleTokens"
-      :title="componentTitle"
+    />
+
+    <!-- DoxenHeader -->
+    <OptionalCustomComponent
+      :customComponent="title"
+      :fallbackComponent="options.components.header"
+      :fallbackProps="{ title: componentTitle }"
+      :rootKey="componentName + '-title'"
+      :styleTokens="styleTokens"
     />
 
     <template v-if="description">
@@ -257,6 +258,7 @@ import DoxenAccordion from '@/components/DoxenAccordion.vue';
 import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
 import HtmlFragments from '@/components/HtmlFragments.vue';
+import OptionalCustomComponent from '@/components/OptionalCustomComponent.vue';
 
 const options = createVueDoxenOptions(true);
 
@@ -266,7 +268,8 @@ export default {
     DoxenAccordion,
     DoxenCodeBox,
     DoxenCodeSwapper,
-    HtmlFragments
+    HtmlFragments,
+    OptionalCustomComponent
   },
   mixins: [applyStyleTokens],
   props: {
@@ -343,6 +346,12 @@ export default {
       return (
         this.demo?.description ||
         this.demo?.component?.description
+      );
+    },
+    deprecationNotice: function () {
+      return (
+        this.demo?.deprecationNotice ||
+        this.demo?.component?.deprecationNotice
       );
     },
     importStatement: function () {

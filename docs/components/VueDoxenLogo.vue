@@ -122,6 +122,7 @@ h1 {
   width: auto;
   margin-right: auto;
   margin-bottom: 0px;
+  line-height: 1.15;
   user-select: none;
   z-index: 2;
 }

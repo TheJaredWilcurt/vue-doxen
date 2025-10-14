@@ -194,6 +194,8 @@ export default {
       }
     },
     styleChanged: function (styleToDemo) {
+      document.body.classList.remove('swapper-' + this.styleToDemo);
+      document.body.classList.add('swapper-' + styleToDemo);
       this.styleToDemo = styleToDemo;
       this.$emit('update:styles', this.styleToDemo);
       this.save();
