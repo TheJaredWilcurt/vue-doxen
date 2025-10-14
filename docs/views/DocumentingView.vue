@@ -106,7 +106,7 @@
         <p>
           If you want to use your own custom deprecation banner, with perhaps a warning icon,
           a default message, maybe some props for what component to use instead, or the
-          version number the component was deprecated or removed,
+          version number the component was deprecated or removed at;
           we support passing in a component.
         </p>
 
