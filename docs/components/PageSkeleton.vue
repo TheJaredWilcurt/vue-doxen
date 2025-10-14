@@ -283,6 +283,28 @@ export default {
   border-radius: 7px;
   padding: 10px 7px;
 }
+.swapper-bootstrap .page {
+  border: 1px solid #DEDEDE;
+}
+.swapper-vuetifyDark .page {
+  background: #F7F7F7;
+  filter: invert(1);
+}
+.swapper-vuetifyDark .code-box{
+  background: #ECECEC;
+}
+.swapper-vuetifyDark .import-statement {
+  background: #999;
+}
+.swapper-water .page {
+  filter: sepia(0.5) invert(1) hue-rotate(330deg) brightness(1.4) contrast(0.8);
+}
+.swapper-water .code-box {
+  background: #FFF;
+}
+.swapper-water .import-statement {
+  background: #A9A9A9;
+}
 .blocks {
   background: #CCC;
   border-radius: 7px;
@@ -352,11 +374,12 @@ export default {
   top: -1px;
   left: -13px;
   display: inline-block;
-  width: 6px;
-  height: 6px;
+  width: 10px;
+  height: 10px;
   background: #EEE8;
   border: 2px solid #CCC;
   border-radius: 2px;
+  box-sizing: border-box;
 }
 .prop-input {
   position: relative;
