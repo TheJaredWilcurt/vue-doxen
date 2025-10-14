@@ -83,7 +83,7 @@
         subTitle="String example"
       >
         <p>
-          Display the text "Deprecated:" in bold, followed by your string in a box at the top of your demo.
+          Displays the text "Deprecated:" in bold, followed by your string in a box at the top of your demo.
         </p>
 
         <DoxenCodeSwapper
