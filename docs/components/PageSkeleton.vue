@@ -3,6 +3,19 @@
     <div class="page">
       <a
         class="flex zone"
+        :class="{ 'zone-hover': hover === DEPRECATION_NOTICE }"
+        href="#deprecation-notice"
+        @mouseover="hover = DEPRECATION_NOTICE"
+        @mouseout="hoverOff"
+        @focus="hover = DEPRECATION_NOTICE"
+        @blur="hoverOff"
+      >
+        <div class="blocks deprecation-banner">
+          <span v-text="DEPRECATION_NOTICE" class="sr-only"></span>
+        </div>
+      </a>
+      <a
+        class="flex zone"
         :class="{ 'zone-hover': hover === COMPONENT_NAME }"
         href="#title-name"
         @mouseover="hover = COMPONENT_NAME"
@@ -81,7 +94,7 @@
       <a
         class="playground zone"
         :class="{ 'zone-hover': hover === SLOTS_PLAYGROUND }"
-        href="#props"
+        href="#slots"
         @mouseover="hover = SLOTS_PLAYGROUND"
         @mouseout="hoverOff"
         @focus="hover = SLOTS_PLAYGROUND"
@@ -98,7 +111,7 @@
       <a
         class="playground zone"
         :class="{ 'zone-hover': hover === EMIT_LOGGER }"
-        href="#props"
+        href="#emits"
         @mouseover="hover = EMIT_LOGGER"
         @mouseout="hoverOff"
         @focus="hover = EMIT_LOGGER"
@@ -186,6 +199,7 @@
 </template>
 
 <script>
+const DEPRECATION_NOTICE = 'Deprecation Notice';
 const COMPONENT_NAME = 'Component Title/Name';
 const COMPONENT_DESCRIPTION = 'Component Description';
 const IMPORT_STATEMENT = 'Import Statement';
@@ -200,6 +214,7 @@ const EMITS_DOCUMENTATION = 'Emits Documentation';
 export default {
   name: 'PageSkeleton',
   constants: {
+    DEPRECATION_NOTICE,
     COMPONENT_NAME,
     COMPONENT_DESCRIPTION,
     IMPORT_STATEMENT,
@@ -238,16 +253,17 @@ export default {
   computed: {
     hoverTextPosition: function () {
       const hoverTextTopOffsetMap = {
-        [COMPONENT_NAME]: 11,
-        [COMPONENT_DESCRIPTION]: 42,
-        [IMPORT_STATEMENT]: 59,
-        [YOUR_COMPONENT]: 99,
-        [PROPS_PLAYGROUND]: 159,
-        [SLOTS_PLAYGROUND]: 223,
-        [EMIT_LOGGER]: 289,
-        [LIVE_CODE]: 376,
-        [PROPS_DOCUMENTATION]: 469,
-        [EMITS_DOCUMENTATION]: 539
+        [DEPRECATION_NOTICE]: 16,
+        [COMPONENT_NAME]: 49,
+        [COMPONENT_DESCRIPTION]: 72,
+        [IMPORT_STATEMENT]: 89,
+        [YOUR_COMPONENT]: 129,
+        [PROPS_PLAYGROUND]: 189,
+        [SLOTS_PLAYGROUND]: 253,
+        [EMIT_LOGGER]: 319,
+        [LIVE_CODE]: 406,
+        [PROPS_DOCUMENTATION]: 499,
+        [EMITS_DOCUMENTATION]: 569
       };
       const top = hoverTextTopOffsetMap[this.hover];
 
@@ -309,9 +325,24 @@ export default {
   background: #CCC;
   border-radius: 7px;
 }
-.header {
+.deprecation-banner {
   width: 100%;
-  height: 30px;
+  height: 31px;
+}
+.deprecation-banner:before {
+  content: '';
+  position: relative;
+  top: 9px;
+  left: 10px;
+  display: block;
+  width: 13px;
+  height: 13px;
+  background: #B5B5B5;
+  border-radius: 20px;
+}
+.header {
+  width: 87px;
+  height: 22px;
 }
 .description {
   width: 190px;

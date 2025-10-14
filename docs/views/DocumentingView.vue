@@ -12,6 +12,13 @@
     <nav>
       <ul>
         <li>
+          <a href="#deprecation-notice">Deprecation Notice</a>
+          <ul>
+            <li><a href="#deprecation-string">String example</a></li>
+            <li><a href="#deprecation-component">Custom component example</a></li>
+          </ul>
+        </li>
+        <li>
           <a href="#title-name">Component Title/Name</a>
           <ul>
             <li><a href="#title">Title (string)</a></li>
@@ -62,6 +69,55 @@
         </li>
       </ul>
     </nav>
+
+    <DocumentationSection id="deprecation-notice" title="Deprecation Notice">
+      <p>
+        This adds a deprecation banner at the top of the page to discourage use of the component,
+        offer an alternative component to use, or warn about the future removal of the component.
+      </p>
+
+      <SubDocumentationSection
+        id="deprecation-string"
+        title="Deprecation Notice"
+        subTitle="String example"
+      >
+        <p>
+          Display the text "Deprecated:" in bold, followed by your string in a box at the top of your demo.
+        </p>
+
+        <DoxenCodeSwapper
+          :codeTypes="{
+            'Demo File': DEPRECATION_NOTICE_DEMO_EXAMPLE,
+            Options: DEPRECATION_NOTICE_OPTIONS_EXAMPLE,
+            Composition: DEPRECATION_NOTICE_OPTIONS_EXAMPLE,
+            'Script Setup': DEPRECATION_NOTICE_SCRIPT_SETUP_EXAMPLE
+          }"
+          :fileName="FILE_NAME_YOUR"
+          :styleTokens="styleTokens"
+        />
+      </SubDocumentationSection>
+
+      <SubDocumentationSection
+        id="deprecation-component"
+        title="Deprecation"
+        subTitle="Custom component example"
+      >
+        <p>
+          If you want to use your own custom deprecation banner, with perhaps a warning icon, or a default message, we support passing in a component.
+        </p>
+
+        <DoxenCodeSwapper
+          :codeTypes="{
+            'Demo File': DEPRECATION_NOTICE_COMPONENT_DEMO_FILE_EXAMPLE,
+            Options: DEPRECATION_NOTICE_COMPONENT_OPTIONS_EXAMPLE,
+            Composition: DEPRECATION_NOTICE_COMPONENT_OPTIONS_EXAMPLE,
+            'Script Setup': DEPRECATION_NOTICE_COMPONENT_SCRIPT_SETUP_EXAMPLE
+          }"
+          :fileName="FILE_NAME_MY"
+          :styleTokens="styleTokens"
+        />
+      </SubDocumentationSection>
+    </DocumentationSection>
 
     <DocumentationSection id="title-name" title="Component Title/Name">
       <p>
@@ -573,6 +629,12 @@ import {
   CUSTOM_COMPONENTS_DEMO_EXAMPLE,
   CUSTOM_COMPONENTS_OPTIONS_EXAMPLE,
   CUSTOM_COMPONENTS_SCRIPT_SETUP_EXAMPLE,
+  DEPRECATION_NOTICE_DEMO_EXAMPLE,
+  DEPRECATION_NOTICE_OPTIONS_EXAMPLE,
+  DEPRECATION_NOTICE_SCRIPT_SETUP_EXAMPLE,
+  DEPRECATION_NOTICE_COMPONENT_DEMO_FILE_EXAMPLE,
+  DEPRECATION_NOTICE_COMPONENT_OPTIONS_EXAMPLE,
+  DEPRECATION_NOTICE_COMPONENT_SCRIPT_SETUP_EXAMPLE,
   DESCRIPTION_COMPONENT_DEMO_FILE_EXAMPLE,
   DESCRIPTION_COMPONENT_OPTIONS_EXAMPLE,
   DESCRIPTION_COMPONENT_SCRIPT_SETUP_EXAMPLE,
@@ -642,6 +704,12 @@ export default {
     CUSTOM_COMPONENTS_DEMO_EXAMPLE,
     CUSTOM_COMPONENTS_OPTIONS_EXAMPLE,
     CUSTOM_COMPONENTS_SCRIPT_SETUP_EXAMPLE,
+    DEPRECATION_NOTICE_DEMO_EXAMPLE,
+    DEPRECATION_NOTICE_OPTIONS_EXAMPLE,
+    DEPRECATION_NOTICE_SCRIPT_SETUP_EXAMPLE,
+    DEPRECATION_NOTICE_COMPONENT_DEMO_FILE_EXAMPLE,
+    DEPRECATION_NOTICE_COMPONENT_OPTIONS_EXAMPLE,
+    DEPRECATION_NOTICE_COMPONENT_SCRIPT_SETUP_EXAMPLE,
     DESCRIPTION_COMPONENT_DEMO_FILE_EXAMPLE,
     DESCRIPTION_COMPONENT_OPTIONS_EXAMPLE,
     DESCRIPTION_COMPONENT_SCRIPT_SETUP_EXAMPLE,
