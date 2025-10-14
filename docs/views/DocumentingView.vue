@@ -73,7 +73,8 @@
     <DocumentationSection id="deprecation-notice" title="Deprecation Notice">
       <p>
         This adds a deprecation banner at the top of the page to discourage use of the component,
-        offer an alternative component to use, or warn about the future removal of the component.
+        offer an alternative component to use, or warn about the future removal of the component,
+        or document when the component was deprecated or removed from the library.
       </p>
 
       <SubDocumentationSection
