@@ -92,6 +92,7 @@
  * @typedef  {object}  LINTERSETTINGSALLEMITS
  * @property {boolean} [description=true]      `description` key must be on the object (can be set to undefined).
  * @property {boolean} [example=false]         `example` key must be on the object (can be set to undefined).
+ * @property {boolean} [value=false]           `value` key must be on the object (can be set to undefined).`
  */
 
 /**

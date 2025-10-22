@@ -6,7 +6,8 @@ describe('Default settings', () => {
       demos: {
         allEmitsMustHave: {
           description: false,
-          example: false
+          example: false,
+          value: false
         },
         allPropsMustHave: {
           allowed: false,
@@ -36,7 +37,8 @@ describe('Default settings', () => {
       demos: {
         allEmitsMustHave: {
           description: true,
-          example: true
+          example: true,
+          value: false
         },
         allPropsMustHave: {
           allowed: true,
@@ -104,7 +106,8 @@ describe('Default settings', () => {
           demos: {
             allEmitsMustHave: {
               description: true,
-              example: false
+              example: false,
+              value: false
             },
             allPropsMustHave: {
               allowed: false,
@@ -180,7 +183,8 @@ describe('Default settings', () => {
           demos: {
             allEmitsMustHave: {
               description: true,
-              example: false
+              example: false,
+              value: false
             },
             allPropsMustHave: {
               allowed: false,

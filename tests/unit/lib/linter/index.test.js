@@ -41,12 +41,12 @@ describe('Doxen linter', () => {
         mustHaveDescription: true
       }
     };
+    let error;
 
     try {
       doxenLinter(demos, options, linterSettings);
-    } catch (error) {
-      expect(error)
-        .toEqual('Vue-Doxen Linter: Found 1 error.');
+    } catch (err) {
+      error = err;
     }
 
     expect(console.info.mock.calls)
@@ -56,6 +56,9 @@ describe('Doxen linter', () => {
         ['Vue-Doxen Linter completed in 0ms.'],
         ['\n1 MyComponent\n']
       ]);
+
+    expect(error)
+      .toEqual('Vue-Doxen Linter: Found 1 error.');
   });
 
   test('Fails on 2 errors - logs out all messages and throws', () => {
@@ -72,12 +75,12 @@ describe('Doxen linter', () => {
         mustHaveDescription: true
       }
     };
+    let error;
 
     try {
       doxenLinter(demos, options, linterSettings);
-    } catch (error) {
-      expect(error)
-        .toEqual('Vue-Doxen Linter: Found 2 errors.');
+    } catch (err) {
+      error = err;
     }
 
     expect(console.info.mock.calls)
@@ -88,5 +91,8 @@ describe('Doxen linter', () => {
         ['Vue-Doxen Linter completed in 0ms.'],
         ['\n1 MyComponent\n1 MyChild\n']
       ]);
+
+    expect(error)
+      .toEqual('Vue-Doxen Linter: Found 2 errors.');
   });
 });
