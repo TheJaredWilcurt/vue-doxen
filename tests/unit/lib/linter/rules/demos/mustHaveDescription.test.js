@@ -1,4 +1,4 @@
-import { mustHaveDescription } from '@/linter/rules/mustHaveDescription.js';
+import { mustHaveDescription } from '@/linter/rules/demos/mustHaveDescription.js';
 
 describe('Must have description', () => {
   const consoleInfo = console.info;
