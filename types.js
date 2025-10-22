@@ -15,7 +15,10 @@
  * @property {boolean}                   [default]           If a prop is not required, this allows setting a default value.
  * @property {PROPVALIDATOR}             [validator]         A custom function to validate a prop input value.
  * @property {string}                    [description]       A description of the prop for documentation purposes.
- * @property {CUSTOMCOMPONENT}           [component]         Replaces the default Vue-Doxen prop playground component with a custom one.
+ * @property {VUECOMPONENT}              [component]         Replaces the default Vue-Doxen prop playground component with a custom one.
+ * @property {PROPDEFINITION}            [props]             The props to be handed to the custom playground component.
+ * @property {Object<string, string>}    [slots]             The slots to be used by the custom playground component.
+ * @property {Object<string, function>}  [events]            The methods to handle emits on the custom playground component.
  * @property {array}                     [allowed]           An array of primitives of the only explicitly allowed values
  * @property {number}                    [min]               The lower bounds of allowed values for some numeric props.
  * @property {number}                    [max]               The upper bounds of allowed values for some numeric props.
@@ -36,16 +39,32 @@
  * @typedef  {object}                  CUSTOMCOMPONENT
  * @property {VUECOMPONENT}            component        The custom component to use.
  * @property {Object<string, any>}     props            The props object to pass to the custom component.
+ * @property {Object<string, string>}  slots            The slot names as keys and their markup as strings (value)
  * @property {Object<string, function} events           Object with methods for each emit event and a callback to run for your custom component.
  */
 
 /**
- * @typedef  {object}                        DEMO
- * @property {VUECOMPONENT}                  component    The component to demo.
- * @property {string|CUSTOMCOMPONENT}        description  Information and context about the component being demo'd.
- * @property {Object<string, PROPDEFINITON>} propsToDemo  Documentation details and playground controls for the props of the component to demo.
- * @property {object}                        emitsToDemo  .
- * @property {object}                        slotsToDemo  .
+ * @typedef  {object} EMITDEFINITION
+ * @property {string} description     The intent of how this emit should be used.
+ * @property {string} example         Any example code you want to add for how to use this emit.
+ * @property {string  value           A description of what value is emitted.
+ */
+
+/** @typedef {Object<string, PROPDEFINITION>} PROPSTODEMO */
+/** @typedef {Object<string, CUSTOMCOMPONENT>} SLOTSTODEMO */
+/** @typedef {Object<string, EMITDEFINITION>} EMITSTODEMO */
+
+/**
+ * @typedef  {object}                  DEMO
+ * @property {VUECOMPONENT}            component          The component to demo.
+ * @property {string|CUSTOMCOMPONENT}  deprecationNotice  Communicates when a component is deprecated and should not be used.
+ * @property {string|CUSTOMCOMPONENT}  title              Optional custom title for the demo page.
+ * @property {string}                  name               The component name, used as a fallback for `title`, and in live code preview.`
+ * @property {string|CUSTOMCOMPONENT}  description        Information and context about the component being demo'd.
+ * @property {string|CUSTOMCOMPONENT}  importStatement    Shows how to import the component being demo'd.
+ * @property {PROPSTODEMO}             propsToDemo        Documentation details and playground controls for the props of the component to demo.
+ * @property {string[]|EMITSTODEMO}    emitsToDemo        To document the component's emits.
+ * @property {string[]|SLOTSTODEMO}    slotsToDemo        To document the component's slots.
  */
 
 /** @typedef {Object<string, DEMO|VUECOMPONENT>} DEMOS */
@@ -79,6 +98,13 @@
 /********** LINTER TYPES **********/
 
 /**
+ * @typedef  {object}  LINTERSETTINGSALLEMITS
+ * @property {boolean} [description=true]      `description` key must be on the object (can be set to undefined).
+ * @property {boolean} [example=false]         `example` key must be on the object (can be set to undefined).
+ * @property {boolean} [value=false]           `value` key must be on the object (can be set to undefined).`
+ */
+
+/**
  * @typedef  {object}  LINTERSETTINGSALLPROPS
  * @property {boolean} [allowed=false]            `allowed` key must be on the object (can be set to undefined).
  * @property {boolean} [description=true]         `description` key must be on the object (can be set to undefined).
@@ -89,28 +115,21 @@
  */
 
 /**
- * @typedef  {object}  LINTERSETTINGSALLEMITS
- * @property {boolean} [description=true]      `description` key must be on the object (can be set to undefined).
- * @property {boolean} [example=false]         `example` key must be on the object (can be set to undefined).
- * @property {boolean} [value=false]           `value` key must be on the object (can be set to undefined).`
- */
-
-/**
  * @typedef  {object}                 LINTERSETTINGSDEMOS
- * @property {LINTERSETTINGSALLPROPS} [allPropsMustHave]                     Linter settings for component prop documentation.
  * @property {LINTERSETTINGSALLEMITS} [allEmitsMustHave]                     Linter settings for component emit documentation.
+ * @property {LINTERSETTINGSALLPROPS} [allPropsMustHave]                     Linter settings for component prop documentation.
  * @property {boolean}                [componentMustBeNamed=false]           Requires a name be defined on the component.
+ * @property {boolean}                [demosMustHaveComponent=false]         If passing in a demo object, it must include the component to demo.
  * @property {boolean}                [descriptionMustEndInPeriod=false]     Warns when description on a demo page does not end in a period.
  *                                                                           Ignores custom component descriptions, missing or empty strings.
+ * @property {boolean}                [doNotBreakVueApi=false]               For `emits: ['foo']` in a component, if you make it an object,
+ *                                                                           that is not allowed by Vue's API.
  * @property {boolean}                [mustHaveDescription=false]            Requires a description (string or custom component) on all
  *                                                                           demos and/or components. (can be set to undefined).
  * @property {boolean}                [mustHaveImportStatemnet=false]        Requires an import statement (string or custom component) on all
  *                                                                           demos and/or components. (can be set to undefined).
  * @property {boolean}                [noCustomComponentsInComponent=false]  If using custom components, they must be imported in a demo object,
  *                                                                           rather than in the component being demo'd to avoid file size bloat.
- * @property {boolean}                [demosMustHaveComponent=false]         If passing in a demo object, it must include the component to demo.
- * @property {boolean}                [doNotBreakVueApi=false]               For `emits: ['foo']` in a component, if you make it an object,
- *                                                                           that is not allowed by Vue's API.
  * @property {boolean}                [noDuplicateSettings=false]            You can define many settings in both the Demo or in the Component.
  *                                                                           If enabled, this setting warns you about duplicates.
  * @property {boolean}                [onlyAllowDemoObjects=false]           Your demos object must not have any top-level components.
