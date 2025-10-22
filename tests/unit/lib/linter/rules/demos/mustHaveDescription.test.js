@@ -11,7 +11,9 @@ describe('Must have description', () => {
     console.info = vi.fn();
     options = {};
     linterSettings = {
-      mustHaveDescription: true
+      demos: {
+        mustHaveDescription: true
+      }
     };
     errors = [];
   });
