@@ -4,6 +4,10 @@ describe('Default settings', () => {
   describe('createSettingsFromDefaults', () => {
     const allSettingsFalse = {
       demos: {
+        allEmitsMustHave: {
+          description: false,
+          example: false
+        },
         allPropsMustHave: {
           allowed: false,
           description: false,
@@ -12,17 +16,13 @@ describe('Default settings', () => {
           type: false,
           validator: false
         },
-        allEmitsMustHave: {
-          description: false,
-          example: false
-        },
         componentMustBeNamed: false,
+        demosMustHaveComponent: false,
         descriptionMustEndInPeriod: false,
+        doNotBreakVueApi: false,
         mustHaveDescription: false,
         mustHaveImportStatemnet: false,
         noCustomComponentsInComponent: false,
-        demosMustHaveComponent: false,
-        doNotBreakVueApi: false,
         noDuplicateSettings: false,
         onlyAllowDemoObjects: false
       },
@@ -34,6 +34,10 @@ describe('Default settings', () => {
 
     const allSettingsTrue = {
       demos: {
+        allEmitsMustHave: {
+          description: true,
+          example: true
+        },
         allPropsMustHave: {
           allowed: true,
           description: true,
@@ -42,17 +46,13 @@ describe('Default settings', () => {
           type: true,
           validator: true
         },
-        allEmitsMustHave: {
-          description: true,
-          example: true
-        },
         componentMustBeNamed: true,
+        demosMustHaveComponent: true,
         descriptionMustEndInPeriod: true,
+        doNotBreakVueApi: true,
         mustHaveDescription: true,
         mustHaveImportStatemnet: true,
         noCustomComponentsInComponent: true,
-        demosMustHaveComponent: true,
-        doNotBreakVueApi: true,
         noDuplicateSettings: true,
         onlyAllowDemoObjects: true
       },
@@ -89,10 +89,10 @@ describe('Default settings', () => {
     test('Overrides subset of defaults', () => {
       const linterSettings = {
         demos: {
-          allPropsMustHave: {
+          allEmitsMustHave: {
             description: true
           },
-          allEmitsMustHave: {
+          allPropsMustHave: {
             description: true
           },
           mustHaveDescription: true
@@ -102,6 +102,10 @@ describe('Default settings', () => {
       expect(createSettingsFromDefaults(linterSettings))
         .toEqual({
           demos: {
+            allEmitsMustHave: {
+              description: true,
+              example: false
+            },
             allPropsMustHave: {
               allowed: false,
               description: true,
@@ -110,17 +114,13 @@ describe('Default settings', () => {
               type: false,
               validator: false
             },
-            allEmitsMustHave: {
-              description: true,
-              example: false
-            },
             componentMustBeNamed: false,
+            demosMustHaveComponent: false,
             descriptionMustEndInPeriod: false,
+            doNotBreakVueApi: false,
             mustHaveDescription: true,
             mustHaveImportStatemnet: false,
             noCustomComponentsInComponent: false,
-            demosMustHaveComponent: false,
-            doNotBreakVueApi: false,
             noDuplicateSettings: false,
             onlyAllowDemoObjects: false
           },
@@ -150,6 +150,14 @@ describe('Default settings', () => {
             l: true,
             m: false
           },
+          allEmitsMustHave: {
+            description: true,
+            w: true,
+            x: {
+              y: true,
+              z: false
+            }
+          },
           allPropsMustHave: {
             description: true,
             o: true,
@@ -163,14 +171,6 @@ describe('Default settings', () => {
               }
             }
           },
-          allEmitsMustHave: {
-            description: true,
-            w: true,
-            x: {
-              y: true,
-              z: false
-            }
-          },
           mustHaveDescription: true
         }
       };
@@ -178,6 +178,10 @@ describe('Default settings', () => {
       expect(createSettingsFromDefaults(linterSettings))
         .toEqual({
           demos: {
+            allEmitsMustHave: {
+              description: true,
+              example: false
+            },
             allPropsMustHave: {
               allowed: false,
               description: true,
@@ -186,17 +190,13 @@ describe('Default settings', () => {
               type: false,
               validator: false
             },
-            allEmitsMustHave: {
-              description: true,
-              example: false
-            },
             componentMustBeNamed: false,
+            demosMustHaveComponent: false,
             descriptionMustEndInPeriod: false,
+            doNotBreakVueApi: false,
             mustHaveDescription: true,
             mustHaveImportStatemnet: false,
             noCustomComponentsInComponent: false,
-            demosMustHaveComponent: false,
-            doNotBreakVueApi: false,
             noDuplicateSettings: false,
             onlyAllowDemoObjects: false
           },
