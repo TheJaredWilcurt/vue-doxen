@@ -1,6 +1,6 @@
 import { mustHaveDescription } from '@/linter/rules/demos/mustHaveDescription.js';
 
-describe('Must have description', () => {
+describe('Demos must have a description', () => {
   const consoleInfo = console.info;
   const demoName = 'MyComponent';
   let options;
