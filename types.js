@@ -99,7 +99,7 @@
 
 /**
  * @typedef  {object}  LINTERSETTINGSALLEMITS
- * @property {boolean} [description=true]      `description` key must be on the object (can be set to undefined).
+ * @property {boolean} [description=false]     `description` key must be on the object (can be set to undefined).
  * @property {boolean} [example=false]         `example` key must be on the object (can be set to undefined).
  * @property {boolean} [value=false]           `value` key must be on the object (can be set to undefined).`
  */
@@ -107,7 +107,8 @@
 /**
  * @typedef  {object}  LINTERSETTINGSALLPROPS
  * @property {boolean} [allowed=false]            `allowed` key must be on the object (can be set to undefined).
- * @property {boolean} [description=true]         `description` key must be on the object (can be set to undefined).
+ * @property {boolean} [deprecated=false]         Prop must have either `deprecated: true` or `deprecated: false` set.
+ * @property {boolean} [description=false]        `description` key must be on the object (can be set to undefined).
  * @property {boolean} [example=false]            `example` key must be on the object (can be set to undefined).
  * @property {boolean} [requiredOrDefault=false]  Must have either a `required: true` or a `default` key on the object (can be set to undefined).
  * @property {boolean} [type=false]               `type` key must be on the object (can be set to undefined).
@@ -120,6 +121,7 @@
  * @property {LINTERSETTINGSALLPROPS} [allPropsMustHave]                     Linter settings for component prop documentation.
  * @property {boolean}                [componentMustBeNamed=false]           Requires a name be defined on the component.
  * @property {boolean}                [demosMustHaveComponent=false]         If passing in a demo object, it must include the component to demo.
+ * @property {boolean}                [deprecatedMustBeSet]                  All components/demos must have either `deprecated: true` or `deprecated: false` set.
  * @property {boolean}                [descriptionMustEndInPeriod=false]     Warns when description on a demo page does not end in a period.
  *                                                                           Ignores custom component descriptions, missing or empty strings.
  * @property {boolean}                [doNotBreakVueApi=false]               For `emits: ['foo']` in a component, if you make it an object,

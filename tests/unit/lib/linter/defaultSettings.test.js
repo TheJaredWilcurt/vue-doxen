@@ -11,6 +11,7 @@ describe('Default settings', () => {
         },
         allPropsMustHave: {
           allowed: false,
+          deprecated: false,
           description: false,
           example: false,
           requiredOrDefault: false,
@@ -19,6 +20,7 @@ describe('Default settings', () => {
         },
         componentMustBeNamed: false,
         demosMustHaveComponent: false,
+        deprecatedMustBeSet: false,
         descriptionMustEndInPeriod: false,
         doNotBreakVueApi: false,
         mustHaveDescription: false,
@@ -42,6 +44,7 @@ describe('Default settings', () => {
         },
         allPropsMustHave: {
           allowed: true,
+          deprecated: true,
           description: true,
           example: true,
           requiredOrDefault: true,
@@ -50,6 +53,7 @@ describe('Default settings', () => {
         },
         componentMustBeNamed: true,
         demosMustHaveComponent: true,
+        deprecatedMustBeSet: true,
         descriptionMustEndInPeriod: true,
         doNotBreakVueApi: true,
         mustHaveDescription: true,
@@ -111,6 +115,7 @@ describe('Default settings', () => {
             },
             allPropsMustHave: {
               allowed: false,
+              deprecated: false,
               description: true,
               example: false,
               requiredOrDefault: false,
@@ -119,6 +124,7 @@ describe('Default settings', () => {
             },
             componentMustBeNamed: false,
             demosMustHaveComponent: false,
+            deprecatedMustBeSet: false,
             descriptionMustEndInPeriod: false,
             doNotBreakVueApi: false,
             mustHaveDescription: true,
@@ -188,6 +194,7 @@ describe('Default settings', () => {
             },
             allPropsMustHave: {
               allowed: false,
+              deprecated: false,
               description: true,
               example: false,
               requiredOrDefault: false,
@@ -196,6 +203,7 @@ describe('Default settings', () => {
             },
             componentMustBeNamed: false,
             demosMustHaveComponent: false,
+            deprecatedMustBeSet: false,
             descriptionMustEndInPeriod: false,
             doNotBreakVueApi: false,
             mustHaveDescription: true,
