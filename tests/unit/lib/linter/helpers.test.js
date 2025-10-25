@@ -1,4 +1,4 @@
-import {} from '@/linter/helpers.js';
+import { unindent } from '@/linter/helpers.js';
 
 describe('Linter helpers', () => {
   describe('Unindent', () => {
@@ -11,8 +11,8 @@ describe('Linter helpers', () => {
     });
 
     test('Unindents and trims text', () => {
-      expect(unindent('  a\n  b\n'))
-        .toEqual('a\nb');;
+      expect(unindent('\n  a\n  b\n'))
+        .toEqual('a\nb');
     });
   });
 });
