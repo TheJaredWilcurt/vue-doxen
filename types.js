@@ -47,7 +47,7 @@
  * @typedef  {object} EMITDEFINITION
  * @property {string} description     The intent of how this emit should be used.
  * @property {string} example         Any example code you want to add for how to use this emit.
- * @property {string  value           A description of what value is emitted.
+ * @property {string} value           A description of what value is emitted.
  */
 
 /** @typedef {Object<string, PROPDEFINITION>} PROPSTODEMO */
