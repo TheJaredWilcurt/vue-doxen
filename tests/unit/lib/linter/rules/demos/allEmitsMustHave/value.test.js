@@ -258,7 +258,7 @@ describe('Emits must have a value defined', () => {
     expect(!!allEmitsMustHaveValue.url)
       .toEqual(true);
 
-    expect(!!allEmitsMustHaveValue.examples.length)
+    expect(!!Object.keys(allEmitsMustHaveValue.examples).length)
       .toEqual(true);
   });
 });

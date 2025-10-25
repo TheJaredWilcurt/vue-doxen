@@ -162,7 +162,7 @@ describe('Demos must have a description', () => {
     expect(!!mustHaveDescription.url)
       .toEqual(true);
 
-    expect(!!mustHaveDescription.examples.length)
+    expect(!!Object.keys(mustHaveDescription.examples).length)
       .toEqual(true);
   });
 });

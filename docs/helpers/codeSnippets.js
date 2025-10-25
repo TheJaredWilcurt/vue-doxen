@@ -1,21 +1,5 @@
-function unindent (value) {
-  if (
-    !value.startsWith('  ') &&
-    !value.startsWith('\n  ')
-  ) {
-    return value;
-  }
-  return value
-    .split('\n')
-    .map((line) => {
-      if (line.startsWith('  ')) {
-        return line.replace('  ', '');
-      }
-      return line;
-    })
-    .join('\n')
-    .trim();
-}
+import { unindent } from '@/linter/helpers.js';
+
 function templatePrefix (template, script) {
   return [
     unindent(template),

@@ -346,7 +346,7 @@ describe('Props must have a description', () => {
     expect(!!allPropsMustHaveDescription.url)
       .toEqual(true);
 
-    expect(!!allPropsMustHaveDescription.examples.length)
+    expect(!!Object.keys(allPropsMustHaveDescription.examples).length)
       .toEqual(true);
   });
 });

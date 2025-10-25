@@ -346,7 +346,7 @@ describe('Props must have an example', () => {
     expect(!!allPropsMustHaveExample.url)
       .toEqual(true);
 
-    expect(!!allPropsMustHaveExample.examples.length)
+    expect(!!Object.keys(allPropsMustHaveExample.examples).length)
       .toEqual(true);
   });
 });

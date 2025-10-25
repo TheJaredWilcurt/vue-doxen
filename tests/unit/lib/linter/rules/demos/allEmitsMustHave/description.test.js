@@ -258,7 +258,7 @@ describe('Emits must have a description', () => {
     expect(!!allEmitsMustHaveDescription.url)
       .toEqual(true);
 
-    expect(!!allEmitsMustHaveDescription.examples.length)
+    expect(!!Object.keys(allEmitsMustHaveDescription.examples).length)
       .toEqual(true);
   });
 });

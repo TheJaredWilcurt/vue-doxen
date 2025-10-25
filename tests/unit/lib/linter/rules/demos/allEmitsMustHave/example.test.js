@@ -258,7 +258,7 @@ describe('Emits must have an example', () => {
     expect(!!allEmitsMustHaveExample.url)
       .toEqual(true);
 
-    expect(!!allEmitsMustHaveExample.examples.length)
+    expect(!!Object.keys(allEmitsMustHaveExample.examples).length)
       .toEqual(true);
   });
 });

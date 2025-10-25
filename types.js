@@ -158,18 +158,19 @@
  */
 
 /**
- * @typedef  {object} RULEEXAMPLE
- * @property {string} title        A summary of what this example shows.
- * @property {string} description  An explanation of the example.
- * @property {string} code         A code representation of the example.
+ * @typedef  {object} RULEEXAMPLES
+ * @property {string} ['Demo File']     An example using a Demo File that passes the rule.
+ * @property {string} [Options]         An example using the Options API that passes the rule.
+ * @property {string} [Composition]     An example using the Composition API that passes the rule.
+ * @property {string} ['Script Setup']  An example using the Script Setup API that passes the rule.
  */
 
 /**
- * @typedef  {object}        RULEDEFINITION
- * @property {RULE}          rule            A function to validate demos pass or violate this rule.
- * @property {string}        description     An explanation of what this rule enforces.
- * @property {string}        url             Online resource for more information about this rule/topic.
- * @property {RULEEXAMPLE[]} examples        Examples for how to correct the linting violation
+ * @typedef  {object}       RULEDEFINITION
+ * @property {RULE}         rule            A function to validate demos pass or violate this rule.
+ * @property {string}       description     An explanation of what this rule enforces.
+ * @property {string}       url             Online resource for more information about this rule/topic.
+ * @property {RULEEXAMPLES} examples        Examples for how to correct the linting violation.
  */
 
 export const types = {};
