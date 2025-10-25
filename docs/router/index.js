@@ -52,6 +52,11 @@ const routes = [
     component: () => import('@@@/views/TreeShaking.vue').catch(Catch)
   },
   {
+    path: '/vue-doxen/linter',
+    name: 'linter',
+    component: () => import('@@@/views/DoxenLinter.vue').catch(Catch)
+  },
+  {
     path: '/vue-doxen/branding',
     name: 'branding',
     component: () => import('@@@/views/PressKit.vue').catch(Catch)

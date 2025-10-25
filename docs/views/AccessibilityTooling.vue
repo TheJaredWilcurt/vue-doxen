@@ -266,62 +266,63 @@ import { styleTokens } from '@/helpers/props.js';
 
 import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
+import { unindent } from '@/linter/helpers.js';
 import AccessibilityCard from '@@@/components/AccessibilityCard.vue';
 import DocumentationSection from '@@@/components/DocumentationSection.vue';
 
-const ESLINT_EXAMPLE = `
-import pluginVueA11y from 'eslint-plugin-vuejs-accessibility';
+const ESLINT_EXAMPLE = unindent(`
+  import pluginVueA11y from 'eslint-plugin-vuejs-accessibility';
 
-export default [
-  ...pluginVueA11y.configs['flat/recommended'],
+  export default [
+    ...pluginVueA11y.configs['flat/recommended'],
+    {
+      languageOptions: {
+        ecmaVersion: 2025
+      },
+      // project specific rules/settings
+      rules: {
+        'vuejs-accessibility/label-has-for': [
+          'error',
+          {
+            components: ['Label'],
+            required: {
+              some: ['nesting', 'id']
+            },
+            allowChildren: false
+          }
+        ]
+      }
+    }
+  ];
+`);
+const LINT_SCRIPT_EXAMPLE = unindent(`
   {
-    languageOptions: {
-      ecmaVersion: 2025
-    },
-    // project specific rules/settings
-    rules: {
-      'vuejs-accessibility/label-has-for': [
-        'error',
-        {
-          components: ['Label'],
-          required: {
-            some: ['nesting', 'id']
-          },
-          allowChildren: false
-        }
-      ]
+    "scripts": {
+      "lint": "eslint --ext .js,.vue src vite.config.js"
     }
   }
-];
-`.trim();
-const LINT_SCRIPT_EXAMPLE = `
-{
-  "scripts": {
-    "lint": "eslint --ext .js,.vue src vite.config.js"
-  }
-}
-`.trim();
-const BAD_IMAGE = `
-<template>
-  <img
-    src="@/assets/vue-doxen-dog.png"
-    @click="bark"
-  />
-</template>
-`.trim();
-const GOOD_IMAGE = `
-<template>
-  <img
-    alt="A doxen dog with a green chest in the shape of the Vue logo"
-    src="@/assets/vue-doxen-dog.png"
-    role="button"
-    tabindex="0"
-    @click="bark"
-    @keyup.enter="bark"
-    @keydown.space.prevent="bark"
-  />
-</template>
-`.trim();
+`);
+const BAD_IMAGE = unindent(`
+  <template>
+    <img
+      src="@/assets/vue-doxen-dog.png"
+      @click="bark"
+    />
+  </template>
+`);
+const GOOD_IMAGE = unindent(`
+  <template>
+    <img
+      alt="A doxen dog with a green chest in the shape of the Vue logo"
+      src="@/assets/vue-doxen-dog.png"
+      role="button"
+      tabindex="0"
+      @click="bark"
+      @keyup.enter="bark"
+      @keydown.space.prevent="bark"
+    />
+  </template>
+`);
 
 export default {
   name: 'AccessibilityOptions',

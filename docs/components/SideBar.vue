@@ -52,6 +52,7 @@ export default {
         demoFiles: 'Demo Files',
         vueRouter: 'Vue-Router',
         treeShaking: 'Tree Shaking',
+        linter: 'Linting',
         branding: 'Press Kit/Branding',
         a11y: 'Accessibility'
       };
