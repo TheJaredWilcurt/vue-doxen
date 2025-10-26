@@ -26,131 +26,131 @@
         <a href="#linter-settings">Linter Settings</a>
         <ul>
           <li>
-            demos
+            Demos
             <ul>
               <li>
-                allEmitsMustHave
+                All Emits Must Have
                 <ul>
                   <li>
                     <a href="#demos-allEmitsMustHave-description">
-                      description
+                      Description
                     </a>
                   </li>
                   <li>
                     <a href="#demos-allEmitsMustHave-example">
-                      example
+                      Example
                     </a>
                   </li>
                   <li>
                     <a href="#demos-allEmitsMustHave-value">
-                      value
+                      Value
                     </a>
                   </li>
                 </ul>
               </li>
               <li>
-                allPropsMustHave
+                All Props Must Have
                 <ul>
                   <li>
                     <a href="#demos-allPropsMustHave-allowed">
-                      allowed
+                      Allowed
                     </a>
                   </li>
                   <li>
                     <a href="#demos-allPropsMustHave-deprecated">
-                      deprecated
+                      Deprecated
                     </a>
                   </li>
                   <li>
                     <a href="#demos-allPropsMustHave-description">
-                      description
+                      Description
                     </a>
                   </li>
                   <li>
                     <a href="#demos-allPropsMustHave-example">
-                      example
+                      Example
                     </a>
                   </li>
                   <li>
                     <a href="#demos-allPropsMustHave-requiredOrDefault">
-                      requiredOrDefault
+                      Required Or Default
                     </a>
                   </li>
                   <li>
                     <a href="#demos-allPropsMustHave-type">
-                      type
+                      Type
                     </a>
                   </li>
                   <li>
                     <a href="#demos-allPropsMustHave-validator">
-                      validator
+                      Validator
                     </a>
                   </li>
                 </ul>
               </li>
               <li>
                 <a href="#demos-componentMustBeNamed">
-                  componentMustBeNamed
+                  Component Must Be Named
                 </a>
               </li>
               <li>
                 <a href="#demos-demosMustHaveComponent">
-                  demosMustHaveComponent
+                  Demos Must Have Component
                 </a>
               </li>
               <li>
                 <a href="#demos-deprecatedMustBeSet">
-                  deprecatedMustBeSet
+                  Deprecated Must Be Set
                 </a>
               </li>
               <li>
                 <a href="#demos-descriptionMustEndInPeriod">
-                  descriptionMustEndInPeriod
+                  Description Must End In Period
                 </a>
               </li>
               <li>
                 <a href="#demos-doNotBreakVueApi">
-                  doNotBreakVueApi
+                  Do Not Break Vue API
                 </a>
               </li>
               <li>
                 <a href="#demos-mustHaveDescription">
-                  mustHaveDescription
+                  Must Have Description
                 </a>
               </li>
               <li>
                 <a href="#demos-mustHaveImportStatemnet">
-                  mustHaveImportStatemnet
+                  Must Have Import Statemnet
                 </a>
               </li>
               <li>
                 <a href="#demos-noCustomComponentsInComponent">
-                  noCustomComponentsInComponent
+                  No Custom Components In Component
                 </a>
               </li>
               <li>
                 <a href="#demos-noDuplicateSettings">
-                  noDuplicateSettings
+                  No Duplicate Settings
                 </a>
               </li>
               <li>
                 <a href="#demos-onlyAllowDemoObjects">
-                  onlyAllowDemoObjects
+                  Only Allow Demo Objects
                 </a>
               </li>
             </ul>
           </li>
           <li>
-            options
+            Options
             <ul>
               <li>
                 <a href="#options-allComponentsMustBeReplaced">
-                  allComponentsMustBeReplaced
+                  All Components Must Be Replaced
                 </a>
               </li>
               <li>
                 <a href="#options-noMissingComponents">
-                  noMissingComponents
+                  No Missing Components
                 </a>
               </li>
             </ul>
