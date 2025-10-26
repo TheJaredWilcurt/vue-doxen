@@ -4,6 +4,8 @@ describe('Emits must have an example', () => {
   const consoleInfo = console.info;
   const demoName = 'MyComponent';
   const emitName = 'myEmit';
+  const key = 'example';
+  const message = 'The ' + demoName + ' emit ' + emitName + ' must have an example.';
   let options;
   let linterSettings;
   let errors;
@@ -14,7 +16,7 @@ describe('Emits must have an example', () => {
     linterSettings = {
       demos: {
         allEmitsMustHave: {
-          example: true
+          [key]: true
         }
       }
     };
@@ -38,7 +40,7 @@ describe('Emits must have an example', () => {
         allEmitsMustHaveExample.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith('The ' + demoName + ' emit ' + emitName + ' must have an example.');
+          .toHaveBeenCalledWith(message);
 
         expect(errors)
           .toEqual([demoName]);
@@ -55,7 +57,7 @@ describe('Emits must have an example', () => {
         allEmitsMustHaveExample.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith('The ' + demoName + ' emit ' + emitName + ' must have an example.');
+          .toHaveBeenCalledWith(message);
 
         expect(errors)
           .toEqual([demoName]);
@@ -66,7 +68,7 @@ describe('Emits must have an example', () => {
           [demoName]: {
             emitsToDemo: {
               [emitName]: {
-                example: '@' + emitName + '="myMethod"'
+                [key]: '@' + emitName + '="myMethod"'
               }
             }
           }
@@ -85,7 +87,7 @@ describe('Emits must have an example', () => {
           [demoName]: {
             emitsToDemo: {
               [emitName]: {
-                example: undefined
+                [key]: undefined
               }
             }
           }
@@ -113,7 +115,7 @@ describe('Emits must have an example', () => {
           allEmitsMustHaveExample.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith('The ' + demoName + ' emit ' + emitName + ' must have an example.');
+            .toHaveBeenCalledWith(message);
 
           expect(errors)
             .toEqual([demoName]);
@@ -132,7 +134,7 @@ describe('Emits must have an example', () => {
           allEmitsMustHaveExample.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith('The ' + demoName + ' emit ' + emitName + ' must have an example.');
+            .toHaveBeenCalledWith(message);
 
           expect(errors)
             .toEqual([demoName]);
@@ -144,7 +146,7 @@ describe('Emits must have an example', () => {
               component: {
                 emitsToDemo: {
                   [emitName]: {
-                    example: '@' + emitName + '="myMethod"'
+                    [key]: '@' + emitName + '="myMethod"'
                   }
                 }
               }
@@ -165,7 +167,7 @@ describe('Emits must have an example', () => {
               component: {
                 emitsToDemo: {
                   [emitName]: {
-                    example: undefined
+                    [key]: undefined
                   }
                 }
               }
@@ -183,7 +185,7 @@ describe('Emits must have an example', () => {
     });
 
     describe('Emits and emitsToDemo as arrays', () => {
-      test('Catches the missing example', () => {
+      test('Catches the missing prop', () => {
         const demos = {
           [demoName]: {
             emitsToDemo: [emitName]
@@ -192,7 +194,7 @@ describe('Emits must have an example', () => {
         allEmitsMustHaveExample.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith('The ' + demoName + ' emit ' + emitName + ' must have an example.');
+          .toHaveBeenCalledWith(message);
 
         expect(errors)
           .toEqual([demoName]);
@@ -207,14 +209,14 @@ describe('Emits must have an example', () => {
         allEmitsMustHaveExample.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith('The ' + demoName + ' emit ' + emitName + ' must have an example.');
+          .toHaveBeenCalledWith(message);
 
         expect(errors)
           .toEqual([demoName]);
       });
 
       describe('Description inside component', () => {
-        test('Catches the missing example', () => {
+        test('Catches the missing prop', () => {
           const demos = {
             [demoName]: {
               component: {
@@ -225,7 +227,7 @@ describe('Emits must have an example', () => {
           allEmitsMustHaveExample.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith('The ' + demoName + ' emit ' + emitName + ' must have an example.');
+            .toHaveBeenCalledWith(message);
 
           expect(errors)
             .toEqual([demoName]);
@@ -242,7 +244,7 @@ describe('Emits must have an example', () => {
           allEmitsMustHaveExample.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith('The ' + demoName + ' emit ' + emitName + ' must have an example.');
+            .toHaveBeenCalledWith(message);
 
           expect(errors)
             .toEqual([demoName]);

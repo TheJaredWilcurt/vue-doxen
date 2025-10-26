@@ -3,6 +3,8 @@ import { mustHaveDescription } from '@/linter/rules/demos/mustHaveDescription.js
 describe('Demos must have a description', () => {
   const consoleInfo = console.info;
   const demoName = 'MyComponent';
+  const key = 'description';
+  const message = 'The ' + demoName + ' demo must have a component description.';
   let options;
   let linterSettings;
   let errors;
@@ -30,7 +32,7 @@ describe('Demos must have a description', () => {
       mustHaveDescription.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith('The ' + demoName + ' demo must have a component description.');
+        .toHaveBeenCalledWith(message);
 
       expect(errors)
         .toEqual([demoName]);
@@ -38,7 +40,9 @@ describe('Demos must have a description', () => {
 
     test('Passes when description is string', () => {
       const demos = {
-        [demoName]: { description: 'text' }
+        [demoName]: {
+          [key]: 'text'
+        }
       };
       mustHaveDescription.rule(demos, options, linterSettings, errors);
 
@@ -51,7 +55,9 @@ describe('Demos must have a description', () => {
 
     test('Passes when description is explicitly set to undefined', () => {
       const demos = {
-        [demoName]: { description: undefined }
+        [demoName]: {
+          [key]: undefined
+        }
       };
       mustHaveDescription.rule(demos, options, linterSettings, errors);
 
@@ -65,7 +71,7 @@ describe('Demos must have a description', () => {
     test('Passes when description is a component', () => {
       const demos = {
         [demoName]: {
-          description: {
+          [key]: {
             name: demoName
           }
         }
@@ -91,7 +97,7 @@ describe('Demos must have a description', () => {
         mustHaveDescription.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith('The ' + demoName + ' demo must have a component description.');
+          .toHaveBeenCalledWith(message);
 
         expect(errors)
           .toEqual([demoName]);
@@ -102,7 +108,7 @@ describe('Demos must have a description', () => {
           [demoName]: {
             component: {
               name: demoName,
-              description: 'text'
+              [key]: 'text'
             }
           }
         };
@@ -120,7 +126,7 @@ describe('Demos must have a description', () => {
           [demoName]: {
             component: {
               name: demoName,
-              description: undefined
+              [key]: undefined
             }
           }
         };
@@ -138,7 +144,7 @@ describe('Demos must have a description', () => {
           [demoName]: {
             component: {
               name: demoName,
-              description: {
+              [key]: {
                 name: demoName
               }
             }

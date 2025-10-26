@@ -4,6 +4,8 @@ describe('Props must have a description', () => {
   const consoleInfo = console.info;
   const demoName = 'MyComponent';
   const propName = 'myProp';
+  const key = 'description';
+  const message = 'The ' + demoName + ' prop ' + propName + ' must have a description.';
   let options;
   let linterSettings;
   let errors;
@@ -14,7 +16,7 @@ describe('Props must have a description', () => {
     linterSettings = {
       demos: {
         allPropsMustHave: {
-          description: true
+          [key]: true
         }
       }
     };
@@ -39,7 +41,7 @@ describe('Props must have a description', () => {
           allPropsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + ' must have a description.');
+            .toHaveBeenCalledWith(message);
 
           expect(errors)
             .toEqual([demoName]);
@@ -50,7 +52,7 @@ describe('Props must have a description', () => {
             [demoName]: {
               props: {
                 [propName]: {
-                  description: 'Text'
+                  [key]: 'Text'
                 }
               }
             }
@@ -69,7 +71,7 @@ describe('Props must have a description', () => {
             [demoName]: {
               props: {
                 [propName]: {
-                  description: undefined
+                  [key]: undefined
                 }
               }
             }
@@ -96,7 +98,7 @@ describe('Props must have a description', () => {
           allPropsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + ' must have a description.');
+            .toHaveBeenCalledWith(message);
 
           expect(errors)
             .toEqual([demoName]);
@@ -107,7 +109,7 @@ describe('Props must have a description', () => {
             [demoName]: {
               propsToDemo: {
                 [propName]: {
-                  description: 'Text'
+                  [key]: 'Text'
                 }
               }
             }
@@ -126,7 +128,7 @@ describe('Props must have a description', () => {
             [demoName]: {
               propsToDemo: {
                 [propName]: {
-                  description: undefined
+                  [key]: undefined
                 }
               }
             }
@@ -156,7 +158,7 @@ describe('Props must have a description', () => {
             allPropsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + ' must have a description.');
+              .toHaveBeenCalledWith(message);
 
             expect(errors)
               .toEqual([demoName]);
@@ -168,7 +170,7 @@ describe('Props must have a description', () => {
                 component: {
                   props: {
                     [propName]: {
-                      description: 'Text'
+                      [key]: 'Text'
                     }
                   }
                 }
@@ -189,7 +191,7 @@ describe('Props must have a description', () => {
                 component: {
                   props: {
                     [propName]: {
-                      description: undefined
+                      [key]: undefined
                     }
                   }
                 }
@@ -219,7 +221,7 @@ describe('Props must have a description', () => {
             allPropsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + ' must have a description.');
+              .toHaveBeenCalledWith(message);
 
             expect(errors)
               .toEqual([demoName]);
@@ -231,7 +233,7 @@ describe('Props must have a description', () => {
                 component: {
                   propsToDemo: {
                     [propName]: {
-                      description: 'Text'
+                      [key]: 'Text'
                     }
                   }
                 }
@@ -252,7 +254,7 @@ describe('Props must have a description', () => {
                 component: {
                   propsToDemo: {
                     [propName]: {
-                      description: undefined
+                      [key]: undefined
                     }
                   }
                 }
@@ -271,7 +273,7 @@ describe('Props must have a description', () => {
     });
 
     describe('Props and propsToDemo as arrays', () => {
-      test('Catches the missing description', () => {
+      test('Catches the missing prop', () => {
         const demos = {
           [demoName]: {
             props: [propName]
@@ -280,7 +282,7 @@ describe('Props must have a description', () => {
         allPropsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + ' must have a description.');
+          .toHaveBeenCalledWith(message);
 
         expect(errors)
           .toEqual([demoName]);
@@ -295,14 +297,14 @@ describe('Props must have a description', () => {
         allPropsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + ' must have a description.');
+          .toHaveBeenCalledWith(message);
 
         expect(errors)
           .toEqual([demoName]);
       });
 
       describe('Inside component', () => {
-        test('Catches the missing description', () => {
+        test('Catches the missing prop', () => {
           const demos = {
             [demoName]: {
               component: {
@@ -313,7 +315,7 @@ describe('Props must have a description', () => {
           allPropsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + ' must have a description.');
+            .toHaveBeenCalledWith(message);
 
           expect(errors)
             .toEqual([demoName]);
@@ -330,7 +332,7 @@ describe('Props must have a description', () => {
           allPropsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + ' must have a description.');
+            .toHaveBeenCalledWith(message);
 
           expect(errors)
             .toEqual([demoName]);

@@ -5,7 +5,14 @@ describe('Props must have allowed set', () => {
   const demoName = 'MyComponent';
   const propName = 'myProp';
   const key = 'allowed';
-  const messageSuffix = ' must have an allowed key set to undefined or an array of primitives.';
+  const message = [
+    'The',
+    demoName,
+    'prop',
+    propName,
+    'must have an allowed key set to undefined',
+    'or an array of primitives.'
+  ].join(' ');
   const ARRAY_OF_PRIMITIVES = Object.freeze([
     true,
     3,
@@ -56,7 +63,7 @@ describe('Props must have allowed set', () => {
           allPropsMustHaveAllowed.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + messageSuffix);
+            .toHaveBeenCalledWith(message);
 
           expect(errors)
             .toEqual([demoName]);
@@ -113,7 +120,7 @@ describe('Props must have allowed set', () => {
           allPropsMustHaveAllowed.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + messageSuffix);
+            .toHaveBeenCalledWith(message);
 
           expect(errors)
             .toEqual([demoName]);
@@ -151,7 +158,7 @@ describe('Props must have allowed set', () => {
           allPropsMustHaveAllowed.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + messageSuffix);
+            .toHaveBeenCalledWith(message);
 
           expect(errors)
             .toEqual([demoName]);
@@ -208,7 +215,7 @@ describe('Props must have allowed set', () => {
           allPropsMustHaveAllowed.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + messageSuffix);
+            .toHaveBeenCalledWith(message);
 
           expect(errors)
             .toEqual([demoName]);
@@ -249,7 +256,7 @@ describe('Props must have allowed set', () => {
             allPropsMustHaveAllowed.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + messageSuffix);
+              .toHaveBeenCalledWith(message);
 
             expect(errors)
               .toEqual([demoName]);
@@ -312,7 +319,7 @@ describe('Props must have allowed set', () => {
             allPropsMustHaveAllowed.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + messageSuffix);
+              .toHaveBeenCalledWith(message);
 
             expect(errors)
               .toEqual([demoName]);
@@ -354,7 +361,7 @@ describe('Props must have allowed set', () => {
             allPropsMustHaveAllowed.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + messageSuffix);
+              .toHaveBeenCalledWith(message);
 
             expect(errors)
               .toEqual([demoName]);
@@ -417,7 +424,7 @@ describe('Props must have allowed set', () => {
             allPropsMustHaveAllowed.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + messageSuffix);
+              .toHaveBeenCalledWith(message);
 
             expect(errors)
               .toEqual([demoName]);
@@ -457,7 +464,7 @@ describe('Props must have allowed set', () => {
         allPropsMustHaveAllowed.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + messageSuffix);
+          .toHaveBeenCalledWith(message);
 
         expect(errors)
           .toEqual([demoName]);
@@ -472,7 +479,7 @@ describe('Props must have allowed set', () => {
         allPropsMustHaveAllowed.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + messageSuffix);
+          .toHaveBeenCalledWith(message);
 
         expect(errors)
           .toEqual([demoName]);
@@ -490,7 +497,7 @@ describe('Props must have allowed set', () => {
           allPropsMustHaveAllowed.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + messageSuffix);
+            .toHaveBeenCalledWith(message);
 
           expect(errors)
             .toEqual([demoName]);
@@ -507,7 +514,7 @@ describe('Props must have allowed set', () => {
           allPropsMustHaveAllowed.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + messageSuffix);
+            .toHaveBeenCalledWith(message);
 
           expect(errors)
             .toEqual([demoName]);

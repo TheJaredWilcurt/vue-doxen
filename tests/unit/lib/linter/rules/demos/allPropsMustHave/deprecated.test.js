@@ -4,6 +4,8 @@ describe('Props must have deprecated set to true or false', () => {
   const consoleInfo = console.info;
   const demoName = 'MyComponent';
   const propName = 'myProp';
+  const key = 'deprecated';
+  const message = 'The ' + demoName + ' prop ' + propName + ' must have deprecated set to true or false.';
   let options;
   let linterSettings;
   let errors;
@@ -14,7 +16,7 @@ describe('Props must have deprecated set to true or false', () => {
     linterSettings = {
       demos: {
         allPropsMustHave: {
-          deprecated: true
+          [key]: true
         }
       }
     };
@@ -39,7 +41,7 @@ describe('Props must have deprecated set to true or false', () => {
           allPropsMustHaveDeprecated.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + ' must have deprecated set to true or false.');
+            .toHaveBeenCalledWith(message);
 
           expect(errors)
             .toEqual([demoName]);
@@ -50,7 +52,7 @@ describe('Props must have deprecated set to true or false', () => {
             [demoName]: {
               props: {
                 [propName]: {
-                  deprecated: true
+                  [key]: true
                 }
               }
             }
@@ -69,7 +71,7 @@ describe('Props must have deprecated set to true or false', () => {
             [demoName]: {
               props: {
                 [propName]: {
-                  deprecated: true
+                  [key]: true
                 }
               }
             }
@@ -88,7 +90,7 @@ describe('Props must have deprecated set to true or false', () => {
             [demoName]: {
               props: {
                 [propName]: {
-                  deprecated: undefined
+                  [key]: undefined
                 }
               }
             }
@@ -96,7 +98,7 @@ describe('Props must have deprecated set to true or false', () => {
           allPropsMustHaveDeprecated.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + ' must have deprecated set to true or false.');
+            .toHaveBeenCalledWith(message);
 
           expect(errors)
             .toEqual([demoName]);
@@ -115,7 +117,7 @@ describe('Props must have deprecated set to true or false', () => {
           allPropsMustHaveDeprecated.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + ' must have deprecated set to true or false.');
+            .toHaveBeenCalledWith(message);
 
           expect(errors)
             .toEqual([demoName]);
@@ -126,7 +128,7 @@ describe('Props must have deprecated set to true or false', () => {
             [demoName]: {
               propsToDemo: {
                 [propName]: {
-                  deprecated: true
+                  [key]: true
                 }
               }
             }
@@ -145,7 +147,7 @@ describe('Props must have deprecated set to true or false', () => {
             [demoName]: {
               propsToDemo: {
                 [propName]: {
-                  deprecated: true
+                  [key]: true
                 }
               }
             }
@@ -164,7 +166,7 @@ describe('Props must have deprecated set to true or false', () => {
             [demoName]: {
               propsToDemo: {
                 [propName]: {
-                  deprecated: undefined
+                  [key]: undefined
                 }
               }
             }
@@ -172,7 +174,7 @@ describe('Props must have deprecated set to true or false', () => {
           allPropsMustHaveDeprecated.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + ' must have deprecated set to true or false.');
+            .toHaveBeenCalledWith(message);
 
           expect(errors)
             .toEqual([demoName]);
@@ -194,7 +196,7 @@ describe('Props must have deprecated set to true or false', () => {
             allPropsMustHaveDeprecated.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + ' must have deprecated set to true or false.');
+              .toHaveBeenCalledWith(message);
 
             expect(errors)
               .toEqual([demoName]);
@@ -206,7 +208,7 @@ describe('Props must have deprecated set to true or false', () => {
                 component: {
                   props: {
                     [propName]: {
-                      deprecated: true
+                      [key]: true
                     }
                   }
                 }
@@ -227,7 +229,7 @@ describe('Props must have deprecated set to true or false', () => {
                 component: {
                   props: {
                     [propName]: {
-                      deprecated: true
+                      [key]: true
                     }
                   }
                 }
@@ -248,7 +250,7 @@ describe('Props must have deprecated set to true or false', () => {
                 component: {
                   props: {
                     [propName]: {
-                      deprecated: undefined
+                      [key]: undefined
                     }
                   }
                 }
@@ -257,7 +259,7 @@ describe('Props must have deprecated set to true or false', () => {
             allPropsMustHaveDeprecated.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + ' must have deprecated set to true or false.');
+              .toHaveBeenCalledWith(message);
 
             expect(errors)
               .toEqual([demoName]);
@@ -278,7 +280,7 @@ describe('Props must have deprecated set to true or false', () => {
             allPropsMustHaveDeprecated.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + ' must have deprecated set to true or false.');
+              .toHaveBeenCalledWith(message);
 
             expect(errors)
               .toEqual([demoName]);
@@ -290,7 +292,7 @@ describe('Props must have deprecated set to true or false', () => {
                 component: {
                   propsToDemo: {
                     [propName]: {
-                      deprecated: true
+                      [key]: true
                     }
                   }
                 }
@@ -311,7 +313,7 @@ describe('Props must have deprecated set to true or false', () => {
                 component: {
                   propsToDemo: {
                     [propName]: {
-                      deprecated: true
+                      [key]: true
                     }
                   }
                 }
@@ -332,7 +334,7 @@ describe('Props must have deprecated set to true or false', () => {
                 component: {
                   propsToDemo: {
                     [propName]: {
-                      deprecated: undefined
+                      [key]: undefined
                     }
                   }
                 }
@@ -341,7 +343,7 @@ describe('Props must have deprecated set to true or false', () => {
             allPropsMustHaveDeprecated.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + ' must have deprecated set to true or false.');
+              .toHaveBeenCalledWith(message);
 
             expect(errors)
               .toEqual([demoName]);
@@ -351,7 +353,7 @@ describe('Props must have deprecated set to true or false', () => {
     });
 
     describe('Props and propsToDemo as arrays', () => {
-      test('Catches the missing deprecated', () => {
+      test('Catches the missing prop', () => {
         const demos = {
           [demoName]: {
             props: [propName]
@@ -360,7 +362,7 @@ describe('Props must have deprecated set to true or false', () => {
         allPropsMustHaveDeprecated.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + ' must have deprecated set to true or false.');
+          .toHaveBeenCalledWith(message);
 
         expect(errors)
           .toEqual([demoName]);
@@ -375,14 +377,14 @@ describe('Props must have deprecated set to true or false', () => {
         allPropsMustHaveDeprecated.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + ' must have deprecated set to true or false.');
+          .toHaveBeenCalledWith(message);
 
         expect(errors)
           .toEqual([demoName]);
       });
 
       describe('Inside component', () => {
-        test('Catches the missing deprecated', () => {
+        test('Catches the missing prop', () => {
           const demos = {
             [demoName]: {
               component: {
@@ -393,7 +395,7 @@ describe('Props must have deprecated set to true or false', () => {
           allPropsMustHaveDeprecated.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + ' must have deprecated set to true or false.');
+            .toHaveBeenCalledWith(message);
 
           expect(errors)
             .toEqual([demoName]);
@@ -410,7 +412,7 @@ describe('Props must have deprecated set to true or false', () => {
           allPropsMustHaveDeprecated.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith('The ' + demoName + ' prop ' + propName + ' must have deprecated set to true or false.');
+            .toHaveBeenCalledWith(message);
 
           expect(errors)
             .toEqual([demoName]);

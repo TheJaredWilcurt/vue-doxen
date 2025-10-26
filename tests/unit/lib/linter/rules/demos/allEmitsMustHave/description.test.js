@@ -4,6 +4,8 @@ describe('Emits must have a description', () => {
   const consoleInfo = console.info;
   const demoName = 'MyComponent';
   const emitName = 'myEmit';
+  const key = 'description';
+  const message = 'The ' + demoName + ' emit ' + emitName + ' must have a description.';
   let options;
   let linterSettings;
   let errors;
@@ -14,7 +16,7 @@ describe('Emits must have a description', () => {
     linterSettings = {
       demos: {
         allEmitsMustHave: {
-          description: true
+          [key]: true
         }
       }
     };
@@ -38,7 +40,7 @@ describe('Emits must have a description', () => {
         allEmitsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith('The ' + demoName + ' emit ' + emitName + ' must have a description.');
+          .toHaveBeenCalledWith(message);
 
         expect(errors)
           .toEqual([demoName]);
@@ -55,7 +57,7 @@ describe('Emits must have a description', () => {
         allEmitsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith('The ' + demoName + ' emit ' + emitName + ' must have a description.');
+          .toHaveBeenCalledWith(message);
 
         expect(errors)
           .toEqual([demoName]);
@@ -66,7 +68,7 @@ describe('Emits must have a description', () => {
           [demoName]: {
             emitsToDemo: {
               [emitName]: {
-                description: 'Text'
+                [key]: 'Text'
               }
             }
           }
@@ -85,7 +87,7 @@ describe('Emits must have a description', () => {
           [demoName]: {
             emitsToDemo: {
               [emitName]: {
-                description: undefined
+                [key]: undefined
               }
             }
           }
@@ -113,7 +115,7 @@ describe('Emits must have a description', () => {
           allEmitsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith('The ' + demoName + ' emit ' + emitName + ' must have a description.');
+            .toHaveBeenCalledWith(message);
 
           expect(errors)
             .toEqual([demoName]);
@@ -132,7 +134,7 @@ describe('Emits must have a description', () => {
           allEmitsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith('The ' + demoName + ' emit ' + emitName + ' must have a description.');
+            .toHaveBeenCalledWith(message);
 
           expect(errors)
             .toEqual([demoName]);
@@ -144,7 +146,7 @@ describe('Emits must have a description', () => {
               component: {
                 emitsToDemo: {
                   [emitName]: {
-                    description: 'Text'
+                    [key]: 'Text'
                   }
                 }
               }
@@ -165,7 +167,7 @@ describe('Emits must have a description', () => {
               component: {
                 emitsToDemo: {
                   [emitName]: {
-                    description: undefined
+                    [key]: undefined
                   }
                 }
               }
@@ -183,7 +185,7 @@ describe('Emits must have a description', () => {
     });
 
     describe('Emits and emitsToDemo as arrays', () => {
-      test('Catches the missing description', () => {
+      test('Catches the missing key', () => {
         const demos = {
           [demoName]: {
             emitsToDemo: [emitName]
@@ -192,7 +194,7 @@ describe('Emits must have a description', () => {
         allEmitsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith('The ' + demoName + ' emit ' + emitName + ' must have a description.');
+          .toHaveBeenCalledWith(message);
 
         expect(errors)
           .toEqual([demoName]);
@@ -207,14 +209,14 @@ describe('Emits must have a description', () => {
         allEmitsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith('The ' + demoName + ' emit ' + emitName + ' must have a description.');
+          .toHaveBeenCalledWith(message);
 
         expect(errors)
           .toEqual([demoName]);
       });
 
       describe('Description inside component', () => {
-        test('Catches the missing description', () => {
+        test('Catches the missing key', () => {
           const demos = {
             [demoName]: {
               component: {
@@ -225,7 +227,7 @@ describe('Emits must have a description', () => {
           allEmitsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith('The ' + demoName + ' emit ' + emitName + ' must have a description.');
+            .toHaveBeenCalledWith(message);
 
           expect(errors)
             .toEqual([demoName]);
@@ -242,7 +244,7 @@ describe('Emits must have a description', () => {
           allEmitsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith('The ' + demoName + ' emit ' + emitName + ' must have a description.');
+            .toHaveBeenCalledWith(message);
 
           expect(errors)
             .toEqual([demoName]);
