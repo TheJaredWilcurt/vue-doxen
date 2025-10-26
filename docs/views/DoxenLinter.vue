@@ -190,8 +190,8 @@
     <DocumentationSection id="linter-settings" title="Linter Settings">
       <p>
         Here are all the linter settings in one convenient object.
-        All options are set to false by default, so <strong>you only
-        need to pass in the settings you wish to enable</strong>.
+        All options are set to false by default, so
+        <strong>you only need to pass in the settings you wish to enable</strong>.
       </p>
       <DoxenCodeSwapper
         :codeTypes="{ JavaScript: LINTER_SETTINGS_OBJECT }"
@@ -228,12 +228,12 @@
 </template>
 
 <script>
-import { styleTokens } from '@/helpers/props.js';
-
+import { unindent } from '@/linter/helpers.js';
 import { ruleDefinitions } from '@/linter/index.js';
 
+import { styleTokens } from '@/helpers/props.js';
+
 import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
-import { unindent } from '@/linter/helpers.js';
 import DocumentationSection from '@@@/components/DocumentationSection.vue';
 import SubDocumentationSection from '@@@/components/SubDocumentationSection.vue';
 

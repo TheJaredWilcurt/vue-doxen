@@ -262,11 +262,12 @@
 </template>
 
 <script>
+import { unindent } from '@/linter/helpers.js';
+
 import { styleTokens } from '@/helpers/props.js';
 
 import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
-import { unindent } from '@/linter/helpers.js';
 import AccessibilityCard from '@@@/components/AccessibilityCard.vue';
 import DocumentationSection from '@@@/components/DocumentationSection.vue';
 
