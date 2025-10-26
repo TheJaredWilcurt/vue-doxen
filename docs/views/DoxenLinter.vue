@@ -15,7 +15,7 @@
     </p>
     <p>
       To deal with this, we provide a bespoke linting function you can pass your
-      Demos/components into, with settings you can enable, documented below.
+      demos/components into, with settings you can enable; documented below.
     </p>
 
     <ul>
@@ -256,7 +256,13 @@ const CUSTOM_SCRIPT = unindent(`
     }
   };
 
-  doxenLinter(demos, options, linterSettings);
+  // If you want this script to cause your CI to stop,
+  // remove the try/catch and let it throw.
+  try {
+    doxenLinter(demos, options, linterSettings);
+  } catch (error) {
+    console.log(error);
+  }
 `);
 const MANIFEST = unindent(`
   {
