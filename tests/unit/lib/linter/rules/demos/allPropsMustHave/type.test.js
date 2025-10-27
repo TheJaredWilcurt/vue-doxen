@@ -1,12 +1,12 @@
 import { validateRuleDocumentation } from '@/linter/helpers.js';
-import { allPropsMustHaveRequiredOrDefault } from '@/linter/rules/demos/allPropsMustHave/requiredOrDefault.js';
+import { allPropsMustHaveType } from '@/linter/rules/demos/allPropsMustHave/type.js';
 
-describe('Props must have required or default set', () => {
+describe('Props must have a type', () => {
   const consoleInfo = console.info;
   const demoName = 'MyComponent';
   const propName = 'myProp';
-  const key = 'requiredOrDefault';
-  const message = 'The ' + demoName + ' prop ' + propName + ' must have either `required: true` or a `default` value set.';
+  const key = 'type';
+  const message = 'The ' + demoName + ' prop ' + propName + ' must have a type set.';
   let options;
   let linterSettings;
   let errors;
@@ -33,7 +33,7 @@ describe('Props must have required or default set', () => {
       describe('Props', () => {
         const propsOrPropsToDemo = 'props';
 
-        test('Fails when both keys missing', () => {
+        test('Fails when key is missing', () => {
           const demos = {
             [demoName]: {
               [propsOrPropsToDemo]: {
@@ -41,7 +41,7 @@ describe('Props must have required or default set', () => {
               }
             }
           };
-          allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
+          allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
             .toHaveBeenCalledWith(message);
@@ -50,17 +50,17 @@ describe('Props must have required or default set', () => {
             .toEqual([demoName]);
         });
 
-        test('Fails when only required: false exists', () => {
+        test('Fails when type is null', () => {
           const demos = {
             [demoName]: {
               [propsOrPropsToDemo]: {
                 [propName]: {
-                  required: false
+                  [key]: null
                 }
               }
             }
           };
-          allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
+          allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
             .toHaveBeenCalledWith(message);
@@ -69,17 +69,74 @@ describe('Props must have required or default set', () => {
             .toEqual([demoName]);
         });
 
-        test('Passes when required: true exists', () => {
+        test('Fails when type is undefined', () => {
           const demos = {
             [demoName]: {
               [propsOrPropsToDemo]: {
                 [propName]: {
-                  required: true
+                  [key]: undefined
                 }
               }
             }
           };
-          allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
+          allPropsMustHaveType.rule(demos, options, linterSettings, errors);
+
+          expect(console.info)
+            .toHaveBeenCalledWith(message);
+
+          expect(errors)
+            .toEqual([demoName]);
+        });
+
+        test('Fails when type is invalid', () => {
+          const demos = {
+            [demoName]: {
+              [propsOrPropsToDemo]: {
+                [propName]: {
+                  [key]: 'string'
+                }
+              }
+            }
+          };
+          allPropsMustHaveType.rule(demos, options, linterSettings, errors);
+
+          expect(console.info)
+            .toHaveBeenCalledWith(message);
+
+          expect(errors)
+            .toEqual([demoName]);
+        });
+
+        test('Fails when array type is invalid', () => {
+          const demos = {
+            [demoName]: {
+              [propsOrPropsToDemo]: {
+                [propName]: {
+                  [key]: ['string']
+                }
+              }
+            }
+          };
+          allPropsMustHaveType.rule(demos, options, linterSettings, errors);
+
+          expect(console.info)
+            .toHaveBeenCalledWith(message);
+
+          expect(errors)
+            .toEqual([demoName]);
+        });
+
+        test('Passes when type is valid', () => {
+          const demos = {
+            [demoName]: {
+              [propsOrPropsToDemo]: {
+                [propName]: {
+                  [key]: String
+                }
+              }
+            }
+          };
+          allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
             .not.toHaveBeenCalled();
@@ -88,56 +145,17 @@ describe('Props must have required or default set', () => {
             .toEqual([]);
         });
 
-        test('Passes when default: undefined exists', () => {
+        test('Passes when array of types is valid', () => {
           const demos = {
             [demoName]: {
               [propsOrPropsToDemo]: {
                 [propName]: {
-                  default: undefined
+                  [key]: [String, Number]
                 }
               }
             }
           };
-          allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
-
-          expect(console.info)
-            .not.toHaveBeenCalled();
-
-          expect(errors)
-            .toEqual([]);
-        });
-
-        test('Passes when default: "string" exists', () => {
-          const demos = {
-            [demoName]: {
-              [propsOrPropsToDemo]: {
-                [propName]: {
-                  default: 'test'
-                }
-              }
-            }
-          };
-          allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
-
-          expect(console.info)
-            .not.toHaveBeenCalled();
-
-          expect(errors)
-            .toEqual([]);
-        });
-
-        test('Passes when required: false but has default', () => {
-          const demos = {
-            [demoName]: {
-              [propsOrPropsToDemo]: {
-                [propName]: {
-                  required: false,
-                  default: 'test'
-                }
-              }
-            }
-          };
-          allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
+          allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
             .not.toHaveBeenCalled();
@@ -146,11 +164,10 @@ describe('Props must have required or default set', () => {
             .toEqual([]);
         });
       });
-
       describe('PropsToDemo', () => {
         const propsOrPropsToDemo = 'propsToDemo';
 
-        test('Fails when both keys missing', () => {
+        test('Fails when key is missing', () => {
           const demos = {
             [demoName]: {
               [propsOrPropsToDemo]: {
@@ -158,7 +175,7 @@ describe('Props must have required or default set', () => {
               }
             }
           };
-          allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
+          allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
             .toHaveBeenCalledWith(message);
@@ -167,17 +184,17 @@ describe('Props must have required or default set', () => {
             .toEqual([demoName]);
         });
 
-        test('Fails when only required: false exists', () => {
+        test('Fails when type is null', () => {
           const demos = {
             [demoName]: {
               [propsOrPropsToDemo]: {
                 [propName]: {
-                  required: false
+                  [key]: null
                 }
               }
             }
           };
-          allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
+          allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
             .toHaveBeenCalledWith(message);
@@ -186,17 +203,74 @@ describe('Props must have required or default set', () => {
             .toEqual([demoName]);
         });
 
-        test('Passes when required: true exists', () => {
+        test('Fails when type is undefined', () => {
           const demos = {
             [demoName]: {
               [propsOrPropsToDemo]: {
                 [propName]: {
-                  required: true
+                  [key]: undefined
                 }
               }
             }
           };
-          allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
+          allPropsMustHaveType.rule(demos, options, linterSettings, errors);
+
+          expect(console.info)
+            .toHaveBeenCalledWith(message);
+
+          expect(errors)
+            .toEqual([demoName]);
+        });
+
+        test('Fails when type is invalid', () => {
+          const demos = {
+            [demoName]: {
+              [propsOrPropsToDemo]: {
+                [propName]: {
+                  [key]: 'string'
+                }
+              }
+            }
+          };
+          allPropsMustHaveType.rule(demos, options, linterSettings, errors);
+
+          expect(console.info)
+            .toHaveBeenCalledWith(message);
+
+          expect(errors)
+            .toEqual([demoName]);
+        });
+
+        test('Fails when array type is invalid', () => {
+          const demos = {
+            [demoName]: {
+              [propsOrPropsToDemo]: {
+                [propName]: {
+                  [key]: ['string']
+                }
+              }
+            }
+          };
+          allPropsMustHaveType.rule(demos, options, linterSettings, errors);
+
+          expect(console.info)
+            .toHaveBeenCalledWith(message);
+
+          expect(errors)
+            .toEqual([demoName]);
+        });
+
+        test('Passes when type is valid', () => {
+          const demos = {
+            [demoName]: {
+              [propsOrPropsToDemo]: {
+                [propName]: {
+                  [key]: String
+                }
+              }
+            }
+          };
+          allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
             .not.toHaveBeenCalled();
@@ -205,56 +279,17 @@ describe('Props must have required or default set', () => {
             .toEqual([]);
         });
 
-        test('Passes when default: undefined exists', () => {
+        test('Passes when array of types is valid', () => {
           const demos = {
             [demoName]: {
               [propsOrPropsToDemo]: {
                 [propName]: {
-                  default: undefined
+                  [key]: [String, Number]
                 }
               }
             }
           };
-          allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
-
-          expect(console.info)
-            .not.toHaveBeenCalled();
-
-          expect(errors)
-            .toEqual([]);
-        });
-
-        test('Passes when default: "string" exists', () => {
-          const demos = {
-            [demoName]: {
-              [propsOrPropsToDemo]: {
-                [propName]: {
-                  default: 'test'
-                }
-              }
-            }
-          };
-          allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
-
-          expect(console.info)
-            .not.toHaveBeenCalled();
-
-          expect(errors)
-            .toEqual([]);
-        });
-
-        test('Passes when required: false but has default', () => {
-          const demos = {
-            [demoName]: {
-              [propsOrPropsToDemo]: {
-                [propName]: {
-                  required: false,
-                  default: 'test'
-                }
-              }
-            }
-          };
-          allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
+          allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
             .not.toHaveBeenCalled();
@@ -268,7 +303,7 @@ describe('Props must have required or default set', () => {
         describe('Props', () => {
           const propsOrPropsToDemo = 'props';
 
-          test('Fails when both keys missing', () => {
+          test('Fails when key is missing', () => {
             const demos = {
               [demoName]: {
                 component: {
@@ -278,7 +313,7 @@ describe('Props must have required or default set', () => {
                 }
               }
             };
-            allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
+            allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
               .toHaveBeenCalledWith(message);
@@ -287,19 +322,19 @@ describe('Props must have required or default set', () => {
               .toEqual([demoName]);
           });
 
-          test('Fails when only required: false exists', () => {
+          test('Fails when type is null', () => {
             const demos = {
               [demoName]: {
                 component: {
                   [propsOrPropsToDemo]: {
                     [propName]: {
-                      required: false
+                      [key]: null
                     }
                   }
                 }
               }
             };
-            allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
+            allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
               .toHaveBeenCalledWith(message);
@@ -308,19 +343,82 @@ describe('Props must have required or default set', () => {
               .toEqual([demoName]);
           });
 
-          test('Passes when required: true exists', () => {
+          test('Fails when type is undefined', () => {
             const demos = {
               [demoName]: {
                 component: {
                   [propsOrPropsToDemo]: {
                     [propName]: {
-                      required: true
+                      [key]: undefined
                     }
                   }
                 }
               }
             };
-            allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
+            allPropsMustHaveType.rule(demos, options, linterSettings, errors);
+
+            expect(console.info)
+              .toHaveBeenCalledWith(message);
+
+            expect(errors)
+              .toEqual([demoName]);
+          });
+
+          test('Fails when type is invalid', () => {
+            const demos = {
+              [demoName]: {
+                component: {
+                  [propsOrPropsToDemo]: {
+                    [propName]: {
+                      [key]: 'string'
+                    }
+                  }
+                }
+              }
+            };
+            allPropsMustHaveType.rule(demos, options, linterSettings, errors);
+
+            expect(console.info)
+              .toHaveBeenCalledWith(message);
+
+            expect(errors)
+              .toEqual([demoName]);
+          });
+
+          test('Fails when array type is invalid', () => {
+            const demos = {
+              [demoName]: {
+                component: {
+                  [propsOrPropsToDemo]: {
+                    [propName]: {
+                      [key]: ['string']
+                    }
+                  }
+                }
+              }
+            };
+            allPropsMustHaveType.rule(demos, options, linterSettings, errors);
+
+            expect(console.info)
+              .toHaveBeenCalledWith(message);
+
+            expect(errors)
+              .toEqual([demoName]);
+          });
+
+          test('Passes when type is valid', () => {
+            const demos = {
+              [demoName]: {
+                component: {
+                  [propsOrPropsToDemo]: {
+                    [propName]: {
+                      [key]: String
+                    }
+                  }
+                }
+              }
+            };
+            allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
               .not.toHaveBeenCalled();
@@ -329,62 +427,19 @@ describe('Props must have required or default set', () => {
               .toEqual([]);
           });
 
-          test('Passes when default: undefined exists', () => {
+          test('Passes when array of types is valid', () => {
             const demos = {
               [demoName]: {
                 component: {
                   [propsOrPropsToDemo]: {
                     [propName]: {
-                      default: undefined
+                      [key]: [String, Number]
                     }
                   }
                 }
               }
             };
-            allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
-
-            expect(console.info)
-              .not.toHaveBeenCalled();
-
-            expect(errors)
-              .toEqual([]);
-          });
-
-          test('Passes when default: "string" exists', () => {
-            const demos = {
-              [demoName]: {
-                component: {
-                  [propsOrPropsToDemo]: {
-                    [propName]: {
-                      default: 'test'
-                    }
-                  }
-                }
-              }
-            };
-            allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
-
-            expect(console.info)
-              .not.toHaveBeenCalled();
-
-            expect(errors)
-              .toEqual([]);
-          });
-
-          test('Passes when required: false but has default', () => {
-            const demos = {
-              [demoName]: {
-                component: {
-                  [propsOrPropsToDemo]: {
-                    [propName]: {
-                      required: false,
-                      default: 'test'
-                    }
-                  }
-                }
-              }
-            };
-            allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
+            allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
               .not.toHaveBeenCalled();
@@ -397,7 +452,7 @@ describe('Props must have required or default set', () => {
         describe('PropsToDemo', () => {
           const propsOrPropsToDemo = 'propsToDemo';
 
-          test('Fails when both keys missing', () => {
+          test('Fails when key is missing', () => {
             const demos = {
               [demoName]: {
                 component: {
@@ -407,7 +462,7 @@ describe('Props must have required or default set', () => {
                 }
               }
             };
-            allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
+            allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
               .toHaveBeenCalledWith(message);
@@ -416,19 +471,19 @@ describe('Props must have required or default set', () => {
               .toEqual([demoName]);
           });
 
-          test('Fails when only required: false exists', () => {
+          test('Fails when type is null', () => {
             const demos = {
               [demoName]: {
                 component: {
                   [propsOrPropsToDemo]: {
                     [propName]: {
-                      required: false
+                      [key]: null
                     }
                   }
                 }
               }
             };
-            allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
+            allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
               .toHaveBeenCalledWith(message);
@@ -437,19 +492,82 @@ describe('Props must have required or default set', () => {
               .toEqual([demoName]);
           });
 
-          test('Passes when required: true exists', () => {
+          test('Fails when type is undefined', () => {
             const demos = {
               [demoName]: {
                 component: {
                   [propsOrPropsToDemo]: {
                     [propName]: {
-                      required: true
+                      [key]: undefined
                     }
                   }
                 }
               }
             };
-            allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
+            allPropsMustHaveType.rule(demos, options, linterSettings, errors);
+
+            expect(console.info)
+              .toHaveBeenCalledWith(message);
+
+            expect(errors)
+              .toEqual([demoName]);
+          });
+
+          test('Fails when type is invalid', () => {
+            const demos = {
+              [demoName]: {
+                component: {
+                  [propsOrPropsToDemo]: {
+                    [propName]: {
+                      [key]: 'string'
+                    }
+                  }
+                }
+              }
+            };
+            allPropsMustHaveType.rule(demos, options, linterSettings, errors);
+
+            expect(console.info)
+              .toHaveBeenCalledWith(message);
+
+            expect(errors)
+              .toEqual([demoName]);
+          });
+
+          test('Fails when array type is invalid', () => {
+            const demos = {
+              [demoName]: {
+                component: {
+                  [propsOrPropsToDemo]: {
+                    [propName]: {
+                      [key]: ['string']
+                    }
+                  }
+                }
+              }
+            };
+            allPropsMustHaveType.rule(demos, options, linterSettings, errors);
+
+            expect(console.info)
+              .toHaveBeenCalledWith(message);
+
+            expect(errors)
+              .toEqual([demoName]);
+          });
+
+          test('Passes when type is valid', () => {
+            const demos = {
+              [demoName]: {
+                component: {
+                  [propsOrPropsToDemo]: {
+                    [propName]: {
+                      [key]: String
+                    }
+                  }
+                }
+              }
+            };
+            allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
               .not.toHaveBeenCalled();
@@ -458,62 +576,19 @@ describe('Props must have required or default set', () => {
               .toEqual([]);
           });
 
-          test('Passes when default: undefined exists', () => {
+          test('Passes when array of types is valid', () => {
             const demos = {
               [demoName]: {
                 component: {
                   [propsOrPropsToDemo]: {
                     [propName]: {
-                      default: undefined
+                      [key]: [String, Number]
                     }
                   }
                 }
               }
             };
-            allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
-
-            expect(console.info)
-              .not.toHaveBeenCalled();
-
-            expect(errors)
-              .toEqual([]);
-          });
-
-          test('Passes when default: "string" exists', () => {
-            const demos = {
-              [demoName]: {
-                component: {
-                  [propsOrPropsToDemo]: {
-                    [propName]: {
-                      default: 'test'
-                    }
-                  }
-                }
-              }
-            };
-            allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
-
-            expect(console.info)
-              .not.toHaveBeenCalled();
-
-            expect(errors)
-              .toEqual([]);
-          });
-
-          test('Passes when required: false but has default', () => {
-            const demos = {
-              [demoName]: {
-                component: {
-                  [propsOrPropsToDemo]: {
-                    [propName]: {
-                      required: false,
-                      default: 'test'
-                    }
-                  }
-                }
-              }
-            };
-            allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
+            allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
               .not.toHaveBeenCalled();
@@ -532,7 +607,7 @@ describe('Props must have required or default set', () => {
             props: [propName]
           }
         };
-        allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
+        allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
           .toHaveBeenCalledWith(message);
@@ -547,7 +622,7 @@ describe('Props must have required or default set', () => {
             propsToDemo: [propName]
           }
         };
-        allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
+        allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
           .toHaveBeenCalledWith(message);
@@ -565,7 +640,7 @@ describe('Props must have required or default set', () => {
               }
             }
           };
-          allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
+          allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
             .toHaveBeenCalledWith(message);
@@ -582,7 +657,7 @@ describe('Props must have required or default set', () => {
               }
             }
           };
-          allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
+          allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
             .toHaveBeenCalledWith(message);
@@ -595,7 +670,7 @@ describe('Props must have required or default set', () => {
   });
 
   test('Documentation', () => {
-    expect(validateRuleDocumentation(allPropsMustHaveRequiredOrDefault))
+    expect(validateRuleDocumentation(allPropsMustHaveType))
       .toEqual(true);
   });
 });
