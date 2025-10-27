@@ -1,3 +1,4 @@
+import { validateRuleDocumentation } from '@/linter/helpers.js';
 import { mustHaveDescription } from '@/linter/rules/demos/mustHaveDescription.js';
 
 describe('Demos must have a description', () => {
@@ -162,13 +163,7 @@ describe('Demos must have a description', () => {
   });
 
   test('Documentation', () => {
-    expect(!!mustHaveDescription.description)
-      .toEqual(true);
-
-    expect(!!mustHaveDescription.url)
-      .toEqual(true);
-
-    expect(!!Object.keys(mustHaveDescription.examples).length)
+    expect(validateRuleDocumentation(mustHaveDescription))
       .toEqual(true);
   });
 });

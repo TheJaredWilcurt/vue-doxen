@@ -1,3 +1,4 @@
+import { validateRuleDocumentation } from '@/linter/helpers.js';
 import { allPropsMustHaveDescription } from '@/linter/rules/demos/allPropsMustHave/description.js';
 
 describe('Props must have a description', () => {
@@ -342,13 +343,7 @@ describe('Props must have a description', () => {
   });
 
   test('Documentation', () => {
-    expect(!!allPropsMustHaveDescription.description)
-      .toEqual(true);
-
-    expect(!!allPropsMustHaveDescription.url)
-      .toEqual(true);
-
-    expect(!!Object.keys(allPropsMustHaveDescription.examples).length)
+    expect(validateRuleDocumentation(allPropsMustHaveDescription))
       .toEqual(true);
   });
 });

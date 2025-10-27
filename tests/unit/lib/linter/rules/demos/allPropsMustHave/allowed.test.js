@@ -1,3 +1,4 @@
+import { validateRuleDocumentation } from '@/linter/helpers.js';
 import { allPropsMustHaveAllowed } from '@/linter/rules/demos/allPropsMustHave/allowed.js';
 
 describe('Props must have allowed set', () => {
@@ -524,13 +525,7 @@ describe('Props must have allowed set', () => {
   });
 
   test('Documentation', () => {
-    expect(!!allPropsMustHaveAllowed.description)
-      .toEqual(true);
-
-    expect(!!allPropsMustHaveAllowed.url)
-      .toEqual(true);
-
-    expect(!!Object.keys(allPropsMustHaveAllowed.examples).length)
+    expect(validateRuleDocumentation(allPropsMustHaveAllowed))
       .toEqual(true);
   });
 });

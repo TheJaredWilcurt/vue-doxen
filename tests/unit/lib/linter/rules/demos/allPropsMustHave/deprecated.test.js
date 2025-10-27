@@ -1,3 +1,4 @@
+import { validateRuleDocumentation } from '@/linter/helpers.js';
 import { allPropsMustHaveDeprecated } from '@/linter/rules/demos/allPropsMustHave/deprecated.js';
 
 describe('Props must have deprecated set to true or false', () => {
@@ -422,13 +423,7 @@ describe('Props must have deprecated set to true or false', () => {
   });
 
   test('Documentation', () => {
-    expect(!!allPropsMustHaveDeprecated.description)
-      .toEqual(true);
-
-    expect(!!allPropsMustHaveDeprecated.url)
-      .toEqual(true);
-
-    expect(!!Object.keys(allPropsMustHaveDeprecated.examples).length)
+    expect(validateRuleDocumentation(allPropsMustHaveDeprecated))
       .toEqual(true);
   });
 });

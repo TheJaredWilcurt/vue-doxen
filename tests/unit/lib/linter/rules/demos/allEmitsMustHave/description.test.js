@@ -1,3 +1,4 @@
+import { validateRuleDocumentation } from '@/linter/helpers.js';
 import { allEmitsMustHaveDescription } from '@/linter/rules/demos/allEmitsMustHave/description.js';
 
 describe('Emits must have a description', () => {
@@ -254,13 +255,7 @@ describe('Emits must have a description', () => {
   });
 
   test('Documentation', () => {
-    expect(!!allEmitsMustHaveDescription.description)
-      .toEqual(true);
-
-    expect(!!allEmitsMustHaveDescription.url)
-      .toEqual(true);
-
-    expect(!!Object.keys(allEmitsMustHaveDescription.examples).length)
+    expect(validateRuleDocumentation(allEmitsMustHaveDescription))
       .toEqual(true);
   });
 });

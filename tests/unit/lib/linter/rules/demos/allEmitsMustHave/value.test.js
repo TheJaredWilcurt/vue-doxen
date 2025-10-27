@@ -1,3 +1,4 @@
+import { validateRuleDocumentation } from '@/linter/helpers.js';
 import { allEmitsMustHaveValue } from '@/linter/rules/demos/allEmitsMustHave/value.js';
 
 describe('Emits must have a value defined', () => {
@@ -254,13 +255,7 @@ describe('Emits must have a value defined', () => {
   });
 
   test('Documentation', () => {
-    expect(!!allEmitsMustHaveValue.description)
-      .toEqual(true);
-
-    expect(!!allEmitsMustHaveValue.url)
-      .toEqual(true);
-
-    expect(!!Object.keys(allEmitsMustHaveValue.examples).length)
+    expect(validateRuleDocumentation(allEmitsMustHaveValue))
       .toEqual(true);
   });
 });
