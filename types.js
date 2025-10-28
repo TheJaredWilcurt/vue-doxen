@@ -121,7 +121,7 @@
  * @property {LINTERSETTINGSALLPROPS} [allPropsMustHave]                     Linter settings for component prop documentation.
  * @property {boolean}                [componentMustBeNamed=false]           Requires a name be defined on the component.
  * @property {boolean}                [demosMustHaveComponent=false]         If passing in a demo object, it must include the component to demo.
- * @property {boolean}                [deprecatedMustBeSet=false]            All components/demos must have either `deprecated: true` or `deprecated: false` set.
+ * @property {boolean}                [deprecatedMustBeSet=false]            All components/demos must have `deprecationNotice` set (can be undefined).
  * @property {boolean}                [descriptionMustEndInPeriod=false]     Warns when description on a demo page does not end in a period.
  *                                                                           Ignores custom component descriptions, missing or empty strings.
  * @property {boolean}                [doNotBreakVueApi=false]               For `emits: ['foo']` in a component, if you make it an object,

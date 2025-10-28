@@ -171,7 +171,8 @@
       />
       <p>
         The <code>demos</code> and <code>options</code> are the same things you'd pass
-        into <code>&lt;VueDoxenCustom :demos="demos" :options="options" /&gt;</code>.
+        into <code>&lt;VueDoxenCustom :demos="demos" :options="options" /&gt;</code>
+        (<RouterLink :to="{ name: 'treeShaking' }">more</RouterLink>).
         If you are just using <code>&lt;VueDoxen :demos="demos" /&gt;</code>, then
         you can set <code>options</code> to an empty object. The
         <code>linterSettings</code> are detailed below.
@@ -252,7 +253,10 @@ const CUSTOM_SCRIPT = unindent(`
   const options = {};
   const linterSettings = {
     demos: {
-      mustHaveDescription: true
+      mustHaveDescription: true,
+      allPropsMustHave: {
+        description: true
+      }
     }
   };
 
@@ -305,9 +309,8 @@ const LINTER_SETTINGS_OBJECT = unindent(`
       componentMustBeNamed: false,
       // If passing in a demo object, it must include the component to demo.
       demosMustHaveComponent: false,
-      // All components/demos must have either \`deprecated: true\` or
-      // \`deprecated: false\` set.
-      deprecatedMustBeSet: false
+      // All components/demos must have a \`deprecationNotice\` (can be undefined).
+      deprecatedMustBeSet: false,
       // Warns when description on a demo page does not end in a period.
       // Ignores custom component descriptions, missing or empty strings.
       descriptionMustEndInPeriod: false,
