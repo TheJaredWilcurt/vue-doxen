@@ -1,13 +1,13 @@
 import { validateRuleDocumentation } from '@/linter/helpers.js';
-import { mustHaveDescription } from '@/linter/rules/demos/mustHaveDescription.js';
+import { deprecatedMustBeSet } from '@/linter/rules/demos/deprecatedMustBeSet.js';
 
 import DoxenButton from '@/components/DoxenButton.vue';
 
-describe('Demos must have a description', () => {
+describe('Demos must have a deprecationNotice', () => {
   const consoleInfo = console.info;
   const demoName = 'MyComponent';
-  const key = 'description';
-  const message = 'The ' + demoName + ' demo must have a component description.';
+  const key = 'deprecationNotice';
+  const message = 'The ' + demoName + ' demo must have a deprecation notice (can be undefined).';
   let options;
   let linterSettings;
   let errors;
@@ -17,7 +17,7 @@ describe('Demos must have a description', () => {
     options = {};
     linterSettings = {
       demos: {
-        mustHaveDescription: true
+        deprecatedMustBeSet: true
       }
     };
     errors = [];
@@ -32,7 +32,22 @@ describe('Demos must have a description', () => {
       const demos = {
         [demoName]: {}
       };
-      mustHaveDescription.rule(demos, options, linterSettings, errors);
+      deprecatedMustBeSet.rule(demos, options, linterSettings, errors);
+
+      expect(console.info)
+        .toHaveBeenCalledWith(message);
+
+      expect(errors)
+        .toEqual([demoName]);
+    });
+
+    test('Fails if key is empty string', () => {
+      const demos = {
+        [demoName]: {
+          [key]: ''
+        }
+      };
+      deprecatedMustBeSet.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
         .toHaveBeenCalledWith(message);
@@ -47,7 +62,7 @@ describe('Demos must have a description', () => {
           [key]: 'text'
         }
       };
-      mustHaveDescription.rule(demos, options, linterSettings, errors);
+      deprecatedMustBeSet.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
         .not.toHaveBeenCalled();
@@ -62,7 +77,7 @@ describe('Demos must have a description', () => {
           [key]: undefined
         }
       };
-      mustHaveDescription.rule(demos, options, linterSettings, errors);
+      deprecatedMustBeSet.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
         .not.toHaveBeenCalled();
@@ -77,7 +92,7 @@ describe('Demos must have a description', () => {
           [key]: DoxenButton
         }
       };
-      mustHaveDescription.rule(demos, options, linterSettings, errors);
+      deprecatedMustBeSet.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
         .not.toHaveBeenCalled();
@@ -90,12 +105,27 @@ describe('Demos must have a description', () => {
       test('Catches the missing key', () => {
         const demos = {
           [demoName]: {
+            component: {}
+          }
+        };
+        deprecatedMustBeSet.rule(demos, options, linterSettings, errors);
+
+        expect(console.info)
+          .toHaveBeenCalledWith(message);
+
+        expect(errors)
+          .toEqual([demoName]);
+      });
+
+      test('Fails if key is empty string', () => {
+        const demos = {
+          [demoName]: {
             component: {
-              name: demoName
+              [key]: ''
             }
           }
         };
-        mustHaveDescription.rule(demos, options, linterSettings, errors);
+        deprecatedMustBeSet.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
           .toHaveBeenCalledWith(message);
@@ -108,12 +138,11 @@ describe('Demos must have a description', () => {
         const demos = {
           [demoName]: {
             component: {
-              name: demoName,
               [key]: 'text'
             }
           }
         };
-        mustHaveDescription.rule(demos, options, linterSettings, errors);
+        deprecatedMustBeSet.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
           .not.toHaveBeenCalled();
@@ -126,12 +155,11 @@ describe('Demos must have a description', () => {
         const demos = {
           [demoName]: {
             component: {
-              name: demoName,
               [key]: undefined
             }
           }
         };
-        mustHaveDescription.rule(demos, options, linterSettings, errors);
+        deprecatedMustBeSet.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
           .not.toHaveBeenCalled();
@@ -144,12 +172,11 @@ describe('Demos must have a description', () => {
         const demos = {
           [demoName]: {
             component: {
-              name: demoName,
               [key]: DoxenButton
             }
           }
         };
-        mustHaveDescription.rule(demos, options, linterSettings, errors);
+        deprecatedMustBeSet.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
           .not.toHaveBeenCalled();
@@ -161,7 +188,7 @@ describe('Demos must have a description', () => {
   });
 
   test('Documentation', () => {
-    expect(validateRuleDocumentation(mustHaveDescription))
+    expect(validateRuleDocumentation(deprecatedMustBeSet))
       .toEqual(true);
   });
 });
