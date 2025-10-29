@@ -109,8 +109,8 @@
                 </a>
               </li>
               <li>
-                <a href="#demos-doNotBreakVueApi">
-                  Do Not Break Vue API
+                <a href="#demos-doNotViolateVueEmitApi">
+                  Do not violate Vue emit API
                 </a>
               </li>
               <li>
@@ -314,9 +314,10 @@ const LINTER_SETTINGS_OBJECT = unindent(`
       // Warns when description on a demo page does not end in a period.
       // Ignores custom component descriptions, missing or empty strings.
       descriptionMustEndInPeriod: false,
-      // For \`emits: ['foo']\` in a component, if you make it an object, that is
-      // not allowed by Vue's API.
-      doNotBreakVueApi: false,
+      // Vue's API supports \`emits: ['foo', 'bar']\` in a component,
+      // if you make it an object, the key values must be functions or \`null\`.
+      // \`emits: { foo: () => {}, bar: null }\`
+      doNotViolateVueEmitApi: false,
       // Requires a description (string or custom component) on all demos and/or
       // components. (can be set to undefined).
       mustHaveDescription: false,

@@ -124,8 +124,9 @@
  * @property {boolean}                [deprecatedMustBeSet=false]            All components/demos must have `deprecationNotice` set (can be undefined).
  * @property {boolean}                [descriptionMustEndInPeriod=false]     Warns when description on a demo page does not end in a period.
  *                                                                           Ignores custom component descriptions, missing or empty strings.
- * @property {boolean}                [doNotBreakVueApi=false]               For `emits: ['foo']` in a component, if you make it an object,
- *                                                                           that is not allowed by Vue's API.
+ * @property {boolean}                [doNotViolateVueEmitApi=false]         Requires all components with emits defined follow Vue's API.
+ *                                                                           `emits`` must be an array of strings, or an object with key values
+ *                                                                           that are `null` or functions.
  * @property {boolean}                [mustHaveDescription=false]            Requires a description (string or custom component) on all
  *                                                                           demos and/or components. (can be set to undefined).
  * @property {boolean}                [mustHaveImportStatemnet=false]        Requires an import statement (string or custom component) on all
