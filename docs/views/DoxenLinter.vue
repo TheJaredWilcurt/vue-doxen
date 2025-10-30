@@ -129,11 +129,6 @@
                 </a>
               </li>
               <li>
-                <a href="#demos-noDuplicateSettings">
-                  No Duplicate Settings
-                </a>
-              </li>
-              <li>
                 <a href="#demos-onlyAllowDemoObjects">
                   Only Allow Demo Objects
                 </a>
@@ -327,9 +322,6 @@ const LINTER_SETTINGS_OBJECT = unindent(`
       // If using custom components, they must be imported in a demo object, rather
       // than in the component being demo'd to avoid file size bloat.
       noCustomComponentsInComponent: false,
-      // You can define many settings in both the Demo or in the Component. If enabled,
-      // this setting warns you about duplicates.
-      noDuplicateSettings: false,
       // Your demos object must not have any top-level components.
       onlyAllowDemoObjects: false
     },

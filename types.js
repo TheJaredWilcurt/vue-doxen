@@ -133,8 +133,6 @@
  *                                                                           demos and/or components. (can be set to undefined).
  * @property {boolean}                [noCustomComponentsInComponent=false]  If using custom components, they must be imported in a demo object,
  *                                                                           rather than in the component being demo'd to avoid file size bloat.
- * @property {boolean}                [noDuplicateSettings=false]            You can define many settings in both the Demo or in the Component.
- *                                                                           If enabled, this setting warns you about duplicates.
  * @property {boolean}                [onlyAllowDemoObjects=false]           Your demos object must not have any top-level components.
  */
 

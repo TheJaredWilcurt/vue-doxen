@@ -206,7 +206,6 @@ describe('No custom components inside demo component', () => {
         .toEqual([demoName]);
     });
 
-
     test('Passes when no props or slots', () => {
       const demos = {
         [demoName]: {

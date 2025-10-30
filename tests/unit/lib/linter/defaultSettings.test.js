@@ -26,7 +26,6 @@ describe('Default settings', () => {
         mustHaveDescription: false,
         mustHaveImportStatemnet: false,
         noCustomComponentsInComponent: false,
-        noDuplicateSettings: false,
         onlyAllowDemoObjects: false
       },
       options: {
@@ -59,7 +58,6 @@ describe('Default settings', () => {
         mustHaveDescription: true,
         mustHaveImportStatemnet: true,
         noCustomComponentsInComponent: true,
-        noDuplicateSettings: true,
         onlyAllowDemoObjects: true
       },
       options: {
@@ -130,7 +128,6 @@ describe('Default settings', () => {
             mustHaveDescription: true,
             mustHaveImportStatemnet: false,
             noCustomComponentsInComponent: false,
-            noDuplicateSettings: false,
             onlyAllowDemoObjects: false
           },
           options: {
@@ -209,7 +206,6 @@ describe('Default settings', () => {
             mustHaveDescription: true,
             mustHaveImportStatemnet: false,
             noCustomComponentsInComponent: false,
-            noDuplicateSettings: false,
             onlyAllowDemoObjects: false
           },
           options: {
