@@ -24,6 +24,9 @@
   "ManifestComments": [
     "@highlightjs/vue-plugin pinned to 2.1.2 because it was released years ago, but never marked as latest"
   ],
+  "dependencies": {
+    "pretty-ms": "^9.3.0"
+  },
   "devDependencies": {
     "@eslint/js": "^9.38.0",
     "@highlightjs/vue-plugin": "2.1.2",
@@ -137,8 +140,5 @@
   "volta": {
     "node": "25.1.0",
     "npm": "11.6.2"
-  },
-  "dependencies": {
-    "pretty-ms": "^9.3.0"
   }
 }
