@@ -138,8 +138,8 @@
 
 /**
  * @typedef  {object}  LINTERSETTINGSOPTIONS
- * @property {boolean} [allComponentsMustBeReplaced=false]  If enabled, requires all built-in components are replaced with custom ones (not recommended)
- * @property {boolean} [noMissingComponents=false]          If enabled, warns about missing required components (strongly recommended)
+ * @property {boolean} [allComponentsMustBeReplaced=false]  If enabled, requires all built-in components are replaced with custom ones.
+ * @property {boolean} [noMissingComponents=false]          If enabled, warns about missing required components (strongly recommended).
  */
 
 /**

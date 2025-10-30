@@ -96,6 +96,7 @@ describe('Components must have a name', () => {
       const hasCorrectTypes = (
         typeof(ruleDefinition.title) === 'string' &&
         typeof(ruleDefinition.description) === 'string' &&
+        ruleDefinition.description.endsWith('.') &&
         typeof(ruleDefinition.url) === 'string' &&
         typeof(ruleDefinition.examples) === 'object' &&
         !Array.isArray(ruleDefinition.examples) &&
