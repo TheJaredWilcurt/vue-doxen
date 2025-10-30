@@ -8,11 +8,14 @@
     </h1>
 
     <p>
-      Though you can simply pass a component in directly to Vue-Doxen and it will be demo'd, you may want greater control over the documentation page that is generated. Demo objects let you do that, and it is common to have one file per demo object.
+      Though you can simply pass a component in directly to Vue-Doxen and it will be demo'd,
+      you may want greater control over the documentation page that is generated.
+      Demo objects let you do that, and it is common to have one file per demo object.
     </p>
 
     <p>
-      Your demo object requires a <code>component</code> property with a value of an imported Vue component. Everything else in a demo object is <strong>optional</strong>.
+      Your demo object requires a <code>component</code> property with a value of an imported Vue component.
+      Everything else in a demo object is <strong>optional</strong>.
     </p>
 
     <nav>

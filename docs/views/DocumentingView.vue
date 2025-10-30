@@ -181,7 +181,7 @@
         <p>
           The component <code>name</code>, is an official part of Vue's API. It is used to identify the component in the Vue-DevTools.
           In Vue-Doxen, we use it to set the tag name and variable name in the live code examples below the Props playground.
-          It is also used a fallback for the <code>title</code> if one is not provided.
+          It is also used as a fallback for the <code>title</code> if one is not provided.
         </p>
 
         <p>

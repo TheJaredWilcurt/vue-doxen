@@ -1,6 +1,6 @@
 {
   "name": "vue-doxen",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "The world's best Vue.js component documentation tool!",
   "scripts": {
     "start": "vite dev --config vite.config.docs.js",
@@ -10,8 +10,10 @@
     "build:docs": "vite build --config vite.config.docs.js",
     "build:library": "vite build --config vite.config.lib.js",
     "postbuild": "node ./scripts/postbuild.js",
-    "lint": "eslint --ext .js,.vue lib scripts tests docs vite.config.*.js",
-    "fix": "npm run lint -- --fix",
+    "lint:docs": "vite-node --config vite.config.docs.js ./scripts/lintDocs.js",
+    "lint:js": "eslint --ext .js,.vue lib scripts tests docs vite.config.*.js",
+    "lint": "npm run lint:docs && npm run lint:js",
+    "fix": "npm run lint:js -- --fix",
     "unit": "cross-env TZ=America/New_York vitest --config vite.config.lib.js",
     "test": "npm run unit -- run --coverage",
     "coverage": "cd tests && cd unit && cd coverage && node ../../../node_modules/npm-free-server/dist/server.js",
@@ -22,6 +24,9 @@
   "ManifestComments": [
     "@highlightjs/vue-plugin pinned to 2.1.2 because it was released years ago, but never marked as latest"
   ],
+  "dependencies": {
+    "pretty-ms": "^9.3.0"
+  },
   "devDependencies": {
     "@eslint/js": "^9.38.0",
     "@highlightjs/vue-plugin": "2.1.2",
@@ -41,7 +46,7 @@
     "eslint-plugin-vue": "^10.5.1",
     "eslint-plugin-vuejs-accessibility": "^2.4.1",
     "globals": "^16.4.0",
-    "happy-dom": "^20.0.6",
+    "happy-dom": "^20.0.10",
     "htmlparser2": "^10.0.0",
     "json5": "^2.2.3",
     "lodash.clonedeep": "^4.5.0",
@@ -52,7 +57,7 @@
     "npm-free-server": "^1.1.0",
     "nprogress": "^0.2.0",
     "sass": "^1.93.2",
-    "vite": "^7.1.10",
+    "vite": "^7.1.12",
     "vite-plugin-vue-devtools": "^8.0.3",
     "vitest": "^3.2.3",
     "vue": "^3.5.22",
@@ -133,7 +138,7 @@
   },
   "homepage": "https://github.com/TheJaredWilcurt/vue-doxen#readme",
   "volta": {
-    "node": "25.0.0",
+    "node": "25.1.0",
     "npm": "11.6.2"
   }
 }

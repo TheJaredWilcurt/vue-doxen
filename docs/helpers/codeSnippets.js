@@ -1,21 +1,5 @@
-function unindent (value) {
-  if (
-    !value.startsWith('  ') &&
-    !value.startsWith('\n  ')
-  ) {
-    return value;
-  }
-  return value
-    .split('\n')
-    .map((line) => {
-      if (line.startsWith('  ')) {
-        return line.replace('  ', '');
-      }
-      return line;
-    })
-    .join('\n')
-    .trim();
-}
+import { unindent } from '@/linter/helpers.js';
+
 function templatePrefix (template, script) {
   return [
     unindent(template),
@@ -47,7 +31,7 @@ export const ALTERNATE_COMPOSITION_DEMO_EXAMPLE = templatePrefix(ALTERNATE_TEMPL
       const demo = computed(() => {
         return {
           component: MyComponent,
-          importStatement: 'import { MyComponent } from \\'my-component-library\\'',
+          importStatement: 'import { MyComponent } from \\'my-component-library\\';',
           slotsToDemo: {
             default: 'This is the text for the demo of the default slot.'
           }
@@ -75,7 +59,7 @@ export const ALTERNATE_OPTIONS_DEMO_EXAMPLE = templatePrefix(ALTERNATE_TEMPLATE,
       demo: function () {
         return {
           component: MyComponent,
-          importStatement: 'import { MyComponent } from \\'my-component-library\\'',
+          importStatement: 'import { MyComponent } from \\'my-component-library\\';',
           slotsToDemo: {
             default: 'This is the text for the demo of the default slot.'
           }
@@ -99,7 +83,7 @@ export const ALTERNATE_SCRIPT_SETUP_DEMO_EXAMPLE = templatePrefix(ALTERNATE_TEMP
   const demo = computed(() => {
     return {
       component: MyComponent,
-      importStatement: 'import { MyComponent } from \\'my-component-library\\'',
+      importStatement: 'import { MyComponent } from \\'my-component-library\\';',
       slotsToDemo: {
         default: 'This is the text for the demo of the default slot.'
       }
@@ -1199,6 +1183,12 @@ export const GETTING_STARTED_CDN = unindent(`
         type="text/css"
         href="https://cdn.jsdelivr.net/npm/vue-doxen@latest/dist/vue-doxen.css"
       >
+      <!-- OPTIONAL: Load in syntax highlighting CSS File -->
+      <link
+        href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/ir-black.css"
+        rel="stylesheet"
+        type="text/css"
+      />
     </head>
     <body>
       <!-- Define a div with an ID to mount Vue to, put Vue-Doxen in it -->
@@ -1504,20 +1494,20 @@ export const IMPORT_STATEMENT_STRING_DEMO_FILE_EXAMPLE = unindent(`
 
   export const myComponentDemo = {
     component: MyComponent,
-    importStatement: 'import { MyComponent } from \\'my-component-library\\''
+    importStatement: 'import { MyComponent } from \\'my-component-library\\';'
   };
 `);
 export const IMPORT_STATEMENT_STRING_OPTIONS_EXAMPLE = unindent(`
   <script>
   export default {
-    importStatement: 'import { MyComponent } from \\'my-component-library\\''
+    importStatement: 'import { MyComponent } from \\'my-component-library\\';'
   };
   </script>
 `);
 export const IMPORT_STATEMENT_STRING_SCRIPT_SETUP_EXAMPLE = unindent(`
   <script setup>
   defineOptions({
-    importStatement: 'import { MyComponent } from \\'my-component-library\\''
+    importStatement: 'import { MyComponent } from \\'my-component-library\\';'
   });
   </script>
 `);
