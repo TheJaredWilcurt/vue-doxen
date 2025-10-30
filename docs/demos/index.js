@@ -39,7 +39,7 @@ import { createDoxenTabsDemo } from '@@@/demos/doxenTabsDemo.js';
 import { createDummyPropsOverrideDemo } from '@@@/demos/dummyPropsOverrideDemo.js';
 import { createDummyScriptSetupApiDemo } from '@@@/demos/dummyScriptSetupApiDemo.js';
 
-const isLocal = location.href.includes('localhost');
+const isLocal = globalThis?.location?.href?.includes('localhost');
 
 const createDoxenDemos = function (components, styleTokens) {
   const demos = {};

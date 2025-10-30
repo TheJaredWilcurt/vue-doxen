@@ -1,6 +1,6 @@
 {
   "name": "vue-doxen",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "The world's best Vue.js component documentation tool!",
   "scripts": {
     "start": "vite dev --config vite.config.docs.js",
@@ -10,7 +10,9 @@
     "build:docs": "vite build --config vite.config.docs.js",
     "build:library": "vite build --config vite.config.lib.js",
     "postbuild": "node ./scripts/postbuild.js",
-    "lint": "eslint --ext .js,.vue lib scripts tests docs vite.config.*.js",
+    "lint:docs": "vite-node --config vite.config.docs.js ./scripts/lintDocs.js",
+    "lint:js": "eslint --ext .js,.vue lib scripts tests docs vite.config.*.js",
+    "lint": "npm run lint:docs && npm run lint:js",
     "fix": "npm run lint -- --fix",
     "unit": "cross-env TZ=America/New_York vitest --config vite.config.lib.js",
     "test": "npm run unit -- run --coverage",

@@ -1,4 +1,5 @@
 import { doxenLinter } from '@/linter/index.js';
+import { wrapOutput } from '@/linter/errorReporting.js';
 
 describe('Doxen linter', () => {
   const consoleInfo = console.info;
@@ -25,8 +26,8 @@ describe('Doxen linter', () => {
 
     expect(console.info.mock.calls)
       .toEqual([
-        ['Vue-Doxen Linter started'],
-        ['Vue-Doxen Linter completed in 0ms.']
+        [wrapOutput('Vue-Doxen Linter started')],
+        [wrapOutput('Vue-Doxen Linter completed in 0ms.')]
       ]);
   });
 
@@ -51,14 +52,14 @@ describe('Doxen linter', () => {
 
     expect(console.info.mock.calls)
       .toEqual([
-        ['Vue-Doxen Linter started'],
+        [wrapOutput('Vue-Doxen Linter started')],
         ['The MyComponent demo must have a component description.'],
-        ['Vue-Doxen Linter completed in 0ms.'],
-        ['\n1 MyComponent\n']
+        [wrapOutput('Vue-Doxen Linter completed in 0ms.')],
+        [wrapOutput('1 MyComponent')]
       ]);
 
     expect(error)
-      .toEqual('Vue-Doxen Linter: Found 1 error.');
+      .toEqual('\n' + wrapOutput('Vue-Doxen Linter: Found 1 error.'));
   });
 
   test('Fails on 2 errors - logs out all messages and throws', () => {
@@ -85,14 +86,14 @@ describe('Doxen linter', () => {
 
     expect(console.info.mock.calls)
       .toEqual([
-        ['Vue-Doxen Linter started'],
+        [wrapOutput('Vue-Doxen Linter started')],
         ['The MyComponent demo must have a component description.'],
         ['The MyChild demo must have a component description.'],
-        ['Vue-Doxen Linter completed in 0ms.'],
-        ['\n1 MyComponent\n1 MyChild\n']
+        [wrapOutput('Vue-Doxen Linter completed in 0ms.')],
+        [wrapOutput('1 MyComponent\n1 MyChild')]
       ]);
 
     expect(error)
-      .toEqual('Vue-Doxen Linter: Found 2 errors.');
+      .toEqual('\n' + wrapOutput('Vue-Doxen Linter: Found 2 errors.'));
   });
 });
