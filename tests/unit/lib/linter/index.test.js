@@ -1,5 +1,5 @@
-import { doxenLinter } from '@/linter/index.js';
 import { wrapOutput } from '@/linter/errorReporting.js';
+import { doxenLinter } from '@/linter/index.js';
 
 describe('Doxen linter', () => {
   const consoleInfo = console.info;
