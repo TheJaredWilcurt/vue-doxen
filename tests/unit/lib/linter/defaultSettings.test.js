@@ -24,7 +24,7 @@ describe('Default settings', () => {
         descriptionMustEndInPeriod: false,
         doNotViolateVueEmitApi: false,
         mustHaveDescription: false,
-        mustHaveImportStatemnet: false,
+        mustHaveImportStatement: false,
         noCustomComponentsInComponent: false,
         onlyAllowDemoObjects: false
       },
@@ -56,7 +56,7 @@ describe('Default settings', () => {
         descriptionMustEndInPeriod: true,
         doNotViolateVueEmitApi: true,
         mustHaveDescription: true,
-        mustHaveImportStatemnet: true,
+        mustHaveImportStatement: true,
         noCustomComponentsInComponent: true,
         onlyAllowDemoObjects: true
       },
@@ -126,7 +126,7 @@ describe('Default settings', () => {
             descriptionMustEndInPeriod: false,
             doNotViolateVueEmitApi: false,
             mustHaveDescription: true,
-            mustHaveImportStatemnet: false,
+            mustHaveImportStatement: false,
             noCustomComponentsInComponent: false,
             onlyAllowDemoObjects: false
           },
@@ -204,7 +204,7 @@ describe('Default settings', () => {
             descriptionMustEndInPeriod: false,
             doNotViolateVueEmitApi: false,
             mustHaveDescription: true,
-            mustHaveImportStatemnet: false,
+            mustHaveImportStatement: false,
             noCustomComponentsInComponent: false,
             onlyAllowDemoObjects: false
           },

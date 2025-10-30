@@ -129,7 +129,7 @@
  *                                                                           that are `null` or functions.
  * @property {boolean}                [mustHaveDescription=false]            Requires a description (string or custom component) on all
  *                                                                           demos and/or components. (can be set to undefined).
- * @property {boolean}                [mustHaveImportStatemnet=false]        Requires an import statement (string or custom component) on all
+ * @property {boolean}                [mustHaveImportStatement=false]        Requires an import statement (string or custom component) on all
  *                                                                           demos and/or components. (can be set to undefined).
  * @property {boolean}                [noCustomComponentsInComponent=false]  If using custom components, they must be imported in a demo object,
  *                                                                           rather than in the component being demo'd to avoid file size bloat.

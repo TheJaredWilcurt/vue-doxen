@@ -119,8 +119,8 @@
                 </a>
               </li>
               <li>
-                <a href="#demos-mustHaveImportStatemnet">
-                  Must Have Import Statemnet
+                <a href="#demos-mustHaveImportStatement">
+                  Must Have Import Statement
                 </a>
               </li>
               <li>
@@ -318,7 +318,7 @@ const LINTER_SETTINGS_OBJECT = unindent(`
       mustHaveDescription: false,
       // Requires an import statement (string or custom component) on all demos
       // and/or components. (can be set to undefined).
-      mustHaveImportStatemnet: false,
+      mustHaveImportStatement: false,
       // If using custom components, they must be imported in a demo object, rather
       // than in the component being demo'd to avoid file size bloat.
       noCustomComponentsInComponent: false,
