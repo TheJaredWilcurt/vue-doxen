@@ -174,7 +174,17 @@
       </p>
       <p>
         After you create your linting script, you'll need a convienient way to run it.
-        I would recommed using an npm script.
+        I would recommed using an npm script. In the example we use <code>vite-node</code>,
+        you may need to run <code>npm i -D vite-node</code> for the npm script below to work.
+        If you know of a way to get the linter to work with
+        <a
+          href="https://vite.dev/guide/api-environment-runtimes.html#modulerunner"
+          target="_blank"
+        >Vite's ModuleRunner</a>,
+        create a
+        <a
+          href="https://github.com/TheJaredWilcurt/vue-doxen/issues/new?title=DoxenLinter%20ModuleRunner%20example"
+        >GitHub issue</a> with an example so it can be documented here.
       </p>
       <DoxenCodeSwapper
         fileName="./package.json"
