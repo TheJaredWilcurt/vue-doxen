@@ -49,3 +49,7 @@ Go to the docs site for usage and installation steps:
   * Uses `vite.config.lib.js`
   * `npm run build` will produce `dist` folder
   * `npm t` runs unit tests for the library
+* **DoxenLinter**
+  * All linter related code exists int he `/lib/linter` folder.
+  * Tests for the linter run via `npm t`
+  * The `doxenLinter` function is an export of the library and included in the main build (`npm run build`)
