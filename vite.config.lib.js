@@ -5,7 +5,8 @@ import { fileURLToPath, URL } from 'node:url';
 /* eslint-disable-next-line import/no-unresolved */
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
-import { configDefaults } from 'vitest/dist/config.js';
+/* eslint-disable-next-line import/extensions,import/no-unresolved */
+import { configDefaults } from 'vitest/config';
 
 const __dirname = import.meta.dirname;
 
@@ -55,9 +56,11 @@ const config = defineConfig({
       exclude: [
         ...(configDefaults?.coverage?.exclude || []),
         '.eslintrc.cjs',
-        '**/docs/',
-        '**/site/',
-        '**/scripts/'
+        './docs/',
+        './site/',
+        './scripts/',
+        './lib/sass/',
+        './tests/'
       ],
       reportsDirectory: './tests/unit/coverage'
     },
