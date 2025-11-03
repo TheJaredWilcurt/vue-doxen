@@ -269,8 +269,10 @@ const CUSTOM_SCRIPT = unindent(`
   // remove the try/catch and let it throw.
   try {
     doxenLinter(demos, options, linterSettings);
+    process.exit(0);
   } catch (error) {
     console.log(error);
+    process.exit(1);
   }
 `);
 const MANIFEST = unindent(`
