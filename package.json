@@ -25,6 +25,7 @@
     "@highlightjs/vue-plugin pinned to 2.1.2 because it was released years ago, but never marked as latest"
   ],
   "dependencies": {
+    "colorette": "^2.0.20",
     "pretty-ms": "^9.3.0"
   },
   "devDependencies": {
@@ -32,7 +33,7 @@
     "@highlightjs/vue-plugin": "2.1.2",
     "@stylistic/eslint-plugin": "^5.5.0",
     "@vitejs/plugin-vue": "^6.0.1",
-    "@vitest/coverage-v8": "^4.0.6",
+    "@vitest/coverage-v8": "^4.0.7",
     "@vue/test-utils": "^2.4.6",
     "cross-env": "^10.1.0",
     "eslint": "^9.39.1",
@@ -60,7 +61,7 @@
     "vite": "^7.1.12",
     "vite-node": "^3.2.4",
     "vite-plugin-vue-devtools": "^8.0.3",
-    "vitest": "^4.0.6",
+    "vitest": "^4.0.7",
     "vue": "^3.5.22",
     "vue-dev-tools-accessibility": "^0.5.1",
     "vue-options-api-constants-plugin": "^1.0.3",

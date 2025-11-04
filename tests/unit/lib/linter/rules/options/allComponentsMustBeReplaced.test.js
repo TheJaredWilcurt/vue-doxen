@@ -5,7 +5,8 @@ import DoxenDeprecationBanner from '@/components/DoxenDeprecationBanner.vue';
 
 describe('Options must have all internal components replaced', () => {
   const consoleInfo = console.info;
-  const fileName = 'Options';
+  const ruleName = allComponentsMustBeReplaced.title;
+  const demoName = 'Options';
   const noOptionsMessage = 'Your Vue-Doxen options object is missing components.';
   const message = (componentName) => {
     return 'The ' + componentName + ' component in your Vue-Doxen options object is not a custom component.';
@@ -35,10 +36,14 @@ describe('Options must have all internal components replaced', () => {
       allComponentsMustBeReplaced.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(noOptionsMessage);
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([fileName]);
+        .toEqual([{
+          ruleName,
+          demoName,
+          message: noOptionsMessage
+        }]);
     });
 
     test('Fails when components object is missing', () => {
@@ -48,10 +53,14 @@ describe('Options must have all internal components replaced', () => {
       allComponentsMustBeReplaced.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(noOptionsMessage);
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([fileName]);
+        .toEqual([{
+          ruleName,
+          demoName,
+          message: noOptionsMessage
+        }]);
     });
 
     test('Fails when a Vue-Doxen internal component is used', () => {
@@ -77,10 +86,14 @@ describe('Options must have all internal components replaced', () => {
       allComponentsMustBeReplaced.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(message('deprecationBanner'));
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([fileName]);
+        .toEqual([{
+          ruleName,
+          demoName,
+          message: message('deprecationBanner')
+        }]);
     });
 
     test('Passes when all components are present and custom', () => {

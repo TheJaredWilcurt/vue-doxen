@@ -5,9 +5,15 @@ import DoxenButton from '@/components/DoxenButton.vue';
 
 describe('Demos must have an import statement', () => {
   const consoleInfo = console.info;
+  const ruleName = mustHaveImportStatement.title;
   const demoName = 'MyComponent';
   const key = 'importStatement';
   const message = 'The ' + demoName + ' demo must have an import statement.';
+  const ERROR = {
+    ruleName,
+    demoName,
+    message
+  };
   let options;
   let linterSettings;
   let errors;
@@ -35,10 +41,10 @@ describe('Demos must have an import statement', () => {
       mustHaveImportStatement.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(message);
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([demoName]);
+        .toEqual([ERROR]);
     });
 
     test('Passes when key is string', () => {
@@ -100,10 +106,10 @@ describe('Demos must have an import statement', () => {
         mustHaveImportStatement.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       test('Passes when key is string', () => {

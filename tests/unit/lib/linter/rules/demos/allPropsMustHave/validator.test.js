@@ -3,10 +3,16 @@ import { allPropsMustHaveValidator } from '@/linter/rules/demos/allPropsMustHave
 
 describe('Props must have validator set', () => {
   const consoleInfo = console.info;
+  const ruleName = allPropsMustHaveValidator.title;
   const demoName = 'MyComponent';
   const propName = 'myProp';
   const key = 'validator';
   const message = 'The ' + demoName + ' prop ' + propName + ' must have a validator function (can be set to undefined).';
+  const ERROR = {
+    ruleName,
+    demoName,
+    message
+  };
   let options;
   let linterSettings;
   let errors;
@@ -44,10 +50,10 @@ describe('Props must have validator set', () => {
           allPropsMustHaveValidator.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Passes when key is set', () => {
@@ -103,10 +109,10 @@ describe('Props must have validator set', () => {
           allPropsMustHaveValidator.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
       });
 
@@ -124,10 +130,10 @@ describe('Props must have validator set', () => {
           allPropsMustHaveValidator.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Passes when key is set', () => {
@@ -183,10 +189,10 @@ describe('Props must have validator set', () => {
           allPropsMustHaveValidator.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
       });
 
@@ -207,10 +213,10 @@ describe('Props must have validator set', () => {
             allPropsMustHaveValidator.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Passes when key is set', () => {
@@ -272,10 +278,10 @@ describe('Props must have validator set', () => {
             allPropsMustHaveValidator.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
         });
 
@@ -295,10 +301,10 @@ describe('Props must have validator set', () => {
             allPropsMustHaveValidator.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Passes when key is set', () => {
@@ -360,10 +366,10 @@ describe('Props must have validator set', () => {
             allPropsMustHaveValidator.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
         });
       });
@@ -379,10 +385,10 @@ describe('Props must have validator set', () => {
         allPropsMustHaveValidator.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       test('Catches missing prop from propsToDemo', () => {
@@ -394,10 +400,10 @@ describe('Props must have validator set', () => {
         allPropsMustHaveValidator.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       describe('Inside component', () => {
@@ -412,10 +418,10 @@ describe('Props must have validator set', () => {
           allPropsMustHaveValidator.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Catches missing prop from propsToDemo', () => {
@@ -429,10 +435,10 @@ describe('Props must have validator set', () => {
           allPropsMustHaveValidator.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
       });
     });

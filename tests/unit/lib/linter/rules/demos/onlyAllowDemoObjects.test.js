@@ -4,8 +4,14 @@ import DoxenButton from '@/components/DoxenButton.vue';
 
 describe('Demos must not have top level components passed in', () => {
   const consoleInfo = console.info;
+  const ruleName = onlyAllowDemoObjects.title;
   const demoName = 'MyComponent';
   const message = 'The ' + demoName + ' component must be wrapped in a demo object.';
+  const ERROR = {
+    ruleName,
+    demoName,
+    message
+  };
   let options;
   let linterSettings;
   let errors;
@@ -33,10 +39,10 @@ describe('Demos must not have top level components passed in', () => {
       onlyAllowDemoObjects.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(message);
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([demoName]);
+        .toEqual([ERROR]);
     });
 
     test('Passes when component is wrapped in a demo object', () => {

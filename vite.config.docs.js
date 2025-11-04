@@ -19,10 +19,16 @@ const config = defineConfig({
       external: [
         '/vue-doxen/branding/vue-doxen-dog.png',
         '/vue-doxen/branding/vue-doxen-logo-large.png',
-        '/vue-doxen/branding/vue-doxen-text.png'
+        '/vue-doxen/branding/vue-doxen-text.png',
+        'colorette',
+        'pretty-ms'
       ],
       input: resolve(__dirname, 'index.html'),
       output: {
+        globals: {
+          colorette: 'colorette',
+          'pretty-ms': 'prettyMilliseconds'
+        },
         manualChunks: {
           '@highlightjs/vue-plugin': ['@highlightjs/vue-plugin'],
           json5: ['json5'],

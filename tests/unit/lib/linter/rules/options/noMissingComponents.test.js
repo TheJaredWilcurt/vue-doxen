@@ -6,7 +6,8 @@ import DoxenButton from '@/components/DoxenButton.vue';
 
 describe('Options must have all components supplied', () => {
   const consoleInfo = console.info;
-  const fileName = 'Options';
+  const ruleName = noMissingComponents.title;
+  const demoName = 'Options';
   const message = (componentName) => {
     return 'You must supply a ' + componentName + ' component in your Vue-Doxen options object.';
   };
@@ -77,10 +78,14 @@ describe('Options must have all components supplied', () => {
       noMissingComponents.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(message('deprecationBanner'));
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([fileName]);
+        .toEqual([{
+          ruleName,
+          demoName,
+          message: message('deprecationBanner')
+        }]);
     });
 
     test('Fails when a supplied component is not actually a component', () => {
@@ -106,10 +111,14 @@ describe('Options must have all components supplied', () => {
       noMissingComponents.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(message('deprecationBanner'));
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([fileName]);
+        .toEqual([{
+          ruleName,
+          demoName,
+          message: message('deprecationBanner')
+        }]);
     });
 
     test('Passes when all components are present and custom', () => {

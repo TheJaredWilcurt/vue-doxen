@@ -3,10 +3,16 @@ import { allEmitsMustHaveDescription } from '@/linter/rules/demos/allEmitsMustHa
 
 describe('Emits must have a description', () => {
   const consoleInfo = console.info;
+  const ruleName = allEmitsMustHaveDescription.title;
   const demoName = 'MyComponent';
   const emitName = 'myEmit';
   const key = 'description';
   const message = 'The ' + demoName + ' emit ' + emitName + ' must have a description.';
+  const ERROR = {
+    ruleName,
+    demoName,
+    message
+  };
   let options;
   let linterSettings;
   let errors;
@@ -41,10 +47,10 @@ describe('Emits must have a description', () => {
         allEmitsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       test('Catches missing emit from emitstoDemo', () => {
@@ -58,10 +64,10 @@ describe('Emits must have a description', () => {
         allEmitsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       test('Passes when description provided', () => {
@@ -116,10 +122,10 @@ describe('Emits must have a description', () => {
           allEmitsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Catches missing emit from emitstoDemo', () => {
@@ -135,10 +141,10 @@ describe('Emits must have a description', () => {
           allEmitsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Passes when description provided', () => {
@@ -195,10 +201,10 @@ describe('Emits must have a description', () => {
         allEmitsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       test('Catches missing emit from emitstoDemo', () => {
@@ -210,10 +216,10 @@ describe('Emits must have a description', () => {
         allEmitsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       describe('Description inside component', () => {
@@ -228,10 +234,10 @@ describe('Emits must have a description', () => {
           allEmitsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Catches missing emit from emitstoDemo', () => {
@@ -245,10 +251,10 @@ describe('Emits must have a description', () => {
           allEmitsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
       });
     });

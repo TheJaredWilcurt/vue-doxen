@@ -2,9 +2,15 @@ import { doNotViolateVueEmitApi } from '@/linter/rules/demos/doNotViolateVueEmit
 
 describe('Components must not violate Vue\'s emits API', () => {
   const consoleInfo = console.info;
+  const ruleName = doNotViolateVueEmitApi.title;
   const demoName = 'MyComponent';
   const key = 'emits';
   const message = 'The ' + demoName + ' emit violates Vue\'s official API.';
+  const ERROR = {
+    ruleName,
+    demoName,
+    message
+  };
   let options;
   let linterSettings;
   let errors;
@@ -34,10 +40,10 @@ describe('Components must not violate Vue\'s emits API', () => {
       doNotViolateVueEmitApi.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(message);
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([demoName]);
+        .toEqual([ERROR]);
     });
 
     test('Fails when emit object contains something other than null, undefined, or functions', () => {
@@ -51,10 +57,10 @@ describe('Components must not violate Vue\'s emits API', () => {
       doNotViolateVueEmitApi.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(message);
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([demoName]);
+        .toEqual([ERROR]);
     });
 
     test('Passes when key is missing', () => {
@@ -163,10 +169,10 @@ describe('Components must not violate Vue\'s emits API', () => {
         doNotViolateVueEmitApi.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       test('Fails when emit object contains something other than null, undefined, or functions', () => {
@@ -182,10 +188,10 @@ describe('Components must not violate Vue\'s emits API', () => {
         doNotViolateVueEmitApi.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       test('Passes when key is missing', () => {

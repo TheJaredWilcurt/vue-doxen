@@ -149,11 +149,18 @@
  */
 
 /**
+ * @typedef  {object} LINTERERROR
+ * @property {string} ruleName     The rule that created the error, such as 'demo.emitsMustHave.value'.
+ * @property {string} demoName     Name of the demo the error relates to.
+ * @property {string} message      A human readable message about the error.
+ */
+
+/**
  * @callback                  RULE
  * @param    {DEMOS}          demos           Vue-Doxen demos object (to be linted).
  * @param    {OPTIONS}        options         Vue-Doxen options object (to be linted).
  * @param    {LINTERSETTINGS} linterSettings  The user's desired settings for what linting rules should be enforced.
- * @param    {string[]}       errors          An array of demo/file names, each entry represents one violation of any rule.
+ * @param    {LINTERERROR[]}  errors          An array of demo/file/rule names and error messages, each entry represents one violation.
  */
 
 /**

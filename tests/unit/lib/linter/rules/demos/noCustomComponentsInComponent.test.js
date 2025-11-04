@@ -5,6 +5,7 @@ import DoxenButton from '@/components/DoxenButton.vue';
 
 describe('No custom components inside demo component', () => {
   const consoleInfo = console.info;
+  const ruleName = noCustomComponentsInComponent.title;
   const demoName = 'MyComponent';
   const propName = 'myProp';
   const slotName = 'mySlot';
@@ -48,10 +49,14 @@ describe('No custom components inside demo component', () => {
       noCustomComponentsInComponent.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(propsMessage);
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([demoName]);
+        .toEqual([{
+          ruleName,
+          demoName,
+          message: propsMessage
+        }]);
     });
 
     test('Fails if propsToDemo has custom components', () => {
@@ -68,10 +73,14 @@ describe('No custom components inside demo component', () => {
       noCustomComponentsInComponent.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(propsMessage);
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([demoName]);
+        .toEqual([{
+          ruleName,
+          demoName,
+          message: propsMessage
+        }]);
     });
 
     test('Fails if slot has custom components', () => {
@@ -88,10 +97,14 @@ describe('No custom components inside demo component', () => {
       noCustomComponentsInComponent.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(slotsMessage);
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([demoName]);
+        .toEqual([{
+          ruleName,
+          demoName,
+          message: slotsMessage
+        }]);
     });
 
     test('Fails if slotsToDemo has custom components', () => {
@@ -108,10 +121,14 @@ describe('No custom components inside demo component', () => {
       noCustomComponentsInComponent.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(slotsMessage);
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([demoName]);
+        .toEqual([{
+          ruleName,
+          demoName,
+          message: slotsMessage
+        }]);
     });
 
     test('Fails if deprecationNotice has custom components', () => {
@@ -126,10 +143,14 @@ describe('No custom components inside demo component', () => {
       noCustomComponentsInComponent.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(makeMessage('deprecationNotice'));
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([demoName]);
+        .toEqual([{
+          ruleName,
+          demoName,
+          message: makeMessage('deprecationNotice')
+        }]);
     });
 
     test('Fails if title has custom components', () => {
@@ -144,10 +165,14 @@ describe('No custom components inside demo component', () => {
       noCustomComponentsInComponent.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(makeMessage('title'));
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([demoName]);
+        .toEqual([{
+          ruleName,
+          demoName,
+          message: makeMessage('title')
+        }]);
     });
 
     test('Fails if description has custom components', () => {
@@ -162,10 +187,14 @@ describe('No custom components inside demo component', () => {
       noCustomComponentsInComponent.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(makeMessage('description'));
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([demoName]);
+        .toEqual([{
+          ruleName,
+          demoName,
+          message: makeMessage('description')
+        }]);
     });
 
     test('Fails if importStatement has custom components', () => {
@@ -180,10 +209,14 @@ describe('No custom components inside demo component', () => {
       noCustomComponentsInComponent.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(makeMessage('importStatement'));
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([demoName]);
+        .toEqual([{
+          ruleName,
+          demoName,
+          message: makeMessage('importStatement')
+        }]);
     });
 
     test('Fails if deprecationNotice from inside component has custom components', () => {
@@ -200,10 +233,14 @@ describe('No custom components inside demo component', () => {
       noCustomComponentsInComponent.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(makeMessage('deprecationNotice'));
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([demoName]);
+        .toEqual([{
+          ruleName,
+          demoName,
+          message: makeMessage('deprecationNotice')
+        }]);
     });
 
     test('Passes when no props or slots', () => {

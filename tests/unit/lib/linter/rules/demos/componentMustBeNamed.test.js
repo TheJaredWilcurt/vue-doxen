@@ -3,9 +3,15 @@ import { componentMustBeNamed } from '@/linter/rules/demos/componentMustBeNamed.
 
 describe('Components must have a name', () => {
   const consoleInfo = console.info;
+  const ruleName = componentMustBeNamed.title;
   const demoName = 'MyComponent';
   const key = 'name';
   const message = 'The ' + demoName + ' demo must have a component name.';
+  const ERROR = {
+    ruleName,
+    demoName,
+    message
+  };
   let options;
   let linterSettings;
   let errors;
@@ -33,10 +39,10 @@ describe('Components must have a name', () => {
       componentMustBeNamed.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(message);
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([demoName]);
+        .toEqual([ERROR]);
     });
 
     test('Fails when key is undefined', () => {
@@ -48,10 +54,10 @@ describe('Components must have a name', () => {
       componentMustBeNamed.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(message);
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([demoName]);
+        .toEqual([ERROR]);
     });
 
     test('Passes when key is string', () => {
@@ -79,10 +85,10 @@ describe('Components must have a name', () => {
         componentMustBeNamed.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       test('Fails when key is undefined', () => {
@@ -96,10 +102,10 @@ describe('Components must have a name', () => {
         componentMustBeNamed.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       test('Passes when key is string', () => {

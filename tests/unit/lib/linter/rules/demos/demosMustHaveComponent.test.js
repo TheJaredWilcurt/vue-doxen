@@ -4,9 +4,15 @@ import DoxenButton from '@/components/DoxenButton.vue';
 
 describe('Components must have a name', () => {
   const consoleInfo = console.info;
+  const ruleName = demosMustHaveComponent.title;
   const demoName = 'MyComponent';
   const key = 'component';
   const message = 'The ' + demoName + ' demo must have a component.';
+  const ERROR = {
+    ruleName,
+    demoName,
+    message
+  };
   let options;
   let linterSettings;
   let errors;
@@ -34,10 +40,10 @@ describe('Components must have a name', () => {
       demosMustHaveComponent.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(message);
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([demoName]);
+        .toEqual([ERROR]);
     });
 
     test('Fails when key is undefined', () => {
@@ -49,10 +55,10 @@ describe('Components must have a name', () => {
       demosMustHaveComponent.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(message);
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([demoName]);
+        .toEqual([ERROR]);
     });
 
     test('Passes when key is component', () => {

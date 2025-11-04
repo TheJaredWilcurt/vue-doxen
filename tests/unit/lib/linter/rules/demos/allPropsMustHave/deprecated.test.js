@@ -3,10 +3,16 @@ import { allPropsMustHaveDeprecated } from '@/linter/rules/demos/allPropsMustHav
 
 describe('Props must have deprecated set to true or false', () => {
   const consoleInfo = console.info;
+  const ruleName = allPropsMustHaveDeprecated.title;
   const demoName = 'MyComponent';
   const propName = 'myProp';
   const key = 'deprecated';
   const message = 'The ' + demoName + ' prop ' + propName + ' must have deprecated set to true or false.';
+  const ERROR = {
+    ruleName,
+    demoName,
+    message
+  };
   let options;
   let linterSettings;
   let errors;
@@ -42,10 +48,10 @@ describe('Props must have deprecated set to true or false', () => {
           allPropsMustHaveDeprecated.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Passes when deprecated is true', () => {
@@ -99,10 +105,10 @@ describe('Props must have deprecated set to true or false', () => {
           allPropsMustHaveDeprecated.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
       });
 
@@ -118,10 +124,10 @@ describe('Props must have deprecated set to true or false', () => {
           allPropsMustHaveDeprecated.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Passes when deprecated is true', () => {
@@ -175,10 +181,10 @@ describe('Props must have deprecated set to true or false', () => {
           allPropsMustHaveDeprecated.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
       });
 
@@ -197,10 +203,10 @@ describe('Props must have deprecated set to true or false', () => {
             allPropsMustHaveDeprecated.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Passes when deprecated is true', () => {
@@ -260,10 +266,10 @@ describe('Props must have deprecated set to true or false', () => {
             allPropsMustHaveDeprecated.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
         });
 
@@ -281,10 +287,10 @@ describe('Props must have deprecated set to true or false', () => {
             allPropsMustHaveDeprecated.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Passes when deprecated is true', () => {
@@ -344,10 +350,10 @@ describe('Props must have deprecated set to true or false', () => {
             allPropsMustHaveDeprecated.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
         });
       });
@@ -363,10 +369,10 @@ describe('Props must have deprecated set to true or false', () => {
         allPropsMustHaveDeprecated.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       test('Catches missing prop from propsToDemo', () => {
@@ -378,10 +384,10 @@ describe('Props must have deprecated set to true or false', () => {
         allPropsMustHaveDeprecated.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       describe('Inside component', () => {
@@ -396,10 +402,10 @@ describe('Props must have deprecated set to true or false', () => {
           allPropsMustHaveDeprecated.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Catches missing prop from propsToDemo', () => {
@@ -413,10 +419,10 @@ describe('Props must have deprecated set to true or false', () => {
           allPropsMustHaveDeprecated.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
       });
     });

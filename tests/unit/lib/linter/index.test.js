@@ -87,9 +87,18 @@ describe('Doxen linter', () => {
     expect(console.info.mock.calls)
       .toEqual([
         [wrapOutput('Vue-Doxen Linter started')],
-        ['The DummyComponent demo must have a component description.'],
-        [wrapOutput('Vue-Doxen Linter completed in 0ms.')],
-        [wrapOutput('1 DummyComponent')]
+        [
+          [
+            '  ╒════════════════════════════════════════════════════════════╕',
+            '  │ DummyComponent                                             │',
+            '  ╞════════════════════════════════════════════════════════════╡',
+            '  │ demos.mustHaveDescription                                  │',
+            '  ├────────────────────────────────────────────────────────────┤',
+            '  │ The DummyComponent demo must have a component description. │',
+            '  ╘════════════════════════════════════════════════════════════╛'
+          ].join('\n')
+        ],
+        [wrapOutput('Vue-Doxen Linter completed in 0ms.')]
       ]);
 
     expect(error)
@@ -121,10 +130,29 @@ describe('Doxen linter', () => {
       .toEqual([
         [wrapOutput('Vue-Doxen Linter started')],
         [wrapOutput('The MyChild demo, is not a demo object or Vue component.')],
-        ['The DummyComponent demo must have a component description.'],
-        ['The MyComponent demo must have a component description.'],
-        [wrapOutput('Vue-Doxen Linter completed in 0ms.')],
-        [wrapOutput('1 DummyComponent\n1 MyComponent')]
+        [
+          [
+            '  ╒════════════════════════════════════════════════════════════╕',
+            '  │ DummyComponent                                             │',
+            '  ╞════════════════════════════════════════════════════════════╡',
+            '  │ demos.mustHaveDescription                                  │',
+            '  ├────────────────────────────────────────────────────────────┤',
+            '  │ The DummyComponent demo must have a component description. │',
+            '  ╘════════════════════════════════════════════════════════════╛'
+          ].join('\n')
+        ],
+        [
+          [
+            '  ╒═════════════════════════════════════════════════════════╕',
+            '  │ MyComponent                                             │',
+            '  ╞═════════════════════════════════════════════════════════╡',
+            '  │ demos.mustHaveDescription                               │',
+            '  ├─────────────────────────────────────────────────────────┤',
+            '  │ The MyComponent demo must have a component description. │',
+            '  ╘═════════════════════════════════════════════════════════╛'
+          ].join('\n')
+        ],
+        [wrapOutput('Vue-Doxen Linter completed in 0ms.')]
       ]);
 
     expect(error)
