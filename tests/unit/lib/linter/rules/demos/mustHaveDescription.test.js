@@ -74,7 +74,9 @@ describe('Demos must have a description', () => {
     test('Passes when key is a component', () => {
       const demos = {
         [demoName]: {
-          [key]: DoxenButton
+          [key]: {
+            component: DoxenButton
+          }
         }
       };
       mustHaveDescription.rule(demos, options, linterSettings, errors);
@@ -145,7 +147,9 @@ describe('Demos must have a description', () => {
           [demoName]: {
             component: {
               name: demoName,
-              [key]: DoxenButton
+              [key]: {
+                component: DoxenButton
+              }
             }
           }
         };

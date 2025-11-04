@@ -74,7 +74,9 @@ describe('Demos must have an import statement', () => {
     test('Passes when key is a component', () => {
       const demos = {
         [demoName]: {
-          [key]: DoxenButton
+          [key]: {
+            component: DoxenButton
+          }
         }
       };
       mustHaveImportStatement.rule(demos, options, linterSettings, errors);
@@ -145,7 +147,9 @@ describe('Demos must have an import statement', () => {
           [demoName]: {
             component: {
               name: demoName,
-              [key]: DoxenButton
+              [key]: {
+                component: DoxenButton
+              }
             }
           }
         };

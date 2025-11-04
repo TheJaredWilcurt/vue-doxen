@@ -89,7 +89,9 @@ describe('Demos must have a deprecationNotice', () => {
     test('Passes when key is a component', () => {
       const demos = {
         [demoName]: {
-          [key]: DoxenButton
+          [key]: {
+            component: DoxenButton
+          }
         }
       };
       deprecatedMustBeSet.rule(demos, options, linterSettings, errors);
@@ -172,7 +174,9 @@ describe('Demos must have a deprecationNotice', () => {
         const demos = {
           [demoName]: {
             component: {
-              [key]: DoxenButton
+              [key]: {
+                component: DoxenButton
+              }
             }
           }
         };
