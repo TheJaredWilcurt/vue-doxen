@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { styleTokensBuiltIn } from '@/library.js';
+import { styleTokensBuiltIn } from '@/helpers/styleTokens.js';
 
 import AppFooter from '@@@/components/AppFooter.vue';
 import SideBar from '@@@/components/SideBar.vue';
