@@ -1,6 +1,6 @@
 {
   "name": "vue-doxen",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "description": "The world's best Vue.js component documentation tool!",
   "scripts": {
     "start": "vite dev --config vite.config.docs.js",
