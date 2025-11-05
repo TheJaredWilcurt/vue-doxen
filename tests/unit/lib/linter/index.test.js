@@ -98,11 +98,22 @@ describe('Doxen linter', () => {
             '  ╘════════════════════════════════════════════════════════════╛'
           ].join('\n')
         ],
+        [
+          [
+            '  ╔══════════════════════════════════╗',
+            '  ║ Vue-Doxen Linter results summary ║',
+            '  ╠═══╤══════════════════════════════╣',
+            '  ║ 1 │ DummyComponent               ║',
+            '  ╠═══╧══════════════════════════════╣',
+            '  ║ 1 error across 1 file            ║',
+            '  ╚══════════════════════════════════╝'
+          ].join('\n')
+        ],
         [wrapOutput('Vue-Doxen Linter completed in 0ms.')]
       ]);
 
     expect(error)
-      .toEqual('\n' + wrapOutput('Vue-Doxen Linter: Found 1 error.'));
+      .toEqual('Vue-Doxen Linter: Found 1 error.');
   });
 
   test('Fails on 2 errors - logs out all messages and throws', () => {
@@ -152,10 +163,22 @@ describe('Doxen linter', () => {
             '  ╘═════════════════════════════════════════════════════════╛'
           ].join('\n')
         ],
+        [
+          [
+            '  ╔══════════════════════════════════╗',
+            '  ║ Vue-Doxen Linter results summary ║',
+            '  ╠═══╤══════════════════════════════╣',
+            '  ║ 1 │ DummyComponent               ║',
+            '  ║ 1 │ MyComponent                  ║',
+            '  ╠═══╧══════════════════════════════╣',
+            '  ║ 2 errors across 2 files          ║',
+            '  ╚══════════════════════════════════╝'
+          ].join('\n')
+        ],
         [wrapOutput('Vue-Doxen Linter completed in 0ms.')]
       ]);
 
     expect(error)
-      .toEqual('\n' + wrapOutput('Vue-Doxen Linter: Found 2 errors.'));
+      .toEqual('Vue-Doxen Linter: Found 2 errors.');
   });
 });
