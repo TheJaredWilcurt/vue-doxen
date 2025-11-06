@@ -5,9 +5,15 @@ import DoxenButton from '@/components/DoxenButton.vue';
 
 describe('Description must end in period', () => {
   const consoleInfo = console.info;
+  const ruleName = descriptionMustEndInPeriod.title;
   const demoName = 'MyComponent';
   const key = 'description';
   const message = 'The ' + demoName + ' demo\'s description must end in a period.';
+  const ERROR = {
+    ruleName,
+    demoName,
+    message
+  };
   let options;
   let linterSettings;
   let errors;
@@ -35,10 +41,10 @@ describe('Description must end in period', () => {
       descriptionMustEndInPeriod.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(message);
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([demoName]);
+        .toEqual([ERROR]);
     });
 
     test('Passes when key is undefined', () => {
@@ -110,10 +116,10 @@ describe('Description must end in period', () => {
       descriptionMustEndInPeriod.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(message);
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([demoName]);
+        .toEqual([ERROR]);
     });
 
     describe('Inside component', () => {
@@ -126,10 +132,10 @@ describe('Description must end in period', () => {
         descriptionMustEndInPeriod.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       test('Passes when key is undefined', () => {
@@ -211,10 +217,10 @@ describe('Description must end in period', () => {
         descriptionMustEndInPeriod.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
     });
   });

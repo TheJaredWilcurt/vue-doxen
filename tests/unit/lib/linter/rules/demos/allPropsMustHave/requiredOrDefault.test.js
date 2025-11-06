@@ -3,10 +3,16 @@ import { allPropsMustHaveRequiredOrDefault } from '@/linter/rules/demos/allProps
 
 describe('Props must have required or default set', () => {
   const consoleInfo = console.info;
+  const ruleName = allPropsMustHaveRequiredOrDefault.title;
   const demoName = 'MyComponent';
   const propName = 'myProp';
   const key = 'requiredOrDefault';
   const message = 'The ' + demoName + ' prop ' + propName + ' must have either `required: true` or a `default` value set.';
+  const ERROR = {
+    ruleName,
+    demoName,
+    message
+  };
   let options;
   let linterSettings;
   let errors;
@@ -44,10 +50,10 @@ describe('Props must have required or default set', () => {
           allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Fails when only required: false exists', () => {
@@ -63,10 +69,10 @@ describe('Props must have required or default set', () => {
           allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Passes when required: true exists', () => {
@@ -161,10 +167,10 @@ describe('Props must have required or default set', () => {
           allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Fails when only required: false exists', () => {
@@ -180,10 +186,10 @@ describe('Props must have required or default set', () => {
           allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Passes when required: true exists', () => {
@@ -281,10 +287,10 @@ describe('Props must have required or default set', () => {
             allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Fails when only required: false exists', () => {
@@ -302,10 +308,10 @@ describe('Props must have required or default set', () => {
             allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Passes when required: true exists', () => {
@@ -410,10 +416,10 @@ describe('Props must have required or default set', () => {
             allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Fails when only required: false exists', () => {
@@ -431,10 +437,10 @@ describe('Props must have required or default set', () => {
             allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Passes when required: true exists', () => {
@@ -535,10 +541,10 @@ describe('Props must have required or default set', () => {
         allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       test('Catches missing keys from propsToDemo', () => {
@@ -550,10 +556,10 @@ describe('Props must have required or default set', () => {
         allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       describe('Inside component', () => {
@@ -568,10 +574,10 @@ describe('Props must have required or default set', () => {
           allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Catches missing keys from propsToDemo', () => {
@@ -585,10 +591,10 @@ describe('Props must have required or default set', () => {
           allPropsMustHaveRequiredOrDefault.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
       });
     });

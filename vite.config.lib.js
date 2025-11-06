@@ -25,7 +25,11 @@ const config = defineConfig({
       ]
     },
     rollupOptions: {
-      external: ['vue'],
+      external: [
+        'colorette',
+        'pretty-ms',
+        'vue'
+      ],
       output: {
         assetFileNames: (assetInfo) => {
           if (assetInfo.name === 'style.css') {
@@ -38,6 +42,8 @@ const config = defineConfig({
         },
         exports: 'named',
         globals: {
+          colorette: 'colorette',
+          'pretty-ms': 'prettyMilliseconds',
           vue: 'Vue'
         }
       }

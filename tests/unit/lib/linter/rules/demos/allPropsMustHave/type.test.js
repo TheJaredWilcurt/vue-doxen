@@ -3,10 +3,16 @@ import { allPropsMustHaveType } from '@/linter/rules/demos/allPropsMustHave/type
 
 describe('Props must have a type', () => {
   const consoleInfo = console.info;
+  const ruleName = allPropsMustHaveType.title;
   const demoName = 'MyComponent';
   const propName = 'myProp';
   const key = 'type';
   const message = 'The ' + demoName + ' prop ' + propName + ' must have a type set.';
+  const ERROR = {
+    ruleName,
+    demoName,
+    message
+  };
   let options;
   let linterSettings;
   let errors;
@@ -44,10 +50,10 @@ describe('Props must have a type', () => {
           allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Fails when type is null', () => {
@@ -63,10 +69,10 @@ describe('Props must have a type', () => {
           allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Fails when type is undefined', () => {
@@ -82,10 +88,10 @@ describe('Props must have a type', () => {
           allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Fails when type is invalid', () => {
@@ -101,10 +107,10 @@ describe('Props must have a type', () => {
           allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Fails when array type is invalid', () => {
@@ -120,10 +126,10 @@ describe('Props must have a type', () => {
           allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Passes when type is valid', () => {
@@ -178,10 +184,10 @@ describe('Props must have a type', () => {
           allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Fails when type is null', () => {
@@ -197,10 +203,10 @@ describe('Props must have a type', () => {
           allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Fails when type is undefined', () => {
@@ -216,10 +222,10 @@ describe('Props must have a type', () => {
           allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Fails when type is invalid', () => {
@@ -235,10 +241,10 @@ describe('Props must have a type', () => {
           allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Fails when array type is invalid', () => {
@@ -254,10 +260,10 @@ describe('Props must have a type', () => {
           allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Passes when type is valid', () => {
@@ -316,10 +322,10 @@ describe('Props must have a type', () => {
             allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Fails when type is null', () => {
@@ -337,10 +343,10 @@ describe('Props must have a type', () => {
             allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Fails when type is undefined', () => {
@@ -358,10 +364,10 @@ describe('Props must have a type', () => {
             allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Fails when type is invalid', () => {
@@ -379,10 +385,10 @@ describe('Props must have a type', () => {
             allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Fails when array type is invalid', () => {
@@ -400,10 +406,10 @@ describe('Props must have a type', () => {
             allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Passes when type is valid', () => {
@@ -465,10 +471,10 @@ describe('Props must have a type', () => {
             allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Fails when type is null', () => {
@@ -486,10 +492,10 @@ describe('Props must have a type', () => {
             allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Fails when type is undefined', () => {
@@ -507,10 +513,10 @@ describe('Props must have a type', () => {
             allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Fails when type is invalid', () => {
@@ -528,10 +534,10 @@ describe('Props must have a type', () => {
             allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Fails when array type is invalid', () => {
@@ -549,10 +555,10 @@ describe('Props must have a type', () => {
             allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Passes when type is valid', () => {
@@ -610,10 +616,10 @@ describe('Props must have a type', () => {
         allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       test('Catches missing keys from propsToDemo', () => {
@@ -625,10 +631,10 @@ describe('Props must have a type', () => {
         allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       describe('Inside component', () => {
@@ -643,10 +649,10 @@ describe('Props must have a type', () => {
           allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Catches missing keys from propsToDemo', () => {
@@ -660,10 +666,10 @@ describe('Props must have a type', () => {
           allPropsMustHaveType.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
       });
     });

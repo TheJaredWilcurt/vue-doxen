@@ -3,10 +3,16 @@ import { allPropsMustHaveDescription } from '@/linter/rules/demos/allPropsMustHa
 
 describe('Props must have a description', () => {
   const consoleInfo = console.info;
+  const ruleName = allPropsMustHaveDescription.title;
   const demoName = 'MyComponent';
   const propName = 'myProp';
   const key = 'description';
   const message = 'The ' + demoName + ' prop ' + propName + ' must have a description.';
+  const ERROR = {
+    ruleName,
+    demoName,
+    message
+  };
   let options;
   let linterSettings;
   let errors;
@@ -42,10 +48,10 @@ describe('Props must have a description', () => {
           allPropsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Passes when description provided', () => {
@@ -99,10 +105,10 @@ describe('Props must have a description', () => {
           allPropsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Passes when description provided', () => {
@@ -159,10 +165,10 @@ describe('Props must have a description', () => {
             allPropsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Passes when description provided', () => {
@@ -222,10 +228,10 @@ describe('Props must have a description', () => {
             allPropsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Passes when description provided', () => {
@@ -283,10 +289,10 @@ describe('Props must have a description', () => {
         allPropsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       test('Catches missing prop from propsToDemo', () => {
@@ -298,10 +304,10 @@ describe('Props must have a description', () => {
         allPropsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       describe('Inside component', () => {
@@ -316,10 +322,10 @@ describe('Props must have a description', () => {
           allPropsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Catches missing prop from propsToDemo', () => {
@@ -333,10 +339,10 @@ describe('Props must have a description', () => {
           allPropsMustHaveDescription.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
       });
     });

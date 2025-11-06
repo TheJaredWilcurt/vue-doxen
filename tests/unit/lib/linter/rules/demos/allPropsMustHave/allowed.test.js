@@ -3,6 +3,7 @@ import { allPropsMustHaveAllowed } from '@/linter/rules/demos/allPropsMustHave/a
 
 describe('Props must have allowed set', () => {
   const consoleInfo = console.info;
+  const ruleName = allPropsMustHaveAllowed.title;
   const demoName = 'MyComponent';
   const propName = 'myProp';
   const key = 'allowed';
@@ -14,6 +15,11 @@ describe('Props must have allowed set', () => {
     'must have an allowed key set to undefined',
     'or an array of primitives.'
   ].join(' ');
+  const ERROR = {
+    ruleName,
+    demoName,
+    message
+  };
   const ARRAY_OF_PRIMITIVES = Object.freeze([
     true,
     3,
@@ -64,10 +70,10 @@ describe('Props must have allowed set', () => {
           allPropsMustHaveAllowed.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Passes when allowed is an empty array', () => {
@@ -121,10 +127,10 @@ describe('Props must have allowed set', () => {
           allPropsMustHaveAllowed.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Passes when allowed is explicitly set to undefined', () => {
@@ -159,10 +165,10 @@ describe('Props must have allowed set', () => {
           allPropsMustHaveAllowed.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Passes when allowed is an empty array', () => {
@@ -216,10 +222,10 @@ describe('Props must have allowed set', () => {
           allPropsMustHaveAllowed.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Passes when allowed is explicitly set to undefined', () => {
@@ -257,10 +263,10 @@ describe('Props must have allowed set', () => {
             allPropsMustHaveAllowed.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Passes when allowed is an empty array', () => {
@@ -320,10 +326,10 @@ describe('Props must have allowed set', () => {
             allPropsMustHaveAllowed.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Passes when allowed is explicitly set to undefined', () => {
@@ -362,10 +368,10 @@ describe('Props must have allowed set', () => {
             allPropsMustHaveAllowed.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Passes when allowed is an empty array', () => {
@@ -425,10 +431,10 @@ describe('Props must have allowed set', () => {
             allPropsMustHaveAllowed.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Passes when allowed is explicitly set to undefined', () => {
@@ -465,10 +471,10 @@ describe('Props must have allowed set', () => {
         allPropsMustHaveAllowed.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       test('Catches missing prop from propsToDemo', () => {
@@ -480,10 +486,10 @@ describe('Props must have allowed set', () => {
         allPropsMustHaveAllowed.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       describe('Inside component', () => {
@@ -498,10 +504,10 @@ describe('Props must have allowed set', () => {
           allPropsMustHaveAllowed.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Catches missing prop from propsToDemo', () => {
@@ -515,10 +521,10 @@ describe('Props must have allowed set', () => {
           allPropsMustHaveAllowed.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
       });
     });

@@ -3,10 +3,16 @@ import { allPropsMustHaveExample } from '@/linter/rules/demos/allPropsMustHave/e
 
 describe('Props must have an example', () => {
   const consoleInfo = console.info;
+  const ruleName = allPropsMustHaveExample.title;
   const demoName = 'MyComponent';
   const propName = 'myProp';
   const key = 'example';
   const message = 'The ' + demoName + ' prop ' + propName + ' must have an example.';
+  const ERROR = {
+    ruleName,
+    demoName,
+    message
+  };
   let options;
   let linterSettings;
   let errors;
@@ -42,10 +48,10 @@ describe('Props must have an example', () => {
           allPropsMustHaveExample.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Passes when example provided', () => {
@@ -99,10 +105,10 @@ describe('Props must have an example', () => {
           allPropsMustHaveExample.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Passes when example provided', () => {
@@ -159,10 +165,10 @@ describe('Props must have an example', () => {
             allPropsMustHaveExample.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Passes when example provided', () => {
@@ -222,10 +228,10 @@ describe('Props must have an example', () => {
             allPropsMustHaveExample.rule(demos, options, linterSettings, errors);
 
             expect(console.info)
-              .toHaveBeenCalledWith(message);
+              .not.toHaveBeenCalled();
 
             expect(errors)
-              .toEqual([demoName]);
+              .toEqual([ERROR]);
           });
 
           test('Passes when example provided', () => {
@@ -283,10 +289,10 @@ describe('Props must have an example', () => {
         allPropsMustHaveExample.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       test('Catches missing prop from propsToDemo', () => {
@@ -298,10 +304,10 @@ describe('Props must have an example', () => {
         allPropsMustHaveExample.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       describe('Inside component', () => {
@@ -316,10 +322,10 @@ describe('Props must have an example', () => {
           allPropsMustHaveExample.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
 
         test('Catches missing prop from propsToDemo', () => {
@@ -333,10 +339,10 @@ describe('Props must have an example', () => {
           allPropsMustHaveExample.rule(demos, options, linterSettings, errors);
 
           expect(console.info)
-            .toHaveBeenCalledWith(message);
+            .not.toHaveBeenCalled();
 
           expect(errors)
-            .toEqual([demoName]);
+            .toEqual([ERROR]);
         });
       });
     });

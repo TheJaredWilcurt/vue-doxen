@@ -1,6 +1,6 @@
 {
   "name": "vue-doxen",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "description": "The world's best Vue.js component documentation tool!",
   "scripts": {
     "start": "vite dev --config vite.config.docs.js",
@@ -25,17 +25,18 @@
     "@highlightjs/vue-plugin pinned to 2.1.2 because it was released years ago, but never marked as latest"
   ],
   "dependencies": {
+    "colorette": "^2.0.20",
     "pretty-ms": "^9.3.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.0",
+    "@eslint/js": "^9.39.1",
     "@highlightjs/vue-plugin": "2.1.2",
     "@stylistic/eslint-plugin": "^5.5.0",
     "@vitejs/plugin-vue": "^6.0.1",
-    "@vitest/coverage-v8": "^4.0.6",
+    "@vitest/coverage-v8": "^4.0.7",
     "@vue/test-utils": "^2.4.6",
     "cross-env": "^10.1.0",
-    "eslint": "^9.39.0",
+    "eslint": "^9.39.1",
     "eslint-config-tjw-base": "^4.3.0",
     "eslint-config-tjw-import": "^2.0.0",
     "eslint-config-tjw-jest": "^3.0.1",
@@ -57,11 +58,11 @@
     "npm-free-server": "^1.1.0",
     "nprogress": "^0.2.0",
     "sass": "^1.93.3",
-    "vite": "^7.1.12",
-    "vite-node": "^3.2.4",
+    "vite": "^7.2.1",
+    "vite-node": "^5.0.0",
     "vite-plugin-vue-devtools": "^8.0.3",
-    "vitest": "^4.0.6",
-    "vue": "^3.5.22",
+    "vitest": "^4.0.7",
+    "vue": "^3.5.23",
     "vue-dev-tools-accessibility": "^0.5.1",
     "vue-options-api-constants-plugin": "^1.0.3",
     "vue-router": "^4.6.3",

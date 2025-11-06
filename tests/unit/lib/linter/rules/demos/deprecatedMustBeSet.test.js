@@ -5,9 +5,15 @@ import DoxenButton from '@/components/DoxenButton.vue';
 
 describe('Demos must have a deprecationNotice', () => {
   const consoleInfo = console.info;
+  const ruleName = deprecatedMustBeSet.title;
   const demoName = 'MyComponent';
   const key = 'deprecationNotice';
   const message = 'The ' + demoName + ' demo must have a deprecation notice (can be undefined).';
+  const ERROR = {
+    ruleName,
+    demoName,
+    message
+  };
   let options;
   let linterSettings;
   let errors;
@@ -35,10 +41,10 @@ describe('Demos must have a deprecationNotice', () => {
       deprecatedMustBeSet.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(message);
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([demoName]);
+        .toEqual([ERROR]);
     });
 
     test('Fails if key is empty string', () => {
@@ -50,10 +56,10 @@ describe('Demos must have a deprecationNotice', () => {
       deprecatedMustBeSet.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(message);
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([demoName]);
+        .toEqual([ERROR]);
     });
 
     test('Passes when key is string', () => {
@@ -89,7 +95,9 @@ describe('Demos must have a deprecationNotice', () => {
     test('Passes when key is a component', () => {
       const demos = {
         [demoName]: {
-          [key]: DoxenButton
+          [key]: {
+            component: DoxenButton
+          }
         }
       };
       deprecatedMustBeSet.rule(demos, options, linterSettings, errors);
@@ -111,10 +119,10 @@ describe('Demos must have a deprecationNotice', () => {
         deprecatedMustBeSet.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       test('Fails if key is empty string', () => {
@@ -128,10 +136,10 @@ describe('Demos must have a deprecationNotice', () => {
         deprecatedMustBeSet.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       test('Passes when key is string', () => {
@@ -172,7 +180,9 @@ describe('Demos must have a deprecationNotice', () => {
         const demos = {
           [demoName]: {
             component: {
-              [key]: DoxenButton
+              [key]: {
+                component: DoxenButton
+              }
             }
           }
         };

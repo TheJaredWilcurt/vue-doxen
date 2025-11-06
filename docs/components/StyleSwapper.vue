@@ -105,12 +105,13 @@
 import vuetifyStyles from '@@@/assets/vuetify.css?inline';
 
 import {
-  DoxenCheckbox,
-  DoxenDropdown,
   styleTokensBootstrap5,
   styleTokensBuiltIn,
   styleTokensVuetify3
-} from '@/library.js';
+} from '@/helpers/styleTokens.js';
+
+import DoxenCheckbox from '@/components/formFields/DoxenCheckbox.vue';
+import DoxenDropdown from '@/components/formFields/DoxenDropdown.vue';
 
 /* eslint-disable-next-line import/no-unresolved */
 import doxenStyles from '@/sass/vue-doxen.sass?inline';

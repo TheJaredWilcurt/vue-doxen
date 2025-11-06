@@ -235,7 +235,7 @@
 
 <script>
 import { unindent } from '@/linter/helpers.js';
-import { ruleDefinitions } from '@/linter/index.js';
+import { ruleDefinitions } from '@/linter/ruleDefinitions.js';
 
 import { styleTokens } from '@/helpers/props.js';
 

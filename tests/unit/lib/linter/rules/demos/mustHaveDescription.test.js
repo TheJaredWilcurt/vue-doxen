@@ -5,9 +5,15 @@ import DoxenButton from '@/components/DoxenButton.vue';
 
 describe('Demos must have a description', () => {
   const consoleInfo = console.info;
+  const ruleName = mustHaveDescription.title;
   const demoName = 'MyComponent';
   const key = 'description';
   const message = 'The ' + demoName + ' demo must have a component description.';
+  const ERROR = {
+    ruleName,
+    demoName,
+    message
+  };
   let options;
   let linterSettings;
   let errors;
@@ -35,10 +41,10 @@ describe('Demos must have a description', () => {
       mustHaveDescription.rule(demos, options, linterSettings, errors);
 
       expect(console.info)
-        .toHaveBeenCalledWith(message);
+        .not.toHaveBeenCalled();
 
       expect(errors)
-        .toEqual([demoName]);
+        .toEqual([ERROR]);
     });
 
     test('Passes when key is string', () => {
@@ -74,7 +80,9 @@ describe('Demos must have a description', () => {
     test('Passes when key is a component', () => {
       const demos = {
         [demoName]: {
-          [key]: DoxenButton
+          [key]: {
+            component: DoxenButton
+          }
         }
       };
       mustHaveDescription.rule(demos, options, linterSettings, errors);
@@ -98,10 +106,10 @@ describe('Demos must have a description', () => {
         mustHaveDescription.rule(demos, options, linterSettings, errors);
 
         expect(console.info)
-          .toHaveBeenCalledWith(message);
+          .not.toHaveBeenCalled();
 
         expect(errors)
-          .toEqual([demoName]);
+          .toEqual([ERROR]);
       });
 
       test('Passes when key is string', () => {
@@ -145,7 +153,9 @@ describe('Demos must have a description', () => {
           [demoName]: {
             component: {
               name: demoName,
-              [key]: DoxenButton
+              [key]: {
+                component: DoxenButton
+              }
             }
           }
         };
