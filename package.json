@@ -33,7 +33,7 @@
     "@highlightjs/vue-plugin": "2.1.2",
     "@stylistic/eslint-plugin": "^5.5.0",
     "@vitejs/plugin-vue": "^6.0.1",
-    "@vitest/coverage-v8": "^4.0.7",
+    "@vitest/coverage-v8": "^4.0.8",
     "@vue/test-utils": "^2.4.6",
     "cross-env": "^10.1.0",
     "eslint": "^9.39.1",
@@ -58,18 +58,18 @@
     "npm-free-server": "^1.1.0",
     "nprogress": "^0.2.0",
     "sass": "^1.93.3",
-    "vite": "^7.2.1",
+    "vite": "^7.2.2",
     "vite-node": "^5.0.0",
     "vite-plugin-vue-devtools": "^8.0.3",
     "vitest": "^4.0.7",
-    "vue": "^3.5.23",
+    "vue": "^3.5.24",
     "vue-dev-tools-accessibility": "^0.5.1",
     "vue-options-api-constants-plugin": "^1.0.3",
     "vue-router": "^4.6.3",
     "vue3-snapshot-serializer": "^2.13.0"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "^4.52.5"
+    "@rollup/rollup-linux-x64-gnu": "^4.53.2"
   },
   "private": false,
   "type": "module",
