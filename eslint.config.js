@@ -137,7 +137,8 @@ export default [
               alias: {
                 '@': path.resolve(__dirname, 'lib'),
                 '@@': path.resolve(__dirname, 'tests'),
-                '@@@': path.resolve(__dirname, 'docs')
+                '@@@': path.resolve(__dirname, 'docs'),
+                '@@@@': path.resolve(__dirname, 'linter')
               }
             }
           }

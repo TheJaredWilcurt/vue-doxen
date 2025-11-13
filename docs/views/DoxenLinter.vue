@@ -234,8 +234,8 @@
 </template>
 
 <script>
-import { unindent } from '@/linter/helpers.js';
-import { ruleDefinitions } from '@/linter/ruleDefinitions.js';
+import { unindent } from '@@@@/helpers.js';
+import { ruleDefinitions } from '@@@@/ruleDefinitions.js';
 
 import { styleTokens } from '@/helpers/props.js';
 
@@ -244,7 +244,7 @@ import DocumentationSection from '@@@/components/DocumentationSection.vue';
 import SubDocumentationSection from '@@@/components/SubDocumentationSection.vue';
 
 const CUSTOM_SCRIPT = unindent(`
-  import { doxenLinter } from 'vue-doxen';
+  import doxenLinter from 'vue-doxen/linter';
 
   import { fooDemo } from '../src/demos/fooDemo.js';
   import { barDemo } from '../src/demos/barDemo.js';

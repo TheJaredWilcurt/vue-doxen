@@ -1,4 +1,4 @@
-import { unindent } from '@/linter/helpers.js';
+import { unindent } from '@@@@/helpers.js';
 
 function templatePrefix (template, script) {
   return [
