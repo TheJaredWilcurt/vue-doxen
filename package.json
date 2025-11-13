@@ -75,6 +75,7 @@
   "type": "module",
   "files": [
     "dist",
+    "lib",
     "linter"
   ],
   "main": "./dist/vue-doxen.umd.cjs",
