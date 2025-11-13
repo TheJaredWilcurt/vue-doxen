@@ -109,7 +109,14 @@
 
         <p>
           Although the <code>VueDoxen</code> component is designed to handle many demos, we can also just pass in
-          one, like the above example.
+          one, like the above example. Since only one demo is passed in, the name of it is not important, and a
+          <code>modelValue</code> can be skipped, as the <code>&lt;VueDoxen&gt;</code> component will default to
+          the first (and in this case only) item in the demos object.
+        </p>
+
+        <p>
+          In the above example, the demo object is created separately, so that it can be exported and passed in to
+          the <code>DoxenLinter</code> tool (if desired).
         </p>
       </SubDocumentationSection>
 
