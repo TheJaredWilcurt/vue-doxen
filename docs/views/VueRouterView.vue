@@ -39,7 +39,11 @@
 
       <SubDocumentationSection id="demos" title="Make a reusable demos object">
         <p>
-          I would recommend making a <code>demos</code> folder for your demo files with an <code>index.js</code> file in it to compose and export a <code>demos</code> object. This object can then be passed in to Vue-Doxen, but also used to dynamically create sidebar links.
+          I would recommend making a <code>demos</code> folder for your demo files with an
+          <code>index.js</code> file in it to compose and export a <code>demos</code> object.
+          This object can then be passed in to Vue-Doxen or the
+          <RouterLink :to="{ name: 'linter', hash: '#linter' }">DoxenLinter</RouterLink>
+          tool, and used to dynamically create sidebar links.
         </p>
 
         <DoxenCodeSwapper
