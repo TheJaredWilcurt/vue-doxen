@@ -9,10 +9,7 @@ function templatePrefix (template, script) {
 
 const ALTERNATE_TEMPLATE = (`
   <template>
-    <VueDoxen
-      modelValue="MyComponent"
-      :demos="{ MyComponent: demo }"
-    />
+    <VueDoxen :demos="{ demo }" />
   </template>
 `);
 export const ALTERNATE_COMPOSITION_DEMO_EXAMPLE = templatePrefix(ALTERNATE_TEMPLATE, `
@@ -22,6 +19,14 @@ export const ALTERNATE_COMPOSITION_DEMO_EXAMPLE = templatePrefix(ALTERNATE_TEMPL
 
   import MyComponent from '../components/MyComponent.vue';
 
+  export const myComponentDemo = {
+    component: MyComponent,
+    importStatement: 'import { MyComponent } from \\'my-component-library\\';',
+    slotsToDemo: {
+      default: 'This is the text for the demo of the default slot.'
+    }
+  };
+
   export default {
     name: 'MyComponentDemo',
     components: {
@@ -29,13 +34,7 @@ export const ALTERNATE_COMPOSITION_DEMO_EXAMPLE = templatePrefix(ALTERNATE_TEMPL
     },
     setup: function () {
       const demo = computed(() => {
-        return {
-          component: MyComponent,
-          importStatement: 'import { MyComponent } from \\'my-component-library\\';',
-          slotsToDemo: {
-            default: 'This is the text for the demo of the default slot.'
-          }
-        };
+        return myComponentDemo;
       };
       return {
         demo
@@ -50,6 +49,14 @@ export const ALTERNATE_OPTIONS_DEMO_EXAMPLE = templatePrefix(ALTERNATE_TEMPLATE,
 
   import MyComponent from '../components/MyComponent.vue';
 
+  export const myComponentDemo = {
+    component: MyComponent,
+    importStatement: 'import { MyComponent } from \\'my-component-library\\';',
+    slotsToDemo: {
+      default: 'This is the text for the demo of the default slot.'
+    }
+  };
+
   export default {
     name: 'MyComponentDemo',
     components: {
@@ -57,13 +64,7 @@ export const ALTERNATE_OPTIONS_DEMO_EXAMPLE = templatePrefix(ALTERNATE_TEMPLATE,
     },
     computed: {
       demo: function () {
-        return {
-          component: MyComponent,
-          importStatement: 'import { MyComponent } from \\'my-component-library\\';',
-          slotsToDemo: {
-            default: 'This is the text for the demo of the default slot.'
-          }
-        };
+        return myComponentDemo;
       }
     }
   };
@@ -76,18 +77,27 @@ export const ALTERNATE_SCRIPT_SETUP_DEMO_EXAMPLE = templatePrefix(ALTERNATE_TEMP
 
   import MyComponent from '../components/MyComponent.vue';
 
+  /**
+   * <script setup> does not allow exporting variables, like this
+   * demo object. If you want to access it in other files, like for
+   * use with DoxenLinter, you'll need to switch to Options or Composition
+   * API, or move this object to be exported from a different file and
+   * imported into this one.
+   */
+  const myComponentDemo = {
+    component: MyComponent,
+    importStatement: 'import { MyComponent } from \\'my-component-library\\';',
+    slotsToDemo: {
+      default: 'This is the text for the demo of the default slot.'
+    }
+  };
+
   defineOptions({
     name: 'MyComponentDemo'
   });
 
   const demo = computed(() => {
-    return {
-      component: MyComponent,
-      importStatement: 'import { MyComponent } from \\'my-component-library\\';',
-      slotsToDemo: {
-        default: 'This is the text for the demo of the default slot.'
-      }
-    };
+    return myComponentDemo;
   };
   </script>
 `);
