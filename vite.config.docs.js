@@ -59,7 +59,8 @@ const config = defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./lib', import.meta.url)),
       '@@': fileURLToPath(new URL('./tests', import.meta.url)),
-      '@@@': fileURLToPath(new URL('./docs', import.meta.url))
+      '@@@': fileURLToPath(new URL('./docs', import.meta.url)),
+      '@@@@': fileURLToPath(new URL('./linter', import.meta.url))
     }
   },
   server: {
