@@ -16,6 +16,7 @@ exports[`DoxenCheckbox.vue > Renders correctly 1`] = `
     <input
       aria-invalid="false"
       aria-required="false"
+      checked="false"
       class=""
       data-applied-style-tokens="formFieldCheckbox"
       data-style-tokens="formFieldCheckbox formFieldCheckboxError"
@@ -57,6 +58,7 @@ exports[`DoxenCheckbox.vue > Style tokens 1`] = `
     <input
       aria-invalid="false"
       aria-required="false"
+      checked="false"
       class="doxen-form-field-checkbox"
       data-applied-style-tokens="formFieldCheckbox"
       data-style-tokens="formFieldCheckbox formFieldCheckboxError"
