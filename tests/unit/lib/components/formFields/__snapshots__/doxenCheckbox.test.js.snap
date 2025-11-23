@@ -38,48 +38,94 @@ exports[`DoxenCheckbox.vue > Renders correctly 1`] = `
   <!-- v-if -->
   <!-- v-if -->
   <!-- v-if -->
-  Slot Text
+  Slot text
 </fieldset>
 `;
 
-exports[`DoxenCheckbox.vue > Style tokens 1`] = `
+exports[`DoxenCheckbox.vue > Renders correctly with all props 1`] = `
 <fieldset
   class="doxen-form-field-fieldset"
   data-applied-style-tokens="formFieldFieldset"
   data-style-tokens="formFieldFieldset"
-  data-value="undefined"
+  data-value="true"
+  title="Title"
 >
-  <!-- v-if -->
+  <legend
+    class="
+      doxen-form-field-legend
+      doxen-form-field-legend-disabled
+      doxen-form-field-legend-error
+    "
+    data-applied-style-tokens="formFieldLegend formFieldLegendDisabled formFieldLegendError"
+    data-style-tokens="formFieldLegend formFieldLegendDisabled formFieldLegendError"
+  >
+    <label
+      class="doxen-form-field-label"
+      data-applied-style-tokens="formFieldLabel"
+      data-style-tokens="formFieldLabel"
+    >
+      Label:
+    </label>
+    <span
+      class="doxen-form-field-required"
+      data-applied-style-tokens="formFieldRequired"
+      data-style-tokens="formFieldRequired"
+    >
+      *
+    </span>
+  </legend>
   <div
     class="doxen-form-field-checkbox-container"
     data-applied-style-tokens="formFieldCheckboxContainer"
     data-style-tokens="formFieldCheckboxContainer"
   >
     <input
-      aria-invalid="false"
-      aria-required="false"
-      checked="false"
-      class="doxen-form-field-checkbox"
-      data-applied-style-tokens="formFieldCheckbox"
+      aria-invalid="true"
+      aria-required="true"
+      checked="true"
+      class="
+        doxen-form-field-checkbox
+        doxen-form-field-checkbox-error
+      "
+      data-applied-style-tokens="formFieldCheckbox formFieldCheckboxError"
       data-style-tokens="formFieldCheckbox formFieldCheckboxError"
-      data-value="undefined"
-      id="VueDoxen_boolean_v-0"
-      name="VueDoxen_boolean_v-0"
+      data-value="true"
+      disabled="true"
+      id="VueDoxen_Label_Name_boolean_v-0"
+      name="VueDoxen_Label_Name_boolean_v-0"
+      required="true"
       type="checkbox"
       value="'on'"
     />
     <label
-      class="doxen-form-field-checkbox-name-label"
-      data-applied-style-tokens="formFieldCheckboxNameLabel"
+      class="
+        doxen-form-field-checkbox-name-disabled
+        doxen-form-field-checkbox-name-error
+        doxen-form-field-checkbox-name-label
+      "
+      data-applied-style-tokens="formFieldCheckboxNameLabel formFieldCheckboxNameDisabled formFieldCheckboxNameError"
       data-style-tokens="formFieldCheckboxNameLabel formFieldCheckboxNameDisabled formFieldCheckboxNameError"
-      for="VueDoxen_boolean_v-0"
+      for="VueDoxen_Label_Name_boolean_v-0"
     >
+      Name
       <!-- v-if -->
     </label>
   </div>
+  <p
+    class="doxen-form-field-message"
+    data-applied-style-tokens="formFieldMessage"
+    data-style-tokens="formFieldMessage"
+  >
+    Message
+  </p>
+  <p
+    class="doxen-form-field-error"
+    data-applied-style-tokens="formFieldError"
+    data-style-tokens="formFieldError"
+  >
+    Error
+  </p>
   <!-- v-if -->
-  <!-- v-if -->
-  <!-- v-if -->
-  Slot Text
+  Slot text
 </fieldset>
 `;

@@ -2,6 +2,8 @@
   <div id="home" class="docs-page">
     <LibraryExplainer :styleTokens="styleTokens" />
 
+    <hr />
+
     <TitleParagraph
       title="What is Vue-Doxen?"
       readMore="Read more about demo files"

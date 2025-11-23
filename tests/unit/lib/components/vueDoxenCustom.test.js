@@ -101,7 +101,14 @@ describe('VueDoxenCustom.vue', () => {
 
   test('Defaults to first demo if v-model is a mismatch', async () => {
     const props = {
-      demos,
+      demos: {
+        ...demos,
+        DummyButton2: markRaw({
+          name: 'DummyButton2',
+          description: 'Dummy button 2 description',
+          template: '<button>DummyButton2</button>'
+        })
+      },
       modelValue: 'MISMATCH',
       styleTokens
     };
@@ -111,7 +118,10 @@ describe('VueDoxenCustom.vue', () => {
       .toHaveBeenCalledWith(
         'Vue-Doxen received a v-model value of "MISMATCH", ' +
         'however that value could not be found in the list of provided demos:',
-        ['DummyButton']
+        [
+          'DummyButton',
+          'DummyButton2'
+        ]
       );
 
     expect(console.info)

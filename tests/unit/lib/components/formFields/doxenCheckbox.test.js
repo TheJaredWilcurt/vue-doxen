@@ -5,7 +5,27 @@ import DoxenCheckbox from '@/components/formFields/DoxenCheckbox.vue';
 import testHelpers from '@@/unit/testHelpers.js';
 
 describe('DoxenCheckbox.vue', () => {
+  // Props
+  const disabled = true;
+  const errorMessage = 'Error';
+  const label = 'Label';
+  const message = 'Message';
+  const modelValue = true;
+  const required = true;
   const styleTokens = styleTokensBuiltIn;
+  const title = 'Title';
+  const name = 'Name';
+  const allProps = {
+    disabled,
+    errorMessage,
+    label,
+    message,
+    modelValue,
+    required,
+    styleTokens,
+    title,
+    name
+  };
   const requiredProps = {};
 
   const setupWrapper = async (props) => {
@@ -15,7 +35,7 @@ describe('DoxenCheckbox.vue', () => {
         ...props
       },
       slots: {
-        default: 'Slot Text'
+        default: 'Slot text'
       }
     };
     const wrapper = await testHelpers.mount(DoxenCheckbox, options);
@@ -29,36 +49,43 @@ describe('DoxenCheckbox.vue', () => {
       .toMatchSnapshot();
   });
 
-  test('Style tokens', async () => {
-    const wrapper = await setupWrapper({ styleTokens });
+  test('Renders correctly with all props', async () => {
+    const wrapper = await setupWrapper(allProps);
 
     expect(wrapper)
       .toMatchSnapshot();
   });
 
-  test('Emit click', async () => {
+  test('Emits on input', async () => {
     const wrapper = await setupWrapper();
 
-    await wrapper.find('input').trigger('click');
+    expect(wrapper.emitted())
+      .toEqual({});
 
-    expect(wrapper.emitted().click[0].length)
-      .toEqual(1);
+    const checkboxElement = wrapper.find('[data-test="VueDoxen_boolean_v-0"]');
+    await checkboxElement.trigger('input');
+
+    expect(wrapper.emitted())
+      .toEqual({
+        input: expect.any(Array),
+        'update:model-value': [[false]]
+      });
   });
 
   test('Input name matches idFor', async () => {
     const wrapper = await setupWrapper();
 
-    const checkboxInput = wrapper.find('input[type="checkbox"]');
-    const labelElement = wrapper.find('label');
+    const checkboxElement = wrapper.find('[data-test="VueDoxen_boolean_v-0"]');
+    const labelElement = wrapper.find('[data-test="label-VueDoxen_boolean_v-0"]');
 
     // Ensure both elements exist
-    expect(checkboxInput.exists())
+    expect(checkboxElement.exists())
       .toEqual(true);
 
     expect(labelElement.exists())
       .toEqual(true);
-    
-    const checkboxName = checkboxInput.attributes('name');
+
+    const checkboxName = checkboxElement.attributes('name');
     const labelFor = labelElement.attributes('for');
 
     // Compare the attributes
