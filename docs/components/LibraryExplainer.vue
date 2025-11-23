@@ -56,7 +56,6 @@
 <script>
 import { styleTokens } from '@/helpers/props.js';
 
-import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
 
 import {
@@ -74,7 +73,6 @@ const EXTERNAL_DEMO_OBJECT = 'External Demo Object';
 export default {
   name: 'LibraryExplainer',
   components: {
-    DoxenCodeBox,
     DoxenCodeSwapper
   },
   props: {
