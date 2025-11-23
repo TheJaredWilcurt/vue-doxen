@@ -38,7 +38,7 @@ describe('DoxenButton.vue', () => {
       .toMatchSnapshot();
   });
 
-  test('Style tokesn', async () => {
+  test('Style tokens', async () => {
     const wrapper = await setupWrapper({ styleTokens });
 
     expect(wrapper)

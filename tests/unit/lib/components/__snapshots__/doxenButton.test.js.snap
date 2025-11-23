@@ -25,7 +25,7 @@ exports[`DoxenButton.vue > Selected 1`] = `
 </button>
 `;
 
-exports[`DoxenButton.vue > Style tokesn 1`] = `
+exports[`DoxenButton.vue > Style tokens 1`] = `
 <button
   aria-pressed="false"
   class="

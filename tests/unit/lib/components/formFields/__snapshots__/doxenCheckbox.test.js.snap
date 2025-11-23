@@ -1,0 +1,85 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DoxenCheckbox.vue > Renders correctly 1`] = `
+<fieldset
+  class=""
+  data-applied-style-tokens="formFieldFieldset"
+  data-style-tokens="formFieldFieldset"
+  data-value="undefined"
+>
+  <!-- v-if -->
+  <div
+    class=""
+    data-applied-style-tokens="formFieldCheckboxContainer"
+    data-style-tokens="formFieldCheckboxContainer"
+  >
+    <input
+      aria-invalid="false"
+      aria-required="false"
+      checked="false"
+      class=""
+      data-applied-style-tokens="formFieldCheckbox"
+      data-style-tokens="formFieldCheckbox formFieldCheckboxError"
+      data-value="undefined"
+      id="VueDoxen_boolean_v-0"
+      name="VueDoxen_boolean_v-0"
+      type="checkbox"
+      value="'on'"
+    />
+    <label
+      class=""
+      data-applied-style-tokens="formFieldCheckboxNameLabel"
+      data-style-tokens="formFieldCheckboxNameLabel formFieldCheckboxNameDisabled formFieldCheckboxNameError"
+      for="VueDoxen_boolean_v-0"
+    >
+      <!-- v-if -->
+    </label>
+  </div>
+  <!-- v-if -->
+  <!-- v-if -->
+  <!-- v-if -->
+  Slot Text
+</fieldset>
+`;
+
+exports[`DoxenCheckbox.vue > Style tokens 1`] = `
+<fieldset
+  class="doxen-form-field-fieldset"
+  data-applied-style-tokens="formFieldFieldset"
+  data-style-tokens="formFieldFieldset"
+  data-value="undefined"
+>
+  <!-- v-if -->
+  <div
+    class="doxen-form-field-checkbox-container"
+    data-applied-style-tokens="formFieldCheckboxContainer"
+    data-style-tokens="formFieldCheckboxContainer"
+  >
+    <input
+      aria-invalid="false"
+      aria-required="false"
+      checked="false"
+      class="doxen-form-field-checkbox"
+      data-applied-style-tokens="formFieldCheckbox"
+      data-style-tokens="formFieldCheckbox formFieldCheckboxError"
+      data-value="undefined"
+      id="VueDoxen_boolean_v-0"
+      name="VueDoxen_boolean_v-0"
+      type="checkbox"
+      value="'on'"
+    />
+    <label
+      class="doxen-form-field-checkbox-name-label"
+      data-applied-style-tokens="formFieldCheckboxNameLabel"
+      data-style-tokens="formFieldCheckboxNameLabel formFieldCheckboxNameDisabled formFieldCheckboxNameError"
+      for="VueDoxen_boolean_v-0"
+    >
+      <!-- v-if -->
+    </label>
+  </div>
+  <!-- v-if -->
+  <!-- v-if -->
+  <!-- v-if -->
+  Slot Text
+</fieldset>
+`;
