@@ -1080,6 +1080,7 @@ export const EXPLAINER_OPTIONS_EXAMPLE = unindent(`
     description: 'Your component description.',
     props: {
       color: {
+        description: 'Your prop description.',
         type: String,
         allowed: ['gold', 'silver', 'bronze']
       }
@@ -1095,6 +1096,7 @@ export const EXPLAINER_SCRIPT_SETUP_EXAMPLE = unindent(`
   });
   defineProps({
     color: {
+      description: 'Your prop description.',
       type: String,
       allowed: ['gold', 'silver', 'bronze']
     }
@@ -1109,6 +1111,7 @@ export const EXPLAINER_DEMO_EXAMPLE = unindent(`
     description: 'Your component description',
     propsToDemo: {
       color: {
+        description: 'Your prop description.',
         allowed: ['gold', 'silver', 'bronze']
       }
     }

@@ -29,9 +29,16 @@
       </li>
       <li>
         <strong>Pass them into Vue-Doxen</strong>
-        <DoxenCodeBox
+        <DoxenCodeSwapper
           class="explainer-code"
-          :code="doxenExample"
+          :codeTypes="{
+            'Options API': optionsApiExample,
+            'Script Setup': scriptSetupExample
+          }"
+          :fileName="{
+            'Options API': 'MyButtonDemo.vue',
+            'Script Setup': 'MyButtonDemo.vue'
+          }"
           :copy="false"
           :styleTokens="styleTokens"
         />
@@ -49,7 +56,6 @@
 <script>
 import { styleTokens } from '@/helpers/props.js';
 
-import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
 
 import {
@@ -67,7 +73,6 @@ const EXTERNAL_DEMO_OBJECT = 'External Demo Object';
 export default {
   name: 'LibraryExplainer',
   components: {
-    DoxenCodeBox,
     DoxenCodeSwapper
   },
   props: {
@@ -91,12 +96,6 @@ export default {
     }
   },
   computed: {
-    mostRecentAPI: function () {
-      return this.selectedOrderPreference
-        .filter((value) => {
-          return value !== EXTERNAL_DEMO_OBJECT;
-        })[0];
-    },
     demoObjectSelected: function () {
       return this.selectedOrderPreference[0] === EXTERNAL_DEMO_OBJECT;
     },
@@ -111,12 +110,6 @@ export default {
         return EXPLAINER_DOXEN_SCRIPT_SETUP_DEMO;
       }
       return EXPLAINER_DOXEN_SCRIPT_SETUP;
-    },
-    doxenExample: function () {
-      if (this.mostRecentAPI === 'Options API') {
-        return this.optionsApiExample;
-      }
-      return this.scriptSetupExample;
     }
   }
 };

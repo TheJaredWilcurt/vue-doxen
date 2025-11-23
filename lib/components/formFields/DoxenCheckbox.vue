@@ -38,6 +38,7 @@
           formFieldCheckboxNameDisabled: disabled,
           formFieldCheckboxNameError: errorMessage
         })"
+        :data-test="'label-' + idFor"
         :for="idFor"
       >
         {{ name }}

@@ -59,7 +59,7 @@ export default {
     defaultModelValue: function () {
       if (
         this.processedDemos &&
-        Object.keys(this.processedDemos).length &&
+        Object.keys(this.processedDemos).length > 1 &&
         !Object.keys(this.processedDemos).includes(this.modelValue)
       ) {
         const firstDemo = Object.keys(this.processedDemos)[0];
