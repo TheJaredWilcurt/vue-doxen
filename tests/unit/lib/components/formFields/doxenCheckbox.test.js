@@ -45,7 +45,7 @@ describe('DoxenCheckbox.vue', () => {
       .toEqual(1);
   });
 
-  test('idFor should equal input name', async () => {
+  test('Input name matches idFor', async () => {
     const wrapper = await setupWrapper();
 
     const checkboxInput = wrapper.find('input[type="checkbox"]');
@@ -53,10 +53,10 @@ describe('DoxenCheckbox.vue', () => {
 
     // Ensure both elements exist
     expect(checkboxInput.exists())
-      .toBe(true);
+      .toEqual(true);
 
     expect(labelElement.exists())
-      .toBe(true);
+      .toEqual(true);
     
     const checkboxName = checkboxInput.attributes('name');
     const labelFor = labelElement.attributes('for');
