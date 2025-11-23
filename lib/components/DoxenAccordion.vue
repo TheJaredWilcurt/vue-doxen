@@ -5,6 +5,8 @@
   >
     <div
       v-bind="applyStyleTokens({ accordionInner: true })"
+      :aria-hidden="!show"
+      :inert="!show"
       :style="accordionInner"
     >
       <slot></slot>
@@ -22,41 +24,37 @@ export default {
   mixins: [applyStyleTokens],
   props: {
     styleTokens,
-    direction: {
-      type: String,
-      default: 'up',
-      validator: function (value) {
-        return ['up', 'left'].includes(value);
-      }
+    durationMs: {
+      type: Number,
+      default: 750
     },
     show: {
       type: Boolean,
       default: true
+    },
+    timingFunction: {
+      type: String,
+      default: 'ease'
     }
   },
   computed: {
     accordionContainer: function () {
-      let type = 'rows';
-      if (this.direction === 'left') {
-        type = 'columns';
-      }
       let frames = '1';
       if (!this.show) {
         frames = '0';
       }
       return [
         'display: grid',
-        'grid-template-' + type + ': ' + frames + 'fr',
-        'transition-property: grid-template-' + type
+        'grid-template-rows: ' + frames + 'fr',
+        'transition-property: grid-template-rows',
+        'transition-duration: ' + this.durationMs + 'ms',
+        'transition-timing-function: ' + this.timingFunction
       ].join(';');
     },
     accordionInner: function () {
-      let type = 'row';
-      if (this.direction === 'left') {
-        type = 'column';
-      }
       return [
-        'grid-' + type + ': 1 / span 2'
+        'grid-row: 1 / span 2',
+        'overflow: hidden'
       ].join(';');
     }
   }

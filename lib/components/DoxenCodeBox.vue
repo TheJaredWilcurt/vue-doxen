@@ -26,7 +26,7 @@
 </template>
 
 <script>
-/* eslint-disable import/extensions */
+/* eslint-disable import/extensions,import/no-extraneous-dependencies */
 import hljsVuePlugin from '@highlightjs/vue-plugin';
 import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
@@ -56,7 +56,7 @@ export default {
     },
     code: {
       type: null,
-      default: undefined
+      default: ''
     },
     styleTokens
   },

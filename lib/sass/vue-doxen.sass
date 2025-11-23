@@ -19,13 +19,6 @@ $black10: rgba(0, 1, 16, 0.10)
     flex-wrap: wrap
     width: 100%
 
-:where([data-applied-style-tokens~="accordionContainer"])
-    transition-duration: 750ms
-    transition-timing-function: ease
-
-:where([data-applied-style-tokens~="accordionInner"])
-    overflow: hidden
-
 /* Basic styling on field sets */
 :where([data-applied-style-tokens~="formFieldFieldset"])
     display: inline-flex
@@ -125,7 +118,7 @@ $black10: rgba(0, 1, 16, 0.10)
     align-items: center
     justify-content: space-between
 
-:where([data-applied-style-tokens~="doxenPlainText"]),
+:where([data-applied-style-tokens~="plainText"]),
 :where([data-applied-style-tokens~="emitLogTableContainer"])
     max-width: 800px
     overflow: auto

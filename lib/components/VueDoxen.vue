@@ -4,7 +4,7 @@
     :options="defaultOptions"
     :modelValue="modelValue"
     :styleTokens="styleTokens"
-    @update:model-value="$emit('update:model-value', $event)"
+    @update:modelValue="$emit('update:model-value', $event)"
   />
 </template>
 

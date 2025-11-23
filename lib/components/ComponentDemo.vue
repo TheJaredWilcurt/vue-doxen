@@ -1,10 +1,27 @@
 <template>
-  <div v-bind="applyStyleTokens({ componentDemo: true })">
-    <!-- DoxenHeader -->
-    <component
-      :is="options.components.header"
+  <div
+    v-bind="applyStyleTokens({
+      componentDemo: true,
+      deprecated: !!deprecationNotice
+    })"
+  >
+    <!-- DoxenDeprecationBanner -->
+    <OptionalCustomComponent
+      v-if="deprecationNotice"
+      :customComponent="deprecationNotice"
+      :fallbackComponent="options.components.deprecationBanner"
+      :fallbackProps="{ description: deprecationNotice }"
+      :rootKey="componentName + '-deprecationNotice'"
       :styleTokens="styleTokens"
-      :title="title"
+    />
+
+    <!-- DoxenHeader -->
+    <OptionalCustomComponent
+      :customComponent="title"
+      :fallbackComponent="options.components.header"
+      :fallbackProps="{ title: componentTitle }"
+      :rootKey="componentName + '-title'"
+      :styleTokens="styleTokens"
     />
 
     <template v-if="description">
@@ -23,11 +40,9 @@
         <template
           v-for="(slotValue, slotName) in description.slots"
           #[slotName]
+          :key="'slot-' + slotName"
         >
-          <span
-            v-html="description.slots[slotName]"
-            :key="'slot-' + slotName"
-          ></span>
+          <HtmlFragments :html="description.slots[slotName]" />
         </template>
       </component>
     </template>
@@ -50,11 +65,9 @@
           <template
             v-for="(slotValue, slotName) in importStatement.slots"
             #[slotName]
+            :key="'slot-' + slotName"
           >
-            <span
-              v-html="importStatement.slots[slotName]"
-              :key="'slot-' + slotName"
-            ></span>
+            <HtmlFragments :html="importStatement.slots[slotName]" />
           </template>
         </component>
       </template>
@@ -72,11 +85,9 @@
         <template
           v-for="(slotValue, slotName) in slotsToRender"
           #[slotName]
+          :key="'slot-' + slotName"
         >
-          <span
-            v-html="demoSlots[slotName]"
-            :key="'slot-' + slotName"
-          ></span>
+          <HtmlFragments :html="demoSlots[slotName]" />
         </template>
       </component>
       <hr v-bind="applyStyleTokens({ componentDemoHr: true })" />
@@ -115,11 +126,9 @@
                 <template
                   v-for="(slotValue, slotName) in prop.slots"
                   #[slotName]
+                  :key="'slot-' + slotName"
                 >
-                  <span
-                    v-html="slotValue"
-                    :key="'slot-' + slotName"
-                  ></span>
+                  <HtmlFragments :html="slotValue" />
                 </template>
               </component>
             </section>
@@ -225,6 +234,7 @@
 </template>
 
 <script>
+/* eslint-disable import/no-extraneous-dependencies */
 import _cloneDeep from 'lodash.clonedeep';
 import _lowerFirst from 'lodash.lowerfirst';
 import _startCase from 'lodash.startcase';
@@ -247,6 +257,8 @@ import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 import DoxenAccordion from '@/components/DoxenAccordion.vue';
 import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
+import HtmlFragments from '@/components/HtmlFragments.vue';
+import OptionalCustomComponent from '@/components/OptionalCustomComponent.vue';
 
 const options = createVueDoxenOptions(true);
 
@@ -255,7 +267,9 @@ export default {
   components: {
     DoxenAccordion,
     DoxenCodeBox,
-    DoxenCodeSwapper
+    DoxenCodeSwapper,
+    HtmlFragments,
+    OptionalCustomComponent
   },
   mixins: [applyStyleTokens],
   props: {
@@ -316,13 +330,28 @@ export default {
         ''
       );
     },
-    title: function () {
+    componentTitle: function () {
+      if (typeof(this.title) === 'string') {
+        return this.title;
+      }
       return _startCase(this.componentName);
+    },
+    title: function () {
+      return (
+        this.demo?.title ||
+        this.demo?.component?.title
+      );
     },
     description: function () {
       return (
         this.demo?.description ||
         this.demo?.component?.description
+      );
+    },
+    deprecationNotice: function () {
+      return (
+        this.demo?.deprecationNotice ||
+        this.demo?.component?.deprecationNotice
       );
     },
     importStatement: function () {
@@ -485,7 +514,7 @@ export default {
             this.demo.events[emitName](value);
           }
           // Intentional console.info to demonstrate emits
-          console.info(this.title + ' emit log:', { emitName, value });
+          console.info(this.componentTitle + ' emit log:', { emitName, value });
 
           // If the emit is part of a v-model
           if (emitName.startsWith('update:')) {
@@ -505,6 +534,9 @@ export default {
       const tag = (this.componentName || '').replaceAll(' ', '');
       const emits = Object.keys(this.emitsToDemo);
       const attributes = Object.keys(this.propsToDemo)
+        .filter((propName) => {
+          return !this.playgroundProps[propName].deprecated;
+        })
         .map((propName) => {
           return {
             default: getDefaultValue(this.playgroundProps?.[propName]?.default),
@@ -531,6 +563,9 @@ export default {
       // Process Props
       Object.keys(this.propsToDemo)
         .sort()
+        .filter((propName) => {
+          return !this.playgroundProps[propName].deprecated;
+        })
         .forEach((propName) => {
           const value = this.demoProps[propName];
           const defaultValue = getDefaultValue(this.playgroundProps?.[propName]?.default);

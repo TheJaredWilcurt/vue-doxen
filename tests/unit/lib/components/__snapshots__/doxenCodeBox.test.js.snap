@@ -1,0 +1,139 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DoxenCodeBox > Copy disabled 1`] = `
+<div
+  aria-label="Code example"
+  class="doxen-code-box-container"
+  data-applied-style-tokens="codeBoxContainer"
+  data-style-tokens="codeBoxContainer"
+  role="textbox"
+  tabindex="0"
+>
+  <pre
+    class="doxen-code-box"
+    data-applied-style-tokens="codeBox"
+    data-style-tokens="codeBox"
+  ><code
+    class="
+      hljs
+      xml
+    "
+    tabindex="0"
+  ><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Text<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></code></pre>
+  <!-- v-if -->
+</div>
+`;
+
+exports[`DoxenCodeBox > Renders HTML 1`] = `
+<div
+  aria-label="Code example"
+  class="doxen-code-box-container"
+  data-applied-style-tokens="codeBoxContainer"
+  data-style-tokens="codeBoxContainer"
+  role="textbox"
+  tabindex="0"
+  title="Click to copy"
+>
+  <pre
+    class="doxen-code-box"
+    data-applied-style-tokens="codeBox"
+    data-style-tokens="codeBox"
+  ><code
+    class="
+      hljs
+      xml
+    "
+    tabindex="0"
+  ><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">attribute</span>=<span class="hljs-string">"value"</span>&gt;</span>
+  Text
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+  <!-- v-if -->
+</div>
+`;
+
+exports[`DoxenCodeBox > Renders JavaScript 1`] = `
+<div
+  aria-label="Code example"
+  class="doxen-code-box-container"
+  data-applied-style-tokens="codeBoxContainer"
+  data-style-tokens="codeBoxContainer"
+  role="textbox"
+  tabindex="0"
+  title="Click to copy"
+>
+  <pre
+    class="doxen-code-box"
+    data-applied-style-tokens="codeBox"
+    data-style-tokens="codeBox"
+  ><code
+    class="
+      hljs
+      javascript
+    "
+    tabindex="0"
+  ><span class="hljs-keyword">const</span> value = <span class="hljs-number">4</span>;
+<span class="
+    hljs-variable
+    language_
+  ">console</span>.<span class="
+    function_
+    hljs-title
+  ">log</span>({
+  <span class="hljs-attr">key</span>: value
+});</code></pre>
+  <!-- v-if -->
+</div>
+`;
+
+exports[`DoxenCodeBox > Renders with just required props 1`] = `
+<div
+  aria-label="Code example"
+  class=""
+  data-applied-style-tokens="codeBoxContainer"
+  data-style-tokens="codeBoxContainer"
+  role="textbox"
+  tabindex="0"
+  title="Click to copy"
+>
+  <pre
+    class=""
+    data-applied-style-tokens="codeBox"
+    data-style-tokens="codeBox"
+  ><code
+    class="
+      hljs
+      javascript
+    "
+    tabindex="0"
+  ></code></pre>
+  <!-- v-if -->
+</div>
+`;
+
+exports[`DoxenCodeBox > Serialize JS 1`] = `
+<div
+  aria-label="Code example"
+  class="doxen-code-box-container"
+  data-applied-style-tokens="codeBoxContainer"
+  data-style-tokens="codeBoxContainer"
+  role="textbox"
+  tabindex="0"
+  title="Click to copy"
+>
+  <pre
+    class="doxen-code-box"
+    data-applied-style-tokens="codeBox"
+    data-style-tokens="codeBox"
+  ><code
+    class="
+      hljs
+      javascript
+    "
+    tabindex="0"
+  >{
+  <span class="hljs-attr">key</span>: <span class="hljs-string">'value'</span>,
+  <span class="hljs-attr">fn</span>: <span class="hljs-function">() =&gt;</span> { <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>; }
+}</code></pre>
+  <!-- v-if -->
+</div>
+`;

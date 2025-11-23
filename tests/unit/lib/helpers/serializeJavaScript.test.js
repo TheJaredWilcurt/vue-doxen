@@ -81,7 +81,7 @@ describe('Serialize JavaScript', () => {
       acceptableArrowFunction: (foo, bar) => {
         return foo + bar;
       },
-      /* eslint-disable-next-line arrow-parens */
+      /* eslint-disable-next-line @stylistic/js/arrow-parens */
       uglyAF: foo => foo.toUpperCase(),
       isUndefined: undefinedValue,
       isNull: null,
@@ -98,7 +98,7 @@ describe('Serialize JavaScript', () => {
   });
 
   describe('Serialize non-objects', () => {
-    test('falsy', () => {
+    test('Falsy', () => {
       expect(serializeJavaScript(false))
         .toEqual('false');
 
@@ -127,7 +127,7 @@ describe('Serialize JavaScript', () => {
         .toEqual('NaN');
     });
 
-    test('true', () => {
+    test('True', () => {
       expect(serializeJavaScript(true))
         .toEqual('true');
     });

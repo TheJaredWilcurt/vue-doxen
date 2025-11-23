@@ -10,8 +10,10 @@ exports[`VueDoxenCustom.vue > Renders correctly with all props 1`] = `
   <div
     class="doxen-component-demo"
     data-applied-style-tokens="componentDemo"
-    data-style-tokens="componentDemo"
+    data-style-tokens="componentDemo deprecated"
   >
+    <!-- DoxenDeprecationBanner -->
+    <!-- v-if -->
     <!-- DoxenHeader -->
     <div
       styletokens="[object Object]"

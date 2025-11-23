@@ -4,7 +4,7 @@ describe('Component Helpers', () => {
   describe('getArrayFromValidator', () => {
     test('Function without space after name', () => {
       const prop = {
-        // eslint-disable-next-line space-before-function-paren,space-before-blocks
+        // eslint-disable-next-line @stylistic/js/space-before-function-paren,@stylistic/js/space-before-blocks
         validator: function v(value){
           return ['234'].includes(value);
         }
@@ -16,7 +16,7 @@ describe('Component Helpers', () => {
 
     test('Multi-line allowed, method shorthand', () => {
       const prop = {
-        // eslint-disable-next-line no-restricted-syntax,space-before-function-paren
+        // eslint-disable-next-line base-tjw/no-shortform-methods,@stylistic/js/space-before-function-paren
         validator(value) {
           return [
             'asd',
@@ -53,7 +53,7 @@ describe('Component Helpers', () => {
 
     test('Shorthand arrow function with escaped strings', () => {
       const prop = {
-        // eslint-disable-next-line arrow-parens
+        // eslint-disable-next-line @stylistic/js/arrow-parens
         validator: v => ['Dog\'s', 'Cat\'s', 'Sheep'].includes(v)
       };
 
@@ -109,7 +109,7 @@ describe('Component Helpers', () => {
 
     test('Named reference', () => {
       const yyy = ['a'];
-      // eslint-disable-next-line arrow-parens
+      // eslint-disable-next-line @stylistic/js/arrow-parens
       const validator = x => yyy.includes(x);
       const prop = { validator };
 

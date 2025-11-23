@@ -24,6 +24,8 @@ describe('VueDoxenCustom.vue', () => {
   const options = {
     components: {
       checkbox: makeDummyComponent('Checkbox'),
+      deprecationBanner: makeDummyComponent('DeprecationBanner'),
+      deprecatedProp: makeDummyComponent('DeprecatedProp'),
       dropdown: makeDummyComponent('Dropdown'),
       emitLog: makeDummyComponent('EmitLog'),
       emitsDocumentation: makeDummyComponent('EmitsDocumentation'),

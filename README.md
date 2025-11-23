@@ -9,7 +9,7 @@ The world's best Vue.js component documentation tool!
 * Fully customizable
 * All CSS is optional
 * Documentation lives in the component as code (or in separate object if preferred)
-* Vue-Doxen is just a Vue componet, so it works anywhere a Vue component would work.
+* Vue-Doxen is just a Vue component, so it works anywhere a Vue component would work.
 * Generates at runtime, so always up-to-date
 * Doesn't require adopting an entire ecosystem or installing tons of dependencies, just use what works with Vue and you're good.
 
@@ -49,3 +49,7 @@ Go to the docs site for usage and installation steps:
   * Uses `vite.config.lib.js`
   * `npm run build` will produce `dist` folder
   * `npm t` runs unit tests for the library
+* **DoxenLinter**
+  * All linter related code exists int he `/lib/linter` folder.
+  * Tests for the linter run via `npm t`
+  * The `doxenLinter` function is an export of the library and included in the main build (`npm run build`)

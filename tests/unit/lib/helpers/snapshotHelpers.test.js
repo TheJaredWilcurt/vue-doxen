@@ -28,7 +28,7 @@ describe('Snapshot Helpers', () => {
         .toEqual('7');
 
       expect(dataValue([1, 2, 3]))
-        .toEqual('[1,2,3]');
+        .toEqual('[1, 2, 3]');
 
       expect(dataValue(NaN))
         .toEqual('NaN');
@@ -42,13 +42,28 @@ describe('Snapshot Helpers', () => {
       expect(dataValue(new Set([1, 2])))
         .toEqual('[1,2]');
 
+      expect(dataValue(new File(['Hello'], '', { type: 'text/html' })))
+        .toEqual('File');
+
+      expect(dataValue(new File(['Hello'], '0.txt', { type: 'text/html' })))
+        .toEqual('File (0.txt)');
+
+      expect(dataValue([
+        new File(['Hello'], '0.txt', { type: 'text/html' }),
+        new File(['World'], '1.txt', { type: 'text/html' })
+      ]))
+        .toEqual('[File (0.txt), File (1.txt)]');
+
+      expect(dataValue([[1, [2], [[3]]]]))
+        .toEqual('[[1, [2], [[3]]]]');
+
       expect(dataValue(new Date('2024')))
         .toEqual('1704067200000');
 
       expect(dataValue(new Date('asdf')))
         .toEqual('Invalid Date');
 
-      expect(dataValue([BigInt(9007199254740991)]))
+      expect(dataValue(BigInt(9007199254740991)))
         .toEqual('');
 
       expect(dataValue(new Set([BigInt(9007199254740991)])))
