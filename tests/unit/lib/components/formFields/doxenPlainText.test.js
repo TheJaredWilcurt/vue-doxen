@@ -11,7 +11,7 @@ describe('DoxenPlainText.vue', () => {
   const message = 'Message';
   const modelValue = { value: 2 };
   const styleTokens = styleTokensBuiltIn;
-  const asCode =  true;
+  const asCode = true;
   const codeAsString = '{ "value": 2 }';
   const allProps = {
     errorMessage,
