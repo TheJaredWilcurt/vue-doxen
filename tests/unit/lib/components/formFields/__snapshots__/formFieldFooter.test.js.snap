@@ -1,0 +1,41 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FormFieldFooter.vue > Renders correctly with nothing passed in 1`] = `
+<!-- v-if -->
+<!-- v-if -->
+<!-- v-if -->
+`;
+
+exports[`FormFieldFooter.vue > Renders errorMessage 1`] = `
+<!-- v-if -->
+<p
+  class="doxen-form-field-error"
+  data-applied-style-tokens="formFieldError"
+  data-style-tokens="formFieldError"
+>
+  Error
+</p>
+<!-- v-if -->
+`;
+
+exports[`FormFieldFooter.vue > Renders innerHTML 1`] = `
+<!-- v-if -->
+<!-- v-if -->
+<p>
+  <strong>
+    Markup
+  </strong>
+</p>
+`;
+
+exports[`FormFieldFooter.vue > Renders message 1`] = `
+<p
+  class="doxen-form-field-message"
+  data-applied-style-tokens="formFieldMessage"
+  data-style-tokens="formFieldMessage"
+>
+  Message
+</p>
+<!-- v-if -->
+<!-- v-if -->
+`;
