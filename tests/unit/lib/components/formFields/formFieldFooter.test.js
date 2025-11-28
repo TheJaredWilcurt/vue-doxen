@@ -7,7 +7,7 @@ import testHelpers from '@@/unit/testHelpers.js';
 describe('FormFieldFooter.vue', () => {
   // Props
   const errorMessage = 'Error';
-  const innerHTML = '<strong>Markup</strong>'
+  const innerHTML = '<strong>Markup</strong>';
   const message = 'Message';
   const styleTokens = styleTokensBuiltIn;
   const requiredProps = {};
