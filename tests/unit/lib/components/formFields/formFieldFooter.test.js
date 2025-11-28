@@ -17,9 +17,6 @@ describe('FormFieldFooter.vue', () => {
       props: {
         ...requiredProps,
         ...props
-      },
-      slots: {
-        default: 'Slot text'
       }
     };
     const wrapper = await testHelpers.mount(FormFieldFooter, options);

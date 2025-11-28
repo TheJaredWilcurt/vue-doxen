@@ -1,23 +1,15 @@
 import { styleTokensBuiltIn } from '@/helpers/styleTokens.js';
 
-import FormFieldLabel from '@/components/formFields/FormFieldLabel.vue';
+import FormFieldsetWrapper from '@/components/formFields/FormFieldsetWrapper.vue';
 
 import testHelpers from '@@/unit/testHelpers.js';
 
-describe('FormFieldLabel.vue', () => {
+describe('FormFieldsetWrapper.vue', () => {
   // Props
-  const disabled = true;
-  const errorMessage = 'Error';
-  const idFor = 'Unique';
-  const label = 'Label';
-  const required = true;
+  const modelValue = [{ a: true, b: 2 }];
   const styleTokens = styleTokensBuiltIn;
   const allProps = {
-    disabled,
-    errorMessage,
-    idFor,
-    label,
-    required,
+    modelValue,
     styleTokens
   };
   const requiredProps = {};
@@ -27,9 +19,12 @@ describe('FormFieldLabel.vue', () => {
       props: {
         ...requiredProps,
         ...props
+      },
+      slots: {
+        default: 'Slot text'
       }
     };
-    const wrapper = await testHelpers.mount(FormFieldLabel, options);
+    const wrapper = await testHelpers.mount(FormFieldsetWrapper, options);
     return wrapper;
   };
 
@@ -40,14 +35,7 @@ describe('FormFieldLabel.vue', () => {
       .toMatchSnapshot();
   });
 
-  test('Renders correctly with just label', async () => {
-    const wrapper = await setupWrapper({ label });
-
-    expect(wrapper)
-      .toMatchSnapshot();
-  });
-
-  test('Renders with all props', async () => {
+  test('Renders with allProps', async () => {
     const wrapper = await setupWrapper(allProps);
 
     expect(wrapper)
