@@ -152,6 +152,6 @@
   "homepage": "https://github.com/TheJaredWilcurt/vue-doxen#readme",
   "volta": {
     "node": "25.2.1",
-    "npm": "11.6.3"
+    "npm": "11.6.4"
   }
 }
