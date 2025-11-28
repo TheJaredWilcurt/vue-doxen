@@ -67,8 +67,6 @@ describe('DoxenRangeSlider.vue', () => {
     expect(wrapper.emitted())
       .toEqual({});
 
-    console.log(wrapper.vm.idFor);
-
     const inputElement = wrapper.find('[data-test="VueDoxen_Label_v-0"]');
     await inputElement.setValue(20);
 
