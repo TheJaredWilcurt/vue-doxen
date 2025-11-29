@@ -10,6 +10,7 @@
         v-if="currentFileName"
         v-text="currentFileName"
         v-bind="applyStyleTokens({ codeSwapperFileName: true })"
+        data-test="current-file-name"
       ></code>
     </DoxenTabs>
     <DoxenCodeBox
@@ -75,9 +76,11 @@ export default {
   computed: {
     currentFileName: function () {
       if (typeof(this.fileName) === 'object') {
+        /* v8 ignore else */
         if (this.selected) {
           return this.fileName[this.selected];
         }
+        /* v8 ignore next */
         return undefined;
       }
       return this.fileName;

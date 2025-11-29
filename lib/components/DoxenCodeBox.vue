@@ -2,6 +2,7 @@
   <div
     v-bind="applyStyleTokens({ codeBoxContainer: true })"
     aria-label="Code example"
+    data-test="code-container"
     role="textbox"
     tabindex="0"
     :title="copy ? 'Click to copy' : undefined"

@@ -1,0 +1,149 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DoxenRadioDials.vue > Renders correctly 1`] = `
+<fieldset
+  class=""
+  data-applied-style-tokens="formFieldFieldset"
+  data-style-tokens="formFieldFieldset"
+  data-value="undefined"
+>
+  <!-- v-if -->
+  <div
+    class=""
+    data-applied-style-tokens="formFieldRadioDialsContainer"
+    data-style-tokens="formFieldRadioDialsContainer"
+  ></div>
+  <!-- v-if -->
+  <!-- v-if -->
+  <!-- v-if -->
+  Slot text
+</fieldset>
+`;
+
+exports[`DoxenRadioDials.vue > Renders correctly with all props 1`] = `
+<fieldset
+  class="doxen-form-field-fieldset"
+  data-applied-style-tokens="formFieldFieldset"
+  data-style-tokens="formFieldFieldset"
+  data-value="'b'"
+>
+  <legend
+    class="
+      doxen-form-field-legend
+      doxen-form-field-legend-disabled
+      doxen-form-field-legend-error
+    "
+    data-applied-style-tokens="formFieldLegend formFieldLegendDisabled formFieldLegendError"
+    data-style-tokens="formFieldLegend formFieldLegendDisabled formFieldLegendError"
+  >
+    <label
+      class="doxen-form-field-label"
+      data-applied-style-tokens="formFieldLabel"
+      data-style-tokens="formFieldLabel"
+    >
+      Label:
+    </label>
+    <span
+      class="doxen-form-field-required"
+      data-applied-style-tokens="formFieldRequired"
+      data-style-tokens="formFieldRequired"
+    >
+      *
+    </span>
+  </legend>
+  <div
+    class="doxen-form-field-radio-dials-container"
+    data-applied-style-tokens="formFieldRadioDialsContainer"
+    data-style-tokens="formFieldRadioDialsContainer"
+  >
+    <div
+      class="doxen-form-field-radio-dial-container"
+      data-applied-style-tokens="formFieldRadioDialContainer"
+      data-style-tokens="formFieldRadioDialContainer"
+    >
+      <input
+        aria-invalid="true"
+        aria-required="true"
+        checked="false"
+        class="
+          doxen-form-field-radio-dial
+          doxen-form-field-radio-dial-error
+        "
+        data-applied-style-tokens="formFieldRadioDial formFieldRadioDialError"
+        data-style-tokens="formFieldRadioDial formFieldRadioDialError"
+        data-value="false"
+        disabled="true"
+        id="VueDoxen_Label_A_a_v-0"
+        name="VueDoxen_Label_v-0-v-1_A-B"
+        required="true"
+        type="radio"
+        value="'a'"
+      />
+      <label
+        class="
+          doxen-form-field-radio-dial-name-disabled
+          doxen-form-field-radio-dial-name-error
+          doxen-form-field-radio-dial-name-label
+        "
+        data-applied-style-tokens="formFieldRadioDialNameLabel formFieldRadioDialNameDisabled formFieldRadioDialNameError"
+        data-style-tokens="formFieldRadioDialNameLabel formFieldRadioDialNameDisabled formFieldRadioDialNameError"
+        for="VueDoxen_Label_A_a_v-0"
+      >
+        A
+      </label>
+    </div>
+    <div
+      class="doxen-form-field-radio-dial-container"
+      data-applied-style-tokens="formFieldRadioDialContainer"
+      data-style-tokens="formFieldRadioDialContainer"
+    >
+      <input
+        aria-invalid="true"
+        aria-required="true"
+        checked="true"
+        class="
+          doxen-form-field-radio-dial
+          doxen-form-field-radio-dial-error
+        "
+        data-applied-style-tokens="formFieldRadioDial formFieldRadioDialError"
+        data-style-tokens="formFieldRadioDial formFieldRadioDialError"
+        data-value="true"
+        disabled="true"
+        id="VueDoxen_Label_B_b_v-1"
+        name="VueDoxen_Label_v-0-v-1_A-B"
+        required="true"
+        type="radio"
+        value="'b'"
+      />
+      <label
+        class="
+          doxen-form-field-radio-dial-name-disabled
+          doxen-form-field-radio-dial-name-error
+          doxen-form-field-radio-dial-name-label
+        "
+        data-applied-style-tokens="formFieldRadioDialNameLabel formFieldRadioDialNameDisabled formFieldRadioDialNameError"
+        data-style-tokens="formFieldRadioDialNameLabel formFieldRadioDialNameDisabled formFieldRadioDialNameError"
+        for="VueDoxen_Label_B_b_v-1"
+      >
+        B
+      </label>
+    </div>
+  </div>
+  <p
+    class="doxen-form-field-message"
+    data-applied-style-tokens="formFieldMessage"
+    data-style-tokens="formFieldMessage"
+  >
+    Message
+  </p>
+  <p
+    class="doxen-form-field-error"
+    data-applied-style-tokens="formFieldError"
+    data-style-tokens="formFieldError"
+  >
+    Error
+  </p>
+  <!-- v-if -->
+  Slot text
+</fieldset>
+`;

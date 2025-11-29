@@ -1,0 +1,23 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FormFieldsetWrapper.vue > Renders correctly with nothing passed in 1`] = `
+<fieldset
+  class=""
+  data-applied-style-tokens="formFieldFieldset"
+  data-style-tokens="formFieldFieldset"
+  data-value="undefined"
+>
+  Slot text
+</fieldset>
+`;
+
+exports[`FormFieldsetWrapper.vue > Renders with allProps 1`] = `
+<fieldset
+  class="doxen-form-field-fieldset"
+  data-applied-style-tokens="formFieldFieldset"
+  data-style-tokens="formFieldFieldset"
+  data-value="[{a:true,b:2}]"
+>
+  Slot text
+</fieldset>
+`;

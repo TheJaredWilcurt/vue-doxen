@@ -15,6 +15,7 @@
       </legend>
       <button
         v-bind="applyStyleTokens({ emitLogClearButton: true })"
+        :data-test="'button-' + idFor"
         @click.prevent="$emit('update:model-value', [])"
       >
         clear&nbsp;log

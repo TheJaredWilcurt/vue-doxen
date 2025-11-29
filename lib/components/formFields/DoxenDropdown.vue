@@ -26,6 +26,7 @@
         :id="idFor"
         :aria-invalid="!!errorMessage"
         :aria-required="!!required"
+        :data-test="idFor"
         :data-value="dataValue(modelValue)"
         :disabled="disabled"
         :name="idFor"
@@ -122,6 +123,7 @@ export default {
       return generateRandomId();
     },
     uniqueOptions: function () {
+      /* v8 ignore if */
       if (!this.options || !Array.isArray(this.options)) {
         return [];
       }

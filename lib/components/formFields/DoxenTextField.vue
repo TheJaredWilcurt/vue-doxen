@@ -89,8 +89,8 @@ export default {
     errorMessage,
     label,
     message,
-    required,
     modelValue,
+    required,
     styleTokens
   },
   methods: {

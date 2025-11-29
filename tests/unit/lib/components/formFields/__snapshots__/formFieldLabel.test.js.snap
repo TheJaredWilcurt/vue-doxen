@@ -1,0 +1,48 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FormFieldLabel.vue > Renders correctly with just label 1`] = `
+<legend
+  class=""
+  data-applied-style-tokens="formFieldLegend"
+  data-style-tokens="formFieldLegend formFieldLegendDisabled formFieldLegendError"
+>
+  <label
+    class=""
+    data-applied-style-tokens="formFieldLabel"
+    data-style-tokens="formFieldLabel"
+  >
+    Label:
+  </label>
+  <!-- v-if -->
+</legend>
+`;
+
+exports[`FormFieldLabel.vue > Renders correctly with nothing passed in 1`] = `<!-- v-if -->`;
+
+exports[`FormFieldLabel.vue > Renders with all props 1`] = `
+<legend
+  class="
+    doxen-form-field-legend
+    doxen-form-field-legend-disabled
+    doxen-form-field-legend-error
+  "
+  data-applied-style-tokens="formFieldLegend formFieldLegendDisabled formFieldLegendError"
+  data-style-tokens="formFieldLegend formFieldLegendDisabled formFieldLegendError"
+>
+  <label
+    class="doxen-form-field-label"
+    data-applied-style-tokens="formFieldLabel"
+    data-style-tokens="formFieldLabel"
+    for="Unique"
+  >
+    Label:
+  </label>
+  <span
+    class="doxen-form-field-required"
+    data-applied-style-tokens="formFieldRequired"
+    data-style-tokens="formFieldRequired"
+  >
+    *
+  </span>
+</legend>
+`;

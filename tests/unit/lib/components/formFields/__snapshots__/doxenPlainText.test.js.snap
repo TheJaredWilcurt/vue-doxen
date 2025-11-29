@@ -1,0 +1,155 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DoxenPlainText.vue > Renders correctly 1`] = `
+<fieldset
+  class=""
+  data-applied-style-tokens="formFieldFieldset"
+  data-style-tokens="formFieldFieldset"
+  data-value="undefined"
+>
+  <!-- v-if -->
+  <div
+    class=""
+    data-applied-style-tokens="plainText"
+    data-style-tokens="plainText"
+    id="VueDoxen_v-0"
+  ></div>
+  <!-- v-if -->
+  <!-- v-if -->
+  <!-- v-if -->
+  Slot text
+</fieldset>
+`;
+
+exports[`DoxenPlainText.vue > Renders correctly with all props 1`] = `
+<fieldset
+  class="doxen-form-field-fieldset"
+  data-applied-style-tokens="formFieldFieldset"
+  data-style-tokens="formFieldFieldset"
+  data-value="{value:2}"
+>
+  <legend
+    class="
+      doxen-form-field-legend
+      doxen-form-field-legend-error
+    "
+    data-applied-style-tokens="formFieldLegend formFieldLegendError"
+    data-style-tokens="formFieldLegend formFieldLegendDisabled formFieldLegendError"
+  >
+    <label
+      class="doxen-form-field-label"
+      data-applied-style-tokens="formFieldLabel"
+      data-style-tokens="formFieldLabel"
+      for="VueDoxen_Label_v-0"
+    >
+      Label:
+    </label>
+    <!-- v-if -->
+  </legend>
+  <div
+    class="doxen-plain-text"
+    data-applied-style-tokens="plainText"
+    data-style-tokens="plainText"
+  >
+    <div
+      aria-label="Code example"
+      class="doxen-code-box-container"
+      data-applied-style-tokens="codeBoxContainer"
+      data-style-tokens="codeBoxContainer"
+      id="VueDoxen_Label_v-0"
+      role="textbox"
+      tabindex="0"
+      title="Click to copy"
+    >
+      <pre
+        class="doxen-code-box"
+        data-applied-style-tokens="codeBox"
+        data-style-tokens="codeBox"
+      ><code
+        class="
+          hljs
+          javascript
+        "
+        tabindex="0"
+      >{ <span class="hljs-string">"value"</span>: <span class="hljs-number">2</span> }</code></pre>
+      <!-- v-if -->
+    </div>
+  </div>
+  <p
+    class="doxen-form-field-message"
+    data-applied-style-tokens="formFieldMessage"
+    data-style-tokens="formFieldMessage"
+  >
+    Message
+  </p>
+  <p
+    class="doxen-form-field-error"
+    data-applied-style-tokens="formFieldError"
+    data-style-tokens="formFieldError"
+  >
+    Error
+  </p>
+  <!-- v-if -->
+  Slot text
+</fieldset>
+`;
+
+exports[`DoxenPlainText.vue > Renders correctly with asCode 1`] = `
+<fieldset
+  class=""
+  data-applied-style-tokens="formFieldFieldset"
+  data-style-tokens="formFieldFieldset"
+  data-value="{value:2}"
+>
+  <legend
+    class=""
+    data-applied-style-tokens="formFieldLegend"
+    data-style-tokens="formFieldLegend formFieldLegendDisabled formFieldLegendError"
+  >
+    <label
+      class=""
+      data-applied-style-tokens="formFieldLabel"
+      data-style-tokens="formFieldLabel"
+      for="VueDoxen_Label_v-0"
+    >
+      Label:
+    </label>
+    <!-- v-if -->
+  </legend>
+  <div
+    class=""
+    data-applied-style-tokens="plainText"
+    data-style-tokens="plainText"
+  >
+    <div
+      aria-label="Code example"
+      class=""
+      data-applied-style-tokens="codeBoxContainer"
+      data-style-tokens="codeBoxContainer"
+      id="VueDoxen_Label_v-0"
+      role="textbox"
+      tabindex="0"
+      title="Click to copy"
+    >
+      <pre
+        class=""
+        data-applied-style-tokens="codeBox"
+        data-style-tokens="codeBox"
+      ><code
+        class="
+          hljs
+          javascript
+        "
+        tabindex="0"
+      >{
+  <span class="hljs-attr">value</span>: <span class="hljs-number">2</span>
+}</code></pre>
+      <!-- v-if -->
+    </div>
+  </div>
+  <!-- v-if -->
+  <!-- v-if -->
+  <!-- v-if -->
+  Slot text
+</fieldset>
+`;

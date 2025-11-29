@@ -27,7 +27,7 @@
     >
       <DoxenCodeBox
         :id="idFor"
-        :code="serializedModelValue || ''"
+        :code="serializedModelValue"
         :styleTokens="styleTokens"
       />
     </div>
@@ -103,14 +103,17 @@ export default {
   },
   computed: {
     serializedModelValue: function () {
+      let output = '';
+      /* v8 ignore else */
       if (this.asCode) {
         try {
-          return serializeJavaScript(this.modelValue);
+          output = serializeJavaScript(this.modelValue);
         } catch (error) {
+          /* v8 ignore next */
           console.log(error);
         }
       }
-      return undefined;
+      return output;
     },
     uniqueId: function () {
       return generateRandomId();

@@ -1,0 +1,206 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DoxenEmitLog.vue > Renders correctly 1`] = `
+<fieldset
+  class=""
+  data-applied-style-tokens="formFieldFieldset"
+  data-style-tokens="formFieldFieldset"
+  data-value="undefined"
+  title="See browser console"
+>
+  <div
+    class=""
+    data-applied-style-tokens="emitLogHeader"
+    data-style-tokens="emitLogHeader"
+  >
+    <legend
+      class=""
+      data-applied-style-tokens="formFieldLegend"
+      data-style-tokens="formFieldLegend"
+    >
+      <label
+        class=""
+        data-applied-style-tokens="formFieldLabel"
+        data-style-tokens="formFieldLabel"
+        for="VueDoxen_DoxenEmitLog_v-0"
+      >
+        Emit log:
+      </label>
+    </legend>
+    <button
+      class=""
+      data-applied-style-tokens="emitLogClearButton"
+      data-style-tokens="emitLogClearButton"
+    >
+      clear&nbsp;log
+    </button>
+  </div>
+  <div
+    class=""
+    data-applied-style-tokens="emitLogTableContainer"
+    data-style-tokens="emitLogTableContainer"
+  >
+    <table
+      class=""
+      data-applied-style-tokens="emitLogTable"
+      data-style-tokens="emitLogTable"
+      id="VueDoxen_DoxenEmitLog_v-0"
+    >
+      <thead
+        class=""
+        data-applied-style-tokens="emitLogThead"
+        data-style-tokens="emitLogThead"
+      >
+        <tr
+          class=""
+          data-applied-style-tokens="emitLogTr"
+          data-style-tokens="emitLogTr"
+        >
+          <th
+            class=""
+            data-applied-style-tokens="emitLogTh"
+            data-style-tokens="emitLogTh"
+          >
+            Emit Name
+          </th>
+          <th
+            class=""
+            data-applied-style-tokens="emitLogTh"
+            data-style-tokens="emitLogTh"
+          >
+            Value
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        class=""
+        data-applied-style-tokens="emitLogTbody"
+        data-style-tokens="emitLogTbody"
+      ></tbody>
+    </table>
+  </div>
+</fieldset>
+`;
+
+exports[`DoxenEmitLog.vue > Renders correctly with all props 1`] = `
+<fieldset
+  class="doxen-form-field-fieldset"
+  data-applied-style-tokens="formFieldFieldset"
+  data-style-tokens="formFieldFieldset"
+  data-value="[{emitName:'foo',value:'bar'}, {emitName:'foo',value:'baz'}]"
+  title="See browser console"
+>
+  <div
+    class="doxen-emit-log-header"
+    data-applied-style-tokens="emitLogHeader"
+    data-style-tokens="emitLogHeader"
+  >
+    <legend
+      class="doxen-form-field-legend"
+      data-applied-style-tokens="formFieldLegend"
+      data-style-tokens="formFieldLegend"
+    >
+      <label
+        class="doxen-form-field-label"
+        data-applied-style-tokens="formFieldLabel"
+        data-style-tokens="formFieldLabel"
+        for="VueDoxen_DoxenEmitLog_v-0"
+      >
+        Emit log:
+      </label>
+    </legend>
+    <button
+      class="doxen-emit-log-clear-button"
+      data-applied-style-tokens="emitLogClearButton"
+      data-style-tokens="emitLogClearButton"
+    >
+      clear&nbsp;log
+    </button>
+  </div>
+  <div
+    class="doxen-emit-log-table-container"
+    data-applied-style-tokens="emitLogTableContainer"
+    data-style-tokens="emitLogTableContainer"
+  >
+    <table
+      class="doxen-emit-log-table"
+      data-applied-style-tokens="emitLogTable"
+      data-style-tokens="emitLogTable"
+      id="VueDoxen_DoxenEmitLog_v-0"
+    >
+      <thead
+        class="doxen-emit-log-thead"
+        data-applied-style-tokens="emitLogThead"
+        data-style-tokens="emitLogThead"
+      >
+        <tr
+          class="doxen-emit-log-tr"
+          data-applied-style-tokens="emitLogTr"
+          data-style-tokens="emitLogTr"
+        >
+          <th
+            class="doxen-emit-log-th"
+            data-applied-style-tokens="emitLogTh"
+            data-style-tokens="emitLogTh"
+          >
+            Emit Name
+          </th>
+          <th
+            class="doxen-emit-log-th"
+            data-applied-style-tokens="emitLogTh"
+            data-style-tokens="emitLogTh"
+          >
+            Value
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        class="doxen-emit-log-tbody"
+        data-applied-style-tokens="emitLogTbody"
+        data-style-tokens="emitLogTbody"
+      >
+        <tr
+          class="doxen-emit-log-tr"
+          data-applied-style-tokens="emitLogTr"
+          data-style-tokens="emitLogTr"
+        >
+          <td
+            class="doxen-emit-log-td"
+            data-applied-style-tokens="emitLogTd"
+            data-style-tokens="emitLogTd"
+          >
+            foo
+          </td>
+          <td
+            class="doxen-emit-log-td"
+            data-applied-style-tokens="emitLogTd"
+            data-style-tokens="emitLogTd"
+          >
+            'bar'
+          </td>
+        </tr>
+        <tr
+          class="doxen-emit-log-tr"
+          data-applied-style-tokens="emitLogTr"
+          data-style-tokens="emitLogTr"
+        >
+          <td
+            class="doxen-emit-log-td"
+            data-applied-style-tokens="emitLogTd"
+            data-style-tokens="emitLogTd"
+          >
+            foo
+          </td>
+          <td
+            class="doxen-emit-log-td"
+            data-applied-style-tokens="emitLogTd"
+            data-style-tokens="emitLogTd"
+          >
+            'baz'
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</fieldset>
+`;

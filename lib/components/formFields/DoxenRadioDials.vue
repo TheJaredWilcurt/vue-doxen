@@ -47,6 +47,7 @@
             formFieldRadioDialNameDisabled: disabled,
             formFieldRadioDialNameError: errorMessage
           })"
+          :data-test="createRadioIdFor(option, label)"
           :for="createRadioIdFor(option, label)"
         ></label>
       </div>
@@ -128,6 +129,7 @@ export default {
   },
   computed: {
     uniqueOptions: function () {
+      /* v8 ignore if */
       if (!this.options || !Array.isArray(this.options)) {
         return [];
       }

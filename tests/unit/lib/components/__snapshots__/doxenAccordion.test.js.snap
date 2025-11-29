@@ -1,0 +1,58 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DoxenAccordion.vue > Renders correctly with all props 1`] = `
+<div
+  class="doxen-accordion-container"
+  data-applied-style-tokens="accordionContainer"
+  data-style-tokens="accordionContainer"
+  style="
+    display: grid;
+    grid-template-rows: 0fr;
+    transition-property: grid-template-rows;
+    transition-duration: 100ms;
+    transition-timing-function: linear;
+  "
+>
+  <div
+    aria-hidden="true"
+    class="doxen-accordion-inner"
+    data-applied-style-tokens="accordionInner"
+    data-style-tokens="accordionInner"
+    inert="true"
+    style="
+      grid-row: 1 / span 2;
+      overflow: hidden;
+    "
+  >
+    Text
+  </div>
+</div>
+`;
+
+exports[`DoxenAccordion.vue > Renders correctly with defaults 1`] = `
+<div
+  class=""
+  data-applied-style-tokens="accordionContainer"
+  data-style-tokens="accordionContainer"
+  style="
+    display: grid;
+    grid-template-rows: 1fr;
+    transition-property: grid-template-rows;
+    transition-duration: 750ms;
+    transition-timing-function: ease;
+  "
+>
+  <div
+    aria-hidden="false"
+    class=""
+    data-applied-style-tokens="accordionInner"
+    data-style-tokens="accordionInner"
+    style="
+      grid-row: 1 / span 2;
+      overflow: hidden;
+    "
+  >
+    Text
+  </div>
+</div>
+`;

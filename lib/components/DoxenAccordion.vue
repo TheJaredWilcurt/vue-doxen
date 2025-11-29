@@ -7,7 +7,7 @@
       v-bind="applyStyleTokens({ accordionInner: true })"
       :aria-hidden="!show"
       :inert="!show"
-      :style="accordionInner"
+      style="grid-row: 1 / span 2; overflow: hidden"
     >
       <slot></slot>
     </div>
@@ -23,7 +23,6 @@ export default {
   name: 'DoxenAccordion',
   mixins: [applyStyleTokens],
   props: {
-    styleTokens,
     durationMs: {
       type: Number,
       default: 750
@@ -32,6 +31,7 @@ export default {
       type: Boolean,
       default: true
     },
+    styleTokens,
     timingFunction: {
       type: String,
       default: 'ease'
@@ -49,12 +49,6 @@ export default {
         'transition-property: grid-template-rows',
         'transition-duration: ' + this.durationMs + 'ms',
         'transition-timing-function: ' + this.timingFunction
-      ].join(';');
-    },
-    accordionInner: function () {
-      return [
-        'grid-row: 1 / span 2',
-        'overflow: hidden'
       ].join(';');
     }
   }

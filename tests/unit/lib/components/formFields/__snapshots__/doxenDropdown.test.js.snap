@@ -1,0 +1,131 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DoxenDropdown.vue > Renders correctly 1`] = `
+<fieldset
+  class=""
+  data-applied-style-tokens="formFieldFieldset"
+  data-style-tokens="formFieldFieldset"
+  data-value="undefined"
+>
+  <!-- v-if -->
+  <div
+    class=""
+    data-applied-style-tokens="formFieldDropdownContainer"
+    data-style-tokens="formFieldDropdownContainer"
+  >
+    <select
+      aria-invalid="false"
+      aria-required="false"
+      class=""
+      data-applied-style-tokens="formFieldDropdown"
+      data-style-tokens="formFieldDropdown formFieldDropdownError"
+      data-value="undefined"
+      id="VueDoxen_v-0"
+      name="VueDoxen_v-0"
+      value="''"
+    ></select>
+  </div>
+  <!-- v-if -->
+  <!-- v-if -->
+  <!-- v-if -->
+  Slot text
+</fieldset>
+`;
+
+exports[`DoxenDropdown.vue > Renders correctly with all props 1`] = `
+<fieldset
+  class="doxen-form-field-fieldset"
+  data-applied-style-tokens="formFieldFieldset"
+  data-style-tokens="formFieldFieldset"
+  data-value="'moo'"
+>
+  <legend
+    class="
+      doxen-form-field-legend
+      doxen-form-field-legend-disabled
+      doxen-form-field-legend-error
+    "
+    data-applied-style-tokens="formFieldLegend formFieldLegendDisabled formFieldLegendError"
+    data-style-tokens="formFieldLegend formFieldLegendDisabled formFieldLegendError"
+  >
+    <label
+      class="doxen-form-field-label"
+      data-applied-style-tokens="formFieldLabel"
+      data-style-tokens="formFieldLabel"
+      for="VueDoxen_Label_v-0"
+    >
+      Label:
+    </label>
+    <span
+      class="doxen-form-field-required"
+      data-applied-style-tokens="formFieldRequired"
+      data-style-tokens="formFieldRequired"
+    >
+      *
+    </span>
+  </legend>
+  <div
+    class="doxen-form-field-dropdown-container"
+    data-applied-style-tokens="formFieldDropdownContainer"
+    data-style-tokens="formFieldDropdownContainer"
+  >
+    <select
+      aria-invalid="true"
+      aria-required="true"
+      class="
+        doxen-form-field-dropdown
+        doxen-form-field-dropdown-error
+      "
+      data-applied-style-tokens="formFieldDropdown formFieldDropdownError"
+      data-style-tokens="formFieldDropdown formFieldDropdownError"
+      data-value="'moo'"
+      disabled="true"
+      id="VueDoxen_Label_v-0"
+      name="VueDoxen_Label_v-0"
+      required="true"
+      value="'moo'"
+    >
+      <option
+        class="doxen-form-field-dropdown-option"
+        data-applied-style-tokens="formFieldDropdownOption"
+        data-style-tokens="formFieldDropdownOption"
+        value="meow"
+      >
+        Cat
+      </option>
+      <option
+        class="doxen-form-field-dropdown-option"
+        data-applied-style-tokens="formFieldDropdownOption"
+        data-style-tokens="formFieldDropdownOption"
+        value="moo"
+      >
+        Cow
+      </option>
+      <option
+        class="doxen-form-field-dropdown-option"
+        data-applied-style-tokens="formFieldDropdownOption"
+        data-style-tokens="formFieldDropdownOption"
+        value="woof"
+      >
+        Dog
+      </option>
+    </select>
+  </div>
+  <p
+    class="doxen-form-field-message"
+    data-applied-style-tokens="formFieldMessage"
+    data-style-tokens="formFieldMessage"
+  >
+    Message
+  </p>
+  <p
+    class="doxen-form-field-error"
+    data-applied-style-tokens="formFieldError"
+    data-style-tokens="formFieldError"
+  >
+    Error
+  </p>
+  <!-- v-if -->
+  Slot text
+</fieldset>
+`;
