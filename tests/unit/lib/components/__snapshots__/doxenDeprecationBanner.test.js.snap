@@ -1,0 +1,49 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DoxenDeprecationBanner.vue > Renders correctly with all props 1`] = `
+<blockquote
+  class="doxen-deprecation-banner"
+  data-applied-style-tokens="deprecationBanner"
+  data-style-tokens="deprecationBanner"
+  role="banner"
+>
+  <strong
+    class="doxen-deprecation-banner-title"
+    data-applied-style-tokens="deprecationBannerTitle"
+    data-style-tokens="deprecationBannerTitle"
+  >
+    Deprecated:&nbsp;
+  </strong>
+  <div
+    class="doxen-deprecation-banner-body"
+    data-applied-style-tokens="deprecationBannerBody"
+    data-style-tokens="deprecationBannerBody"
+  >
+    Old, don't use.
+  </div>
+</blockquote>
+`;
+
+exports[`DoxenDeprecationBanner.vue > Renders correctly with defaults 1`] = `
+<blockquote
+  class=""
+  data-applied-style-tokens="deprecationBanner"
+  data-style-tokens="deprecationBanner"
+  role="banner"
+>
+  <strong
+    class=""
+    data-applied-style-tokens="deprecationBannerTitle"
+    data-style-tokens="deprecationBannerTitle"
+  >
+    Deprecated:&nbsp;
+  </strong>
+  <div
+    class=""
+    data-applied-style-tokens="deprecationBannerBody"
+    data-style-tokens="deprecationBannerBody"
+  >
+    This component is deprecated.
+  </div>
+</blockquote>
+`;
