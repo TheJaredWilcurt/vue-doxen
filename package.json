@@ -58,7 +58,7 @@
     "npm-free-server": "^1.1.0",
     "nprogress": "^0.2.0",
     "sass": "^1.94.2",
-    "vite": "^7.2.4",
+    "vite": "^7.2.6",
     "vite-node": "^5.2.0",
     "vite-plugin-vue-devtools": "^8.0.5",
     "vitest": "^4.0.14",
