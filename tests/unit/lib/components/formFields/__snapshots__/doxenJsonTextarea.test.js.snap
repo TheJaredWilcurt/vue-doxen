@@ -1,0 +1,109 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DoxenJsonTextarea.vue > Renders correctly 1`] = `
+<fieldset
+  class=""
+  data-applied-style-tokens="formFieldFieldset"
+  data-style-tokens="formFieldFieldset"
+  data-value="undefined"
+>
+  <!-- v-if -->
+  <div
+    class=""
+    data-applied-style-tokens="formFieldTextareaContainer"
+    data-style-tokens="formFieldTextareaContainer"
+  >
+    <textarea
+      aria-invalid="false"
+      aria-required="false"
+      class=""
+      data-applied-style-tokens="formFieldTextarea formFieldTextareaCode"
+      data-style-tokens="formFieldTextarea formFieldTextareaCode formFieldTextareaError"
+      data-value="undefined"
+      id="VueDoxen_v-0"
+      name="VueDoxen_v-0"
+      value="''"
+    ></textarea>
+  </div>
+  <!-- v-if -->
+  <!-- v-if -->
+  <!-- v-if -->
+  <!-- v-if -->
+  Slot text
+</fieldset>
+`;
+
+exports[`DoxenJsonTextarea.vue > Renders correctly with all props 1`] = `
+<fieldset
+  class="doxen-form-field-fieldset"
+  data-applied-style-tokens="formFieldFieldset"
+  data-style-tokens="formFieldFieldset"
+  data-value="'{\\n  some: "text",\\n}'"
+>
+  <legend
+    class="
+      doxen-form-field-legend
+      doxen-form-field-legend-disabled
+      doxen-form-field-legend-error
+    "
+    data-applied-style-tokens="formFieldLegend formFieldLegendDisabled formFieldLegendError"
+    data-style-tokens="formFieldLegend formFieldLegendDisabled formFieldLegendError"
+  >
+    <label
+      class="doxen-form-field-label"
+      data-applied-style-tokens="formFieldLabel"
+      data-style-tokens="formFieldLabel"
+      for="VueDoxen_Label_v-0"
+    >
+      Label:
+    </label>
+    <span
+      class="doxen-form-field-required"
+      data-applied-style-tokens="formFieldRequired"
+      data-style-tokens="formFieldRequired"
+    >
+      *
+    </span>
+  </legend>
+  <div
+    class="doxen-form-field-textarea-container"
+    data-applied-style-tokens="formFieldTextareaContainer"
+    data-style-tokens="formFieldTextareaContainer"
+  >
+    <textarea
+      aria-invalid="true"
+      aria-required="true"
+      class="
+        doxen-form-field-textarea
+        doxen-form-field-textarea-code
+        doxen-form-field-textarea-error
+      "
+      data-applied-style-tokens="formFieldTextarea formFieldTextareaCode formFieldTextareaError"
+      data-style-tokens="formFieldTextarea formFieldTextareaCode formFieldTextareaError"
+      data-value="'{\\n  some: "text",\\n}'"
+      disabled="true"
+      id="VueDoxen_Label_v-0"
+      name="VueDoxen_Label_v-0"
+      required="true"
+      value="'{\\n  some: "text",\\n}'"
+    ></textarea>
+  </div>
+  <!-- v-if -->
+  <p
+    class="doxen-form-field-message"
+    data-applied-style-tokens="formFieldMessage"
+    data-style-tokens="formFieldMessage"
+  >
+    Message
+  </p>
+  <p
+    class="doxen-form-field-error"
+    data-applied-style-tokens="formFieldError"
+    data-style-tokens="formFieldError"
+  >
+    Error
+  </p>
+  <!-- v-if -->
+  Slot text
+</fieldset>
+`;

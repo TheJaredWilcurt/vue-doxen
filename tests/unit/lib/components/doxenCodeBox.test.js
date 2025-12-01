@@ -5,18 +5,20 @@ import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
 import testHelpers from '@@/unit/testHelpers.js';
 
 describe('DoxenCodeBox', () => {
-  const consoleError = console.error;
-
-  // Props
   const html = '<div attribute="value">\n  Text\n</div>';
   const js = 'const value = 4;\nconsole.log({\n  key: value\n});';
-  const code = '<h1>Text</h1>';
   const object = {
     key: 'value',
     fn: () => { return 2; }
   };
+
+  // Props
+  const code = '<h1>Text</h1>';
+  const copy = false;
   const styleTokens = styleTokensBuiltIn;
   const requiredProps = {};
+
+  const consoleError = console.error;
 
   beforeEach(() => {
     console.error = vi.fn();
@@ -82,10 +84,12 @@ describe('DoxenCodeBox', () => {
   test('Copy disabled', async () => {
     const props = {
       code,
-      copy: false,
+      copy,
       styleTokens
     };
     const wrapper = await setupWrapper(props);
+
+    await wrapper.find('[data-test="code-container"]').trigger('click');
 
     expect(wrapper)
       .toMatchSnapshot();
@@ -134,21 +138,15 @@ describe('DoxenCodeBox', () => {
   });
 
   describe('Mock clipboard', () => {
-    let consoleError;
-    let writeText;
+    const writeText = navigator.clipboard.writeText;
 
     beforeEach(() => {
-      consoleError = console.error;
-      console.error = vi.fn();
-
-      writeText = navigator.clipboard.writeText;
       navigator.clipboard.writeText = vi.fn(() => {
         throw new Error('Clipboard permission missing.');
       });
     });
 
     afterEach(() => {
-      console.error = consoleError;
       navigator.clipboard.writeText = writeText;
     });
 
