@@ -371,6 +371,8 @@ function getTokensFromComponent (componentName) {
  * @return {object}                Slimmed down styleTokens object
  */
 export const styleTokenPropToDemo = function (styleTokens, componentName) {
+  styleTokens = styleTokens || {};
+  componentName = componentName || '';
   const tokens = {};
 
   /**
