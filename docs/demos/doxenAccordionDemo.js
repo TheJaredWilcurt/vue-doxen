@@ -1,6 +1,7 @@
 import DoxenAccordion from '@/components/DoxenAccordion.vue';
-import DoxenJsonTextarea from '@/components/formFields/DoxenJsonTextarea.vue';
 import DoxenAccordionDescription from '@@@/components/DoxenAccordionDescription.vue';
+
+import { styleTokenPropToDemo } from '@@@/helpers/tokensByComponent.js';
 
 export const createDoxenAccordionDemo = function (styleTokens) {
   return {
@@ -9,14 +10,7 @@ export const createDoxenAccordionDemo = function (styleTokens) {
       component: DoxenAccordionDescription
     },
     propsToDemo: {
-      styleTokens: {
-        component: DoxenJsonTextarea,
-        props: {
-          label: 'Style Tokens',
-          modelValue: styleTokens,
-          styleTokens
-        }
-      },
+      ...styleTokenPropToDemo(styleTokens, 'DoxenAccordion'),
       durationMs: {
         description: 'Controls the length of time, in milliseconds (ms) that the animation lasts.'
       },
