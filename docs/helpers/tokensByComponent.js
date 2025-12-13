@@ -9,7 +9,6 @@ import DoxenJsonTextarea from '@/components/formFields/DoxenJsonTextarea.vue';
  * @property {string[]} children                 A list of child component names
  */
 
-/* eslint-disable-next-line jsdoc/check-types */
 /**
  * This lists every Vue-Doxen component that accepts a styleTokens prop,
  * and all the tokens it specifically uses in that component (but excludes
