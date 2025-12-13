@@ -1,6 +1,7 @@
 import DoxenPropsDocumentation from '@/components/DoxenPropsDocumentation.vue';
-import DoxenJsonTextarea from '@/components/formFields/DoxenJsonTextarea.vue';
 import DoxenPlainText from '@/components/formFields/DoxenPlainText.vue';
+
+import { styleTokenPropToDemo } from '@@@/helpers/tokensByComponent.js';
 
 const CODE_AS_STRING = `
 {
@@ -37,6 +38,7 @@ export const createDoxenPropsDocumentationDemo = function (styleTokens) {
       'generally appear towards the botom of the demo page.</p>'
     ].join(' '),
     propsToDemo: {
+      ...styleTokenPropToDemo(styleTokens, 'DoxenPropsDocumentation'),
       propsToDemo: {
         component: DoxenPlainText,
         props: {
@@ -64,14 +66,6 @@ export const createDoxenPropsDocumentationDemo = function (styleTokens) {
               example: 'color="gold"'
             }
           },
-          styleTokens
-        }
-      },
-      styleTokens: {
-        component: DoxenJsonTextarea,
-        props: {
-          label: 'Style Tokens',
-          modelValue: styleTokens,
           styleTokens
         }
       }

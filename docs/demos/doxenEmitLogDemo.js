@@ -2,14 +2,16 @@ import { ref } from 'vue';
 
 import DoxenButton from '@/components/DoxenButton.vue';
 import DoxenEmitLog from '@/components/formFields/DoxenEmitLog.vue';
-import DoxenJsonTextarea from '@/components/formFields/DoxenJsonTextarea.vue';
 import DoxenPlainText from '@/components/formFields/DoxenPlainText.vue';
+
+import { styleTokenPropToDemo } from '@@@/helpers/tokensByComponent.js';
 
 export const createDoxenEmitLogDemo = function (styleTokens) {
   const events = ref([]);
   return {
     component: DoxenEmitLog,
     propsToDemo: {
+      ...styleTokenPropToDemo(styleTokens, 'DoxenEmitLog'),
       addToLogButton: {
         component: DoxenButton,
         props: {
@@ -34,14 +36,6 @@ export const createDoxenEmitLogDemo = function (styleTokens) {
           modelValue: events,
           styleTokens,
           asCode: true
-        }
-      },
-      styleTokens: {
-        component: DoxenJsonTextarea,
-        props: {
-          label: 'Style Tokens',
-          modelValue: styleTokens,
-          styleTokens
         }
       }
     },
