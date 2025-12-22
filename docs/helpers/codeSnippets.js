@@ -1885,7 +1885,7 @@ export const TITLE_COMPONENT_SCRIPT_SETUP_EXAMPLE = unindent(`
   import MyTitle from '../components/MyTitle.vue';
 
   defineOptions({
-    description: {
+    title: {
       component: MyTitle,
       // Optional, if your component needs props
       props: {

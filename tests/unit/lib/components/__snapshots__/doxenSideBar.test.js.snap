@@ -1,0 +1,99 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DoxenSideBar.vue > Renders correctly 1`] = `
+<div
+  class=""
+  data-applied-style-tokens="sidebarContainer"
+  data-style-tokens="sidebarContainer"
+>
+  TopBottom
+</div>
+`;
+
+exports[`DoxenSideBar.vue > Shows items, with Foo selected 1`] = `
+<div
+  class="doxen-sidebar-container"
+  data-applied-style-tokens="sidebarContainer"
+  data-style-tokens="sidebarContainer"
+>
+  Top
+  <button
+    aria-pressed="true"
+    class="
+      doxen-sidebar-button
+      doxen-sidebar-button-selected
+    "
+    data-applied-style-tokens="sidebarButton sidebarButtonSelected"
+    data-style-tokens="sidebarButton sidebarButtonNotSelected sidebarButtonSelected"
+  >
+    Foo
+  </button>
+  <button
+    aria-pressed="false"
+    class="
+      doxen-sidebar-button
+      doxen-sidebar-button-not-selected
+    "
+    data-applied-style-tokens="sidebarButton sidebarButtonNotSelected"
+    data-style-tokens="sidebarButton sidebarButtonNotSelected sidebarButtonSelected"
+  >
+    Bar
+  </button>
+  <button
+    aria-pressed="false"
+    class="
+      doxen-sidebar-button
+      doxen-sidebar-button-not-selected
+    "
+    data-applied-style-tokens="sidebarButton sidebarButtonNotSelected"
+    data-style-tokens="sidebarButton sidebarButtonNotSelected sidebarButtonSelected"
+  >
+    Baz
+  </button>
+  Bottom
+</div>
+`;
+
+exports[`DoxenSideBar.vue > Shows items, with nothing selected 1`] = `
+<div
+  class="doxen-sidebar-container"
+  data-applied-style-tokens="sidebarContainer"
+  data-style-tokens="sidebarContainer"
+>
+  Top
+  <button
+    aria-pressed="false"
+    class="
+      doxen-sidebar-button
+      doxen-sidebar-button-not-selected
+    "
+    data-applied-style-tokens="sidebarButton sidebarButtonNotSelected"
+    data-style-tokens="sidebarButton sidebarButtonNotSelected sidebarButtonSelected"
+  >
+    Foo
+  </button>
+  <button
+    aria-pressed="false"
+    class="
+      doxen-sidebar-button
+      doxen-sidebar-button-not-selected
+    "
+    data-applied-style-tokens="sidebarButton sidebarButtonNotSelected"
+    data-style-tokens="sidebarButton sidebarButtonNotSelected sidebarButtonSelected"
+  >
+    Bar
+  </button>
+  <button
+    aria-pressed="false"
+    class="
+      doxen-sidebar-button
+      doxen-sidebar-button-not-selected
+    "
+    data-applied-style-tokens="sidebarButton sidebarButtonNotSelected"
+    data-style-tokens="sidebarButton sidebarButtonNotSelected sidebarButtonSelected"
+  >
+    Baz
+  </button>
+  Bottom
+</div>
+`;
