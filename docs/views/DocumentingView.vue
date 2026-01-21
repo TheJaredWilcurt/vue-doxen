@@ -450,7 +450,7 @@
     <DocumentationSection id="slots" title="Documenting Component Slots">
       <p>
         You can provide an array of slot names,
-        default slot value to show in the demo as the value,
+        an object with the slot names as keys and value to show in the demo,
         or even your own custom component.
       </p>
 
