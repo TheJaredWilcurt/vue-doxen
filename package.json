@@ -19,7 +19,7 @@
     "coverage": "cd tests && cd unit && cd coverage && node ../../../node_modules/npm-free-server/dist/server.js",
     "bump": "npx --yes -- @jsdevtools/version-bump-prompt && npm i",
     "outdated": "npx --yes -- check-outdated --ignore-packages @highlightjs/vue-plugin --columns package,current,wanted,latest --types major,minor,patch",
-    "volta": "volta pin node@latest && volta pin npm@latest && git status"
+    "proto": "proto pin node latest --resolve --tool-native && proto pin npm latest --resolve --tool-native && git status"
   },
   "ManifestComments": [
     "@highlightjs/vue-plugin pinned to 2.1.2 because it was released years ago, but never marked as latest"
@@ -29,26 +29,26 @@
     "pretty-ms": "^9.3.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.1",
+    "@eslint/js": "^9.39.2",
     "@highlightjs/vue-plugin": "2.1.2",
-    "@stylistic/eslint-plugin": "^5.6.1",
-    "@vitejs/plugin-vue": "^6.0.2",
-    "@vitest/coverage-v8": "^4.0.13",
+    "@stylistic/eslint-plugin": "^5.7.1",
+    "@vitejs/plugin-vue": "^6.0.3",
+    "@vitest/coverage-v8": "^4.0.18",
     "@vue/test-utils": "^2.4.6",
     "cross-env": "^10.1.0",
-    "eslint": "^9.39.1",
+    "eslint": "^9.39.2",
     "eslint-config-tjw-base": "^4.3.0",
     "eslint-config-tjw-import": "^2.0.0",
     "eslint-config-tjw-jest": "^3.0.1",
     "eslint-config-tjw-vue": "^4.0.0",
     "eslint-import-resolver-vite": "^2.1.0",
     "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-jest": "^29.2.1",
-    "eslint-plugin-vue": "^10.6.0",
+    "eslint-plugin-jest": "^29.12.1",
+    "eslint-plugin-vue": "^10.7.0",
     "eslint-plugin-vuejs-accessibility": "^2.4.1",
-    "globals": "^16.5.0",
-    "happy-dom": "^20.0.10",
-    "htmlparser2": "^10.0.0",
+    "globals": "^17.3.0",
+    "happy-dom": "^20.4.0",
+    "htmlparser2": "^10.1.0",
     "json5": "^2.2.3",
     "lodash.clonedeep": "^4.5.0",
     "lodash.isequal": "^4.5.0",
@@ -57,19 +57,19 @@
     "lodash.startcase": "^4.4.0",
     "npm-free-server": "^1.1.0",
     "nprogress": "^0.2.0",
-    "sass": "^1.94.2",
-    "vite": "^7.2.4",
-    "vite-node": "^5.2.0",
+    "sass": "^1.97.3",
+    "vite": "^7.3.1",
+    "vite-node": "^5.3.0",
     "vite-plugin-vue-devtools": "^8.0.5",
-    "vitest": "^4.0.13",
-    "vue": "^3.5.25",
-    "vue-dev-tools-accessibility": "^0.5.2",
+    "vitest": "^4.0.18",
+    "vue": "^3.5.27",
+    "vue-dev-tools-accessibility": "^0.5.3",
     "vue-options-api-constants-plugin": "^1.0.3",
-    "vue-router": "^4.6.3",
+    "vue-router": "^5.0.1",
     "vue3-snapshot-serializer": "^2.13.0"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "^4.53.3"
+    "@rollup/rollup-linux-x64-gnu": "^4.57.1"
   },
   "private": false,
   "type": "module",
@@ -150,8 +150,14 @@
     "url": "https://github.com/TheJaredWilcurt/vue-doxen/issues"
   },
   "homepage": "https://github.com/TheJaredWilcurt/vue-doxen#readme",
-  "volta": {
-    "node": "25.2.1",
-    "npm": "11.6.3"
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "25.5.0"
+    },
+    "packageManager": {
+      "name": "npm",
+      "version": "11.8.0"
+    }
   }
 }
