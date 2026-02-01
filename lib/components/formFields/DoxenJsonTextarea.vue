@@ -156,7 +156,8 @@ export default {
   },
   watch: {
     modelValue: async function (newValue, oldValue) {
-      if (!_isEqual(newValue, oldValue) || !oldValue) {
+      /* v8 ignore else */
+      if (!oldValue || !_isEqual(newValue, oldValue)) {
         await this.setInnerValue(newValue);
         this.updateValue({ target: { value: this.innerValue } });
       }

@@ -4,6 +4,7 @@
     <button
       v-for="(value, key) in processedDemos"
       :aria-pressed="modelValue === key"
+      :data-test="'button' + key"
       @click="updateValue(key)"
       v-bind="applyStyleTokens({
         sidebarButton: true,
@@ -12,7 +13,7 @@
       })"
       :key="key"
     >
-      {{ value?.component?.name || value?.name || value?.component?.__name || key }}
+      {{ getName(value, key) }}
     </button>
     <slot name="footer"></slot>
   </div>
@@ -51,6 +52,32 @@ export default {
     styleTokens
   },
   methods: {
+    getName: function (demo, componentNameFallback) {
+      function findNameOrTitleInDemoOrComponent (nameTitle) {
+        // If name is defined on the demo (or the demo is just the component and there is no demo) prefer it
+        if (
+          demo[nameTitle] &&
+          typeof(demo[nameTitle]) === 'string'
+        ) {
+          return demo[nameTitle];
+        }
+        // Else prefer component
+        if (
+          demo.component &&
+          demo.component[nameTitle] &&
+          typeof(demo.component[nameTitle]) === 'string'
+        ) {
+          return demo.component[nameTitle];
+        }
+      }
+
+      return (
+        findNameOrTitleInDemoOrComponent('title') ||
+        findNameOrTitleInDemoOrComponent('name') ||
+        findNameOrTitleInDemoOrComponent('__name') ||
+        componentNameFallback
+      );
+    },
     updateValue: function (key) {
       this.$emit('update:model-value', key);
     }

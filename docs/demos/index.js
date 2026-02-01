@@ -35,19 +35,15 @@ import { createDoxenPropsDocumentationDemo } from '@@@/demos/doxenPropsDocumenta
 import { createDoxenTabsDemo } from '@@@/demos/doxenTabsDemo.js';
 import { createDummyPropsOverrideDemo } from '@@@/demos/dummyPropsOverrideDemo.js';
 import { createDummyScriptSetupApiDemo } from '@@@/demos/dummyScriptSetupApiDemo.js';
+import { styleTokenPropToDemo } from '@@@/helpers/tokensByComponent.js';
 
 const isLocal = globalThis?.location?.href?.includes('localhost');
 
 const createDoxenDemos = function (components, styleTokens) {
   const demos = {};
-  const addStyleTokensPropDemo = function (propsToDemo) {
+  const addStyleTokensPropDemo = function (propsToDemo, componentName) {
     propsToDemo.styleTokens = {
-      component: DoxenJsonTextarea,
-      props: {
-        label: 'Style Tokens',
-        modelValue: styleTokens,
-        styleTokens
-      }
+      ...styleTokenPropToDemo(styleTokens, componentName).styleTokens
     };
   };
   const addOptionsPropDemo = function (propsToDemo) {
@@ -85,7 +81,7 @@ const createDoxenDemos = function (components, styleTokens) {
       propsToDemo: {}
     };
     if (components[componentName]?.props?.styleTokens) {
-      addStyleTokensPropDemo(demos[componentName].propsToDemo);
+      addStyleTokensPropDemo(demos[componentName].propsToDemo, componentName);
     }
     if (
       componentName.toLowerCase().includes('dropdown') ||

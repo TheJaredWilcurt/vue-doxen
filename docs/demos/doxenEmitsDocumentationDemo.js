@@ -1,6 +1,8 @@
 import DoxenEmitsDocumentation from '@/components/DoxenEmitsDocumentation.vue';
 import DoxenJsonTextarea from '@/components/formFields/DoxenJsonTextarea.vue';
 
+import { styleTokenPropToDemo } from '@@@/helpers/tokensByComponent.js';
+
 export const createDoxenEmitsDocumentationDemo = function (styleTokens) {
   return {
     component: DoxenEmitsDocumentation,
@@ -14,6 +16,7 @@ export const createDoxenEmitsDocumentationDemo = function (styleTokens) {
       'Demo input to see the defaults appear.</p>'
     ].join(' '),
     propsToDemo: {
+      ...styleTokenPropToDemo(styleTokens, 'DoxenEmitsDocumentation'),
       emitsToDemo: {
         component: DoxenJsonTextarea,
         props: {
@@ -30,14 +33,6 @@ export const createDoxenEmitsDocumentationDemo = function (styleTokens) {
               example: '@click="reset"'
             }
           },
-          styleTokens
-        }
-      },
-      styleTokens: {
-        component: DoxenJsonTextarea,
-        props: {
-          label: 'Style Tokens',
-          modelValue: styleTokens,
           styleTokens
         }
       }
