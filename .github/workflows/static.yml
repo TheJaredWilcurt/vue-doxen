@@ -1,6 +1,9 @@
 # Simple workflow for deploying static content to GitHub Pages
 name: Deploy static content to Pages
 
+env:
+  PROTO_TELEMETRY: false
+
 on:
   # Runs on pushes targeting the default branch
   push:
@@ -31,7 +34,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
       - name: Set up Node
-        uses: volta-cli/action@v4
+        uses: moonrepo/setup-toolchain@v0
+        with:
+          auto-install: true
       - name: Verify Node
         run: node -v && npm -v
       - name: Install dependencies
