@@ -22,6 +22,7 @@ jobs:
       with:
         auto-install: true
         proto-version: latest
+    - run: proto status
     - run: node -v
     - run: npm -v
     - run: npm ci

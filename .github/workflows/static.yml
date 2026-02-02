@@ -38,6 +38,8 @@ jobs:
         with:
           auto-install: true
           proto-version: latest
+      - name: Verify Proto
+        run: proto status
       - name: Verify Node
         run: node -v && npm -v
       - name: Install dependencies
