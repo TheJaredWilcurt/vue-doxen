@@ -1,6 +1,8 @@
 # Simple workflow for deploying static content to GitHub Pages
 name: Deploy static content to Pages
 
+env:
+  PROTO_TELEMETRY: false
 
 on:
   # Runs on pushes targeting the default branch
@@ -33,11 +35,8 @@ jobs:
         uses: actions/checkout@v6
       - name: Set up Node
         uses: moonrepo/setup-toolchain@v0
-        env:
-          PROTO_TELEMETRY: false
         with:
           auto-install: true
-          proto-version: latest
       - name: Verify Proto
         run: proto status
       - name: Verify Node

@@ -3,6 +3,9 @@
 
 name: Node.js CI
 
+env:
+  PROTO_TELEMETRY: false
+
 on:
   push:
     branches: [ "main" ]
@@ -17,11 +20,8 @@ jobs:
     steps:
     - uses: actions/checkout@v6
     - uses: moonrepo/setup-toolchain@v0
-      env:
-        PROTO_TELEMETRY: false
       with:
         auto-install: true
-        proto-version: latest
     - run: proto status
     - run: node -v
     - run: npm -v
