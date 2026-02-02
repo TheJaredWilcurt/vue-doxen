@@ -4,7 +4,7 @@
 name: Node.js CI
 
 env:
-  PROTO_TELEMETRY: false
+  PROTO_TELEMETRY: disable
 
 on:
   push:
