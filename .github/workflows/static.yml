@@ -3,7 +3,7 @@ name: Deploy static content to Pages
 
 env:
   PROTO_LOG: trace
-  PROTO_TELEMETRY: disable
+  PROTO_TELEMETRY: false
 
 on:
   # Runs on pushes targeting the default branch

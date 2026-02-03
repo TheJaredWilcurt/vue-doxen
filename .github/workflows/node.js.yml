@@ -4,7 +4,7 @@ name: Node.js CI
 
 env:
   PROTO_LOG: trace
-  PROTO_TELEMETRY: disable
+  PROTO_TELEMETRY: false
 
 on:
   push:
