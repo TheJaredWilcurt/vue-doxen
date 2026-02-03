@@ -23,6 +23,8 @@ jobs:
       with:
         auto-install: true
     - run: proto status
+    - run: whereis node
+    - run: whereis npm
     - run: node -v
     - run: npm -v
     - run: npm ci
