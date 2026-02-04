@@ -2,7 +2,6 @@
 name: Deploy static content to Pages
 
 env:
-  PROTO_LOG: trace
   PROTO_TELEMETRY: false
 
 on:
