@@ -43,7 +43,7 @@ jobs:
       - name: Proto Version
         run: proto -V
       - name: Verify Node
-        run: node -v && npm -v && whereis node && whereis npm
+        run: node -v && npm -v
       - name: Install dependencies
         run: npm ci
       - name: Build
