@@ -23,8 +23,6 @@ jobs:
       with:
         auto-install: true
     - run: proto status
-    - run: whereis node
-    - run: whereis npm
     - run: echo "$PATH"
     - run: node -v
     - run: npm -v
