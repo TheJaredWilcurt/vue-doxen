@@ -28,8 +28,8 @@ Go to the docs site for usage and installation steps:
 
 ## Running this repo locally to make PRs
 
-1. Uninstall Node/npm/nvm/nvm-windows/n/nodist
-1. Install [Volta](https://volta.sh) (replaces all of the above and is much better)
+1. Uninstall Node/npm/nvm/nvm-windows/n/nodist/volta
+1. Install [Proto](https://github.com/TheJaredWilcurt/blog/discussions/41)
 1. Clone the repo
 1. `npm install`
 1. `npm run build` builds both the docs site and library
