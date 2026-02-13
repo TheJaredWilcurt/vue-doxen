@@ -31,7 +31,7 @@
   "devDependencies": {
     "@eslint/js": "^9.39.2",
     "@highlightjs/vue-plugin": "2.1.2",
-    "@stylistic/eslint-plugin": "^5.7.1",
+    "@stylistic/eslint-plugin": "^5.8.0",
     "@vitejs/plugin-vue": "^6.0.4",
     "@vitest/coverage-v8": "^4.0.18",
     "@vue/test-utils": "^2.4.6",
@@ -43,11 +43,11 @@
     "eslint-config-tjw-vue": "^4.0.0",
     "eslint-import-resolver-vite": "^2.1.0",
     "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-jest": "^29.12.2",
+    "eslint-plugin-jest": "^29.13.0",
     "eslint-plugin-vue": "^10.7.0",
-    "eslint-plugin-vuejs-accessibility": "^2.4.1",
+    "eslint-plugin-vuejs-accessibility": "^2.4.2",
     "globals": "^17.3.0",
-    "happy-dom": "^20.5.0",
+    "happy-dom": "^20.5.5",
     "htmlparser2": "^10.1.0",
     "json5": "^2.2.3",
     "lodash.clonedeep": "^4.5.0",
@@ -62,7 +62,7 @@
     "vite-node": "^5.3.0",
     "vite-plugin-vue-devtools": "^8.0.6",
     "vitest": "^4.0.18",
-    "vue": "^3.5.27",
+    "vue": "^3.5.28",
     "vue-dev-tools-accessibility": "^0.5.3",
     "vue-options-api-constants-plugin": "^1.0.3",
     "vue-router": "^5.0.2",
@@ -153,11 +153,11 @@
   "devEngines": {
     "runtime": {
       "name": "node",
-      "version": "25.6.0"
+      "version": "25.6.1"
     },
     "packageManager": {
       "name": "npm",
-      "version": "11.8.0"
+      "version": "11.9.0"
     }
   }
 }
