@@ -119,7 +119,7 @@ const result = await serializeDemos(demos);
 
 // With Playwright — also renders components in a browser to extract any remaining text
 const result = await serializeDemos(demos, {
-  playwright: { baseUrl: "http://localhost:3000" },
+  playwright: { baseUrl: "http://localhost:5173" },
 });
 ```
 
@@ -206,7 +206,7 @@ node scripts/generateMCPFiles.js
 npm start
 
 # Terminal 2:
-node scripts/generateMCPFiles.js http://localhost:3000
+node scripts/generateMCPFiles.js http://localhost:5173
 ```
 
 **Note:** Until `serializeDemos` is published in a vue-doxen release, link the local copy:
