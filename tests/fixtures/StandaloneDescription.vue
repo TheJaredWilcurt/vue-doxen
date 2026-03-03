@@ -9,6 +9,6 @@
 
 <script>
 export default {
-  name: 'TierThreeDescription'
+  name: 'StandaloneDescription'
 };
 </script>

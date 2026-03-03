@@ -2,14 +2,14 @@ import { describe, test, expect } from 'vitest';
 
 import { serializeDemos } from '@/helpers/serializeDemos.js';
 
-import TierThreeDescription from '@@/fixtures/TierThreeDescription.vue';
-import TierTwoWrapper from '@@/fixtures/TierTwoWrapper.vue';
+import DescriptionWrapper from '@@/fixtures/DescriptionWrapper.vue';
+import StandaloneDescription from '@@/fixtures/StandaloneDescription.vue';
 
 const testDemos = {
-  TierOneComponent: {
+  StringDemo: {
     component: {
-      name: 'TierOneComponent',
-      template: '<div>Tier one</div>',
+      name: 'StringDemo',
+      template: '<div>String demo</div>',
       props: {
         size: {
           type: String,
@@ -19,7 +19,7 @@ const testDemos = {
       }
     },
     description: '<p>A simple <strong>string</strong> description.</p>',
-    importStatement: 'import { TierOneComponent } from \'my-lib\';',
+    importStatement: 'import { StringDemo } from \'my-lib\';',
     propsToDemo: {
       size: { description: 'Controls the size.' }
     },
@@ -28,10 +28,10 @@ const testDemos = {
     },
     slotsToDemo: { default: 'Slot content' }
   },
-  TierTwoComponent: {
+  ComponentDemo: {
     component: {
-      name: 'TierTwoComponent',
-      template: '<div>Tier two</div>',
+      name: 'ComponentDemo',
+      template: '<div>Component demo</div>',
       props: {
         disabled: {
           type: Boolean,
@@ -40,20 +40,20 @@ const testDemos = {
       }
     },
     description: {
-      component: TierTwoWrapper,
+      component: DescriptionWrapper,
       props: {
         message: '<p>Wrapper description with <code>HTML</code>.</p>'
       }
     }
   },
-  TierThreeComponent: {
+  ComponentOnlyDemo: {
     component: {
-      name: 'TierThreeComponent',
-      template: '<div>Tier three</div>',
+      name: 'ComponentOnlyDemo',
+      template: '<div>Component only demo</div>',
       props: {}
     },
     description: {
-      component: TierThreeDescription
+      component: StandaloneDescription
     }
   }
 };
@@ -61,23 +61,23 @@ const testDemos = {
 describe('serializeDemos', () => {
   test('Resolves plain string description and importStatement with HTML preserved', async () => {
     const result = await serializeDemos(testDemos);
-    const tier1 = result.TierOneComponent;
+    const stringDemo = result.StringDemo;
 
-    expect(tier1.description)
+    expect(stringDemo.description)
       .toEqual(
         '<p>A simple <strong>string</strong> description.</p>'
       );
-    expect(tier1.import)
-      .toEqual('import { TierOneComponent } from \'my-lib\';');
-    expect(tier1.deprecated)
+    expect(stringDemo.import)
+      .toEqual('import { StringDemo } from \'my-lib\';');
+    expect(stringDemo.deprecated)
       .toEqual(false);
-    expect(tier1.deprecationNotice)
+    expect(stringDemo.deprecationNotice)
       .toEqual(null);
   });
 
   test('Serializes props with type, default, allowed, description', async () => {
     const result = await serializeDemos(testDemos);
-    const props = result.TierOneComponent.props;
+    const props = result.StringDemo.props;
 
     expect(props.size.type)
       .toEqual('String');
@@ -93,7 +93,7 @@ describe('serializeDemos', () => {
 
   test('Serializes emits', async () => {
     const result = await serializeDemos(testDemos);
-    const emits = result.TierOneComponent.emits;
+    const emits = result.StringDemo.emits;
 
     expect(emits.clicked)
       .toEqual({ description: 'Emitted on click.' });
@@ -101,7 +101,7 @@ describe('serializeDemos', () => {
 
   test('Serializes slots', async () => {
     const result = await serializeDemos(testDemos);
-    const slots = result.TierOneComponent.slots;
+    const slots = result.StringDemo.slots;
 
     expect(slots)
       .toContain('default');
@@ -109,17 +109,17 @@ describe('serializeDemos', () => {
 
   test('Component descriptions return null without Playwright', async () => {
     const result = await serializeDemos(testDemos);
-    const tier2 = result.TierTwoComponent;
+    const componentDemo = result.ComponentDemo;
 
-    expect(tier2.description)
+    expect(componentDemo.description)
       .toEqual(null);
-    expect(tier2.import)
+    expect(componentDemo.import)
       .toEqual(null);
   });
 
   test('Serializes component props correctly', async () => {
     const result = await serializeDemos(testDemos);
-    const props = result.TierTwoComponent.props;
+    const props = result.ComponentDemo.props;
 
     expect(props.disabled.type)
       .toEqual('Boolean');
@@ -135,11 +135,11 @@ describe('serializeDemos', () => {
 
   test('Returns null for component-only description without Playwright', async () => {
     const result = await serializeDemos(testDemos);
-    const tier3 = result.TierThreeComponent;
+    const componentOnly = result.ComponentOnlyDemo;
 
-    expect(tier3.description)
+    expect(componentOnly.description)
       .toEqual(null);
-    expect(tier3.import)
+    expect(componentOnly.import)
       .toEqual(null);
   });
 
@@ -147,9 +147,9 @@ describe('serializeDemos', () => {
     const result = await serializeDemos(testDemos);
     expect(Object.keys(result))
       .toEqual([
-        'TierOneComponent',
-        'TierTwoComponent',
-        'TierThreeComponent'
+        'StringDemo',
+        'ComponentDemo',
+        'ComponentOnlyDemo'
       ]);
   });
 
@@ -196,10 +196,10 @@ describe('serializeDemos', () => {
   test('Manual resolvers override component extraction', async () => {
     const result = await serializeDemos(testDemos, {
       resolvers: {
-        TierTwoWrapper: (props) => 'Custom resolved: ' + props.message
+        DescriptionWrapper: (props) => 'Custom resolved: ' + props.message
       }
     });
-    expect(result.TierTwoComponent.description)
+    expect(result.ComponentDemo.description)
       .toEqual(
         'Custom resolved: <p>Wrapper description with <code>HTML</code>.</p>'
       );

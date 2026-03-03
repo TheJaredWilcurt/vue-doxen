@@ -180,8 +180,8 @@ The Playwright test (`tests/playwright/serializeDemos.spec.js`) exercises browse
 | `lib/library.js`                                | Exports `serializeDemos`                                                  |
 | `tests/unit/lib/helpers/serializeDemos.test.js` | Unit tests (13 tests)                                                     |
 | `tests/playwright/serializeDemos.spec.js`       | Playwright integration test                                               |
-| `tests/fixtures/TierTwoWrapper.vue`             | Test fixture — component with text in props                               |
-| `tests/fixtures/TierThreeDescription.vue`       | Test fixture — component with text only in template                       |
+| `tests/fixtures/DescriptionWrapper.vue`         | Test fixture — component with text in props                               |
+| `tests/fixtures/StandaloneDescription.vue`      | Test fixture — component with text only in template                       |
 | `tests/fixtures/serializeTestApp.vue`           | Test fixture — VueDoxenCustom app for Playwright                          |
 | `playwright.config.js`                          | Playwright configuration                                                  |
 

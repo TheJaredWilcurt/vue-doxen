@@ -5,10 +5,10 @@ import { test, expect } from '@playwright/test';
 import { serializeDemos } from '../../dist/vue-doxen.js';
 
 const testDemos = {
-  TierOneComponent: {
+  StringDemo: {
     component: {
-      name: 'TierOneComponent',
-      template: '<div>Tier one</div>',
+      name: 'StringDemo',
+      template: '<div>String demo</div>',
       props: {
         size: {
           type: String,
@@ -18,7 +18,7 @@ const testDemos = {
       }
     },
     description: '<p>A simple <strong>string</strong> description.</p>',
-    importStatement: 'import { TierOneComponent } from \'my-lib\';',
+    importStatement: 'import { StringDemo } from \'my-lib\';',
     propsToDemo: {
       size: { description: 'Controls the size.' }
     },
@@ -27,10 +27,10 @@ const testDemos = {
     },
     slotsToDemo: { default: 'Slot content' }
   },
-  TierTwoComponent: {
+  ComponentDemo: {
     component: {
-      name: 'TierTwoComponent',
-      template: '<div>Tier two</div>',
+      name: 'ComponentDemo',
+      template: '<div>Component demo</div>',
       props: {
         disabled: {
           type: Boolean,
@@ -40,7 +40,7 @@ const testDemos = {
     },
     description: {
       component: {
-        name: 'TierTwoWrapper',
+        name: 'DescriptionWrapper',
         template: '<div v-html="message"></div>',
         props: { message: { type: String, default: '' } }
       },
@@ -49,15 +49,15 @@ const testDemos = {
       }
     }
   },
-  TierThreeComponent: {
+  ComponentOnlyDemo: {
     component: {
-      name: 'TierThreeComponent',
-      template: '<div>Tier three</div>',
+      name: 'ComponentOnlyDemo',
+      template: '<div>Component only demo</div>',
       props: {}
     },
     description: {
       component: {
-        name: 'TierThreeDescription',
+        name: 'StandaloneDescription',
         template:
           '<div><p>Template-only description text.</p><ul><li>Feature one</li></ul></div>'
       }
@@ -66,10 +66,10 @@ const testDemos = {
 };
 
 const expectedOutput = {
-  TierOneComponent: {
+  StringDemo: {
     title: null,
     description: 'A simple string description.',
-    import: 'import { TierOneComponent } from \'my-lib\';',
+    import: 'import { StringDemo } from \'my-lib\';',
     deprecated: false,
     deprecationNotice: null,
     props: {
@@ -86,7 +86,7 @@ const expectedOutput = {
     },
     slots: ['default']
   },
-  TierTwoComponent: {
+  ComponentDemo: {
     title: null,
     description: 'Wrapper description with HTML.',
     import: null,
@@ -104,7 +104,7 @@ const expectedOutput = {
     emits: {},
     slots: []
   },
-  TierThreeComponent: {
+  ComponentOnlyDemo: {
     title: null,
     description: null,
     import: null,
@@ -117,7 +117,7 @@ const expectedOutput = {
 };
 
 test.describe('serializeDemos', () => {
-  test('Sync mode resolves Tier 1 and Tier 2 correctly, leaves Tier 3 as null', async () => {
+  test('Sync mode resolves string fields and component descriptions, leaves unresolvable as null', async () => {
     const result = await serializeDemos(testDemos);
     expect(result)
       .toEqual(expectedOutput);

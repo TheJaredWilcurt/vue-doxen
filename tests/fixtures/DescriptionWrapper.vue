@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'TierTwoWrapper',
+  name: 'DescriptionWrapper',
   props: {
     message: {
       type: String,

@@ -1,21 +1,18 @@
 <template>
-  <VueDoxenCustom
-    :demos="demos"
-    :modelValue="currentDemo"
-  />
+  <VueDoxenCustom :demos="demos" :modelValue="currentDemo" />
 </template>
 
 <script>
-import TierThreeDescription from './TierThreeDescription.vue';
-import TierTwoWrapper from './TierTwoWrapper.vue';
+import DescriptionWrapper from './DescriptionWrapper.vue';
+import StandaloneDescription from './StandaloneDescription.vue';
 
 import VueDoxenCustom from '@/components/VueDoxenCustom.vue';
 
 const demos = {
-  TierOneComponent: {
+  StringDemo: {
     component: {
-      name: 'TierOneComponent',
-      template: '<div>Tier one</div>',
+      name: 'StringDemo',
+      template: '<div>String demo</div>',
       props: {
         size: {
           type: String,
@@ -25,12 +22,12 @@ const demos = {
       }
     },
     description: '<p>A simple <strong>string</strong> description.</p>',
-    importStatement: 'import { TierOneComponent } from \'my-lib\';'
+    importStatement: 'import { StringDemo } from \'my-lib\';'
   },
-  TierTwoComponent: {
+  ComponentDemo: {
     component: {
-      name: 'TierTwoComponent',
-      template: '<div>Tier two</div>',
+      name: 'ComponentDemo',
+      template: '<div>Component demo</div>',
       props: {
         disabled: {
           type: Boolean,
@@ -39,20 +36,20 @@ const demos = {
       }
     },
     description: {
-      component: TierTwoWrapper,
+      component: DescriptionWrapper,
       props: {
         message: '<p>Wrapper description with <code>HTML</code>.</p>'
       }
     }
   },
-  TierThreeComponent: {
+  ComponentOnlyDemo: {
     component: {
-      name: 'TierThreeComponent',
-      template: '<div>Tier three</div>',
+      name: 'ComponentOnlyDemo',
+      template: '<div>Component only demo</div>',
       props: {}
     },
     description: {
-      component: TierThreeDescription
+      component: StandaloneDescription
     }
   }
 };
@@ -65,7 +62,7 @@ export default {
   data: function () {
     return {
       demos,
-      currentDemo: 'TierOneComponent'
+      currentDemo: 'StringDemo'
     };
   }
 };
