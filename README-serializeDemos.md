@@ -153,10 +153,9 @@ This runs all unit tests including `tests/unit/lib/helpers/serializeDemos.test.j
 
 The unit tests cover:
 
-- **`stripHtml`** — tag removal, entity decoding, punctuation spacing
-- **String fields** — description, importStatement extraction, props serialization (type/default/allowed/description), emits, slots
-- **Component fields** — text extraction from component props, HTML stripping
-- **Unresolvable fields** — returns `null` without Playwright
+- **String fields** — description and importStatement preserved with HTML markup, props serialization (type/default/allowed/description), emits, slots
+- **Component fields** — returns `null` without Playwright (Playwright resolves them at runtime)
+- **Deprecation** — deprecated flag consistent with deprecationNotice presence
 - **Resolvers** — manual override of component extraction
 - **JSON safety** — output is fully `JSON.stringify`-able
 

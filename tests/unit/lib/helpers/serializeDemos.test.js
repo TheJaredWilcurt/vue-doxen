@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest';
 
-import { serializeDemos, stripHtml } from '@/helpers/serializeDemos.js';
+import { serializeDemos } from '@/helpers/serializeDemos.js';
 
 import TierThreeDescription from '@@/fixtures/TierThreeDescription.vue';
 import TierTwoWrapper from '@@/fixtures/TierTwoWrapper.vue';
@@ -58,38 +58,15 @@ const testDemos = {
   }
 };
 
-describe('stripHtml', () => {
-  test('Strips tags and collapses whitespace', () => {
-    const result = stripHtml(
-      '<p>A simple <strong>string</strong> description.</p>'
-    );
-    expect(result)
-      .toEqual('A simple string description.');
-  });
-
-  test('Decodes HTML entities', () => {
-    const result = stripHtml('&lt;code&gt;fill&lt;/code&gt; &amp; more');
-    expect(result)
-      .toEqual('<code>fill</code> & more');
-  });
-
-  test('Returns non-strings as-is', () => {
-    expect(stripHtml(null))
-      .toEqual(null);
-    expect(stripHtml(undefined))
-      .toEqual(undefined);
-    expect(stripHtml(42))
-      .toEqual(42);
-  });
-});
-
 describe('serializeDemos', () => {
-  test('Tier 1: resolves plain string description and importStatement', async () => {
+  test('Resolves plain string description and importStatement with HTML preserved', async () => {
     const result = await serializeDemos(testDemos);
     const tier1 = result.TierOneComponent;
 
     expect(tier1.description)
-      .toEqual('A simple string description.');
+      .toEqual(
+        '<p>A simple <strong>string</strong> description.</p>'
+      );
     expect(tier1.import)
       .toEqual('import { TierOneComponent } from \'my-lib\';');
     expect(tier1.deprecated)
@@ -98,7 +75,7 @@ describe('serializeDemos', () => {
       .toEqual(null);
   });
 
-  test('Tier 1: serializes props with type, default, allowed, description', async () => {
+  test('Serializes props with type, default, allowed, description', async () => {
     const result = await serializeDemos(testDemos);
     const props = result.TierOneComponent.props;
 
@@ -114,7 +91,7 @@ describe('serializeDemos', () => {
       .toEqual('Controls the size.');
   });
 
-  test('Tier 1: serializes emits', async () => {
+  test('Serializes emits', async () => {
     const result = await serializeDemos(testDemos);
     const emits = result.TierOneComponent.emits;
 
@@ -122,7 +99,7 @@ describe('serializeDemos', () => {
       .toEqual({ description: 'Emitted on click.' });
   });
 
-  test('Tier 1: serializes slots', async () => {
+  test('Serializes slots', async () => {
     const result = await serializeDemos(testDemos);
     const slots = result.TierOneComponent.slots;
 
@@ -130,17 +107,17 @@ describe('serializeDemos', () => {
       .toContain('default');
   });
 
-  test('Tier 2: extracts text from component props', async () => {
+  test('Component descriptions return null without Playwright', async () => {
     const result = await serializeDemos(testDemos);
     const tier2 = result.TierTwoComponent;
 
     expect(tier2.description)
-      .toEqual('Wrapper description with HTML.');
+      .toEqual(null);
     expect(tier2.import)
       .toEqual(null);
   });
 
-  test('Tier 2: serializes component props correctly', async () => {
+  test('Serializes component props correctly', async () => {
     const result = await serializeDemos(testDemos);
     const props = result.TierTwoComponent.props;
 
@@ -156,7 +133,7 @@ describe('serializeDemos', () => {
       .toEqual(null);
   });
 
-  test('Tier 3: returns null for description without Playwright', async () => {
+  test('Returns null for component-only description without Playwright', async () => {
     const result = await serializeDemos(testDemos);
     const tier3 = result.TierThreeComponent;
 
@@ -208,7 +185,7 @@ describe('serializeDemos', () => {
       .toEqual(true);
     expect(result.DeprecatedComponent.deprecationNotice)
       .toEqual(
-        'This component is deprecated.'
+        '<p>This component is deprecated.</p>'
       );
     expect(result.NotDeprecated.deprecated)
       .toEqual(false);

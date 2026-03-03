@@ -8,76 +8,78 @@
     "
   >
     <!-- DoxenDeprecationBanner -->
-    <div v-if="deprecationNotice" data-doxen-serialize="deprecationNotice">
-      <OptionalCustomComponent
-        :customComponent="deprecationNotice"
-        :fallbackComponent="options.components.deprecationBanner"
-        :fallbackProps="{ description: deprecationNotice }"
-        :rootKey="componentName + '-deprecationNotice'"
-        :styleTokens="styleTokens"
-      />
-    </div>
+    <OptionalCustomComponent
+      v-if="deprecationNotice"
+      data-doxen-serialize="deprecationNotice"
+      :customComponent="deprecationNotice"
+      :fallbackComponent="options.components.deprecationBanner"
+      :fallbackProps="{ description: deprecationNotice }"
+      :rootKey="componentName + '-deprecationNotice'"
+      :styleTokens="styleTokens"
+    />
 
     <!-- DoxenHeader -->
-    <div data-doxen-serialize="title">
-      <OptionalCustomComponent
-        :customComponent="title"
-        :fallbackComponent="options.components.header"
-        :fallbackProps="{ title: componentTitle }"
-        :rootKey="componentName + '-title'"
-        :styleTokens="styleTokens"
-      />
-    </div>
+    <OptionalCustomComponent
+      data-doxen-serialize="title"
+      :customComponent="title"
+      :fallbackComponent="options.components.header"
+      :fallbackProps="{ title: componentTitle }"
+      :rootKey="componentName + '-title'"
+      :styleTokens="styleTokens"
+    />
 
-    <div v-if="description" data-doxen-serialize="description">
-      <div
-        v-if="typeof description === 'string'"
-        v-html="description"
-        v-bind="applyStyleTokens({ demoDescription: true })"
-      ></div>
-      <component
-        v-else-if="typeof description === 'object' && description.component"
-        :is="description.component"
-        v-bind="description.props || {}"
-        v-on="description.events || {}"
-        :key="componentName + '-description'"
-      >
-        <template
-          v-for="(slotValue, slotName) in description.slots"
-          #[slotName]
-          :key="'slot-' + slotName"
-        >
-          <HtmlFragments :html="description.slots[slotName]" />
-        </template>
-      </component>
-    </div>
-
-    <div v-if="importStatement" data-doxen-serialize="importStatement">
-      <template v-if="typeof importStatement === 'string'">
-        <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Usage</h3>
-        <DoxenCodeBox :code="importStatement" :styleTokens="styleTokens" />
-      </template>
+    <div
+      v-if="description && typeof description === 'string'"
+      v-html="description"
+      v-bind="applyStyleTokens({ demoDescription: true })"
+      data-doxen-serialize="description"
+    ></div>
+    <component
+      v-else-if="
+        description && typeof description === 'object' && description.component
+      "
+      :is="description.component"
+      data-doxen-serialize="description"
+      v-bind="description.props || {}"
+      v-on="description.events || {}"
+      :key="componentName + '-description'"
+    >
       <template
-        v-else-if="
-          typeof importStatement === 'object' && importStatement.component
-        "
+        v-for="(slotValue, slotName) in description.slots"
+        #[slotName]
+        :key="'slot-' + slotName"
       >
-        <component
-          :is="importStatement.component"
-          v-bind="importStatement.props || {}"
-          v-on="importStatement.events || {}"
-          :key="componentName + '-import-statment'"
-        >
-          <template
-            v-for="(slotValue, slotName) in importStatement.slots"
-            #[slotName]
-            :key="'slot-' + slotName"
-          >
-            <HtmlFragments :html="importStatement.slots[slotName]" />
-          </template>
-        </component>
+        <HtmlFragments :html="description.slots[slotName]" />
       </template>
+    </component>
+
+    <div
+      v-if="importStatement && typeof importStatement === 'string'"
+      data-doxen-serialize="importStatement"
+    >
+      <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Usage</h3>
+      <DoxenCodeBox :code="importStatement" :styleTokens="styleTokens" />
     </div>
+    <component
+      v-else-if="
+        importStatement &&
+          typeof importStatement === 'object' &&
+          importStatement.component
+      "
+      :is="importStatement.component"
+      data-doxen-serialize="importStatement"
+      v-bind="importStatement.props || {}"
+      v-on="importStatement.events || {}"
+      :key="componentName + '-import-statment'"
+    >
+      <template
+        v-for="(slotValue, slotName) in importStatement.slots"
+        #[slotName]
+        :key="'slot-' + slotName"
+      >
+        <HtmlFragments :html="importStatement.slots[slotName]" />
+      </template>
+    </component>
 
     <!-- Component being demo'd -->
     <div v-bind="applyStyleTokens({ componentDemoContainer: true })">
