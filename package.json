@@ -68,6 +68,15 @@
     "vue-router": "^5.0.2",
     "vue3-snapshot-serializer": "^2.13.0"
   },
+  "peerDependencies": {
+    "playwright": ">=1.0.0",
+    "vue": "^3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "playwright": {
+      "optional": true
+    }
+  },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "^4.57.1"
   },
