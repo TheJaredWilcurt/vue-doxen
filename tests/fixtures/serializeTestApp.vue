@@ -6,9 +6,10 @@
 </template>
 
 <script>
-import VueDoxenCustom from '@/components/VueDoxenCustom.vue';
 import TierThreeDescription from './TierThreeDescription.vue';
 import TierTwoWrapper from './TierTwoWrapper.vue';
+
+import VueDoxenCustom from '@/components/VueDoxenCustom.vue';
 
 const demos = {
   TierOneComponent: {
@@ -24,7 +25,7 @@ const demos = {
       }
     },
     description: '<p>A simple <strong>string</strong> description.</p>',
-    importStatement: "import { TierOneComponent } from 'my-lib';"
+    importStatement: 'import { TierOneComponent } from \'my-lib\';'
   },
   TierTwoComponent: {
     component: {

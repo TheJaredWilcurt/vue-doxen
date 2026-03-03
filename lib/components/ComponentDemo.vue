@@ -263,54 +263,54 @@
 
 <script>
 /* eslint-disable import/no-extraneous-dependencies */
-import _cloneDeep from "lodash.clonedeep";
-import _lowerFirst from "lodash.lowerfirst";
-import _startCase from "lodash.startcase";
+import _cloneDeep from 'lodash.clonedeep';
+import _lowerFirst from 'lodash.lowerfirst';
+import _startCase from 'lodash.startcase';
 
 import {
   autoGeneratePlaygroundProps,
   combinePropsAndPropsToDemo,
   createMarkupExample,
   getDefaultValue,
-  getSlotDataFromComponent,
-} from "@/helpers/demoHelpers.js";
-import { createVueDoxenOptions, styleTokens } from "@/helpers/props.js";
-import { serializeJavaScript } from "@/helpers/serializeJavaScript.js";
+  getSlotDataFromComponent
+} from '@/helpers/demoHelpers.js';
+import { createVueDoxenOptions, styleTokens } from '@/helpers/props.js';
+import { serializeJavaScript } from '@/helpers/serializeJavaScript.js';
 
-import applyStyleTokens from "@/mixins/applyStyleTokensMixin.js";
+import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
 
-import DoxenAccordion from "@/components/DoxenAccordion.vue";
-import DoxenCodeBox from "@/components/DoxenCodeBox.vue";
-import DoxenCodeSwapper from "@/components/DoxenCodeSwapper.vue";
-import HtmlFragments from "@/components/HtmlFragments.vue";
-import OptionalCustomComponent from "@/components/OptionalCustomComponent.vue";
+import DoxenAccordion from '@/components/DoxenAccordion.vue';
+import DoxenCodeBox from '@/components/DoxenCodeBox.vue';
+import DoxenCodeSwapper from '@/components/DoxenCodeSwapper.vue';
+import HtmlFragments from '@/components/HtmlFragments.vue';
+import OptionalCustomComponent from '@/components/OptionalCustomComponent.vue';
 
 const options = createVueDoxenOptions(true);
 
 export default {
-  name: "ComponentDemo",
+  name: 'ComponentDemo',
   components: {
     DoxenAccordion,
     DoxenCodeBox,
     DoxenCodeSwapper,
     HtmlFragments,
-    OptionalCustomComponent,
+    OptionalCustomComponent
   },
   mixins: [applyStyleTokens],
   props: {
     demo: {
       type: Object,
-      required: true,
+      required: true
     },
     options,
-    styleTokens,
+    styleTokens
   },
   data: function () {
     return {
-      currentPlaygroundSection: "props",
+      currentPlaygroundSection: 'props',
       demoProps: {},
       demoSlots: {},
-      emitLog: [],
+      emitLog: []
     };
   },
   methods: {
@@ -320,7 +320,7 @@ export default {
       this.demoSlots = {};
       for (const propName in this.propsToDemo) {
         const propDefault = getDefaultValue(
-          this.playgroundProps?.[propName]?.default,
+          this.playgroundProps?.[propName]?.default
         );
         const modelValue = this.propsToDemo?.[propName]?.props?.modelValue;
 
@@ -338,17 +338,17 @@ export default {
       }
       for (const slotName in this.slotsToDemo) {
         this.demoSlots[slotName] = getDefaultValue(
-          this.slotsToDemo?.[slotName].default,
+          this.slotsToDemo?.[slotName].default
         );
       }
     },
     togglePlaygroundSection: function (section) {
       if (this.currentPlaygroundSection === section) {
-        this.currentPlaygroundSection = "none";
+        this.currentPlaygroundSection = 'none';
       } else {
         this.currentPlaygroundSection = section;
       }
-    },
+    }
   },
   computed: {
     componentName: function () {
@@ -356,11 +356,11 @@ export default {
         this.demo?.name ||
         this.demo?.component?.name ||
         this.demo?.component?.__name ||
-        ""
+        ''
       );
     },
     componentTitle: function () {
-      if (typeof this.title === "string") {
+      if (typeof this.title === 'string') {
         return this.title;
       }
       return _startCase(this.componentName);
@@ -384,25 +384,25 @@ export default {
     emitsToDemo: function () {
       let demoEmits = {};
 
-      function handleEmitArrays(emits) {
+      function handleEmitArrays (emits) {
         if (emits && Array.isArray(emits) && emits.length) {
           for (const emitName of emits) {
             demoEmits[emitName] = demoEmits[emitName] || {};
           }
         }
       }
-      function handleEmitObjects(emits) {
-        if (emits && typeof emits === "object" && !Array.isArray(emits)) {
+      function handleEmitObjects (emits) {
+        if (emits && typeof emits === 'object' && !Array.isArray(emits)) {
           for (const emitName in emits) {
             const value = emits[emitName];
             demoEmits[emitName] = demoEmits[emitName] || {};
             // emits[emitName] may be a validator function if using Vue's object API
-            if (typeof value === "function") {
+            if (typeof value === 'function') {
               demoEmits[emitName].validator = value;
-            } else if (typeof value === "object" && !Array.isArray(value)) {
+            } else if (typeof value === 'object' && !Array.isArray(value)) {
               demoEmits[emitName] = {
                 ...demoEmits[emitName],
-                ...emits[emitName],
+                ...emits[emitName]
               };
             }
           }
@@ -424,28 +424,28 @@ export default {
       // Guess the slots to demo from the component template render function
       let slotsToDemo = getSlotDataFromComponent(this.demo?.component) || {};
 
-      function handleSlotArrays(slots) {
+      function handleSlotArrays (slots) {
         if (slots && Array.isArray(slots) && slots.length) {
           for (const slotName of slots) {
             slotsToDemo[slotName] = slotsToDemo[slotName] || {};
-            slotsToDemo[slotName].default = slotsToDemo[slotName].default || "";
+            slotsToDemo[slotName].default = slotsToDemo[slotName].default || '';
           }
         }
       }
-      function handleSlotObjects(slots) {
-        if (slots && typeof slots === "object" && !Array.isArray(slots)) {
+      function handleSlotObjects (slots) {
+        if (slots && typeof slots === 'object' && !Array.isArray(slots)) {
           for (const slotName in slots) {
             const value = slots[slotName];
-            if (typeof value === "string") {
+            if (typeof value === 'string') {
               slotsToDemo[slotName] = {
                 ...(slotsToDemo[slotName] || {}),
-                default: value,
+                default: value
               };
-            } else if (typeof value === "object" && !Array.isArray(value)) {
+            } else if (typeof value === 'object' && !Array.isArray(value)) {
               slotsToDemo[slotName] = {
-                default: "",
+                default: '',
                 ...(slotsToDemo[slotName] || {}),
-                ...value,
+                ...value
               };
             }
           }
@@ -484,7 +484,7 @@ export default {
       for (const slotName in this.demoSlots) {
         if (this.demoSlots[slotName]) {
           slotsToRender[slotName] = {
-            ...this.demoSlots[slotName],
+            ...this.demoSlots[slotName]
           };
         }
       }
@@ -495,7 +495,7 @@ export default {
       const componentProps = this.demo?.component?.props || {};
       const playgroundProps = combinePropsAndPropsToDemo(
         propsToDemo,
-        componentProps,
+        componentProps
       );
       return playgroundProps;
     },
@@ -506,7 +506,7 @@ export default {
       const autoGeneratedPlaygroundProps = autoGeneratePlaygroundProps(
         playgroundProps,
         components,
-        tokens,
+        tokens
       );
       return autoGeneratedPlaygroundProps;
     },
@@ -521,20 +521,20 @@ export default {
           // If the demo file has a callback for this emit
           if (
             this.demo?.events?.[emitName] &&
-            typeof this.demo.events[emitName] === "function"
+            typeof this.demo.events[emitName] === 'function'
           ) {
             // Run the callback in the demo file
             this.demo.events[emitName](value);
           }
           // Intentional console.info to demonstrate emits
-          console.info(this.componentTitle + " emit log:", { emitName, value });
+          console.info(this.componentTitle + ' emit log:', { emitName, value });
 
           // If the emit is part of a v-model
-          if (emitName.startsWith("update:")) {
+          if (emitName.startsWith('update:')) {
             // Get the prop name ('model-value', or whatever)
-            let modelName = emitName.replace("update:", "");
-            if (modelName === "model-value") {
-              modelName = "modelValue";
+            let modelName = emitName.replace('update:', '');
+            if (modelName === 'model-value') {
+              modelName = 'modelValue';
             }
             // Update the value to be passed in, like v-model would
             this.demoProps[modelName] = value;
@@ -544,7 +544,7 @@ export default {
       return events;
     },
     markup: function () {
-      const tag = (this.componentName || "").replaceAll(" ", "");
+      const tag = (this.componentName || '').replaceAll(' ', '');
       const emits = Object.keys(this.emitsToDemo);
       const attributes = Object.keys(this.propsToDemo)
         .filter((propName) => {
@@ -555,13 +555,13 @@ export default {
             default: getDefaultValue(this.playgroundProps?.[propName]?.default),
             name: propName,
             required: !!this.demo?.component?.props?.[propName]?.required,
-            value: this.demoProps[propName],
+            value: this.demoProps[propName]
           };
         });
       const slots = {};
       for (const demoSlotName in this.demoSlots) {
         const demoSlotValue = this.demoSlots[demoSlotName];
-        if (demoSlotValue && typeof demoSlotValue === "string") {
+        if (demoSlotValue && typeof demoSlotValue === 'string') {
           slots[demoSlotName] = demoSlotValue;
         }
       }
@@ -571,7 +571,7 @@ export default {
       const jsOutput = [];
       const propsOutput = {};
       const slotsOutput = {};
-      const tag = _lowerFirst(this.componentName || "").replaceAll(" ", "");
+      const tag = _lowerFirst(this.componentName || '').replaceAll(' ', '');
 
       // Process Props
       Object.keys(this.propsToDemo)
@@ -582,17 +582,17 @@ export default {
         .forEach((propName) => {
           const value = this.demoProps[propName];
           const defaultValue = getDefaultValue(
-            this.playgroundProps?.[propName]?.default,
+            this.playgroundProps?.[propName]?.default
           );
           if (
-            typeof value === "boolean" &&
-            typeof defaultValue === "boolean" &&
+            typeof value === 'boolean' &&
+            typeof defaultValue === 'boolean' &&
             defaultValue === value
           ) {
             return;
           } else if (defaultValue === value) {
             return;
-          } else if (![undefined, null, ""].includes(value)) {
+          } else if (![undefined, null, ''].includes(value)) {
             propsOutput[propName] = value;
           }
         });
@@ -607,51 +607,51 @@ export default {
           }
         });
 
-      const indent = "\n  ";
+      const indent = '\n  ';
       const emitStrings = Object.keys(this.emitsToDemo)
         .filter(Boolean)
         .sort()
         .map(function (emitName) {
-          const indent = "  ";
+          const indent = '  ';
           return [
-            "'" + emitName + "': function (value) {",
-            indent + indent + "console.log(value);",
-            indent + "}",
-          ].join("\n");
+            '\'' + emitName + '\': function (value) {',
+            indent + indent + 'console.log(value);',
+            indent + '}'
+          ].join('\n');
         });
       const eventsOutput =
-        "{" + indent + emitStrings.join("," + indent) + "\n}";
-      let serializedProps = "";
+        '{' + indent + emitStrings.join(',' + indent) + '\n}';
+      let serializedProps = '';
       try {
         serializedProps = serializeJavaScript(propsOutput);
       } catch (error) {
         console.log(error);
       }
 
-      jsOutput.push("const " + tag + "Props = " + serializedProps + ";");
+      jsOutput.push('const ' + tag + 'Props = ' + serializedProps + ';');
       if (Object.keys(slotsOutput).length) {
-        let serializedSlots = "";
+        let serializedSlots = '';
         try {
           serializedSlots = serializeJavaScript(slotsOutput);
         } catch (error) {
           console.log(error);
         }
-        jsOutput.push("const " + tag + "Slots = " + serializedSlots + ";");
+        jsOutput.push('const ' + tag + 'Slots = ' + serializedSlots + ';');
       }
       if (emitStrings.filter(Boolean).length) {
-        jsOutput.push("const " + tag + "Events = " + eventsOutput + ";");
+        jsOutput.push('const ' + tag + 'Events = ' + eventsOutput + ';');
       }
 
-      return jsOutput.join("\n");
-    },
+      return jsOutput.join('\n');
+    }
   },
   watch: {
     demo: function () {
       this.initialize();
-    },
+    }
   },
   created: function () {
     this.initialize();
-  },
+  }
 };
 </script>
