@@ -1,11 +1,9 @@
 <template>
   <div
-    v-bind="
-      applyStyleTokens({
-        componentDemo: true,
-        deprecated: !!deprecationNotice,
-      })
-    "
+    v-bind="applyStyleTokens({
+      componentDemo: true,
+      deprecated: !!deprecationNotice
+    })"
   >
     <!-- DoxenDeprecationBanner -->
     <OptionalCustomComponent
@@ -28,58 +26,57 @@
       :styleTokens="styleTokens"
     />
 
-    <div
-      v-if="description && typeof description === 'string'"
-      v-html="description"
-      v-bind="applyStyleTokens({ demoDescription: true })"
-      data-doxen-serialize="description"
-    ></div>
-    <component
-      v-else-if="
-        description && typeof description === 'object' && description.component
-      "
-      :is="description.component"
-      data-doxen-serialize="description"
-      v-bind="description.props || {}"
-      v-on="description.events || {}"
-      :key="componentName + '-description'"
-    >
-      <template
-        v-for="(slotValue, slotName) in description.slots"
-        #[slotName]
-        :key="'slot-' + slotName"
+    <template v-if="description">
+      <div
+        v-if="typeof(description) === 'string'"
+        v-html="description"
+        data-doxen-serialize="description"
+        v-bind="applyStyleTokens({ demoDescription: true })"
+      ></div>
+      <component
+        v-else-if="typeof(description) === 'object' && description.component"
+        :is="description.component"
+        data-doxen-serialize="description"
+        v-bind="description.props || {}"
+        v-on="description.events || {}"
+        :key="componentName + '-description'"
       >
-        <HtmlFragments :html="description.slots[slotName]" />
-      </template>
-    </component>
+        <template
+          v-for="(slotValue, slotName) in description.slots"
+          #[slotName]
+          :key="'slot-' + slotName"
+        >
+          <HtmlFragments :html="description.slots[slotName]" />
+        </template>
+      </component>
+    </template>
 
-    <div
-      v-if="importStatement && typeof importStatement === 'string'"
-      data-doxen-serialize="importStatement"
-    >
-      <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Usage</h3>
-      <DoxenCodeBox :code="importStatement" :styleTokens="styleTokens" />
-    </div>
-    <component
-      v-else-if="
-        importStatement &&
-          typeof importStatement === 'object' &&
-          importStatement.component
-      "
-      :is="importStatement.component"
-      data-doxen-serialize="importStatement"
-      v-bind="importStatement.props || {}"
-      v-on="importStatement.events || {}"
-      :key="componentName + '-import-statment'"
-    >
-      <template
-        v-for="(slotValue, slotName) in importStatement.slots"
-        #[slotName]
-        :key="'slot-' + slotName"
-      >
-        <HtmlFragments :html="importStatement.slots[slotName]" />
+    <template v-if="importStatement">
+      <template v-if="typeof(importStatement) === 'string'">
+        <h3 v-bind="applyStyleTokens({ componentDemoH3: true })" data-doxen-serialize="importStatement">Usage</h3>
+        <DoxenCodeBox
+          :code="importStatement"
+          :styleTokens="styleTokens"
+        />
       </template>
-    </component>
+      <template v-else-if="typeof(importStatement) === 'object' && importStatement.component">
+        <component
+          :is="importStatement.component"
+          data-doxen-serialize="importStatement"
+          v-bind="importStatement.props || {}"
+          v-on="importStatement.events || {}"
+          :key="componentName + '-import-statment'"
+        >
+          <template
+            v-for="(slotValue, slotName) in importStatement.slots"
+            #[slotName]
+            :key="'slot-' + slotName"
+          >
+            <HtmlFragments :html="importStatement.slots[slotName]" />
+          </template>
+        </component>
+      </template>
+    </template>
 
     <!-- Component being demo'd -->
     <div v-bind="applyStyleTokens({ componentDemoContainer: true })">
@@ -102,9 +99,7 @@
     </div>
 
     <section v-bind="applyStyleTokens({ propsPlaygroundContainer: true })">
-      <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">
-        Props Playground:
-      </h3>
+      <h3 v-bind="applyStyleTokens({ componentDemoH3: true })">Props Playground:</h3>
 
       <form
         v-bind="applyStyleTokens({ propsPlaygroundForm: true })"
@@ -113,19 +108,13 @@
         <!-- Anything for Props -->
         <template v-if="Object.keys(propsToDemo).length">
           <button
-            v-bind="
-              applyStyleTokens({
-                playgroundGroupTitle: true,
-                playgroundGroupTitleCollapsed:
-                  currentPlaygroundSection !== 'props',
-                playgroundGroupTitleExpanded:
-                  currentPlaygroundSection === 'props',
-              })
-            "
+            v-bind="applyStyleTokens({
+              playgroundGroupTitle: true,
+              playgroundGroupTitleCollapsed: currentPlaygroundSection !== 'props',
+              playgroundGroupTitleExpanded: currentPlaygroundSection === 'props'
+            })"
             @click="togglePlaygroundSection('props')"
-          >
-            Props
-          </button>
+          >Props</button>
           <DoxenAccordion
             :show="currentPlaygroundSection === 'props'"
             :styleTokens="styleTokens"
@@ -154,19 +143,13 @@
         <!-- Slots Playground -->
         <template v-if="Object.keys(slotsToDemo).length">
           <button
-            v-bind="
-              applyStyleTokens({
-                playgroundGroupTitle: true,
-                playgroundGroupTitleCollapsed:
-                  currentPlaygroundSection !== 'slots',
-                playgroundGroupTitleExpanded:
-                  currentPlaygroundSection === 'slots',
-              })
-            "
+            v-bind="applyStyleTokens({
+              playgroundGroupTitle: true,
+              playgroundGroupTitleCollapsed: currentPlaygroundSection !== 'slots',
+              playgroundGroupTitleExpanded: currentPlaygroundSection === 'slots'
+            })"
             @click="togglePlaygroundSection('slots')"
-          >
-            Slots
-          </button>
+          >Slots</button>
           <DoxenAccordion
             :show="currentPlaygroundSection === 'slots'"
             :styleTokens="styleTokens"
@@ -178,15 +161,13 @@
                   v-if="slotValue.component"
                   v-bind="{
                     ...(slotValue.props || {}),
-                    modelValue: demoSlots[slotName],
+                    modelValue: demoSlots[slotName]
                   }"
                   :is="slotValue.component"
                   v-on="{
                     ...(slotValue.events || {}),
-                    'update:model-value': ($event) =>
-                      (demoSlots[slotName] = $event),
-                    'update:modelValue': ($event) =>
-                      (demoSlots[slotName] = $event),
+                    'update:model-value': ($event) => demoSlots[slotName] = $event,
+                    'update:modelValue': ($event) => demoSlots[slotName] = $event
                   }"
                   :key="'custom-slot-playground' + slotName"
                 />
@@ -207,19 +188,13 @@
         <!-- DoxenEmitLog for emits -->
         <template v-if="Object.keys(emitsToDemo).length">
           <button
-            v-bind="
-              applyStyleTokens({
-                playgroundGroupTitle: true,
-                playgroundGroupTitleCollapsed:
-                  currentPlaygroundSection !== 'emits',
-                playgroundGroupTitleExpanded:
-                  currentPlaygroundSection === 'emits',
-              })
-            "
+            v-bind="applyStyleTokens({
+              playgroundGroupTitle: true,
+              playgroundGroupTitleCollapsed: currentPlaygroundSection !== 'emits',
+              playgroundGroupTitleExpanded: currentPlaygroundSection === 'emits'
+            })"
             @click="togglePlaygroundSection('emits')"
-          >
-            Emits
-          </button>
+          >Emits</button>
           <DoxenAccordion
             :show="currentPlaygroundSection === 'emits'"
             :styleTokens="styleTokens"
@@ -239,7 +214,7 @@
     <DoxenCodeSwapper
       :codeTypes="{
         Vue: markup,
-        JavaScript: js,
+        JavaScript: js
       }"
       :styleTokens="styleTokens"
     />
@@ -276,7 +251,10 @@ import {
   getDefaultValue,
   getSlotDataFromComponent
 } from '@/helpers/demoHelpers.js';
-import { createVueDoxenOptions, styleTokens } from '@/helpers/props.js';
+import {
+  createVueDoxenOptions,
+  styleTokens
+} from '@/helpers/props.js';
 import { serializeJavaScript } from '@/helpers/serializeJavaScript.js';
 
 import applyStyleTokens from '@/mixins/applyStyleTokensMixin.js';
@@ -321,9 +299,7 @@ export default {
       this.demoProps = {};
       this.demoSlots = {};
       for (const propName in this.propsToDemo) {
-        const propDefault = getDefaultValue(
-          this.playgroundProps?.[propName]?.default
-        );
+        const propDefault = getDefaultValue(this.playgroundProps?.[propName]?.default);
         const modelValue = this.propsToDemo?.[propName]?.props?.modelValue;
 
         if (propDefault === undefined && modelValue === undefined) {
@@ -339,9 +315,7 @@ export default {
         }
       }
       for (const slotName in this.slotsToDemo) {
-        this.demoSlots[slotName] = getDefaultValue(
-          this.slotsToDemo?.[slotName].default
-        );
+        this.demoSlots[slotName] = getDefaultValue(this.slotsToDemo?.[slotName].default);
       }
     },
     togglePlaygroundSection: function (section) {
@@ -362,25 +336,33 @@ export default {
       );
     },
     componentTitle: function () {
-      if (typeof this.title === 'string') {
+      if (typeof(this.title) === 'string') {
         return this.title;
       }
       return _startCase(this.componentName);
     },
     title: function () {
-      return this.demo?.title || this.demo?.component?.title;
+      return (
+        this.demo?.title ||
+        this.demo?.component?.title
+      );
     },
     description: function () {
-      return this.demo?.description || this.demo?.component?.description;
+      return (
+        this.demo?.description ||
+        this.demo?.component?.description
+      );
     },
     deprecationNotice: function () {
       return (
-        this.demo?.deprecationNotice || this.demo?.component?.deprecationNotice
+        this.demo?.deprecationNotice ||
+        this.demo?.component?.deprecationNotice
       );
     },
     importStatement: function () {
       return (
-        this.demo?.importStatement || this.demo?.component?.importStatement
+        this.demo?.importStatement ||
+        this.demo?.component?.importStatement
       );
     },
     emitsToDemo: function () {
@@ -394,14 +376,21 @@ export default {
         }
       }
       function handleEmitObjects (emits) {
-        if (emits && typeof emits === 'object' && !Array.isArray(emits)) {
+        if (
+          emits &&
+          typeof(emits) === 'object' &&
+          !Array.isArray(emits)
+        ) {
           for (const emitName in emits) {
             const value = emits[emitName];
             demoEmits[emitName] = demoEmits[emitName] || {};
             // emits[emitName] may be a validator function if using Vue's object API
-            if (typeof value === 'function') {
+            if (typeof(value) === 'function') {
               demoEmits[emitName].validator = value;
-            } else if (typeof value === 'object' && !Array.isArray(value)) {
+            } else if (
+              typeof(value) === 'object' &&
+              !Array.isArray(value)
+            ) {
               demoEmits[emitName] = {
                 ...demoEmits[emitName],
                 ...emits[emitName]
@@ -435,15 +424,22 @@ export default {
         }
       }
       function handleSlotObjects (slots) {
-        if (slots && typeof slots === 'object' && !Array.isArray(slots)) {
+        if (
+          slots &&
+          typeof(slots) === 'object' &&
+          !Array.isArray(slots)
+        ) {
           for (const slotName in slots) {
             const value = slots[slotName];
-            if (typeof value === 'string') {
+            if (typeof(value) === 'string') {
               slotsToDemo[slotName] = {
                 ...(slotsToDemo[slotName] || {}),
                 default: value
               };
-            } else if (typeof value === 'object' && !Array.isArray(value)) {
+            } else if (
+              typeof(value) === 'object' &&
+              !Array.isArray(value)
+            ) {
               slotsToDemo[slotName] = {
                 default: '',
                 ...(slotsToDemo[slotName] || {}),
@@ -474,9 +470,10 @@ export default {
 
       // Defaults
       for (const slotName in slotsToDemo) {
-        slotsToDemo[slotName].default =
+        slotsToDemo[slotName].default = (
           slotsToDemo[slotName]?.props?.modelValue ||
-          String(getDefaultValue(slotsToDemo[slotName].default));
+          String(getDefaultValue(slotsToDemo[slotName].default))
+        );
       }
 
       return slotsToDemo;
@@ -495,21 +492,14 @@ export default {
     playgroundProps: function () {
       const propsToDemo = this.demo?.propsToDemo || {};
       const componentProps = this.demo?.component?.props || {};
-      const playgroundProps = combinePropsAndPropsToDemo(
-        propsToDemo,
-        componentProps
-      );
+      const playgroundProps = combinePropsAndPropsToDemo(propsToDemo, componentProps);
       return playgroundProps;
     },
     propsToDemo: function () {
       const playgroundProps = this.playgroundProps;
       const components = this.options.components;
       const tokens = this.styleTokens;
-      const autoGeneratedPlaygroundProps = autoGeneratePlaygroundProps(
-        playgroundProps,
-        components,
-        tokens
-      );
+      const autoGeneratedPlaygroundProps = autoGeneratePlaygroundProps(playgroundProps, components, tokens);
       return autoGeneratedPlaygroundProps;
     },
     demoEvents: function () {
@@ -523,7 +513,7 @@ export default {
           // If the demo file has a callback for this emit
           if (
             this.demo?.events?.[emitName] &&
-            typeof this.demo.events[emitName] === 'function'
+            typeof(this.demo.events[emitName]) === 'function'
           ) {
             // Run the callback in the demo file
             this.demo.events[emitName](value);
@@ -563,7 +553,7 @@ export default {
       const slots = {};
       for (const demoSlotName in this.demoSlots) {
         const demoSlotValue = this.demoSlots[demoSlotName];
-        if (demoSlotValue && typeof demoSlotValue === 'string') {
+        if (demoSlotValue && typeof(demoSlotValue) === 'string') {
           slots[demoSlotName] = demoSlotValue;
         }
       }
@@ -583,12 +573,10 @@ export default {
         })
         .forEach((propName) => {
           const value = this.demoProps[propName];
-          const defaultValue = getDefaultValue(
-            this.playgroundProps?.[propName]?.default
-          );
+          const defaultValue = getDefaultValue(this.playgroundProps?.[propName]?.default);
           if (
-            typeof value === 'boolean' &&
-            typeof defaultValue === 'boolean' &&
+            typeof(value) === 'boolean' &&
+            typeof(defaultValue) === 'boolean' &&
             defaultValue === value
           ) {
             return;
@@ -621,8 +609,7 @@ export default {
             indent + '}'
           ].join('\n');
         });
-      const eventsOutput =
-        '{' + indent + emitStrings.join(',' + indent) + '\n}';
+      const eventsOutput = '{' + indent + emitStrings.join(',' + indent) + '\n}';
       let serializedProps = '';
       try {
         serializedProps = serializeJavaScript(propsOutput);
