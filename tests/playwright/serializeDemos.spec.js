@@ -174,30 +174,4 @@ test.describe('serializeDemos with Playwright extraction', () => {
     expect(result.StringDemo.import)
       .toEqual('import { StringDemo } from \'my-lib\';');
   });
-
-  test('Realistic component: all 4 fields resolve via Playwright from real Vue components', async () => {
-    // DxButton uses real SFC components for description, import, and deprecation.
-    // The demo definition here just needs matching keys — the test server renders
-    // the actual components at /#/DxButton.
-    const demos = {
-      DxButton: {
-        component: { name: 'DxButton', template: '<button />', props: {} },
-        description: { component: { template: '<div>placeholder</div>' } },
-        importStatement: { component: { template: '<div>placeholder</div>' } },
-        deprecationNotice: { component: { template: '<div>placeholder</div>' } }
-      }
-    };
-    const result = await serializeDemos(demos, {
-      playwright: { baseUrl }
-    });
-    const entry = result.DxButton;
-    expect(entry.description)
-      .toContain('versatile button component');
-    expect(entry.import)
-      .toContain('DxButton');
-    expect(entry.deprecationNotice)
-      .toContain('removed in v4.0');
-    expect(entry.deprecated)
-      .toEqual(true);
-  });
 });

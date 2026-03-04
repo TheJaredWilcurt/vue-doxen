@@ -182,8 +182,23 @@ The Playwright test (`tests/playwright/serializeDemos.spec.js`) exercises browse
 | `tests/playwright/serializeDemos.spec.js`       | Playwright integration test                                               |
 | `tests/fixtures/DescriptionWrapper.vue`         | Test fixture — component with text in props                               |
 | `tests/fixtures/StandaloneDescription.vue`      | Test fixture — component with text only in template                       |
-| `tests/fixtures/serializeTestApp.vue`           | Test fixture — VueDoxenCustom app for Playwright                          |
+| `tests/fixtures/serializeTestDemos.js`          | Shared demo definitions for tests (StringDemo, ComponentDemo, etc.)       |
+| `tests/fixtures/serializeTestRouter.js`         | Vue app with hash routing for Playwright test server                      |
 | `playwright.config.js`                          | Playwright configuration                                                  |
+
+#### Demo-only files (delete before merging)
+
+| File                                                  | Purpose                                                            |
+| ----------------------------------------------------- | ------------------------------------------------------------------ |
+| `tests/fixtures/sandbox/DxButton.vue`                    | Realistic button component with props, emits, slots                |
+| `tests/fixtures/sandbox/DxButtonDescription.vue`         | Description component for DxButton                                 |
+| `tests/fixtures/sandbox/DxButtonImport.vue`              | Import statement component for DxButton                            |
+| `tests/fixtures/sandbox/DxButtonDeprecation.vue`         | Deprecation notice component for DxButton                          |
+| `tests/fixtures/sandbox/sandboxDemos.js`                 | Demo definitions including DxButton (extends serializeTestDemos)   |
+| `tests/fixtures/sandbox/sandboxRouter.js`                | Vue app for sandbox server (serves all demos including DxButton)   |
+| `tests/fixtures/sandbox/serialized-demos.json`           | Output artifact from `runSerializeDemo.js`                         |
+| `tests/fixtures/sandbox/serializeTestApp.vue`            | Legacy fixture — unused                                            |
+| `scripts/runSerializeDemo.js`                         | Script to generate serialized-demos.json via Playwright            |
 
 ### atc-alloy
 

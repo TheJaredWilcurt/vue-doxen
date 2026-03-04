@@ -14,7 +14,7 @@ import { resolve } from 'node:path';
 import { createServer } from 'vite';
 
 const __dirname = import.meta.dirname;
-const outputPath = resolve(__dirname, '..', 'tests', 'fixtures', 'serialized-demos.json');
+const outputPath = resolve(__dirname, '..', 'tests', 'fixtures', 'sandbox', 'serialized-demos.json');
 
 async function main () {
   const server = await createServer({
@@ -26,7 +26,7 @@ async function main () {
 
   try {
     const { serializeDemos } = await import('../dist/vue-doxen.js');
-    const { demos } = await server.ssrLoadModule('/serializeTestDemos.js');
+    const { demos } = await server.ssrLoadModule('/sandbox/sandboxDemos.js');
 
     const result = await serializeDemos(demos, {
       playwright: { baseUrl }
