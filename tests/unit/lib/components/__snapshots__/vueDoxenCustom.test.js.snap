@@ -15,11 +15,13 @@ exports[`VueDoxenCustom.vue > Renders correctly with all props 1`] = `
     <!-- DoxenDeprecationBanner -->
     <!-- v-if -->
     <!-- DoxenHeader -->
-    <div
-      styletokens="[object Object]"
-      title="Dummy Button"
-    >
-      DummyHeader
+    <div data-doxen-serialize="title">
+      <div
+        styletokens="[object Object]"
+        title="Dummy Button"
+      >
+        DummyHeader
+      </div>
     </div>
     <div
       class="doxen-demo-description"
