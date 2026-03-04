@@ -1,3 +1,10 @@
+<!--
+  Test fixture: import statement component with props AND computed text.
+  The rendered text is built dynamically from `name` and `slim` props via
+  computed properties. Proves that Playwright extraction works when text
+  is not static in the template or directly in a prop value, but generated
+  at render time by the component's logic.
+-->
 <template>
   <div>
     <pre><code>{{ importLine }}</code></pre>

@@ -1,3 +1,8 @@
+<!--
+  Test fixture: template-only description with rich HTML (paragraphs, code
+  tags, links, lists). Proves that Playwright extraction captures multi-
+  paragraph text content from a component with no props.
+-->
 <template>
   <div class="prose">
     <p>
