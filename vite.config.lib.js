@@ -17,19 +17,10 @@ const config = defineConfig({
       cssCodeSplit: false,
       entry: resolve(__dirname, 'lib/vue-doxen.js'),
       name: 'vueDoxen',
-      formats: [
-        'cjs',
-        'es',
-        'iife',
-        'umd'
-      ]
+      formats: ['cjs', 'es', 'iife', 'umd']
     },
     rollupOptions: {
-      external: [
-        'colorette',
-        'pretty-ms',
-        'vue'
-      ],
+      external: ['colorette', 'pretty-ms', 'vue'],
       output: {
         assetFileNames: (assetInfo) => {
           if (assetInfo.name === 'style.css') {
@@ -71,15 +62,12 @@ const config = defineConfig({
       ],
       reportsDirectory: './tests/unit/coverage'
     },
+    exclude: [...configDefaults.exclude, 'tests/playwright/**'],
     environment: 'happy-dom',
     globals: true,
     root: '.',
-    setupFiles: [
-      './tests/unit/setup.js'
-    ],
-    snapshotSerializers: [
-      './node_modules/vue3-snapshot-serializer/index.js'
-    ]
+    setupFiles: ['./tests/unit/setup.js'],
+    snapshotSerializers: ['./node_modules/vue3-snapshot-serializer/index.js']
   }
 });
 

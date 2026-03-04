@@ -68,7 +68,7 @@ const testDemos = {
 const expectedOutput = {
   StringDemo: {
     title: null,
-    description: 'A simple string description.',
+    description: '<p>A simple <strong>string</strong> description.</p>',
     import: 'import { StringDemo } from \'my-lib\';',
     deprecated: false,
     deprecationNotice: null,
@@ -88,7 +88,7 @@ const expectedOutput = {
   },
   ComponentDemo: {
     title: null,
-    description: 'Wrapper description with HTML.',
+    description: null,
     import: null,
     deprecated: false,
     deprecationNotice: null,

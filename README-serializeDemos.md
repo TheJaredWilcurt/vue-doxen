@@ -197,16 +197,16 @@ The Playwright test (`tests/playwright/serializeDemos.spec.js`) exercises browse
 ### Generating MCP JSON (atc-alloy)
 
 ```bash
-# Icons only (no Playwright needed)
-node scripts/generateMCPFiles.js
-
-# With components (requires docs site running + vue-doxen linked)
-# Terminal 1:
+# Terminal 1: Start the docs dev server (required for component generation)
 npm start
 
-# Terminal 2:
+# Terminal 2: Generate both icons and components JSON
 node scripts/generateMCPFiles.js http://localhost:5173
 ```
+
+**Important:** `generateMCPFiles.js` always runs both the icons and components generators. The icons generator is synchronous and doesn't need the dev server. The components generator uses Playwright to visit each demo page and extract rendered text, so it **requires the docs dev server to be running**. If the dev server isn't running, icons will still generate but the components step will fail with `ERR_CONNECTION_REFUSED`.
+
+If no URL argument is passed, it defaults to `http://localhost:5173`.
 
 **Note:** Until `serializeDemos` is published in a vue-doxen release, link the local copy:
 
