@@ -19,6 +19,7 @@ const outputPath = resolve(__dirname, '..', 'tests', 'fixtures', 'sandbox', 'ser
 async function main () {
   const server = await createServer({
     configFile: resolve(__dirname, '..', 'vite.config.test-serialize.js'),
+    root: resolve(__dirname, '..', 'tests', 'fixtures', 'sandbox'),
     server: { port: 5199, strictPort: true }
   });
   await server.listen();
@@ -26,7 +27,7 @@ async function main () {
 
   try {
     const { serializeDemos } = await import('../dist/vue-doxen.js');
-    const { demos } = await server.ssrLoadModule('/sandbox/sandboxDemos.js');
+    const { demos } = await server.ssrLoadModule('/sandboxDemos.js');
 
     const result = await serializeDemos(demos, {
       playwright: { baseUrl }
