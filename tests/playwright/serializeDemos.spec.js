@@ -123,3 +123,81 @@ test.describe('serializeDemos', () => {
       .toEqual(expectedOutput);
   });
 });
+
+// Playwright-mode tests — these require the test server running at localhost:5199
+// (started automatically by playwright.config.js webServer).
+// The test server renders each demo at /#/DemoName via VueDoxenCustom,
+// so serializeDemos can navigate there and extract text from data-doxen-serialize elements.
+test.describe('serializeDemos with Playwright extraction', () => {
+  const baseUrl = 'http://localhost:5199';
+
+  test('Playwright resolves component+props description to text', async () => {
+    const demos = {
+      ComponentDemo: testDemos.ComponentDemo
+    };
+    const result = await serializeDemos(demos, {
+      playwright: { baseUrl }
+    });
+    expect(result.ComponentDemo.description)
+      .not.toEqual(null);
+    expect(result.ComponentDemo.description)
+      .toContain('Wrapper description');
+    expect(result.ComponentDemo.description)
+      .toContain('HTML');
+  });
+
+  test('Playwright resolves component-only description to text', async () => {
+    const demos = {
+      ComponentOnlyDemo: testDemos.ComponentOnlyDemo
+    };
+    const result = await serializeDemos(demos, {
+      playwright: { baseUrl }
+    });
+    expect(result.ComponentOnlyDemo.description)
+      .not.toEqual(null);
+    expect(result.ComponentOnlyDemo.description)
+      .toContain('Template-only description text');
+    expect(result.ComponentOnlyDemo.description)
+      .toContain('Feature one');
+  });
+
+  test('String fields still work correctly in Playwright mode', async () => {
+    const demos = {
+      StringDemo: testDemos.StringDemo
+    };
+    const result = await serializeDemos(demos, {
+      playwright: { baseUrl }
+    });
+    // String fields resolve in sync pass — Playwright pass skips them
+    expect(result.StringDemo.description)
+      .toEqual('<p>A simple <strong>string</strong> description.</p>');
+    expect(result.StringDemo.import)
+      .toEqual('import { StringDemo } from \'my-lib\';');
+  });
+
+  test('Realistic component: all 4 fields resolve via Playwright from real Vue components', async () => {
+    // DxButton uses real SFC components for description, import, and deprecation.
+    // The demo definition here just needs matching keys — the test server renders
+    // the actual components at /#/DxButton.
+    const demos = {
+      DxButton: {
+        component: { name: 'DxButton', template: '<button />', props: {} },
+        description: { component: { template: '<div>placeholder</div>' } },
+        importStatement: { component: { template: '<div>placeholder</div>' } },
+        deprecationNotice: { component: { template: '<div>placeholder</div>' } }
+      }
+    };
+    const result = await serializeDemos(demos, {
+      playwright: { baseUrl }
+    });
+    const entry = result.DxButton;
+    expect(entry.description)
+      .toContain('versatile button component');
+    expect(entry.import)
+      .toContain('DxButton');
+    expect(entry.deprecationNotice)
+      .toContain('removed in v4.0');
+    expect(entry.deprecated)
+      .toEqual(true);
+  });
+});

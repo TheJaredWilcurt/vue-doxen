@@ -1,0 +1,127 @@
+{
+  "DxButton": {
+    "description": "A versatile button component for triggering actions, submitting forms, and navigating via links. Supports multiple variants and sizes out of the box. Use the variant prop to control the visual style and the size prop to adjust dimensions. The ghost variant renders a transparent button suitable for toolbars. Design System Documentation",
+    "title": "Dx Button",
+    "deprecationNotice": "Deprecated: DxButton will be removed in v4.0. Use DxActionButton instead, which supports the same API with improved accessibility and keyboard navigation.",
+    "import": "import { DxButton } from 'my-design-system'; Also available in the slim build: import { DxButton } from 'my-design-system/slim';",
+    "deprecated": true,
+    "props": {
+      "label": {
+        "type": "String",
+        "required": false,
+        "default": "Button",
+        "allowed": null,
+        "description": "Text displayed inside the button when no slot content is provided."
+      },
+      "variant": {
+        "type": "String",
+        "required": false,
+        "default": "primary",
+        "allowed": [
+          "primary",
+          "secondary",
+          "ghost",
+          "danger"
+        ],
+        "description": "Visual style variant. Use <code>ghost</code> for toolbar buttons and <code>danger</code> for destructive actions."
+      },
+      "size": {
+        "type": "String",
+        "required": false,
+        "default": "md",
+        "allowed": [
+          "sm",
+          "md",
+          "lg"
+        ],
+        "description": "Controls the button dimensions."
+      },
+      "disabled": {
+        "type": "Boolean",
+        "required": false,
+        "default": false,
+        "allowed": null,
+        "description": "Prevents interaction and applies disabled styling."
+      },
+      "href": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "allowed": null,
+        "description": "When set, the button renders as an anchor element. Use for navigation actions."
+      },
+      "ariaLabel": {
+        "type": "String",
+        "required": false,
+        "default": null,
+        "allowed": null,
+        "description": "Accessible label for the button, used when the visible text is insufficient.",
+        "deprecated": true
+      }
+    },
+    "emits": {
+      "click": {
+        "description": "Emitted when the user clicks the button, presses Enter, or presses Space while focused."
+      }
+    },
+    "slots": [
+      "default"
+    ]
+  },
+  "StringDemo": {
+    "description": "<p>A simple <strong>string</strong> description.</p>",
+    "title": null,
+    "deprecationNotice": null,
+    "import": "import { StringDemo } from 'my-lib';",
+    "deprecated": false,
+    "props": {
+      "size": {
+        "type": "String",
+        "required": false,
+        "default": "md",
+        "allowed": [
+          "sm",
+          "md",
+          "lg"
+        ],
+        "description": "Controls the size."
+      }
+    },
+    "emits": {
+      "clicked": {
+        "description": "Emitted on click."
+      }
+    },
+    "slots": [
+      "default"
+    ]
+  },
+  "ComponentDemo": {
+    "description": "Wrapper description with HTML.",
+    "title": "Component Demo",
+    "deprecationNotice": null,
+    "import": null,
+    "deprecated": false,
+    "props": {
+      "disabled": {
+        "type": "Boolean",
+        "required": false,
+        "default": false,
+        "allowed": null,
+        "description": null
+      }
+    },
+    "emits": {},
+    "slots": []
+  },
+  "ComponentOnlyDemo": {
+    "description": "Template-only description text.Feature one",
+    "title": "Component Only Demo",
+    "deprecationNotice": null,
+    "import": null,
+    "deprecated": false,
+    "props": {},
+    "emits": {},
+    "slots": []
+  }
+}

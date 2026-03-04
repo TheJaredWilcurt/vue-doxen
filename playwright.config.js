@@ -6,4 +6,9 @@ export default defineConfig({
   use: {
     headless: true,
   },
+  webServer: {
+    command: "npx vite dev --config vite.config.test-serialize.js",
+    port: 5199,
+    reuseExistingServer: true,
+  },
 });
