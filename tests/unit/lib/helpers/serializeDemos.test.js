@@ -1,5 +1,8 @@
+import { resolve } from 'node:path';
+
 import { describe, test, expect } from 'vitest';
 
+import { loadDemos } from '@/helpers/loadDemos.js';
 import { serializeDemos } from '@/helpers/serializeDemos.js';
 
 import DescriptionWrapper from '@@/fixtures/components/DescriptionWrapper.vue';
@@ -372,5 +375,69 @@ describe('serializeDemos', () => {
       expect(roundTripped)
         .toEqual(result);
     });
+  });
+});
+
+// ---------------------------------------------------------------------------
+//  loadDemos — loads demo objects from .vue SFC files via Vite SSR
+// ---------------------------------------------------------------------------
+
+const viteConfig = resolve(import.meta.dirname, '..', '..', '..', '..', 'vite.config.test-serialize.js');
+
+describe('loadDemos', () => {
+  test('Throws if viteConfig is missing', async () => {
+    await expect(loadDemos({ files: ['/foo.vue'] }))
+      .rejects.toThrow('viteConfig is required');
+  });
+
+  test('Throws if files is missing', async () => {
+    await expect(loadDemos({ viteConfig }))
+      .rejects.toThrow('files is required');
+  });
+
+  test('Loads demo export from a .vue SFC file', async () => {
+    const demos = await loadDemos({
+      viteConfig,
+      files: ['/components/SampleDemo.vue']
+    });
+
+    expect(demos)
+      .toHaveProperty('Sample');
+    expect(demos.Sample.description)
+      .toEqual('<p>A sample component.</p>');
+    expect(demos.Sample.component.name)
+      .toEqual('SampleComponent');
+  });
+
+  test('Derives demo name by stripping directory and Demo.vue suffix', async () => {
+    const demos = await loadDemos({
+      viteConfig,
+      files: ['/components/SampleDemo.vue']
+    });
+
+    expect(Object.keys(demos))
+      .toEqual(['Sample']);
+  });
+
+  test('Supports custom nameFromPath', async () => {
+    const demos = await loadDemos({
+      viteConfig,
+      files: ['/components/SampleDemo.vue'],
+      nameFromPath: () => 'CustomKey'
+    });
+
+    expect(Object.keys(demos))
+      .toEqual(['CustomKey']);
+  });
+
+  test('Skips files without the expected export', async () => {
+    const demos = await loadDemos({
+      viteConfig,
+      files: ['/components/DxButton.vue'],
+      exportName: 'demo'
+    });
+
+    expect(Object.keys(demos))
+      .toEqual([]);
   });
 });

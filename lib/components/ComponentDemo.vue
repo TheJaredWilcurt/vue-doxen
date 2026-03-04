@@ -33,22 +33,25 @@
         data-doxen-serialize="description"
         v-bind="applyStyleTokens({ demoDescription: true })"
       ></div>
-      <component
+      <div
         v-else-if="typeof(description) === 'object' && description.component"
-        :is="description.component"
         data-doxen-serialize="description"
-        v-bind="description.props || {}"
-        v-on="description.events || {}"
-        :key="componentName + '-description'"
       >
-        <template
-          v-for="(slotValue, slotName) in description.slots"
-          #[slotName]
-          :key="'slot-' + slotName"
+        <component
+          :is="description.component"
+          v-bind="description.props || {}"
+          v-on="description.events || {}"
+          :key="componentName + '-description'"
         >
-          <HtmlFragments :html="description.slots[slotName]" />
-        </template>
-      </component>
+          <template
+            v-for="(slotValue, slotName) in description.slots"
+            #[slotName]
+            :key="'slot-' + slotName"
+          >
+            <HtmlFragments :html="description.slots[slotName]" />
+          </template>
+        </component>
+      </div>
     </template>
 
     <template v-if="importStatement">
@@ -59,10 +62,12 @@
           :styleTokens="styleTokens"
         />
       </template>
-      <template v-else-if="typeof(importStatement) === 'object' && importStatement.component">
+      <div
+        v-else-if="typeof(importStatement) === 'object' && importStatement.component"
+        data-doxen-serialize="importStatement"
+      >
         <component
           :is="importStatement.component"
-          data-doxen-serialize="importStatement"
           v-bind="importStatement.props || {}"
           v-on="importStatement.events || {}"
           :key="componentName + '-import-statment'"
@@ -75,7 +80,7 @@
             <HtmlFragments :html="importStatement.slots[slotName]" />
           </template>
         </component>
-      </template>
+      </div>
     </template>
 
     <!-- Component being demo'd -->

@@ -20,7 +20,13 @@ const config = defineConfig({
       formats: ['cjs', 'es', 'iife', 'umd']
     },
     rollupOptions: {
-      external: ['colorette', 'pretty-ms', 'vue'],
+      // 'playwright' and 'vite' are optional peer dependencies used only by
+      // build scripts (serializeDemos and loadDemos). They are dynamically
+      // imported at runtime with `await import(/* @vite-ignore */ '...')` so
+      // they are never reached by browser code — externalizing them here
+      // simply prevents Rollup from trying to bundle them (which would fail
+      // for native binaries like fsevents and chromium-bidi).
+      external: ['colorette', 'playwright', 'pretty-ms', 'vite', 'vue'],
       output: {
         assetFileNames: (assetInfo) => {
           if (assetInfo.name === 'style.css') {

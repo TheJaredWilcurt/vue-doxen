@@ -114,10 +114,21 @@ Your MCP server, AI tool, or documentation pipeline
 ```js
 import { serializeDemos } from "vue-doxen";
 
-// Without Playwright — extracts text from strings and component props
+// If your demos are in plain .js files:
+import { demos } from "./path/to/demos.js";
 const result = await serializeDemos(demos);
+```
 
-// With Playwright — also renders components in a browser to extract any remaining text
+If your demos are in `.vue` SFC files (the common case), use `loadDemos` to load them first:
+
+```js
+import { loadDemos, serializeDemos } from "vue-doxen";
+
+const demos = await loadDemos({
+  viteConfig: "./vite.config.js",
+  files: ["/docs/demos/MyCardDemo.vue", "/docs/demos/MyButtonDemo.vue"],
+});
+
 const result = await serializeDemos(demos, {
   playwright: { baseUrl: "http://localhost:5173" },
 });
@@ -125,9 +136,20 @@ const result = await serializeDemos(demos, {
 
 ## API
 
-```js
-serializeDemos(demos, options?)
-```
+### `loadDemos(options)`
+
+Loads VueDoxen demo objects from `.vue` SFC files via Vite SSR. Spins up a temporary Vite server, loads each file, extracts the named export, and returns an aggregated demos object.
+
+- **`options.viteConfig`** — path to your Vite config file (required)
+- **`options.files`** — array of file paths relative to Vite root (required)
+- **`options.exportName`** — named export to extract from each file (default: `'demo'`)
+- **`options.nameFromPath`** — `(filePath) => string` — derives the demo key from a file path (default: strips directory and `Demo.vue` suffix, e.g. `/docs/demos/MyCardDemo.vue` → `'MyCard'`)
+
+Returns a `Promise<object>` — map of demo name to demo object, ready to pass to `serializeDemos`.
+
+Vite is an **optional peer dependency** — only needed if you use `loadDemos`. Your project almost certainly already has it installed.
+
+### `serializeDemos(demos, options?)`
 
 - **`demos`** — VueDoxen demos object (same shape passed to `VueDoxen` / `VueDoxenCustom`)
 - **`options.playwright`** — `{ baseUrl: string, demoPath?: (name) => string }` — enables Playwright rendering
@@ -135,7 +157,7 @@ serializeDemos(demos, options?)
 
 Returns a `Promise<object>` with one key per demo (see output example above).
 
-Playwright is an **optional peer dependency**. Most users don't need it. Install it only if you have component-based description fields that can't be resolved from props alone:
+Playwright is an **optional peer dependency**. Most users don't need it. Install it only if you have component-based text fields that can't be resolved from props alone:
 
 ```bash
 npm install playwright
@@ -171,50 +193,56 @@ The Playwright test (`tests/playwright/serializeDemos.spec.js`) exercises browse
 
 ## Using serializeDemos in Your Project
 
-If your VueDoxen demos use component-based text fields (description, importStatement, etc.), you'll need Playwright to extract the rendered text. The pattern is:
-
 ### 1. Start your dev server
 
-Your VueDoxen docs site needs to be running so Playwright can navigate to each demo page.
+If any text fields use component-based descriptions, your VueDoxen docs site needs to be running so Playwright can navigate to each demo page.
 
 ```bash
 npm start   # or however you serve your docs
 ```
 
-### 2. Write a small generation script
+### 2. Write a generation script
+
+Most VueDoxen consumers define demos inside `.vue` SFCs. Use `loadDemos` to load them:
 
 ```js
 import fs from 'node:fs';
-import { serializeDemos } from 'vue-doxen';
-import { demos } from './path/to/your/demos.js';
+import { loadDemos, serializeDemos } from 'vue-doxen';
+
+const demos = await loadDemos({
+  viteConfig: './vite.config.js',
+  files: [
+    '/docs/demos/MyCardDemo.vue',
+    '/docs/demos/MyButtonDemo.vue'
+  ]
+});
 
 const result = await serializeDemos(demos, {
   playwright: { baseUrl: 'http://localhost:5173' }
 });
 
 fs.writeFileSync('components.json', JSON.stringify(result, null, 2) + '\n');
-console.log(`Generated ${Object.keys(result).length} components.`);
 ```
 
-That's it. The `demos` object is the same one you already pass to `VueDoxen` or `VueDoxenCustom`. `serializeDemos` handles all the browser automation internally.
+If your demos are already in plain `.js` files, skip `loadDemos` and import directly:
+
+```js
+import { demos } from './demos.js';
+const result = await serializeDemos(demos);
+```
 
 ### 3. Use the JSON
 
 The output is plain JSON with no Vue or HTML dependencies. Feed it to an MCP server, a search index, a static site generator — whatever your AI pipeline needs.
 
-**If all your text fields are strings** (no component-based descriptions), you don't need Playwright at all:
-
-```js
-const result = await serializeDemos(demos);
-```
-
 ## File Reference
 
 | File                                            | Purpose                                                               |
 | ----------------------------------------------- | --------------------------------------------------------------------- |
+| `lib/helpers/loadDemos.js`                      | Loads demo objects from .vue SFCs via Vite SSR                        |
 | `lib/helpers/serializeDemos.js`                 | Core serialization — text extraction, prop/emit/slot flattening       |
 | `lib/components/ComponentDemo.vue`              | Wraps text fields in `data-doxen-serialize` divs for Playwright       |
-| `lib/library.js`                                | Exports `serializeDemos`                                              |
+| `lib/library.js`                                | Exports `loadDemos` and `serializeDemos`                              |
 | `tests/unit/lib/helpers/serializeDemos.test.js` | Unit tests                                                            |
 | `tests/playwright/serializeDemos.spec.js`       | Browser tests — verifies rendered text matches expected output        |
 | `tests/fixtures/`                               | Demo components, definitions, server, and expected output (see its README) |
