@@ -130,3 +130,7 @@ dist/
 .pnp.*
 
 site/
+
+# Playwright
+test-results/
+.last-run.json

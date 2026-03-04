@@ -173,30 +173,22 @@ The Playwright test (`tests/playwright/serializeDemos.spec.js`) exercises browse
 
 ### vue-doxen
 
-| File                                            | Purpose                                                                   |
-| ----------------------------------------------- | ------------------------------------------------------------------------- |
-| `lib/helpers/serializeDemos.js`                 | Core serialization — text extraction, prop/emit/slot flattening           |
-| `lib/components/ComponentDemo.vue`              | Wraps text fields in `data-doxen-serialize` divs for Playwright targeting |
-| `lib/library.js`                                | Exports `serializeDemos`                                                  |
-| `tests/unit/lib/helpers/serializeDemos.test.js`    | Unit tests (15 tests)                                                |
-| `tests/playwright/serializeDemos.spec.js`          | Playwright integration tests (5 tests)                               |
-| `tests/fixtures/demos.js`                          | Shared demo definitions (StringDemo, ComponentDemo, DxButton, etc.)  |
-| `tests/fixtures/router.js`                         | Vue app with hash routing for Playwright test server                 |
-| `tests/fixtures/index.html`                        | Entry point for the Vite dev server                                  |
-| `tests/fixtures/components/DescriptionWrapper.vue` | Test component — renders HTML from a `message` prop                  |
-| `tests/fixtures/components/StandaloneDescription.vue` | Test component — static text in template only                     |
-| `tests/fixtures/components/DxButton.vue`           | Realistic button with props, emits, slots                            |
-| `tests/fixtures/components/DxButtonDescription.vue`| Description component for DxButton                                   |
-| `tests/fixtures/components/DxButtonImport.vue`     | Import statement component for DxButton                              |
-| `tests/fixtures/components/DxButtonDeprecation.vue`| Deprecation notice component for DxButton                            |
-| `playwright.config.js`                             | Playwright configuration                                            |
+| File                                            | Purpose                                                               |
+| ----------------------------------------------- | --------------------------------------------------------------------- |
+| `lib/helpers/serializeDemos.js`                 | Core serialization — text extraction, prop/emit/slot flattening       |
+| `lib/components/ComponentDemo.vue`              | Wraps text fields in `data-doxen-serialize` divs for Playwright       |
+| `lib/library.js`                                | Exports `serializeDemos`                                              |
+| `tests/unit/lib/helpers/serializeDemos.test.js` | Unit tests                                                            |
+| `tests/playwright/serializeDemos.spec.js`       | Browser tests — verifies rendered text matches expected output        |
+| `tests/fixtures/`                               | Demo components, definitions, server, and expected output (see its README) |
+| `playwright.config.js`                          | Playwright configuration (auto-starts test server on port 5199)       |
 
 #### Sandbox files (delete before merging)
 
-| File                                                  | Purpose                                                            |
-| ----------------------------------------------------- | ------------------------------------------------------------------ |
-| `tests/fixtures/sandbox/SERIALIZED-OUTPUT.json`          | Output artifact from `runSerializeDemo.js`                         |
-| `scripts/runSerializeDemo.js`                         | Script to generate SERIALIZED-OUTPUT.json via Playwright           |
+| File                          | Purpose                                                                  |
+| ----------------------------- | ------------------------------------------------------------------------ |
+| `scripts/runSerializeDemo.js` | Runs `serializeDemos` and writes actual output to `sandbox/` for inspection |
+| `tests/fixtures/sandbox/`     | Contains `SERIALIZED-OUTPUT.json` — diff against `expected-output.json`  |
 
 ### atc-alloy
 

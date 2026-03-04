@@ -1,9 +1,9 @@
 /**
  * @file SANDBOX ONLY — delete before merging.
  *
- * Runs serializeDemos against the sandbox fixtures and writes the result to
- * tests/fixtures/sandbox/SERIALIZED-OUTPUT.json. This exists to demonstrate
- * the full Playwright extraction pipeline without needing atc-alloy.
+ * Runs serializeDemos against the test fixtures and writes the actual output
+ * to tests/fixtures/sandbox/SERIALIZED-OUTPUT.json. Compare this against
+ * tests/fixtures/expected-output.json to verify correctness.
  *
  * Usage:
  *   npm run build:library

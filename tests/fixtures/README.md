@@ -1,67 +1,24 @@
 # Test Fixtures for `serializeDemos`
 
-Test infrastructure for `serializeDemos` — the function that converts VueDoxen
-demo objects into plain JSON for AI/MCP consumption.
+Test components, demo definitions, and expected output for the `serializeDemos`
+function. The Vite dev server serves each demo at `/#/DemoName` so Playwright
+can navigate there and extract rendered text.
 
-## How the pieces fit together
+## Flow
 
 ```
-components/          Vue components used by demo definitions
-     │
-     ▼
-  demos.js           Demo objects referencing those components
-     │
-     ├──▶ router.js + index.html    Vite dev server (one route per demo)
-     │         │
-     │         ▼
-     │    Playwright tests           Navigate to /#/DemoName, extract text
-     │
-     └──▶ runSerializeDemo.js        Same server, writes SERIALIZED-OUTPUT.json
-               │
-               ▼
-          sandbox/SERIALIZED-OUTPUT.json
+components/*.vue  →  demos.js  →  router.js + index.html  →  Vite dev server (:5199)
+                                                                     │
+                                                          Playwright spec navigates
+                                                          to each demo route, reads
+                                                          [data-doxen-serialize] text,
+                                                          compares to expected-output.json
 ```
 
 ## Files
 
-### Components (`components/`)
-
-Test Vue components referenced by demo definitions.
-
-| Component | Pattern | Purpose |
-|-----------|---------|---------|
-| `DescriptionWrapper.vue` | Component + props | Renders HTML from a `message` prop |
-| `StandaloneDescription.vue` | Component only | Static text lives entirely in the `<template>` |
-| `DxButton.vue` | Realistic component | Button with 6 props, 1 emit, 1 slot |
-| `DxButtonDescription.vue` | Component only | Description paragraphs for DxButton |
-| `DxButtonImport.vue` | Component + props | Builds import strings from `name` and `slim` props |
-| `DxButtonDeprecation.vue` | Component only | Deprecation banner for DxButton |
-
-### Demo definitions
-
-| File | Purpose |
-|------|---------|
-| `demos.js` | Single source of truth — every demo object lives here |
-
-### Test server
-
-| File | Purpose |
-|------|---------|
-| `router.js` | Vue app with hash routing — renders each demo at `/#/DemoName` via VueDoxen |
-| `index.html` | Entry point for the Vite dev server (port 5199) |
-
-### Sandbox (delete before merging)
-
-| File | Purpose |
-|------|---------|
-| `sandbox/SERIALIZED-OUTPUT.json` | Output artifact from `scripts/runSerializeDemo.js` |
-| `sandbox/README.md` | Documents the sandbox |
-
-## Demo types in `demos.js`
-
-| Demo | What it tests |
-|------|---------------|
-| **StringDemo** | All text fields are plain strings — resolved in sync pass |
-| **ComponentDemo** | `description` is a component + props — needs Playwright or resolver |
-| **ComponentOnlyDemo** | `description` is a component with no props — needs Playwright |
-| **DxButton** | Realistic: all 4 text fields are Vue SFC components with props/emits/slots |
+- **`components/`** — Vue SFCs used by demo definitions (`DxButton`, `DescriptionWrapper`, etc.)
+- **`demos.js`** — Single source of truth for all demo objects
+- **`router.js`** + **`index.html`** — Vite dev server entry (hash routing, port 5199)
+- **`expected-output.json`** — Known-good `serializeDemos` output; Playwright spec compares against this
+- **`sandbox/`** — Delete before merging. Contains `SERIALIZED-OUTPUT.json` (actual output from `scripts/runSerializeDemo.js` for manual inspection)

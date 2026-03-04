@@ -5,8 +5,8 @@ import DxButtonDescription from './components/DxButtonDescription.vue';
 import DxButtonImport from './components/DxButtonImport.vue';
 import StandaloneDescription from './components/StandaloneDescription.vue';
 
-// Shared demo definitions used by the test server (router.js),
-// the Playwright spec, and the sandbox generation script.
+// Shared demo definitions used by the test server (router.js)
+// and the sandbox generation script (scripts/runSerializeDemo.js).
 export const demos = {
   StringDemo: {
     component: {
