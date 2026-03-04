@@ -5,401 +5,372 @@ import { serializeDemos } from '@/helpers/serializeDemos.js';
 import DescriptionWrapper from '@@/fixtures/DescriptionWrapper.vue';
 import StandaloneDescription from '@@/fixtures/StandaloneDescription.vue';
 
-const testDemos = {
-  // String-based fields: description and importStatement are plain strings.
-  // In sync mode (no Playwright), strings pass through as-is with HTML preserved.
-  StringDemo: {
+// ---------------------------------------------------------------------------
+// Helpers — minimal demo factories to keep test data close to each test.
+// ---------------------------------------------------------------------------
+
+// Bare-minimum demo: just a component with a name and optional props definition.
+const makeDemo = function (name, props) {
+  return {
     component: {
-      name: 'StringDemo',
-      template: '<div>String demo</div>',
-      props: {
-        // Has type, default, and validator — serializeDemos extracts allowed
-        // values from the validator by calling it against known primitives.
-        size: {
-          type: String,
-          default: 'md',
-          validator: (v) => ['sm', 'md', 'lg'].includes(v)
-        }
-      }
-    },
-    description: '<p>A simple <strong>string</strong> description.</p>',
-    importStatement: 'import { StringDemo } from \'my-lib\';',
-    propsToDemo: {
-      size: { description: 'Controls the size.' }
-    },
-    emitsToDemo: {
-      clicked: { description: 'Emitted on click.' }
-    },
-    slotsToDemo: { default: 'Slot content' }
-  },
-  // Component-with-props: description is a Vue component object with props.
-  // Without Playwright or a resolver, resolveField returns null because the
-  // text lives inside the component's rendered output, not in plain data.
-  ComponentDemo: {
-    component: {
-      name: 'ComponentDemo',
-      template: '<div>Component demo</div>',
-      props: {
-        disabled: {
-          type: Boolean,
-          default: false
-        }
-      }
-    },
-    description: {
-      component: DescriptionWrapper,
-      props: {
-        message: '<p>Wrapper description with <code>HTML</code>.</p>'
-      }
+      name,
+      template: '<div>' + name + '</div>',
+      props: props || {}
     }
-  },
-  // Component-only: description is a Vue component with no props at all.
-  // The text is entirely in the component's <template>. Only Playwright
-  // (rendering in a browser) can extract it. Without Playwright → null.
-  ComponentOnlyDemo: {
-    component: {
-      name: 'ComponentOnlyDemo',
-      template: '<div>Component only demo</div>',
-      props: {}
-    },
-    description: {
-      component: StandaloneDescription
-    }
-  }
+  };
 };
 
+// ---------------------------------------------------------------------------
+
 describe('serializeDemos', () => {
-  test('Resolves plain string description and importStatement with HTML preserved', async () => {
-    const result = await serializeDemos(testDemos);
-    const stringDemo = result.StringDemo;
+  // =========================================================================
+  //  TEXT FIELDS (description, title, importStatement, deprecationNotice)
+  //
+  //  These fields accept three shapes:
+  //    1. A plain string        → returned as-is (Pass 1)
+  //    2. A component + props   → null without Playwright/resolver (Pass 1)
+  //    3. A component, no props → null without Playwright/resolver (Pass 1)
+  //
+  //  Pass 2 (Playwright) resolves cases 2 & 3 by rendering in a browser.
+  //  That is covered in tests/playwright/serializeDemos.spec.js.
+  // =========================================================================
 
-    expect(stringDemo.description)
-      .toEqual(
-        '<p>A simple <strong>string</strong> description.</p>'
-      );
-    expect(stringDemo.import)
-      .toEqual('import { StringDemo } from \'my-lib\';');
-    expect(stringDemo.deprecated)
-      .toEqual(false);
-    expect(stringDemo.deprecationNotice)
-      .toEqual(null);
-  });
-
-  test('Serializes props with type, default, allowed, description', async () => {
-    const result = await serializeDemos(testDemos);
-    const props = result.StringDemo.props;
-
-    expect(props.size.type)
-      .toEqual('String');
-    expect(props.size.required)
-      .toEqual(false);
-    expect(props.size.default)
-      .toEqual('md');
-    expect(props.size.allowed)
-      .toEqual(['sm', 'md', 'lg']);
-    expect(props.size.description)
-      .toEqual('Controls the size.');
-  });
-
-  test('Serializes emits', async () => {
-    const result = await serializeDemos(testDemos);
-    const emits = result.StringDemo.emits;
-
-    expect(emits.clicked)
-      .toEqual({ description: 'Emitted on click.' });
-  });
-
-  test('Serializes slots', async () => {
-    const result = await serializeDemos(testDemos);
-    const slots = result.StringDemo.slots;
-
-    expect(slots)
-      .toContain('default');
-  });
-
-  test('Component descriptions return null without Playwright', async () => {
-    const result = await serializeDemos(testDemos);
-    const componentDemo = result.ComponentDemo;
-
-    expect(componentDemo.description)
-      .toEqual(null);
-    expect(componentDemo.import)
-      .toEqual(null);
-  });
-
-  test('Serializes component props correctly', async () => {
-    const result = await serializeDemos(testDemos);
-    const props = result.ComponentDemo.props;
-
-    expect(props.disabled.type)
-      .toEqual('Boolean');
-    expect(props.disabled.required)
-      .toEqual(false);
-    expect(props.disabled.default)
-      .toEqual(false);
-    expect(props.disabled.allowed)
-      .toEqual(null);
-    expect(props.disabled.description)
-      .toEqual(null);
-  });
-
-  test('Returns null for component-only description without Playwright', async () => {
-    const result = await serializeDemos(testDemos);
-    const componentOnly = result.ComponentOnlyDemo;
-
-    expect(componentOnly.description)
-      .toEqual(null);
-    expect(componentOnly.import)
-      .toEqual(null);
-  });
-
-  test('Includes all demo keys in output', async () => {
-    const result = await serializeDemos(testDemos);
-    expect(Object.keys(result))
-      .toEqual([
-        'StringDemo',
-        'ComponentDemo',
-        'ComponentOnlyDemo'
-      ]);
-  });
-
-  test('Output is fully JSON-serializable', async () => {
-    const result = await serializeDemos(testDemos);
-    const json = JSON.stringify(result);
-    const parsed = JSON.parse(json);
-    expect(parsed)
-      .toEqual(result);
-  });
-
-  test('Deprecated is consistent with deprecationNotice', async () => {
-    const demosWithDeprecation = {
-      DeprecatedComponent: {
-        component: {
-          name: 'DeprecatedComponent',
-          template: '<div>deprecated</div>',
-          props: {}
-        },
-        deprecationNotice: '<p>This component is deprecated.</p>'
-      },
-      NotDeprecated: {
-        component: {
-          name: 'NotDeprecated',
-          template: '<div>ok</div>',
-          props: {}
+  describe('text fields — string values', () => {
+    test('String description and importStatement pass through with HTML preserved', async () => {
+      const demos = {
+        MyComponent: {
+          ...makeDemo('MyComponent'),
+          description: '<p>A <strong>bold</strong> description.</p>',
+          importStatement: 'import { MyComponent } from \'my-lib\';'
         }
-      }
-    };
-    const result = await serializeDemos(demosWithDeprecation);
+      };
+      const result = await serializeDemos(demos);
 
-    expect(result.DeprecatedComponent.deprecated)
-      .toEqual(true);
-    expect(result.DeprecatedComponent.deprecationNotice)
-      .toEqual(
-        '<p>This component is deprecated.</p>'
-      );
-    expect(result.NotDeprecated.deprecated)
-      .toEqual(false);
-    expect(result.NotDeprecated.deprecationNotice)
-      .toEqual(null);
-  });
-
-  test('Manual resolvers override component extraction', async () => {
-    const result = await serializeDemos(testDemos, {
-      resolvers: {
-        DescriptionWrapper: (props) => 'Custom resolved: ' + props.message
-      }
+      expect(result.MyComponent.description)
+        .toEqual('<p>A <strong>bold</strong> description.</p>');
+      expect(result.MyComponent.import)
+        .toEqual('import { MyComponent } from \'my-lib\';');
     });
-    expect(result.ComponentDemo.description)
-      .toEqual(
-        'Custom resolved: <p>Wrapper description with <code>HTML</code>.</p>'
-      );
-  });
 
-  test('All field types: string, component+props, and component-only across all 4 fields', async () => {
-    const inputDemos = {
-      // All 4 serializable fields as plain strings.
-      // Strings pass through as-is with HTML markup preserved.
-      AllStrings: {
-        component: {
-          name: 'AllStrings',
-          template: '<div>all strings</div>',
-          props: {}
-        },
-        description: '<p>String <em>description</em>.</p>',
-        title: 'My Custom Title',
-        importStatement: 'import { AllStrings } from \'my-lib\';',
-        // When deprecationNotice is a truthy string, deprecated should be true.
-        deprecationNotice: '<p>This is <strong>deprecated</strong>.</p>'
-      },
-      // All 4 fields as component objects with props.
-      // Without Playwright or a resolver, resolveField sees an object with a
-      // .component key and no matching resolver, so it returns null for each.
-      // deprecated is false because deprecationNotice resolved to null.
-      AllComponentsWithProps: {
-        component: {
-          name: 'AllComponentsWithProps',
-          template: '<div>all components with props</div>',
-          props: {}
-        },
-        description: {
-          component: DescriptionWrapper,
-          props: { message: '<p>Description from component.</p>' }
-        },
-        title: {
-          component: DescriptionWrapper,
-          props: { message: 'Title from component' }
-        },
-        importStatement: {
-          component: DescriptionWrapper,
-          props: { message: 'import { X } from \'y\'' }
-        },
-        deprecationNotice: {
-          component: DescriptionWrapper,
-          props: { message: 'Deprecated via component' }
+    test('All 4 fields as strings — full round-trip', async () => {
+      const demos = {
+        AllStrings: {
+          ...makeDemo('AllStrings'),
+          description: '<p>String <em>description</em>.</p>',
+          title: 'My Custom Title',
+          importStatement: 'import { AllStrings } from \'my-lib\';',
+          deprecationNotice: '<p>This is <strong>deprecated</strong>.</p>'
         }
-      },
-      // All 4 fields as component objects with NO props.
-      // The text is entirely in the component's <template>.
-      // Same result as above: null without Playwright.
-      AllComponentsOnly: {
-        component: {
-          name: 'AllComponentsOnly',
-          template: '<div>all components only</div>',
-          props: {}
-        },
-        description: {
-          component: StandaloneDescription
-        },
-        title: {
-          component: StandaloneDescription
-        },
-        importStatement: {
-          component: StandaloneDescription
-        },
-        deprecationNotice: {
-          component: StandaloneDescription
-        }
-      },
-      // No optional fields set at all. All 4 text fields default to null,
-      // deprecated is false, and props/emits/slots are empty.
-      NoFields: {
-        component: {
-          name: 'NoFields',
-          template: '<div>no fields</div>',
-          props: {}
-        }
-      }
-    };
+      };
+      const result = await serializeDemos(demos);
 
-    const expectedOutput = {
-      // Strings pass through, deprecated is true because deprecationNotice is set.
-      AllStrings: {
-        title: 'My Custom Title',
-        description: '<p>String <em>description</em>.</p>',
-        import: 'import { AllStrings } from \'my-lib\';',
-        deprecated: true,
-        deprecationNotice: '<p>This is <strong>deprecated</strong>.</p>',
-        props: {},
-        emits: {},
-        slots: []
-      },
-      // Component objects → null in sync mode. deprecated is false because
-      // deprecationNotice resolved to null (component couldn't be rendered).
-      AllComponentsWithProps: {
-        title: null,
-        description: null,
-        import: null,
-        deprecated: false,
-        deprecationNotice: null,
-        props: {},
-        emits: {},
-        slots: []
-      },
-      // Same as above — component-only (no props) also resolves to null.
-      AllComponentsOnly: {
-        title: null,
-        description: null,
-        import: null,
-        deprecated: false,
-        deprecationNotice: null,
-        props: {},
-        emits: {},
-        slots: []
-      },
-      // No fields provided at all — everything defaults to null/false/empty.
-      NoFields: {
-        title: null,
-        description: null,
-        import: null,
-        deprecated: false,
-        deprecationNotice: null,
-        props: {},
-        emits: {},
-        slots: []
-      }
-    };
-
-    const result = await serializeDemos(inputDemos);
-    expect(result)
-      .toEqual(expectedOutput);
-  });
-
-  test('Manual resolvers resolve all 4 component+props fields', async () => {
-    // All 4 fields use the same DescriptionWrapper component.
-    // A resolver is a function keyed by component name that receives the
-    // component's props and returns a string. This is an alternative to
-    // Playwright for extracting text from component-based fields.
-    const inputDemos = {
-      ResolverDemo: {
-        component: {
-          name: 'ResolverDemo',
-          template: '<div>resolver demo</div>',
-          props: {}
-        },
-        description: {
-          component: DescriptionWrapper,
-          props: { message: 'desc content' }
-        },
-        title: {
-          component: DescriptionWrapper,
-          props: { message: 'title content' }
-        },
-        importStatement: {
-          component: DescriptionWrapper,
-          props: { message: 'import content' }
-        },
-        deprecationNotice: {
-          component: DescriptionWrapper,
-          props: { message: 'deprecation content' }
-        }
-      }
-    };
-
-    const expectedOutput = {
-      ResolverDemo: {
-        // Each field is resolved by the resolver function, which receives
-        // the component's props and returns a string.
-        title: 'Resolved: title content',
-        description: 'Resolved: desc content',
-        import: 'Resolved: import content',
-        // deprecationNotice resolved to a truthy string, so deprecated is true.
-        deprecated: true,
-        deprecationNotice: 'Resolved: deprecation content',
-        props: {},
-        emits: {},
-        slots: []
-      }
-    };
-
-    // The resolver matches by component name ('DescriptionWrapper').
-    // resolveField checks: is it a string? No. Is it an object with
-    // .component? Yes. Is there a resolver for that component name? Yes → call it.
-    const result = await serializeDemos(inputDemos, {
-      resolvers: {
-        DescriptionWrapper: (props) => 'Resolved: ' + props.message
-      }
+      expect(result.AllStrings)
+        .toEqual({
+          title: 'My Custom Title',
+          description: '<p>String <em>description</em>.</p>',
+          import: 'import { AllStrings } from \'my-lib\';',
+          deprecated: true,
+          deprecationNotice: '<p>This is <strong>deprecated</strong>.</p>',
+          props: {},
+          emits: {},
+          slots: []
+        });
     });
-    expect(result)
-      .toEqual(expectedOutput);
+  });
+
+  describe('text fields — component values (without Playwright)', () => {
+    test('Component + props description returns null', async () => {
+      const demos = {
+        WithProps: {
+          ...makeDemo('WithProps'),
+          description: {
+            component: DescriptionWrapper,
+            props: { message: 'Some text' }
+          }
+        }
+      };
+      const result = await serializeDemos(demos);
+
+      expect(result.WithProps.description)
+        .toEqual(null);
+    });
+
+    test('Component-only description (no props) returns null', async () => {
+      const demos = {
+        NoProps: {
+          ...makeDemo('NoProps'),
+          description: {
+            component: StandaloneDescription
+          }
+        }
+      };
+      const result = await serializeDemos(demos);
+
+      expect(result.NoProps.description)
+        .toEqual(null);
+    });
+
+    test('All 4 fields as components — all null, deprecated false', async () => {
+      const demos = {
+        AllComponents: {
+          ...makeDemo('AllComponents'),
+          description: { component: DescriptionWrapper, props: { message: 'desc' } },
+          title: { component: DescriptionWrapper, props: { message: 'title' } },
+          importStatement: { component: DescriptionWrapper, props: { message: 'import' } },
+          deprecationNotice: { component: DescriptionWrapper, props: { message: 'deprecated' } }
+        }
+      };
+      const result = await serializeDemos(demos);
+
+      expect(result.AllComponents)
+        .toEqual({
+          title: null,
+          description: null,
+          import: null,
+          deprecated: false,
+          deprecationNotice: null,
+          props: {},
+          emits: {},
+          slots: []
+        });
+    });
+  });
+
+  describe('text fields — no fields provided', () => {
+    test('Missing fields default to null/false/empty', async () => {
+      const demos = { Bare: makeDemo('Bare') };
+      const result = await serializeDemos(demos);
+
+      expect(result.Bare)
+        .toEqual({
+          title: null,
+          description: null,
+          import: null,
+          deprecated: false,
+          deprecationNotice: null,
+          props: {},
+          emits: {},
+          slots: []
+        });
+    });
+  });
+
+  // =========================================================================
+  //  DEPRECATION
+  // =========================================================================
+
+  describe('deprecation', () => {
+    test('Deprecated is true when deprecationNotice is a truthy string', async () => {
+      const demos = {
+        Old: {
+          ...makeDemo('Old'),
+          deprecationNotice: '<p>This component is deprecated.</p>'
+        }
+      };
+      const result = await serializeDemos(demos);
+
+      expect(result.Old.deprecated)
+        .toEqual(true);
+      expect(result.Old.deprecationNotice)
+        .toEqual('<p>This component is deprecated.</p>');
+    });
+
+    test('Deprecated is false when deprecationNotice is absent', async () => {
+      const demos = { Current: makeDemo('Current') };
+      const result = await serializeDemos(demos);
+
+      expect(result.Current.deprecated)
+        .toEqual(false);
+      expect(result.Current.deprecationNotice)
+        .toEqual(null);
+    });
+  });
+
+  // =========================================================================
+  //  PROPS
+  // =========================================================================
+
+  describe('props', () => {
+    test('Serializes type, default, required, allowed, and description', async () => {
+      const demos = {
+        PropsDemo: {
+          ...makeDemo('PropsDemo', {
+            size: {
+              type: String,
+              default: 'md',
+              validator: (v) => ['sm', 'md', 'lg'].includes(v)
+            }
+          }),
+          propsToDemo: {
+            size: { description: 'Controls the size.' }
+          }
+        }
+      };
+      const result = await serializeDemos(demos);
+      const size = result.PropsDemo.props.size;
+
+      expect(size.type)
+        .toEqual('String');
+      expect(size.required)
+        .toEqual(false);
+      expect(size.default)
+        .toEqual('md');
+      expect(size.allowed)
+        .toEqual(['sm', 'md', 'lg']);
+      expect(size.description)
+        .toEqual('Controls the size.');
+    });
+
+    test('Boolean prop with no propsToDemo description', async () => {
+      const demos = {
+        BoolDemo: makeDemo('BoolDemo', {
+          disabled: { type: Boolean, default: false }
+        })
+      };
+      const result = await serializeDemos(demos);
+      const disabled = result.BoolDemo.props.disabled;
+
+      expect(disabled.type)
+        .toEqual('Boolean');
+      expect(disabled.required)
+        .toEqual(false);
+      expect(disabled.default)
+        .toEqual(false);
+      expect(disabled.allowed)
+        .toEqual(null);
+      expect(disabled.description)
+        .toEqual(null);
+    });
+  });
+
+  // =========================================================================
+  //  EMITS
+  // =========================================================================
+
+  describe('emits', () => {
+    test('Serializes emitsToDemo with description', async () => {
+      const demos = {
+        EmitDemo: {
+          ...makeDemo('EmitDemo'),
+          emitsToDemo: {
+            clicked: { description: 'Emitted on click.' }
+          }
+        }
+      };
+      const result = await serializeDemos(demos);
+
+      expect(result.EmitDemo.emits.clicked)
+        .toEqual({ description: 'Emitted on click.' });
+    });
+  });
+
+  // =========================================================================
+  //  SLOTS
+  // =========================================================================
+
+  describe('slots', () => {
+    test('Collects slot names from slotsToDemo', async () => {
+      const demos = {
+        SlotDemo: {
+          ...makeDemo('SlotDemo'),
+          slotsToDemo: { default: 'Slot content' }
+        }
+      };
+      const result = await serializeDemos(demos);
+
+      expect(result.SlotDemo.slots)
+        .toContain('default');
+    });
+  });
+
+  // =========================================================================
+  //  MANUAL RESOLVERS (alternative to Playwright for component-based fields)
+  //
+  //  A resolver is a function keyed by component name. When resolveField
+  //  encounters a component object, it checks for a matching resolver before
+  //  returning null. This lets build scripts extract text without a browser.
+  // =========================================================================
+
+  describe('manual resolvers', () => {
+    test('Resolver extracts text from a component + props field', async () => {
+      const demos = {
+        Resolved: {
+          ...makeDemo('Resolved'),
+          description: {
+            component: DescriptionWrapper,
+            props: { message: 'Hello from resolver' }
+          }
+        }
+      };
+      const result = await serializeDemos(demos, {
+        resolvers: {
+          DescriptionWrapper: (props) => 'Resolved: ' + props.message
+        }
+      });
+
+      expect(result.Resolved.description)
+        .toEqual('Resolved: Hello from resolver');
+    });
+
+    test('Resolvers work across all 4 text fields', async () => {
+      const demos = {
+        FullResolver: {
+          ...makeDemo('FullResolver'),
+          description: { component: DescriptionWrapper, props: { message: 'desc' } },
+          title: { component: DescriptionWrapper, props: { message: 'title' } },
+          importStatement: { component: DescriptionWrapper, props: { message: 'import' } },
+          deprecationNotice: { component: DescriptionWrapper, props: { message: 'notice' } }
+        }
+      };
+      const result = await serializeDemos(demos, {
+        resolvers: {
+          DescriptionWrapper: (props) => 'R:' + props.message
+        }
+      });
+
+      expect(result.FullResolver)
+        .toEqual({
+          title: 'R:title',
+          description: 'R:desc',
+          import: 'R:import',
+          deprecated: true,
+          deprecationNotice: 'R:notice',
+          props: {},
+          emits: {},
+          slots: []
+        });
+    });
+  });
+
+  // =========================================================================
+  //  OUTPUT SHAPE
+  // =========================================================================
+
+  describe('output shape', () => {
+    test('One entry per demo, keyed by demo name', async () => {
+      const demos = {
+        First: makeDemo('First'),
+        Second: makeDemo('Second')
+      };
+      const result = await serializeDemos(demos);
+
+      expect(Object.keys(result))
+        .toEqual(['First', 'Second']);
+    });
+
+    test('Output survives JSON round-trip (fully serializable)', async () => {
+      const demos = {
+        JsonTest: {
+          ...makeDemo('JsonTest'),
+          description: 'A string',
+          propsToDemo: { size: { description: 'Size prop.' } }
+        }
+      };
+      const result = await serializeDemos(demos);
+      const roundTripped = JSON.parse(JSON.stringify(result));
+
+      expect(roundTripped)
+        .toEqual(result);
+    });
   });
 });

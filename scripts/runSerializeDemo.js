@@ -1,6 +1,9 @@
 /**
- * @file Generate `tests/fixtures/serialized-demos.json` — same flow as atc-alloy's
- * makeMCPComponentsFile.js but self-contained inside vue-doxen.
+ * @file SANDBOX ONLY — delete before merging.
+ *
+ * Runs serializeDemos against the sandbox fixtures and writes the result to
+ * tests/fixtures/sandbox/SERIALIZED-OUTPUT.json. This exists to demonstrate
+ * the full Playwright extraction pipeline without needing atc-alloy.
  *
  * Usage:
  *   npm run build:library
@@ -14,7 +17,7 @@ import { resolve } from 'node:path';
 import { createServer } from 'vite';
 
 const __dirname = import.meta.dirname;
-const outputPath = resolve(__dirname, '..', 'tests', 'fixtures', 'sandbox', 'serialized-demos.json');
+const outputPath = resolve(__dirname, '..', 'tests', 'fixtures', 'sandbox', 'SERIALIZED-OUTPUT.json');
 
 async function main () {
   const server = await createServer({

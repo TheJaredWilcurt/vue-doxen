@@ -15,7 +15,7 @@ npm run build:library
 node scripts/runSerializeDemo.js
 ```
 
-This starts a Vite dev server on port 5199, loads the demos via SSR, runs `serializeDemos` with Playwright extraction, and writes the result to `serialized-demos.json`.
+This starts a Vite dev server on port 5199, loads the demos via SSR, runs `serializeDemos` with Playwright extraction, and writes the result to `SERIALIZED-OUTPUT.json`.
 
 ## Files
 
@@ -51,7 +51,7 @@ Used by Playwright tests to cover the simpler field types.
 
 | File | Purpose |
 |------|---------|
-| `serialized-demos.json` | Output of `runSerializeDemo.js` — the final JSON showing all demos serialized |
+| `SERIALIZED-OUTPUT.json` | Output of `runSerializeDemo.js` — the final JSON showing all demos serialized |
 | `serializeTestApp.vue` | Legacy fixture used by the sync-only Playwright test |
 
 ## Demo Types in serializeTestDemos.js

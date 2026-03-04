@@ -196,9 +196,9 @@ The Playwright test (`tests/playwright/serializeDemos.spec.js`) exercises browse
 | `tests/fixtures/sandbox/DxButtonDeprecation.vue`         | Deprecation notice component for DxButton                          |
 | `tests/fixtures/sandbox/sandboxDemos.js`                 | Demo definitions including DxButton (extends serializeTestDemos)   |
 | `tests/fixtures/sandbox/sandboxRouter.js`                | Vue app for sandbox server (serves all demos including DxButton)   |
-| `tests/fixtures/sandbox/serialized-demos.json`           | Output artifact from `runSerializeDemo.js`                         |
+| `tests/fixtures/sandbox/SERIALIZED-OUTPUT.json`          | Output artifact from `runSerializeDemo.js`                         |
 | `tests/fixtures/sandbox/serializeTestApp.vue`            | Legacy fixture — unused                                            |
-| `scripts/runSerializeDemo.js`                         | Script to generate serialized-demos.json via Playwright            |
+| `scripts/runSerializeDemo.js`                         | Script to generate SERIALIZED-OUTPUT.json via Playwright           |
 
 ### atc-alloy
 
