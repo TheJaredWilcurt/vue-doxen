@@ -94,6 +94,11 @@ describe('VueDoxenCustom.vue', () => {
       .not.toHaveBeenCalled();
 
     global.vueSnapshots.stringifyAttributes = true;
+    global.vueSnapshots.attributesNotToStringify = [
+      'class',
+      'style',
+      'styletokens'
+    ];
 
     expect(wrapper)
       .toMatchSnapshot();

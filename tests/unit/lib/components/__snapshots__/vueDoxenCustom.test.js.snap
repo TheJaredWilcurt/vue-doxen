@@ -163,7 +163,7 @@ exports[`VueDoxenCustom.vue > Renders correctly with all props 1`] = `
     </div>
     <!-- DoxenPropsDocumentation -->
     <div
-      propstodemo="[object Object]"
+      propstodemo="{  }"
       styletokens="[object Object]"
     >
       DummyPropsDocumentation
