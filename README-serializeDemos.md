@@ -65,16 +65,16 @@ If none of these produce text (and Playwright isn't enabled), the field is `null
 
 When Playwright mode is enabled, `serializeDemos` navigates to the demo page and uses these attributes as selectors (`[data-doxen-serialize="description"]`) to find and extract the rendered text content. This is what makes Playwright extraction work without needing to know anything about the specific component being rendered.
 
-### 4. The JSON Output (what atc-alloy consumes)
+### 4. The JSON Output
 
 The final output is a flat JSON object with one entry per component:
 
 ```json
 {
-  "AlloyCard": {
+  "MyCard": {
     "title": null,
     "description": "Cards represent an entity.",
-    "import": "import { AlloyCard } from 'atc-alloy';",
+    "import": "import { MyCard } from 'my-lib';",
     "deprecated": false,
     "deprecationNotice": null,
     "props": {
@@ -94,7 +94,7 @@ The final output is a flat JSON object with one entry per component:
 }
 ```
 
-This JSON is written to `public/mcp/alloy-components.json` in atc-alloy, where the MCP server reads and serves it to AI tools.
+This JSON can be consumed by MCP servers, AI tools, or any system that needs structured component metadata.
 
 ### End-to-End Flow
 
@@ -104,9 +104,9 @@ VueDoxen Demo Objects (written by developers)
 serializeDemos() — extracts structured data + text
         ↓  (optionally uses Playwright for component-based text fields)
         ↓
-alloy-components.json — plain JSON, no Vue, no HTML
+components.json — plain JSON, no Vue, no HTML
         ↓
-MCP Server — serves JSON to AI tools via resources and tools
+Your MCP server, AI tool, or documentation pipeline
 ```
 
 ## Quick Start
@@ -169,9 +169,46 @@ npx playwright test --reporter=line
 
 The Playwright test (`tests/playwright/serializeDemos.spec.js`) exercises browser-based extraction end-to-end via test fixture components.
 
-## File Reference
+## Using serializeDemos in Your Project
 
-### vue-doxen
+If your VueDoxen demos use component-based text fields (description, importStatement, etc.), you'll need Playwright to extract the rendered text. The pattern is:
+
+### 1. Start your dev server
+
+Your VueDoxen docs site needs to be running so Playwright can navigate to each demo page.
+
+```bash
+npm start   # or however you serve your docs
+```
+
+### 2. Write a small generation script
+
+```js
+import fs from 'node:fs';
+import { serializeDemos } from 'vue-doxen';
+import { demos } from './path/to/your/demos.js';
+
+const result = await serializeDemos(demos, {
+  playwright: { baseUrl: 'http://localhost:5173' }
+});
+
+fs.writeFileSync('components.json', JSON.stringify(result, null, 2) + '\n');
+console.log(`Generated ${Object.keys(result).length} components.`);
+```
+
+That's it. The `demos` object is the same one you already pass to `VueDoxen` or `VueDoxenCustom`. `serializeDemos` handles all the browser automation internally.
+
+### 3. Use the JSON
+
+The output is plain JSON with no Vue or HTML dependencies. Feed it to an MCP server, a search index, a static site generator — whatever your AI pipeline needs.
+
+**If all your text fields are strings** (no component-based descriptions), you don't need Playwright at all:
+
+```js
+const result = await serializeDemos(demos);
+```
+
+## File Reference
 
 | File                                            | Purpose                                                               |
 | ----------------------------------------------- | --------------------------------------------------------------------- |
@@ -189,48 +226,3 @@ The Playwright test (`tests/playwright/serializeDemos.spec.js`) exercises browse
 | ----------------------------- | ------------------------------------------------------------------------ |
 | `scripts/runSerializeDemo.js` | Runs `serializeDemos` and writes actual output to `sandbox/` for inspection |
 | `tests/fixtures/sandbox/`     | Contains `SERIALIZED-OUTPUT.json` — diff against `expected-output.json`  |
-
-### atc-alloy
-
-| File                                          | Purpose                                                                        |
-| --------------------------------------------- | ------------------------------------------------------------------------------ |
-| `scripts/icons/makeMCPIconsFile.js`           | Generates `public/mcp/alloy-icons.json`                                        |
-| `scripts/components/makeMCPComponentsFile.js` | Generates `public/mcp/alloy-components.json` via `serializeDemos` + Playwright |
-| `scripts/generateMCPFiles.js`                 | Entry point — runs both generators                                             |
-| `scripts/mcp/server.js`                       | MCP server — serves the JSON to AI tools via stdio                             |
-
-### Generating MCP JSON (atc-alloy)
-
-```bash
-# Terminal 1: Start the docs dev server (required for component generation)
-npm start
-
-# Terminal 2: Generate both icons and components JSON
-node scripts/generateMCPFiles.js http://localhost:5173
-```
-
-**Important:** `generateMCPFiles.js` always runs both the icons and components generators. The icons generator is synchronous and doesn't need the dev server. The components generator uses Playwright to visit each demo page and extract rendered text, so it **requires the docs dev server to be running**. If the dev server isn't running, icons will still generate but the components step will fail with `ERR_CONNECTION_REFUSED`.
-
-If no URL argument is passed, it defaults to `http://localhost:5173`.
-
-**Note:** Until `serializeDemos` is published in a vue-doxen release, link the local copy:
-
-```bash
-# In vue-doxen
-npm link
-
-# In atc-alloy
-npm link vue-doxen
-```
-
-### Running the MCP Server
-
-```bash
-npm install @modelcontextprotocol/sdk zod
-node scripts/mcp/server.js
-```
-
-The server exposes:
-
-- **Resources:** `alloy://components`, `alloy://icons`
-- **Tools:** `list-components`, `lookup-component`, `list-icons`, `lookup-icon`
