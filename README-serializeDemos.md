@@ -178,26 +178,24 @@ The Playwright test (`tests/playwright/serializeDemos.spec.js`) exercises browse
 | `lib/helpers/serializeDemos.js`                 | Core serialization — text extraction, prop/emit/slot flattening           |
 | `lib/components/ComponentDemo.vue`              | Wraps text fields in `data-doxen-serialize` divs for Playwright targeting |
 | `lib/library.js`                                | Exports `serializeDemos`                                                  |
-| `tests/unit/lib/helpers/serializeDemos.test.js` | Unit tests (13 tests)                                                     |
-| `tests/playwright/serializeDemos.spec.js`       | Playwright integration test                                               |
-| `tests/fixtures/DescriptionWrapper.vue`         | Test fixture — component with text in props                               |
-| `tests/fixtures/StandaloneDescription.vue`      | Test fixture — component with text only in template                       |
-| `tests/fixtures/serializeTestDemos.js`          | Shared demo definitions for tests (StringDemo, ComponentDemo, etc.)       |
-| `tests/fixtures/serializeTestRouter.js`         | Vue app with hash routing for Playwright test server                      |
-| `playwright.config.js`                          | Playwright configuration                                                  |
+| `tests/unit/lib/helpers/serializeDemos.test.js`    | Unit tests (15 tests)                                                |
+| `tests/playwright/serializeDemos.spec.js`          | Playwright integration tests (5 tests)                               |
+| `tests/fixtures/demos.js`                          | Shared demo definitions (StringDemo, ComponentDemo, DxButton, etc.)  |
+| `tests/fixtures/router.js`                         | Vue app with hash routing for Playwright test server                 |
+| `tests/fixtures/index.html`                        | Entry point for the Vite dev server                                  |
+| `tests/fixtures/components/DescriptionWrapper.vue` | Test component — renders HTML from a `message` prop                  |
+| `tests/fixtures/components/StandaloneDescription.vue` | Test component — static text in template only                     |
+| `tests/fixtures/components/DxButton.vue`           | Realistic button with props, emits, slots                            |
+| `tests/fixtures/components/DxButtonDescription.vue`| Description component for DxButton                                   |
+| `tests/fixtures/components/DxButtonImport.vue`     | Import statement component for DxButton                              |
+| `tests/fixtures/components/DxButtonDeprecation.vue`| Deprecation notice component for DxButton                            |
+| `playwright.config.js`                             | Playwright configuration                                            |
 
-#### Demo-only files (delete before merging)
+#### Sandbox files (delete before merging)
 
 | File                                                  | Purpose                                                            |
 | ----------------------------------------------------- | ------------------------------------------------------------------ |
-| `tests/fixtures/sandbox/DxButton.vue`                    | Realistic button component with props, emits, slots                |
-| `tests/fixtures/sandbox/DxButtonDescription.vue`         | Description component for DxButton                                 |
-| `tests/fixtures/sandbox/DxButtonImport.vue`              | Import statement component for DxButton                            |
-| `tests/fixtures/sandbox/DxButtonDeprecation.vue`         | Deprecation notice component for DxButton                          |
-| `tests/fixtures/sandbox/sandboxDemos.js`                 | Demo definitions including DxButton (extends serializeTestDemos)   |
-| `tests/fixtures/sandbox/sandboxRouter.js`                | Vue app for sandbox server (serves all demos including DxButton)   |
 | `tests/fixtures/sandbox/SERIALIZED-OUTPUT.json`          | Output artifact from `runSerializeDemo.js`                         |
-| `tests/fixtures/sandbox/serializeTestApp.vue`            | Legacy fixture — unused                                            |
 | `scripts/runSerializeDemo.js`                         | Script to generate SERIALIZED-OUTPUT.json via Playwright           |
 
 ### atc-alloy

@@ -161,6 +161,62 @@ test.describe('serializeDemos with Playwright extraction', () => {
       .toContain('Feature one');
   });
 
+  // DxButton is a realistic demo where all text fields are Vue SFC components.
+  // Unlike the inline demos above, these components are served by the test server
+  // and resolved by Playwright navigating to /#/DxButton.
+  test('DxButton: Playwright resolves all 4 SFC-based text fields', async () => {
+    const demos = {
+      DxButton: {
+        component: {
+          name: 'DxButton',
+          template: '<button><slot /></button>',
+          props: {
+            label: { type: String, default: 'Click me' }
+          }
+        },
+        description: {
+          component: { name: 'DxButtonDescription' }
+        },
+        importStatement: {
+          component: { name: 'DxButtonImport' },
+          props: { name: 'DxButton', slim: true }
+        },
+        deprecationNotice: {
+          component: { name: 'DxButtonDeprecation' }
+        }
+      }
+    };
+    const result = await serializeDemos(demos, {
+      playwright: { baseUrl }
+    });
+
+    // description — rendered from DxButtonDescription.vue template
+    expect(result.DxButton.description)
+      .not.toEqual(null);
+    expect(result.DxButton.description)
+      .toContain('versatile button component');
+
+    // import — rendered from DxButtonImport.vue with props { name, slim }
+    expect(result.DxButton.import)
+      .not.toEqual(null);
+    expect(result.DxButton.import)
+      .toContain('DxButton');
+    expect(result.DxButton.import)
+      .toContain('slim build');
+
+    // deprecationNotice — rendered from DxButtonDeprecation.vue template
+    expect(result.DxButton.deprecationNotice)
+      .not.toEqual(null);
+    expect(result.DxButton.deprecationNotice)
+      .toContain('Deprecated');
+    expect(result.DxButton.deprecationNotice)
+      .toContain('DxActionButton');
+
+    // deprecated should be true since deprecationNotice was resolved
+    expect(result.DxButton.deprecated)
+      .toEqual(true);
+  });
+
   test('String fields still work correctly in Playwright mode', async () => {
     const demos = {
       StringDemo: testDemos.StringDemo

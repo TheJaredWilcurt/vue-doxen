@@ -2,8 +2,8 @@ import { describe, test, expect } from 'vitest';
 
 import { serializeDemos } from '@/helpers/serializeDemos.js';
 
-import DescriptionWrapper from '@@/fixtures/DescriptionWrapper.vue';
-import StandaloneDescription from '@@/fixtures/StandaloneDescription.vue';
+import DescriptionWrapper from '@@/fixtures/components/DescriptionWrapper.vue';
+import StandaloneDescription from '@@/fixtures/components/StandaloneDescription.vue';
 
 // ---------------------------------------------------------------------------
 // Helpers — minimal demo factories to keep test data close to each test.

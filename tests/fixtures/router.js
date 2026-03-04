@@ -3,7 +3,7 @@
 import { createApp, defineComponent, h } from 'vue';
 import { createRouter, createWebHashHistory, RouterView } from 'vue-router';
 
-import { demos } from './serializeTestDemos.js';
+import { demos } from './demos.js';
 
 import VueDoxen from '@/components/VueDoxen.vue';
 
