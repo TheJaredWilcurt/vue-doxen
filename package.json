@@ -153,11 +153,11 @@
   "devEngines": {
     "runtime": {
       "name": "node",
-      "version": "25.6.0"
+      "version": "25.8.0"
     },
     "packageManager": {
       "name": "npm",
-      "version": "11.8.0"
+      "version": "11.11.0"
     }
   }
 }
