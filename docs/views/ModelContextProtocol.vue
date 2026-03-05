@@ -173,7 +173,7 @@ async function convertDemosToJson () {
     const content = JSON.stringify(data, null, 2) + '\\n';
 
     const outputFile = join(import.meta.dirname, 'demos.json');
-    fs.writeFileSync(outputFile, content);
+    writeFileSync(outputFile, content);
   } catch (error) {
     console.log(error);
   }
