@@ -33,7 +33,7 @@
       />
       <p>
         The above script uses both features of Node.js and Vite. Once created
-        you'll need a convienient way to run it. I would recommed using an npm
+        you'll need a convenient way to run it. I would recommend using an npm
         script. In the example we use <code>vite-node</code>, you may need to
         run <code>npm i -D vite-node</code> for the npm script below to work.
         If you know of a way to get the script to work with
@@ -140,7 +140,7 @@ async function convertDemosToJson () {
     const data = await serializeDemos(demos);
     const content = JSON.stringify(data, null, 2) + '\\n';
     const outputFile = join(import.meta.dirname, 'demos.json');
-    fs.writeFileSync(outputFile, content);
+    writeFileSync(outputFile, content);
   } catch (error) {
     console.log(error);
   }
