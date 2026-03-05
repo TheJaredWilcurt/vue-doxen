@@ -54,7 +54,8 @@ export default {
         treeShaking: 'Tree Shaking',
         linter: 'Linting',
         branding: 'Press Kit/Branding',
-        a11y: 'Accessibility'
+        a11y: 'Accessibility',
+        mcp: 'MCP'
       };
       if (window.location.href.includes('localhost')) {
         links.devTestingPage = 'Dev Testing Page';

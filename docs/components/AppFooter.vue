@@ -8,7 +8,7 @@
       <div>
         <a
           class="created-by-link"
-          href="https://twitter.com/TheJaredWilcurt"
+          href="https://bsky.app/profile/thejaredwilcurt.bsky.social"
           title="@TheJaredWilcurt"
           @focus="signatureKey++"
           @mouseover="signatureKey++"

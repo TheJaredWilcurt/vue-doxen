@@ -1525,6 +1525,97 @@ export const IMPORT_STATEMENT_STRING_SCRIPT_SETUP_EXAMPLE = unindent(`
   </script>
 `);
 
+const MCP_ADVANCED_TEMPLATE = (`
+  <template>
+    <DoxenSidebar v-model="current" :demos="demos" />
+    <VueDoxen v-model="current" :demos="demos" />
+  </template>
+`);
+export const MCP_ADVANCED_OPTIONS_EXAMPLE = templatePrefix(MCP_ADVANCED_TEMPLATE, `
+  <script>
+  import { DoxenSidebar, VueDoxen } from 'vue-doxen';
+
+  import { allDemos } from '../src/demos/index.js';
+
+  export default {
+    name: 'DoxenMCP',
+    components: {
+      DoxenSidebar,
+      VueDoxen
+    },
+    data: function () {
+      return {
+        current: undefined
+      };
+    },
+    computed: {
+      demos: function () {
+        return allDemos;
+      }
+    }
+  };
+  </script>
+`);
+export const MCP_ADVANCED_COMPOSITION_EXAMPLE = templatePrefix(MCP_ADVANCED_TEMPLATE, `
+  <script>
+  import { computed, ref } from 'vue';
+  import { DoxenSidebar, VueDoxen } from 'vue-doxen';
+
+  import { allDemos } from '../src/demos/index.js';
+
+  export default {
+    name: 'DoxenMCP',
+    components: {
+      DoxenSidebar,
+      VueDoxen
+    },
+    setup: function () {
+      function useCreateDoxenDemoMcpData () {
+        const current = ref(undefined);
+
+        const demos = computed(() => {
+          return allDemos;
+        });
+        return {
+          current,
+          demos
+        };
+      }
+      return useCreateDoxenDemoMcpData();
+    }
+  };
+  </script>
+`);
+export const MCP_ADVANCED_SCRIPT_SETUP_EXAMPLE = templatePrefix(MCP_ADVANCED_TEMPLATE, `
+  <script setup>
+  import { computed, ref } from 'vue';
+  import { DoxenSidebar, VueDoxen } from 'vue-doxen';
+
+  import { allDemos } from '../src/demos/index.js';
+
+  defineOptions({
+    name: 'DoxenMCP'
+  });
+
+  function useCreateDoxenDemoMcpData () {
+    const current = ref(undefined);
+
+    const demos = computed(() => {
+      return allDemos;
+    });
+    return {
+      current,
+      demos
+    };
+  }
+
+  const {
+    current,
+    demos
+  } = useCreateDoxenDemoMcpData();
+  </script>
+`);
+
 const ROUTER_LINK_TEMPLATE = (`
   <template>
     <div>
