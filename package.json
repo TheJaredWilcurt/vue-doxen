@@ -31,6 +31,7 @@
   "devDependencies": {
     "@eslint/js": "^9.39.3",
     "@highlightjs/vue-plugin": "2.1.2",
+    "@playwright/test": "^1.58.2",
     "@stylistic/eslint-plugin": "^5.9.0",
     "@vitejs/plugin-vue": "^6.0.4",
     "@vitest/coverage-v8": "^4.0.18",
@@ -70,6 +71,18 @@
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "^4.59.0"
+  },
+  "peerDependencies": {
+    "playwright": ">=1.0.0",
+    "vue": "^3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "playwright": {
+      "optional": true
+    },
+    "vue": {
+      "optional": true
+    }
   },
   "private": false,
   "type": "module",
