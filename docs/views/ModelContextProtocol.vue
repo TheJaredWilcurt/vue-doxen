@@ -167,7 +167,7 @@ import { allDemos } from '../src/demos/index.js';
 async function convertDemosToJson () {
   try {
     // A URL to a webpage with all the demos loaded
-    const url = 'https://localhost:8080/doxen-mcp';
+    const url = 'http://localhost:8080/doxen-mcp';
 
     const data = await serializeDemos(allDemos, url);
     const content = JSON.stringify(data, null, 2) + '\\n';
