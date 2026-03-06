@@ -71,8 +71,19 @@
         You'll need to install PlayWright to have access to this feature.
       </p>
       <ul>
-        <li><code>npm i -D playwright</code></li>
+        <li><code>npm i -D playwright && npx playwright install</code></li>
       </ul>
+      <p>
+        You'll also need to set Playwright as an external dependency for your
+        script to run.
+      </p>
+
+      <DoxenCodeSwapper
+        fileName="./vite.config.js"
+        :codeTypes="{ JavaScript: VITE_CONFIG }"
+        :styleTokens="styleTokens"
+      />
+
       <p>
         You'll need to provide a URL to a page with both
         <code>DoxenSidebar</code> and <code>VueDoxen</code>
@@ -137,7 +148,7 @@ const demos = {
 
 async function convertDemosToJson () {
   try {
-    const data = await serializeDemos(demos);
+    const data = await serializeDemos({ demos });
     const content = JSON.stringify(data, null, 2) + '\\n';
     const outputFile = join(import.meta.dirname, 'demos.json');
     writeFileSync(outputFile, content);
@@ -166,10 +177,19 @@ import { allDemos } from '../src/demos/index.js';
 
 async function convertDemosToJson () {
   try {
-    // A URL to a webpage with all the demos loaded
-    const url = 'http://localhost:8080/doxen-mcp';
-
-    const data = await serializeDemos(allDemos, url);
+    const data = await serializeDemos({
+      demos: allDemos,
+      // A URL to a webpage with all the demos loaded
+      url: 'http://localhost:8080/doxen-mcp',
+      // Accepts 'text' or 'html', defaults to 'html'.
+      // Determines what is captured from the DOM when
+      // pulling out custom components with Playwright.
+      markup: 'html',
+      // 'all' = Logs all warnings and status (default)
+      // 'status' = Logs only the status updates
+      // 'none' = No logging at all, silent
+      logLevel: 'all'
+    });
     const content = JSON.stringify(data, null, 2) + '\\n';
 
     const outputFile = join(import.meta.dirname, 'demos.json');
@@ -194,6 +214,16 @@ export const allDemos = {
 };
 `.trim();
 
+const VITE_CONFIG = `
+import { defineConfig } from 'vite';
+
+defineConfig({
+  optimizeDeps: {
+    exclude: ['chromium-bidi']
+  }
+});
+`.trim();
+
 export default {
   name: 'ModelContextProtocol',
   components: {
@@ -210,7 +240,8 @@ export default {
     MCP_ADVANCED_OPTIONS_EXAMPLE,
     MCP_ADVANCED_COMPOSITION_EXAMPLE,
     MCP_ADVANCED_SCRIPT_SETUP_EXAMPLE,
-    PACKAGE_JSON
+    PACKAGE_JSON,
+    VITE_CONFIG
   }
 };
 </script>
