@@ -65,6 +65,7 @@
  * @property {PROPSTODEMO}             propsToDemo        Documentation details and playground controls for the props of the component to demo.
  * @property {string[]|EMITSTODEMO}    emitsToDemo        To document the component's emits.
  * @property {string[]|SLOTSTODEMO}    slotsToDemo        To document the component's slots.
+ * @property {DEMO}                    mcp                This mirrors the structure of the demo object, but must be fully JSON serializable. Used to override properties when using serializeDemos.
  */
 
 /** @typedef {Object<string, DEMO|VUECOMPONENT>} DEMOS */

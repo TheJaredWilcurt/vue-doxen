@@ -17,6 +17,7 @@
     <nav>
       <ul>
         <li><a href="#getting-started">Getting Started</a></li>
+        <li><a href="#overrides">Overriding output values</a></li>
         <li><a href="#advanced">Advanced</a></li>
       </ul>
     </nav>
@@ -54,6 +55,43 @@
       <ul>
         <li><code>npm run mcp</code></li>
       </ul>
+    </DocumentationSection>
+
+    <DocumentationSection id="overrides" title="Overriding outputs">
+      <p>
+        Since Vue-Doxen demo objects are primarily focused on a usage for
+        interactive component demos/documentation (for humans), you may
+        want to change some of the values when creating a JSON
+        representation for a data-consuming audience.
+      </p>
+      <p>
+        You can add an <code>mcp</code> object in the root of either your
+        component or the demo object. It has the same structure as the rest
+        of the Vue-Doxen documentation API to make overrides intuitive. The
+        <code>mcp</code> object exclusively used by <code>serializeDemos</code>.
+      </p>
+
+      <DoxenCodeSwapper
+        :fileName="{
+          'Demo File': 'myComponentDemo.js',
+          'Options': 'MyComponent.vue',
+          'Composition': 'MyComponent.vue',
+          'Script Setup': 'MyComponent.vue'
+        }"
+        :codeTypes="{
+          'Demo File': MCP_OBJECT_DEMO_EXAMPLE,
+          'Options': MCP_OBJECT_OPTIONS_EXAMPLE,
+          'Composition': MCP_OBJECT_OPTIONS_EXAMPLE,
+          'Script Setup': MCP_OBJECT_SCRIPT_SETUP_EXAMPLE
+        }"
+        :styleTokens="styleTokens"
+      />
+
+      <p>
+        If the <code>mcp</code> object is found in both the demo and the
+        component, they will be merged with the demo object's version
+        taking priority.
+      </p>
     </DocumentationSection>
 
     <DocumentationSection id="advanced" title="Advanced">
@@ -96,8 +134,8 @@
       <DoxenCodeSwapper
         fileName="./src/views/DoxenMCP.vue"
         :codeTypes="{
-          'Options API': MCP_ADVANCED_OPTIONS_EXAMPLE,
-          'Composition API': MCP_ADVANCED_COMPOSITION_EXAMPLE,
+          'Options': MCP_ADVANCED_OPTIONS_EXAMPLE,
+          'Composition': MCP_ADVANCED_COMPOSITION_EXAMPLE,
           'Script Setup': MCP_ADVANCED_SCRIPT_SETUP_EXAMPLE
         }"
         :styleTokens="styleTokens"
@@ -127,7 +165,10 @@ import DocumentationSection from '@@@/components/DocumentationSection.vue';
 import {
   MCP_ADVANCED_OPTIONS_EXAMPLE,
   MCP_ADVANCED_COMPOSITION_EXAMPLE,
-  MCP_ADVANCED_SCRIPT_SETUP_EXAMPLE
+  MCP_ADVANCED_SCRIPT_SETUP_EXAMPLE,
+  MCP_OBJECT_DEMO_EXAMPLE,
+  MCP_OBJECT_OPTIONS_EXAMPLE,
+  MCP_OBJECT_SCRIPT_SETUP_EXAMPLE
 } from '@@@/helpers/codeSnippets.js';
 
 const CUSTOM_SCRIPT = `
@@ -240,6 +281,9 @@ export default {
     MCP_ADVANCED_OPTIONS_EXAMPLE,
     MCP_ADVANCED_COMPOSITION_EXAMPLE,
     MCP_ADVANCED_SCRIPT_SETUP_EXAMPLE,
+    MCP_OBJECT_DEMO_EXAMPLE,
+    MCP_OBJECT_OPTIONS_EXAMPLE,
+    MCP_OBJECT_SCRIPT_SETUP_EXAMPLE,
     PACKAGE_JSON,
     VITE_CONFIG
   }

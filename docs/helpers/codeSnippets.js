@@ -1616,6 +1616,40 @@ export const MCP_ADVANCED_SCRIPT_SETUP_EXAMPLE = templatePrefix(MCP_ADVANCED_TEM
   </script>
 `);
 
+export const MCP_OBJECT_DEMO_EXAMPLE = unindent(`
+  import MyComponent from '../components/MyComponent.vue';
+
+  export const demo = {
+    component: MyComponent,
+    description: '<p>Some <strong>text</strong>.</p>',
+    mcp: {
+      description: 'Some text.'
+    }
+  };
+`);
+export const MCP_OBJECT_OPTIONS_EXAMPLE = unindent(`
+  <script>
+  export default {
+    name: 'MyComponent',
+    description: '<p>Some <strong>text</strong>.</p>',
+    mcp: {
+      description: 'Some text.'
+    }
+  };
+  </script>
+`);
+export const MCP_OBJECT_SCRIPT_SETUP_EXAMPLE = unindent(`
+  <script setup>
+  defineOptions({
+    name: 'MyComponent',
+    description: '<p>Some <strong>text</strong>.</p>',
+    mcp: {
+      description: 'Some text.'
+    }
+  });
+  </script>
+`);
+
 const ROUTER_LINK_TEMPLATE = (`
   <template>
     <div>
