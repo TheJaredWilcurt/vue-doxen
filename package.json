@@ -64,7 +64,7 @@
     "vite-node": "^5.3.0",
     "vite-plugin-vue-devtools": "^8.0.7",
     "vitest": "^4.0.18",
-    "vue": "^3.5.29",
+    "vue": "^3.5.30",
     "vue-dev-tools-accessibility": "^0.5.3",
     "vue-options-api-constants-plugin": "^1.0.3",
     "vue-router": "^5.0.3",
