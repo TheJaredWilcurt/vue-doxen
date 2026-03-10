@@ -25,7 +25,7 @@ const OPTIONS_EXAMPLE = unindent(`
   import MyCustomComponent from '@/components/MyCustomComponent.vue';
 
   export default {
-    name: 'MyComponent',,
+    name: 'MyComponent',
     propsToDemo: {
       myProp: {
         // BAD
@@ -41,7 +41,7 @@ const SCRIPT_SETUP_EXAMPLE = unindent(`
   import MyCustomComponent from '@/components/MyCustomComponent.vue';
 
   defineOptions({
-    name: 'MyComponent',,
+    name: 'MyComponent',
     propsToDemo: {
       myProp: {
         // BAD

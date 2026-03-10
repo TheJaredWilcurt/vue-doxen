@@ -173,8 +173,8 @@
         <code>linterSettings</code> are detailed below.
       </p>
       <p>
-        After you create your linting script, you'll need a convienient way to run it.
-        I would recommed using an npm script. In the example we use <code>vite-node</code>,
+        After you create your linting script, you'll need a convenient way to run it.
+        I would recommend using an npm script. In the example we use <code>vite-node</code>,
         you may need to run <code>npm i -D vite-node</code> for the npm script below to work.
         If you know of a way to get the linter to work with
         <a

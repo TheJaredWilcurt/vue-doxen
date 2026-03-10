@@ -67,6 +67,11 @@ const routes = [
     component: () => import('@@@/views/AccessibilityTooling.vue').catch(Catch)
   },
   {
+    path: '/vue-doxen/mcp',
+    name: 'mcp',
+    component: () => import('@@@/views/ModelContextProtocol.vue').catch(Catch)
+  },
+  {
     path: '/vue-doxen/components/:component',
     name: 'components',
     component: () => import('@@@/views/ComponentsView.vue').catch(Catch),

@@ -6,23 +6,29 @@
     })"
   >
     <!-- DoxenDeprecationBanner -->
-    <OptionalCustomComponent
+    <div
       v-if="deprecationNotice"
-      :customComponent="deprecationNotice"
-      :fallbackComponent="options.components.deprecationBanner"
-      :fallbackProps="{ description: deprecationNotice }"
-      :rootKey="componentName + '-deprecationNotice'"
-      :styleTokens="styleTokens"
-    />
+      data-doxen-serialize="deprecationNotice"
+    >
+      <OptionalCustomComponent
+        :customComponent="deprecationNotice"
+        :fallbackComponent="options.components.deprecationBanner"
+        :fallbackProps="{ description: deprecationNotice }"
+        :rootKey="componentName + '-deprecationNotice'"
+        :styleTokens="styleTokens"
+      />
+    </div>
 
     <!-- DoxenHeader -->
-    <OptionalCustomComponent
-      :customComponent="title"
-      :fallbackComponent="options.components.header"
-      :fallbackProps="{ title: componentTitle }"
-      :rootKey="componentName + '-title'"
-      :styleTokens="styleTokens"
-    />
+    <div data-doxen-serialize="title">
+      <OptionalCustomComponent
+        :customComponent="title"
+        :fallbackComponent="options.components.header"
+        :fallbackProps="{ title: componentTitle }"
+        :rootKey="componentName + '-title'"
+        :styleTokens="styleTokens"
+      />
+    </div>
 
     <template v-if="description">
       <div
@@ -30,21 +36,25 @@
         v-html="description"
         v-bind="applyStyleTokens({ demoDescription: true })"
       ></div>
-      <component
+      <div
         v-else-if="typeof(description) === 'object' && description.component"
-        :is="description.component"
-        v-bind="description.props || {}"
-        v-on="description.events || {}"
-        :key="componentName + '-description'"
+        data-doxen-serialize="description"
       >
-        <template
-          v-for="(slotValue, slotName) in description.slots"
-          #[slotName]
-          :key="'slot-' + slotName"
+        <component
+          :is="description.component"
+          v-bind="description.props || {}"
+          v-on="description.events || {}"
+          :key="componentName + '-description'"
         >
-          <HtmlFragments :html="description.slots[slotName]" />
-        </template>
-      </component>
+          <template
+            v-for="(slotValue, slotName) in description.slots"
+            #[slotName]
+            :key="'slot-' + slotName"
+          >
+            <HtmlFragments :html="description.slots[slotName]" />
+          </template>
+        </component>
+      </div>
     </template>
 
     <template v-if="importStatement">
@@ -55,7 +65,10 @@
           :styleTokens="styleTokens"
         />
       </template>
-      <template v-else-if="typeof(importStatement) === 'object' && importStatement.component">
+      <div
+        v-else-if="typeof(importStatement) === 'object' && importStatement.component"
+        data-doxen-serialize="importStatement"
+      >
         <component
           :is="importStatement.component"
           v-bind="importStatement.props || {}"
@@ -70,7 +83,7 @@
             <HtmlFragments :html="importStatement.slots[slotName]" />
           </template>
         </component>
-      </template>
+      </div>
     </template>
 
     <!-- Component being demo'd -->

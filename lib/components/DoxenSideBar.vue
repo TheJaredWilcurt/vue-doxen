@@ -5,6 +5,7 @@
       v-for="(value, key) in processedDemos"
       :aria-pressed="modelValue === key"
       :data-test="'button' + key"
+      :data-doxen-nav-serialize="'doxen-sidebar-' + key"
       @click="updateValue(key)"
       v-bind="applyStyleTokens({
         sidebarButton: true,

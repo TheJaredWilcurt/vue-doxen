@@ -24,6 +24,7 @@ exports[`DoxenSideBar.vue > Shows items, with Foo selected 1`] = `
       doxen-sidebar-button-selected
     "
     data-applied-style-tokens="sidebarButton sidebarButtonSelected"
+    data-doxen-nav-serialize="doxen-sidebar-Foo"
     data-style-tokens="sidebarButton sidebarButtonNotSelected sidebarButtonSelected"
   >
     Foo
@@ -35,6 +36,7 @@ exports[`DoxenSideBar.vue > Shows items, with Foo selected 1`] = `
       doxen-sidebar-button-not-selected
     "
     data-applied-style-tokens="sidebarButton sidebarButtonNotSelected"
+    data-doxen-nav-serialize="doxen-sidebar-Bar"
     data-style-tokens="sidebarButton sidebarButtonNotSelected sidebarButtonSelected"
   >
     Bar
@@ -46,6 +48,7 @@ exports[`DoxenSideBar.vue > Shows items, with Foo selected 1`] = `
       doxen-sidebar-button-not-selected
     "
     data-applied-style-tokens="sidebarButton sidebarButtonNotSelected"
+    data-doxen-nav-serialize="doxen-sidebar-Baz"
     data-style-tokens="sidebarButton sidebarButtonNotSelected sidebarButtonSelected"
   >
     Baz
@@ -68,6 +71,7 @@ exports[`DoxenSideBar.vue > Shows items, with nothing selected 1`] = `
       doxen-sidebar-button-not-selected
     "
     data-applied-style-tokens="sidebarButton sidebarButtonNotSelected"
+    data-doxen-nav-serialize="doxen-sidebar-Foo"
     data-style-tokens="sidebarButton sidebarButtonNotSelected sidebarButtonSelected"
   >
     Foo
@@ -79,6 +83,7 @@ exports[`DoxenSideBar.vue > Shows items, with nothing selected 1`] = `
       doxen-sidebar-button-not-selected
     "
     data-applied-style-tokens="sidebarButton sidebarButtonNotSelected"
+    data-doxen-nav-serialize="doxen-sidebar-Bar"
     data-style-tokens="sidebarButton sidebarButtonNotSelected sidebarButtonSelected"
   >
     Bar
@@ -90,6 +95,7 @@ exports[`DoxenSideBar.vue > Shows items, with nothing selected 1`] = `
       doxen-sidebar-button-not-selected
     "
     data-applied-style-tokens="sidebarButton sidebarButtonNotSelected"
+    data-doxen-nav-serialize="doxen-sidebar-Baz"
     data-style-tokens="sidebarButton sidebarButtonNotSelected sidebarButtonSelected"
   >
     Baz
