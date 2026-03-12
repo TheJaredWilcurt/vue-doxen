@@ -258,7 +258,15 @@ export const allDemos = {
 const VITE_CONFIG = `
 import { defineConfig } from 'vite';
 
-defineConfig({
+export default defineConfig({
+  build: {
+    rollupOptions: {
+      external: [
+        'playwright',
+        'playwright-core'
+      ]
+    }
+  },
   optimizeDeps: {
     exclude: ['chromium-bidi']
   }
@@ -285,6 +293,7 @@ export default {
     MCP_OBJECT_OPTIONS_EXAMPLE,
     MCP_OBJECT_SCRIPT_SETUP_EXAMPLE,
     PACKAGE_JSON,
+    SKIP_PLAYWRIGHT_VITE_CONFIG,
     VITE_CONFIG
   }
 };
