@@ -258,7 +258,15 @@ export const allDemos = {
 const VITE_CONFIG = `
 import { defineConfig } from 'vite';
 
-defineConfig({
+export default defineConfig({
+  build: {
+    rollupOptions: {
+      external: [
+        'playwright',
+        'playwright-core'
+      ]
+    }
+  },
   optimizeDeps: {
     exclude: ['chromium-bidi']
   }
