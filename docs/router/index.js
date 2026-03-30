@@ -128,9 +128,8 @@ export const router = createRouter({
   routes
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(() => {
   NProgress.start();
-  next();
 });
 router.afterEach(() => {
   NProgress.done();

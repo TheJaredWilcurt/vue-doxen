@@ -72,6 +72,10 @@ const config = defineConfig({
       reportsDirectory: './tests/unit/coverage'
     },
     environment: 'happy-dom',
+    // https://github.com/nodejs/node/issues/60303
+    // https://github.com/vitest-dev/vitest/issues/8757
+    // https://github.com/capricorn86/happy-dom/issues/1950
+    execArgv: (process.versions.node.split('.')[0]) >= 25 ? ['--no-experimental-webstorage'] : [],
     globals: true,
     root: '.',
     setupFiles: [
