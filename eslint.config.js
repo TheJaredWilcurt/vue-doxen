@@ -2,10 +2,10 @@ import path from 'node:path';
 
 import pluginJs from '@eslint/js';
 import tjwBase from 'eslint-config-tjw-base';
-import tjwImport from 'eslint-config-tjw-import';
+import tjwImport from 'eslint-config-tjw-import-x';
 import tjwJest from 'eslint-config-tjw-jest';
 import tjwVue from 'eslint-config-tjw-vue';
-import pluginImport from 'eslint-plugin-import';
+import pluginImport from 'eslint-plugin-import-x';
 import pluginJest from 'eslint-plugin-jest';
 import pluginVue from 'eslint-plugin-vue';
 import pluginVueA11y from 'eslint-plugin-vuejs-accessibility';
@@ -43,13 +43,13 @@ export default [
        * These 4 specific import rules were turned off because
        * they bug out and break things when enabled.
        */
-      'import/named': 'off',
-      'import/namespace': 'off',
-      'import/no-cycle': 'off',
-      'import/no-deprecated': 'off',
+      'import-x/named': 'off',
+      'import-x/namespace': 'off',
+      'import-x/no-cycle': 'off',
+      'import-x/no-deprecated': 'off',
       // Turned off because import plugin can't see exports used in .vue files
-      'import/no-unused-modules': 'off',
-      'import/order': [
+      'import-x/no-unused-modules': 'off',
+      'import-x/order': [
         'error',
         {
           alphabetize: {
@@ -103,6 +103,7 @@ export default [
           allowEmptyCatch: true
         }
       ],
+      'no-useless-assignment': 'off',
       'vue/no-v-for-template-key': 'off',
       'vue/no-v-model-argument': 'off',
       'vue/no-multiple-template-root': [
@@ -130,7 +131,7 @@ export default [
       ]
     },
     settings: {
-      'import/resolver': {
+      'import-x/resolver': {
         vite: {
           viteConfig: {
             resolve: {
@@ -152,7 +153,7 @@ export default [
       './docs/**/*'
     ],
     rules: {
-      'import/no-extraneous-dependencies': 'off'
+      'import-x/no-extraneous-dependencies': 'off'
     }
   }
 ];
