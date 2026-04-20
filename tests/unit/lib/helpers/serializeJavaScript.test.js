@@ -14,6 +14,7 @@ describe('Serialize JavaScript', () => {
     vi.useFakeTimers();
     vi.setSystemTime(date);
 
+    /* eslint-disable-next-line no-unassigned-vars */
     let undefinedValue;
 
     function externalMethod (foo, bar) {

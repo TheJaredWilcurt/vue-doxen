@@ -27,7 +27,7 @@
 </template>
 
 <script>
-/* eslint-disable import/extensions,import/no-extraneous-dependencies */
+/* eslint-disable import-x/extensions,import-x/no-extraneous-dependencies */
 import hljsVuePlugin from '@highlightjs/vue-plugin';
 import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
