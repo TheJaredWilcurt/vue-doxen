@@ -126,7 +126,7 @@
  * @property {boolean}                [descriptionMustEndInPeriod=false]     Warns when description on a demo page does not end in a period.
  *                                                                           Ignores custom component descriptions, missing or empty strings.
  * @property {boolean}                [doNotViolateVueEmitApi=false]         Requires all components with emits defined follow Vue's API.
- *                                                                           `emits`` must be an array of strings, or an object with key values
+ *                                                                           `emits` must be an array of strings, or an object with key values
  *                                                                           that are `null` or functions.
  * @property {boolean}                [mustHaveDescription=false]            Requires a description (string or custom component) on all
  *                                                                           demos and/or components. (can be set to undefined).
