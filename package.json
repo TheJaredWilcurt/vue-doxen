@@ -31,13 +31,13 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@highlightjs/vue-plugin": "2.1.2",
-    "@playwright/test": "^1.60.0",
+    "@playwright/test": "^1.61.0",
     "@stylistic/eslint-plugin": "^5.10.0",
     "@vitejs/plugin-vue": "^6.0.7",
-    "@vitest/coverage-v8": "^4.1.8",
-    "@vue/test-utils": "^2.4.10",
+    "@vitest/coverage-v8": "^4.1.9",
+    "@vue/test-utils": "^2.4.11",
     "cross-env": "^10.1.0",
-    "eslint": "^10.4.1",
+    "eslint": "^10.5.0",
     "eslint-config-tjw-base": "^5.0.0",
     "eslint-config-tjw-import-x": "^1.0.1",
     "eslint-config-tjw-jest": "^4.0.0",
@@ -48,7 +48,7 @@
     "eslint-plugin-vue": "^10.8.0",
     "eslint-plugin-vuejs-accessibility": "^2.5.0",
     "globals": "^17.6.0",
-    "happy-dom": "^20.8.9",
+    "happy-dom": "^20.10.3",
     "htmlparser2": "^12.0.0",
     "json5": "^2.2.3",
     "lodash-es": "^4.18.1",
@@ -59,19 +59,19 @@
     "lodash.startcase": "^4.4.0",
     "npm-free-server": "^1.1.0",
     "nprogress": "^0.2.0",
-    "sass": "^1.100.0",
+    "sass": "^1.101.0",
     "vite": "^7.3.5",
     "vite-node": "^6.0.0",
-    "vite-plugin-vue-devtools": "^8.1.2",
+    "vite-plugin-vue-devtools": "^8.1.3",
     "vitest": "^4.1.4",
-    "vue": "^3.5.35",
+    "vue": "^3.5.38",
     "vue-dev-tools-accessibility": "^0.5.3",
     "vue-options-api-constants-plugin": "^1.0.3",
     "vue-router": "^5.1.0",
-    "vue3-snapshot-serializer": "^2.13.2"
+    "vue3-snapshot-serializer": "^2.13.3"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "^4.61.0"
+    "@rollup/rollup-linux-x64-gnu": "^4.62.0"
   },
   "peerDependencies": {
     "playwright": ">=1.0.0",
