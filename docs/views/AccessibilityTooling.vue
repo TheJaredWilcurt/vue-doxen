@@ -278,7 +278,7 @@ const ESLINT_EXAMPLE = unindent(`
     ...pluginVueA11y.configs['flat/recommended'],
     {
       languageOptions: {
-        ecmaVersion: 2025
+        ecmaVersion: 2026
       },
       // project specific rules/settings
       rules: {
