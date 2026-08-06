@@ -1,11 +1,11 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import-x/no-extraneous-dependencies */
 import { resolve } from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
 
-/* eslint-disable-next-line import/no-unresolved */
+/* eslint-disable-next-line import-x/no-unresolved */
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
-/* eslint-disable-next-line import/extensions,import/no-unresolved */
+/* eslint-disable-next-line import-x/extensions,import-x/no-unresolved */
 import { configDefaults } from 'vitest/config';
 
 const __dirname = import.meta.dirname;
@@ -72,6 +72,10 @@ const config = defineConfig({
       reportsDirectory: './tests/unit/coverage'
     },
     environment: 'happy-dom',
+    // https://github.com/nodejs/node/issues/60303
+    // https://github.com/vitest-dev/vitest/issues/8757
+    // https://github.com/capricorn86/happy-dom/issues/1950
+    execArgv: (process.versions.node.split('.')[0]) >= 25 ? ['--no-experimental-webstorage'] : [],
     globals: true,
     root: '.',
     setupFiles: [

@@ -14,7 +14,7 @@
  * @file This renders HTML markup without a wrapper element (required by v-html).
  */
 
-/* eslint-disable-next-line import/no-extraneous-dependencies */
+/* eslint-disable-next-line import-x/no-extraneous-dependencies */
 import { parseDocument } from 'htmlparser2';
 
 const badAttributeAndTagCharacters = [

@@ -101,7 +101,7 @@
 </template>
 
 <script>
-/* eslint-disable-next-line import/no-unresolved */
+/* eslint-disable-next-line import-x/no-unresolved */
 import vuetifyStyles from '@@@/assets/vuetify.css?inline';
 
 import {
@@ -113,7 +113,7 @@ import {
 import DoxenCheckbox from '@/components/formFields/DoxenCheckbox.vue';
 import DoxenDropdown from '@/components/formFields/DoxenDropdown.vue';
 
-/* eslint-disable-next-line import/no-unresolved */
+/* eslint-disable-next-line import-x/no-unresolved */
 import doxenStyles from '@/sass/vue-doxen.sass?inline';
 
 export default {

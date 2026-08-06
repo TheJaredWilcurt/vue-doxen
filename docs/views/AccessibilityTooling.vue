@@ -32,11 +32,11 @@
     <DocumentationSection id="eslint" title="Vue.js Accessibility ESLint Plugin">
       <p>
         This is a great ESLint plugin for Vue projects to detect common accessibility issues in your
-        source code and help to enforce best practices.
+        source code and help to enforce best practices. Below code is for ESLint 9+.
       </p>
 
       <ol>
-        <li><code>npm install --save-dev eslint@9 eslint-plugin-vuejs-accessibility</code></li>
+        <li><code>npm install --save-dev eslint eslint-plugin-vuejs-accessibility</code></li>
         <li>
           Create an <code>eslint.config.js</code> file in the root of your project
           <DoxenCodeBox
@@ -278,7 +278,7 @@ const ESLINT_EXAMPLE = unindent(`
     ...pluginVueA11y.configs['flat/recommended'],
     {
       languageOptions: {
-        ecmaVersion: 2025
+        ecmaVersion: 2026
       },
       // project specific rules/settings
       rules: {
