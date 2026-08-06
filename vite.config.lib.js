@@ -48,6 +48,9 @@ const config = defineConfig({
       }
     }
   },
+  optimizeDeps: {
+    noDiscovery: true
+  },
   plugins: [vue()],
   resolve: {
     alias: {

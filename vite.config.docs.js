@@ -76,7 +76,8 @@ const config = defineConfig({
     }
   },
   optimizeDeps: {
-    include: ['axe-core']
+    include: ['axe-core'],
+    noDiscovery: true
   },
   plugins: [
     vue(),
