@@ -1,8 +1,7 @@
-/* eslint-disable import-x/no-extraneous-dependencies */
+/* eslint-disable import-x/no-extraneous-dependencies,import-x/no-unresolved */
 import { resolve } from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
 
-/* eslint-disable-next-line import-x/no-unresolved */
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
 import vueDevTools from 'vite-plugin-vue-devtools';
@@ -15,7 +14,7 @@ const config = defineConfig({
   build: {
     chunkSizeWarningLimit: 572.36,
     outDir: resolve(__dirname, 'site'),
-    rollupOptions: {
+    rolldownOptions: {
       external: [
         '/vue-doxen/branding/vue-doxen-dog.png',
         '/vue-doxen/branding/vue-doxen-logo-large.png',
@@ -29,24 +28,56 @@ const config = defineConfig({
           colorette: 'colorette',
           'pretty-ms': 'prettyMilliseconds'
         },
-        manualChunks: {
-          '@highlightjs/vue-plugin': ['@highlightjs/vue-plugin'],
-          json5: ['json5'],
-          'lodash.clonedeep': ['lodash.clonedeep'],
-          'lodash.isequal': ['lodash.isequal'],
-          'lodash.lowerfirst': ['lodash.lowerfirst'],
-          'lodash.startcase': ['lodash.startcase'],
-          htmlparser2: ['htmlparser2'],
-          nprogress: ['nprogress'],
-          'vue-options-api-constants-plugin': ['vue-options-api-constants-plugin'],
-          'vue-router': ['vue-router'],
-          vue: ['vue']
+        codeSplitting: {
+          groups: [
+            {
+              test: /node_modules\/highlight/,
+              name: 'highlightjs'
+            },
+            {
+              test: /node_modules\/json5/,
+              name: 'json5'
+            },
+            {
+              test: /node_modules\/nprogress/,
+              name: 'nprogress'
+            },
+            {
+              test: /node_modules\/lodash/,
+              name: 'lodash'
+            },
+            {
+              test: /node_modules\/htmlparser2/,
+              name: 'htmlparser2'
+            },
+            {
+              test: /node_modules\/vue-router/,
+              name: 'vue-router'
+            },
+            {
+              test: /node_modules\/vue-options-api-constants-plugin/,
+              name: 'constants-plugin'
+            },
+            {
+              test: /node_modules\/vue/,
+              name: 'vue'
+            },
+            {
+              test: /node_modules/,
+              name: 'lib'
+            },
+            {
+              test: /index\.js/,
+              name: 'alloy-docs'
+            }
+          ]
         }
       }
     }
   },
   optimizeDeps: {
-    include: ['axe-core']
+    include: ['axe-core'],
+    noDiscovery: true
   },
   plugins: [
     vue(),
