@@ -1,11 +1,10 @@
-/* eslint-disable import-x/no-extraneous-dependencies */
+/* eslint-disable import-x/no-unresolved */
 import { resolve } from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
 
-/* eslint-disable-next-line import-x/no-unresolved */
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
-/* eslint-disable-next-line import-x/extensions,import-x/no-unresolved */
+/* eslint-disable-next-line import-x/extensions */
 import { configDefaults } from 'vitest/config';
 
 const __dirname = import.meta.dirname;
@@ -24,7 +23,7 @@ const config = defineConfig({
         'umd'
       ]
     },
-    rollupOptions: {
+    rolldownOptions: {
       external: [
         'colorette',
         'pretty-ms',
@@ -48,6 +47,9 @@ const config = defineConfig({
         }
       }
     }
+  },
+  optimizeDeps: {
+    noDiscovery: true
   },
   plugins: [vue()],
   resolve: {
