@@ -55,6 +55,9 @@
       <ul>
         <li><code>npm run mcp</code></li>
       </ul>
+      <p>
+        You may need to set <code>optimizeDeps.noDiscovery = true</code> in your Vite config.
+      </p>
     </DocumentationSection>
 
     <DocumentationSection id="overrides" title="Overriding outputs">

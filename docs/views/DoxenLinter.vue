@@ -191,6 +191,9 @@
         :codeTypes="{ JSON: MANIFEST }"
         :styleTokens="styleTokens"
       />
+      <p>
+        You may need to set <code>optimizeDeps.noDiscovery = true</code> in your Vite config.
+      </p>
     </DocumentationSection>
 
     <DocumentationSection id="linter-settings" title="Linter Settings">
