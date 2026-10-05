@@ -54,7 +54,6 @@
     "lodash-es": "^4.18.1",
     "lodash.clonedeep": "^4.5.0",
     "lodash.isequal": "^4.5.0",
-    "lodash.kebabcase": "^4.1.1",
     "lodash.lowerfirst": "^4.3.1",
     "lodash.startcase": "^4.4.0",
     "npm-free-server": "^1.1.0",

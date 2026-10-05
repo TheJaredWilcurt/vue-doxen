@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import _kebabCase from 'lodash.kebabcase';
+import _kebabCase from 'lodash-es/kebabcase';
 
 import { componentsToListInSidebar } from '@@@/demos/index.js';
 
