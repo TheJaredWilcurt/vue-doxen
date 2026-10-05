@@ -249,9 +249,9 @@
 
 <script>
 /* eslint-disable import-x/no-extraneous-dependencies */
-import _cloneDeep from 'lodash.clonedeep';
-import _lowerFirst from 'lodash.lowerfirst';
-import _startCase from 'lodash.startcase';
+import _cloneDeep from 'lodash-es/clonedeep';
+import _lowerFirst from 'lodash-es/lowerfirst';
+import _startCase from 'lodash-es/startcase';
 
 import {
   autoGeneratePlaygroundProps,

@@ -66,7 +66,7 @@
 
 <script>
 /* eslint-disable-next-line import-x/no-extraneous-dependencies */
-import _cloneDeep from 'lodash.clonedeep';
+import _cloneDeep from 'lodash-es/clonedeep';
 
 import { createImportStatement } from '@/helpers/componentHelpers.js';
 import { styleTokens } from '@/helpers/props.js';
