@@ -89,6 +89,7 @@
     <!-- Component being demo'd -->
     <div v-bind="applyStyleTokens({ componentDemoContainer: true })">
       <hr v-bind="applyStyleTokens({ componentDemoHr: true })" />
+      <slot></slot>
       <component
         :is="demo.component"
         v-bind="demoProps"

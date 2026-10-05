@@ -6,7 +6,9 @@
       :options="validatedOptions"
       :styleTokens="styleTokens"
       :key="selectedDemo"
-    />
+    >
+      <slot></slot>
+    </ComponentDemo>
   </div>
 </template>
 

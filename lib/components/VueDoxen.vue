@@ -5,7 +5,9 @@
     :modelValue="modelValue"
     :styleTokens="styleTokens"
     @update:modelValue="$emit('update:model-value', $event)"
-  />
+  >
+    <slot></slot>
+  </VueDoxenCustom>
 </template>
 
 <script>
