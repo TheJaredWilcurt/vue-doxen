@@ -7,6 +7,16 @@ function templatePrefix (template, script) {
   ].join('\n\n');
 }
 
+export const ABOVE_COMPONENT_EXAMPLE = unindent(`
+  <template>
+    <VueDoxen :demos="MyComponent">
+      <button @click="showComponent">
+        Show
+      </button>
+    </VueDoxen>
+  </template>
+`);
+
 const ALTERNATE_TEMPLATE = (`
   <template>
     <VueDoxen :demos="{ demo }" />

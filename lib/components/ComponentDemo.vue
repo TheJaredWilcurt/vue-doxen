@@ -89,6 +89,7 @@
     <!-- Component being demo'd -->
     <div v-bind="applyStyleTokens({ componentDemoContainer: true })">
       <hr v-bind="applyStyleTokens({ componentDemoHr: true })" />
+      <slot></slot>
       <component
         :is="demo.component"
         v-bind="demoProps"
@@ -248,9 +249,9 @@
 
 <script>
 /* eslint-disable import-x/no-extraneous-dependencies */
-import _cloneDeep from 'lodash.clonedeep';
-import _lowerFirst from 'lodash.lowerfirst';
-import _startCase from 'lodash.startcase';
+import _cloneDeep from 'lodash-es/cloneDeep.js';
+import _lowerFirst from 'lodash-es/lowerFirst.js';
+import _startCase from 'lodash-es/startCase.js';
 
 import {
   autoGeneratePlaygroundProps,

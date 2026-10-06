@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import _cloneDeep from 'lodash.clonedeep';
+import _cloneDeep from 'lodash-es/cloneDeep.js';
 
 import { styleTokens } from '@/helpers/props.js';
 

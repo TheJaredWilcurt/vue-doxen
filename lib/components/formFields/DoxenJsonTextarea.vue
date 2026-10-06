@@ -53,7 +53,7 @@
 <script>
 /* eslint-disable import-x/no-extraneous-dependencies */
 import JSON5 from 'json5';
-import _isEqual from 'lodash.isequal';
+import _isEqual from 'lodash-es/isEqual.js';
 
 import {
   createIdFor,

@@ -55,22 +55,39 @@
           </div>
         </div>
       </a>
-      <RouterLink
-        :class="{ 'zone-hover': hover === YOUR_COMPONENT }"
-        :to="{ name: 'demoFiles', hash: '#demo-files' }"
-        @mouseover="hover = YOUR_COMPONENT"
-        @mouseout="hoverOff"
-        @focus="hover = YOUR_COMPONENT"
-        @blur="hoverOff"
-      >
-        <div class="zone component-container">
-          <div class="hr"></div>
-          <div class="blocks component">
-            <span v-text="YOUR_COMPONENT" class="sr-only"></span>
+      <div class="component-container">
+        <div class="hr"></div>
+        <a
+          class=""
+          :class="{ 'zone-hover': hover === ABOVE_COMPONENT }"
+          href="#above-component"
+          @mouseover="hover = ABOVE_COMPONENT"
+          @mouseout="hoverOff"
+          @focus="hover = ABOVE_COMPONENT"
+          @blur="hoverOff"
+        >
+          <div class="zone">
+            <div class="blocks above-component">
+              <span v-text="YOUR_COMPONENT" class="sr-only"></span>
+            </div>
           </div>
-          <div class="hr"></div>
-        </div>
-      </RouterLink>
+        </a>
+        <RouterLink
+          :class="{ 'zone-hover': hover === YOUR_COMPONENT }"
+          :to="{ name: 'demoFiles', hash: '#demo-files' }"
+          @mouseover="hover = YOUR_COMPONENT"
+          @mouseout="hoverOff"
+          @focus="hover = YOUR_COMPONENT"
+          @blur="hoverOff"
+        >
+          <div class="zone">
+            <div class="blocks component">
+              <span v-text="YOUR_COMPONENT" class="sr-only"></span>
+            </div>
+          </div>
+        </RouterLink>
+        <div class="hr"></div>
+      </div>
       <a
         class="playground zone"
         :class="{ 'zone-hover': hover === PROPS_PLAYGROUND }"
@@ -203,6 +220,7 @@ const DEPRECATION_NOTICE = 'Deprecation Notice';
 const COMPONENT_NAME = 'Component Title/Name';
 const COMPONENT_DESCRIPTION = 'Component Description';
 const IMPORT_STATEMENT = 'Import Statement';
+const ABOVE_COMPONENT = 'Above Component';
 const YOUR_COMPONENT = 'Your Component';
 const PROPS_PLAYGROUND = 'Props Playground';
 const SLOTS_PLAYGROUND = 'Slots Playground';
@@ -218,6 +236,7 @@ export default {
     COMPONENT_NAME,
     COMPONENT_DESCRIPTION,
     IMPORT_STATEMENT,
+    ABOVE_COMPONENT,
     YOUR_COMPONENT,
     PROPS_PLAYGROUND,
     SLOTS_PLAYGROUND,
@@ -257,13 +276,14 @@ export default {
         [COMPONENT_NAME]: 49,
         [COMPONENT_DESCRIPTION]: 72,
         [IMPORT_STATEMENT]: 89,
-        [YOUR_COMPONENT]: 129,
-        [PROPS_PLAYGROUND]: 189,
-        [SLOTS_PLAYGROUND]: 253,
-        [EMIT_LOGGER]: 319,
-        [LIVE_CODE]: 406,
-        [PROPS_DOCUMENTATION]: 499,
-        [EMITS_DOCUMENTATION]: 569
+        [ABOVE_COMPONENT]: 117,
+        [YOUR_COMPONENT]: 154,
+        [PROPS_PLAYGROUND]: 214,
+        [SLOTS_PLAYGROUND]: 278,
+        [EMIT_LOGGER]: 344,
+        [LIVE_CODE]: 431,
+        [PROPS_DOCUMENTATION]: 524,
+        [EMITS_DOCUMENTATION]: 594
       };
       const top = hoverTextTopOffsetMap[this.hover];
 
@@ -357,14 +377,20 @@ export default {
 .component-container {
   width: 100%;
 }
+.above-component {
+  width: 60px;
+  height: 20px;
+  margin: 0px 0px;
+}
 .component {
   width: 100px;
   height: 40px;
-  margin: 7px 0px;
+  margin: 0px 0px 0px 0px;
 }
 .hr {
   height: 1px;
   background: #BBB;
+  margin: 3px 0px;
 }
 .playground {
   display: flex;

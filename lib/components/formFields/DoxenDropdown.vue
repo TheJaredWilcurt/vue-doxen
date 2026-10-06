@@ -56,7 +56,7 @@
 
 <script>
 /* eslint-disable-next-line import-x/no-extraneous-dependencies */
-import _cloneDeep from 'lodash.clonedeep';
+import _cloneDeep from 'lodash-es/cloneDeep.js';
 
 import {
   createIdFor,
