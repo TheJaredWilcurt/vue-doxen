@@ -8,7 +8,7 @@
  *       vite-node --config vite.config.lib.js ./scripts/someScript.js
  *
  *       After:
- *       node ./linter/viteRunner.js --config vite.config.lib.js ./scripts/someScript.js
+ *       node ./some/path/viteRunner.js --config vite.config.lib.js ./scripts/someScript.js
  */
 
 import path from 'node:path';
@@ -52,6 +52,7 @@ const { positionals, values } = parseArgs({
   allowPositionals: true,
   options: {
     config: {
+      default: 'vite.config.js',
       short: 'c',
       type: 'string'
     }
