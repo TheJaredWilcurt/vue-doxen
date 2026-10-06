@@ -41,6 +41,13 @@
           </ul>
         </li>
         <li>
+          <a href="#live-component">Live component demo</a>
+          <ul>
+            <li><a href="#above-component">Above component</a></li>
+            <li><RouterLink :to="{ name: 'demoFiles', hash: '#demo-files' }">Your Component</RouterLink></li>
+          </ul>
+        </li>
+        <li>
           <a href="#props">Documenting Props</a>
           <ul>
             <li><a href="#basic-prop">Basic Prop Definitions</a></li>
@@ -288,6 +295,23 @@
             'Script Setup': IMPORT_STATEMENT_COMPONENT_SCRIPT_SETUP_EXAMPLE
           }"
           :fileName="FILE_NAME_MY"
+          :styleTokens="styleTokens"
+        />
+      </SubDocumentationSection>
+    </DocumentationSection>
+
+    <DocumentationSection id="live-component" title="Live Component Demo">
+      <SubDocumentationSection id="above-component" title="Above Component">
+        <p>
+          Some components may require an intial interaction for them to be seen.
+          Such as clicking a button to toggle visibility.
+          For simplicity you can pass that in via the default slot of either
+          <code>&lt;VueDoxen&gt;</code> or <code>&lt;VueDoxenCustom&gt;</code>.
+        </p>
+
+        <DoxenCodeSwapper
+          :codeTypes="{ Vue: ABOVE_COMPONENT_EXAMPLE }"
+          fileName="YourDemo.vue"
           :styleTokens="styleTokens"
         />
       </SubDocumentationSection>
@@ -618,6 +642,7 @@ import PageSkeleton from '@@@/components/PageSkeleton.vue';
 import SubDocumentationSection from '@@@/components/SubDocumentationSection.vue';
 
 import {
+  ABOVE_COMPONENT_EXAMPLE,
   BASIC_PROPS_DEMO_FILE,
   BASIC_PROPS_OPTIONS,
   BASIC_PROPS_SCRIPT_SETUP,
@@ -693,6 +718,7 @@ export default {
     styleTokens
   },
   constants: {
+    ABOVE_COMPONENT_EXAMPLE,
     BASIC_PROPS_DEMO_FILE,
     BASIC_PROPS_OPTIONS,
     BASIC_PROPS_SCRIPT_SETUP,
