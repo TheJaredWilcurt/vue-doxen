@@ -55,39 +55,39 @@
           </div>
         </div>
       </a>
-        <div class="component-container">
-          <div class="hr"></div>
-            <a
-              class=""
-              :class="{ 'zone-hover': hover === ABOVE_COMPONENT }"
-              href="#above-component"
-              @mouseover="hover = ABOVE_COMPONENT"
-              @mouseout="hoverOff"
-              @focus="hover = ABOVE_COMPONENT"
-              @blur="hoverOff"
-            >
-            <div class="zone">
-              <div class="blocks above-component">
-                <span v-text="YOUR_COMPONENT" class="sr-only"></span>
-              </div>
+      <div class="component-container">
+        <div class="hr"></div>
+        <a
+          class=""
+          :class="{ 'zone-hover': hover === ABOVE_COMPONENT }"
+          href="#above-component"
+          @mouseover="hover = ABOVE_COMPONENT"
+          @mouseout="hoverOff"
+          @focus="hover = ABOVE_COMPONENT"
+          @blur="hoverOff"
+        >
+          <div class="zone">
+            <div class="blocks above-component">
+              <span v-text="YOUR_COMPONENT" class="sr-only"></span>
             </div>
-          </a>
-          <RouterLink
-            :class="{ 'zone-hover': hover === YOUR_COMPONENT }"
-            :to="{ name: 'demoFiles', hash: '#demo-files' }"
-            @mouseover="hover = YOUR_COMPONENT"
-            @mouseout="hoverOff"
-            @focus="hover = YOUR_COMPONENT"
-            @blur="hoverOff"
-          >
-            <div class="zone">
-              <div class="blocks component">
-                <span v-text="YOUR_COMPONENT" class="sr-only"></span>
-              </div>
+          </div>
+        </a>
+        <RouterLink
+          :class="{ 'zone-hover': hover === YOUR_COMPONENT }"
+          :to="{ name: 'demoFiles', hash: '#demo-files' }"
+          @mouseover="hover = YOUR_COMPONENT"
+          @mouseout="hoverOff"
+          @focus="hover = YOUR_COMPONENT"
+          @blur="hoverOff"
+        >
+          <div class="zone">
+            <div class="blocks component">
+              <span v-text="YOUR_COMPONENT" class="sr-only"></span>
             </div>
-          </RouterLink>
-          <div class="hr"></div>
-        </div>
+          </div>
+        </RouterLink>
+        <div class="hr"></div>
+      </div>
       <a
         class="playground zone"
         :class="{ 'zone-hover': hover === PROPS_PLAYGROUND }"
