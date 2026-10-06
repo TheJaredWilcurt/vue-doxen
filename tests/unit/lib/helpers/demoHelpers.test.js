@@ -1189,10 +1189,10 @@ describe('Demo helpers', () => {
         .toEqual(defaultSlot);
 
       expect(getSlotDataFromComponent(VueDoxen))
-        .toEqual({});
+        .toEqual(defaultSlot);
 
       expect(getSlotDataFromComponent(VueDoxenCustom))
-        .toEqual({});
+        .toEqual(defaultSlot);
     });
   });
 
