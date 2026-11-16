@@ -6,7 +6,7 @@
       v-text="title"
       class="docs-title"
     ></h2>
-    <slot></slot>
+    <slot />
   </section>
 </template>
 

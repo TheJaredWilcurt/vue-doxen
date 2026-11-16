@@ -3,7 +3,7 @@
 
   <section :id="id">
     <h3 v-html="fullTitle"></h3>
-    <slot></slot>
+    <slot />
   </section>
 </template>
 

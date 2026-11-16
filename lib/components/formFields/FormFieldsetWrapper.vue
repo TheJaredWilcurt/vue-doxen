@@ -3,7 +3,7 @@
     v-bind="applyStyleTokens({ formFieldFieldset: true })"
     :data-value="dataValue(modelValue)"
   >
-    <slot></slot>
+    <slot />
   </fieldset>
 </template>
 

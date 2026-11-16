@@ -7,7 +7,7 @@
       :styleTokens="styleTokens"
       :key="selectedDemo"
     >
-      <slot></slot>
+      <slot />
     </ComponentDemo>
   </div>
 </template>

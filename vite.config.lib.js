@@ -64,12 +64,11 @@ const config = defineConfig({
     coverage: {
       exclude: [
         ...(configDefaults?.coverage?.exclude || []),
-        '.eslintrc.cjs',
-        './docs/',
-        './site/',
-        './scripts/',
-        './lib/sass/',
-        './tests/'
+        './docs/**/*',
+        './site/**/*',
+        './scripts/**/*',
+        './lib/sass/**/*',
+        './tests/**/*'
       ],
       reportsDirectory: './tests/unit/coverage'
     },
