@@ -17,7 +17,7 @@
       :code="'<h1>' + greeting + '</h1>'"
       :styleTokens="{}"
     />
-    <slot></slot>
+    <slot />
   </div>
 </template>
 

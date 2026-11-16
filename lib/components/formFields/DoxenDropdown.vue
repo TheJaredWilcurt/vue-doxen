@@ -50,7 +50,7 @@
       :message="message"
       :styleTokens="styleTokens"
     />
-    <slot></slot>
+    <slot />
   </FormFieldsetWrapper>
 </template>
 

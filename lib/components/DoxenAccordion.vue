@@ -9,7 +9,7 @@
       :inert="!show"
       style="grid-row: 1 / span 2; overflow: hidden"
     >
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>

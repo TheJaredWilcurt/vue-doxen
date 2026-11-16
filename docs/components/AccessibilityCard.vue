@@ -51,7 +51,7 @@
       Highlight element on page
     </DoxenButton>
 
-    <slot></slot>
+    <slot />
   </div>
 </template>
 

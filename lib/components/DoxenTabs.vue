@@ -1,6 +1,6 @@
 <template>
   <div v-bind="applyStyleTokens({ tabsHeader: true })">
-    <slot></slot>
+    <slot />
     <div v-bind="applyStyleTokens({ tabsButtonContainer: true })">
       <button
         v-for="tabName in tabs"
