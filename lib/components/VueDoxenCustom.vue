@@ -68,7 +68,8 @@ export default {
         console.info(
           'Vue-Doxen received a v-model value of "' + this.modelValue +
           '", however that value could not be found in the list of ' +
-          'provided demos:', Object.keys(this.processedDemos)
+          'provided demos:', 
+          Object.keys(this.processedDemos)
         );
         console.info(
           'This is likely from a bug in your code, that you should ' +
