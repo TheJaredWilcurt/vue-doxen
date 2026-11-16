@@ -1,6 +1,6 @@
 <template>
   <div v-bind="applyStyleTokens({ sidebarContainer: true })">
-    <slot name="default"></slot>
+    <slot name="default" />
     <button
       v-for="(value, key) in processedDemos"
       :aria-pressed="modelValue === key"
@@ -16,7 +16,7 @@
     >
       {{ getName(value, key) }}
     </button>
-    <slot name="footer"></slot>
+    <slot name="footer" />
   </div>
 </template>
 

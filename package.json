@@ -26,42 +26,42 @@
   ],
   "dependencies": {
     "colorette": "^2.0.20",
-    "pretty-ms": "^9.3.1"
+    "pretty-ms": "^10.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@highlightjs/vue-plugin": "2.1.2",
-    "@playwright/test": "^1.63.0",
+    "@playwright/test": "^1.65.1",
     "@stylistic/eslint-plugin": "^5.10.0",
-    "@vitejs/plugin-vue": "^6.0.9",
-    "@vitest/coverage-v8": "^5.0.3",
-    "@vue/test-utils": "^2.5.1",
+    "@vitejs/plugin-vue": "^6.0.11",
+    "@vitest/coverage-v8": "^5.1.0",
+    "@vue/test-utils": "^2.6.0",
     "cross-env": "^10.1.0",
-    "eslint": "^10.12.0",
-    "eslint-config-tjw-base": "^5.0.0",
-    "eslint-config-tjw-import-x": "^1.0.1",
-    "eslint-config-tjw-jest": "^4.0.0",
+    "eslint": "^10.15.0",
+    "eslint-config-tjw-base": "^5.0.1",
+    "eslint-config-tjw-import-x": "^1.0.2",
+    "eslint-config-tjw-jest": "^4.0.1",
     "eslint-config-tjw-vue": "^4.0.1",
     "eslint-import-resolver-vite": "^2.2.0",
-    "eslint-plugin-import-x": "^4.17.1",
-    "eslint-plugin-jest": "^29.16.6",
-    "eslint-plugin-vue": "^10.11.1",
-    "eslint-plugin-vuejs-accessibility": "^2.6.0",
-    "globals": "^17.13.0",
-    "happy-dom": "^20.14.5",
+    "eslint-plugin-import-x": "^4.18.1",
+    "eslint-plugin-jest": "^29.17.1",
+    "eslint-plugin-vue": "^10.12.1",
+    "eslint-plugin-vuejs-accessibility": "^2.6.3",
+    "globals": "^17.14.0",
+    "happy-dom": "^21.0.4",
     "htmlparser2": "^12.0.0",
     "json5": "^2.2.3",
     "lodash-es": "^4.18.1",
     "npm-free-server": "^1.1.0",
     "nprogress": "^0.2.0",
-    "sass": "^1.105.1",
-    "vite": "^8.3.3",
+    "sass": "^1.108.2",
+    "vite": "^8.3.8",
     "vite-plugin-vue-devtools": "^8.2.1",
-    "vitest": "^5.0.0",
-    "vue": "^3.5.43",
-    "vue-dev-tools-accessibility": "^0.5.6",
+    "vitest": "^5.1.0",
+    "vue": "^3.5.45",
+    "vue-dev-tools-accessibility": "^0.5.7",
     "vue-options-api-constants-plugin": "^1.0.3",
-    "vue-router": "^5.3.1",
+    "vue-router": "^5.5.1",
     "vue3-snapshot-serializer": "^2.13.4"
   },
   "peerDependencies": {
@@ -162,11 +162,11 @@
   "devEngines": {
     "runtime": {
       "name": "node",
-      "version": "26.10.0"
+      "version": "26.13.1"
     },
     "packageManager": {
       "name": "npm",
-      "version": "12.2.0"
+      "version": "12.2.2"
     }
   }
 }

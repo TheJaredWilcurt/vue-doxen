@@ -1,6 +1,6 @@
 <template>
   <h2 class="docs-title">{{ title }}</h2>
-  <p><slot></slot></p>
+  <p><slot /></p>
   <ul v-if="readMore && readMoreLink">
     <li>
       <RouterLink :to="{ name: readMoreLink, hash: readMoreHash }">

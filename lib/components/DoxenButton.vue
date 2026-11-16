@@ -8,7 +8,7 @@
     :aria-pressed="selected"
     @click="$emit('click', $event)"
   >
-    <slot></slot>
+    <slot />
   </button>
 </template>
 
